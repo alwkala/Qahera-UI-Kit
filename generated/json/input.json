@@ -1,0 +1,156 @@
+{
+  "id": "input",
+  "name": "Input",
+  "component": "Input",
+  "category": "forms",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "prefix-icon",
+      "control",
+      "suffix-icon",
+      "clear-button"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-text-entry"
+      },
+      "filled": {
+        "intent": "high-contrast-entry"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": 32,
+        "padding_inline": 10,
+        "font_size": "var(--qhr-text-sm)"
+      },
+      "md": {
+        "height": 40,
+        "padding_inline": 12,
+        "font_size": "var(--qhr-text-base)"
+      },
+      "lg": {
+        "height": 48,
+        "padding_inline": 16,
+        "font_size": "var(--qhr-text-lg)"
+      }
+    },
+    "states": [
+      "default",
+      "hover",
+      "focus",
+      "disabled",
+      "invalid",
+      "valid"
+    ],
+    "slots": {
+      "leadingIcon": "optional",
+      "control": "required",
+      "trailingIcon": "optional",
+      "clearTrigger": "optional"
+    },
+    "accessibility": {
+      "role": "textbox",
+      "keyboard": true,
+      "focusVisible": true,
+      "aria": [
+        {
+          "aria-invalid": "when state=invalid"
+        },
+        {
+          "aria-required": "when required"
+        },
+        {
+          "aria-describedby": "references helper or error text"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/input.yaml",
+    "base": {
+      "display": "flex",
+      "width": "100%",
+      "align-items": "center",
+      "font-family": "inherit",
+      "background-color": "{color.surface.base}",
+      "color": "{color.neutral.900}",
+      "border": "1px solid {color.border.subtle}",
+      "border-radius": "{radius.md}",
+      "outline": "none",
+      "transition-duration": "{duration.fast}",
+      "transition-timing-function": "{ease.standard}"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.base}",
+        "border-color": "{color.border.subtle}"
+      },
+      "filled": {
+        "background-color": "{color.neutral.100}",
+        "border-color": "transparent"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "{text.sm}",
+        "padding-inline": "{space.3}",
+        "padding-block": "{space.1-5}",
+        "border-radius": "{radius.sm}"
+      },
+      "md": {
+        "font-size": "{text.base}",
+        "padding-inline": "{space.3-5}",
+        "padding-block": "{space.2}",
+        "border-radius": "{radius.md}"
+      },
+      "lg": {
+        "font-size": "{text.lg}",
+        "padding-inline": "{space.4}",
+        "padding-block": "{space.3}",
+        "border-radius": "{radius.lg}"
+      }
+    },
+    "states": {
+      "hover": {
+        "border-color": "{color.primary.bg}"
+      },
+      "focus": {
+        "border-color": "{color.primary.bg}",
+        "outline": "2px solid {color.primary.subtle}"
+      },
+      "disabled": {
+        "background-color": "{color.neutral.100}",
+        "opacity": 0.6,
+        "cursor": "not-allowed"
+      },
+      "invalid": {
+        "border-color": "{color.danger.bg}",
+        "outline": "2px solid {color.danger.subtle}"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Captures a single line of textual or numeric data from the user.",
+    "whenToUse": [
+      "Short textual inputs (names, emails, search queries, quantities)",
+      "Form fields within forms or modal dialogues",
+      "Search query input in search-toolbar"
+    ],
+    "avoid": [
+      "Multi-line freeform text (use Textarea instead)",
+      "Selecting from predefined options (use Select or Radio instead)"
+    ],
+    "related": [
+      "search-toolbar",
+      "data-table-toolbar",
+      "form-actions"
+    ]
+  },
+  "source": {
+    "file": "contracts/components/Input.yaml"
+  }
+}

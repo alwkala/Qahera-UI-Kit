@@ -1,0 +1,121 @@
+/* ==========================================================================
+   Tabs (.qhr-tabs)
+   ========================================================================== */
+.qhr-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.qhr-tablist {
+  display: flex;
+  gap: var(--qhr-space-2, 8px);
+  border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  margin-block-end: var(--qhr-space-4, 16px);
+}
+[data-theme="dark"] .qhr-tablist {
+  border-block-end-color: var(--qhr-border-subtle, #1e293b);
+}
+
+.qhr-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qhr-space-2, 8px);
+  padding-block: var(--qhr-space-2-5, 10px);
+  padding-inline: var(--qhr-space-4, 16px);
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--qhr-content-secondary, #64748b);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--qhr-duration-fast, 150ms);
+}
+[data-theme="dark"] .qhr-tab-btn {
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+
+.qhr-tab-btn::after {
+  content: "";
+  position: absolute;
+  inset-block-end: -1px;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color var(--qhr-duration-fast, 150ms);
+}
+
+.qhr-tab-btn:hover {
+  color: var(--qhr-content-primary, #0f172a);
+}
+[data-theme="dark"] .qhr-tab-btn:hover {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+
+.qhr-tab-btn.is-active {
+  color: var(--qhr-color-primary-500, #c7a35a);
+}
+
+.qhr-tab-btn.is-active::after {
+  background-color: var(--qhr-color-primary-500, #c7a35a);
+}
+
+/* Pills Variant */
+.qhr-tabs--pills .qhr-tablist {
+  border-block-end: none;
+}
+.qhr-tabs--pills .qhr-tab-btn {
+  border-radius: var(--qhr-radius-pill, 9999px);
+}
+.qhr-tabs--pills .qhr-tab-btn::after {
+  display: none;
+}
+.qhr-tabs--pills .qhr-tab-btn.is-active {
+  background-color: var(--qhr-color-primary-500, #c7a35a);
+  color: #ffffff;
+}
+
+/* Segmented Control Variant */
+.qhr-tabs--segmented .qhr-tablist {
+  border-block-end: none;
+  background-color: var(--qhr-surface-muted, #f1f5f9);
+  padding: 4px;
+  border-radius: var(--qhr-radius-lg, 12px);
+  width: fit-content;
+}
+[data-theme="dark"] .qhr-tabs--segmented .qhr-tablist {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+}
+.qhr-tabs--segmented .qhr-tab-btn {
+  border-radius: var(--qhr-radius-md, 8px);
+  padding-block: 6px;
+  padding-inline: 16px;
+}
+.qhr-tabs--segmented .qhr-tab-btn::after {
+  display: none;
+}
+.qhr-tabs--segmented .qhr-tab-btn.is-active {
+  background-color: var(--qhr-surface-base, #ffffff);
+  color: var(--qhr-content-primary, #0f172a);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+[data-theme="dark"] .qhr-tabs--segmented .qhr-tab-btn.is-active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.qhr-tabpanel {
+  display: none;
+  animation: qhr-fade-in 150ms var(--qhr-ease-standard, ease);
+}
+.qhr-tabpanel.is-active {
+  display: block;
+}
+
+@keyframes qhr-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

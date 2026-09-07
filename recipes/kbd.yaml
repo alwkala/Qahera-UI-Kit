@@ -1,0 +1,73 @@
+component: Kbd
+name: kbd
+category: data-display
+version: 1.0.0
+
+ai:
+  intent: "Keyboard hotkey indicator"
+  visual_role: "Elevated key badge"
+  density: "compact"
+  preferred_when:
+    - "Documenting keyboard shortcuts in menu dropdowns and dialogs"
+  avoid_when:
+    - "Clickable button elements"
+
+base:
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  font-family: "{font.family.mono}"
+  background-color: "{color.surface.elevated}"
+  border: "1px solid {color.border.subtle}"
+  border-bottom: "2px solid {color.border.strong}"
+  border-radius: "{radius.sm}"
+  color: "{color.text.muted}"
+  font-weight: 600
+
+variants:
+  default:
+    background-color: "{color.surface.elevated}"
+  outline:
+    background-color: "transparent"
+
+sizes:
+  sm:
+    height: "20px"
+    padding: "0 var(--qhr-space-1)"
+    font-size: "11px"
+  md:
+    height: "24px"
+    padding: "0 var(--qhr-space-2)"
+    font-size: "12px"
+  lg:
+    height: "28px"
+    padding: "0 var(--qhr-space-2)"
+    font-size: "14px"
+
+states:
+  default:
+    opacity: 1
+
+contract:
+  anatomy:
+    - root
+  props:
+    size:
+      default: md
+      values: [sm, md, lg]
+    variant:
+      default: default
+      values: [default, outline]
+  slots:
+    - default
+
+structure:
+  base:
+    native_class: qhr-kbd
+    tailwind: "inline-flex items-center justify-center font-mono text-xs text-[var(--qhr-text-muted)] bg-[var(--qhr-surface-elevated)] border border-[var(--qhr-border-subtle)] border-b-2 rounded px-1.5 shadow-sm"
+
+accessibility:
+  role: text
+
+rtl:
+  supported: true

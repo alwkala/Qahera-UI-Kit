@@ -1,0 +1,40 @@
+version: 1.0.0
+name: cairo-azure
+description: "Cairo Azure Theme — Islamic Geometric & Heritage Lapis Lazuli (Inspired by Al-Mu'izz Architecture & Brass Lanterns)"
+school: "Islamic Geometric / Heritage Arabesque"
+region: "Historic Cairo / Al-Gamaleya"
+
+overrides:
+  surface:
+    base: "#0A0E1A"
+    elevated: "#12192E"
+    muted: "#1C2644"
+    overlay: "rgba(10, 14, 26, 0.88)"
+  content:
+    primary: "#F8FAFC"
+    secondary: "#BAC8DF"
+    brass: "#FACC15"
+    turquoise: "#38BDF8"
+    muted: "#71829E"
+  border:
+    subtle: "rgba(56, 189, 248, 0.18)"
+    strong: "rgba(250, 204, 21, 0.35)"
+  color:
+    primary:
+      bg: "#0284C7"
+      fg: "#FFFFFF"
+      border: "#0284C7"
+      hover: "#0EA5E9"
+    secondary:
+      bg: "#12192E"
+      fg: "#F8FAFC"
+      border: "rgba(250, 204, 21, 0.25)"
+      hover: "#1C2644"
+    accent:
+      bg: "#CA8A04"
+      fg: "#0A0E1A"
+  radius:
+    box: "10px"
+    field: "6px"
+    selector: "8px"
+  border_width: "1px"

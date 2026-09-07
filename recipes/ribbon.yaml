@@ -1,0 +1,68 @@
+component: Ribbon
+name: ribbon
+category: data-display
+version: 1.0.0
+
+ai:
+  intent: "Corner tag or status ribbon on containers"
+  visual_role: "Folded or diagonal badge anchored to card corner"
+  density: "compact"
+  preferred_when:
+    - "Product badges ('New', 'Exclusive', 'Sale')"
+    - "Subscription tier ribbons ('Royal', 'Enterprise')"
+  avoid_when:
+    - "Interactive buttons or clickable elements"
+
+base:
+  position: absolute
+  z-index: 10
+  font-family: "{font.family.body}"
+  font-weight: 700
+  text-align: center
+  user-select: none
+  white-space: nowrap
+
+variants:
+  folded:
+    inset-block-start: "14px"
+    inset-inline-start: "-8px"
+    padding-inline: "{space.4}"
+    padding-block: "{space.2}"
+  corner:
+    inset-block-start: "18px"
+    inset-inline-start: "-38px"
+    transform: "rotate(-45deg)"
+    padding-inline: "{space.6}"
+  bookmark:
+    inset-block-start: "0"
+    inset-inline-end: "16px"
+    border-radius: "0 0 6px 6px"
+    padding-block: "{space.2}"
+    padding-inline: "{space.3}"
+  flat:
+    inset-block-start: "12px"
+    inset-inline-start: "0"
+    border-radius: "0 {radius.md} {radius.md} 0"
+    padding-inline: "{space.3}"
+
+sizes:
+  sm:
+    font-size: "{text.xs}"
+    height: "20px"
+    line-height: "20px"
+  md:
+    font-size: "{text.xs}"
+    height: "26px"
+    line-height: "26px"
+  lg:
+    font-size: "{text.sm}"
+    height: "32px"
+    line-height: "32px"
+
+states:
+  default:
+    opacity: 1
+
+structure:
+  base:
+    native_class: qhr-ribbon

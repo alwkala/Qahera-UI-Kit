@@ -1,0 +1,46 @@
+name: Checkbox
+category: selection
+purpose: >
+  Permits binary toggling (true/false) or multiple independent selections.
+
+anatomy:
+  - root
+  - indicator-box
+  - checkmark-icon
+  - label
+  - description
+
+variants:
+  - default
+
+sizes:
+  - sm
+  - md
+  - lg
+
+states:
+  - default
+  - hover
+  - focus
+  - checked
+  - indeterminate
+  - disabled
+
+slots:
+  - default
+
+accessibility:
+  role: checkbox
+  keyboard:
+    Space: "Toggles checked state"
+  focus: "Focus ring around indicator box"
+  aria:
+    - aria-checked: when checked or indeterminate
+
+ai:
+  description: "Binary toggle control for single agreements or multi-select lists"
+  use_when:
+    - "Agreeing to terms and conditions"
+    - "Multi-item selection in data tables or filter menus"
+  avoid_when:
+    - "Mutually exclusive options where exactly one must be selected (use Radio)"

@@ -1,0 +1,52 @@
+component: Breadcrumb
+name: breadcrumb
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Hierarchical page path navigation"
+  visual_role: "Compact trail of breadcrumb links"
+  density: "compact"
+  preferred_when:
+    - "Hierarchical category views in shops and docs"
+    - "Nested settings and administrative panels"
+  avoid_when:
+    - "Flat single-page landing sites"
+
+base:
+  display: flex
+  align-items: center
+  flex-wrap: wrap
+  list-style: none
+  margin: 0
+  padding: 0
+  font-family: "{font.family.body}"
+
+variants:
+  default:
+    color: "{color.neutral.600}"
+  slash:
+    color: "{color.neutral.600}"
+  chevron:
+    color: "{color.neutral.600}"
+
+sizes:
+  sm:
+    font-size: "{text.xs}"
+    gap: "{space.1}"
+  md:
+    font-size: "{text.sm}"
+    gap: "{space.1-5}"
+  lg:
+    font-size: "{text.base}"
+    gap: "{space.2}"
+
+states:
+  default:
+    opacity: 1
+  hover:
+    color: "{color.primary.bg}"
+
+structure:
+  base:
+    native_class: qhr-breadcrumb

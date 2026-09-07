@@ -1,0 +1,104 @@
+<!-- Qahera UI Kit - Master Toast Showcase -->
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+
+  <!-- 1. استعراض إشعارات التوست الحية في مواضعها الثابتة (Interactive Triggers) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. إطلاق إشعارات التوست التفاعلية (Interactive Triggers)</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; background: var(--q-surface); padding: 20px; border-radius: 16px; border: 1px solid var(--q-border);">
+      <button type="button" class="qhr-btn qhr-btn--success qhr-btn--sm" onclick="showLiveToast('success')">إشعار نجاح (Success)</button>
+      <button type="button" class="qhr-btn qhr-btn--info qhr-btn--sm" onclick="showLiveToast('info')">إشعار معلومات (Info)</button>
+      <button type="button" class="qhr-btn qhr-btn--warning qhr-btn--sm" onclick="showLiveToast('warning')">إشعار تحذير (Warning)</button>
+      <button type="button" class="qhr-btn qhr-btn--danger qhr-btn--sm" onclick="showLiveToast('danger')">إشعار خطأ (Danger)</button>
+      <button type="button" class="qhr-btn qhr-btn--luxury qhr-btn--sm" onclick="showLiveToast('luxury')">إشعار قاهرة الفاخر (Luxury)</button>
+    </div>
+  </div>
+
+  <!-- 2. بطاقات الإشعارات الثابتة للمعاينة البصرية (Static Showcase) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">2. المعاينة المباشرة لكافة النغمات مع أشرطة التقدم (Static Variant Stack)</h3>
+    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 420px;">
+      
+      <!-- Success Toast -->
+      <div class="qhr-toast qhr-toast--success">
+        <span class="qhr-toast-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </span>
+        <div class="qhr-toast-body">
+          <div class="qhr-toast-title">تم نسخ الكود البرمجي</div>
+          <div class="qhr-toast-msg">أصبح كود المكون جاهزاً في الحافظة للصقه مباشرة.</div>
+        </div>
+        <button type="button" class="qhr-toast-close" aria-label="إغلاق">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="qhr-toast-progress" style="width: 70%;"></div>
+      </div>
+
+      <!-- Info Toast -->
+      <div class="qhr-toast qhr-toast--info">
+        <span class="qhr-toast-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </span>
+        <div class="qhr-toast-body">
+          <div class="qhr-toast-title">تحديث في الخلفية</div>
+          <div class="qhr-toast-msg">تجري الآن مزامنة 14 أصلاً هندسياً بنجاح.</div>
+        </div>
+        <button type="button" class="qhr-toast-close" aria-label="إغلاق">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="qhr-toast-progress" style="width: 45%;"></div>
+      </div>
+
+      <!-- Luxury Toast -->
+      <div class="qhr-toast qhr-toast--luxury">
+        <span class="qhr-toast-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </span>
+        <div class="qhr-toast-body">
+          <div class="qhr-toast-title" style="color: var(--q-gold);">مرحباً بك في نادي قاهرة</div>
+          <div class="qhr-toast-msg">تم تفعيل سمات التراث الذهبي لحسابك بنجاح.</div>
+        </div>
+        <button type="button" class="qhr-toast-close" aria-label="إغلاق">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="qhr-toast-progress" style="width: 90%;"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- حاوية التوست الحية التفاعلية -->
+<div id="live-toast-container" class="qhr-toast-container qhr-toast-container--top-end"></div>
+
+<script>
+function showLiveToast(tone) {
+  const container = document.getElementById('live-toast-container');
+  const toast = document.createElement('div');
+  toast.className = 'qhr-toast qhr-toast--' + tone;
+  
+  let title = 'إشعار جديد';
+  let msg = 'تم استدعاء الإشعار بنجاح وفق ميثاق قاهرة الموحد.';
+  if (tone === 'success') { title = 'تم الحفظ'; msg = 'تم تسجيل البيانات بنجاح.'; }
+  if (tone === 'danger') { title = 'خطأ اتصال'; msg = 'تعذر الوصول إلى الخادم.'; }
+  if (tone === 'warning') { title = 'تنبيه'; msg = 'يرجى مراجعة الحقول المطلوبة.'; }
+  if (tone === 'luxury') { title = 'قاهرة الذهبي'; msg = 'تم تطبيق النمط الفاخر بنجاح.'; }
+
+  toast.innerHTML = \`
+    <span class="qhr-toast-icon">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    </span>
+    <div class="qhr-toast-body">
+      <div class="qhr-toast-title">\${title}</div>
+      <div class="qhr-toast-msg">\${msg}</div>
+    </div>
+    <button type="button" class="qhr-toast-close" onclick="this.parentElement.remove()" aria-label="إغلاق">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  `;
+  container.appendChild(toast);
+  setTimeout(function() {
+    if (toast.parentElement) toast.remove();
+  }, 4000);
+}
+</script>

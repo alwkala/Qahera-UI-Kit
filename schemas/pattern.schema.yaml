@@ -1,0 +1,73 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: QaheraPatternContractSchemaV1
+type: object
+required:
+  - id
+  - name
+  - category
+  - purpose
+  - components
+  - anatomy
+  - layout
+  - accessibility
+  - ai
+properties:
+  id:
+    type: string
+    pattern: "^[a-z0-9]+(-[a-z0-9]+)*$"
+    description: "Canonical pattern identifier in kebab-case (e.g. search-toolbar, empty-state)"
+  name:
+    type: string
+    description: "Human-readable pattern display name"
+  category:
+    type: string
+    enum: [navigation, forms, feedback, data-display, layout, overlay, analytics, containers, selection, marketing, ecommerce]
+  purpose:
+    type: string
+    description: "User experience goal achieved by this pattern"
+  components:
+    type: array
+    items: { type: string }
+    description: "List of canonical component IDs composed within this pattern"
+  anatomy:
+    type: array
+    items: { type: string }
+    description: "Constituent structural parts of the pattern layout"
+  slots:
+    type: array
+    items: { type: string }
+    description: "Configurable or pluggable slots"
+  layout:
+    type: object
+    required: [display, direction, gap]
+    properties:
+      display: { type: string, enum: [flex, grid] }
+      direction: { type: string, enum: [row, column, responsive] }
+      gap: { type: string }
+      alignment: { type: string }
+      responsive: { type: object }
+  accessibility:
+    type: object
+    required: [role, keyboard_flow]
+    properties:
+      role: { type: string }
+      landmark: { type: string }
+      keyboard_flow: { type: string }
+      aria_live: { type: string }
+  ai:
+    type: object
+    required: [purpose, use_when, avoid_when]
+    properties:
+      purpose: { type: string }
+      use_when:
+        type: array
+        items: { type: string }
+      avoid_when:
+        type: array
+        items: { type: string }
+      related_patterns:
+        type: array
+        items: { type: string }
+      composed_of:
+        type: array
+        items: { type: string }

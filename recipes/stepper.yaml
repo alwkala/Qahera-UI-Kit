@@ -1,0 +1,60 @@
+component: Stepper
+name: stepper
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Multi-stage sequential workflow indicator"
+  visual_role: "Linear connected steps with labels"
+  density: "comfortable"
+  preferred_when:
+    - "Multi-step registration and onboarding"
+    - "Checkout flows and setup wizards"
+  avoid_when:
+    - "Non-sequential independent tabs (use Tabs)"
+
+base:
+  display: flex
+  align-items: center
+  width: 100%
+  list-style: none
+  margin: 0
+  padding: 0
+  font-family: "{font.family.body}"
+
+variants:
+  horizontal:
+    flex-direction: row
+    justify-content: space-between
+  vertical:
+    flex-direction: column
+    align-items: flex-start
+  numbers:
+    gap: "{space.4}"
+  dots:
+    gap: "{space.2}"
+
+sizes:
+  sm:
+    font-size: "{text.xs}"
+    gap: "{space.2}"
+  md:
+    font-size: "{text.sm}"
+    gap: "{space.4}"
+  lg:
+    font-size: "{text.base}"
+    gap: "{space.6}"
+
+states:
+  upcoming:
+    opacity: 0.6
+  current:
+    font-weight: 700
+  completed:
+    opacity: 1
+  disabled:
+    opacity: 0.4
+
+structure:
+  base:
+    native_class: qhr-stepper

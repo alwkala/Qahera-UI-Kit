@@ -1,0 +1,148 @@
+{
+  "id": "dock",
+  "name": "Dock",
+  "component": "Dock",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "container",
+      "item",
+      "icon",
+      "label",
+      "badge",
+      "active-indicator",
+      "center-action"
+    ],
+    "variants": [
+      "default",
+      "fixed",
+      "floating",
+      "rounded",
+      "pills",
+      "glass",
+      "center-fab",
+      "luxury-gold"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "states": [
+      "default",
+      "active",
+      "hover",
+      "focus"
+    ],
+    "slots": [
+      "default",
+      "start",
+      "center",
+      "end"
+    ],
+    "accessibility": {
+      "role": "navigation",
+      "keyboard": {
+        "ArrowLeft": "Navigates to previous dock item",
+        "ArrowRight": "Navigates to next dock item",
+        "Home": "Navigates to first dock item",
+        "End": "Navigates to last dock item",
+        "Enter": "Activates focused dock tab",
+        "Space": "Activates focused dock tab"
+      },
+      "focus": "Visible focus ring on active tab buttons",
+      "aria": [
+        {
+          "aria-label": "Bottom Navigation Dock"
+        },
+        {
+          "aria-current": "Identifies active tab page"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/dock.yaml",
+    "base": {
+      "display": "flex",
+      "align-items": "center",
+      "justify-content": "space-around",
+      "position": "fixed",
+      "inset-inline": 0,
+      "inset-block-end": 0,
+      "min-height": "3.75rem",
+      "background-color": "{color.surface.elevated}",
+      "border-block-start": "1px solid {color.border.subtle}",
+      "padding-inline": "{space.4}",
+      "padding-block-end": "env(safe-area-inset-bottom, 8px)",
+      "z-index": 100
+    },
+    "variants": {
+      "default": {
+        "width": "100%"
+      },
+      "fixed": {
+        "position": "fixed",
+        "inset-inline": 0,
+        "inset-block-end": 0
+      },
+      "floating": {
+        "position": "fixed",
+        "inset-inline-start": "50%;",
+        "transform": "translateX(-50%)",
+        "inset-block-end": "{space.4}",
+        "width": "min(92vw, 480px)",
+        "border-radius": "{radius.full}",
+        "box-shadow": "{shadow.xl}"
+      },
+      "rounded": {
+        "border-radius": "{radius.xl} {radius.xl} 0 0"
+      },
+      "pills": {
+        "gap": "{space.2}"
+      },
+      "glass": {
+        "background-color": "{color.surface.glass}",
+        "backdrop-filter": "blur(20px)"
+      },
+      "center-fab": {
+        "position": "relative"
+      },
+      "luxury-gold": {
+        "border-block-start": "2px solid {color.gold.500}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "min-height": "3.25rem"
+      },
+      "md": {
+        "min-height": "3.75rem"
+      },
+      "lg": {
+        "min-height": "4.25rem"
+      }
+    },
+    "states": {}
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays a bottom-anchored navigation bar primarily designed for handheld and mobile viewports, providing thumb-accessible quick actions, tab destinations, and status indicators.",
+    "whenToUse": [
+      "Primary mobile navigation for web apps, PWA applications, or responsive mobile views",
+      "Thumb-friendly 3 to 5 primary destinations (Home, Search, Orders, Profile, Notifications)",
+      "Floating action dock anchored to the viewport bottom"
+    ],
+    "avoid": [
+      "Desktop-first dashboards with extensive sidebar space (use Menu or Navbar instead)",
+      "Secondary page navigation with more than 5 tabs",
+      "Breadcrumb trails or deep page sub-trees"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Dock.yaml"
+  }
+}

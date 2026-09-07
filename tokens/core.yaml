@@ -1,0 +1,13 @@
+version: 0.1.0-draft
+category: core
+prefix: "--qhr-"
+name: Qahera Core Design Tokens
+description: Single source of truth for visual tokens in Qahera UI Kit
+categories:
+  - colors.yaml
+  - typography.yaml
+  - spacing.yaml
+  - radius.yaml
+  - shadows.yaml
+  - motion.yaml
+  - z-index.yaml

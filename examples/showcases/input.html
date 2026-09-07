@@ -1,0 +1,63 @@
+<!-- Qahera UI Kit - Master Input Showcase -->
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. المتغيرات البنائية (Standard, Filled, Flushed)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+      <div>
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-block-end: 6px; color: var(--q-text-secondary);">حقل افتراضي (Outlined)</label>
+        <input type="text" class="qhr-input" placeholder="اسم المستخدم أو البريد الإلكتروني">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-block-end: 6px; color: var(--q-text-secondary);">حقل معبأ (Filled)</label>
+        <input type="text" class="qhr-input qhr-input--filled" placeholder="ابحث في المنظومة...">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-block-end: 6px; color: var(--q-text-secondary);">حقل خطي سفلي (Flushed)</label>
+        <input type="text" class="qhr-input qhr-input--flushed" placeholder="أدخل الملاحظة هنا...">
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">2. الحقول مع الأيقونات واللواحق (Input Groups & Addons)</h3>
+    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 500px;">
+      
+      <!-- Leading Icon -->
+      <div class="qhr-input-group qhr-input-group--has-icon-start">
+        <span class="qhr-input-icon-start">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </span>
+        <input type="search" class="qhr-input" placeholder="بحث سريع في المكونات...">
+      </div>
+
+      <!-- Addon End -->
+      <div class="qhr-input-group">
+        <input type="text" class="qhr-input" placeholder="اسم النطاق">
+        <span class="qhr-input-addon qhr-input-addon--end">.qahera.dev</span>
+      </div>
+
+      <!-- Addon Start -->
+      <div class="qhr-input-group">
+        <span class="qhr-input-addon qhr-input-addon--start">https://</span>
+        <input type="text" class="qhr-input" placeholder="domain.com">
+      </div>
+
+    </div>
+  </div>
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">3. حالات التحقق والمقاسات (Validation & Sizes)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+      <div>
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-block-end: 6px; color: var(--qhr-color-success-600, #10b981);">حالة ناجحة (Success)</label>
+        <input type="text" class="qhr-input qhr-input--success" value="ahmed@alwkala.com">
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-block-end: 6px; color: var(--qhr-color-danger-600, #ef4444);">حالة خطأ (Error)</label>
+        <input type="text" class="qhr-input qhr-input--error" value="invalid-domain">
+      </div>
+    </div>
+  </div>
+
+</div>

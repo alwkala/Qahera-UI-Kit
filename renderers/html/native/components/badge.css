@@ -1,0 +1,266 @@
+/* ==========================================================================
+   Badge (.qhr-badge)
+   ========================================================================== */
+.qhr-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--qhr-font-body);
+  font-weight: 600;
+  border-radius: var(--qhr-radius-sm, 6px);
+  padding-block: var(--qhr-space-1, 4px);
+  padding-inline: var(--qhr-space-2-5, 10px);
+  font-size: var(--qhr-text-xs, 0.75rem);
+  line-height: 1.25;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* ── Shapes ─────────────────────────────────────────────────────────── */
+.qhr-badge--pill {
+  border-radius: var(--qhr-radius-pill, 9999px) !important;
+}
+
+/* ── Sizing (xs, sm, md, lg, xl) ────────────────────────────────────── */
+.qhr-badge--xs {
+  font-size: 10px;
+  padding-block: 1px;
+  padding-inline: 5px;
+  border-radius: 4px;
+}
+.qhr-badge--sm {
+  font-size: 11px;
+  padding-block: 2px;
+  padding-inline: 6px;
+  border-radius: 4px;
+}
+.qhr-badge--md {
+  font-size: var(--qhr-text-xs, 0.75rem);
+  padding-block: var(--qhr-space-1, 4px);
+  padding-inline: var(--qhr-space-2-5, 10px);
+}
+.qhr-badge--lg {
+  font-size: var(--qhr-text-sm, 0.875rem);
+  padding-block: 6px;
+  padding-inline: 14px;
+  border-radius: 8px;
+}
+.qhr-badge--xl {
+  font-size: var(--qhr-text-base, 1rem);
+  padding-block: 8px;
+  padding-inline: 18px;
+  border-radius: 10px;
+}
+
+/* ── Solid Tones (Basic Badge Styling) ──────────────────────────────── */
+.qhr-badge--primary {
+  background-color: var(--qhr-color-primary, var(--qhr-color-primary-bg, #0b6bcb));
+  color: var(--qhr-color-primary-fg, #ffffff);
+}
+.qhr-badge--accent {
+  background-color: var(--qhr-color-accent, #d4af37);
+  color: var(--qhr-color-accent-fg, #0f172a);
+}
+.qhr-badge--secondary {
+  background-color: #8da4be;
+  color: #ffffff;
+}
+.qhr-badge--info {
+  background-color: var(--qhr-color-purple-600, #7c3aed);
+  color: #ffffff;
+}
+.qhr-badge--success {
+  background-color: var(--qhr-color-success-bg, #059669);
+  color: #ffffff;
+}
+.qhr-badge--danger {
+  background-color: var(--qhr-color-danger-bg, #e11d48);
+  color: #ffffff;
+}
+.qhr-badge--warning {
+  background-color: var(--qhr-color-warning-bg, #d97706);
+  color: #ffffff;
+}
+.qhr-badge--light {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+.qhr-badge--dark {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+/* ── Mono Colors ────────────────────────────────────────────────────── */
+.qhr-badge--grey {
+  background-color: #64748b;
+  color: #ffffff;
+}
+
+/* ── Destructive Alias (Shadcn Parity) ──────────────────────────────── */
+.qhr-badge--destructive {
+  background-color: var(--qhr-color-danger-bg, #e11d48);
+  color: #ffffff;
+}
+
+/* ── Outline Badges (.qhr-badge--outline) ───────────────────────────── */
+.qhr-badge--outline {
+  background-color: transparent !important;
+  border-color: var(--qhr-border-strong, #cbd5e1);
+  color: var(--qhr-content-primary, #0f172a);
+}
+.qhr-badge--outline.qhr-badge--primary {
+  border-color: var(--qhr-color-primary-bg, #0b6bcb);
+  color: var(--qhr-color-primary-bg, #0b6bcb);
+}
+.qhr-badge--outline.qhr-badge--secondary {
+  border-color: #8da4be;
+  color: #475569;
+}
+.qhr-badge--outline.qhr-badge--success {
+  border-color: var(--qhr-color-success-bg, #059669);
+  color: var(--qhr-color-success-bg, #059669);
+}
+.qhr-badge--outline.qhr-badge--danger,
+.qhr-badge--outline.qhr-badge--destructive {
+  border-color: var(--qhr-color-danger-bg, #e11d48);
+  color: var(--qhr-color-danger-bg, #e11d48);
+}
+.qhr-badge--outline.qhr-badge--warning {
+  border-color: var(--qhr-color-warning-bg, #d97706);
+  color: var(--qhr-color-warning-bg, #d97706);
+}
+.qhr-badge--outline.qhr-badge--info {
+  border-color: var(--qhr-color-purple-600, #7c3aed);
+  color: var(--qhr-color-purple-600, #7c3aed);
+}
+.qhr-badge--outline.qhr-badge--dark {
+  border-color: #0f172a;
+  color: #0f172a;
+}
+
+/* ── Interactive Badges (Link / Button / Actionable) ────────────────── */
+a.qhr-badge,
+button.qhr-badge,
+.qhr-badge[role="button"],
+.qhr-badge--interactive {
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--qhr-motion-fast, 150ms) ease,
+              color var(--qhr-motion-fast, 150ms) ease,
+              border-color var(--qhr-motion-fast, 150ms) ease,
+              box-shadow var(--qhr-motion-fast, 150ms) ease,
+              opacity var(--qhr-motion-fast, 150ms) ease;
+}
+a.qhr-badge:hover,
+button.qhr-badge:hover,
+.qhr-badge[role="button"]:hover,
+.qhr-badge--interactive:hover {
+  opacity: 0.82;
+}
+a.qhr-badge:focus-visible,
+button.qhr-badge:focus-visible,
+.qhr-badge[role="button"]:focus-visible,
+.qhr-badge--interactive:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--qhr-surface-base, #ffffff), 0 0 0 4px var(--qhr-ring-focus, #3b82f6);
+}
+
+/* ── Dark Mode Overrides for Badges ─────────────────────────────────── */
+[data-theme="dark"] .qhr-badge--outline {
+  border-color: var(--qhr-border-subtle, #334155);
+  color: var(--qhr-content-primary, #f8fafc);
+}
+[data-theme="dark"] .qhr-badge--outline.qhr-badge--secondary {
+  border-color: #64748b;
+  color: #94a3b8;
+}
+[data-theme="dark"] .qhr-badge--outline.qhr-badge--dark {
+  border-color: #64748b;
+  color: #f8fafc;
+}
+[data-theme="dark"] .qhr-badge--light {
+  background-color: #1e293b;
+  color: #e2e8f0;
+}
+[data-theme="dark"] a.qhr-badge:focus-visible,
+[data-theme="dark"] button.qhr-badge:focus-visible,
+[data-theme="dark"] .qhr-badge--interactive:focus-visible {
+  box-shadow: 0 0 0 2px #0f172a, 0 0 0 4px var(--qhr-ring-focus, #60a5fa);
+}
+
+/* ── Subtle / Soft Badges (.qhr-badge--subtle) ──────────────────────── */
+.qhr-badge--subtle.qhr-badge--primary {
+  background-color: var(--qhr-badge-primary_bg, #eff6ff);
+  color: var(--qhr-badge-primary_fg, #0b6bcb);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+.qhr-badge--subtle.qhr-badge--success {
+  background-color: var(--qhr-badge-success_bg, #ecfdf5);
+  color: var(--qhr-badge-success_fg, #059669);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+.qhr-badge--subtle.qhr-badge--warning {
+  background-color: var(--qhr-badge-warning_bg, #fffbeb);
+  color: var(--qhr-badge-warning_fg, #d97706);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+.qhr-badge--subtle.qhr-badge--danger {
+  background-color: var(--qhr-badge-danger_bg, #fff1f2);
+  color: var(--qhr-badge-danger_fg, #e11d48);
+  border-color: rgba(244, 63, 94, 0.25);
+}
+
+/* ── Dot Badges (.qhr-badge-dot) ────────────────────────────────────── */
+.qhr-badge-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+.qhr-badge-dot--standalone {
+  display: inline-block;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.qhr-badge-dot--sm { width: 6px; height: 6px; }
+.qhr-badge-dot--md { width: 9px; height: 9px; }
+.qhr-badge-dot--lg { width: 12px; height: 12px; }
+.qhr-badge-dot--xl { width: 16px; height: 16px; }
+
+.qhr-badge-dot--primary   { background-color: #0b6bcb; }
+.qhr-badge-dot--secondary { background-color: #8da4be; }
+.qhr-badge-dot--info      { background-color: #7c3aed; }
+.qhr-badge-dot--success   { background-color: #059669; }
+.qhr-badge-dot--danger    { background-color: #e11d48; }
+.qhr-badge-dot--warning   { background-color: #d97706; }
+.qhr-badge-dot--dark      { background-color: #0f172a; }
+.qhr-badge-dot--grey      { background-color: #94a3b8; }
+
+/* ── Ring Badges (.qhr-badge-ring) ──────────────────────────────────── */
+.qhr-badge-ring {
+  display: inline-block;
+  border-radius: 50%;
+  background: transparent;
+  flex-shrink: 0;
+  border: 2px solid currentColor;
+}
+.qhr-badge-ring--sm { width: 8px; height: 8px; border-width: 1.5px; }
+.qhr-badge-ring--md { width: 12px; height: 12px; border-width: 2px; }
+.qhr-badge-ring--lg { width: 16px; height: 16px; border-width: 2px; }
+.qhr-badge-ring--xl { width: 20px; height: 20px; border-width: 2.5px; }
+
+.qhr-badge-ring.fill {
+  background-color: currentColor !important;
+}
+
+.qhr-badge-ring--primary   { color: #0b6bcb; }
+.qhr-badge-ring--secondary { color: #8da4be; }
+.qhr-badge-ring--info      { color: #7c3aed; }
+.qhr-badge-ring--success   { color: #059669; }
+.qhr-badge-ring--danger    { color: #e11d48; }
+.qhr-badge-ring--warning   { color: #d97706; }
+.qhr-badge-ring--dark      { color: #0f172a; }
+.qhr-badge-ring--grey      { color: #94a3b8; }

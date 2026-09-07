@@ -1,0 +1,103 @@
+{
+  "id": "nav",
+  "name": "Nav",
+  "component": "Nav",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "container",
+      "brand-logo",
+      "navigation-list",
+      "nav-item",
+      "actions-group",
+      "hamburger-toggle",
+      "mobile-drawer",
+      "backdrop"
+    ],
+    "variants": [
+      "default",
+      "transparent"
+    ],
+    "sizes": [
+      "md"
+    ],
+    "states": [
+      "default",
+      "mobile-open"
+    ],
+    "slots": [
+      "start",
+      "default",
+      "end"
+    ],
+    "accessibility": {
+      "role": "navigation",
+      "keyboard": {
+        "Escape": "Closes mobile navigation drawer",
+        "Tab": "Cycles through header links"
+      },
+      "focus": "Ring around active links",
+      "aria": [
+        {
+          "aria-label": "Main Navigation"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/navbar.yaml",
+    "base": {
+      "display": "flex",
+      "width": "100%",
+      "align-items": "center",
+      "justify-content": "space-between",
+      "background-color": "{color.surface.base}",
+      "border-bottom": "1px solid {color.border.subtle}",
+      "z-index": 40,
+      "transition-duration": "{duration.fast}",
+      "transition-timing-function": "{ease.standard}"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.base}"
+      },
+      "transparent": {
+        "background-color": "transparent",
+        "border-bottom": "none"
+      }
+    },
+    "sizes": {
+      "md": {
+        "height": "{space.16}",
+        "padding-inline": "{space.6}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      },
+      "mobile-open": {
+        "overflow": "hidden"
+      }
+    }
+  },
+  "behavior": {
+    "file": "behavior/navbar.js",
+    "moduleName": "navbar"
+  },
+  "ai": {
+    "purpose": "Displays the primary application header hosting branding, navigation links, and actions.",
+    "whenToUse": [
+      "Top-level layout header for web applications or marketing websites"
+    ],
+    "avoid": [
+      "Isolated single-screen landing pages"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Nav.yaml"
+  }
+}

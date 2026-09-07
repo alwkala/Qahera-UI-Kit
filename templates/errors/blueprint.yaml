@@ -1,0 +1,28 @@
+id: template-errors
+name: System Status & Error Suite
+category: errors
+purpose: >
+  Resilient, high-contrast system status and error views including 404 (Not Found), 500 (Internal Server Error), and Maintenance (Scheduled Downtime & Progress Counter).
+
+patterns:
+  - empty-state
+  - form-actions
+
+components:
+  - card
+  - button
+  - badge
+  - input
+  - alert
+
+views:
+  - 404: "Not found error with contextual search, quick breadcrumb links, and return-home action"
+  - 500: "Internal server error with telemetry incident trace ID, retry action, and status page link"
+  - maintenance: "Scheduled downtime with live countdown timers, upgrade progress bar, and email notify-me subscription"
+
+ai:
+  purpose: "System resilience, error recovery, maintenance downtime, and telemetry feedback"
+  use_when:
+    - "Handling HTTP 404, 500, 503 error codes and scheduled infrastructure maintenance"
+  avoid:
+    - "Generic unbranded error screens without recovery actions or diagnostic incident IDs"

@@ -1,0 +1,24 @@
+<!-- Qahera UI Kit - Native HTML Tooltip -->
+<div class="qhr-tooltip-wrapper" x-data="qhrTooltip()">
+  <button 
+    type="button" 
+    class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+    x-ref="trigger"
+    @mouseenter="show()"
+    @mouseleave="hide()"
+    @focus="show()"
+    @blur="hide()"
+    aria-describedby="tooltip-demo">
+    <span>حرك المؤشر هنا</span>
+  </button>
+  
+  <div 
+    id="tooltip-demo" 
+    class="qhr-tooltip" 
+    x-ref="tooltip" 
+    x-show="visible" 
+    x-cloak 
+    role="tooltip">
+    هذا تلميح توضيحي يشرح وظيفة الزر للمستخدم.
+  </div>
+</div>

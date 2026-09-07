@@ -1,0 +1,50 @@
+id: date-paginator
+name: Date Paginator Strip
+category: navigation
+purpose: >
+  Displays a horizontal scrollable day-by-day calendar navigation strip with active dates, day names, and previous/next interval controls.
+
+components:
+  - button
+  - badge
+
+anatomy:
+  - container
+  - prev-nav
+  - date-strip
+  - date-cell
+  - day-name
+  - day-number
+  - active-indicator
+  - next-nav
+
+slots:
+  - prevControl
+  - dateCells
+  - nextControl
+
+layout:
+  display: flex
+  direction: row
+  alignment: center
+  gap: var(--qhr-space-3)
+  responsive:
+    sm: "overflow-x: auto; width: 100%;"
+    md: "max-width: 680px;"
+
+accessibility:
+  role: tablist
+  landmark: navigation
+  keyboard_flow: "Left/Right arrow keys navigate sequentially across dates."
+  aria_live: off
+
+ai:
+  purpose: "Horizontal daily calendar navigation strip"
+  use_when:
+    - "Event schedules, booking agendas, and appointment pickers"
+    - "Daily activity logs, timesheets, and daily transaction filters"
+  avoid_when:
+    - "Selecting broad date ranges (e.g. quarterly or yearly date pickers)"
+  composed_of:
+    - button
+    - badge

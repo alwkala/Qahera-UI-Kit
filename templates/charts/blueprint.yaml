@@ -1,0 +1,31 @@
+id: template-charts
+name: Data Visualization & Analytics Charts Suite
+category: analytics
+purpose: >
+  Comprehensive data visualization suite covering Chart.js interactive canvas charts, Morris-style smooth area curves and donuts, Flot-style live telemetry streaming, inline table sparklines, and Peity micro-visualizers.
+
+patterns:
+  - dashboard-stat
+  - data-table-toolbar
+
+components:
+  - card
+  - button
+  - badge
+  - navbar
+  - select
+  - table
+
+features:
+  - chartjs_suite: "Interactive Canvas charts (Area Line, Multi-Bar comparison, Radar metrics, and Donut breakdown) responding to theme changes"
+  - morris_visuals: "Smooth SVG curve area charts, centered donut statistics, and grouped bar distributions"
+  - flot_telemetry: "Real-time live streaming time-series graph with dynamic tick updates and threshold alerts"
+  - inline_sparklines: "Mini trendlines, bar stacks, and delta indicators embedded in KPI cards and data tables"
+  - peity_microcharts: "Micro SVG pie slices, donuts, mini bars, and line sparklines with zero runtime overhead"
+
+ai:
+  purpose: "Analytics dashboards, financial telemetry, KPI reporting, and operational monitoring"
+  use_when:
+    - "Designing complex dashboards, business intelligence platforms, or server monitoring telemetry"
+  avoid_when:
+    - "Simple static landing pages without numeric data or metrics"

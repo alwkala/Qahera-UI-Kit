@@ -1,0 +1,30 @@
+id: template-box-cards
+name: Box Cards, Advanced Containers & Segmented Groups
+category: containers
+purpose: >
+  Comprehensive container suite demonstrating Basic Boxes, Advanced Interactive Boxes (collapse, fullscreen, refresh, dismiss), Semantic Color Boxes, and Connected Group Boxes.
+
+patterns:
+  - dashboard-stat
+  - form-actions
+
+components:
+  - card
+  - button
+  - badge
+  - dropdown
+  - tooltip
+
+features:
+  - basic_box: "Standard content containers with outline, elevated, and flat variants across sm, md, and lg sizes"
+  - advanced_box: "Action-packed interactive boxes with minimize/collapse, fullscreen expansion, live reload spinner, and dismiss transitions"
+  - box_color: "Thematic semantic color variants with tinted headers, top accent border strips, and dark/light luxury gold parity"
+  - group_box: "Unified connected card groups with shared borders, horizontal and vertical responsive stacking, and nested grouping"
+
+ai:
+  purpose: "Container and card architecture for dashboards, modular interfaces, content grouping, and interactive tool widgets"
+  use_when:
+    - "Presenting distinct pieces of content, tools, or metrics requiring visual containment"
+    - "Building modular cards with interactive windowing controls (collapse, reload, fullscreen)"
+  avoid_when:
+    - "Continuous unbordered document prose (use documentation template)"

@@ -1,0 +1,78 @@
+id: pagination
+name: Pagination
+component: Pagination
+category: navigation
+purpose: >
+  Provides structured multi-page navigation, direct jump controls, page size selector, and record boundary status. Inspired by composable headless primitives with rich styled variants.
+
+anatomy:
+  - root
+  - summary
+  - content
+  - item
+  - btn-first
+  - btn-prev
+  - pages
+  - page-link
+  - page-active
+  - ellipsis
+  - btn-next
+  - btn-last
+  - size-picker
+
+variants:
+  default:
+    intent: standard-page-navigation
+  outline:
+    intent: high-contrast-card-bounded
+  ghost:
+    intent: flat-minimal-table-embedded
+  pills:
+    intent: rounded-capsule-luxury-indicators
+  segmented:
+    intent: connected-group-pill-toolbar
+  compact:
+    intent: space-constrained-stepper
+  icons-only:
+    intent: dense-table-icon-triggers
+
+sizes:
+  sm:
+    height: 30px
+    font_size: "var(--qhr-text-xs)"
+  md:
+    height: 36px
+    font_size: "var(--qhr-text-sm)"
+  lg:
+    height: 42px
+    font_size: "var(--qhr-text-base)"
+
+states:
+  - default
+  - hover
+  - active
+  - disabled
+  - focus
+
+slots:
+  summary: optional
+  content: required
+  size-picker: optional
+
+accessibility:
+  role: navigation
+  aria:
+    - "aria-label=pagination"
+    - "aria-current=page"
+  keyboard: true
+  focusVisible: true
+
+ai:
+  purpose: "Data collection pagination and record boundary navigation"
+  whenToUse:
+    - "Result sets exceed a single viewport (typically > 12 records)"
+    - "Server or client paginated catalogs, tables, and card registries"
+    - "Composed data tables requiring compact or icons-only pagination"
+  avoid:
+    - "Continuous infinite feeds without discrete pages"
+    - "Small lists with fewer than 10 items"

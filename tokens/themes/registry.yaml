@@ -1,0 +1,118 @@
+version: 1.0.0
+description: "Authoritative Canonical Cairo Design Atlas Registry for Qahera UI Kit"
+invariants:
+  - "QAHERA-THEME-001: Every archetype acts as a cultural vector translating a Cairo neighborhood DNA into 8 concrete design dimensions."
+  - "The 8 Dimensions: Color, Typography, Geometry/Radius, Border, Shadow/Glow, Material/Texture, Density, Motion."
+  - "100% Dual-Mode: Every archetype supports Day Mode and Night Mode without altering its core geometry or motion character."
+
+archetypes:
+  - id: zamalek
+    name: "الزمالك"
+    name_en: "Zamalek"
+    cultural_vector: "Egyptian Cosmopolitanism × Nile Island × Diplomatic Mansions"
+    design_movement: "Cosmopolitan Art Deco & Emerald"
+    palette_night: { bg: "#0B130E", surface: "#121E17", primary: "#2E7D5B", accent: "#F2C94C" }
+    palette_day: { bg: "#F2F8F4", surface: "#FFFFFF", primary: "#1B5E41", accent: "#D4AF37" }
+    radius: { box: "12px", field: "6px", selector: "9999px" }
+    border_width: "1px"
+    shadow: "0 10px 30px -5px rgba(0,0,0,0.35)"
+  - id: downtown
+    name: "وسط البلد"
+    name_en: "Downtown"
+    cultural_vector: "Khedivial Cairo × Mediterranean European × Publishing & Arts"
+    design_movement: "Khedivial Classical & Editorial Swiss"
+    palette_night: { bg: "#161311", surface: "#211D19", primary: "#C29B38", accent: "#9B3133" }
+    palette_day: { bg: "#F6F3EC", surface: "#FFFFFF", primary: "#9E7728", accent: "#832729" }
+    radius: { box: "2px", field: "2px", selector: "2px" }
+    border_width: "1px"
+    shadow: "none"
+  - id: heliopolis
+    name: "هليوبوليس"
+    name_en: "Heliopolis"
+    cultural_vector: "Baron Empain City of the Sun × Korba Arcades × Stepped Terraces"
+    design_movement: "Art Deco & Neo-Pharaonic Sandstone"
+    palette_night: { bg: "#181411", surface: "#241D19", primary: "#E0A96D", accent: "#C86D51" }
+    palette_day: { bg: "#FAF6F0", surface: "#FFFFFF", primary: "#B45309", accent: "#9A3412" }
+    radius: { box: "6px", field: "4px", selector: "6px" }
+    border_width: "1px"
+    shadow: "0 8px 24px rgba(224, 169, 109, 0.15)"
+  - id: maadi
+    name: "المعادي"
+    name_en: "Maadi"
+    cultural_vector: "Degla Limestone × Quiet Tree-Lined Streets × Global Serenity"
+    design_movement: "Organic Botanical & Serene Earth"
+    palette_night: { bg: "#0E1512", surface: "#17221E", primary: "#52796F", accent: "#84A98C" }
+    palette_day: { bg: "#F4F8F6", surface: "#FFFFFF", primary: "#0D9488", accent: "#059669" }
+    radius: { box: "14px", field: "8px", selector: "9999px" }
+    border_width: "1px"
+    shadow: "0 6px 20px rgba(0,0,0,0.2)"
+  - id: roxy
+    name: "روكسي"
+    name_en: "Roxy"
+    cultural_vector: "Urban Egyptian Nostalgia × Y2K Retro Tech × Playful Hard Shadows"
+    design_movement: "Egyptian Retro / Y2K / Neon Glow"
+    palette_night: { bg: "#090B14", surface: "#121626", primary: "#00F0FF", accent: "#FF2A85" }
+    palette_day: { bg: "#F8F9FD", surface: "#FFFFFF", primary: "#2563EB", accent: "#EC4899" }
+    radius: { box: "8px", field: "4px", selector: "9999px" }
+    border_width: "2px"
+    shadow: "4px 4px 0px #000, 0 0 15px rgba(0, 240, 255, 0.4)"
+  - id: sakakini
+    name: "السكاكيني"
+    name_en: "Sakakini"
+    cultural_vector: "Sakakini Pasha Palace × Venetian Gothic Spires × Ornate Aristocracy"
+    design_movement: "Italian Gothic & Rococo Palace"
+    palette_night: { bg: "#140E14", surface: "#201420", primary: "#A855F7", accent: "#F59E0B" }
+    palette_day: { bg: "#FAF5FB", surface: "#FFFFFF", primary: "#7E22CE", accent: "#B45309" }
+    radius: { box: "10px", field: "6px", selector: "8px" }
+    border_width: "1px"
+    shadow: "0 8px 24px rgba(168, 85, 247, 0.2)"
+  - id: el-hussein
+    name: "الحسين"
+    name_en: "El-Hussein"
+    cultural_vector: "Muizz Street × Fatimid & Mamluk Architecture × Lapis Lazuli & Brass"
+    design_movement: "Islamic Heritage & Historic Cairo"
+    palette_night: { bg: "#0A0E1A", surface: "#10182C", primary: "#0284C7", accent: "#EAB308" }
+    palette_day: { bg: "#F4F7FB", surface: "#FFFFFF", primary: "#0369A1", accent: "#CA8A04" }
+    radius: { box: "6px", field: "4px", selector: "6px" }
+    border_width: "1px"
+    shadow: "0 4px 20px rgba(2, 132, 199, 0.25)"
+  - id: shubra
+    name: "شبرا"
+    name_en: "Shubra"
+    cultural_vector: "Multicultural Cairo Energy × High-Contrast Street Rawness × Street Pulse"
+    design_movement: "Vibrant Neo-Brutalism & Urban Energy"
+    palette_night: { bg: "#121316", surface: "#1C1E23", primary: "#DC2626", accent: "#F59E0B" }
+    palette_day: { bg: "#FDF5F5", surface: "#FFFFFF", primary: "#DC2626", accent: "#D97706" }
+    radius: { box: "0px", field: "0px", selector: "0px" }
+    border_width: "2px"
+    shadow: "3px 3px 0px rgba(0,0,0,0.95)"
+  - id: el-zaytoun
+    name: "الزيتون"
+    name_en: "El-Zaytoun"
+    cultural_vector: "Historic Orchards × Church of St. Mary × Peaceful Foliage"
+    design_movement: "Olive Heritage & Cosmopolitan Serenity"
+    palette_night: { bg: "#11140E", surface: "#1B2117", primary: "#65A30D", accent: "#CA8A04" }
+    palette_day: { bg: "#F7F9F2", surface: "#FFFFFF", primary: "#4D7C0F", accent: "#A16207" }
+    radius: { box: "10px", field: "6px", selector: "9999px" }
+    border_width: "1px"
+    shadow: "0 6px 18px rgba(101, 163, 13, 0.15)"
+  - id: el-marg
+    name: "المرج"
+    name_en: "El-Marg"
+    cultural_vector: "Palm Groves × Nile Red Clay Brickworks × Vernacular Industrial Texture"
+    design_movement: "Raw Materiality & Industrial Terracotta"
+    palette_night: { bg: "#14100E", surface: "#201814", primary: "#EA580C", accent: "#B45309" }
+    palette_day: { bg: "#FAF5F0", surface: "#FFFFFF", primary: "#C2410C", accent: "#7C2D12" }
+    radius: { box: "4px", field: "2px", selector: "4px" }
+    border_width: "1.5px"
+    shadow: "0 6px 16px rgba(0,0,0,0.3)"
+  - id: new-cairo
+    name: "القاهرة الجديدة"
+    name_en: "New Cairo"
+    cultural_vector: "Smart Infrastructure × Tech Parks × Crystalline Translucency"
+    design_movement: "Glassmorphism & High-Tech Smart City"
+    palette_night: { bg: "#060A13", surface: "#0D1527", primary: "#06B6D4", accent: "#14B8A6" }
+    palette_day: { bg: "#F0F9FF", surface: "#FFFFFF", primary: "#0284C7", accent: "#0D9488" }
+    radius: { box: "16px", field: "10px", selector: "9999px" }
+    border_width: "1px"
+    shadow: "0 8px 32px rgba(6, 182, 212, 0.2)"

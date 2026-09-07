@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Textarea (.qhr-textarea)
+   ========================================================================== */
+.qhr-textarea {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  color: var(--qhr-content-primary, #0f172a);
+  background-color: var(--qhr-surface-base, #ffffff);
+  border: 1px solid var(--qhr-border-strong, #cbd5e1);
+  border-radius: var(--qhr-radius-md, 10px);
+  padding-block: var(--qhr-space-2-5, 10px);
+  padding-inline: var(--qhr-space-3-5, 14px);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  line-height: 1.6;
+  transition: border-color var(--qhr-duration-fast, 150ms), box-shadow var(--qhr-duration-fast, 150ms);
+}
+
+[data-theme="dark"] .qhr-textarea {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  border-color: var(--qhr-border-subtle, #1e293b);
+  color: var(--qhr-content-primary, #f8fafc);
+}
+
+.qhr-textarea::placeholder {
+  color: var(--qhr-content-muted, #94a3b8);
+  opacity: 0.85;
+}
+
+.qhr-textarea:focus {
+  outline: none;
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+  box-shadow: 0 0 0 3px rgba(199, 163, 90, 0.25);
+}
+
+/* Validation states */
+.qhr-textarea--error {
+  border-color: var(--qhr-color-danger-500, #ef4444) !important;
+}
+.qhr-textarea--success {
+  border-color: var(--qhr-color-success-500, #10b981) !important;
+}
+
+/* Character count wrapper */
+.qhr-textarea-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--qhr-space-1, 4px);
+  width: 100%;
+}
+.qhr-textarea-counter {
+  font-size: var(--qhr-text-xs, 0.75rem);
+  color: var(--qhr-content-secondary, #94a3b8);
+  text-align: end;
+}

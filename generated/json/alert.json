@@ -1,0 +1,112 @@
+{
+  "id": "alert",
+  "name": "Alert",
+  "component": "Alert",
+  "category": "feedback",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "status-icon",
+      "content-group",
+      "title",
+      "description",
+      "close-button",
+      "action"
+    ],
+    "variants": [
+      "subtle",
+      "solid",
+      "outline"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "states": [
+      "default"
+    ],
+    "slots": [
+      "start",
+      "default",
+      "end"
+    ],
+    "accessibility": {
+      "role": "alert",
+      "keyboard": {
+        "Escape": "Dismisses alert if dismissible"
+      },
+      "focus": "Focus moved to alert on dynamic insertion if assertive",
+      "aria": [
+        {
+          "aria-live": "polite or assertive based on tone"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/alert.yaml",
+    "base": {
+      "display": "flex",
+      "width": "100%",
+      "align-items": "flex-start",
+      "gap": "{space.3}",
+      "padding": "{space.4}",
+      "border-radius": "{radius.md}",
+      "border": "1px solid {color.border.subtle}",
+      "font-family": "inherit",
+      "font-size": "{text.sm}"
+    },
+    "variants": {
+      "subtle": {
+        "background-color": "{color.neutral.100}",
+        "border-color": "{color.border.subtle}"
+      },
+      "solid": {
+        "background-color": "{color.primary.bg}",
+        "color": "{color.primary.fg}"
+      },
+      "outline": {
+        "background-color": "transparent",
+        "border-color": "{color.primary.bg}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "padding": "{space.3}",
+        "font-size": "{text.xs}"
+      },
+      "md": {
+        "padding": "{space.4}",
+        "font-size": "{text.sm}"
+      },
+      "lg": {
+        "padding": "{space.5}",
+        "font-size": "{text.base}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays prominent contextual messages and feedback directly within page layouts.",
+    "whenToUse": [
+      "Critical form validation errors requiring review",
+      "System status or maintenance announcements",
+      "Persistent contextual instructions"
+    ],
+    "avoid": [
+      "Temporary floating notifications that auto-dismiss (use Toast)",
+      "Blocking confirmations that interrupt navigation (use Modal)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Alert.yaml"
+  }
+}

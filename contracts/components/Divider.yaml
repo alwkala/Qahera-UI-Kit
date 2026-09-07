@@ -1,0 +1,48 @@
+id: divider
+name: Divider
+component: Divider
+category: data-display
+purpose: >
+  Visual separator delineating content blocks horizontally or vertically, with optional embedded center label.
+
+anatomy:
+  - root
+  - line-before
+  - label
+  - line-after
+
+variants:
+  default:
+    intent: standard-subtle-divider
+  dashed:
+    intent: dashed-editorial-divider
+  strong:
+    intent: high-contrast-divider
+
+sizes:
+  sm:
+    thickness: 1
+  md:
+    thickness: 2
+  lg:
+    thickness: 4
+
+states:
+  - default
+
+slots:
+  default: optional
+
+accessibility:
+  role: separator
+  aria:
+    0: {"aria-orientation":"horizontal"}
+
+ai:
+  purpose: "Visual separator delineating content blocks horizontally or vertically, with optional embedded center label."
+  whenToUse:
+    - "Separating sections of a form or list"
+    - "Inline social login divider (e.g. 'أو' / 'Or')"
+    - "Vertical divider between toolbar button groups"
+  avoid:
+    - "Purely decorative border hacks"

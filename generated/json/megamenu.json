@@ -1,0 +1,150 @@
+{
+  "id": "megamenu",
+  "name": "Megamenu",
+  "component": "Megamenu",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "trigger",
+      "panel",
+      "grid",
+      "column",
+      "column-title",
+      "link-list",
+      "link-item",
+      "link-icon",
+      "link-text",
+      "link-desc",
+      "featured-card",
+      "banner"
+    ],
+    "variants": [
+      "default",
+      "2-cols",
+      "3-cols",
+      "4-cols",
+      "with-featured",
+      "full-width",
+      "glass"
+    ],
+    "sizes": [
+      "md",
+      "lg",
+      "xl"
+    ],
+    "states": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "slots": [
+      "trigger",
+      "default",
+      "featured",
+      "footer"
+    ],
+    "accessibility": {
+      "role": "region",
+      "keyboard": {
+        "Escape": "Closes open megamenu panel and returns focus to trigger",
+        "Tab": "Navigates sequentially through category links and featured buttons",
+        "ArrowDown": "Navigates down the active category column",
+        "ArrowUp": "Navigates up the active category column"
+      },
+      "focus": "Visible outline on category links and featured cards",
+      "aria": [
+        {
+          "aria-label": "Megamenu Content"
+        },
+        {
+          "aria-expanded": "Reflects visibility of megamenu panel"
+        },
+        {
+          "aria-haspopup": "true on trigger button"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/megamenu.yaml",
+    "base": {
+      "display": "flex",
+      "flex-direction": "column",
+      "position": "absolute",
+      "inset-inline-start": 0,
+      "inset-block-start": "100%",
+      "width": "100%",
+      "background-color": "{color.surface.elevated}",
+      "border": "1px solid {color.border.subtle}",
+      "border-radius": "{radius.lg}",
+      "box-shadow": "{shadow.xl}",
+      "padding": "{space.6}",
+      "z-index": 50
+    },
+    "variants": {
+      "default": {
+        "width": "100%"
+      },
+      "2-cols": {
+        "display": "grid",
+        "grid-template-columns": "repeat(2, 1fr)",
+        "gap": "{space.6}"
+      },
+      "3-cols": {
+        "display": "grid",
+        "grid-template-columns": "repeat(3, 1fr)",
+        "gap": "{space.6}"
+      },
+      "4-cols": {
+        "display": "grid",
+        "grid-template-columns": "repeat(4, 1fr)",
+        "gap": "{space.6}"
+      },
+      "with-featured": {
+        "display": "grid",
+        "grid-template-columns": "2.5fr 1fr",
+        "gap": "{space.6}"
+      },
+      "full-width": {
+        "width": "100vw",
+        "inset-inline": 0
+      },
+      "glass": {
+        "background-color": "{color.surface.glass}",
+        "backdrop-filter": "blur(20px)"
+      }
+    },
+    "sizes": {
+      "md": {
+        "padding": "{space.4}"
+      },
+      "lg": {
+        "padding": "{space.6}"
+      },
+      "xl": {
+        "padding": "{space.8}"
+      }
+    },
+    "states": {}
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays an expansive multi-column navigation panel hosting categorised link lists, promotional media, feature cards, and quick actions.",
+    "whenToUse": [
+      "Sites with deep architectural hierarchies and more than 15 top-tier destinations",
+      "Product suites requiring visual descriptions, icons, and featured promotional callouts",
+      "Enterprise header navigation menus"
+    ],
+    "avoid": [
+      "Simple linear websites with fewer than 6 links (use Menu or Navbar dropdown)",
+      "Sidebar lists inside dashboards (use Menu instead)",
+      "Mobile app primary screens (use Dock or Drawer instead)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Megamenu.yaml"
+  }
+}

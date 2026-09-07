@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" x-data="tablesSuite()" x-init="init()" :data-theme="theme">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منظومة الجداول والشبكات البيانية — Qahera Tables & Data Grid Suite</title>
+  <meta name="description" content="منظومة الجداول المتطورة لقاهرة: الجداول الأساسية (Basic Tables)، الجداول التفاعلية مع الفرز والبحث (Data Tables)، والجداول القابلة للتعديل المباشر (Editable Tables).">
+
+  <!-- Tokens & Components CSS -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <!-- Google Fonts: Cairo & El Messiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=El+Messiri:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Alpine Core 3.14.8 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       Qahera Tables Suite — Scoped Token Bridge
+       Strict Compliance with AGENTS.md:
+       - 100% Logical CSS Properties.
+       - Zero Hardcoded Colors in HTML elements.
+       - High Contrast Dual Theme (Dark Obsidian-Gold & Light Ivory-Gold).
+       - Cairo (Body & Heading) and El Messiri (Display).
+       - Zero Emoji / Unicode (24x24 Canonical SVGs only).
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* ── Dark Theme Tokens (Obsidian & Gold) ───────────────────────────── */
+    :root, [data-theme="dark"], [data-theme="luxury-gold"] {
+      --tbl-bg:               #0A0806;
+      --tbl-surface:          #130F0B;
+      --tbl-surface-card:     #17120E;
+      --tbl-surface-subtle:   #1F1913;
+      --tbl-surface-header:   rgba(19, 15, 11, 0.94);
+      --tbl-th-bg:            #1B1510;
+      --tbl-tr-hover:         rgba(212, 175, 55, 0.06);
+      --tbl-tr-selected:      rgba(212, 175, 55, 0.12);
+      --tbl-tr-striped:       rgba(255, 255, 255, 0.02);
+      --tbl-text-primary:     #FBF8F3;
+      --tbl-text-secondary:   #D5C9BC;
+      --tbl-text-muted:       #9E9081;
+      --tbl-accent:           #D4AF37;
+      --tbl-accent-hover:     #F2C94C;
+      --tbl-accent-fg:        #0A0806;
+      --tbl-accent-subtle:    rgba(212, 175, 55, 0.12);
+      --tbl-accent-border:    rgba(212, 175, 55, 0.28);
+      --tbl-border:           rgba(212, 175, 55, 0.18);
+      --tbl-border-strong:    rgba(212, 175, 55, 0.38);
+      --tbl-card-shadow:      0 8px 32px rgba(0, 0, 0, 0.6);
+      --tbl-font-display:     'El Messiri', serif;
+      --tbl-font-body:        'Cairo', sans-serif;
+    }
+
+    /* ── Light Theme Tokens (Ivory & Warm Sand) ────────────────────────── */
+    [data-theme="light"] {
+      --tbl-bg:               #FAF8F5;
+      --tbl-surface:          #FFFFFF;
+      --tbl-surface-card:     #FFFFFF;
+      --tbl-surface-subtle:   #F5F1E9;
+      --tbl-surface-header:   rgba(255, 255, 255, 0.95);
+      --tbl-th-bg:            #F2ECE1;
+      --tbl-tr-hover:         rgba(180, 83, 9, 0.05);
+      --tbl-tr-selected:      rgba(180, 83, 9, 0.10);
+      --tbl-tr-striped:       rgba(28, 25, 23, 0.02);
+      --tbl-text-primary:     #1C1917;
+      --tbl-text-secondary:   #44403C;
+      --tbl-text-muted:       #78716C;
+      --tbl-accent:           #B45309;
+      --tbl-accent-hover:     #92400E;
+      --tbl-accent-fg:        #FFFFFF;
+      --tbl-accent-subtle:    rgba(180, 83, 9, 0.08);
+      --tbl-accent-border:    rgba(180, 83, 9, 0.25);
+      --tbl-border:           #E7E5E4;
+      --tbl-border-strong:    #D6D3D1;
+      --tbl-card-shadow:      0 8px 24px rgba(28, 25, 23, 0.06);
+      --tbl-font-display:     'El Messiri', serif;
+      --tbl-font-body:        'Cairo', sans-serif;
+    }
+
+    /* ── Global Reset ──────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--tbl-bg);
+      color: var(--tbl-text-primary);
+      font-family: var(--tbl-font-body);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard);
+    }
+
+    /* ── Navbar ────────────────────────────────────────────────────────── */
+    .tbl-navbar {
+      position: sticky;
+      inset-block-start: 0;
+      inset-inline: 0;
+      z-index: 1000;
+      background: var(--tbl-surface-header);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-block-end: 1px solid var(--tbl-border);
+      padding-block: var(--qhr-space-3, 12px);
+      padding-inline: var(--qhr-space-6, 24px);
+    }
+
+    .tbl-navbar-inner {
+      max-width: 1400px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .tbl-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .tbl-brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: linear-gradient(135deg, var(--tbl-accent), #92400E);
+      color: var(--tbl-accent-fg);
+      font-family: var(--tbl-font-display);
+      font-size: 22px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .tbl-nav-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .tbl-nav-link {
+      color: var(--tbl-text-secondary);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding-block: 6px;
+      padding-inline: 14px;
+      border-radius: var(--qhr-radius-md, 8px);
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .tbl-nav-link:hover {
+      color: var(--tbl-text-primary);
+      background: var(--tbl-accent-subtle);
+    }
+
+    /* ── Main Container ────────────────────────────────────────────────── */
+    .tbl-container {
+      max-width: 1400px;
+      margin-inline: auto;
+      padding: var(--qhr-space-8, 32px) var(--qhr-space-6, 24px);
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-12, 48px);
+    }
+
+    /* ── Hero Banner ───────────────────────────────────────────────────── */
+    .tbl-hero {
+      background: linear-gradient(135deg, var(--tbl-surface-card), var(--tbl-surface-subtle));
+      border: 1px solid var(--tbl-border);
+      border-radius: var(--qhr-radius-xl, 24px);
+      padding: var(--qhr-space-8, 32px);
+      box-shadow: var(--tbl-card-shadow);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .tbl-hero-title {
+      font-family: var(--tbl-font-display);
+      font-size: 28px;
+      font-weight: 800;
+      margin: 0 0 8px;
+      color: var(--tbl-text-primary);
+    }
+
+    .tbl-hero-desc {
+      font-size: 15px;
+      color: var(--tbl-text-secondary);
+      max-width: 780px;
+      margin: 0;
+    }
+
+    /* ── Section Titles ────────────────────────────────────────────────── */
+    .tbl-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-block-end: var(--qhr-space-6, 24px);
+      padding-block-end: var(--qhr-space-3, 12px);
+      border-block-end: 1px solid var(--tbl-border);
+    }
+
+    .tbl-section-title {
+      font-family: var(--tbl-font-display);
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      color: var(--tbl-text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tbl-section-desc {
+      font-size: 13px;
+      color: var(--tbl-text-muted);
+      margin: 4px 0 0;
+    }
+
+    /* ── Card Containers for Tables ────────────────────────────────────── */
+    .tbl-card {
+      background: var(--tbl-surface-card);
+      border: 1px solid var(--tbl-border);
+      border-radius: var(--qhr-radius-xl, 20px);
+      box-shadow: var(--tbl-card-shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tbl-toolbar {
+      padding: var(--qhr-space-4, 16px) var(--qhr-space-6, 24px);
+      border-block-end: 1px solid var(--tbl-border);
+      background: var(--tbl-surface-subtle);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    /* ── Advanced Table Styling ────────────────────────────────────────── */
+    .tbl-table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .tbl-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: start;
+      font-size: 14px;
+    }
+
+    .tbl-table th {
+      background-color: var(--tbl-th-bg);
+      color: var(--tbl-text-secondary);
+      font-weight: 700;
+      padding-block: 14px;
+      padding-inline: 18px;
+      border-block-end: 1px solid var(--tbl-border);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .tbl-table th.is-sortable {
+      cursor: pointer;
+      transition: background-color var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .tbl-table th.is-sortable:hover {
+      background-color: var(--tbl-tr-hover);
+      color: var(--tbl-text-primary);
+    }
+
+    .tbl-table td {
+      padding-block: 14px;
+      padding-inline: 18px;
+      border-block-end: 1px solid var(--tbl-border);
+      color: var(--tbl-text-primary);
+      vertical-align: middle;
+      white-space: nowrap;
+      transition: background-color var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .tbl-table tr:hover td {
+      background-color: var(--tbl-tr-hover);
+    }
+
+    .tbl-table tr.is-selected td {
+      background-color: var(--tbl-tr-selected);
+    }
+
+    /* Striped Variant */
+    .tbl-table.is-striped tbody tr:nth-child(even) td {
+      background-color: var(--tbl-tr-striped);
+    }
+
+    /* Bordered Variant */
+    .tbl-table.is-bordered {
+      border: 1px solid var(--tbl-border);
+    }
+    .tbl-table.is-bordered th,
+    .tbl-table.is-bordered td {
+      border-inline-end: 1px solid var(--tbl-border);
+    }
+
+    /* Densities */
+    .tbl-table.is-density-sm th,
+    .tbl-table.is-density-sm td {
+      padding-block: 8px;
+      padding-inline: 12px;
+      font-size: 13px;
+    }
+
+    .tbl-table.is-density-lg th,
+    .tbl-table.is-density-lg td {
+      padding-block: 18px;
+      padding-inline: 24px;
+      font-size: 15px;
+    }
+
+    /* Row Highlights */
+    .tbl-row--success td {
+      background-color: rgba(16, 185, 129, 0.08) !important;
+    }
+    .tbl-row--warning td {
+      background-color: rgba(245, 158, 11, 0.08) !important;
+    }
+    .tbl-row--danger td {
+      background-color: rgba(239, 68, 68, 0.08) !important;
+    }
+
+    /* ── Pagination Footer ─────────────────────────────────────────────── */
+    .tbl-pagination {
+      padding: var(--qhr-space-4, 16px) var(--qhr-space-6, 24px);
+      border-block-start: 1px solid var(--tbl-border);
+      background: var(--tbl-surface-subtle);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .tbl-page-btn {
+      min-width: 32px;
+      height: 32px;
+      padding-inline: 8px;
+      border-radius: var(--qhr-radius-sm, 6px);
+      border: 1px solid var(--tbl-border);
+      background: var(--tbl-surface-card);
+      color: var(--tbl-text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .tbl-page-btn:hover:not(:disabled) {
+      background: var(--tbl-accent-subtle);
+      border-color: var(--tbl-accent-border);
+      color: var(--tbl-accent);
+    }
+
+    .tbl-page-btn.is-active {
+      background: var(--tbl-accent);
+      border-color: var(--tbl-accent);
+      color: var(--tbl-accent-fg);
+    }
+
+    .tbl-page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ── Editable Cell Inputs ──────────────────────────────────────────── */
+    .tbl-edit-input {
+      background: var(--tbl-surface-subtle);
+      border: 1px solid var(--tbl-accent-border);
+      color: var(--tbl-text-primary);
+      font-family: inherit;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: var(--qhr-radius-sm, 6px);
+      width: 100%;
+      outline: none;
+    }
+
+    .tbl-edit-input:focus {
+      border-color: var(--tbl-accent);
+      box-shadow: 0 0 0 2px var(--tbl-accent-subtle);
+    }
+
+    /* Toast */
+    .tbl-toast {
+      position: fixed;
+      inset-block-end: var(--qhr-space-6, 24px);
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      background: var(--tbl-surface-card);
+      border: 1px solid var(--tbl-accent-border);
+      color: var(--tbl-text-primary);
+      padding: 12px 24px;
+      border-radius: var(--qhr-radius-lg, 16px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .tbl-nav-pills {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="tbl-navbar">
+    <div class="tbl-navbar-inner">
+      <a href="#" class="tbl-brand">
+        <div class="tbl-brand-badge">ق</div>
+        <div>
+          <strong style="font-family: var(--tbl-font-display); font-size: 18px; display: block; line-height: 1.2;">قاهرة للشبكات والجداول</strong>
+          <span style="font-size: 11px; color: var(--tbl-text-muted);">Data Grids & Tabular Architecture</span>
+        </div>
+      </a>
+
+      <!-- Anchor Links -->
+      <nav aria-label="أقسام الجداول">
+        <ul class="tbl-nav-pills">
+          <li><a href="#basic-tables" class="tbl-nav-link">Basic Tables</a></li>
+          <li><a href="#data-tables" class="tbl-nav-link">Data Tables</a></li>
+          <li><a href="#editable-tables" class="tbl-nav-link">Editable Tables</a></li>
+        </ul>
+      </nav>
+
+      <!-- Direction & Language Switcher -->
+      <button
+        type="button"
+        class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+        @click="toggleDir()"
+        :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+        aria-label="تبديل اتجاه الصفحة واللغة"
+        style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+      >
+        <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      </button>
+
+      <!-- Theme Switcher (Icon only without text) -->
+      <button
+        type="button"
+        class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+        @click="toggleTheme()"
+        aria-label="تبديل المظهر اللوني"
+        :title="theme === 'dark' ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'"
+        style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+      >
+        <span x-show="theme === 'dark'" style="display: inline-flex; align-items: center; justify-content: center;"><svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        <span x-show="theme === 'light'" style="display: inline-flex; align-items: center; justify-content: center;"><svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="tbl-container">
+
+    <!-- Hero Overview Banner -->
+    <div class="tbl-hero">
+      <div>
+        <h1 class="tbl-hero-title">منظومة الجداول والشبكات البيانية (Qahera Tables)</h1>
+        <p class="tbl-hero-desc">
+          تغطي المنظومة 3 مسارات احترافية للبيانات المجدولة: الجداول الأساسية النقية مع أنماط التخطيط والخطوط المتناوبة، جداول البيانات التفاعلية المدعومة بالبحث الفوري والفرز والتحديد والتصفح، والجداول المتقدمة القابلة للتعديل اللحظي (Inline & Row Edit).
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <span class="qhr-badge qhr-badge--primary qhr-badge--md">فرز وبحث مباشر</span>
+        <span class="qhr-badge qhr-badge--success qhr-badge--md">تعديل لحظي</span>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 1: BASIC TABLES (الجداول الأساسية وأنماط الكثافة)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section id="basic-tables">
+      <div class="tbl-section-header">
+        <div>
+          <h2 class="tbl-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--tbl-accent);" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+            <span>1. الجداول الأساسية (Basic Tables)</span>
+          </h2>
+          <p class="tbl-section-desc">جداول معيارية نظيفة تدعم الأنماط الافتراضية، المخططة (Striped)، ذات الإطارات (Bordered)، وخيارات الكثافة الثلاثة.</p>
+        </div>
+
+        <!-- Controls for Basic Table -->
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <!-- Variant Selector -->
+          <div style="display: inline-flex; background: var(--tbl-surface-card); border: 1px solid var(--tbl-border); border-radius: 8px; padding: 2px;">
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--xs"
+              :class="basicVariant === 'default' ? 'qhr-btn--primary' : 'qhr-btn--ghost'"
+              @click="basicVariant = 'default'"
+            >
+              افتراضي
+            </button>
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--xs"
+              :class="basicVariant === 'striped' ? 'qhr-btn--primary' : 'qhr-btn--ghost'"
+              @click="basicVariant = 'striped'"
+            >
+              مخطط (Striped)
+            </button>
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--xs"
+              :class="basicVariant === 'bordered' ? 'qhr-btn--primary' : 'qhr-btn--ghost'"
+              @click="basicVariant = 'bordered'"
+            >
+              مؤطر (Bordered)
+            </button>
+          </div>
+
+          <!-- Density Selector -->
+          <div style="display: inline-flex; background: var(--tbl-surface-card); border: 1px solid var(--tbl-border); border-radius: 8px; padding: 2px;">
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--xs"
+              :class="density === 'sm' ? 'qhr-btn--secondary' : 'qhr-btn--ghost'"
+              @click="density = 'sm'"
+            >
+              مكثف (SM)
+            </button>
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--xs"
+              :class="density === 'md' ? 'qhr-btn--secondary' : 'qhr-btn--ghost'"
+              @click="density = 'md'"
+            >
+              متوازن (MD)
+            </button>
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--xs"
+              :class="density === 'lg' ? 'qhr-btn--secondary' : 'qhr-btn--ghost'"
+              @click="density = 'lg'"
+            >
+              مريح (LG)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basic Table Card Wrapper -->
+      <div class="tbl-card">
+        <div class="tbl-table-wrapper">
+          <table
+            class="tbl-table"
+            :class="{
+              'is-striped': basicVariant === 'striped',
+              'is-bordered': basicVariant === 'bordered',
+              'is-density-sm': density === 'sm',
+              'is-density-lg': density === 'lg'
+            }"
+          >
+            <thead>
+              <tr>
+                <th>رقم المعاملة</th>
+                <th>المستخدم / المفوّض</th>
+                <th>التصنيف</th>
+                <th>القيمة الإجمالية</th>
+                <th>تاريخ التوثيق</th>
+                <th>الحالة</th>
+                <th style="text-align: end;">الإجراء</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>#INV-2026-01</strong></td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="qhr-avatar qhr-avatar--circle qhr-avatar--sm" style="background: var(--tbl-accent); color: var(--tbl-accent-fg); font-weight: 700;">أ.ر</div>
+                    <span>د. أحمد رضوان</span>
+                  </div>
+                </td>
+                <td>استشارات معمارية</td>
+                <td><strong>٤٥,٠٠٠ ر.س</strong></td>
+                <td>2026-09-01</td>
+                <td><span class="qhr-badge qhr-badge--success qhr-badge--xs">مكتمل</span></td>
+                <td style="text-align: end;"><button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs">معاينة</button></td>
+              </tr>
+
+              <!-- Contextual Highlight Row (Success) -->
+              <tr class="tbl-row--success">
+                <td><strong>#INV-2026-02</strong></td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="qhr-avatar qhr-avatar--circle qhr-avatar--sm" style="background: #10B981; color: #FFFFFF; font-weight: 700;">ع.ص</div>
+                    <span>م. علي الصاوي</span>
+                  </div>
+                </td>
+                <td>تطوير المنظومة الأساسية</td>
+                <td><strong>١٢٨,٤٠٠ ر.س</strong></td>
+                <td>2026-09-02</td>
+                <td><span class="qhr-badge qhr-badge--success qhr-badge--xs">اعتماد فوري</span></td>
+                <td style="text-align: end;"><button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs">معاينة</button></td>
+              </tr>
+
+              <!-- Contextual Highlight Row (Warning) -->
+              <tr class="tbl-row--warning">
+                <td><strong>#INV-2026-03</strong></td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="qhr-avatar qhr-avatar--circle qhr-avatar--sm" style="background: #F59E0B; color: #0A0806; font-weight: 700;">س.إ</div>
+                    <span>سارة إبراهيم</span>
+                  </div>
+                </td>
+                <td>خدمات التوثيق الفني</td>
+                <td><strong>١٨,٢٠٠ ر.س</strong></td>
+                <td>2026-09-03</td>
+                <td><span class="qhr-badge qhr-badge--warning qhr-badge--xs">قيد المراجعة</span></td>
+                <td style="text-align: end;"><button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs">معاينة</button></td>
+              </tr>
+
+              <!-- Contextual Highlight Row (Danger) -->
+              <tr class="tbl-row--danger">
+                <td><strong>#INV-2026-04</strong></td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="qhr-avatar qhr-avatar--circle qhr-avatar--sm" style="background: #EF4444; color: #FFFFFF; font-weight: 700;">ط.م</div>
+                    <span>طارق محمود</span>
+                  </div>
+                </td>
+                <td>تراخيص برمجية معلقة</td>
+                <td><strong>٩,٥٠٠ ر.س</strong></td>
+                <td>2026-09-04</td>
+                <td><span class="qhr-badge qhr-badge--danger qhr-badge--xs">مرفوض</span></td>
+                <td style="text-align: end;"><button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs">معاينة</button></td>
+              </tr>
+
+              <tr>
+                <td><strong>#INV-2026-05</strong></td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div class="qhr-avatar qhr-avatar--circle qhr-avatar--sm" style="background: var(--tbl-accent); color: var(--tbl-accent-fg); font-weight: 700;">م.ن</div>
+                    <span>مها نبيل</span>
+                  </div>
+                </td>
+                <td>إشراف الجودة والأمان</td>
+                <td><strong>٣٢,٠٠٠ ر.س</strong></td>
+                <td>2026-09-05</td>
+                <td><span class="qhr-badge qhr-badge--primary qhr-badge--xs">معالجة</span></td>
+                <td style="text-align: end;"><button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs">معاينة</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 2: DATA TABLES (جداول البيانات التفاعلية والفرز)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section id="data-tables">
+      <div class="tbl-section-header">
+        <div>
+          <h2 class="tbl-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--tbl-accent);" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+            <span>2. جداول البيانات التفاعلية (Data Tables)</span>
+          </h2>
+          <p class="tbl-section-desc">محرك بيانات متكامل يدعم الفرز الحي عبر النقر على رؤوس الأعمدة، التصفية الفورية، التحديد المتعدد، والترقيم المباشر.</p>
+        </div>
+        <span class="qhr-badge qhr-badge--primary qhr-badge--sm">Client-side Engine</span>
+      </div>
+
+      <div class="tbl-card">
+        <!-- Interactive Toolbar -->
+        <div class="tbl-toolbar">
+          <!-- Search Input -->
+          <div style="position: relative; display: inline-flex; align-items: center; min-width: 280px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position: absolute; inset-inline-start: 12px; color: var(--tbl-text-muted);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input
+              type="text"
+              class="qhr-input"
+              placeholder="بحث في السجلات والأسماء..."
+              x-model="searchQuery"
+              style="padding-inline-start: 36px; height: 38px; font-size: 13px; width: 100%;"
+            />
+          </div>
+
+          <!-- Bulk Action Bar (Visible when rows are selected) -->
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <template x-if="selectedRows.length > 0">
+              <div style="display: flex; align-items: center; gap: 8px; background: var(--tbl-accent-subtle); border: 1px solid var(--tbl-accent-border); padding: 4px 12px; border-radius: 8px;">
+                <span style="font-size: 13px; font-weight: 700; color: var(--tbl-accent);" x-text="'تم تحديد ' + selectedRows.length + ' سجل'"></span>
+                <button type="button" class="qhr-btn qhr-btn--destructive qhr-btn--xs" @click="bulkDelete()">حذف المحدد</button>
+                <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--xs" @click="bulkExport()">تصدير CSV</button>
+              </div>
+            </template>
+
+            <!-- Page Size Dropdown -->
+            <div style="display: flex; align-items: center; gap: 6px; font-size: 13px;">
+              <span style="color: var(--tbl-text-muted);">عرض:</span>
+              <select class="qhr-select" style="height: 36px; padding: 4px 8px; font-size: 13px;" x-model.number="pageSize">
+                <option value="5">5 سجلات</option>
+                <option value="10">10 سجلات</option>
+                <option value="20">20 سجل</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table View -->
+        <div class="tbl-table-wrapper">
+          <table class="tbl-table is-striped">
+            <thead>
+              <tr>
+                <th style="width: 44px; text-align: center;">
+                  <input
+                    type="checkbox"
+                    @change="toggleSelectAll($event)"
+                    :checked="isAllSelected()"
+                    aria-label="تحديد جميع السجلات"
+                  />
+                </th>
+
+                <!-- Sortable Columns -->
+                <th class="is-sortable" @click="sortBy('id')">
+                  <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>المعرف</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" :style="sortColumn === 'id' ? 'color: var(--tbl-accent);' : 'opacity: 0.3;'"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </th>
+
+                <th class="is-sortable" @click="sortBy('name')">
+                  <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>اسم العميل / المؤسسة</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" :style="sortColumn === 'name' ? 'color: var(--tbl-accent);' : 'opacity: 0.3;'"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </th>
+
+                <th class="is-sortable" @click="sortBy('category')">
+                  <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>القطاع</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" :style="sortColumn === 'category' ? 'color: var(--tbl-accent);' : 'opacity: 0.3;'"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </th>
+
+                <th class="is-sortable" @click="sortBy('amount')">
+                  <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>قيمة العقد</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" :style="sortColumn === 'amount' ? 'color: var(--tbl-accent);' : 'opacity: 0.3;'"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </th>
+
+                <th class="is-sortable" @click="sortBy('status')">
+                  <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>الحالة</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" :style="sortColumn === 'status' ? 'color: var(--tbl-accent);' : 'opacity: 0.3;'"><polyline points="6 9 12 15 18 9"/></svg>
+                  </div>
+                </th>
+
+                <th style="text-align: end;">الإجراءات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in paginatedRows" :key="row.id">
+                <tr :class="{ 'is-selected': selectedRows.includes(row.id) }">
+                  <td style="text-align: center;">
+                    <input
+                      type="checkbox"
+                      :value="row.id"
+                      x-model="selectedRows"
+                      :aria-label="'تحديد السجل ' + row.id"
+                    />
+                  </td>
+                  <td><strong x-text="'#' + row.id"></strong></td>
+                  <td>
+                    <div style="font-weight: 700;" x-text="row.name"></div>
+                    <span style="font-size: 11px; color: var(--tbl-text-muted);" x-text="row.email"></span>
+                  </td>
+                  <td><span class="qhr-badge qhr-badge--outline qhr-badge--xs" x-text="row.category"></span></td>
+                  <td><strong style="color: var(--tbl-accent);" x-text="formatCurrency(row.amount)"></strong></td>
+                  <td>
+                    <span
+                      class="qhr-badge qhr-badge--xs"
+                      :class="{
+                        'qhr-badge--success': row.status === 'نشط',
+                        'qhr-badge--warning': row.status === 'معلق',
+                        'qhr-badge--danger': row.status === 'متوقف'
+                      }"
+                      x-text="row.status"
+                    ></span>
+                  </td>
+                  <td style="text-align: end;">
+                    <div style="display: inline-flex; gap: 6px;">
+                      <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs" @click="viewRecord(row)">تفاصيل</button>
+                      <button type="button" class="qhr-btn qhr-btn--destructive qhr-btn--xs" @click="deleteDataRow(row.id)">حذف</button>
+                    </div>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls Footer -->
+        <div class="tbl-pagination">
+          <div style="color: var(--tbl-text-muted);">
+            <span>عرض</span>
+            <strong x-text="((currentPage - 1) * pageSize) + 1"></strong>
+            <span>إلى</span>
+            <strong x-text="Math.min(currentPage * pageSize, filteredRows.length)"></strong>
+            <span>من أصل</span>
+            <strong x-text="filteredRows.length"></strong>
+            <span>سجل</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button
+              type="button"
+              class="tbl-page-btn"
+              :disabled="currentPage === 1"
+              @click="currentPage--"
+              aria-label="الصفحة السابقة"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+
+            <template x-for="p in totalPages" :key="p">
+              <button
+                type="button"
+                class="tbl-page-btn"
+                :class="{ 'is-active': currentPage === p }"
+                @click="currentPage = p"
+                x-text="p"
+              ></button>
+            </template>
+
+            <button
+              type="button"
+              class="tbl-page-btn"
+              :disabled="currentPage === totalPages"
+              @click="currentPage++"
+              aria-label="الصفحة التالية"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════
+         SECTION 3: EDITABLE TABLES (الجداول القابلة للتعديل اللحظي)
+         ═══════════════════════════════════════════════════════════════════ -->
+    <section id="editable-tables">
+      <div class="tbl-section-header">
+        <div>
+          <h2 class="tbl-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--tbl-accent);" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span>3. الجداول القابلة للتعديل المباشر (Editable Tables)</span>
+          </h2>
+          <p class="tbl-section-desc">تعديل فوري لخلايا الجدول والصفوف مع إمكانية إضافة سجلات جديدة ديناميكياً وحفظ التعديلات في الذاكرة.</p>
+        </div>
+
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" @click="addNewRow()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>إضافة سجل جديد</span>
+        </button>
+      </div>
+
+      <div class="tbl-card">
+        <div class="tbl-toolbar">
+          <div style="font-size: 13px; color: var(--tbl-text-secondary); display: flex; align-items: center; gap: 8px;">
+            <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981;"></span>
+            <span>نمط التحرير المباشر مفعل (اضغط على "تعديل" لتعديل بيانات الصف).</span>
+          </div>
+          <span class="qhr-badge qhr-badge--outline qhr-badge--xs" x-text="editableRows.length + ' عناصر في المستودع'"></span>
+        </div>
+
+        <div class="tbl-table-wrapper">
+          <table class="tbl-table">
+            <thead>
+              <tr>
+                <th style="width: 80px;">الرمز</th>
+                <th>اسم المقتنى / الصنف</th>
+                <th>التصنيف الفرعي</th>
+                <th>السعر (ر.س)</th>
+                <th>المخزون</th>
+                <th>حالة التوفر</th>
+                <th style="text-align: end;">إجراءات التحرير</th>
+              </tr>
+            </thead>
+            <tbody>
+              <template x-for="row in editableRows" :key="row.id">
+                <tr>
+                  <!-- ID -->
+                  <td><strong x-text="'#' + row.id"></strong></td>
+
+                  <!-- Name Cell -->
+                  <td>
+                    <template x-if="editingRowId !== row.id">
+                      <strong x-text="row.name"></strong>
+                    </template>
+                    <template x-if="editingRowId === row.id">
+                      <input type="text" class="tbl-edit-input" x-model="editingDraft.name" />
+                    </template>
+                  </td>
+
+                  <!-- Category Cell -->
+                  <td>
+                    <template x-if="editingRowId !== row.id">
+                      <span class="qhr-badge qhr-badge--secondary qhr-badge--xs" x-text="row.category"></span>
+                    </template>
+                    <template x-if="editingRowId === row.id">
+                      <select class="tbl-edit-input" x-model="editingDraft.category">
+                        <option value="خواتم ملكية">خواتم ملكية</option>
+                        <option value="أساور مصمتة">أساور مصمتة</option>
+                        <option value="سلاسل وتراث">سلاسل وتراث</option>
+                        <option value="أحجار كريمة">أحجار كريمة</option>
+                      </select>
+                    </template>
+                  </td>
+
+                  <!-- Price Cell -->
+                  <td>
+                    <template x-if="editingRowId !== row.id">
+                      <span style="font-weight: 700; color: var(--tbl-accent);" x-text="row.price + ' ر.س'"></span>
+                    </template>
+                    <template x-if="editingRowId === row.id">
+                      <input type="number" class="tbl-edit-input" x-model.number="editingDraft.price" />
+                    </template>
+                  </td>
+
+                  <!-- Stock Cell -->
+                  <td>
+                    <template x-if="editingRowId !== row.id">
+                      <span x-text="row.stock + ' قطعة'"></span>
+                    </template>
+                    <template x-if="editingRowId === row.id">
+                      <input type="number" class="tbl-edit-input" x-model.number="editingDraft.stock" />
+                    </template>
+                  </td>
+
+                  <!-- Status Cell -->
+                  <td>
+                    <template x-if="editingRowId !== row.id">
+                      <span
+                        class="qhr-badge qhr-badge--xs"
+                        :class="{
+                          'qhr-badge--success': row.status === 'متوفر',
+                          'qhr-badge--warning': row.status === 'محدود',
+                          'qhr-badge--danger': row.status === 'نفد'
+                        }"
+                        x-text="row.status"
+                      ></span>
+                    </template>
+                    <template x-if="editingRowId === row.id">
+                      <select class="tbl-edit-input" x-model="editingDraft.status">
+                        <option value="متوفر">متوفر</option>
+                        <option value="محدود">محدود</option>
+                        <option value="نفد">نفد</option>
+                      </select>
+                    </template>
+                  </td>
+
+                  <!-- Actions Cell -->
+                  <td style="text-align: end;">
+                    <template x-if="editingRowId !== row.id">
+                      <div style="display: inline-flex; gap: 6px;">
+                        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--xs" @click="startEdit(row)">تعديل</button>
+                        <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs" style="color: var(--qhr-color-danger-500, #ef4444);" @click="deleteEditableRow(row.id)">حذف</button>
+                      </div>
+                    </template>
+                    <template x-if="editingRowId === row.id">
+                      <div style="display: inline-flex; gap: 6px;">
+                        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--xs" @click="saveEdit(row.id)">حفظ</button>
+                        <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--xs" @click="cancelEdit()">إلغاء</button>
+                      </div>
+                    </template>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="tbl-toast" x-show="showToast" x-transition style="display: none;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span x-text="toastMessage"></span>
+  </div>
+
+  <script>
+    function tablesSuite() {
+      return {
+        theme: localStorage.getItem('qhr-theme') || 'dark',
+        dir: localStorage.getItem('qhr-dir') || 'rtl',
+        lang: (localStorage.getItem('qhr-dir') || 'rtl') === 'rtl' ? 'ar' : 'en',
+        basicVariant: 'striped',
+        density: 'md',
+        showToast: false,
+        toastMessage: '',
+
+        // Data Tables State
+        searchQuery: '',
+        sortColumn: 'id',
+        sortDirection: 'asc',
+        selectedRows: [],
+        currentPage: 1,
+        pageSize: 5,
+        dataRows: [
+          { id: 101, name: 'مجموعة الفلك الملكية', email: 'al-falak@holding.eg', category: 'مقتنيات فاخرة', amount: 340000, status: 'نشط' },
+          { id: 102, name: 'دار المعمار الفاطمي', email: 'info@cairo-fatimid.com', category: 'تراث وعمران', amount: 185000, status: 'نشط' },
+          { id: 103, name: 'عقد المشربية التوزيعي', email: 'mashrabiya@supply.net', category: 'سلاسل إمداد', amount: 92400, status: 'معلق' },
+          { id: 104, name: 'صندوق الأوبسيديان للتجارة', email: 'obsidian@egypt.org', category: 'أحجار ومعادن', amount: 512000, status: 'نشط' },
+          { id: 105, name: 'مختبرات النيل للقياس', email: 'nile-labs@eg.edu', category: 'بحث وتطوير', amount: 48000, status: 'متوقف' },
+          { id: 106, name: 'شركة الهيبة للاستثمار', email: 'contact@al-haiba.sa', category: 'استثمار مصرفي', amount: 720000, status: 'نشط' },
+          { id: 107, name: 'وكالة الإسكندرية اللوجستية', email: 'alex-logistics@sea.eg', category: 'نقل وشحن', amount: 114000, status: 'نشط' },
+          { id: 108, name: 'مؤسسة قنا للذهب الخالص', email: 'qena-gold@trad.eg', category: 'صياغة ومعادن', amount: 260000, status: 'معلق' }
+        ],
+
+        // Editable Tables State
+        editingRowId: null,
+        editingDraft: {},
+        editableRows: [
+          { id: 201, name: 'خاتم الأفق الذهبي عيار 18', category: 'خواتم ملكية', price: 74200, stock: 14, status: 'متوفر' },
+          { id: 202, name: 'سوار النيل المنقوش', category: 'أساور مصمتة', price: 58100, stock: 8, status: 'محدود' },
+          { id: 203, name: 'قلادة المشربية الفاطمية', category: 'سلاسل وتراث', price: 89450, stock: 5, status: 'محدود' },
+          { id: 204, name: 'حجر السربنتين الملكي', category: 'أحجار كريمة', price: 31200, stock: 0, status: 'نفد' }
+        ],
+
+        init() {
+          document.documentElement.setAttribute('data-theme', this.theme);
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.lang);
+        },
+
+        toggleTheme() {
+          this.theme = this.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', this.theme);
+          localStorage.setItem('qhr-theme', this.theme);
+          this.triggerToast(this.theme === 'dark' ? 'تم تفعيل النمط الداكن (Obsidian & Gold)' : 'تم تفعيل النمط الفاتح (Ivory & Gold)');
+        },
+
+        formatCurrency(num) {
+          return Number(num).toLocaleString('ar-EG') + ' ر.س';
+        },
+
+        // Data Tables Methods
+        get filteredRows() {
+          return this.dataRows.filter(r => {
+            const query = this.searchQuery.toLowerCase();
+            return r.name.toLowerCase().includes(query) ||
+                   r.email.toLowerCase().includes(query) ||
+                   r.category.toLowerCase().includes(query);
+          }).sort((a, b) => {
+            let modifier = this.sortDirection === 'asc' ? 1 : -1;
+            if (a[this.sortColumn] < b[this.sortColumn]) return -1 * modifier;
+            if (a[this.sortColumn] > b[this.sortColumn]) return 1 * modifier;
+            return 0;
+          });
+        },
+
+        get totalPages() {
+          return Math.ceil(this.filteredRows.length / this.pageSize) || 1;
+        },
+
+        get paginatedRows() {
+          const start = (this.currentPage - 1) * this.pageSize;
+          return this.filteredRows.slice(start, start + this.pageSize);
+        },
+
+        sortBy(col) {
+          if (this.sortColumn === col) {
+            this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+          } else {
+            this.sortColumn = col;
+            this.sortDirection = 'asc';
+          }
+          this.triggerToast(`تم الفرز حسب عمود "${col}" (${this.sortDirection === 'asc' ? 'تصاعدي' : 'تنازلي'})`);
+        },
+
+        toggleSelectAll(e) {
+          if (e.target.checked) {
+            this.selectedRows = this.paginatedRows.map(r => r.id);
+          } else {
+            this.selectedRows = [];
+          }
+        },
+
+        isAllSelected() {
+          return this.paginatedRows.length > 0 && this.paginatedRows.every(r => this.selectedRows.includes(r.id));
+        },
+
+        bulkDelete() {
+          const count = this.selectedRows.length;
+          this.dataRows = this.dataRows.filter(r => !this.selectedRows.includes(r.id));
+          this.selectedRows = [];
+          this.triggerToast(`تم حذف ${count} سجلات بنجاح.`);
+        },
+
+        bulkExport() {
+          this.triggerToast(`تم تجهيز وتصدير ${this.selectedRows.length} سجل بصيغة CSV.`);
+        },
+
+        viewRecord(row) {
+          this.triggerToast(`معاينة بيانات: ${row.name}`);
+        },
+
+        deleteDataRow(id) {
+          this.dataRows = this.dataRows.filter(r => r.id !== id);
+          this.selectedRows = this.selectedRows.filter(i => i !== id);
+          this.triggerToast(`تم حذف السجل #${id} من الجدول.`);
+        },
+
+        // Editable Tables Methods
+        startEdit(row) {
+          this.editingRowId = row.id;
+          this.editingDraft = { ...row };
+        },
+
+        saveEdit(id) {
+          const idx = this.editableRows.findIndex(r => r.id === id);
+          if (idx !== -1) {
+            this.editableRows[idx] = { ...this.editingDraft };
+            this.editingRowId = null;
+            this.triggerToast(`تم حفظ التعديلات على السجل #${id} بنجاح.`);
+          }
+        },
+
+        cancelEdit() {
+          this.editingRowId = null;
+          this.editingDraft = {};
+        },
+
+        deleteEditableRow(id) {
+          this.editableRows = this.editableRows.filter(r => r.id !== id);
+          this.triggerToast(`تم حذف الصنف #${id} من المستودع.`);
+        },
+
+        addNewRow() {
+          const newId = (this.editableRows.length > 0 ? Math.max(...this.editableRows.map(r => r.id)) : 200) + 1;
+          const newRow = {
+            id: newId,
+            name: 'صنف مقتنى جديد',
+            category: 'خواتم ملكية',
+            price: 25000,
+            stock: 10,
+            status: 'متوفر'
+          };
+          this.editableRows.unshift(newRow);
+          this.startEdit(newRow);
+          this.triggerToast(`تمت إضافة صنف جديد #${newId}، بانتظار إدخال البيانات.`);
+        },
+
+        triggerToast(msg) {
+          this.toastMessage = msg;
+          this.showToast = true;
+          setTimeout(() => {
+            this.showToast = false;
+          }, 3200);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

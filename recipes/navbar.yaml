@@ -1,0 +1,155 @@
+component: Navbar
+name: navbar
+category: navigation
+version: 1.1.0
+
+ai:
+  intent: "Primary site or application header across functional and regional art school archetypes"
+  visual_role: "Header identity, architectural navigation, search, and action hub"
+  density: "comfortable"
+  preferred_when:
+    - "Top header of marketing sites, web applications, or editorial publications"
+    - "Compact mobile and tablet app navigation bars"
+  avoid_when:
+    - "Isolated single-screen landing pages with zero external navigation"
+
+base:
+  display: flex
+  width: 100%
+  align-items: center
+  justify-content: space-between
+  background-color: "{color.surface.base}"
+  border-bottom: "1px solid {color.border.subtle}"
+  z-index: 40
+  transition-duration: "{duration.fast}"
+  transition-timing-function: "{ease.standard}"
+
+variants:
+  default:
+    background-color: "{color.surface.base}"
+  transparent:
+    background-color: transparent
+    border-bottom: none
+  glass:
+    background-color: "{color.surface.glass}"
+    backdrop-filter: "blur(16px)"
+  title-only:
+    justify-content: center
+  title-icon:
+    gap: "{space.4}"
+  dual-icons:
+    justify-content: space-between
+  with-submenus:
+    position: relative
+  with-search:
+    gap: "{space.4}"
+  with-indicator:
+    position: relative
+  center-logo:
+    justify-content: space-between
+  responsive-center:
+    justify-content: space-between
+  drawer-collapse:
+    position: sticky
+  school-art-deco:
+    border-bottom: "2px solid {color.gold.500}"
+  school-masthead:
+    flex-direction: column
+    border-bottom: "2px solid {color.border.strong}"
+  school-brutalist:
+    border-bottom: "3px solid {color.content.primary}"
+    box-shadow: "0 4px 0 {color.content.primary}"
+  school-floating-pill:
+    border-radius: "9999px"
+    margin-inline: auto
+  school-cyber-terminal:
+    font-family: "{font.mono}"
+    border-bottom: "1px solid {color.cyan.500}"
+  school-heritage:
+    border-bottom: "1px solid {color.amber.600}"
+
+sizes:
+  sm:
+    height: "{space.12}"
+    padding-inline: "{space.4}"
+  md:
+    height: "{space.16}"
+    padding-inline: "{space.6}"
+  lg:
+    height: "{space.20}"
+    padding-inline: "{space.8}"
+
+states:
+  default:
+    opacity: 1
+  mobile-open:
+    overflow: hidden
+  dropdown-open:
+    z-index: 50
+
+contract:
+  anatomy:
+    - root
+    - container
+    - brand-logo
+    - brand-title
+    - navigation-list
+    - nav-item
+    - nav-link
+    - dropdown-menu
+    - submenu-item
+    - search-capsule
+    - indicator-badge
+    - actions-group
+    - hamburger-toggle
+    - mobile-drawer
+    - backdrop
+  props:
+    variant:
+      default: default
+      values:
+        - default
+        - transparent
+        - glass
+        - title-only
+        - title-icon
+        - dual-icons
+        - with-submenus
+        - with-search
+        - with-indicator
+        - center-logo
+        - responsive-center
+        - drawer-collapse
+        - school-art-deco
+        - school-masthead
+        - school-brutalist
+        - school-floating-pill
+        - school-cyber-terminal
+        - school-heritage
+    size:
+      default: md
+      values: [sm, md, lg]
+    state:
+      default: default
+      values: [default, mobile-open, dropdown-open]
+    tone:
+      default: default
+      values: [default, primary, dark, gold, surface]
+  slots:
+    - start
+    - default
+    - end
+    - drawer
+
+structure:
+  base:
+    native_class: qhr-navbar
+    tailwind: "w-full bg-[var(--qhr-surface-base)] border-b border-[var(--qhr-border-subtle)] z-40 transition-colors"
+
+accessibility:
+  role: navigation
+  aria_label: "Main navigation"
+
+rtl:
+  supported: true
+  directional_mirroring: false

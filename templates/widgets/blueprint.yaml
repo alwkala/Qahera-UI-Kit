@@ -1,0 +1,33 @@
+id: template-widgets
+name: Multi-Category Modular Widgets Suite
+category: dashboard
+purpose: >
+  Comprehensive modular widget suite featuring Statistic widgets, Chart widgets, Social media widgets, Real-time Weather telemetry, Blog & Editorial widgets, and Interactive List widgets.
+
+patterns:
+  - dashboard-stat
+  - luxury-product-card
+  - editorial-story
+
+components:
+  - card
+  - badge
+  - button
+  - avatar
+  - checkbox
+  - tooltip
+
+features:
+  - statistic_widgets: "High-impact KPI metric tiles with percentage deltas, trend indicators, and volume bars"
+  - chart_widgets: "Widget cards embedding mini area sparklines, segmented bar distributions, and progress rings"
+  - social_widgets: "Platform follower analytics, engagement counters, and social channel performance cards"
+  - weather_widget: "Dynamic meteorological widget showing current temperature, humidity, wind vectors, and 4-day forecast"
+  - blog_widgets: "Editorial article cards, featured post highlights, author profile bios, and trending topic clusters"
+  - list_widgets: "Interactive task checklists, chronological activity timelines, top contributors, and transaction feeds"
+
+ai:
+  purpose: "Modular widget units for customizable dashboard grids, portal homepages, and administrative dashboards"
+  use_when:
+    - "Designing composable dashboard layouts or widgets libraries where users pin or rearrange cards"
+  avoid_when:
+    - "Monolithic document reading views without modular cards"

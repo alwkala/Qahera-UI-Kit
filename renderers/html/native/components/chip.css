@@ -1,0 +1,65 @@
+/* ==========================================================================
+   Chip / TagInput (.qhr-chip)
+   ========================================================================== */
+.qhr-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qhr-space-1-5, 6px);
+  border-radius: var(--qhr-radius-pill, 9999px);
+  border: 1px solid var(--qhr-border-subtle, #cbd5e1);
+  background-color: var(--qhr-surface-muted, #f1f5f9);
+  color: var(--qhr-content-primary, #0f172a);
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-weight: 600;
+  transition: all var(--qhr-duration-fast, 150ms) ease;
+  user-select: none;
+}
+
+[data-theme="dark"] .qhr-chip {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  border-color: var(--qhr-border-subtle, #1e293b);
+  color: var(--qhr-content-primary, #f8fafc);
+}
+
+.qhr-chip--sm {
+  height: 24px;
+  padding-inline: var(--qhr-space-2, 8px);
+  font-size: var(--qhr-text-xs, 0.75rem);
+}
+.qhr-chip--md {
+  height: 32px;
+  padding-inline: var(--qhr-space-3, 12px);
+  font-size: var(--qhr-text-sm, 0.875rem);
+}
+.qhr-chip--lg {
+  height: 40px;
+  padding-inline: var(--qhr-space-4, 16px);
+  font-size: var(--qhr-text-base, 1rem);
+}
+
+.qhr-chip--primary {
+  background-color: rgba(199, 163, 90, 0.12);
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+  color: var(--qhr-color-primary-600, #a68430);
+}
+[data-theme="dark"] .qhr-chip--primary {
+  color: var(--qhr-color-luxury-gold, #dfc378);
+}
+
+.qhr-chip-remove {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-inline-start: var(--qhr-space-1, 4px);
+  transition: opacity 150ms ease;
+}
+.qhr-chip-remove:hover {
+  opacity: 1;
+}

@@ -1,0 +1,160 @@
+{
+  "id": "select",
+  "name": "Select",
+  "component": "Select",
+  "category": "forms",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "trigger",
+      "value-label",
+      "chevron-indicator",
+      "popover",
+      "options-list",
+      "option-item"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-select-picker"
+      },
+      "outline": {
+        "intent": "bordered-subtle-picker"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": 32,
+        "padding_inline": 10,
+        "font_size": "var(--qhr-text-sm)"
+      },
+      "md": {
+        "height": 40,
+        "padding_inline": 12,
+        "font_size": "var(--qhr-text-base)"
+      },
+      "lg": {
+        "height": 48,
+        "padding_inline": 16,
+        "font_size": "var(--qhr-text-lg)"
+      }
+    },
+    "states": [
+      "default",
+      "hover",
+      "focus",
+      "open",
+      "disabled"
+    ],
+    "slots": {
+      "trigger": "required",
+      "options": "required",
+      "leadingIcon": "optional"
+    },
+    "accessibility": {
+      "role": "combobox",
+      "keyboard": true,
+      "focusVisible": true,
+      "keyboard_keys": {
+        "ArrowDown": "Opens menu or highlights next option",
+        "ArrowUp": "Highlights previous option",
+        "Enter": "Selects active option and closes",
+        "Escape": "Closes menu without selection"
+      },
+      "aria": [
+        {
+          "aria-expanded": "when open"
+        },
+        {
+          "aria-haspopup": "listbox"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/select.yaml",
+    "base": {
+      "display": "flex",
+      "width": "100%",
+      "align-items": "center",
+      "justify-content": "space-between",
+      "font-family": "inherit",
+      "background-color": "{color.surface.base}",
+      "color": "{color.neutral.900}",
+      "border": "1px solid {color.border.subtle}",
+      "border-radius": "{radius.md}",
+      "cursor": "pointer",
+      "user-select": "none",
+      "transition-duration": "{duration.fast}",
+      "transition-timing-function": "{ease.standard}"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.base}",
+        "border-color": "{color.border.subtle}"
+      },
+      "outline": {
+        "background-color": "transparent",
+        "border-color": "{color.primary.bg}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "{text.sm}",
+        "padding-inline": "{space.3}",
+        "padding-block": "{space.1-5}"
+      },
+      "md": {
+        "font-size": "{text.base}",
+        "padding-inline": "{space.3-5}",
+        "padding-block": "{space.2}"
+      },
+      "lg": {
+        "font-size": "{text.lg}",
+        "padding-inline": "{space.4}",
+        "padding-block": "{space.3}"
+      }
+    },
+    "states": {
+      "hover": {
+        "border-color": "{color.primary.bg}"
+      },
+      "focus": {
+        "border-color": "{color.primary.bg}",
+        "outline": "2px solid {color.primary.subtle}"
+      },
+      "open": {
+        "border-color": "{color.primary.bg}",
+        "box-shadow": "{shadow.md}"
+      },
+      "disabled": {
+        "background-color": "{color.neutral.100}",
+        "opacity": 0.6,
+        "cursor": "not-allowed"
+      }
+    }
+  },
+  "behavior": {
+    "file": "behavior/select.js",
+    "moduleName": "select"
+  },
+  "ai": {
+    "purpose": "Enables selection of a single option from an expandable dropdown list.",
+    "whenToUse": [
+      "Choosing one option from 5 or more predefined choices (countries, roles, page sizes)",
+      "Page size selector in pagination pattern",
+      "Column/filter picker in data-table-toolbar"
+    ],
+    "avoid": [
+      "Binary choice (use Checkbox)",
+      "Mutually exclusive choices under 4 items (use Radio)"
+    ],
+    "related": [
+      "pagination",
+      "data-table-toolbar"
+    ]
+  },
+  "source": {
+    "file": "contracts/components/Select.yaml"
+  }
+}

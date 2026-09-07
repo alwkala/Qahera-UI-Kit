@@ -1,0 +1,107 @@
+{
+  "id": "kbd",
+  "name": "Kbd",
+  "component": "Kbd",
+  "category": "data-display",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "key-label"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-elevated-key"
+      },
+      "outline": {
+        "intent": "flat-bordered-key"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font_size": "var(--qhr-text-xs)",
+        "padding_inline": 6,
+        "height": 20
+      },
+      "md": {
+        "font_size": "var(--qhr-text-sm)",
+        "padding_inline": 8,
+        "height": 24
+      },
+      "lg": {
+        "font_size": "var(--qhr-text-base)",
+        "padding_inline": 10,
+        "height": 28
+      }
+    },
+    "states": [
+      "default"
+    ],
+    "slots": {
+      "default": "required"
+    },
+    "accessibility": {
+      "role": "text"
+    }
+  },
+  "recipe": {
+    "file": "recipes/kbd.yaml",
+    "base": {
+      "display": "inline-flex",
+      "align-items": "center",
+      "justify-content": "center",
+      "font-family": "{font.family.mono}",
+      "background-color": "{color.surface.elevated}",
+      "border": "1px solid {color.border.subtle}",
+      "border-bottom": "2px solid {color.border.strong}",
+      "border-radius": "{radius.sm}",
+      "color": "{color.text.muted}",
+      "font-weight": 600
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.elevated}"
+      },
+      "outline": {
+        "background-color": "transparent"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": "20px",
+        "padding": "0 var(--qhr-space-1)",
+        "font-size": "11px"
+      },
+      "md": {
+        "height": "24px",
+        "padding": "0 var(--qhr-space-2)",
+        "font-size": "12px"
+      },
+      "lg": {
+        "height": "28px",
+        "padding": "0 var(--qhr-space-2)",
+        "font-size": "14px"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays keyboard shortcut keys, key combinations, and system hotkey indicators.",
+    "whenToUse": [
+      "Displaying hotkeys in dropdown menus and command palettes (e.g. ⌘K, Ctrl+S)",
+      "Technical documentation and user guides"
+    ],
+    "avoid": [
+      "Interactive clickable buttons (use Button instead)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Kbd.yaml"
+  }
+}

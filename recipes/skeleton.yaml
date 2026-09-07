@@ -1,0 +1,75 @@
+component: Skeleton
+name: skeleton
+category: feedback
+version: 1.0.0
+
+ai:
+  intent: "Shimmer placeholder loading indicator"
+  visual_role: "Geometric skeleton outline"
+  density: "comfortable"
+  preferred_when:
+    - "Simulating cards, tables, text during async fetch"
+  avoid_when:
+    - "Precise percentage determinate uploads"
+
+base:
+  display: block
+  background-color: "{color.surface.elevated}"
+  border-radius: "{radius.md}"
+  position: relative
+  overflow: hidden
+
+variants:
+  default:
+    opacity: 0.8
+  wave:
+    opacity: 1
+
+shapes:
+  text:
+    border-radius: "{radius.sm}"
+    height: "1rem"
+  rectangular:
+    border-radius: "{radius.md}"
+  circular:
+    border-radius: "{radius.full}"
+
+sizes:
+  sm:
+    height: "16px"
+  md:
+    height: "24px"
+  lg:
+    height: "48px"
+
+states:
+  loading:
+    animation: "qhr-shimmer 1.5s infinite linear"
+  idle:
+    animation: none
+
+contract:
+  anatomy:
+    - root
+  props:
+    shape:
+      default: rectangular
+      values: [text, rectangular, circular]
+    size:
+      default: md
+      values: [sm, md, lg]
+  slots:
+    - default
+
+structure:
+  base:
+    native_class: qhr-skeleton
+    tailwind: "animate-pulse bg-[var(--qhr-surface-elevated)] rounded-[var(--qhr-radius-md)]"
+
+accessibility:
+  role: status
+  aria_required:
+    - aria-busy: "true"
+
+rtl:
+  supported: true

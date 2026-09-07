@@ -1,0 +1,85 @@
+<!-- Qahera UI Kit - Master Modal Showcase -->
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. إطلاق مربعات الحوار التفاعلية (Interactive Modal Triggers)</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; background: var(--q-surface); padding: 20px; border-radius: 16px; border: 1px solid var(--q-border);">
+      <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" onclick="openLiveModal('confirm')">حوار التأكيد (Confirmation)</button>
+      <button type="button" class="qhr-btn qhr-btn--danger qhr-btn--md" onclick="openLiveModal('delete')">حوار الحذف الحرج (Destructive)</button>
+      <button type="button" class="qhr-btn qhr-btn--luxury qhr-btn--md" onclick="openLiveModal('luxury')">حوار قاهرة الفاخر (Luxury)</button>
+    </div>
+  </div>
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">2. المعاينة المضمنة لمربع الحوار (Inline Architecture Demo)</h3>
+    <div style="max-width: 480px; margin-inline: auto;">
+      <div class="qhr-modal-dialog" style="animation: none;">
+        <div class="qhr-modal-header">
+          <h4 class="qhr-modal-title">تحديث إعدادات الأمان</h4>
+          <button type="button" class="qhr-modal-close" aria-label="إغلاق">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="qhr-modal-body">
+          <p>هل أنت متأكد من رغبتك في تفعيل نظام التحقق الثنائي عبر بصمة الوجه والمفتاح الأمني المشفر؟</p>
+          <span style="font-size: 0.8rem; color: var(--q-text-muted);">سيتم إرسال إشعار فوري إلى جهازك المعتمد لتأكيد العملية.</span>
+        </div>
+        <div class="qhr-modal-footer">
+          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm">إلغاء</button>
+          <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm">تأكيد التفعيل</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- حوار تفاعلي حقيقي -->
+<div id="live-modal-backdrop" class="qhr-modal-backdrop" style="display: none;" onclick="if(event.target===this)closeLiveModal()">
+  <div class="qhr-modal-dialog">
+    <div class="qhr-modal-header">
+      <h4 class="qhr-modal-title" id="live-modal-title">عنوان الحوار</h4>
+      <button type="button" class="qhr-modal-close" onclick="closeLiveModal()" aria-label="إغلاق">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="qhr-modal-body" id="live-modal-body">
+      محتوى الحوار التفاعلي.
+    </div>
+    <div class="qhr-modal-footer">
+      <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" onclick="closeLiveModal()">إغلاق</button>
+      <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" id="live-modal-action-btn" onclick="closeLiveModal()">تنفيذ</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function openLiveModal(type) {
+  const m = document.getElementById('live-modal-backdrop');
+  const t = document.getElementById('live-modal-title');
+  const b = document.getElementById('live-modal-body');
+  const btn = document.getElementById('live-modal-action-btn');
+
+  if (type === 'delete') {
+    t.textContent = 'حذف الحساب نهائياً';
+    b.innerHTML = '<p style="color: var(--qhr-color-danger-600, #ef4444); font-weight: 700;">تحذير: هذا الإجراء لا يمكن التراجع عنه!</p><p>سيتم حذف كافة البيانات والمشاريع المرتبطة بهذا الحساب فوراً.</p>';
+    btn.className = 'qhr-btn qhr-btn--danger qhr-btn--sm';
+    btn.textContent = 'حذف نهائي';
+  } else if (type === 'luxury') {
+    t.textContent = 'الترقية إلى مستوى قاهرة الذهبي';
+    b.innerHTML = '<p>استمتع بتوليد ذكي غير محدود لكافة المكونات المعمارية والأيقونات الفاخرة.</p>';
+    btn.className = 'qhr-btn qhr-btn--luxury qhr-btn--sm';
+    btn.textContent = 'ترقية فورية';
+  } else {
+    t.textContent = 'حفظ الإعدادات المحدثة';
+    b.innerHTML = '<p>سيتم تطبيق كافة التغييرات على لوحة التحكم ومزامنتها مع الخادم المركزي.</p>';
+    btn.className = 'qhr-btn qhr-btn--primary qhr-btn--sm';
+    btn.textContent = 'تأكيد الحفظ';
+  }
+
+  m.style.display = 'flex';
+}
+function closeLiveModal() {
+  document.getElementById('live-modal-backdrop').style.display = 'none';
+}
+</script>

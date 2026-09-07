@@ -1,0 +1,195 @@
+component: Button
+name: button
+category: actions
+version: 1.0.0
+
+ai:
+  intent: "Primary action execution"
+  visual_role: "High emphasis"
+  density: "comfortable"
+  preferred_when:
+    - "Submitting forms"
+    - "Confirming or cancelling modal dialogs"
+    - "Triggering interactive workflows or state changes"
+  avoid_when:
+    - "Navigating between pages without action (use <a> with link variant)"
+    - "Representing passive status (use badge)"
+
+base:
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  font-weight: 500
+  border-radius: "{radius.md}"
+  transition-duration: "{duration.fast}"
+  transition-timing-function: "{ease.standard}"
+  cursor: pointer
+  user-select: none
+
+variants:
+  primary:
+    background: "{color.primary.bg}"
+    color: "{color.primary.fg}"
+    hover:
+      background: "{color.primary.hover}"
+  secondary:
+    background: "{color.neutral.100}"
+    color: "{color.neutral.900}"
+    hover:
+      background: "{color.neutral.200}"
+  outline:
+    background: transparent
+    color: "{color.primary.bg}"
+    border: "1px solid {color.primary.bg}"
+  ghost:
+    background: transparent
+    color: "{color.primary.bg}"
+    hover:
+      background: "{color.primary.subtle}"
+  link:
+    background: transparent
+    color: "{color.primary.bg}"
+    text-decoration: underline
+  destructive:
+    background: "{color.danger.bg}"
+    color: "{color.danger.fg}"
+    hover:
+      background: "{color.danger.hover}"
+
+sizes:
+  xs:
+    font-size: "{text.xs}"
+    padding-inline: "{space.2}"
+    padding-block: "{space.1}"
+  sm:
+    font-size: "{text.sm}"
+    padding-inline: "{space.3}"
+    padding-block: "{space.1-5}"
+  md:
+    font-size: "{text.base}"
+    padding-inline: "{space.4}"
+    padding-block: "{space.2}"
+  lg:
+    font-size: "{text.lg}"
+    padding-inline: "{space.6}"
+    padding-block: "{space.3}"
+  xl:
+    font-size: "{text.xl}"
+    padding-inline: "{space.8}"
+    padding-block: "{space.4}"
+
+states:
+  hover:
+    filter: brightness(0.95)
+  focus:
+    outline: "2px solid {color.primary.bg}"
+    outline-offset: "2px"
+  disabled:
+    opacity: 0.5
+    cursor: not-allowed
+    pointer-events: none
+  loading:
+    opacity: 0.8
+    cursor: wait
+    pointer-events: none
+
+contract:
+  anatomy:
+    - root
+    - icon-start
+    - label
+    - icon-end
+  props:
+    variant:
+      default: primary
+      values: [primary, secondary, outline, ghost, link, destructive]
+    size:
+      default: md
+      values: [xs, sm, md, lg, xl]
+    state:
+      default: default
+      values: [default, hover, focus, disabled, loading]
+  slots:
+    - start
+    - default
+    - end
+
+structure:
+  base:
+    native_class: qhr-btn
+    tailwind: "inline-flex items-center justify-center font-medium transition-colors cursor-pointer select-none border border-transparent"
+  variants:
+    primary:
+      native_modifier: qhr-btn--primary
+      tailwind: "bg-[var(--qhr-color-primary-600)] text-white hover:bg-[var(--qhr-color-primary-700)] shadow-xs"
+    secondary:
+      native_modifier: qhr-btn--secondary
+      tailwind: "bg-[var(--qhr-color-neutral-100)] text-[var(--qhr-color-neutral-900)] hover:bg-[var(--qhr-color-neutral-200)]"
+    outline:
+      native_modifier: qhr-btn--outline
+      tailwind: "border-[var(--qhr-color-primary-600)] text-[var(--qhr-color-primary-600)] bg-transparent hover:bg-[var(--qhr-color-primary-50)]"
+    ghost:
+      native_modifier: qhr-btn--ghost
+      tailwind: "bg-transparent text-[var(--qhr-color-primary-600)] hover:bg-[var(--qhr-color-primary-50)]"
+    link:
+      native_modifier: qhr-btn--link
+      tailwind: "bg-transparent text-[var(--qhr-color-primary-600)] underline p-0"
+    destructive:
+      native_modifier: qhr-btn--destructive
+      tailwind: "bg-[var(--qhr-color-danger-600)] text-white hover:bg-[var(--qhr-color-danger-700)] shadow-xs"
+  sizes:
+    sm:
+      native_modifier: qhr-btn--sm
+      tailwind: "text-sm px-[var(--qhr-space-3)] py-[var(--qhr-space-1-5)] rounded-[var(--qhr-radius-sm)] gap-[var(--qhr-space-1-5)]"
+    md:
+      native_modifier: qhr-btn--md
+      tailwind: "text-base px-[var(--qhr-space-4)] py-[var(--qhr-space-2)] rounded-[var(--qhr-radius-md)] gap-[var(--qhr-space-2)]"
+    lg:
+      native_modifier: qhr-btn--lg
+      tailwind: "text-lg px-[var(--qhr-space-6)] py-[var(--qhr-space-3)] rounded-[var(--qhr-radius-lg)] gap-[var(--qhr-space-3)]"
+  states:
+    disabled:
+      native_modifier: is-disabled
+      tailwind: "opacity-50 cursor-not-allowed pointer-events-none"
+    loading:
+      native_modifier: is-loading
+      tailwind: "opacity-80 cursor-wait pointer-events-none"
+
+accessibility:
+  role: button
+  keyboard: "Enter or Space activates button"
+  aria_required:
+    - aria-disabled: when state=disabled
+    - aria-busy: when state=loading
+
+use_cases:
+  save-form:
+    intent: save
+    variant: primary
+    size: md
+    content:
+      label: "حفظ التغييرات"
+      label_en: "Save Changes"
+    behavior:
+      loading: true
+      disabledWhileLoading: true
+  delete-confirm:
+    intent: destructive-action
+    variant: destructive
+    size: md
+    content:
+      label: "حذف العنصر"
+      label_en: "Delete Item"
+    behavior:
+      requires_confirmation: true
+  cancel-dismiss:
+    intent: dismiss
+    variant: secondary
+    size: md
+    content:
+      label: "إلغاء"
+      label_en: "Cancel"
+
+rtl:
+  supported: true
+  directional_mirroring: false

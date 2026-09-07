@@ -1,0 +1,119 @@
+{
+  "id": "back-to-top",
+  "name": "BackToTop",
+  "component": "BackToTop",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "icon"
+    ],
+    "variants": {
+      "default": {
+        "intent": "floating-circular-button"
+      },
+      "luxury": {
+        "intent": "gold-bordered-dark-surface"
+      }
+    },
+    "sizes": {
+      "md": {
+        "width": 48,
+        "height": 48
+      }
+    },
+    "states": [
+      "hidden",
+      "visible",
+      "active"
+    ],
+    "slots": {
+      "icon": "optional"
+    },
+    "accessibility": {
+      "role": "button",
+      "aria": [
+        {
+          "aria-label": "العودة لأعلى الصفحة"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/back-to-top.yaml",
+    "base": {
+      "position": "fixed",
+      "inset-inline-end": "var(--qhr-space-6)",
+      "bottom": "var(--qhr-space-6)",
+      "z-index": 900,
+      "width": "48px",
+      "height": "48px",
+      "border-radius": "50%",
+      "display": "flex",
+      "align-items": "center",
+      "justify-content": "center",
+      "cursor": "pointer",
+      "opacity": 0,
+      "transform": "translateY(16px)",
+      "transition": "all 0.4s var(--qhr-motion-luxury, cubic-bezier(0.25, 0.8, 0.25, 1))",
+      "box-shadow": "var(--qhr-shadow-lg)"
+    },
+    "variants": {
+      "default": {
+        "background-color": "var(--qhr-color-surface-elevated)",
+        "border": "1px solid var(--qhr-color-border)",
+        "color": "var(--qhr-color-text)"
+      },
+      "luxury": {
+        "background-color": "var(--qhr-color-surface)",
+        "border": "1px solid var(--qhr-color-border-strong)",
+        "color": "var(--qhr-color-gold)"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "width": "40px",
+        "height": "40px"
+      },
+      "md": {
+        "width": "48px",
+        "height": "48px"
+      },
+      "lg": {
+        "width": "56px",
+        "height": "56px"
+      }
+    },
+    "states": {
+      "visible": {
+        "opacity": 1,
+        "transform": "translateY(0)"
+      },
+      "hover": {
+        "transform": "translateY(-4px)",
+        "box-shadow": "var(--qhr-shadow-xl)"
+      },
+      "active": {
+        "transform": "translateY(0)"
+      }
+    }
+  },
+  "behavior": {
+    "file": "behavior/back-to-top.js",
+    "moduleName": "back-to-top"
+  },
+  "ai": {
+    "purpose": "Displays a floating action button that monitors scroll depth and smoothly scrolls the viewport back to the top of the page.",
+    "whenToUse": [
+      "Documentation pages, deep articles, or extensive product listings with high scroll depth"
+    ],
+    "avoid": [
+      "Fixed height viewports, modal dialogs, or short dashboard screens"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/BackToTop.yaml"
+  }
+}

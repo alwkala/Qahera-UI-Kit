@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark" x-data="{
+  theme: 'dark',
+  dir: 'rtl',
+  lang: 'ar',
+  toggleTheme() {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', this.theme);
+  },
+  toggleDir() {
+    this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl';
+    this.lang = this.dir === 'rtl' ? 'ar' : 'en';
+    document.documentElement.setAttribute('dir', this.dir);
+    document.documentElement.setAttribute('lang', this.lang);
+  }
+}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة القيادة التنفيذية — Qahera UI Kit</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+</head>
+<body style="background-color: var(--qhr-surface-page, #020617); color: var(--qhr-text-primary, #f8fafc); font-family: var(--qhr-font-family-primary, 'Cairo', sans-serif); margin: 0; padding: 0; min-height: 100vh;">
+
+  <!-- Navbar -->
+  <header class="qhr-navbar" style="background: var(--qhr-surface-card, #0f172a); border-bottom: 1px solid var(--qhr-border-subtle, #1e293b);">
+    <div class="qhr-navbar-container">
+      <a href="#" class="qhr-navbar-brand" style="text-decoration: none;">
+        <span class="qhr-avatar qhr-avatar--rounded qhr-avatar--sm" style="background: linear-gradient(135deg, var(--qhr-color-primary-500, #C7A35A), var(--qhr-color-primary-700, #8A6D3B)); color: #FFFFFF; font-weight: 800;">ق</span>
+        <span style="color: var(--qhr-text-primary, #f8fafc); font-weight: 700;">لوحة القيادة · قاهرة</span>
+      </a>
+      <ul class="qhr-navbar-links">
+        <li><a href="#" class="qhr-navbar-link is-active">نظرة عامة</a></li>
+        <li><a href="#" class="qhr-navbar-link">التقارير</a></li>
+        <li><a href="#" class="qhr-navbar-link">العمليات</a></li>
+        <li><a href="#" class="qhr-navbar-link">الإعدادات</a></li>
+      </ul>
+      <div class="qhr-navbar-actions" style="display: flex; align-items: center; gap: var(--qhr-space-2, 0.5rem);">
+        <!-- Direction & Language Toggle -->
+        <button
+          type="button"
+          class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+          @click="toggleDir()"
+          :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+          aria-label="تبديل اتجاه الصفحة واللغة"
+          style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+        >
+          <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </button>
+
+        <!-- Theme Toggle (Icon only without text) -->
+        <button
+          type="button"
+          class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+          @click="toggleTheme()"
+          aria-label="تبديل مظهر الواجهة"
+          :title="theme === 'dark' ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'"
+          style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+        >
+          <svg x-show="theme === 'dark'" class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg x-show="theme === 'light'" class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm">تقرير جديد</button>
+      </div>
+    </div>
+  </header>
+
+  <main style="padding: var(--qhr-space-8, 2rem); max-width: 1240px; margin: 0 auto;">
+    <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--qhr-space-4, 1rem); margin-bottom: var(--qhr-space-8, 2rem); padding-bottom: var(--qhr-space-4, 1rem); border-bottom: 1px solid var(--qhr-border-subtle, rgba(255,255,255,0.08));">
+      <div>
+        <h1 style="font-size: var(--qhr-text-2xl, 1.5rem); font-weight: 800; color: var(--qhr-text-primary, #f8fafc); margin: 0;">
+          مؤشرات الأداء التشغيلية
+        </h1>
+        <p style="font-size: var(--qhr-text-sm, 0.875rem); color: var(--qhr-text-secondary, #cbd5e1); margin: 4px 0 0;">
+          متابعة مباشرة ومحدثة لحركة النظام والعمليات ومؤشرات النمو.
+        </p>
+      </div>
+      <div style="display: inline-flex; gap: var(--qhr-space-2, 0.5rem);">
+        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm">تصدير البيانات</button>
+        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm">تحديث حي</button>
+      </div>
+    </header>
+
+    <!-- KPI Metric Cards Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--qhr-space-4, 1rem); margin-bottom: var(--qhr-space-8, 2rem);">
+      <div class="qhr-card" style="padding: var(--qhr-space-5, 1.25rem); background: var(--qhr-surface-card, #0f172a); border: 1px solid var(--qhr-border-subtle, #1e293b); border-radius: var(--qhr-radius-lg, 12px);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--qhr-space-2, 0.5rem);">
+          <span style="font-size: var(--qhr-text-xs, 0.75rem); color: var(--qhr-text-muted, #94a3b8); font-weight: 600;">إجمالي الإيرادات</span>
+          <span class="qhr-badge qhr-badge--success">+١٢.٥٪</span>
+        </div>
+        <div style="font-size: var(--qhr-text-2xl, 1.5rem); font-weight: 800; color: var(--qhr-text-primary, #f8fafc);">١٢٨,٤٥٠ ر.س</div>
+        <div style="font-size: var(--qhr-text-xs, 0.75rem); color: var(--qhr-text-muted, #94a3b8); margin-top: var(--qhr-space-1, 0.25rem);">مقارنة بالشهر السابق</div>
+      </div>
+
+      <div class="qhr-card" style="padding: var(--qhr-space-5, 1.25rem); background: var(--qhr-surface-card, #0f172a); border: 1px solid var(--qhr-border-subtle, #1e293b); border-radius: var(--qhr-radius-lg, 12px);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--qhr-space-2, 0.5rem);">
+          <span style="font-size: var(--qhr-text-xs, 0.75rem); color: var(--qhr-text-muted, #94a3b8); font-weight: 600;">المستخدمين النشطين</span>
+          <span class="qhr-badge qhr-badge--success">+٨.٢٪</span>
+        </div>
+        <div style="font-size: var(--qhr-text-2xl, 1.5rem); font-weight: 800; color: var(--qhr-text-primary, #f8fafc);">١٤,٢٩٠</div>
+        <div style="font-size: var(--qhr-text-xs, 0.75rem); color: var(--qhr-text-muted, #94a3b8); margin-top: var(--qhr-space-1, 0.25rem);">آخر ٣٠ يوماً</div>
+      </div>
+
+      <div class="qhr-card" style="padding: var(--qhr-space-5, 1.25rem); background: var(--qhr-surface-card, #0f172a); border: 1px solid var(--qhr-border-subtle, #1e293b); border-radius: var(--qhr-radius-lg, 12px);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--qhr-space-2, 0.5rem);">
+          <span style="font-size: var(--qhr-text-xs, 0.75rem); color: var(--qhr-text-muted, #94a3b8); font-weight: 600;">العمليات المكتملة</span>
+          <span class="qhr-badge qhr-badge--danger">-١.٤٪</span>
+        </div>
+        <div style="font-size: var(--qhr-text-2xl, 1.5rem); font-weight: 800; color: var(--qhr-text-primary, #f8fafc);">٣٨,٩٢٠</div>
+        <div style="font-size: var(--qhr-text-xs, 0.75rem); color: var(--qhr-text-muted, #94a3b8); margin-top: var(--qhr-space-1, 0.25rem);">معدل نجاح ٩٩.٤٪</div>
+      </div>
+
+      <div class="qhr-card" style="padding: var(--qhr-space-5, 1.25rem); background: var(--qhr-surface-card, #0f172a); border: 1px solid var(--qhr-border-subtle, #1e293b); border-radius: var(--qhr-radius-lg, 12px);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--qhr-space-2, 0.5rem);">
+          <span style="font-size: var(--qhr-text-xs, 0.75rem); color: var(--qhr-text-muted, #94a3b8); font-weight: 600;">زمن الاستجابة</span>
+          <span class="qhr-badge qhr-badge--success">+١٨.٠٪</span>
+        </div>
+        <div style="font-size: var(--qhr-text-2xl, 1.5rem); font-weight: 800; color: var(--qhr-text-primary, #f8fafc);">١٤٢ مل/ث</div>
+        <div style="font-size: var(--qhr-text-xs, 0.75rem); color: var(--qhr-text-muted, #94a3b8); margin-top: var(--qhr-space-1, 0.25rem);">تحسن في زمن الاستجابة</div>
+      </div>
+    </div>
+
+    <!-- Recent Activity Table -->
+    <div class="qhr-card" style="padding: var(--qhr-space-6, 1.5rem); background: var(--qhr-surface-card, #0f172a); border: 1px solid var(--qhr-border-strong, #334155); border-radius: var(--qhr-radius-lg, 12px);">
+      <h2 style="font-size: var(--qhr-text-lg, 1.125rem); font-weight: 700; color: var(--qhr-text-primary, #f8fafc); margin: 0 0 var(--qhr-space-4, 1rem);">
+        آخر الأنشطة والعمليات المنفذة
+      </h2>
+      <div class="qhr-table-container" style="overflow-x: auto;">
+        <table class="qhr-table qhr-table--striped" style="width: 100%; border-collapse: collapse; text-align: start;">
+          <thead class="qhr-table-head" style="background: rgba(255,255,255,0.03); border-bottom: 1px solid var(--qhr-border-subtle, #334155);">
+            <tr class="qhr-table-row">
+              <th class="qhr-table-th" style="padding: 12px 16px;">المعرف</th>
+              <th class="qhr-table-th" style="padding: 12px 16px;">المستخدم</th>
+              <th class="qhr-table-th" style="padding: 12px 16px;">العملية</th>
+              <th class="qhr-table-th" style="padding: 12px 16px;">الحالة</th>
+              <th class="qhr-table-th" style="padding: 12px 16px; text-align: end;">الوقت</th>
+            </tr>
+          </thead>
+          <tbody class="qhr-table-body">
+            <tr class="qhr-table-row" style="border-bottom: 1px solid var(--qhr-border-subtle, rgba(255,255,255,0.05));">
+              <td class="qhr-table-td" style="padding: 12px 16px; font-family: monospace; color: var(--qhr-color-primary-400, #60a5fa);">ACT-901</td>
+              <td class="qhr-table-td" style="padding: 12px 16px; font-weight: 600;">أحمد محمود</td>
+              <td class="qhr-table-td" style="padding: 12px 16px; color: var(--qhr-text-secondary, #cbd5e1);">إنشاء عقد معايير جديد</td>
+              <td class="qhr-table-td" style="padding: 12px 16px;"><span class="qhr-badge qhr-badge--success">مكتمل</span></td>
+              <td class="qhr-table-td" style="padding: 12px 16px; text-align: end; color: var(--qhr-text-muted, #94a3b8); font-size: 0.8125rem;">منذ ٥ دقائق</td>
+            </tr>
+            <tr class="qhr-table-row" style="border-bottom: 1px solid var(--qhr-border-subtle, rgba(255,255,255,0.05));">
+              <td class="qhr-table-td" style="padding: 12px 16px; font-family: monospace; color: var(--qhr-color-primary-400, #60a5fa);">ACT-902</td>
+              <td class="qhr-table-td" style="padding: 12px 16px; font-weight: 600;">سارة خالد</td>
+              <td class="qhr-table-td" style="padding: 12px 16px; color: var(--qhr-text-secondary, #cbd5e1);">تعديل الصلاحيات الإدارية</td>
+              <td class="qhr-table-td" style="padding: 12px 16px;"><span class="qhr-badge qhr-badge--primary">قيد المراجعة</span></td>
+              <td class="qhr-table-td" style="padding: 12px 16px; text-align: end; color: var(--qhr-text-muted, #94a3b8); font-size: 0.8125rem;">منذ ١٢ دقيقة</td>
+            </tr>
+            <tr class="qhr-table-row">
+              <td class="qhr-table-td" style="padding: 12px 16px; font-family: monospace; color: var(--qhr-color-primary-400, #60a5fa);">ACT-903</td>
+              <td class="qhr-table-td" style="padding: 12px 16px; font-weight: 600;">كريم إبراهيم</td>
+              <td class="qhr-table-td" style="padding: 12px 16px; color: var(--qhr-text-secondary, #cbd5e1);">تصدير تقرير الإيرادات السنوي</td>
+              <td class="qhr-table-td" style="padding: 12px 16px;"><span class="qhr-badge qhr-badge--success">مكتمل</span></td>
+              <td class="qhr-table-td" style="padding: 12px 16px; text-align: end; color: var(--qhr-text-muted, #94a3b8); font-size: 0.8125rem;">منذ ساعة</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>

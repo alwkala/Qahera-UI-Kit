@@ -1,0 +1,60 @@
+id: user-card
+name: User Profile Card
+category: data-display
+purpose: >
+  Displays rich author, team member, or customer profile summaries with avatar, biographical information, key statistics, and social action buttons.
+
+components:
+  - card
+  - avatar
+  - badge
+  - button
+
+anatomy:
+  - container
+  - avatar-frame
+  - user-name
+  - role-tag
+  - bio-summary
+  - metrics-row
+  - action-buttons
+
+slots:
+  - avatar
+  - name
+  - title
+  - bio
+  - metrics
+  - actions
+
+layout:
+  display: flex
+  direction: column
+  alignment: center
+  gap: var(--qhr-space-4)
+  responsive:
+    sm: "max-width: 100%;"
+    md: "max-width: 380px;"
+
+accessibility:
+  role: region
+  landmark: complementary
+  keyboard_flow: "Tab order cycles logically through profile links and action buttons."
+  aria_live: off
+
+ai:
+  purpose: "Composable profile card for team rosters, authors, and user directory rosters"
+  use_when:
+    - "Author spotlight sections in blogs and editorial widgets"
+    - "Team rosters, leadership bios, and VIP membership profiles"
+    - "Community member cards in directories and social feeds"
+  avoid_when:
+    - "High-density multi-row data tables with thousands of records (use Table)"
+  composed_of:
+    - card
+    - avatar
+    - badge
+    - button
+  related_patterns:
+    - vip-membership
+    - editorial-story

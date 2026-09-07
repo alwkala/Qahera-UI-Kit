@@ -1,0 +1,83 @@
+component: Treeview
+name: treeview
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Hierarchical nested tree explorer"
+  visual_role: "Directory and taxonomy tree"
+  density: "compact"
+  preferred_when:
+    - "File and folder browsing in cloud managers"
+    - "Nested multi-level taxonomy categories"
+  avoid_when:
+    - "Simple flat menus"
+
+base:
+  display: flex
+  flex-direction: column
+  width: 100%
+  list-style: none
+  padding: 0
+  margin: 0
+
+variants:
+  default:
+    background-color: transparent
+  clean:
+    background-color: "{color.surface.base}"
+
+sizes:
+  sm:
+    line-height: "28px"
+    font-size: "var(--qhr-text-xs)"
+  md:
+    line-height: "36px"
+    font-size: "var(--qhr-text-sm)"
+  lg:
+    line-height: "44px"
+    font-size: "var(--qhr-text-base)"
+
+states:
+  selected:
+    background-color: "var(--qhr-color-primary-subtle)"
+    color: "var(--qhr-color-primary)"
+  hover:
+    background-color: "var(--qhr-color-surface-hover)"
+  expanded:
+    display: block
+  collapsed:
+    display: none
+
+contract:
+  anatomy:
+    - root
+    - tree-group
+    - tree-item
+    - expand-icon
+    - item-icon
+    - item-label
+  props:
+    size:
+      default: md
+      values: [sm, md, lg]
+    variant:
+      default: default
+      values: [default, clean]
+  slots:
+    - icon
+    - default
+    - trailing
+
+structure:
+  base:
+    native_class: qhr-treeview
+    tailwind: "flex flex-col w-full list-none p-0 m-0 select-none"
+
+accessibility:
+  role: tree
+  aria_required:
+    - aria-expanded: "false"
+
+rtl:
+  supported: true

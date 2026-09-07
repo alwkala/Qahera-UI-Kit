@@ -1,0 +1,60 @@
+id: carousel
+name: Carousel
+component: Carousel
+category: media
+purpose: >
+  Displays an interactive sequence of slides or promotional showcases with forward/backward navigation and indicator dots.
+
+anatomy:
+  - root
+  - track
+  - slide
+  - prev-button
+  - next-button
+  - indicators
+  - indicator-dot
+
+variants:
+  default:
+    intent: standard-slide-carousel
+  luxury:
+    intent: opulent-hero-showcase
+  fade:
+    intent: cross-dissolve-transitions
+
+sizes:
+  sm:
+    height: 240
+  md:
+    height: 380
+  lg:
+    height: 520
+
+states:
+  - default
+  - active
+  - paused
+
+slots:
+  slides: required
+  prevButton: optional
+  nextButton: optional
+  indicators: optional
+
+accessibility:
+  role: region
+  aria:
+    - "aria-roledescription=carousel"
+    - "aria-label"
+  keyboard: true
+  focusVisible: true
+
+ai:
+  purpose: "Interactive slide gallery and promotional media showcase"
+  whenToUse:
+    - "Hero promotional banners in e-commerce stores"
+    - "Featured editorial articles and luxury product spotlights"
+    - "Customer testimonial and review highlights"
+  avoid:
+    - "Dense data tables or critical primary forms"
+    - "Over-animating background elements that degrade reading focus"

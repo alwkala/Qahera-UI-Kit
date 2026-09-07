@@ -1,0 +1,62 @@
+name: Alert
+category: feedback
+purpose: >
+  Displays prominent contextual messages and feedback directly within page layouts.
+
+anatomy:
+  - root
+  - status-icon
+  - content-group
+  - title
+  - description
+  - close-button
+  - action
+
+variants:
+  - subtle
+  - solid
+  - outline
+
+sizes:
+  - sm
+  - md
+  - lg
+
+states:
+  - default
+
+tone:
+  - neutral
+  - info
+  - success
+  - warning
+  - danger
+
+slots:
+  - start
+  - default
+  - end
+
+composition:
+  icon: "Status icon determined by tone"
+  title: "Short summary headline"
+  description: "Detailed explanatory text"
+  close: "Dismiss button"
+
+accessibility:
+  role: alert
+  keyboard:
+    Escape: "Dismisses alert if dismissible"
+  focus: "Focus moved to alert on dynamic insertion if assertive"
+  aria:
+    - aria-live: "polite or assertive based on tone"
+
+ai:
+  description: "Contextual feedback banner embedded in page flow"
+  use_when:
+    - "Critical form validation errors requiring review"
+    - "System status or maintenance announcements"
+    - "Persistent contextual instructions"
+  avoid_when:
+    - "Temporary floating notifications that auto-dismiss (use Toast)"
+    - "Blocking confirmations that interrupt navigation (use Modal)"

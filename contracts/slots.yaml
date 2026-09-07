@@ -1,0 +1,11 @@
+version: 0.1.0-draft
+description: Standard composition slots for components
+slots:
+  - default: Primary children or content payload
+  - label: Text label of the control
+  - icon-start: Leading decorative or directional icon
+  - icon-end: Trailing decorative or status icon
+  - header: Structured top section of dialog, card, or navbar
+  - footer: Structured bottom action bar
+  - body: Scrollable or main body area
+  - trigger: Anchor element toggling popover, dropdown, or modal

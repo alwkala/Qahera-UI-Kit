@@ -1,0 +1,57 @@
+id: dashboard-stat
+name: Dashboard Metric Card
+category: analytics
+purpose: >
+  Displays key performance indicators (KPI), primary metrics, trend percentages, and contextual comparisons.
+
+components:
+  - card
+  - badge
+
+anatomy:
+  - root
+  - header
+  - title-label
+  - metric-icon
+  - value-display
+  - trend-indicator
+  - delta-badge
+  - footnote
+
+slots:
+  - icon
+  - label
+  - value
+  - delta
+  - context
+
+layout:
+  display: flex
+  direction: column
+  gap: var(--qhr-space-2)
+  alignment: stretch
+  responsive:
+    sm: "min-width: 100%;"
+    md: "min-width: 220px; flex: 1;"
+
+accessibility:
+  role: region
+  landmark: region
+  keyboard_flow: >
+    Tab accesses clickable metric cards or interactive sparkline triggers.
+    ARIA labels explicitly announce metric name, current value, and trend direction.
+  aria_live: off
+
+ai:
+  purpose: "Executive KPI metric display card"
+  use_when:
+    - "Top summary strips on executive dashboards, financial summaries, or system monitoring"
+    - "Showing primary aggregated values with positive/negative growth indicators"
+  avoid_when:
+    - "Detailed time-series telemetry charts (use full Chart component)"
+    - "Interactive form input fields"
+  composed_of:
+    - card
+    - badge
+  related_patterns:
+    - data-table-toolbar

@@ -1,0 +1,70 @@
+id: input
+name: Input
+component: Input
+category: forms
+purpose: >
+  Captures a single line of textual or numeric data from the user.
+
+anatomy:
+  - root
+  - prefix-icon
+  - control
+  - suffix-icon
+  - clear-button
+
+variants:
+  default:
+    intent: standard-text-entry
+  filled:
+    intent: high-contrast-entry
+
+sizes:
+  sm:
+    height: 32
+    padding_inline: 10
+    font_size: "var(--qhr-text-sm)"
+  md:
+    height: 40
+    padding_inline: 12
+    font_size: "var(--qhr-text-base)"
+  lg:
+    height: 48
+    padding_inline: 16
+    font_size: "var(--qhr-text-lg)"
+
+states:
+  - default
+  - hover
+  - focus
+  - disabled
+  - invalid
+  - valid
+
+slots:
+  leadingIcon: optional
+  control: required
+  trailingIcon: optional
+  clearTrigger: optional
+
+accessibility:
+  role: textbox
+  keyboard: true
+  focusVisible: true
+  aria:
+    - aria-invalid: when state=invalid
+    - aria-required: when required
+    - aria-describedby: references helper or error text
+
+ai:
+  purpose: "Single-line textual data entry"
+  whenToUse:
+    - "Short textual inputs (names, emails, search queries, quantities)"
+    - "Form fields within forms or modal dialogues"
+    - "Search query input in search-toolbar"
+  avoid:
+    - "Multi-line freeform text (use Textarea instead)"
+    - "Selecting from predefined options (use Select or Radio instead)"
+  common_patterns:
+    - search-toolbar
+    - data-table-toolbar
+    - form-actions

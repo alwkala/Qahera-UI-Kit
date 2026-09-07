@@ -1,0 +1,89 @@
+component: Avatar
+name: avatar
+category: media
+version: 1.0.0
+
+ai:
+  intent: "Visual identifier for an individual, team, or brand entity"
+  visual_role: "Identity badge"
+  density: "compact"
+  preferred_when:
+    - "User profiles, author bios, comment authors"
+  avoid_when:
+    - "Decorative hero illustrations"
+
+base:
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  overflow: hidden
+  background-color: "{color.surface.muted}"
+  color: "{color.neutral.900}"
+  font-weight: 500
+  user-select: none
+
+variants:
+  circle:
+    border-radius: "{radius.pill}"
+  rounded:
+    border-radius: "{radius.md}"
+
+sizes:
+  xs:
+    width: "{space.6}"
+    height: "{space.6}"
+    font-size: "{text.xs}"
+  sm:
+    width: "{space.8}"
+    height: "{space.8}"
+    font-size: "{text.sm}"
+  md:
+    width: "{space.10}"
+    height: "{space.10}"
+    font-size: "{text.base}"
+  lg:
+    width: "{space.12}"
+    height: "{space.12}"
+    font-size: "{text.lg}"
+  xl:
+    width: "{space.16}"
+    height: "{space.16}"
+    font-size: "{text.xl}"
+
+states:
+  default:
+    opacity: 1
+
+contract:
+  anatomy:
+    - root
+    - image
+    - fallback-initials
+    - status-indicator
+  props:
+    size:
+      default: md
+      values: [xs, sm, md, lg, xl]
+    variant:
+      default: circle
+      values: [circle, rounded]
+  slots:
+    - default
+
+structure:
+  base:
+    native_class: qhr-avatar
+    tailwind: "inline-flex items-center justify-center overflow-hidden bg-[var(--qhr-surface-muted)] text-[var(--qhr-content-secondary)] font-medium select-none"
+  sizes:
+    xs: "w-6 h-6 text-xs"
+    sm: "w-8 h-8 text-sm"
+    md: "w-10 h-10 text-base"
+    lg: "w-12 h-12 text-lg"
+    xl: "w-16 h-16 text-xl"
+
+accessibility:
+  role: img
+
+rtl:
+  supported: true
+  directional_mirroring: false

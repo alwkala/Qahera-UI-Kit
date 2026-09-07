@@ -1,0 +1,43 @@
+<!-- Qahera UI Kit - Native HTML Modal -->
+<div x-data="qhrModal({ defaultOpen: false })">
+  <!-- Trigger Button -->
+  <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" @click="show()">
+    <span>فتح نافذة الحوار</span>
+  </button>
+
+  <!-- Modal Overlay -->
+  <div 
+    class="qhr-modal-backdrop" 
+    x-show="open" 
+    x-cloak 
+    @keydown.escape.window="hide()"
+    tabindex="-1"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title">
+    
+    <div class="qhr-modal-panel" @click.outside="hide()">
+      <div class="qhr-modal-header">
+        <h3 id="modal-title" class="qhr-modal-title">تأكيد عملية الحذف</h3>
+        <button type="button" class="qhr-modal-close" @click="hide()" aria-label="إغلاق">
+          <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="qhr-modal-body">
+        <p>هل أنت متأكد من رغبتك في حذف هذا العنصر؟ لا يمكن التراجع عن هذا الإجراء لاحقاً.</p>
+      </div>
+
+      <div class="qhr-modal-footer">
+        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" @click="hide()">
+          <span>إلغاء</span>
+        </button>
+        <button type="button" class="qhr-btn qhr-btn--destructive qhr-btn--md" @click="hide()">
+          <span>تأكيد الحذف</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

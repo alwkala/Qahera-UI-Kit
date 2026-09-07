@@ -1,0 +1,47 @@
+name: Radio
+category: selection
+purpose: >
+  Permits selection of exactly one option from a mutually exclusive group.
+
+anatomy:
+  - root
+  - outer-circle
+  - inner-dot
+  - label
+  - description
+
+variants:
+  - default
+
+sizes:
+  - sm
+  - md
+  - lg
+
+states:
+  - default
+  - hover
+  - focus
+  - checked
+  - disabled
+
+slots:
+  - default
+
+accessibility:
+  role: radio
+  keyboard:
+    ArrowDown: "Selects next radio in group"
+    ArrowUp: "Selects previous radio in group"
+    Space: "Selects active radio"
+  focus: "Focus ring around circle"
+  aria:
+    - aria-checked: when selected
+
+ai:
+  description: "Mutually exclusive single-choice option within a group"
+  use_when:
+    - "Selecting one option among 2 to 5 visible choices (shipping, payment methods)"
+  avoid_when:
+    - "Independent toggles (use Checkbox)"
+    - "Long choice lists exceeding 6 options (use Select)"

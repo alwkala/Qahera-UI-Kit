@@ -1,0 +1,72 @@
+component: Megamenu
+name: megamenu
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Expansive multi-column navigation surface displaying rich categorized link grids, media previews, and promotional banners"
+  visual_role: "Architectural mega dropdown panel for large platforms and portals"
+  density: "comfortable"
+  preferred_when:
+    - "Complex platforms with over 15 high-level links"
+    - "Product categories with descriptions and visual icons"
+    - "E-commerce or enterprise resource portals"
+  avoid_when:
+    - "Simple linear sites with few links"
+    - "Mobile app primary bars"
+
+base:
+  display: flex
+  flex-direction: column
+  position: absolute
+  inset-inline-start: 0
+  inset-block-start: 100%
+  width: 100%
+  background-color: "{color.surface.elevated}"
+  border: "1px solid {color.border.subtle}"
+  border-radius: "{radius.lg}"
+  box-shadow: "{shadow.xl}"
+  padding: "{space.6}"
+  z-index: 50
+
+variants:
+  default:
+    width: 100%
+  2-cols:
+    display: grid
+    grid-template-columns: "repeat(2, 1fr)"
+    gap: "{space.6}"
+  3-cols:
+    display: grid
+    grid-template-columns: "repeat(3, 1fr)"
+    gap: "{space.6}"
+  4-cols:
+    display: grid
+    grid-template-columns: "repeat(4, 1fr)"
+    gap: "{space.6}"
+  with-featured:
+    display: grid
+    grid-template-columns: "2.5fr 1fr"
+    gap: "{space.6}"
+  full-width:
+    width: 100vw
+    inset-inline: 0
+  glass:
+    background-color: "{color.surface.glass}"
+    backdrop-filter: "blur(20px)"
+
+sizes:
+  md:
+    padding: "{space.4}"
+  lg:
+    padding: "{space.6}"
+  xl:
+    padding: "{space.8}"
+
+tokens:
+  - --qhr-surface-base
+  - --qhr-surface-elevated
+  - --qhr-content-primary
+  - --qhr-content-secondary
+  - --qhr-border-subtle
+  - --qhr-color-primary-500

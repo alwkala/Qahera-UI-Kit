@@ -1,0 +1,247 @@
+/**
+ * Qahera UI Kit — Megamenu Component (Native CSS)
+ * 
+ * Expansive multi-column navigation surface hosting categorized links,
+ * featured media cards, and promotional callouts.
+ * 
+ * @spec 01-CORE-SPEC §3.2
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   1. Megamenu Container & Surface
+   ========================================================================== */
+
+.qhr-megamenu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.qhr-megamenu {
+  --_mega-bg: var(--qhr-surface-elevated, #111a27);
+  --_mega-fg: var(--qhr-content-primary, #f8fafc);
+  --_mega-fg-muted: var(--qhr-content-secondary, #94a3b8);
+  --_mega-border: var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  --_mega-hover-bg: color-mix(in srgb, var(--_mega-fg) 6%, transparent);
+  --_mega-brand: var(--qhr-color-primary-500, #c7a35a);
+
+  display: none;
+  position: absolute;
+  inset-block-start: calc(100% + 8px);
+  inset-inline-start: 0;
+  inline-size: min(94vw, 920px);
+  background-color: var(--_mega-bg);
+  border: 1px solid var(--_mega-border);
+  border-radius: var(--qhr-radius-lg, 12px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+  padding: var(--qhr-space-6, 24px);
+  z-index: 100;
+  box-sizing: border-box;
+  font-family: var(--qhr-font-family-primary, 'Cairo', sans-serif);
+  animation: qhrMegaFadeIn 180ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.qhr-megamenu.is-open,
+.qhr-megamenu-wrapper:hover .qhr-megamenu,
+.qhr-megamenu-wrapper:focus-within .qhr-megamenu {
+  display: block;
+}
+
+@keyframes qhrMegaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   2. Grid Layouts
+   ========================================================================== */
+
+.qhr-megamenu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--qhr-space-6, 24px);
+}
+
+.qhr-megamenu--2-cols .qhr-megamenu-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.qhr-megamenu--3-cols .qhr-megamenu-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.qhr-megamenu--4-cols .qhr-megamenu-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.qhr-megamenu--with-featured .qhr-megamenu-grid {
+  grid-template-columns: 2.4fr 1fr;
+}
+
+.qhr-megamenu--full-width {
+  position: fixed;
+  inset-inline: 0;
+  inline-size: 100vw;
+  border-radius: 0;
+  border-inline: none;
+}
+
+.qhr-megamenu--glass {
+  background-color: color-mix(in srgb, var(--_mega-bg) 85%, transparent);
+  backdrop-filter: blur(20px);
+}
+
+/* ==========================================================================
+   3. Columns, Headings & Links
+   ========================================================================== */
+
+.qhr-megamenu-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qhr-space-3, 12px);
+}
+
+.qhr-megamenu-col-header {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-2, 8px);
+  padding-block-end: var(--qhr-space-2, 8px);
+  border-block-end: 1px solid var(--_mega-border);
+}
+
+.qhr-megamenu-col-title {
+  font-size: var(--qhr-text-sm, 0.875rem);
+  font-weight: 700;
+  color: var(--_mega-brand);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.qhr-megamenu-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--qhr-space-1, 4px);
+}
+
+.qhr-megamenu-item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.qhr-megamenu-link {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--qhr-space-3, 12px);
+  padding: var(--qhr-space-2, 8px);
+  border-radius: var(--qhr-radius-sm, 6px);
+  text-decoration: none;
+  color: var(--_mega-fg);
+  transition: background-color var(--qhr-duration-fast, 150ms) ease;
+}
+
+.qhr-megamenu-link:hover {
+  background-color: var(--_mega-hover-bg);
+}
+
+.qhr-megamenu-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  border-radius: var(--qhr-radius-sm, 6px);
+  background-color: color-mix(in srgb, var(--_mega-brand) 12%, transparent);
+  color: var(--_mega-brand);
+  flex-shrink: 0;
+}
+
+.qhr-megamenu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-inline-size: 0;
+}
+
+.qhr-megamenu-label {
+  font-size: var(--qhr-text-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--_mega-fg);
+}
+
+.qhr-megamenu-desc {
+  font-size: var(--qhr-text-xs, 0.75rem);
+  color: var(--_mega-fg-muted);
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   4. Featured Promotional Card
+   ========================================================================== */
+
+.qhr-megamenu-featured {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--qhr-space-4, 16px);
+  border-radius: var(--qhr-radius-md, 8px);
+  background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--_mega-brand) 18%, transparent), transparent 75%),
+              var(--qhr-surface-card, #162233);
+  border: 1px solid var(--_mega-border);
+}
+
+.qhr-megamenu-featured-title {
+  font-size: var(--qhr-text-base, 1rem);
+  font-weight: 700;
+  color: var(--_mega-fg);
+  margin-block-end: 4px;
+}
+
+.qhr-megamenu-featured-desc {
+  font-size: var(--qhr-text-xs, 0.8125rem);
+  color: var(--_mega-fg-muted);
+  line-height: 1.5;
+  margin-block-end: var(--qhr-space-4, 16px);
+}
+
+/* ==========================================================================
+   5. Footer Strip
+   ========================================================================== */
+
+.qhr-megamenu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-start: var(--qhr-space-4, 16px);
+  padding-block-start: var(--qhr-space-3, 12px);
+  border-block-start: 1px solid var(--_mega-border);
+  font-size: var(--qhr-text-xs, 0.75rem);
+  color: var(--_mega-fg-muted);
+}
+
+/* ==========================================================================
+   6. Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .qhr-megamenu {
+    position: static;
+    inline-size: 100%;
+    padding: var(--qhr-space-3, 12px);
+    box-shadow: none;
+  }
+  .qhr-megamenu-grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--qhr-space-4, 16px);
+  }
+}

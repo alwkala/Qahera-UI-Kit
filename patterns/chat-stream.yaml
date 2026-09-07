@@ -1,0 +1,51 @@
+id: chat-stream
+name: Chat Stream
+category: containers
+purpose: >
+  Interactive conversational message stream for AI assistants and customer support, featuring message bubbles, file attachments, and prompt inputs.
+
+components:
+  - avatar
+  - button
+  - input
+  - file-upload
+  - chip
+  - skeleton
+
+anatomy:
+  - stream-container
+  - header
+  - message-history
+  - user-bubble
+  - bot-bubble
+  - attachment-preview
+  - composer-bar
+  - send-action
+
+slots:
+  - messages
+  - composer
+  - attachments
+
+layout:
+  display: flex
+  direction: column
+  height: 100%
+
+accessibility:
+  role: log
+  aria_live: polite
+
+ai:
+  purpose: "Conversational interface for LLM chats, customer support, and direct messaging"
+  use_when:
+    - "AI assistant prompts, customer service tickets, and team discussions"
+  avoid_when:
+    - "Static document presentation"
+  composed_of:
+    - avatar
+    - button
+    - input
+    - file-upload
+    - chip
+    - skeleton

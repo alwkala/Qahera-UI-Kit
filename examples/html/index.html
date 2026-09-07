@@ -1,0 +1,468 @@
+<!-- Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light" x-data="{ 
+  theme: 'light', 
+  dir: 'rtl',
+  toggleTheme() {
+    this.theme = this.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', this.theme);
+  },
+  toggleDir() {
+    this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl';
+    document.documentElement.setAttribute('dir', this.dir);
+    document.documentElement.setAttribute('lang', this.dir === 'rtl' ? 'ar' : 'en');
+  }
+}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معرض مكونات قاهرة — Qahera UI Kit Showcase v1.0</title>
+  
+  <!-- Qahera Design Tokens & Native Component Styling (Zero per-page CSS) -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <!-- Qahera Framework-Free Behavior Modules -->
+  <script defer src="../../behavior/modal.js"></script>
+  <script defer src="../../behavior/dropdown.js"></script>
+  <script defer src="../../behavior/tabs.js"></script>
+  <script defer src="../../behavior/accordion.js"></script>
+  <script defer src="../../behavior/toast.js"></script>
+  <script defer src="../../behavior/tooltip.js"></script>
+  <script defer src="../../behavior/select.js"></script>
+  <script defer src="../../behavior/navbar.js"></script>
+
+  <!-- Alpine.js Core -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+</head>
+<body class="qhr-showcase-page">
+
+  <!-- ========================================================================
+       1. Application Navbar (Nav Component)
+       ======================================================================== -->
+  <header class="qhr-navbar">
+    <div class="qhr-navbar-container">
+      <a href="#" class="qhr-navbar-brand">
+        <span class="qhr-avatar qhr-avatar--rounded qhr-avatar--sm">ق</span>
+        <span>قاهرة · Qahera UI Kit</span>
+      </a>
+
+      <ul class="qhr-navbar-links">
+        <li><a href="#actions" class="qhr-navbar-link is-active">الإجراءات والشارات</a></li>
+        <li><a href="#forms" class="qhr-navbar-link">النماذج والإدخال</a></li>
+        <li><a href="#disclosure" class="qhr-navbar-link">التبويب والإفصاح</a></li>
+        <li><a href="#data" class="qhr-navbar-link">الجداول والبيانات</a></li>
+      </ul>
+
+      <div class="qhr-navbar-actions">
+        <!-- Direction Toggle -->
+        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" @click="toggleDir()">
+          <span x-text="dir === 'rtl' ? 'LTR' : 'RTL'">LTR</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" @click="toggleTheme()" aria-label="تبديل النمط">
+          <template x-if="theme === 'light'">
+            <span style="display: inline-flex; align-items: center; gap: 0.35rem;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+              </svg>
+              <span>الداكن</span>
+            </span>
+          </template>
+          <template x-if="theme === 'dark'">
+            <span style="display: inline-flex; align-items: center; gap: 0.35rem;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+              <span>الفاتح</span>
+            </span>
+          </template>
+        </button>
+
+        <!-- Profile Dropdown Component -->
+        <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" x-ref="trigger" @click="toggle()">
+            <span class="qhr-avatar qhr-avatar--circle qhr-avatar--xs">وك</span>
+            <span>الوكالة</span>
+          </button>
+          <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak>
+            <a href="#" class="qhr-dropdown-item" role="menuitem">الملف الشخصي</a>
+            <a href="#" class="qhr-dropdown-item" role="menuitem">عقود المكونات</a>
+            <a href="#" class="qhr-dropdown-item" role="menuitem">سجل الرموز</a>
+            <div class="qhr-dropdown-separator"></div>
+            <button type="button" class="qhr-dropdown-item qhr-dropdown-item--destructive" role="menuitem">تسجيل الخروج</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Showcase Main Container
+       ======================================================================== -->
+  <main class="qhr-showcase-container">
+
+    <!-- Hero Showcase Section -->
+    <section class="qhr-showcase-hero">
+      <div class="qhr-showcase-hero-badge">
+        <span class="qhr-badge qhr-badge--primary">نظام التصميم المعياري · v1.0.0</span>
+      </div>
+      <h1 class="qhr-showcase-hero-title">معرض مكونات قاهرة (Qahera UI Kit)</h1>
+      <p class="qhr-showcase-hero-subtitle">
+        Qahera gives AI a structured visual vocabulary for building consistent interfaces.
+        عقود صارمة، ورموز دلالية ثلاثية الطبقات، وخصائص منطقية تدعم العربية أصالة.
+      </p>
+      <div class="qhr-showcase-flex-wrap">
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" @click="$dispatch('open-modal-demo')">
+          <span>تجربة النافذة المنبثقة (Modal)</span>
+        </button>
+        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" @click="window.dispatchEvent(new CustomEvent('qhr-toast-show', { detail: { title: 'تم الحفظ بنجاح', message: 'تم إرسال إشعار Toast بنجاح عبر حافلة الأحداث.', tone: 'success' } }))">
+          <span>إطلاق إشعار عائم (Toast)</span>
+        </button>
+        <a href="../../docs/02-COMPONENT-SPEC.md" class="qhr-btn qhr-btn--outline qhr-btn--md">
+          <span>مواصفة المكونات v1.0</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 1: Actions & Badges -->
+    <section id="actions" class="qhr-showcase-section">
+      <div class="qhr-showcase-section-header">
+        <h2 class="qhr-showcase-section-title">1. الأزرار والشارات (Buttons & Badges)</h2>
+        <p class="qhr-showcase-section-desc">مفردات محكومة للمتغيرات (Variants) والمقاييس الخمسة (xs إلى xl) مع تباين لوني دقيق في كافة الأوضاع.</p>
+      </div>
+
+      <div class="qhr-showcase-grid-2">
+        <!-- Button Variants -->
+        <div class="qhr-showcase-card">
+          <h3 class="qhr-showcase-card-header">متغيرات الأزرار (Button Variants)</h3>
+          <div class="qhr-showcase-flex-wrap">
+            <button class="qhr-btn qhr-btn--primary qhr-btn--md" data-variant="primary">أساسي (Primary)</button>
+            <button class="qhr-btn qhr-btn--secondary qhr-btn--md" data-variant="secondary">ثانوي (Secondary)</button>
+            <button class="qhr-btn qhr-btn--outline qhr-btn--md" data-variant="outline">مخطط (Outline)</button>
+            <button class="qhr-btn qhr-btn--ghost qhr-btn--md" data-variant="ghost">شفاف (Ghost)</button>
+            <button class="qhr-btn qhr-btn--destructive qhr-btn--md" data-variant="destructive">حرج (Destructive)</button>
+            <button class="qhr-btn qhr-btn--primary qhr-btn--md is-disabled" disabled>معطل (Disabled)</button>
+          </div>
+        </div>
+
+        <!-- Button Scales & Avatars -->
+        <div class="qhr-showcase-card">
+          <h3 class="qhr-showcase-card-header">مقاييس الأزرار والهويات (Button Sizes & Avatars)</h3>
+          <div class="qhr-showcase-flex-wrap">
+            <button class="qhr-btn qhr-btn--primary qhr-btn--sm">صغير (sm)</button>
+            <button class="qhr-btn qhr-btn--primary qhr-btn--md">متوسط (md)</button>
+            <button class="qhr-btn qhr-btn--primary qhr-btn--lg">كبير (lg)</button>
+          </div>
+          <div class="qhr-showcase-card-header">مقاييس الصور الرمزية (Avatar Specimen)</div>
+          <div class="qhr-showcase-flex-wrap">
+            <span class="qhr-avatar qhr-avatar--circle qhr-avatar--xs">ق</span>
+            <span class="qhr-avatar qhr-avatar--circle qhr-avatar--sm">قا</span>
+            <span class="qhr-avatar qhr-avatar--circle qhr-avatar--md">قاه</span>
+            <span class="qhr-avatar qhr-avatar--circle qhr-avatar--lg">قاهر</span>
+            <span class="qhr-avatar qhr-avatar--rounded qhr-avatar--xl">قاهرة</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badge Specimen -->
+      <div class="qhr-showcase-card">
+        <h3 class="qhr-showcase-card-header">شارات الحالة والبيانات الوصفية (Status Badges)</h3>
+        <div class="qhr-showcase-flex-wrap">
+          <span class="qhr-badge qhr-badge--primary">أساسي · Primary</span>
+          <span class="qhr-badge qhr-badge--success">مكتمل · Success</span>
+          <span class="qhr-badge qhr-badge--warning">قيد المراجعة · Warning</span>
+          <span class="qhr-badge qhr-badge--danger">ملغي · Danger</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Alerts -->
+    <section class="qhr-showcase-section">
+      <div class="qhr-showcase-section-header">
+        <h2 class="qhr-showcase-section-title">2. تنبيهات النظام السياقية (Contextual Alerts)</h2>
+        <p class="qhr-showcase-section-desc">رسائل إرشادية وتأكيدية تلتزم بضوابط سهولة الوصول (role="alert" و aria-live).</p>
+      </div>
+
+      <div class="qhr-showcase-col-stack">
+        <div class="qhr-alert qhr-alert--info" role="alert">
+          <div>
+            <strong>تنبيه توجيهي:</strong> تم تحديث مواصفة الوصفات v1.0 وتوليد مصفوفة الأنماط المعيارية تلقائياً.
+          </div>
+        </div>
+
+        <div class="qhr-alert qhr-alert--success" role="alert">
+          <div>
+            <strong>نجاح العملية:</strong> كافة ملفات العقود المرجعية الـ 18 تطابق المخطط بنسبة 100% وبدون أي تعارضات.
+          </div>
+        </div>
+
+        <div class="qhr-alert qhr-alert--warning" role="alert">
+          <div>
+            <strong>تحذير صيانة:</strong> يرجى التحقق من مفردات الخصائص قبل تصدير أي مكونات جديدة لبيئات التشغيل.
+          </div>
+        </div>
+
+        <div class="qhr-alert qhr-alert--danger" role="alert">
+          <div>
+            <strong>تنبيه أمان:</strong> يُحظر إدخال قيم الألوان المباشرة (Hex/RGB) منعاً باتاً خارج منظومة الرموز.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Forms & Selection -->
+    <section id="forms" class="qhr-showcase-section">
+      <div class="qhr-showcase-section-header">
+        <h2 class="qhr-showcase-section-title">3. عناصر النماذج والإدخال (Form Controls & Selection)</h2>
+        <p class="qhr-showcase-section-desc">حقول إدخال نصية، وقوائم اختيار، وخيارات أحادية ومتعددة بحدود واضحة وتجاوب كامل.</p>
+      </div>
+
+      <div class="qhr-showcase-grid-2">
+        <div class="qhr-showcase-card">
+          <h3 class="qhr-showcase-card-header">الحقول النصية وقوائم الاختيار (Text Inputs & Select)</h3>
+          <div class="qhr-showcase-col-stack">
+            <div>
+              <label class="qhr-showcase-card-header">الاسم الكامل (Input / Text)</label>
+              <input type="text" class="qhr-input" placeholder="أدخل اسمك الكريم..." value="مطور قاهرة">
+            </div>
+            <div>
+              <label class="qhr-showcase-card-header">الدولة / الإقليم (Select Dropdown)</label>
+              <select class="qhr-select">
+                <option value="EG">جمهورية مصر العربية (Cairo)</option>
+                <option value="SA">المملكة العربية السعودية (Riyadh)</option>
+                <option value="AE">الإمارات العربية المتحدة (Abu Dhabi)</option>
+              </select>
+            </div>
+            <div>
+              <label class="qhr-showcase-card-header">الملاحظات التوجيهية (Textarea)</label>
+              <textarea class="qhr-textarea" placeholder="اكتب ملاحظاتك هنا...">نظام تصميم قاهرة يوفر مفردات بصرية دقيقة تدعم وكلاء الذكاء الاصطناعي في هندسة البرمجيات.</textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="qhr-showcase-card">
+          <h3 class="qhr-showcase-card-header">خيارات التحديد (Checkboxes & Radios)</h3>
+          <div class="qhr-showcase-col-stack">
+            <label class="qhr-showcase-card-header">التفضيلات التفاعلية (Checkbox Group)</label>
+            <label class="qhr-checkbox">
+              <input type="checkbox" checked>
+              <span>تفعيل السمات التلقائية المظلمة (Dark Theme)</span>
+            </label>
+            <label class="qhr-checkbox">
+              <input type="checkbox" checked>
+              <span>فرض الخصائص المنطقية للاتجاهين (Logical Properties)</span>
+            </label>
+            <label class="qhr-checkbox">
+              <input type="checkbox">
+              <span>توليد مكونات React متوافقة مع Next.js 16</span>
+            </label>
+
+            <div class="qhr-dropdown-separator"></div>
+
+            <label class="qhr-showcase-card-header">مسار التصيير الأساسي (Radio Group)</label>
+            <label class="qhr-radio">
+              <input type="radio" name="renderer" value="native" checked>
+              <span>HTML الأصلي (Native Zero-Build)</span>
+            </label>
+            <label class="qhr-radio">
+              <input type="radio" name="renderer" value="tailwind">
+              <span>Tailwind CSS Preset</span>
+            </label>
+            <label class="qhr-radio">
+              <input type="radio" name="renderer" value="plates">
+              <span>PHP / Plates Fragments</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Tabs & Accordion -->
+    <section id="disclosure" class="qhr-showcase-section">
+      <div class="qhr-showcase-section-header">
+        <h2 class="qhr-showcase-section-title">4. التنقل المبوب والإفصاح (Tabs & Accordion)</h2>
+        <p class="qhr-showcase-section-desc">وحدات تفاعلية خالية من أطر العمل الثقيلة مدعومة بسلوكيات Alpine.js مع مراعاة كاملة لاتجاه المفاتيح في RTL.</p>
+      </div>
+
+      <div class="qhr-showcase-grid-2">
+        <!-- Tabs Component -->
+        <div class="qhr-showcase-card" x-data="qhrTabs(0)">
+          <h3 class="qhr-showcase-card-header">التبويب المتوازي (Tabs Component)</h3>
+          <div class="qhr-tablist" role="tablist" @keydown="nextTab($event)">
+            <button type="button" role="tab" class="qhr-tab-btn" :class="{ 'is-active': activeTab === 0 }" @click="setTab(0)">نظرة عامة</button>
+            <button type="button" role="tab" class="qhr-tab-btn" :class="{ 'is-active': activeTab === 1 }" @click="setTab(1)">عقود v1.0</button>
+            <button type="button" role="tab" class="qhr-tab-btn" :class="{ 'is-active': activeTab === 2 }" @click="setTab(2)">تكامل TidyFactor</button>
+          </div>
+
+          <div class="qhr-tabpanel" :class="{ 'is-active': activeTab === 0 }" role="tabpanel">
+            <p>نظام قاهرة يعتمد مبدأ "تعريف دلالي واحد، وتصيير متعدد". يتم تحديد الهيكل والرموز مرة واحدة، لتولد منها ملفات Native CSS وTailwind وPHP وReact.</p>
+          </div>
+
+          <div class="qhr-tabpanel" :class="{ 'is-active': activeTab === 1 }" role="tabpanel">
+            <p>تم اعتماد 18 عقداً بصيغة PascalCase في مجلد contracts/components/ تحكم التشريح الدلالي والفتحات والوصولية وسلوك لوحة المفاتيح وحصر التركيز.</p>
+          </div>
+
+          <div class="qhr-tabpanel" :class="{ 'is-active': activeTab === 2 }" role="tabpanel">
+            <p>متوافق بالكامل مع حزم TidyFactor (design, html, php, htmx, next) ويحفظ سياقه في الذاكرة المعرفية الذرية المستقلة.</p>
+          </div>
+        </div>
+
+        <!-- Accordion Component -->
+        <div class="qhr-showcase-card" x-data="qhrAccordion(false)">
+          <h3 class="qhr-showcase-card-header">القوائم المطوية (Accordion FAQ)</h3>
+          <div class="qhr-accordion">
+            <div class="qhr-accordion-item" :class="{ 'is-expanded': isOpen('item-1') }">
+              <button type="button" class="qhr-accordion-header" @click="toggle('item-1')">
+                <span class="qhr-accordion-title">لماذا يُعد نظام قاهرة AI-Native؟</span>
+                <span class="qhr-accordion-icon">▾</span>
+              </button>
+              <div class="qhr-accordion-content" x-show="isOpen('item-1')" x-cloak>
+                لأنه يزود وكلاء الذكاء الاصطناعي بمصفوفة أبعاد صريحة (WHAT, WHEN, HOW, WHY NOT) تمنع التخمين البصري وتلغي الحاجة لكتابة CSS اعتباطي.
+              </div>
+            </div>
+
+            <div class="qhr-accordion-item" :class="{ 'is-expanded': isOpen('item-2') }">
+              <button type="button" class="qhr-accordion-header" @click="toggle('item-2')">
+                <span class="qhr-accordion-title">ما هي القواعد الحتمية لخطوط اللغة العربية؟</span>
+                <span class="qhr-accordion-icon">▾</span>
+              </button>
+              <div class="qhr-accordion-content" x-show="isOpen('item-2')" x-cloak>
+                الخط الأساسي للمنظومة هو خط Cairo (للعناوين والمتن)، وتدعمه مجموعة خطوط إضافية منسقة تشمل El Messiri (للعناوين ذات الطابع التراثي/الفخم) و Tajawal و Plus Jakarta Sans، بينما يُحظر استخدام خط Amiri تماماً لواجهات الاستخدام.
+              </div>
+            </div>
+
+            <div class="qhr-accordion-item" :class="{ 'is-expanded': isOpen('item-3') }">
+              <button type="button" class="qhr-accordion-header" @click="toggle('item-3')">
+                <span class="qhr-accordion-title">كيف يتم ضمان عدم الانغلاق على إطار عمل محدد؟</span>
+                <span class="qhr-accordion-icon">▾</span>
+              </button>
+              <div class="qhr-accordion-content" x-show="isOpen('item-3')" x-cloak>
+                بتبني منهجية تملك الشفرة المصدرية (Source Ownership shadcn-style) بحيث يمتلك المطور شفرة مكوناته بالكامل دون الاعتماد على مكتبات وقت التشغيل.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Data Display & Table -->
+    <section id="data" class="qhr-showcase-section">
+      <div class="qhr-showcase-section-header">
+        <h2 class="qhr-showcase-section-title">5. عرض البيانات والجداول المنظمة (Data Display & Tables)</h2>
+        <p class="qhr-showcase-section-desc">جداول مقارنة واضحة تدعم التلوين المتبادل (Striped) وعرض الشارات والصور الرمزية.</p>
+      </div>
+
+      <div class="qhr-table-wrapper">
+        <table class="qhr-table qhr-table--striped">
+          <thead>
+            <tr>
+              <th>المكون (Component)</th>
+              <th>التصنيف الدلالي</th>
+              <th>العقد المرجعي</th>
+              <th>الوصفة التنسيقية</th>
+              <th>حالة الاعتماد</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Button</strong></td>
+              <td>actions</td>
+              <td>contracts/components/Button.yaml</td>
+              <td>recipes/button.yaml</td>
+              <td><span class="qhr-badge qhr-badge--success">معتمد v1.0</span></td>
+            </tr>
+            <tr>
+              <td><strong>Select</strong></td>
+              <td>forms</td>
+              <td>contracts/components/Select.yaml</td>
+              <td>recipes/select.yaml</td>
+              <td><span class="qhr-badge qhr-badge--success">معتمد v1.0</span></td>
+            </tr>
+            <tr>
+              <td><strong>Modal</strong></td>
+              <td>overlay</td>
+              <td>contracts/components/Modal.yaml</td>
+              <td>recipes/modal.yaml</td>
+              <td><span class="qhr-badge qhr-badge--success">معتمد v1.0</span></td>
+            </tr>
+            <tr>
+              <td><strong>Tabs</strong></td>
+              <td>navigation</td>
+              <td>contracts/components/Tabs.yaml</td>
+              <td>recipes/tabs.yaml</td>
+              <td><span class="qhr-badge qhr-badge--success">معتمد v1.0</span></td>
+            </tr>
+            <tr>
+              <td><strong>Table</strong></td>
+              <td>data-display</td>
+              <td>contracts/components/Table.yaml</td>
+              <td>recipes/table.yaml</td>
+              <td><span class="qhr-badge qhr-badge--success">معتمد v1.0</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       Live Modal Dialog Component Specimen (Alpine.js Focus Trapped)
+       ======================================================================== -->
+  <div x-data="qhrModal()" 
+       @open-modal-demo.window="show()" 
+       @keydown.escape.window="hide()"
+       @keydown.tab="handleTab($event)">
+    <template x-if="open">
+      <div class="qhr-modal-backdrop" @click.self="hide()">
+        <div class="qhr-modal-dialog" x-ref="dialog" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+          <div class="qhr-modal-header">
+            <h3 id="modal-headline" class="qhr-modal-title">تأكيد عملية الحفظ المعيارية</h3>
+            <button type="button" class="qhr-modal-close" @click="hide()" aria-label="إغلاق">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="qhr-modal-body">
+            <p>هل أنت متأكد من رغبتك في حفظ ومزامنة كافة العقود والوصفات ومصفوفات التنسيق المعيارية؟</p>
+            <p class="qhr-modal-desc">هذا الإجراء يتم وفقاً للمواصفة المعيارية v1.0 لنظام تصميم قاهرة.</p>
+          </div>
+          <div class="qhr-modal-footer">
+            <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" @click="hide()">إلغاء</button>
+            <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" @click="hide(); window.dispatchEvent(new CustomEvent('qhr-toast-show', { detail: { title: 'تم التنفيذ', message: 'تم إتمام العملية بنجاح داخل بيئة قاهرة.', tone: 'success' } }))">تأكيد ومتابعة</button>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- ========================================================================
+       Live Toast Notifications Container
+       ======================================================================== -->
+  <div class="qhr-toast-container" x-data="qhrToast()">
+    <template x-for="t in toasts" :key="t.id">
+      <div class="qhr-toast">
+        <span class="qhr-toast-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+        </span>
+        <div class="qhr-toast-body">
+          <div class="qhr-toast-title" x-text="t.title"></div>
+          <div class="qhr-toast-msg" x-text="t.message"></div>
+        </div>
+        <button type="button" class="qhr-toast-close" @click="remove(t.id)" aria-label="إغلاق">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </template>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+component: Carousel
+name: carousel
+category: media
+version: 1.0.0
+
+ai:
+  intent: "Interactive multi-slide presentation"
+  visual_role: "Promotional gallery slider"
+  density: "spacious"
+  preferred_when:
+    - "Hero promotional banners"
+    - "Featured products and customer testimonials"
+  avoid_when:
+    - "Data entry workflows or dense tables"
+
+base:
+  position: relative
+  overflow: hidden
+  width: 100%
+  border-radius: "{radius.xl}"
+  background-color: "{color.surface.card}"
+  border: "1px solid {color.border.subtle}"
+
+variants:
+  default:
+    box-shadow: "var(--qhr-shadow-md)"
+  luxury:
+    box-shadow: "var(--qhr-shadow-lg)"
+    border: "1px solid {color.primary.bg}"
+  fade:
+    transition: "opacity var(--qhr-motion-duration-slow) ease-in-out"
+
+sizes:
+  sm:
+    min-height: "240px"
+  md:
+    min-height: "380px"
+  lg:
+    min-height: "520px"
+
+states:
+  default:
+    opacity: 1
+  active:
+    opacity: 1
+  paused:
+    opacity: 1
+
+structure:
+  base:
+    native_class: qhr-carousel

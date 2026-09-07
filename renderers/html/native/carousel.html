@@ -1,0 +1,33 @@
+<!-- Qahera UI Kit - Native HTML Carousel (Alpine.js) -->
+<div class="qhr-carousel" x-data="{
+  active: 0,
+  slides: [
+    { title: 'العمارة الفاطمية والتراث السيادي', desc: 'استلهام التناسب الذهبي في بناء أنظمة الويب' },
+    { title: 'المجوهرات والحلي الملكية النادرة', desc: 'تشكيلة صيف 2026 من الذهب عيار 18' },
+    { title: 'الهياكل المعمارية لاستوديو الوكالة', desc: 'حلول تقنية عربية مستقلة وعالية الأداء' }
+  ],
+  prev() { this.active = this.active === 0 ? this.slides.length - 1 : this.active - 1; },
+  next() { this.active = this.active === this.slides.length - 1 ? 0 : this.active + 1; }
+}" style="max-width: 600px; min-height: 240px;">
+  <div class="qhr-carousel-track" :style="`transform: translateX(${active * 100}%);`">
+    <template x-for="(s, idx) in slides" :key="idx">
+      <div class="qhr-carousel-slide" style="padding: 48px 32px; text-align: center;">
+        <h3 style="font-family: 'El Messiri', serif; font-size: 22px; color: var(--qhr-color-primary-base, #c7a35a); margin: 0 0 10px;" x-text="s.title"></h3>
+        <p style="font-size: 14px; color: var(--qhr-text-secondary, #cbd5e1); margin: 0;" x-text="s.desc"></p>
+      </div>
+    </template>
+  </div>
+
+  <button type="button" class="qhr-carousel-control qhr-carousel-control--prev" @click="prev()" aria-label="السابق">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button type="button" class="qhr-carousel-control qhr-carousel-control--next" @click="next()" aria-label="التالي">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+
+  <div class="qhr-carousel-indicators">
+    <template x-for="(s, idx) in slides" :key="idx">
+      <button type="button" class="qhr-carousel-dot" :class="active === idx ? 'is-active' : ''" @click="active = idx"></button>
+    </template>
+  </div>
+</div>

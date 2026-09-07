@@ -1,0 +1,300 @@
+/**
+ * Qahera UI Kit — Accordion Component Styles
+ * 100% Logical CSS, Zero Physical Slop, WCAG 2.1 AA Contrast
+ * Supports variants: bordered, separate, flush, luxury
+ * Supports sizes: sm, md, lg
+ */
+
+/* ==========================================================================
+   1. Base Accordion Container (.qhr-accordion)
+   ========================================================================== */
+.qhr-accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  border-radius: var(--qhr-radius-xl, 16px);
+  overflow: hidden;
+  background-color: var(--qhr-surface-base, #ffffff);
+  transition: border-color var(--qhr-duration-fast, 150ms) ease;
+}
+
+[data-theme="dark"] .qhr-accordion {
+  background-color: var(--qhr-surface-elevated, #0d121f);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   2. Accordion Variants
+   ========================================================================== */
+
+/* 2.1 Separate (Card-Stack FAQ style) */
+.qhr-accordion--separate {
+  border: none !important;
+  background: transparent !important;
+  overflow: visible !important;
+  gap: var(--qhr-space-3, 12px);
+}
+
+.qhr-accordion--separate .qhr-accordion-item {
+  border: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  border-radius: var(--qhr-radius-lg, 12px);
+  background-color: var(--qhr-surface-base, #ffffff);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  transition: all var(--qhr-duration-fast, 150ms) ease;
+}
+
+[data-theme="dark"] .qhr-accordion--separate .qhr-accordion-item {
+  background-color: var(--qhr-surface-elevated, #0d121f);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.qhr-accordion--separate .qhr-accordion-item:hover {
+  border-color: var(--qhr-color-primary, #0b6bcb);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.qhr-accordion--separate .qhr-accordion-item.is-open,
+.qhr-accordion--separate .qhr-accordion-item.is-expanded {
+  border-color: var(--qhr-color-primary, #0b6bcb);
+  box-shadow: 0 6px 18px rgba(11, 107, 203, 0.12);
+}
+
+/* 2.2 Flush (Minimalist borderless outline) */
+.qhr-accordion--flush {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.qhr-accordion--flush .qhr-accordion-item {
+  border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  background: transparent;
+}
+
+[data-theme="dark"] .qhr-accordion--flush .qhr-accordion-item {
+  border-block-end-color: rgba(255, 255, 255, 0.08);
+}
+
+.qhr-accordion--flush .qhr-accordion-item:last-child {
+  border-block-end: none;
+}
+
+/* 2.3 Luxury (Alwkala Golden Prestige) */
+.qhr-accordion--luxury {
+  background: linear-gradient(145deg, #0d111b 0%, #07090e 100%) !important;
+  border: 1px solid rgba(212, 175, 55, 0.25) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(212, 175, 55, 0.05);
+}
+
+.qhr-accordion--luxury .qhr-accordion-item {
+  border-block-end-color: rgba(212, 175, 55, 0.12);
+}
+
+.qhr-accordion--luxury .qhr-accordion-trigger:hover,
+.qhr-accordion--luxury .qhr-accordion-header:hover {
+  background: rgba(212, 175, 55, 0.04);
+}
+
+.qhr-accordion--luxury .qhr-accordion-item.is-open .qhr-accordion-trigger,
+.qhr-accordion--luxury .qhr-accordion-item.is-expanded .qhr-accordion-trigger,
+.qhr-accordion--luxury .qhr-accordion-item.is-open .qhr-accordion-header,
+.qhr-accordion--luxury .qhr-accordion-item.is-expanded .qhr-accordion-header {
+  color: #d4af37;
+}
+
+.qhr-accordion--luxury .qhr-accordion-icon {
+  color: #d4af37;
+}
+
+/* ==========================================================================
+   3. Accordion Item & Structure
+   ========================================================================== */
+.qhr-accordion-item {
+  border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  transition: background-color var(--qhr-duration-fast, 150ms) ease;
+}
+
+[data-theme="dark"] .qhr-accordion-item {
+  border-block-end-color: rgba(255, 255, 255, 0.08);
+}
+
+.qhr-accordion-item:last-child {
+  border-block-end: none;
+}
+
+/* 3.1 Trigger / Header Button */
+.qhr-accordion-trigger,
+.qhr-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-block: var(--qhr-space-3-5, 14px);
+  padding-inline: var(--qhr-space-5, 20px);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--qhr-font-heading, "Cairo", sans-serif);
+  font-size: var(--qhr-text-base, 1rem);
+  font-weight: 600;
+  color: var(--qhr-content-primary, #0f172a);
+  text-align: start;
+  gap: var(--qhr-space-3, 12px);
+  transition: background-color var(--qhr-duration-fast, 150ms) ease,
+              color var(--qhr-duration-fast, 150ms) ease;
+  outline: none;
+}
+
+[data-theme="dark"] .qhr-accordion-trigger,
+[data-theme="dark"] .qhr-accordion-header {
+  color: #f8fafc;
+}
+
+.qhr-accordion-trigger:hover,
+.qhr-accordion-header:hover {
+  background-color: var(--qhr-surface-muted, #f8fafc);
+}
+
+[data-theme="dark"] .qhr-accordion-trigger:hover,
+[data-theme="dark"] .qhr-accordion-header:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.qhr-accordion-trigger:focus-visible,
+.qhr-accordion-header:focus-visible {
+  outline: 2px solid var(--qhr-color-primary, #0b6bcb);
+  outline-offset: -2px;
+}
+
+/* 3.2 Lead Icon & Content Titles */
+.qhr-accordion-lead {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--qhr-radius-md, 8px);
+  background: var(--qhr-surface-muted, #f1f5f9);
+  color: var(--qhr-color-primary, #0b6bcb);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .qhr-accordion-lead {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.qhr-accordion-content-meta {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-align: start;
+}
+
+.qhr-accordion-title {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-2, 8px);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.qhr-accordion-subtitle {
+  font-family: var(--qhr-font-body, "Cairo", sans-serif);
+  font-size: var(--qhr-text-xs, 0.75rem);
+  color: var(--qhr-text-muted, #64748b);
+  font-weight: 400;
+  margin-block-start: 2px;
+}
+
+.qhr-accordion-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding-block: 2px;
+  padding-inline: 8px;
+  border-radius: 9999px;
+  background: var(--qhr-surface-muted, #f1f5f9);
+  color: var(--qhr-content-secondary, #475569);
+  margin-inline-start: var(--qhr-space-2, 8px);
+}
+
+/* 3.3 Chevron Icon with smooth rotation */
+.qhr-accordion-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex-shrink: 0;
+  transition: transform var(--qhr-duration-fast, 180ms) var(--qhr-ease-standard, ease);
+  color: var(--qhr-content-secondary, #64748b);
+}
+
+.qhr-accordion-item.is-open .qhr-accordion-icon,
+.qhr-accordion-item.is-expanded .qhr-accordion-icon {
+  transform: rotate(180deg);
+  color: var(--qhr-color-primary, #0b6bcb);
+}
+
+/* 3.4 Content Panel & Body */
+.qhr-accordion-content {
+  overflow: hidden;
+  transition: height var(--qhr-duration-normal, 200ms) ease;
+}
+
+.qhr-accordion-body {
+  padding-block: var(--qhr-space-2, 8px) var(--qhr-space-5, 20px);
+  padding-inline: var(--qhr-space-5, 20px);
+  font-family: var(--qhr-font-body);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  color: var(--qhr-content-secondary, #475569);
+  line-height: 1.65;
+}
+
+[data-theme="dark"] .qhr-accordion-body {
+  color: #94a3b8;
+}
+
+/* ==========================================================================
+   4. Sizes (.qhr-accordion--sm, .qhr-accordion--md, .qhr-accordion--lg)
+   ========================================================================== */
+
+/* Small Size */
+.qhr-accordion--sm .qhr-accordion-trigger,
+.qhr-accordion--sm .qhr-accordion-header {
+  padding-block: var(--qhr-space-2-5, 10px);
+  padding-inline: var(--qhr-space-3-5, 14px);
+  font-size: var(--qhr-text-sm, 0.875rem);
+}
+
+.qhr-accordion--sm .qhr-accordion-body {
+  padding-block: var(--qhr-space-1-5, 6px) var(--qhr-space-3, 12px);
+  padding-inline: var(--qhr-space-3-5, 14px);
+  font-size: var(--qhr-text-xs, 0.78rem);
+}
+
+/* Large Size */
+.qhr-accordion--lg .qhr-accordion-trigger,
+.qhr-accordion--lg .qhr-accordion-header {
+  padding-block: var(--qhr-space-4-5, 18px);
+  padding-inline: var(--qhr-space-6, 24px);
+  font-size: var(--qhr-text-lg, 1.125rem);
+}
+
+.qhr-accordion--lg .qhr-accordion-body {
+  padding-block: var(--qhr-space-3, 12px) var(--qhr-space-6, 24px);
+  padding-inline: var(--qhr-space-6, 24px);
+  font-size: var(--qhr-text-base, 1rem);
+}
+
+/* ==========================================================================
+   5. Disabled State (.qhr-accordion-item--disabled)
+   ========================================================================== */
+.qhr-accordion-item--disabled,
+.qhr-accordion-item[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.qhr-accordion-item--disabled .qhr-accordion-trigger,
+.qhr-accordion-item--disabled .qhr-accordion-header {
+  cursor: not-allowed;
+}

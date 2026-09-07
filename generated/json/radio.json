@@ -1,0 +1,110 @@
+{
+  "id": "radio",
+  "name": "Radio",
+  "component": "Radio",
+  "category": "selection",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "outer-circle",
+      "inner-dot",
+      "label",
+      "description"
+    ],
+    "variants": [
+      "default"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "states": [
+      "default",
+      "hover",
+      "focus",
+      "checked",
+      "disabled"
+    ],
+    "slots": [
+      "default"
+    ],
+    "accessibility": {
+      "role": "radio",
+      "keyboard": {
+        "ArrowDown": "Selects next radio in group",
+        "ArrowUp": "Selects previous radio in group",
+        "Space": "Selects active radio"
+      },
+      "focus": "Focus ring around circle",
+      "aria": [
+        {
+          "aria-checked": "when selected"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/radio.yaml",
+    "base": {
+      "display": "inline-flex",
+      "align-items": "center",
+      "gap": "{space.2}",
+      "cursor": "pointer",
+      "user-select": "none",
+      "font-family": "inherit"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.base}",
+        "border-color": "{color.border.subtle}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "circle-size": "{space.4}",
+        "font-size": "{text.sm}"
+      },
+      "md": {
+        "circle-size": "{space.5}",
+        "font-size": "{text.base}"
+      },
+      "lg": {
+        "circle-size": "{space.6}",
+        "font-size": "{text.lg}"
+      }
+    },
+    "states": {
+      "hover": {
+        "border-color": "{color.primary.bg}"
+      },
+      "focus": {
+        "outline": "2px solid {color.primary.subtle}"
+      },
+      "checked": {
+        "border-color": "{color.primary.bg}",
+        "dot-color": "{color.primary.bg}"
+      },
+      "disabled": {
+        "opacity": 0.5,
+        "cursor": "not-allowed"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Permits selection of exactly one option from a mutually exclusive group.",
+    "whenToUse": [
+      "Selecting one option among 2 to 5 visible choices (shipping, payment methods)"
+    ],
+    "avoid": [
+      "Independent toggles (use Checkbox)",
+      "Long choice lists exceeding 6 options (use Select)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Radio.yaml"
+  }
+}

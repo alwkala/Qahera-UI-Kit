@@ -1,0 +1,67 @@
+<!-- Qahera UI Kit - Questionnaire Pattern Showcase -->
+<div class="qhr-questionnaire" id="quiz-root">
+
+  <!-- شريط التقدم العلوي المتصل -->
+  <div class="qhr-progress-wrapper" style="margin-block-end: 24px;">
+    <div class="qhr-progress-header">
+      <span class="qhr-progress-title" style="font-weight: 700;" id="quiz-step-title">السؤال 1 من 3</span>
+      <span class="qhr-progress-val" style="color: var(--q-gold); font-weight: 800;" id="quiz-step-pct">33%</span>
+    </div>
+    <div class="qhr-progress qhr-progress--luxury qhr-progress--sm" role="progressbar" id="quiz-progress-track">
+      <div class="qhr-progress-bar" id="quiz-progress-bar" style="width: 33%;"></div>
+    </div>
+  </div>
+
+  <!-- بطاقة السؤال التفاعلية -->
+  <div class="qhr-questionnaire-card" id="quiz-card">
+    
+    <div class="qhr-questionnaire-header">
+      <span class="qhr-questionnaire-category" id="quiz-q-category">الهندسة المعمارية الرقمية</span>
+      <span class="qhr-questionnaire-points" id="quiz-q-points">10 درجات</span>
+    </div>
+
+    <h2 class="qhr-questionnaire-title" id="quiz-q-title">ما هي الخاصية المنطقية المسؤولة عن تباعد الهامش الأيمن في بيئة RTL؟</h2>
+    <p class="qhr-questionnaire-desc" id="quiz-q-desc">اختر الإجابة الأدق المتوافقة مع معايير CSS Logical Properties لضمان التماثل الاتجاهي دون انحراف.</p>
+
+    <!-- خيارات الإجابة -->
+    <div class="qhr-questionnaire-choices" id="quiz-choices-container">
+      <!-- يتم حقن الخيارات ديناميكياً -->
+    </div>
+
+    <!-- لوحة التغذية الراجعة والتفسير (وضع التعلم) -->
+    <div class="qhr-questionnaire-feedback" id="quiz-feedback" style="display: none;">
+      <div style="font-weight: 700; margin-block-end: 4px;" id="quiz-feedback-title"></div>
+      <div id="quiz-feedback-desc"></div>
+    </div>
+
+    <!-- شريط الإجراءات والتنقل -->
+    <div class="qhr-questionnaire-actions">
+      <button type="button" class="ctrl-btn" id="quiz-btn-prev" onclick="quizEngine.prev()" style="padding: 8px 18px; border-radius: 8px; background: var(--q-surface-elevated); border: 1px solid var(--q-border);">السابق</button>
+
+      <div style="display: flex; gap: 8px;">
+        <button type="button" class="ctrl-btn" id="quiz-btn-skip" onclick="quizEngine.skip()" style="padding: 8px 16px; border-radius: 8px; color: var(--q-text-muted);">تخطي</button>
+        <button type="button" class="ctrl-btn" id="quiz-btn-next" onclick="quizEngine.next()" style="padding: 8px 22px; border-radius: 8px; background: var(--q-gold); color: #0f172a; font-weight: 700;">التالي &larr;</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- شاشة النتيجة النهائية (مخفية مبدئياً) -->
+  <div class="qhr-questionnaire-summary" id="quiz-summary" style="display: none;">
+    <div style="width: 68px; height: 68px; border-radius: 50%; background: rgba(16, 185, 129, 0.12); color: #10b981; display: inline-flex; align-items: center; justify-content: center; margin-block-end: 18px;">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2 style="font-family: var(--q-font-heading); font-size: 1.5rem; font-weight: 800; margin-block-end: 8px; color: var(--q-text-primary);">تم اكتمال التقييم بنجاح!</h2>
+    <p style="font-size: 0.88rem; color: var(--q-text-secondary); margin-block-end: 24px;">نتيجتك الإجمالية المكتسبة في هذا الاختبار:</p>
+    
+    <div style="font-size: 2.8rem; font-weight: 900; font-family: var(--q-font-code); color: var(--q-gold); margin-block-end: 24px;" id="quiz-final-score">
+      30 / 30
+    </div>
+
+    <div style="display: flex; justify-content: center; gap: 12px;">
+      <button type="button" class="ctrl-btn" onclick="quizEngine.reset()" style="padding: 10px 24px; border-radius: 10px; background: var(--q-gold); color: #0f172a; font-weight: 700;">إعادة المحاولة</button>
+      <a href="index.html" class="ctrl-btn" style="padding: 10px 24px; border-radius: 10px; background: var(--q-surface-elevated); border: 1px solid var(--q-border); text-decoration: none;">العودة للفهرس</a>
+    </div>
+  </div>
+
+</div>

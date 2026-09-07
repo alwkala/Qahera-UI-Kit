@@ -1,0 +1,94 @@
+<!-- Qahera UI Kit — Chat Stream Pattern (Native HTML) -->
+<div class="qhr-chat-stream" style="display: flex; flex-direction: column; height: 560px; max-width: 780px; margin: 0 auto; background: var(--qhr-surface, #0d121f); border: 1px solid var(--qhr-border, rgba(255,255,255,0.08)); border-radius: var(--qhr-radius-xl, 16px); overflow: hidden; box-shadow: var(--qhr-shadow-lg, 0 10px 30px rgba(0,0,0,0.3));" role="log" aria-live="polite">
+
+  <!-- Stream Header -->
+  <div class="qhr-chat-header" style="display: flex; align-items: center; justify-content: space-between; padding-block: var(--qhr-space-3, 12px); padding-inline: var(--qhr-space-4, 16px); border-block-end: 1px solid var(--qhr-border, rgba(255,255,255,0.08)); background: var(--qhr-surface-elevated, #131b2e);">
+    <div style="display: flex; align-items: center; gap: var(--qhr-space-3, 12px);">
+      <div class="qhr-avatar qhr-avatar--md" style="width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #aa771c); display: flex; align-items: center; justify-content: center; color: #07090e; font-weight: 700;">
+        <svg class="qhr-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 2a8 8 0 0 0-8 8c0 2.22.89 4.23 2.34 5.68L5 21l5.32-1.34C10.94 19.89 11.46 20 12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8z"/>
+        </svg>
+      </div>
+      <div>
+        <div style="font-family: var(--qhr-font-heading, sans-serif); font-size: var(--qhr-text-sm, 14px); font-weight: 700; color: var(--qhr-text-primary, #f8fafc);">مساعد قاهرة الذكي</div>
+        <div style="display: flex; align-items: center; gap: 6px; font-size: var(--qhr-text-xs, 12px); color: var(--qhr-color-success-500, #10b981);">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: currentColor;"></span>
+          <span>متصل ونشط</span>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: var(--qhr-space-2, 8px);">
+      <span class="qhr-chip qhr-chip--sm" style="font-size: 11px; padding-inline: 8px; padding-block: 2px;">Gemini Flash</span>
+      <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" aria-label="خيارات المحادثة">
+        <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="1"></circle>
+          <circle cx="12" cy="5" r="1"></circle>
+          <circle cx="12" cy="19" r="1"></circle>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Message History Stream -->
+  <div class="qhr-chat-history" style="flex: 1; overflow-y: auto; padding: var(--qhr-space-4, 16px); display: flex; flex-direction: column; gap: var(--qhr-space-4, 16px);">
+
+    <!-- Bot Message Bubble -->
+    <div style="display: flex; align-items: flex-start; gap: var(--qhr-space-3, 12px); max-width: 85%;">
+      <div class="qhr-avatar qhr-avatar--sm" style="width: 32px; height: 32px; border-radius: 50%; background: var(--qhr-color-primary-500, #d4af37); color: #07090e; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div style="background: var(--qhr-surface-elevated, #131b2e); border: 1px solid var(--qhr-border, rgba(255,255,255,0.08)); border-radius: var(--qhr-radius-lg, 12px); border-start-start-radius: 2px; padding: var(--qhr-space-3, 12px) var(--qhr-space-4, 16px); color: var(--qhr-text-primary, #f8fafc); font-size: var(--qhr-text-sm, 14px); line-height: 1.6;">
+        <p style="margin: 0 0 8px 0;">مرحباً بك! أنا مساعد التصميم المعماري لنظام <strong>قاهرة (Qahera UI Kit)</strong>. كيف يمكنني مساعدتك اليوم في بناء واجهاتك التفاعلية؟</p>
+        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+          <span class="qhr-chip qhr-chip--sm" style="cursor: pointer;">استعراض المكونات</span>
+          <span class="qhr-chip qhr-chip--sm" style="cursor: pointer;">ميثاق Logical CSS</span>
+          <span class="qhr-chip qhr-chip--sm" style="cursor: pointer;">توليد كود React</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Message Bubble -->
+    <div style="display: flex; align-items: flex-start; justify-content: flex-end; gap: var(--qhr-space-3, 12px); margin-inline-start: auto; max-width: 85%;">
+      <div style="background: var(--qhr-color-primary-500, #d4af37); color: #07090e; font-weight: 500; border-radius: var(--qhr-radius-lg, 12px); border-start-end-radius: 2px; padding: var(--qhr-space-3, 12px) var(--qhr-space-4, 16px); font-size: var(--qhr-text-sm, 14px); line-height: 1.6;">
+        <p style="margin: 0;">أريد معرفة كيفية بناء نموذج متعدد الخطوات للاستبيانات والاختبارات.</p>
+      </div>
+    </div>
+
+    <!-- Bot Streaming Response -->
+    <div style="display: flex; align-items: flex-start; gap: var(--qhr-space-3, 12px); max-width: 85%;">
+      <div class="qhr-avatar qhr-avatar--sm" style="width: 32px; height: 32px; border-radius: 50%; background: var(--qhr-color-primary-500, #d4af37); color: #07090e; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div style="background: var(--qhr-surface-elevated, #131b2e); border: 1px solid var(--qhr-border, rgba(255,255,255,0.08)); border-radius: var(--qhr-radius-lg, 12px); border-start-start-radius: 2px; padding: var(--qhr-space-3, 12px) var(--qhr-space-4, 16px); color: var(--qhr-text-primary, #f8fafc); font-size: var(--qhr-text-sm, 14px); line-height: 1.6;">
+        <p style="margin: 0 0 6px 0;">يمكنك استخدام نمط <code>questionnaire</code> المعماري في قاهرة. يجمع هذا النمط بين مكونات <code>Progress</code>، <code>Radio</code>، و<code>Card</code> ويوفر إتاحة كاملة مع معايير ARIA.</p>
+        <span class="qhr-badge qhr-badge--info qhr-badge--sm" style="display: inline-flex; align-items: center; gap: 4px;">
+          <svg class="qhr-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
+          جاري المعالجة...
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Composer & Input Bar -->
+  <div class="qhr-chat-composer" style="padding: var(--qhr-space-3, 12px) var(--qhr-space-4, 16px); border-block-start: 1px solid var(--qhr-border, rgba(255,255,255,0.08)); background: var(--qhr-surface-elevated, #131b2e); display: flex; align-items: center; gap: var(--qhr-space-2, 8px);">
+    <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" aria-label="إرفاق ملف">
+      <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+      </svg>
+    </button>
+    <input type="text" class="qhr-input" placeholder="اكتب سؤالك أو استفسارك هنا..." style="flex: 1; font-family: var(--qhr-font-ui, sans-serif);" aria-label="حقل إدخال الرسالة" />
+    <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" style="font-weight: 700;">
+      <span>إرسال</span>
+      <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+
+</div>

@@ -1,0 +1,56 @@
+id: empty-state
+name: Empty State Container
+category: feedback
+purpose: >
+  Informs the user that a collection, search query, or dashboard view contains no records, and provides an immediate recovery or creation action.
+
+components:
+  - button
+  - card
+
+anatomy:
+  - root
+  - illustration-slot
+  - headline
+  - description
+  - action-trigger
+  - secondary-link
+
+slots:
+  - illustration
+  - title
+  - description
+  - primary-action
+  - secondary-action
+
+layout:
+  display: flex
+  direction: column
+  gap: var(--qhr-space-4)
+  alignment: center
+  responsive:
+    sm: "padding: var(--qhr-space-6) var(--qhr-space-4); text-align: center;"
+    md: "padding: var(--qhr-space-12) var(--qhr-space-8); text-align: center;"
+
+accessibility:
+  role: status
+  landmark: region
+  keyboard_flow: >
+    Tab moves focus directly to the primary creation/recovery action button.
+    Screen readers announce the title followed by the helpful description.
+  aria_live: polite
+
+ai:
+  purpose: "Zero-data feedback view with clear call-to-action"
+  use_when:
+    - "A search query yields zero results"
+    - "A newly created account has no projects, documents, or items yet"
+    - "A filter combination narrows results to empty"
+  avoid_when:
+    - "Network or server 500 error states (use an alert banner or full error boundary)"
+    - "Loading or fetching states (use Skeleton loaders instead)"
+  composed_of:
+    - card
+    - button
+  related_patterns:
+    - search-toolbar

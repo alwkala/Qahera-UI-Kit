@@ -1,0 +1,155 @@
+{
+  "id": "badge",
+  "name": "Badge",
+  "component": "Badge",
+  "category": "feedback",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "dot-indicator",
+      "icon",
+      "label"
+    ],
+    "variants": {
+      "solid": {
+        "intent": "high-prominence-tag"
+      },
+      "subtle": {
+        "intent": "low-emphasis-status"
+      },
+      "outline": {
+        "intent": "secondary-indicator"
+      },
+      "destructive": {
+        "intent": "error-or-critical-marker"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": 18,
+        "padding_inline": 6,
+        "font_size": "11px"
+      },
+      "md": {
+        "height": 24,
+        "padding_inline": 10,
+        "font_size": "var(--qhr-text-xs)"
+      },
+      "lg": {
+        "height": 28,
+        "padding_inline": 14,
+        "font_size": "var(--qhr-text-sm)"
+      },
+      "xl": {
+        "height": 34,
+        "padding_inline": 18,
+        "font_size": "var(--qhr-text-base)"
+      }
+    },
+    "states": [
+      "default",
+      "hover",
+      "focus"
+    ],
+    "slots": {
+      "leadingIcon": "optional",
+      "label": "required",
+      "trailingIcon": "optional"
+    },
+    "accessibility": {
+      "role": "status",
+      "keyboard": false,
+      "focusVisible": true
+    }
+  },
+  "recipe": {
+    "file": "recipes/badge.yaml",
+    "base": {
+      "display": "inline-flex",
+      "align-items": "center",
+      "font-weight": 500,
+      "border-radius": "{radius.pill}",
+      "user-select": "none",
+      "white-space": "nowrap"
+    },
+    "variants": {
+      "subtle": {
+        "background-color": "{color.neutral.100}",
+        "color": "{color.neutral.900}"
+      },
+      "solid": {
+        "background-color": "{color.primary.bg}",
+        "color": "{color.primary.fg}"
+      },
+      "outline": {
+        "background-color": "transparent",
+        "border": "1px solid {color.border.subtle}"
+      },
+      "destructive": {
+        "background-color": "{color.danger.bg}",
+        "color": "{color.danger.fg}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "{text.xs}",
+        "padding-inline": "{space.2}",
+        "padding-block": "{space.0-5}",
+        "gap": "{space.1}"
+      },
+      "md": {
+        "font-size": "{text.sm}",
+        "padding-inline": "{space.2-5}",
+        "padding-block": "{space.1}",
+        "gap": "{space.1-5}"
+      },
+      "lg": {
+        "font-size": "{text.base}",
+        "padding-inline": "{space.3}",
+        "padding-block": "{space.1-5}",
+        "gap": "{space.2}"
+      },
+      "xl": {
+        "font-size": "{text.lg}",
+        "padding-inline": "{space.4}",
+        "padding-block": "{space.2}",
+        "gap": "{space.2-5}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      },
+      "hover": {
+        "opacity": 0.85
+      },
+      "focus": {
+        "outline": "2px solid {color.primary.bg}"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Communicates compact metadata, categorical status, or quantitative counters.",
+    "whenToUse": [
+      "Entity state indicator (Active, Pending, Suspended, Archived)",
+      "Unread count pill or category tags",
+      "Applied filter chips in filter-bar",
+      "Delta metric tag in dashboard-stat",
+      "Interactive badge links (using asChild or href)"
+    ],
+    "avoid": [
+      "Prominent system-wide action buttons (use Button)",
+      "High-severity alert banners (use Alert)"
+    ],
+    "related": [
+      "filter-bar",
+      "dashboard-stat",
+      "data-table-toolbar"
+    ]
+  },
+  "source": {
+    "file": "contracts/components/Badge.yaml"
+  }
+}

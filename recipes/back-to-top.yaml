@@ -1,0 +1,72 @@
+component: BackToTop
+name: back-to-top
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Floating scroll-to-top quick action"
+  visual_role: "Subtle sticky trigger"
+  density: "compact"
+  preferred_when:
+    - "Long content-heavy pages, documentation, or catalogs"
+  avoid_when:
+    - "Single-screen dashboards or non-scrollable views"
+
+base:
+  position: fixed
+  inset-inline-end: "var(--qhr-space-6)"
+  bottom: "var(--qhr-space-6)"
+  z-index: 900
+  width: "48px"
+  height: "48px"
+  border-radius: "50%"
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: pointer
+  opacity: 0
+  transform: "translateY(16px)"
+  transition: "all 0.4s var(--qhr-motion-luxury, cubic-bezier(0.25, 0.8, 0.25, 1))"
+  box-shadow: "var(--qhr-shadow-lg)"
+
+variants:
+  default:
+    background-color: "var(--qhr-color-surface-elevated)"
+    border: "1px solid var(--qhr-color-border)"
+    color: "var(--qhr-color-text)"
+  luxury:
+    background-color: "var(--qhr-color-surface)"
+    border: "1px solid var(--qhr-color-border-strong)"
+    color: "var(--qhr-color-gold)"
+
+sizes:
+  sm:
+    width: "40px"
+    height: "40px"
+  md:
+    width: "48px"
+    height: "48px"
+  lg:
+    width: "56px"
+    height: "56px"
+
+states:
+  visible:
+    opacity: 1
+    transform: "translateY(0)"
+  hover:
+    transform: "translateY(-4px)"
+    box-shadow: "var(--qhr-shadow-xl)"
+  active:
+    transform: "translateY(0)"
+
+contract:
+  anatomy:
+    - root
+    - icon
+  props:
+    variant:
+      default: luxury
+      values: [default, luxury]
+    threshold:
+      default: 400

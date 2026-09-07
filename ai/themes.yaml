@@ -1,0 +1,60 @@
+version: 1.0.0
+manifest: "ai/themes.yaml"
+description: "AI Theme Discovery & Decision Layer for Qahera UI Kit — Cairo Districts Archetypes"
+intent: "Allows AI agents to select, recommend, and apply the ideal architectural theme based on Cairo urban identity, domain, and tone."
+
+selector_rules:
+  luxury_brand:
+    recommended: "zamalek"
+    fallback: "heliopolis"
+    traits: ["Haute Horlogerie", "Jewelry", "VIP Club", "Elite Agency", "Diplomatic"]
+
+  khedivial_editorial_legal:
+    recommended: "downtown"
+    fallback: "sakakini"
+    traits: ["Editorial", "Publishing", "Law Firm", "Cultural Portal", "Classical Heritage"]
+
+  art_deco_heritage:
+    recommended: "heliopolis"
+    fallback: "roxy"
+    traits: ["Architecture", "Boutiques", "Cultural Centers", "Hospitality"]
+
+  eco_wellness_lifestyle:
+    recommended: "maadi"
+    fallback: "el-zaytoun"
+    traits: ["Botanical", "Landscape", "Spa", "Organic Foods", "Sustainable Living"]
+
+  media_entertainment_cinema:
+    recommended: "roxy"
+    fallback: "shubra"
+    traits: ["Cinema", "Creative Studios", "Streaming", "Festivals", "Entertainment"]
+
+  palace_art_curation:
+    recommended: "sakakini"
+    fallback: "zamalek"
+    traits: ["Museums", "Art Galleries", "Luxury Interiors", "Fine Dining"]
+
+  islamic_heritage_handicraft:
+    recommended: "el-hussein"
+    fallback: "downtown"
+    traits: ["Handicrafts", "Islamic Arts", "Traditional Markets", "Tourism"]
+
+  creative_consumer_app:
+    recommended: "shubra"
+    fallback: "el-marg"
+    traits: ["Youth Brand", "Streetwear", "Events", "Delivery & Logistics", "Pop"]
+
+  classic_serene_community:
+    recommended: "el-zaytoun"
+    fallback: "maadi"
+    traits: ["Civic", "Community Portals", "Education", "Healthcare"]
+
+  raw_urban_industrial:
+    recommended: "el-marg"
+    fallback: "shubra"
+    traits: ["Transportation", "Industrial", "Construction", "Logistics Hubs"]
+
+  enterprise_fintech_smart_city:
+    recommended: "new-cairo"
+    fallback: "zamalek"
+    traits: ["Data Heavy", "SaaS Dashboard", "Fintech", "Smart City", "High-Tech"]

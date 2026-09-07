@@ -1,0 +1,47 @@
+id: canvas-sparks
+name: CanvasSparks
+component: CanvasSparks
+category: feedback
+purpose: >
+  Renders a lightweight atmospheric particle simulation of metallic golden embers on an HTML canvas, active in dark theme with zero CPU overhead when inactive.
+
+anatomy:
+  - root
+  - canvas
+
+variants:
+  default:
+    intent: gold-metallic-particles
+  emerald:
+    intent: emerald-glow-particles
+
+sizes:
+  full:
+    width: 100%
+    height: 100%
+
+states:
+  - running
+  - paused
+
+slots: {}
+
+accessibility:
+  role: presentation
+  aria:
+    - aria-hidden: "true"
+
+behavior:
+  request_animation_frame: true
+  auto_pause_on_light: true
+  max_particles: 40
+
+ai:
+  purpose: "Inject subtle, luxury ambient particle motion in dark hero sections with strictly zero layout shift or accessibility interference."
+  whenToUse:
+    - "Hero sections of luxury, celebratory, or cinematic web experiences"
+    - "High-prestige dark mode interfaces"
+  avoid_when:
+    - "Dense administrative tables, data entry forms, or content-heavy body copy"
+  composition_notes: "Must always be layered behind interactive content with pointer-events: none and aria-hidden='true'."
+

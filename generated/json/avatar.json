@@ -1,0 +1,110 @@
+{
+  "id": "avatar",
+  "name": "Avatar",
+  "component": "Avatar",
+  "category": "media",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "image",
+      "fallback-initials",
+      "status-indicator"
+    ],
+    "variants": [
+      "circle",
+      "rounded"
+    ],
+    "sizes": [
+      "xs",
+      "sm",
+      "md",
+      "lg",
+      "xl"
+    ],
+    "states": [
+      "default"
+    ],
+    "slots": [
+      "default"
+    ],
+    "accessibility": {
+      "role": "img",
+      "keyboard": {},
+      "focus": "None (unless wrapped in interactive anchor/button)",
+      "aria": [
+        {
+          "aria-label": "User entity name"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/avatar.yaml",
+    "base": {
+      "display": "inline-flex",
+      "align-items": "center",
+      "justify-content": "center",
+      "overflow": "hidden",
+      "background-color": "{color.surface.muted}",
+      "color": "{color.neutral.900}",
+      "font-weight": 500,
+      "user-select": "none"
+    },
+    "variants": {
+      "circle": {
+        "border-radius": "{radius.pill}"
+      },
+      "rounded": {
+        "border-radius": "{radius.md}"
+      }
+    },
+    "sizes": {
+      "xs": {
+        "width": "{space.6}",
+        "height": "{space.6}",
+        "font-size": "{text.xs}"
+      },
+      "sm": {
+        "width": "{space.8}",
+        "height": "{space.8}",
+        "font-size": "{text.sm}"
+      },
+      "md": {
+        "width": "{space.10}",
+        "height": "{space.10}",
+        "font-size": "{text.base}"
+      },
+      "lg": {
+        "width": "{space.12}",
+        "height": "{space.12}",
+        "font-size": "{text.lg}"
+      },
+      "xl": {
+        "width": "{space.16}",
+        "height": "{space.16}",
+        "font-size": "{text.xl}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays a visual representation of a user, team, or brand entity.",
+    "whenToUse": [
+      "Profile pictures in navigation bars",
+      "Comment authors and team member lists"
+    ],
+    "avoid": [
+      "Full-size photo galleries (use Image)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Avatar.yaml"
+  }
+}

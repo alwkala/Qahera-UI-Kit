@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<!-- Qahera UI Kit — Canonical Showcase & Registry Hub (v1.5.0) -->
+<!-- Sovereign Design System Architecture · 100% Logical CSS & WCAG 2.1 AA -->
+<html lang="ar" dir="rtl" data-theme="zamalek" data-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معرض منظومة قاهرة الشامل والتفاعلي — Qahera UI Kit Registry & Showcase</title>
+  <meta name="description" content="المعرض التفاعلي الشامل لمكونات وأنماط وقوالب منظومة قاهرة للتصميم المعماري — 78 عنصراً موثقاً بمعايير 0kb RSC و Logical CSS.">
+
+  <!-- الخطوط الرسمية المعتمدة: Alexandria للعناوين والهوية، و Cairo للنصوص والواجهة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../tokens/themes/themes.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <script>
+    (function() {
+      const savedMode = localStorage.getItem('qhr-theme') || 'dark';
+      const savedTheme = localStorage.getItem('qhr-neighborhood') || 'zamalek';
+      const savedDir = localStorage.getItem('qhr-dir') || 'rtl';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.documentElement.setAttribute('data-mode', savedMode);
+      document.documentElement.setAttribute('dir', savedDir);
+      document.documentElement.setAttribute('lang', savedDir === 'rtl' ? 'ar' : 'en');
+    })();
+
+    function renderTags(tags) {
+      if (!tags || !tags.length) return '';
+      return tags.map(function(t) {
+        return '<span class="qhr-badge qhr-badge--neutral qhr-badge--xs qhr-badge--pill">' + t + '</span>';
+      }).join('');
+    }
+  </script>
+
+  <!-- تطبيق سجل المنظومة عبر Alpine.data مع التحميل الفوري التام للمصفوفة -->
+  <script>
+    const QAHERA_ITEMS_DATA = [{"id":"Accordion","name":"Accordion","arabic":"الأكورديون القابل للطي","cat":"disclosure","catAr":"كشف المحتوى","desc":"عنصر طي وتوسيع الأقسام بكفاءة مع دعم كامل للوحة المفاتيح APG ومؤشرات الأسهم.","tags":["0kb RSC","APG A11y","Logical CSS"],"file":"Accordion.html","uniqueKey":"component-Accordion","type":"component","typeLabel":"مكون معماري"},{"id":"Alert","name":"Alert","arabic":"التنبيهات الإشعارية","cat":"feedback","catAr":"تغذية وحالات","desc":"رسائل تنبيه ملونة بأيقونات معمارية وإغلاق فوري لدعم حالات النظام.","tags":["0kb RSC","WCAG AA","Logical CSS"],"file":"Alert.html","uniqueKey":"component-Alert","type":"component","typeLabel":"مكون معماري"},{"id":"Avatar","name":"Avatar","arabic":"الصورة الرمزية والوسائط","cat":"media","catAr":"وسائط وعناصر","desc":"أفاتار الحسابات الشخصية بالصور أو الأحرف الأولى مع مؤشرات الحالة النشطة.","tags":["0kb RSC","Logical CSS"],"file":"Avatar.html","uniqueKey":"component-Avatar","type":"component","typeLabel":"مكون معماري"},{"id":"back-to-top","name":"BackToTop","arabic":"زر العودة للأعلى","cat":"navigation","catAr":"تنقل وهيكلة","desc":"زر تمرير عائم يظهر تلقائياً عند التمرير مع انتقال سلس ونعومة فائقة.","tags":["Alpine.js","Smooth Scroll"],"file":"back-to-top.html","uniqueKey":"component-back-to-top","type":"component","typeLabel":"مكون معماري"},{"id":"Badge","name":"Badge","arabic":"الشارات والوسوم الرقمية","cat":"media","catAr":"وسائط وعناصر","desc":"شارات رقمية وحالات ملونة متعددة الأحجام والأنماط للأرقام والتصنيفات.","tags":["0kb RSC","Micro Badges"],"file":"Badge.html","uniqueKey":"component-Badge","type":"component","typeLabel":"مكون معماري"},{"id":"Breadcrumb","name":"Breadcrumb","arabic":"مسار التنقل المتدرج","cat":"navigation","catAr":"تنقل وهيكلة","desc":"شريط مسار التنقل الهرمي للصفحات يدعم البيانات المنظمة Schema.org.","tags":["0kb RSC","SEO Schema"],"file":"Breadcrumb.html","uniqueKey":"component-Breadcrumb","type":"component","typeLabel":"مكون معماري"},{"id":"Button","name":"Button","arabic":"الأزرار التفاعلية الشاملة","cat":"action","catAr":"أزرار وإجراءات","desc":"معرض الأزرار المعمارية بكافة الأحجام، التدرجات الذهبية، الدائرية والمجمعة.","tags":["0kb RSC","Micro-interactions","Multi-variant"],"file":"Button.html","uniqueKey":"component-Button","type":"component","typeLabel":"مكون معماري"},{"id":"Callout","name":"Callout","arabic":"مربعات الإبراز المعمارية","cat":"feedback","catAr":"تغذية وحالات","desc":"صناديق إبراز المعلومات الهامة والملاحظات الجانبية بتأطير ملكي فاخر.","tags":["0kb RSC","Editorial"],"file":"Callout.html","uniqueKey":"component-Callout","type":"component","typeLabel":"مكون معماري"},{"id":"canvas-sparks","name":"CanvasSparks","arabic":"شرارات الكانفاس الحركية","cat":"media","catAr":"وسائط وعناصر","desc":"خلفية الجزيئات والشرارات الذهبية التفاعلية فائقة الخفة بدون حمل معالج.","tags":["Canvas 2D","Micro-motion"],"file":"canvas-sparks.html","uniqueKey":"component-canvas-sparks","type":"component","typeLabel":"مكون معماري"},{"id":"Card","name":"Card","arabic":"البطاقات البنائية","cat":"layout","catAr":"تنقل وهيكلة","desc":"بطاقات الحاويات المعمارية متعددة الطبقات مع عناوين وإجراءات سفلية متناسقة.","tags":["0kb RSC","Surface Elevated"],"file":"Card.html","uniqueKey":"component-Card","type":"component","typeLabel":"مكون معماري"},{"id":"Carousel","name":"Carousel","arabic":"عارض الشرائح الدوار","cat":"media","catAr":"وسائط وعناصر","desc":"سلايدر شرائح تفاعلي بالسحب والتمرير وأزرار التنقل مع إمكانية التمرير الذاتي.","tags":["Alpine.js","Touch Swipe"],"file":"Carousel.html","uniqueKey":"component-Carousel","type":"component","typeLabel":"مكون معماري"},{"id":"Checkbox","name":"Checkbox","arabic":"صناديق الاختيار الثنائية","cat":"forms","catAr":"نماذج وإدخال","desc":"مربعات تحديد مخصصة تدعم الحالات المختلطة (Indeterminate) والإتاحة.","tags":["0kb RSC","Custom Control"],"file":"Checkbox.html","uniqueKey":"component-Checkbox","type":"component","typeLabel":"مكون معماري"},{"id":"chip","name":"Chip","arabic":"الرقائق والفلاتر السريعة","cat":"forms","catAr":"نماذج وإدخال","desc":"رقائق وسوم تفاعلية قابلة للإزالة والتحديد مع أيقونات دقيقة.","tags":["0kb RSC","Tag Filter"],"file":"chip.html","uniqueKey":"component-chip","type":"component","typeLabel":"مكون معماري"},{"id":"ColorUtilities","name":"Color Utilities","arabic":"دليل أدوات وفئات الألوان","cat":"utility","catAr":"وسائط وتصميم","desc":"مرجع شامل لكافة فئات الألوان الصريحة والخلفيات والحدود والتدرجات.","tags":["Color Tokens","CSS Utilities"],"file":"ColorUtilities.html","uniqueKey":"component-ColorUtilities","type":"component","typeLabel":"مكون معماري"},{"id":"divider","name":"Divider","arabic":"الفواصل البصرية والخطوط","cat":"layout","catAr":"تنقل وهيكلة","desc":"فواصل أفقية ورأسية مع نصوص وسطية وأيقونات تفصل محتوى الصفحات.","tags":["0kb RSC","Logical Border"],"file":"divider.html","uniqueKey":"component-divider","type":"component","typeLabel":"مكون معماري"},{"id":"drawer","name":"Drawer","arabic":"الدرج الجانبي المنبثق","cat":"overlay","catAr":"بوابات ونوافذ","desc":"لوحة جانبية منزلقة للقوائم وسلال الشراء مع قفل التمرير والخلفية المعتمة.","tags":["Alpine.js","Focus Trap"],"file":"drawer.html","uniqueKey":"component-drawer","type":"component","typeLabel":"مكون معماري"},{"id":"Dropdown","name":"Dropdown","arabic":"القائمة المنسدلة التفاعلية","cat":"action","catAr":"أزرار وإجراءات","desc":"قوائم إجراءات منسدلة مع تقسيمات فرعية وملاحة كاملة بأسهم الكيبورد.","tags":["Alpine.js","APG Keyboard"],"file":"Dropdown.html","uniqueKey":"component-Dropdown","type":"component","typeLabel":"مكون معماري"},{"id":"file-upload","name":"FileUpload","arabic":"رافع الملفات والمستندات","cat":"forms","catAr":"نماذج وإدخال","desc":"منطقة سحب وإفلات الملفات مع معاينة حية ومؤشرات تقدم التحميل.","tags":["Alpine.js","Drag & Drop"],"file":"file-upload.html","uniqueKey":"component-file-upload","type":"component","typeLabel":"مكون معماري"},{"id":"Input","name":"Input","arabic":"حقول الإدخال النصية","cat":"forms","catAr":"نماذج وإدخال","desc":"مدخلات النصوص المتقدمة مع أيقونات البداية والنهاية ورسائل التحقق.","tags":["0kb RSC","Field States"],"file":"Input.html","uniqueKey":"component-Input","type":"component","typeLabel":"مكون معماري"},{"id":"kbd","name":"Kbd","arabic":"أزرار لوحة المفاتيح والاختصارات","cat":"media","catAr":"وسائط وعناصر","desc":"مفاتيح كيبورد دقيقة منسقة لإرشاد المستخدمين لاختصارات النظام.","tags":["0kb RSC","Shortcuts"],"file":"kbd.html","uniqueKey":"component-kbd","type":"component","typeLabel":"مكون معماري"},{"id":"Modal","name":"Modal","arabic":"النافذة المشروطة المنبثقة","cat":"overlay","catAr":"بوابات ونوافذ","desc":"نوافذ حوارية منبثقة مع عزل التركيز التام وزر إغلاق وخلفية زجاجية.","tags":["Alpine.js","Focus Lock"],"file":"Modal.html","uniqueKey":"component-Modal","type":"component","typeLabel":"مكون معماري"},{"id":"navbar","name":"Navbar","arabic":"شريط التنقل العلوي الرئيسي","cat":"navigation","catAr":"تنقل وهيكلة","desc":"هيدر زجاجي فاخر متجاوب مع قائمة الهواتف وأدوات التحكم والبراند.","tags":["Alpine.js","Sticky Glass"],"file":"navbar.html","uniqueKey":"component-navbar","type":"component","typeLabel":"مكون معماري"},{"id":"Preloader","name":"Preloader","arabic":"شاشة التحميل المسبق","cat":"feedback","catAr":"تغذية وحالات","desc":"مؤشر تحميل مسبق فاخر مع شعار متوهج وانتقال انسيابي عند اكتمال التحميل.","tags":["Alpine.js","Luxury Splash"],"file":"Preloader.html","uniqueKey":"component-Preloader","type":"component","typeLabel":"مكون معماري"},{"id":"Progress","name":"Progress","arabic":"شريط التقدم والإنجاز","cat":"feedback","catAr":"تغذية وحالات","desc":"أشرطة تقدم محددة وغير محددة بتدرجات لونية ونسب مئوية تفاعلية.","tags":["0kb RSC","Progress Meter"],"file":"Progress.html","uniqueKey":"component-Progress","type":"component","typeLabel":"مكون معماري"},{"id":"Questionnaire","name":"Questionnaire","arabic":"نموذج الاستبيان المتعدد الخطوات","cat":"forms","catAr":"نماذج وإدخال","desc":"استبيان تقييم خطوة بخطوة مع حساب درجات التوافق وتوجيه المسارات.","tags":["Alpine.js","Multi-step"],"file":"Questionnaire.html","uniqueKey":"component-Questionnaire","type":"component","typeLabel":"مكون معماري"},{"id":"Radio","name":"Radio","arabic":"أزرار الاختيار الأحادي","cat":"forms","catAr":"نماذج وإدخال","desc":"مجموعات أزرار الراديو الأنيقة المخصصة للاختيار المنفرد مع بطاقات الخيارات.","tags":["0kb RSC","A11y Group"],"file":"Radio.html","uniqueKey":"component-Radio","type":"component","typeLabel":"مكون معماري"},{"id":"rating","name":"Rating","arabic":"تقييم النجوم التفاعلي","cat":"forms","catAr":"نماذج وإدخال","desc":"تقييم بالنجوم التفاعلية يدعم النصف نجمة والتحويم وحفظ النتيجة.","tags":["Alpine.js","Star Rating"],"file":"rating.html","uniqueKey":"component-rating","type":"component","typeLabel":"مكون معماري"},{"id":"Ribbon","name":"Ribbon","arabic":"أشرطة الزوايا والتمييز","cat":"media","catAr":"وسائط وعناصر","desc":"أشرطة زوايا بطاقات المنتجات لإبراز الخصومات، العروض الحصرية، والجديد.","tags":["0kb RSC","Corner Badge"],"file":"Ribbon.html","uniqueKey":"component-Ribbon","type":"component","typeLabel":"مكون معماري"},{"id":"Select","name":"Select","arabic":"حقل الاختيار المنسدل المخصص","cat":"forms","catAr":"نماذج وإدخال","desc":"قائمة اختيار منسدلة مطابقة لتصميم النظام مع دعم لوحة المفاتيح والبحث.","tags":["Alpine.js","Custom Select"],"file":"Select.html","uniqueKey":"component-Select","type":"component","typeLabel":"مكون معماري"},{"id":"skeleton","name":"Skeleton","arabic":"الهيكل الشبحي للتحميل","cat":"feedback","catAr":"تغذية وحالات","desc":"عناصر تحميل شبحية نبضية متناسقة مع بنية البطاقات والنصوص لتقليل وقت الانتظار.","tags":["0kb RSC","Pulse Motion"],"file":"skeleton.html","uniqueKey":"component-skeleton","type":"component","typeLabel":"مكون معماري"},{"id":"Spinner","name":"Spinner","arabic":"مؤشر الانتظار الدائري","cat":"feedback","catAr":"تغذية وحالات","desc":"سبينر دوران أنيق متعدد الأحجام والدرجات اللونية لتوضيح عمليات المعالجة.","tags":["0kb RSC","Micro-spinner"],"file":"Spinner.html","uniqueKey":"component-Spinner","type":"component","typeLabel":"مكون معماري"},{"id":"Stepper","name":"Stepper","arabic":"شريط تتبع الخطوات","cat":"navigation","catAr":"تنقل وهيكلة","desc":"مؤشر تدفق خطوات مع ترقيم وحالات مكتملة/نشطة/قادمة لنماذج التسجيل.","tags":["0kb RSC","Step Flow"],"file":"Stepper.html","uniqueKey":"component-Stepper","type":"component","typeLabel":"مكون معماري"},{"id":"Switch","name":"Switch","arabic":"مفتاح التبديل الثنائي","cat":"forms","catAr":"نماذج وإدخال","desc":"مفتاح تبديل ناعم للحالات التشغيلية (On/Off) مع توافق كامل لمكبرات الشاشة.","tags":["0kb RSC","Toggle Switch"],"file":"Switch.html","uniqueKey":"component-Switch","type":"component","typeLabel":"مكون معماري"},{"id":"Table","name":"Table","arabic":"جداول البيانات الكلاسيكية","cat":"layout","catAr":"لوحات وبيانات","desc":"جداول بيانات نظيفة بتخطيطات متجاوبة وخطوط شريطية وهوفر تفاعلي.","tags":["0kb RSC","Tabular Data"],"file":"Table.html","uniqueKey":"component-Table","type":"component","typeLabel":"مكون معماري"},{"id":"Tabs","name":"Tabs","arabic":"ألسنة التبويب التفاعلية","cat":"navigation","catAr":"تنقل وهيكلة","desc":"تبويبات تنقلية أفقية بروابط مشروطة وإدارة حالة ألسنة العرض بالكيبورد.","tags":["Alpine.js","APG Tabs"],"file":"Tabs.html","uniqueKey":"component-Tabs","type":"component","typeLabel":"مكون معماري"},{"id":"Textarea","name":"Textarea","arabic":"مساحة النص متعددة الأسطر","cat":"forms","catAr":"نماذج وإدخال","desc":"حقول نصوص طويلة مع عداد للأحرف والتحجيم التلقائي والتحقق من الصحة.","tags":["0kb RSC","Character Counter"],"file":"Textarea.html","uniqueKey":"component-Textarea","type":"component","typeLabel":"مكون معماري"},{"id":"Timeline","name":"Timeline","arabic":"الخط الزمني وسجل الأحداث","cat":"layout","catAr":"لوحات وبيانات","desc":"شريط تتبع زمني رأسي يعرض سجل الأحداث وتواريخ العمليات ومسارات التتبع.","tags":["0kb RSC","Timeline Track"],"file":"Timeline.html","uniqueKey":"component-Timeline","type":"component","typeLabel":"مكون معماري"},{"id":"Toast","name":"Toast","arabic":"إشعارات التوست المنبثقة","cat":"feedback","catAr":"تغذية وحالات","desc":"نظام إشعارات عائمة متعددة المواقع مع مؤقت إغلاق ذاتي وإيقاف عند التحويم.","tags":["Alpine.js","Stack Toasts"],"file":"Toast.html","uniqueKey":"component-Toast","type":"component","typeLabel":"مكون معماري"},{"id":"Tooltip","name":"Tooltip","arabic":"التلميحات الإرشادية العائمة","cat":"overlay","catAr":"بوابات ونوافذ","desc":"تلميحات نصية توضيحية ذكية تظهر عند التحويم والتركيز مع أسهم اتجاهية دقيقة.","tags":["Alpine.js","Floating Tip"],"file":"Tooltip.html","uniqueKey":"component-Tooltip","type":"component","typeLabel":"مكون معماري"},{"id":"treeview","name":"Treeview","arabic":"عرض الشجرة الهرمي","cat":"disclosure","catAr":"كشف المحتوى","desc":"قائمة شجرية متفرعة للملفات والمجلدات مع أيقونات نوعية وتوسيع متدرج.","tags":["Alpine.js","Hierarchical"],"file":"treeview.html","uniqueKey":"component-treeview","type":"component","typeLabel":"مكون معماري"},{"id":"ChatStream","name":"Chat Stream","arabic":"مسار المحادثة والرسائل الذكية","cat":"ai","catAr":"ذكاء وتفاعل","desc":"واجهة محادثة ذكية متكاملة مع تدفق ردود الـ AI، رسائل المستخدم، ومؤشرات التوليد.","tags":["AI Pattern","Streaming","Chat UI"],"file":"ChatStream.html","uniqueKey":"pattern-ChatStream","type":"pattern","typeLabel":"نمط مركب"},{"id":"Confirmation","name":"Confirmation Dialog","arabic":"نافذة تأكيد الإجراءات الحرجة","cat":"overlay","catAr":"بوابات ونوافذ","desc":"نمط نافذة التأكيد الأمنية مع خيارات التراجع وحماية حذف الحسابات والبيانات.","tags":["Security","Governance"],"file":"Confirmation.html","uniqueKey":"pattern-Confirmation","type":"pattern","typeLabel":"نمط مركب"},{"id":"DashboardStat","name":"Dashboard Stat Card","arabic":"بطاقة المؤشرات الإحصائية والنمو","cat":"analytics","catAr":"لوحات وبيانات","desc":"بطاقات مؤشرات الأداء KPI مع نسب التغير الإيجابي/السلبي ورسوم بيانية مصغرة.","tags":["KPI Card","Metrics"],"file":"DashboardStat.html","uniqueKey":"pattern-DashboardStat","type":"pattern","typeLabel":"نمط مركب"},{"id":"DataTableToolbar","name":"Data Table Toolbar","arabic":"شريط أدوات وفلاتر جداول البيانات","cat":"analytics","catAr":"لوحات وبيانات","desc":"شريط علوي متكامل للجداول يجمع بين البحث، التصفية المجمعة، وتصدير التقارير.","tags":["Table Controls","Data Filter"],"file":"DataTableToolbar.html","uniqueKey":"pattern-DataTableToolbar","type":"pattern","typeLabel":"نمط مركب"},{"id":"DatePaginator","name":"Date Paginator Strip","arabic":"شريط التصفح والتنقل الزمني اليومي","cat":"navigation","catAr":"تنقل وهيكلة","desc":"شريط تنقل تقويمي بالأيام والأسابيع مع عرض اليوم الحالي ومحدد التواريخ.","tags":["Date Strip","Calendar Nav"],"file":"DatePaginator.html","uniqueKey":"pattern-DatePaginator","type":"pattern","typeLabel":"نمط مركب"},{"id":"EditorialStory","name":"Editorial Story Card","arabic":"القالب التحريري وسرد المقالات الفاخر","cat":"media","catAr":"وسائط وعناصر","desc":"تصميم تحريري صحفي فاخر بأسلوب المجلات العالمية مع وسوم القراءة والتاريخ.","tags":["Editorial","Magazine"],"file":"EditorialStory.html","uniqueKey":"pattern-EditorialStory","type":"pattern","typeLabel":"نمط مركب"},{"id":"EmptyState","name":"Empty State & Zero Data","arabic":"واجهة الحالة الفارغة وشاشات البداية","cat":"feedback","catAr":"تغذية وحالات","desc":"شاشات البداية الموجهة عند خلو البيانات مع أزرار دعوة لاتخاذ إجراء مباشر.","tags":["Zero State","Onboarding"],"file":"EmptyState.html","uniqueKey":"pattern-EmptyState","type":"pattern","typeLabel":"نمط مركب"},{"id":"FileManagerGrid","name":"File Manager Grid","arabic":"متصفح ومدير الملفات السحابي","cat":"layout","catAr":"لوحات وبيانات","desc":"شبكة استعراض المستندات والملفات بأنواعها مع القوائم السريعة والحجم وتاريخ التعديل.","tags":["Cloud Drive","Asset Manager"],"file":"FileManagerGrid.html","uniqueKey":"pattern-FileManagerGrid","type":"pattern","typeLabel":"نمط مركب"},{"id":"FilterBar","name":"Filter & Sort Bar","arabic":"شريط التصفية والفرز الفوري","cat":"navigation","catAr":"تنقل وهيكلة","desc":"شريط فلاتر متعدد المعايير مع إمكانية الفرز والترتيب وإلغاء التحديد السريع.","tags":["Quick Filters","Sort Control"],"file":"FilterBar.html","uniqueKey":"pattern-FilterBar","type":"pattern","typeLabel":"نمط مركب"},{"id":"FormActions","name":"Sticky Form Actions Bar","arabic":"شريط إجراءات النماذج الثابت","cat":"action","catAr":"أزرار وإجراءات","desc":"شريط إجراءات سفلي يثبت في الشاشة أثناء ملء النماذج لحفظ التغييرات أو الإلغاء.","tags":["Sticky Bar","Form UX"],"file":"FormActions.html","uniqueKey":"pattern-FormActions","type":"pattern","typeLabel":"نمط مركب"},{"id":"KanbanBoard","name":"Interactive Kanban Board","arabic":"لوحة مهام كانبان التفاعلية","cat":"analytics","catAr":"لوحات وبيانات","desc":"لوحة إدارة المشاريع بأسلوب الأعمدة وبطاقات المهام مع الأولويات والمكلفين.","tags":["Kanban","Agile Tasks"],"file":"KanbanBoard.html","uniqueKey":"pattern-KanbanBoard","type":"pattern","typeLabel":"نمط مركب"},{"id":"LuxuryProductCard","name":"Luxury 3D Product Card","arabic":"بطاقة المنتج الفاخر ثلاثية الأبعاد","cat":"ecommerce","catAr":"تجارة وأعمال","desc":"بطاقة عرض مقتنيات فاخرة بتأثيرات ذهبية وأزرار الإضافة السريعة للسلة.","tags":["E-commerce","Luxury Gold"],"file":"LuxuryProductCard.html","uniqueKey":"pattern-LuxuryProductCard","type":"pattern","typeLabel":"نمط مركب"},{"id":"MetricComparisonGrid","name":"Metric Comparison Grid","arabic":"شبكة مقارنة المؤشرات والأداء","cat":"analytics","catAr":"لوحات وبيانات","desc":"مصفوفة مقارنة المؤشرات الفصلية والسنوية مع رسوم التقدم ومعدلات النمو.","tags":["Comparison","Finance Grid"],"file":"MetricComparisonGrid.html","uniqueKey":"pattern-MetricComparisonGrid","type":"pattern","typeLabel":"نمط مركب"},{"id":"Pagination","name":"Adaptive Pagination Control","arabic":"ترقيم وتقسيم الصفحات المتقدم","cat":"navigation","catAr":"تنقل وهيكلة","desc":"وحدة تقسيم الصفحات المتقدمة مع اختصار النقاط والأزرار السريعة الأولى والأخيرة.","tags":["Pagination","A11y"],"file":"Pagination.html","uniqueKey":"pattern-Pagination","type":"pattern","typeLabel":"نمط مركب"},{"id":"Questionnaire","name":"Assessment & Quiz Pattern","arabic":"نموذج التقييم والاستبيان التفاعلي","cat":"forms","catAr":"نماذج وإدخال","desc":"اختبار تقييمي استرشادي مع بطاقات الخيارات الحصرية وعرض نتائج التوجيه.","tags":["Assessment","Questionnaire"],"file":"Questionnaire.html","uniqueKey":"pattern-Questionnaire","type":"pattern","typeLabel":"نمط مركب"},{"id":"SearchToolbar","name":"Search & Command Toolbar","arabic":"شريط البحث والأوامر الفورية","cat":"action","catAr":"أزرار وإجراءات","desc":"شريط بحث ذكي مع اختصار الكيبورد واقتراحات الفئات والقوائم المنسدلة.","tags":["Command Bar","Quick Search"],"file":"SearchToolbar.html","uniqueKey":"pattern-SearchToolbar","type":"pattern","typeLabel":"نمط مركب"},{"id":"SortableList","name":"Sortable Reorderable List","arabic":"قائمة العناصر القابلة لإعادة الترتيب","cat":"layout","catAr":"لوحات وبيانات","desc":"قائمة بنود تفاعلية تسمح بإعادة ترتيب الأولوية بالسحب مع مقابض الترتيب.","tags":["Drag Sort","List UX"],"file":"SortableList.html","uniqueKey":"pattern-SortableList","type":"pattern","typeLabel":"نمط مركب"},{"id":"StoreLocator","name":"Store & Branch Locator","arabic":"محدد الفروع والمتاجر على الخريطة","cat":"ecommerce","catAr":"تجارة وأعمال","desc":"دليل استعراض صالات العرض والفروع مع ساعات العمل والاتصال وحجز المواعيد.","tags":["Branches","Showrooms"],"file":"StoreLocator.html","uniqueKey":"pattern-StoreLocator","type":"pattern","typeLabel":"نمط مركب"},{"id":"UserCard","name":"User Profile & Membership Card","arabic":"بطاقة الملف الشخصي والعضوية","cat":"media","catAr":"وسائط وعناصر","desc":"بطاقة تعريفية متكاملة للمستخدم تشمل المستوى، الإحصائيات، والإجراءات المباشرة.","tags":["Profile Card","Membership"],"file":"UserCard.html","uniqueKey":"pattern-UserCard","type":"pattern","typeLabel":"نمط مركب"},{"id":"VipMembership","name":"VIP Gold Membership Card","arabic":"بطاقة عضوية نادي الصفوة الذهبية","cat":"ecommerce","catAr":"تجارة وأعمال","desc":"بطاقة عضوية فاخرة بتأثيرات معدنية ذهبية حصرية ومزايا النخبة.","tags":["VIP Gold","Premium Card"],"file":"VipMembership.html","uniqueKey":"pattern-VipMembership","type":"pattern","typeLabel":"نمط مركب"},{"id":"tpl-admin","name":"Admin Resource Manager","arabic":"لوحة إدارة الموارد والصلاحيات","cat":"enterprise","catAr":"تجارة وأعمال","desc":"واجهة متكاملة لإدارة المستخدمين والصلاحيات والعمليات المجمعة وجداول البيانات.","tags":["Template","Admin Monolith","RBAC"],"file":"../../templates/admin/page.html","uniqueKey":"template-tpl-admin","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-auth","name":"Authentication Suite","arabic":"شاشات الدخول والتوثيق المزدوج","cat":"enterprise","catAr":"بوابات ونوافذ","desc":"صفحات تسجيل الدخول، استعادة كلمة المرور، والتحقق بخطوتين بأمان وتصميم ملكي.","tags":["Template","Security Auth","2FA"],"file":"../../templates/auth/page.html","uniqueKey":"template-tpl-auth","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-box-cards","name":"Advanced Box & Cards Suite","arabic":"معرض الصناديق والبطاقات المتقدمة","cat":"layout","catAr":"تنقل وهيكلة","desc":"مكتبة شاملة للحاويات البنائية، الصناديق الملونة، والبطاقات المجمعة لكافة التطبيقات.","tags":["Template","Card Matrix","Containers"],"file":"../../templates/box-cards/page.html","uniqueKey":"template-tpl-box-cards","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-charts","name":"Visual Charts & Metrics Suite","arabic":"لوحة الرسوم البيانية ومؤشرات الأداء","cat":"analytics","catAr":"لوحات وبيانات","desc":"منصة تحليلات بيانية تفاعلية تدعم رسوم الأعمدة، المنحنيات، والمؤشرات الدائرية.","tags":["Template","Data Viz","Telemetry"],"file":"../../templates/charts/page.html","uniqueKey":"template-tpl-charts","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-dashboard","name":"Executive Operations Dashboard","arabic":"لوحة القيادة التنفيذية","cat":"analytics","catAr":"لوحات وبيانات","desc":"لوحة عمليات رئيسية للشركات تجمع الملخص المالي، أحدث الطلبات، ومؤشرات الأداء.","tags":["Template","Executive","Live Operations"],"file":"../../templates/dashboard/page.html","uniqueKey":"template-tpl-dashboard","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-documentation","name":"Technical Documentation Portal","arabic":"بوابة التوثيق والمعايير المعمارية","cat":"enterprise","catAr":"تجارة وأعمال","desc":"بوابة توثيق تقنية متقدمة مع شريط بحث فوري، فهرس جانبي، وعرض للشيفرات البرمجية.","tags":["Template","Tech Docs","Knowledge"],"file":"../../templates/documentation/page.html","uniqueKey":"template-tpl-documentation","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-ecommerce","name":"Luxury E-commerce Showcase","arabic":"متجر المقتنيات الفاخرة الشامل","cat":"ecommerce","catAr":"تجارة وأعمال","desc":"منصة متجر إلكتروني متكاملة مع سلة مشتريات منبثقة، تصفية فورية، ومعاينة سريعة.","tags":["Template","Full E-commerce","Flyout Cart"],"file":"../../templates/ecommerce/page.html","uniqueKey":"template-tpl-ecommerce","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-education","name":"Digital Academy & LMS Marathon","arabic":"أكاديمية قاهرة الرقمية والمعسكرات","cat":"enterprise","catAr":"تجارة وأعمال","desc":"قالب تعليمي ثنائي العرض (صفحة هبوط معمارية + بوابة طالب LMS) مع ماراثون 12 أسبوعاً.","tags":["Template","LMS Portal","Interactive Quiz"],"file":"../../templates/education/page.html","uniqueKey":"template-tpl-education","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-emails","name":"Responsive Email Templates","arabic":"قوالب البريد الإلكتروني المتجاوبة","cat":"media","catAr":"وسائط وعناصر","desc":"مجموعة رسائل بريدية تجارية متوافقة مع كافة برامج البريد، الفواتير، والترحيب.","tags":["Template","HTML Email","Cross-Client"],"file":"../../templates/emails/page.html","uniqueKey":"template-tpl-emails","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-errors","name":"System Error States 404/500","arabic":"صفحات الخطأ والحالات الاستثنائية","cat":"feedback","catAr":"تغذية وحالات","desc":"شاشات أخطاء النظام وفقدان الصفحات مصممة بأناقة مع روابط العودة الموجهة.","tags":["Template","Error States","HTTP 404/500"],"file":"../../templates/errors/page.html","uniqueKey":"template-tpl-errors","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-file-manager","name":"Cloud Digital Asset Manager","arabic":"متصفح ومدير الأصول الرقمية السحابي","cat":"layout","catAr":"لوحات وبيانات","desc":"تطبيق إدارة ملفات احترافي مع تقسيم سحابي، أحجام التخزين، ومعاينة الأصول.","tags":["Template","File Manager","Cloud Storage"],"file":"../../templates/file-manager/page.html","uniqueKey":"template-tpl-file-manager","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-fintech-wealth","name":"Wealth & Fintech Portfolio","arabic":"إدارة المحافظ والتكنولوجيا المالية","cat":"analytics","catAr":"لوحات وبيانات","desc":"لوحة استثمارية للمحافظ المالية، تتبع الأصول، أسعار الصرف، ومعدلات الأرباح.","tags":["Template","Fintech","Portfolio Wealth"],"file":"../../templates/fintech-wealth/page.html","uniqueKey":"template-tpl-fintech-wealth","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-helpdesk-kanban","name":"Helpdesk & Kanban Tickets","arabic":"مكتب المساعدة وإدارة التذاكر كانبان","cat":"enterprise","catAr":"تجارة وأعمال","desc":"نظام دعم فني متطور يجمع بين كانبان سحب التذاكر، واختصارات الكيبورد ومساعد AI.","tags":["Template","Helpdesk","Kanban Board"],"file":"../../templates/helpdesk-kanban/page.html","uniqueKey":"template-tpl-helpdesk-kanban","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-landing","name":"Luxury Brand Landing Page","arabic":"صفحة الهبوط الفاخرة للعلامة التجارية","cat":"ecommerce","catAr":"تجارة وأعمال","desc":"صفحة هبوط فاخرة تبرز هوية البراند الملكي، صالات العرض، وجوائز الحرفية.","tags":["Template","Landing Hero","Brand Identity"],"file":"../../templates/landing/page.html","uniqueKey":"template-tpl-landing","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-layouts","name":"Application Layouts Engine","arabic":"محرك الهياكل التخطيطية والتقسيم","cat":"layout","catAr":"تنقل وهيكلة","desc":"استعراض لهياكل الواجهات المختلفة (Sidebar, Header, Compact, Split View).","tags":["Template","Layout Engine","Grid Systems"],"file":"../../templates/layouts/page.html","uniqueKey":"template-tpl-layouts","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-shop","name":"Clean Catalog Shop","arabic":"متجر المقتنيات البسيط","cat":"ecommerce","catAr":"تجارة وأعمال","desc":"كتالوج متجر انسيابي يركز على تصفح المقتنيات والأسعار والأوصاف المباشرة.","tags":["Template","Catalog","Quick Shop"],"file":"../../templates/shop/page.html","uniqueKey":"template-tpl-shop","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-tables","name":"Advanced Data Tables Showcase","arabic":"جداول البيانات المعقدة والفرز","cat":"analytics","catAr":"لوحات وبيانات","desc":"معرض جداول البيانات الشاملة مع فرز الأعمدة، التحديد المتعدد، والعمليات الحسابية.","tags":["Template","Data Tables","Sorting"],"file":"../../templates/tables/page.html","uniqueKey":"template-tpl-tables","type":"template","typeLabel":"قالب تطبيقي"},{"id":"tpl-widgets","name":"Dashboard Widgets & Metric Badges","arabic":"مربعات الأدوات والمؤشرات المصغرة","cat":"analytics","catAr":"لوحات وبيانات","desc":"مكتبة الودجات المصغرة الجاهزة للدمج الفوري في أي لوحة قيادة أو شاشة عمليات.","tags":["Template","Micro Widgets","KPI Gauges"],"file":"../../templates/widgets/page.html","uniqueKey":"template-tpl-widgets","type":"template","typeLabel":"قالب تطبيقي"}];
+
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('registryApp', () => ({
+        theme: localStorage.getItem('qhr-theme') || 'dark',
+        activeNeighborhood: localStorage.getItem('qhr-neighborhood') || 'zamalek',
+        neighborhoodThemes: [
+          { id: 'garden-city', name: 'جاردن سيتي', nightPrimary: '#72a1df', dayPrimary: '#2563EB' },
+          { id: 'zamalek', name: 'الزمالك', nightPrimary: '#E5C378', dayPrimary: '#18181B' },
+          { id: 'downtown', name: 'وسط البلد', nightPrimary: '#C29B38', dayPrimary: '#9E7728' },
+          { id: 'heliopolis', name: 'هليوبوليس', nightPrimary: '#E0A96D', dayPrimary: '#B45309' },
+          { id: 'maadi', name: 'المعادي', nightPrimary: '#52796F', dayPrimary: '#0D9488' },
+          { id: 'roxy', name: 'روكسي', nightPrimary: '#00F0FF', dayPrimary: '#2563EB' },
+          { id: 'sakakini', name: 'السكاكيني', nightPrimary: '#9B51E0', dayPrimary: '#7C3AED' },
+          { id: 'el-hussein', name: 'الحسين', nightPrimary: '#D4AF37', dayPrimary: '#A16207' },
+          { id: 'shubra', name: 'شبرا', nightPrimary: '#E11D48', dayPrimary: '#DC2626' },
+          { id: 'el-zaytoun', name: 'الزيتون', nightPrimary: '#3B82F6', dayPrimary: '#1D4ED8' },
+          { id: 'el-marg', name: 'المرج', nightPrimary: '#158052', dayPrimary: '#0E5E3A' },
+          { id: 'new-cairo', name: 'القاهرة الجديدة', nightPrimary: '#0284C7', dayPrimary: '#0284C7' }
+        ],
+        dir: localStorage.getItem('qhr-dir') || 'rtl',
+        lang: (localStorage.getItem('qhr-dir') || 'rtl') === 'rtl' ? 'ar' : 'en',
+        searchQuery: '',
+        selectedType: 'all',
+        selectedCategory: 'all',
+        viewMode: 'grid',
+        copiedId: null,
+        items: QAHERA_ITEMS_DATA,
+        filteredItems: [...QAHERA_ITEMS_DATA],
+        currentPage: 1,
+        pageSize: 12,
+
+        init() {
+          document.documentElement.setAttribute('data-theme', this.activeNeighborhood);
+          document.documentElement.setAttribute('data-mode', this.theme);
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.lang);
+          this.applyFilter();
+
+          this.$nextTick(() => {
+            this.applyFilter();
+          });
+
+          window.addEventListener('keydown', (e) => {
+            if ((e.key === '/' || (e.key === 'k' && (e.metaKey || e.ctrlKey))) && document.activeElement.tagName !== 'INPUT') {
+              e.preventDefault();
+              const input = document.getElementById('searchInput');
+              if (input) {
+                input.focus();
+                input.select();
+              }
+            }
+            if (e.key === 'Escape' && document.activeElement.id === 'searchInput') {
+              this.searchQuery = '';
+              this.applyFilter();
+              document.activeElement.blur();
+            }
+          });
+        },
+
+        applyFilter() {
+          let list = this.items;
+
+          if (this.selectedType !== 'all') {
+            list = list.filter(i => i.type === this.selectedType);
+          }
+
+          if (this.selectedCategory !== 'all') {
+            list = list.filter(i => i.cat === this.selectedCategory);
+          }
+
+          if (this.searchQuery && this.searchQuery.trim() !== '') {
+            const q = this.searchQuery.toLowerCase().trim();
+            list = list.filter(i =>
+              i.name.toLowerCase().includes(q) ||
+              i.arabic.toLowerCase().includes(q) ||
+              i.desc.toLowerCase().includes(q) ||
+              i.catAr.toLowerCase().includes(q) ||
+              i.file.toLowerCase().includes(q) ||
+              (i.tags && i.tags.some(t => t.toLowerCase().includes(q)))
+            );
+          }
+
+          this.filteredItems = list;
+          this.currentPage = 1;
+        },
+
+        get totalPages() {
+          if (this.pageSize === 'all') return 1;
+          const size = parseInt(this.pageSize, 10) || 12;
+          return Math.ceil(this.filteredItems.length / size) || 1;
+        },
+
+        get paginatedItems() {
+          if (this.pageSize === 'all') return this.filteredItems;
+          const size = parseInt(this.pageSize, 10) || 12;
+          const start = (this.currentPage - 1) * size;
+          return this.filteredItems.slice(start, start + size);
+        },
+
+        get startIndex() {
+          if (this.filteredItems.length === 0) return 0;
+          if (this.pageSize === 'all') return 1;
+          const size = parseInt(this.pageSize, 10) || 12;
+          return (this.currentPage - 1) * size + 1;
+        },
+
+        get endIndex() {
+          if (this.pageSize === 'all') return this.filteredItems.length;
+          const size = parseInt(this.pageSize, 10) || 12;
+          return Math.min(this.currentPage * size, this.filteredItems.length);
+        },
+
+        setPage(page) {
+          if (page < 1 || page > this.totalPages || page === this.currentPage) return;
+          this.currentPage = page;
+          this.$nextTick(() => {
+            const stage = document.querySelector('.stage-container');
+            if (stage) {
+              stage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        },
+
+        goToPage(p) {
+          if (typeof p === 'number') {
+            this.setPage(p);
+          }
+        },
+
+        get paginationPages() {
+          const total = this.totalPages;
+          const cur = this.currentPage;
+          if (total <= 7) {
+            return Array.from({ length: total }, (_, i) => i + 1);
+          }
+          if (cur <= 4) {
+            return [1, 2, 3, 4, 5, '...', total];
+          }
+          if (cur >= total - 3) {
+            return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
+          }
+          return [1, '...', cur - 1, cur, cur + 1, '...', total];
+        },
+
+        setType(type) {
+          this.selectedType = type;
+          this.applyFilter();
+        },
+
+        setCategory(cat) {
+          this.selectedCategory = cat;
+          this.applyFilter();
+        },
+
+        resetFilters() {
+          this.searchQuery = '';
+          this.selectedType = 'all';
+          this.selectedCategory = 'all';
+          this.applyFilter();
+        },
+
+        copyItemName(text, id) {
+          navigator.clipboard.writeText(text);
+          this.copiedId = id;
+          setTimeout(() => { this.copiedId = null; }, 2000);
+        },
+
+        toggleTheme() {
+          this.theme = this.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-mode', this.theme);
+          localStorage.setItem('qhr-theme', this.theme);
+        },
+
+        setNeighborhood(id) {
+          this.activeNeighborhood = id;
+          document.documentElement.setAttribute('data-theme', id);
+          localStorage.setItem('qhr-neighborhood', id);
+        },
+
+        toggleDir() {
+          this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl';
+          this.lang = this.dir === 'rtl' ? 'ar' : 'en';
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.lang);
+          localStorage.setItem('qhr-dir', this.dir);
+        },
+
+        get counts() {
+          return {
+            all: this.items.length,
+            component: this.items.filter(i => i.type === 'component').length,
+            pattern: this.items.filter(i => i.type === 'pattern').length,
+            template: this.items.filter(i => i.type === 'template').length,
+          };
+        }
+      }));
+    });
+  </script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --q-font-heading: 'Alexandria', 'Cairo', sans-serif;
+      --q-font-body: 'Cairo', 'Alexandria', sans-serif;
+      --q-font-mono: 'JetBrains Mono', monospace;
+
+      --q-bg: #07090e;
+      --q-surface: #0d121f;
+      --q-surface-elevated: #131b2e;
+      --q-border: rgba(255, 255, 255, 0.08);
+      --q-border-subtle: rgba(255, 255, 255, 0.05);
+      --q-border-strong: rgba(255, 255, 255, 0.16);
+
+      --q-text-primary: #f8fafc;
+      --q-text-secondary: #94a3b8;
+      --q-text-muted: #64748b;
+
+      --q-gold: #d4af37;
+      --q-gold-hover: #f5d77f;
+      --q-gold-glow: rgba(212, 175, 55, 0.25);
+      --q-dots-color: rgba(212, 175, 55, 0.07);
+    }
+
+    [data-mode="light"],
+    [data-theme="light"] {
+      --q-bg: #f8fafc;
+      --q-surface: #ffffff;
+      --q-surface-elevated: #f1f5f9;
+      --q-border: #e2e8f0;
+      --q-border-subtle: #f1f5f9;
+      --q-border-strong: #cbd5e1;
+
+      --q-text-primary: #0f172a;
+      --q-text-secondary: #475569;
+      --q-text-muted: #94a3b8;
+
+      --q-gold: #b45309;
+      --q-gold-hover: #92400e;
+      --q-gold-glow: rgba(180, 83, 9, 0.2);
+      --q-dots-color: rgba(15, 23, 42, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--q-font-body);
+      background-color: var(--q-bg);
+      color: var(--q-text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: radial-gradient(var(--q-dots-color) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Navigation Bar */
+    .showcase-navbar {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 50;
+      background: rgba(13, 18, 31, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-block-end: 1px solid var(--q-border);
+      padding-block: 10px;
+      padding-inline: clamp(16px, 3.5vw, 36px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    [data-mode="light"] .showcase-navbar,
+    [data-theme="light"] .showcase-navbar {
+      background: rgba(255, 255, 255, 0.92);
+      border-block-end-color: #e2e8f0;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+      flex-shrink: 0;
+    }
+    .brand-logo-emblem {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #2563EB;
+      color: #FFFFFF;
+      font-family: var(--q-font-heading);
+      font-weight: 900;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+    }
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-title {
+      font-family: var(--q-font-heading);
+      font-size: 1.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .brand-sub {
+      font-size: 0.72rem;
+      color: var(--q-text-muted);
+    }
+
+    /* Themes Strip Inside Topbar */
+    .themes-topbar-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      flex: 1;
+      justify-content: center;
+    }
+    .themes-label-tag {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--q-text-muted);
+      margin-inline-end: 4px;
+      white-space: nowrap;
+    }
+    .theme-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding-block: 4px;
+      padding-inline: 11px;
+      border-radius: 9999px;
+      border: 1px solid var(--q-border);
+      background: transparent;
+      color: var(--q-text-secondary);
+      font-family: var(--q-font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 180ms ease;
+    }
+    .theme-pill-btn:hover {
+      color: var(--q-text-primary);
+      border-color: var(--q-border-strong);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .theme-pill-btn.is-active {
+      background: var(--q-surface-elevated);
+      color: #2563EB;
+      border-color: #2563EB;
+      box-shadow: 0 0 10px rgba(37, 99, 235, 0.25);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .icon-action-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--q-border);
+      background: var(--q-surface);
+      color: var(--q-text-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 150ms ease;
+      padding: 0;
+    }
+    .icon-action-btn:hover {
+      color: var(--q-text-primary);
+      border-color: var(--q-gold);
+      box-shadow: 0 0 0 3px var(--q-gold-glow);
+    }
+
+    .lang-pill-btn {
+      height: 36px;
+      padding-inline: 12px;
+      border-radius: 10px;
+      border: 1px solid var(--q-border);
+      background: var(--q-surface);
+      color: var(--q-text-secondary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      font-family: var(--q-font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: all 150ms ease;
+    }
+    .lang-pill-btn:hover {
+      color: var(--q-text-primary);
+      border-color: var(--q-gold);
+    }
+
+    /* Hero Section */
+    .hero-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding-inline: clamp(16px, 4vw, 40px);
+      padding-block: 40px 20px;
+      text-align: center;
+    }
+    .hero-headline {
+      font-family: var(--q-font-heading);
+      font-size: clamp(2rem, 4.2vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin: 14px 0 12px 0;
+      color: var(--q-text-primary);
+    }
+    .hero-headline .highlight-blue {
+      color: #2563EB;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-lead {
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--q-text-secondary);
+    }
+
+    .telemetry-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-block-end: 28px;
+    }
+
+    /* Command Hub Container */
+    .command-hub-wrapper {
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto 24px auto;
+      padding-inline: clamp(16px, 4vw, 40px);
+    }
+
+    .search-card-box {
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border);
+      border-radius: var(--qhr-radius-xl, 18px);
+      padding: 18px 22px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    [data-mode="light"] .search-card-box,
+    [data-theme="light"] .search-card-box {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .tabs-nav-row {
+      display: flex;
+      justify-content: center;
+      margin-block-end: 18px;
+    }
+    .tabs-segmented-wrapper {
+      background-color: var(--q-surface);
+      border: 1px solid var(--q-border);
+      padding: 4px;
+      border-radius: var(--qhr-radius-pill, 9999px);
+      display: inline-flex;
+      gap: 4px;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+    [data-mode="light"] .tabs-segmented-wrapper,
+    [data-theme="light"] .tabs-segmented-wrapper {
+      background-color: #f1f5f9;
+      border-color: #e2e8f0;
+    }
+
+    .tab-item-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: var(--qhr-radius-pill, 9999px);
+      border: none;
+      background: transparent;
+      color: var(--q-text-secondary);
+      font-family: var(--q-font-body);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 150ms ease;
+    }
+    .tab-item-btn:hover { color: var(--q-text-primary); }
+    .tab-item-btn.is-active {
+      background-color: var(--q-surface-elevated);
+      color: var(--q-text-primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+    [data-mode="light"] .tab-item-btn.is-active,
+    [data-theme="light"] .tab-item-btn.is-active {
+      background-color: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    .search-tools-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .search-input-container {
+      flex: 1;
+      min-inline-size: 280px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-input-field {
+      width: 100%;
+      height: 48px;
+      padding-block: 0;
+      padding-inline-start: 46px;
+      padding-inline-end: 42px;
+      font-family: var(--q-font-body);
+      font-size: 0.95rem;
+      border-radius: var(--qhr-radius-md, 10px);
+      border: 1px solid var(--q-border);
+      background-color: var(--q-bg);
+      color: var(--q-text-primary);
+      outline: none;
+      transition: all 150ms ease;
+    }
+    .search-input-field:focus {
+      border-color: #2563EB;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+    [data-mode="light"] .search-input-field,
+    [data-theme="light"] .search-input-field {
+      background-color: #f8fafc;
+      border-color: #cbd5e1;
+    }
+    .search-leading-svg {
+      position: absolute;
+      inset-inline-start: 16px;
+      width: 18px;
+      height: 18px;
+      color: var(--q-text-muted);
+      pointer-events: none;
+    }
+    .search-shortcut-kbd {
+      position: absolute;
+      inset-inline-end: 14px;
+    }
+
+    .category-filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-block-start: 16px;
+      padding-block-start: 14px;
+      border-block-start: 1px solid var(--q-border-subtle);
+    }
+    .category-label-hint {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--q-text-muted);
+      margin-inline-end: 4px;
+    }
+
+    .results-summary-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-start: 14px;
+      font-size: 0.85rem;
+      color: var(--q-text-muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Stage Container & Cards */
+    .stage-container {
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding-inline: clamp(16px, 4vw, 40px);
+      padding-block-end: 64px;
+    }
+
+    .registry-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+
+    .registry-list-view {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .qhr-showcase-card {
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border);
+      border-radius: var(--qhr-radius-lg, 14px);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 200ms ease;
+    }
+    .qhr-showcase-card:hover {
+      border-color: #2563EB;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    }
+    [data-mode="light"] .qhr-showcase-card,
+    [data-theme="light"] .qhr-showcase-card {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    [data-mode="light"] .qhr-showcase-card:hover,
+    [data-theme="light"] .qhr-showcase-card:hover {
+      border-color: #2563EB;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
+    }
+
+    .card-meta-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-end: 12px;
+    }
+    .card-arabic-heading {
+      font-family: var(--q-font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0 0 4px 0;
+    }
+    .card-title-link {
+      text-decoration: none;
+      color: inherit;
+    }
+    .card-title-link:hover { text-decoration: underline; color: #2563EB; }
+    .card-tech-id-row {
+      font-family: var(--q-font-mono);
+      font-size: 0.78rem;
+      color: var(--q-text-muted);
+      margin-block-end: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card-desc-body {
+      font-size: 0.86rem;
+      color: var(--q-text-secondary);
+      line-height: 1.6;
+      margin: 0 0 16px 0;
+    }
+    .card-tags-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-block-end: 14px;
+    }
+    .card-footer-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block-start: 12px;
+      border-block-start: 1px solid var(--q-border-subtle);
+    }
+
+    .showcase-footer {
+      background: var(--q-surface);
+      border-block-start: 1px solid var(--q-border);
+      padding: 32px clamp(16px, 4vw, 40px);
+      text-align: center;
+      margin-block-start: auto;
+      color: var(--q-text-secondary);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body x-data="registryApp">
+
+  <!-- 1. Top Glassmorphic Navigation Bar With 12 Themes Inline -->
+  <nav class="showcase-navbar" aria-label="شريط التنقل الرئيسي">
+    <!-- Brand Info -->
+    <a href="index.html" class="brand-group">
+      <div class="brand-logo-emblem">ق</div>
+      <div class="brand-meta">
+        <h1 class="brand-title">Qahera UI Kit</h1>
+        <span class="brand-sub">سجل المعاينات الشامل v1.5.0</span>
+      </div>
+    </a>
+
+    <!-- Integrated 12 Neighborhood Themes Navigation -->
+    <div class="themes-topbar-strip" role="group" aria-label="ثيمات المنظومة">
+      <span class="themes-label-tag">ثيمات المنظومة (12 ثيم):</span>
+      <template x-for="t in neighborhoodThemes" :key="t.id">
+        <button 
+          type="button" 
+          class="theme-pill-btn" 
+          :class="{ 'is-active': activeNeighborhood === t.id }"
+          @click="setNeighborhood(t.id)">
+          <span style="width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;" :style="'background-color: ' + (theme === 'dark' ? t.nightPrimary : t.dayPrimary)"></span>
+          <span x-text="t.name"></span>
+        </button>
+      </template>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="nav-actions">
+      <!-- Direct Link to Theme Studio -->
+      <a href="ThemeStudio.html" class="qhr-btn qhr-btn--primary qhr-btn--sm" style="font-weight: 700; text-decoration: none; gap: 6px;" title="استوديو القاهرة لتخصيص ومعاينة وتصدير الثيمات">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+        <span>+ استوديو القاهرة</span>
+      </a>
+
+      <!-- Direction Toggle (RTL / LTR) -->
+      <button 
+        type="button" 
+        class="lang-pill-btn" 
+        @click="toggleDir()" 
+        :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+        aria-label="تبديل اتجاه الصفحة واللغة">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span x-text="dir.toUpperCase()"></span>
+      </button>
+
+      <!-- Mode Switcher (Dark / Light) -->
+      <button 
+        type="button" 
+        class="icon-action-btn" 
+        @click="toggleTheme()" 
+        :title="theme === 'dark' ? 'تفعيل الوضع النهاري' : 'تفعيل الوضع الليلي'"
+        aria-label="تبديل الوضع اللوني">
+        <svg x-show="theme === 'dark'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg x-show="theme === 'light'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 2. Hero Section -->
+  <header class="hero-container">
+    <div style="display: inline-flex; margin-block-end: 12px;">
+      <span class="qhr-badge qhr-badge--primary qhr-badge--pill">المعمارية السياحية للواجهات الرقمية المعتمدة</span>
+    </div>
+    <h1 class="hero-headline">
+      معرض منظومة قاهرة <span class="highlight-blue">الشامل والتفاعلي</span>
+    </h1>
+    <p class="hero-lead">
+      استكشف الحزمة البرمجية الكاملة: <strong>40 مكوناً معمارياً</strong>، <strong>20 نمطاً مركباً (UX Patterns)</strong>، و <strong>18 قالباً مؤسسياً</strong> متكاملاً. تدعم جميعها التبديل اللوني، والتوافق الفوري مع باقة ثيمات المنظومة الـ 12 المعتمدة، والتماثل الاتجاهي الكامل %100 Logical CSS، وبصمة العميل 0kb RSC.
+    </p>
+
+    <!-- Telemetry Badges Row -->
+    <div class="telemetry-row">
+      <span class="qhr-badge qhr-badge--neutral qhr-badge--pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-inline-end: 4px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <span>WCAG 2.1 AA Compliant</span>
+      </span>
+      <span class="qhr-badge qhr-badge--neutral qhr-badge--pill">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-inline-end: 4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        <span>0kb RSC Client Boundary</span>
+      </span>
+      <span class="qhr-badge qhr-badge--success qhr-badge--pill">
+        <span>القوالب: </span><strong style="margin-inline-start: 4px;" x-text="counts.template"></strong>
+      </span>
+      <span class="qhr-badge qhr-badge--primary qhr-badge--pill">
+        <span>الأنماط: </span><strong style="margin-inline-start: 4px;" x-text="counts.pattern"></strong>
+      </span>
+      <span class="qhr-badge qhr-badge--info qhr-badge--pill">
+        <span>المكونات: </span><strong style="margin-inline-start: 4px;" x-text="counts.component"></strong>
+      </span>
+    </div>
+  </header>
+
+  <!-- 3. Smart Command Hub (Tabs, Search, Categories) -->
+  <section class="command-hub-wrapper" aria-label="أدوات البحث والتصفية">
+    
+    <!-- Primary Type Navigation (Segmented Control Tabs) -->
+    <div class="tabs-nav-row">
+      <div class="tabs-segmented-wrapper" role="tablist">
+        <button 
+          type="button" 
+          class="tab-item-btn" 
+          :class="{ 'is-active': selectedType === 'all' }" 
+          @click="setType('all')">
+          <span>كافة العناصر</span>
+          <span class="qhr-badge qhr-badge--neutral qhr-badge--xs qhr-badge--pill" x-text="counts.all"></span>
+        </button>
+        <button 
+          type="button" 
+          class="tab-item-btn" 
+          :class="{ 'is-active': selectedType === 'component' }" 
+          @click="setType('component')">
+          <span>المكونات المعمارية</span>
+          <span class="qhr-badge qhr-badge--info qhr-badge--xs qhr-badge--pill" x-text="counts.component"></span>
+        </button>
+        <button 
+          type="button" 
+          class="tab-item-btn" 
+          :class="{ 'is-active': selectedType === 'pattern' }" 
+          @click="setType('pattern')">
+          <span>الأنماط المركبة</span>
+          <span class="qhr-badge qhr-badge--primary qhr-badge--xs qhr-badge--pill" x-text="counts.pattern"></span>
+        </button>
+        <button 
+          type="button" 
+          class="tab-item-btn" 
+          :class="{ 'is-active': selectedType === 'template' }" 
+          @click="setType('template')">
+          <span>القوالب التطبيقية</span>
+          <span class="qhr-badge qhr-badge--success qhr-badge--xs qhr-badge--pill" x-text="counts.template"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Box Card with Leading Icon, KBD and Category Chips -->
+    <div class="search-card-box">
+      <!-- Search & View Mode Switcher -->
+      <div class="search-tools-row">
+        <!-- View Mode Switcher (Grid / List) -->
+        <div style="display: inline-flex; align-items: center; gap: 4px; background: var(--q-bg); border: 1px solid var(--q-border); border-radius: var(--qhr-radius-md, 10px); padding: 4px;">
+          <button 
+            type="button" 
+            class="qhr-btn qhr-btn--sm" 
+            :class="viewMode === 'list' ? 'qhr-btn--primary' : 'qhr-btn--ghost'" 
+            @click="viewMode = 'list'" 
+            title="عرض القائمة" 
+            aria-label="عرض القائمة"
+            style="height: 38px; padding-inline: 12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          </button>
+          <button 
+            type="button" 
+            class="qhr-btn qhr-btn--sm" 
+            :class="viewMode === 'grid' ? 'qhr-btn--primary' : 'qhr-btn--ghost'" 
+            @click="viewMode = 'grid'" 
+            title="عرض الشبكة" 
+            aria-label="عرض الشبكة"
+            style="height: 38px; padding-inline: 12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </button>
+        </div>
+
+        <div class="search-input-container">
+          <svg class="search-leading-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input 
+            id="searchInput" 
+            type="search" 
+            class="search-input-field" 
+            placeholder="ابحث بالاسم العربي أو الإنجليزي، الفئة، التاج، أو المسار (مثال: زر، كانبان، Button، Modal)..." 
+            x-model="searchQuery" 
+            @input="applyFilter()"
+            autocomplete="off">
+          <kbd class="qhr-kbd qhr-kbd--sm search-shortcut-kbd">/</kbd>
+        </div>
+      </div>
+
+      <!-- Faceted Category Chips Strip -->
+      <div class="category-filter-row" role="group" aria-label="التصنيفات الوظيفية">
+        <span class="category-label-hint">تصفية الفئات:</span>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'all' }" @click="setCategory('all')">
+          <span>كافة الفئات</span>
+        </button>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'action' }" @click="setCategory('action')">
+          <span>أزرار وإجراءات</span>
+        </button>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'forms' }" @click="setCategory('forms')">
+          <span>نماذج وإدخال</span>
+        </button>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'navigation' }" @click="setCategory('navigation')">
+          <span>تنقل وهيكلة</span>
+        </button>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'overlay' }" @click="setCategory('overlay')">
+          <span>بوابات ونوافذ</span>
+        </button>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'feedback' }" @click="setCategory('feedback')">
+          <span>تغذية وحالات</span>
+        </button>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'analytics' }" @click="setCategory('analytics')">
+          <span>لوحات وبيانات</span>
+        </button>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'ecommerce' }" @click="setCategory('ecommerce')">
+          <span>تجارة وأعمال</span>
+        </button>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'media' }" @click="setCategory('media')">
+          <span>وسائط وعناصر</span>
+        </button>
+        <button type="button" class="qhr-chip qhr-chip--sm" :class="{ 'qhr-chip--primary': selectedCategory === 'ai' }" @click="setCategory('ai')">
+          <span>ذكاء وتفاعل</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Results Status Bar -->
+    <div class="results-summary-bar">
+      <div class="results-count-title">
+        <span>إجمالي العناصر: <strong x-text="filteredItems.length"></strong> من أصل <strong x-text="items.length"></strong> (يُعرض حالياً <strong x-text="startIndex"></strong> إلى <strong x-text="endIndex"></strong>)</span>
+        <button 
+          type="button" 
+          class="qhr-btn qhr-btn--ghost qhr-btn--xs" 
+          style="color: var(--q-gold);" 
+          x-show="searchQuery !== '' || selectedType !== 'all' || selectedCategory !== 'all'" 
+          @click="resetFilters()">
+          <span>(تفريغ الفلاتر والعودة للكل)</span>
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <label for="pageSizeSelect" style="font-size: 0.78rem;">العناصر لكل صفحة:</label>
+        <select 
+          id="pageSizeSelect" 
+          class="qhr-select qhr-select--sm" 
+          style="width: auto; height: 32px; padding-block: 2px; padding-inline: 10px;" 
+          x-model="pageSize" 
+          @change="currentPage = 1">
+          <option value="12">12</option>
+          <option value="24">24</option>
+          <option value="48">48</option>
+          <option value="all">عرض الكل</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Interactive Showcase Stage -->
+  <main class="stage-container">
+
+    <!-- Empty State Display -->
+    <div class="qhr-card" style="text-align: center; padding: 54px 24px; border-radius: var(--qhr-radius-xl, 18px); margin-block: 20px;" x-show="filteredItems.length === 0">
+      <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(37, 99, 235, 0.12); color: #2563EB; display: inline-flex; align-items: center; justify-content: center; margin-block-end: 16px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+      </div>
+      <h2 style="font-family: var(--q-font-heading); font-size: 1.3rem; font-weight: 700; margin: 0 0 8px 0;">لم يتم العثور على أي عناصر مطابقة</h2>
+      <p style="color: var(--q-text-secondary); font-size: 0.92rem; max-width: 440px; margin: 0 auto 20px auto;">جرّب البحث بكلمات مفتاحية أخرى، أو قم بإلغاء الفلاتر المحددة لاستعراض كافة المكونات والأنماط.</p>
+      <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" @click="resetFilters()">
+        <span>إعادة ضبط كافة الفلاتر</span>
+      </button>
+    </div>
+
+    <!-- VIEW 1: Cards Grid -->
+    <div class="registry-cards-grid" x-show="viewMode === 'grid'">
+      <template x-for="item in paginatedItems" :key="item.uniqueKey">
+        <article class="qhr-showcase-card">
+          <div>
+            <!-- Card Meta Top -->
+            <div class="card-meta-top">
+              <span class="qhr-badge qhr-badge--sm" :class="item.type === 'component' ? 'qhr-badge--info' : item.type === 'pattern' ? 'qhr-badge--primary' : 'qhr-badge--success'" x-text="item.typeLabel"></span>
+              <span class="qhr-badge qhr-badge--neutral qhr-badge--xs" x-text="item.catAr"></span>
+            </div>
+
+            <!-- Card Titles -->
+            <h3 class="card-arabic-heading">
+              <a :href="item.file" class="card-title-link" x-text="item.arabic"></a>
+            </h3>
+            <div class="card-tech-id-row">
+              <span x-text="item.name"></span>
+              <span style="opacity: 0.4;">·</span>
+              <span style="font-size: 0.72rem; opacity: 0.75;" x-text="item.file.split('/').pop()"></span>
+            </div>
+
+            <!-- Description Body -->
+            <p class="card-desc-body" x-text="item.desc"></p>
+          </div>
+
+          <div>
+            <!-- Tags Flex Row -->
+            <div class="card-tags-flex" x-html="renderTags(item.tags)"></div>
+
+            <!-- Footer Actions -->
+            <div class="card-footer-actions">
+              <a :href="item.file" class="qhr-btn qhr-btn--primary qhr-btn--sm" style="font-size: 0.8rem; height: 32px; padding-inline: 12px; text-decoration: none;">
+                <span>فتح المعاينة</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-inline-start: 6px;" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+
+              <button 
+                type="button" 
+                class="qhr-btn qhr-btn--ghost qhr-btn--xs" 
+                @click="copyItemName(item.name, item.id)"
+                :title="'نسخ اسم ' + item.name">
+                <span x-text="copiedId === item.id ? 'تم النسخ' : item.name"></span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </template>
+    </div>
+
+    <!-- VIEW 2: Compact List -->
+    <div class="registry-list-view" x-show="viewMode === 'list'">
+      <template x-for="item in paginatedItems" :key="item.uniqueKey">
+        <div class="qhr-showcase-card" style="padding: 14px 18px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 12px; flex: 1; min-inline-size: 260px;">
+              <span class="qhr-badge qhr-badge--xs" :class="item.type === 'component' ? 'qhr-badge--info' : item.type === 'pattern' ? 'qhr-badge--primary' : 'qhr-badge--success'" x-text="item.typeLabel"></span>
+              <a :href="item.file" class="card-title-link" style="font-weight: 700; font-size: 0.96rem;" x-text="item.arabic"></a>
+              <span style="font-family: var(--q-font-mono); font-size: 0.78rem; color: var(--q-text-muted);" x-text="'(' + item.name + ')'"></span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="qhr-badge qhr-badge--neutral qhr-badge--xs" x-text="item.catAr"></span>
+              <a :href="item.file" class="qhr-btn qhr-btn--primary qhr-btn--xs" style="text-decoration: none; padding-inline: 10px;">
+                <span>فتح</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- 5. Dynamic Pagination Bar -->
+    <nav class="pagination-container" aria-label="ترقيم الصفحات" x-show="totalPages > 1" style="display: flex; justify-content: center; align-items: center; gap: 6px; margin-block-start: 40px; flex-wrap: wrap;">
+      <button 
+        type="button" 
+        class="qhr-btn qhr-btn--ghost qhr-btn--sm" 
+        :disabled="currentPage === 1" 
+        @click="setPage(currentPage - 1)">
+        السابق
+      </button>
+
+      <template x-for="p in paginationPages" :key="'page-' + p">
+        <button 
+          type="button" 
+          class="qhr-btn qhr-btn--sm" 
+          :class="currentPage === p ? 'qhr-btn--primary' : 'qhr-btn--ghost'" 
+          :disabled="p === '...'" 
+          @click="goToPage(p)" 
+          x-text="p">
+        </button>
+      </template>
+
+      <button 
+        type="button" 
+        class="qhr-btn qhr-btn--ghost qhr-btn--sm" 
+        :disabled="currentPage === totalPages" 
+        @click="setPage(currentPage + 1)">
+        التالي
+      </button>
+    </nav>
+
+  </main>
+
+  <!-- 6. Footer -->
+  <footer class="showcase-footer">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-weight: 800; font-family: var(--q-font-heading); color: var(--q-text-primary);">Qahera UI Kit v1.5.0</span>
+        <span>·</span>
+        <span>Alwkala Design Systems &amp; Technology Studio</span>
+      </div>
+      <div style="font-size: 0.78rem; color: var(--q-text-muted);">
+        100% Logical CSS Parity · WCAG 2.1 AA Compliant · 0kb RSC Client Boundary · 12 Cairo Atlas Neighborhood Themes
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

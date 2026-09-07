@@ -1,0 +1,47 @@
+id: metric-comparison-grid
+name: Metric Comparison Grid
+category: data-display
+purpose: >
+  Side-by-side financial, analytical, and performance KPI comparison grid featuring trend chips, mini charts, and progress benchmarks.
+
+components:
+  - card
+  - badge
+  - progress
+  - divider
+  - chip
+
+anatomy:
+  - grid-container
+  - metric-card
+  - metric-header
+  - metric-value
+  - trend-indicator
+  - progress-benchmark
+  - divider-line
+
+slots:
+  - metrics
+  - comparisons
+
+layout:
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))
+  gap: var(--qhr-space-5)
+
+accessibility:
+  role: region
+  landmark: region
+
+ai:
+  purpose: "Financial portfolio and analytical metrics comparison"
+  use_when:
+    - "Fintech dashboards, trading platforms, executive KPI overviews"
+  avoid_when:
+    - "Textual narrative content"
+  composed_of:
+    - card
+    - badge
+    - progress
+    - divider
+    - chip

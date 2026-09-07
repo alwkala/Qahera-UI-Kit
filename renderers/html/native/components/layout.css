@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Showcase Layout Classes (Zero-inline CSS architecture)
+   ========================================================================== */
+.qhr-showcase-page {
+  background-color: var(--qhr-surface-base, #ffffff);
+  color: var(--qhr-content-primary, #0f172a);
+  font-family: var(--qhr-font-body, "Tajawal", sans-serif);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.qhr-showcase-container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-block: var(--qhr-space-8, 32px);
+  padding-inline: var(--qhr-space-6, 24px);
+}
+
+.qhr-showcase-hero {
+  padding-block: var(--qhr-space-8, 32px) var(--qhr-space-10, 40px);
+  border-bottom: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  margin-bottom: var(--qhr-space-10, 40px);
+}
+
+.qhr-showcase-hero-badge {
+  margin-bottom: var(--qhr-space-3, 12px);
+}
+
+.qhr-showcase-hero-title {
+  font-family: var(--qhr-font-heading, "Cairo", sans-serif);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 var(--qhr-space-3, 12px) 0;
+  color: var(--qhr-content-primary, #0f172a);
+}
+
+.qhr-showcase-hero-subtitle {
+  font-size: var(--qhr-text-lg, 1.125rem);
+  color: var(--qhr-content-secondary, #64748b);
+  max-width: 720px;
+  line-height: 1.6;
+  margin: 0 0 var(--qhr-space-6, 24px) 0;
+}
+
+.qhr-showcase-section {
+  margin-bottom: var(--qhr-space-12, 48px);
+}
+
+.qhr-showcase-section-header {
+  margin-bottom: var(--qhr-space-6, 24px);
+}
+
+.qhr-showcase-section-title {
+  font-family: var(--qhr-font-heading, "Cairo", sans-serif);
+  font-size: var(--qhr-text-xl, 1.25rem);
+  font-weight: 700;
+  color: var(--qhr-content-primary, #0f172a);
+  margin: 0 0 var(--qhr-space-1, 4px) 0;
+}
+
+.qhr-showcase-section-desc {
+  font-size: var(--qhr-text-sm, 0.875rem);
+  color: var(--qhr-content-secondary, #64748b);
+  margin: 0;
+}
+
+.qhr-showcase-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--qhr-space-6, 24px);
+}
+
+.qhr-showcase-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--qhr-space-6, 24px);
+}
+
+.qhr-showcase-card {
+  background-color: var(--qhr-surface-elevated, #ffffff);
+  border: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  border-radius: var(--qhr-radius-lg, 16px);
+  padding: var(--qhr-space-6, 24px);
+}
+
+.qhr-showcase-card-header {
+  font-family: var(--qhr-font-heading, "Cairo", sans-serif);
+  font-size: var(--qhr-text-base, 1rem);
+  font-weight: 600;
+  margin: 0 0 var(--qhr-space-4, 16px) 0;
+  color: var(--qhr-content-primary, #0f172a);
+  padding-bottom: var(--qhr-space-2, 8px);
+  border-bottom: 1px solid var(--qhr-border-subtle, #e2e8f0);
+}
+
+.qhr-showcase-flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--qhr-space-3, 12px);
+  align-items: center;
+}
+
+.qhr-showcase-col-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qhr-space-3, 12px);
+}
+
+/* Dark mode overrides for newly added components */
+[data-theme="dark"] .qhr-navbar {
+  background-color: var(--qhr-surface-base, #0b0f19);
+  border-bottom-color: var(--qhr-border-subtle, #1e293b);
+}
+
+[data-theme="dark"] .qhr-dropdown-menu,
+[data-theme="dark"] .qhr-accordion,
+[data-theme="dark"] .qhr-table-wrapper,
+[data-theme="dark"] .qhr-toast,
+[data-theme="dark"] .qhr-showcase-card {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  border-color: var(--qhr-border-subtle, #1e293b);
+}
+
+[data-theme="dark"] .qhr-dropdown-item:hover,
+[data-theme="dark"] .qhr-accordion-header:hover,
+[data-theme="dark"] .qhr-table th,
+[data-theme="dark"] .qhr-table--striped tbody tr:nth-child(even),
+[data-theme="dark"] .qhr-avatar {
+  background-color: var(--qhr-surface-muted, #1a233a);
+}
+
+[data-theme="dark"] .qhr-checkbox input[type="checkbox"],
+[data-theme="dark"] .qhr-radio input[type="radio"] {
+  background-color: var(--qhr-surface-base, #0b0f19);
+  border-color: var(--qhr-border-strong, #334155);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Qahera Extended Components & Utilities
+   Strict Compliance with AGENTS.md (100% Logical CSS, Zero Hardcoded Colors)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 13. System Utilities: Border & Radius ────────────────────────── */
+.qhr-border         { border: 1px solid var(--qhr-border-subtle, rgba(212,175,55,0.2)); }
+.qhr-border-strong  { border: 1px solid var(--qhr-border-strong, rgba(212,175,55,0.4)); }
+.qhr-border-dashed  { border: 1px dashed var(--qhr-border-subtle, rgba(212,175,55,0.25)); }
+.qhr-rounded-sm     { border-radius: var(--qhr-radius-sm, 6px); }
+.qhr-rounded-md     { border-radius: var(--qhr-radius-md, 10px); }
+.qhr-rounded-lg     { border-radius: var(--qhr-radius-lg, 16px); }
+.qhr-rounded-xl     { border-radius: var(--qhr-radius-xl, 24px); }
+.qhr-rounded-pill   { border-radius: var(--qhr-radius-pill, 9999px); }
+
+
+/* ── 12. Advanced Media Object (.qhr-media) ───────────────────────── */
+.qhr-media {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--qhr-space-4, 16px);
+}
+.qhr-media-figure {
+  flex-shrink: 0;
+}
+.qhr-media-body {
+  flex: 1;
+}
+.qhr-media-actions {
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}

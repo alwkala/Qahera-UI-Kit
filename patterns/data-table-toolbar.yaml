@@ -1,0 +1,60 @@
+id: data-table-toolbar
+name: Data Table Toolbar
+category: data-display
+purpose: >
+  Combines search, filter toggles, bulk actions, column visibility, and export utilities above complex data tables.
+
+components:
+  - input
+  - button
+  - select
+  - badge
+
+anatomy:
+  - root
+  - search-cluster
+  - filter-cluster
+  - bulk-actions-cluster
+  - utility-cluster
+  - selected-count-indicator
+
+slots:
+  - search
+  - filters
+  - bulk-actions
+  - utilities
+
+layout:
+  display: flex
+  direction: responsive
+  gap: var(--qhr-space-3)
+  alignment: center
+  responsive:
+    sm: "flex-direction: column; align-items: stretch; gap: var(--qhr-space-3);"
+    md: "flex-direction: row; justify-content: space-between; align-items: center;"
+
+accessibility:
+  role: toolbar
+  landmark: region
+  keyboard_flow: >
+    Tab moves between search input, filter popovers, bulk action triggers, and export buttons.
+    Left/Right arrow keys navigate between buttons within action groups.
+  aria_live: polite
+
+ai:
+  purpose: "Operational control strip for administrative data tables"
+  use_when:
+    - "Complex data grids with multiple filter dimensions"
+    - "Tables supporting multi-row selection and batch operations"
+  avoid_when:
+    - "Simple static tables (< 5 rows) without search or selection"
+    - "Read-only summary tables in dashboards"
+  composed_of:
+    - input
+    - button
+    - select
+    - badge
+  related_patterns:
+    - search-toolbar
+    - filter-bar
+    - pagination

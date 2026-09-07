@@ -1,0 +1,54 @@
+id: editorial-story
+name: Editorial Story
+category: marketing
+purpose: >
+  Presents a cinematic brand philosophy, heritage narrative, or craftsmanship story with dual-tone imagery, display typography, and poetic callout.
+
+components:
+  - card
+  - badge
+  - button
+
+anatomy:
+  - root
+  - narrative-grid
+  - text-column
+  - kicker-badge
+  - headline
+  - body-paragraphs
+  - quote-block
+  - media-column
+  - primary-image
+  - secondary-image
+
+slots:
+  - kicker
+  - headline
+  - story
+  - quote
+  - media
+
+layout:
+  display: grid
+  columns: 2
+  gap: var(--qhr-space-8)
+  responsive:
+    sm: "grid-template-columns: 1fr;"
+    md: "grid-template-columns: 1fr 1fr;"
+
+accessibility:
+  role: region
+  landmark: region
+  keyboard_flow: "Tab traverses interactive action triggers within story columns"
+
+ai:
+  purpose: "Present brand storytelling, craftsmanship narrative, or heritage vision with rich typography and media framing."
+  use_when:
+    - "Brand about pages, founder letters, craftsmanship features, or heritage overviews"
+  avoid_when:
+    - "Transactional checkouts, dense administrative forms, or rapid data processing views"
+  composed_of:
+    - card
+    - badge
+    - button
+

@@ -1,0 +1,100 @@
+id: progress
+name: Progress
+component: Progress
+category: feedback
+purpose: >
+  Visualizes the deterministic or indeterminate completion status of an operation, task, or metric indicator.
+
+anatomy:
+  - root
+  - track
+  - bar
+  - label
+  - value
+  - helper
+  - segment
+  - milestone
+  - circle
+
+variants:
+  default:
+    intent: solid-fill-progress
+  striped:
+    intent: diagonal-accent-stripes
+  animated:
+    intent: flowing-diagonal-animation-stripes
+  gradient:
+    intent: luxury-gold-gradient-fill
+  indeterminate:
+    intent: continuous-traveling-pulse-stream
+  segmented:
+    intent: multi-partitioned-metric-track
+  vertical:
+    intent: bottom-to-top-vertical-progress
+
+shapes:
+  linear:
+    intent: horizontal-bar-track
+  circular:
+    intent: radial-ring-svg-meter
+  vertical:
+    intent: vertical-column-bar-track
+
+sizes:
+  xxs:
+    height: 2
+  xs:
+    height: 4
+  sm:
+    height: 6
+  md:
+    height: 10
+  lg:
+    height: 16
+  xl:
+    height: 24
+
+states:
+  - default
+  - indeterminate
+  - complete
+  - paused
+  - error
+
+tone:
+  - neutral
+  - info
+  - success
+  - warning
+  - danger
+  - secondary
+  - luxury
+
+slots:
+  label: optional
+  value: optional
+  helper: optional
+  segments: optional
+  milestones: optional
+
+accessibility:
+  role: progressbar
+  aria:
+    - "aria-valuenow"
+    - "aria-valuemin=0"
+    - "aria-valuemax=100"
+    - "aria-label"
+  keyboard: false
+  focusVisible: false
+
+ai:
+  purpose: "Deterministic or streaming progress bar, vertical meters, and radial rings for metrics and task completion"
+  whenToUse:
+    - "Horizontal and vertical metric indicators and level meters"
+    - "File upload and asset synchronization status"
+    - "KPI goal completion bars in dashboards"
+    - "Multi-step form completion indicators"
+    - "Disk, memory, and equalizer column monitors"
+  avoid:
+    - "Discrete stepped wizard navigation (use Stepper)"
+    - "Standalone loading spinners without progress context (use Spinner or Preloader)"

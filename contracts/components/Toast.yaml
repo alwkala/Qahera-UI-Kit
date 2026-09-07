@@ -1,0 +1,58 @@
+name: Toast
+category: overlay
+purpose: >
+  Displays temporary, non-blocking feedback notifications that auto-dismiss.
+
+anatomy:
+  - root
+  - status-icon
+  - text-group
+  - title
+  - description
+  - action-button
+  - close-button
+  - progress-bar
+
+variants:
+  - default
+
+sizes:
+  - md
+
+states:
+  - entering
+  - visible
+  - exiting
+
+tone:
+  - neutral
+  - info
+  - success
+  - warning
+  - danger
+
+slots:
+  - start
+  - default
+  - end
+
+accessibility:
+  role: status
+  keyboard:
+    Escape: "Dismisses active toast"
+  focus: "Non-stealing focus"
+  aria:
+    - aria-live: "polite"
+    - aria-atomic: "true"
+
+behavior:
+  auto_dismiss: true
+  duration: 4000
+  pause_on_hover: true
+
+ai:
+  description: "Floating temporary confirmation toast"
+  use_when:
+    - "Confirming background operations ('Changes saved', 'Copied to clipboard')"
+  avoid_when:
+    - "Critical workflows requiring explicit user interaction before proceeding (use Modal)"

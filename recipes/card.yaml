@@ -1,0 +1,95 @@
+component: Card
+name: card
+category: containers
+version: 1.0.0
+
+ai:
+  intent: "Content grouping container"
+  visual_role: "Elevated structural card"
+  density: "comfortable"
+  preferred_when:
+    - "Product cards in e-commerce"
+    - "Dashboard widgets and metrics"
+    - "Profile summaries or article cards"
+  avoid_when:
+    - "Ephemeral overlays (use modal or toast)"
+
+base:
+  display: flex
+  flex-direction: column
+  background-color: "{color.surface.elevated}"
+  border: "1px solid {color.border.subtle}"
+  border-radius: "{radius.lg}"
+  overflow: hidden
+  transition-duration: "{duration.normal}"
+  transition-timing-function: "{ease.standard}"
+
+variants:
+  outline:
+    box-shadow: none
+  elevated:
+    box-shadow: "{shadow.md}"
+  flat:
+    background-color: "{color.surface.muted}"
+    border-color: transparent
+
+sizes:
+  sm:
+    padding: "{space.3}"
+  md:
+    padding: "{space.5}"
+  lg:
+    padding: "{space.8}"
+
+states:
+  hover:
+    box-shadow: "{shadow.lg}"
+  focus:
+    outline: "2px solid {color.primary.bg}"
+
+contract:
+  anatomy:
+    - root
+    - header
+    - title
+    - subtitle
+    - body
+    - footer
+    - action-bar
+  props:
+    variant:
+      default: outline
+      values: [outline, elevated, flat]
+    size:
+      default: md
+      values: [sm, md, lg]
+  slots:
+    - start
+    - default
+    - end
+
+structure:
+  base:
+    native_class: qhr-card
+    tailwind: "bg-[var(--qhr-surface-elevated)] border border-[var(--qhr-border-subtle)] rounded-[var(--qhr-radius-lg)] overflow-hidden transition-shadow"
+  variants:
+    elevated:
+      native_modifier: qhr-card--elevated
+      tailwind: "shadow-md hover:shadow-lg"
+    outline:
+      native_modifier: qhr-card--outline
+      tailwind: "shadow-none"
+    flat:
+      native_modifier: qhr-card--flat
+      tailwind: "bg-[var(--qhr-surface-muted)] border-transparent"
+  sizes:
+    sm: "p-[var(--qhr-space-3)]"
+    md: "p-[var(--qhr-space-5)]"
+    lg: "p-[var(--qhr-space-8)]"
+
+accessibility:
+  role: region
+
+rtl:
+  supported: true
+  directional_mirroring: false

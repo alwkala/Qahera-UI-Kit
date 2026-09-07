@@ -1,0 +1,134 @@
+{
+  "id": "chip",
+  "name": "Chip",
+  "component": "Chip",
+  "category": "data-display",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "avatar",
+      "icon-start",
+      "label",
+      "remove-button"
+    ],
+    "variants": {
+      "default": {
+        "intent": "neutral-tag"
+      },
+      "primary": {
+        "intent": "selected-brand-chip"
+      },
+      "outline": {
+        "intent": "subtle-filterable-chip"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": 24,
+        "padding_inline": 8,
+        "font_size": "var(--qhr-text-xs)"
+      },
+      "md": {
+        "height": 32,
+        "padding_inline": 12,
+        "font_size": "var(--qhr-text-sm)"
+      },
+      "lg": {
+        "height": 40,
+        "padding_inline": 16,
+        "font_size": "var(--qhr-text-base)"
+      }
+    },
+    "states": [
+      "default",
+      "selected",
+      "disabled"
+    ],
+    "slots": {
+      "leadingIcon": "optional",
+      "avatar": "optional",
+      "default": "required",
+      "trailingIcon": "optional"
+    },
+    "accessibility": {
+      "role": "button",
+      "keyboard": true,
+      "focusVisible": true,
+      "keyboard_keys": {
+        "Enter": "Toggles or triggers chip action",
+        "Backspace": "Removes chip if removable",
+        "Delete": "Removes chip if removable"
+      }
+    }
+  },
+  "recipe": {
+    "file": "recipes/chip.yaml",
+    "base": {
+      "display": "inline-flex",
+      "align-items": "center",
+      "border-radius": "{radius.full}",
+      "border": "1px solid {color.border.subtle}",
+      "background-color": "{color.surface.elevated}",
+      "transition": "all 0.15s ease"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.elevated}",
+        "color": "{color.text.base}"
+      },
+      "primary": {
+        "background-color": "{color.brand.subtle}",
+        "color": "{color.brand.primary}",
+        "border-color": "{color.brand.primary}"
+      },
+      "outline": {
+        "background-color": "transparent",
+        "border-color": "{color.border.subtle}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": "24px",
+        "padding": "0 var(--qhr-space-2)"
+      },
+      "md": {
+        "height": "32px",
+        "padding": "0 var(--qhr-space-3)"
+      },
+      "lg": {
+        "height": "40px",
+        "padding": "0 var(--qhr-space-4)"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      },
+      "selected": {
+        "background-color": "{color.brand.subtle}"
+      },
+      "disabled": {
+        "opacity": 0.5,
+        "pointer-events": "none"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Compact interactive element representing an attribute, text tag, selection filter, or removable token.",
+    "whenToUse": [
+      "Active filter pills in search bars and data tables",
+      "Tag entry inputs (TagInput)",
+      "Compact entity mentions"
+    ],
+    "avoid": [
+      "Main call to action triggers (use Button instead)",
+      "Passive notification alerts (use Badge or Alert instead)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Chip.yaml"
+  }
+}

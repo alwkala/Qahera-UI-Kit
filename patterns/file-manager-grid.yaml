@@ -1,0 +1,54 @@
+id: file-manager-grid
+name: File Manager Grid
+category: containers
+purpose: >
+  Digital asset management and cloud storage browser combining hierarchical treeview, file upload dropzone, storage meter, and grid items.
+
+components:
+  - treeview
+  - file-upload
+  - card
+  - button
+  - input
+  - progress
+  - kbd
+
+anatomy:
+  - manager-root
+  - sidebar-tree
+  - storage-meter
+  - main-area
+  - toolbar-actions
+  - upload-dropzone
+  - files-grid
+  - file-card
+
+slots:
+  - sidebar
+  - toolbar
+  - files
+  - storage
+
+layout:
+  display: grid
+  grid-template-columns: 280px 1fr
+  gap: var(--qhr-space-6)
+
+accessibility:
+  role: region
+  landmark: main
+
+ai:
+  purpose: "Cloud drive and digital asset management browser"
+  use_when:
+    - "Document management systems, photo libraries, and enterprise media asset vaults"
+  avoid_when:
+    - "Simple single file inputs"
+  composed_of:
+    - treeview
+    - file-upload
+    - card
+    - button
+    - input
+    - progress
+    - kbd

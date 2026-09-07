@@ -1,0 +1,34 @@
+id: template-ecommerce
+name: Luxury E-Commerce & Jewelry Catalog
+category: ecommerce
+purpose: >
+  Faceted luxury catalog and jewelry exploration with category filter chips, search toolbar, luxury product cards (Steel 316L & 18K Gold), store locator, and pagination.
+
+patterns:
+  - luxury-product-card
+  - search-toolbar
+  - filter-bar
+  - store-locator
+  - vip-membership
+  - pagination
+  - empty-state
+
+components:
+  - back-to-top
+  - navbar
+  - card
+  - button
+  - badge
+  - input
+  - select
+
+features:
+  - faceted_toolbar: "Category, price tier, and availability filters"
+  - luxury_product_grid: "Card grid with high-contrast imagery, anti-tarnish badges, pricing, and Add-to-Cart"
+  - store_showrooms: "Showroom locator for physical boutique inspection in Cairo and Alexandria"
+  - vip_club: "Exclusive drops and royal packaging subscription"
+
+ai:
+  purpose: "Luxury e-commerce catalog and boutique shopping experience"
+  use_when:
+    - "High-end jewelry, luxury fashion accessories, premium lifestyle drops"

@@ -1,0 +1,31 @@
+id: template-auth
+name: Extended Authentication & Identity Suite
+category: auth
+purpose: >
+  Comprehensive, enterprise-ready identity validation and security views including Login, Standard Register, Multi-Step Enterprise Register (Register 2), Session Lock Screen, and Password Recovery.
+
+patterns:
+  - form-actions
+  - empty-state
+
+components:
+  - card
+  - input
+  - button
+  - checkbox
+  - badge
+  - avatar
+
+views:
+  - login: "Enterprise Single Sign-On, Email/Password, Remember-Me, and Passkey/Biometric authentication"
+  - register: "Streamlined single-step developer & user onboarding with password strength meter"
+  - register-2: "Multi-step enterprise onboarding (Organization profile, role selection, workspace configuration)"
+  - lock-screen: "Session security lock with user avatar, biometric/PIN unlock prompt, and account switcher"
+  - forgot-password: "Self-service recovery email submission with cryptographic token link simulation"
+
+ai:
+  purpose: "User authentication, session security, and identity lifecycle gateway"
+  use_when:
+    - "Application login, user registration, multi-step onboarding, and idle session lock screens"
+  avoid:
+    - "Embedding complete authentication lifecycle logic in read-only presentation rows"

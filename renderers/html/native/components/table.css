@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Table (.qhr-table)
+   ========================================================================== */
+.qhr-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  border-radius: var(--qhr-radius-xl, 18px);
+  background-color: var(--qhr-surface-base, #ffffff);
+  box-shadow: var(--qhr-shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.05));
+}
+
+[data-theme="dark"] .qhr-table-wrapper {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  border-color: var(--qhr-border-subtle, #1e293b);
+}
+
+.qhr-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  text-align: start;
+}
+
+.qhr-table th {
+  background-color: var(--qhr-surface-muted, #f8fafc);
+  color: var(--qhr-content-secondary, #64748b);
+  font-family: var(--qhr-font-heading, 'Alexandria', 'Cairo', sans-serif);
+  font-weight: 700;
+  padding-block: var(--qhr-space-3-5, 14px);
+  padding-inline: var(--qhr-space-4, 16px);
+  border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  white-space: nowrap;
+}
+[data-theme="dark"] .qhr-table th {
+  background-color: rgba(255, 255, 255, 0.03);
+  border-block-end-color: var(--qhr-border-subtle, #1e293b);
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+
+.qhr-table td {
+  padding-block: var(--qhr-space-3-5, 14px);
+  padding-inline: var(--qhr-space-4, 16px);
+  color: var(--qhr-content-primary, #0f172a);
+  border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);
+}
+[data-theme="dark"] .qhr-table td {
+  color: var(--qhr-content-primary, #f8fafc);
+  border-block-end-color: var(--qhr-border-subtle, #1e293b);
+}
+
+.qhr-table tr:last-child td {
+  border-block-end: none;
+}
+
+/* Striped Variant */
+.qhr-table--striped tbody tr:nth-child(even) {
+  background-color: var(--qhr-surface-muted, #f8fafc);
+}
+[data-theme="dark"] .qhr-table--striped tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* Hoverable Variant */
+.qhr-table--hover tbody tr:hover {
+  background-color: rgba(199, 163, 90, 0.06);
+}
+
+/* Compact Sizing */
+.qhr-table--compact th,
+.qhr-table--compact td {
+  padding-block: var(--qhr-space-2, 8px);
+  padding-inline: var(--qhr-space-3, 12px);
+  font-size: var(--qhr-text-xs, 0.75rem);
+}

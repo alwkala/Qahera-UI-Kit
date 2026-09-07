@@ -1,0 +1,45 @@
+<!-- Qahera UI Kit - Native HTML Tabs -->
+<div class="qhr-tabs" x-data="qhrTabs({ defaultTab: 'tab-overview' })">
+  <div class="qhr-tabs-list" role="tablist" aria-label="أقسام الحساب">
+    <button 
+      type="button" 
+      class="qhr-tab" 
+      :class="{ 'is-active': activeTab === 'tab-overview' }" 
+      @click="setTab('tab-overview')" 
+      role="tab" 
+      :aria-selected="activeTab === 'tab-overview'" 
+      aria-controls="panel-overview">
+      نظرة عامة
+    </button>
+    <button 
+      type="button" 
+      class="qhr-tab" 
+      :class="{ 'is-active': activeTab === 'tab-security' }" 
+      @click="setTab('tab-security')" 
+      role="tab" 
+      :aria-selected="activeTab === 'tab-security'" 
+      aria-controls="panel-security">
+      الأمان وكلمات المرور
+    </button>
+    <button 
+      type="button" 
+      class="qhr-tab" 
+      :class="{ 'is-active': activeTab === 'tab-notifications' }" 
+      @click="setTab('tab-notifications')" 
+      role="tab" 
+      :aria-selected="activeTab === 'tab-notifications'" 
+      aria-controls="panel-notifications">
+      الإشعارات والتنبيهات
+    </button>
+  </div>
+
+  <div id="panel-overview" class="qhr-tab-panel" x-show="activeTab === 'tab-overview'" role="tabpanel">
+    <p>هنا يتم عرض ملخص تفصيلي عن حالة الحساب والنشاطات الأخيرة للمستخدم.</p>
+  </div>
+  <div id="panel-security" class="qhr-tab-panel" x-show="activeTab === 'tab-security'" role="tabpanel" x-cloak>
+    <p>إدارة التحقق بخطوتين والأجهزة المتصلة وتغيير كلمة المرور.</p>
+  </div>
+  <div id="panel-notifications" class="qhr-tab-panel" x-show="activeTab === 'tab-notifications'" role="tabpanel" x-cloak>
+    <p>تخصيص تفضيلات إشعارات البريد والرسائل الفورية للتطبيق.</p>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+component: Accordion
+name: accordion
+category: disclosure
+version: 1.0.0
+
+ai:
+  intent: "Vertically collapsible content panels"
+  visual_role: "Disclosure container"
+  density: "comfortable"
+  preferred_when:
+    - "Frequently Asked Questions (FAQ)"
+    - "Detailed product specs or nested navigation"
+  avoid_when:
+    - "All content needs to be viewed simultaneously"
+
+base:
+  display: flex
+  flex-direction: column
+  width: 100%
+  border: "1px solid {color.border.subtle}"
+  border-radius: "{radius.lg}"
+  overflow: hidden
+
+variants:
+  bordered:
+    border: "1px solid {color.border.subtle}"
+  separate:
+    gap: "{space.2}"
+    border: none
+  flush:
+    border-radius: 0
+    border-inline: none
+
+sizes:
+  sm:
+    font-size: "{text.sm}"
+    padding: "{space.3}"
+  md:
+    font-size: "{text.base}"
+    padding: "{space.4}"
+
+states:
+  collapsed:
+    max-height: 0
+  expanded:
+    max-height: auto
+
+contract:
+  anatomy:
+    - root
+    - item
+    - header-button
+    - header-title
+    - chevron-icon
+    - content-region
+    - content-body
+  props:
+    variant:
+      default: bordered
+      values: [bordered, separate, flush]
+    size:
+      default: md
+      values: [sm, md]
+    state:
+      default: collapsed
+      values: [collapsed, expanded]
+  slots:
+    - default
+
+structure:
+  base:
+    native_class: qhr-accordion
+    tailwind: "w-full border border-[var(--qhr-border-subtle)] rounded-[var(--qhr-radius-lg)] divide-y divide-[var(--qhr-border-subtle)] overflow-hidden"
+
+accessibility:
+  role: region
+  keyboard: "Enter or Space toggles panel expansion"
+
+rtl:
+  supported: true
+  directional_mirroring: false

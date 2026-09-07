@@ -1,0 +1,50 @@
+component: CanvasSparks
+name: canvas-sparks
+category: feedback
+version: 1.0.0
+
+ai:
+  intent: "Atmospheric luxury gold sparks canvas"
+  visual_role: "Subtle background ambient depth"
+  density: "minimal"
+  preferred_when:
+    - "Luxury dark mode hero sections"
+    - "Cinematic storytelling or celebratory headers"
+  avoid_when:
+    - "Dense data tables or administrative forms"
+
+base:
+  position: absolute
+  inset: 0
+  width: 100%
+  height: 100%
+  pointer-events: none
+  z-index: 1
+
+variants:
+  default:
+    opacity: 0.75
+  emerald:
+    opacity: 0.65
+
+sizes:
+  full:
+    width: "100%"
+    height: "100%"
+
+states:
+  running:
+    display: block
+  paused:
+    display: none
+
+contract:
+  anatomy:
+    - root
+    - canvas
+  props:
+    count:
+      default: 35
+    variant:
+      default: default
+      values: [default, emerald]

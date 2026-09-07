@@ -1,0 +1,115 @@
+{
+  "id": "tabs",
+  "name": "Tabs",
+  "component": "Tabs",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "tablist",
+      "tab-button",
+      "active-indicator",
+      "panels-container",
+      "tabpanel"
+    ],
+    "variants": [
+      "line",
+      "pills",
+      "enclosed"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "states": [
+      "default"
+    ],
+    "slots": [
+      "start",
+      "default"
+    ],
+    "accessibility": {
+      "role": "tablist",
+      "keyboard": {
+        "ArrowRight": "Moves focus to next tab (LTR) or previous tab (RTL)",
+        "ArrowLeft": "Moves focus to previous tab (LTR) or next tab (RTL)",
+        "Home": "Focuses first tab",
+        "End": "Focuses last tab",
+        "Space": "Activates focused tab",
+        "Enter": "Activates focused tab"
+      },
+      "focus": "Ring on active tab header",
+      "aria": [
+        {
+          "aria-selected": "when tab is active"
+        },
+        {
+          "aria-controls": "matching tabpanel id"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/tabs.yaml",
+    "base": {
+      "display": "flex",
+      "flex-direction": "column",
+      "width": "100%",
+      "gap": "{space.4}"
+    },
+    "variants": {
+      "line": {
+        "border-bottom": "1px solid {color.border.subtle}"
+      },
+      "pills": {
+        "gap": "{space.2}"
+      },
+      "enclosed": {
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.md}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "{text.sm}",
+        "padding-inline": "{space.3}",
+        "padding-block": "{space.1-5}"
+      },
+      "md": {
+        "font-size": "{text.base}",
+        "padding-inline": "{space.4}",
+        "padding-block": "{space.2}"
+      },
+      "lg": {
+        "font-size": "{text.lg}",
+        "padding-inline": "{space.5}",
+        "padding-block": "{space.2-5}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": {
+    "file": "behavior/tabs.js",
+    "moduleName": "tabs"
+  },
+  "ai": {
+    "purpose": "Partitions content into parallel panels switchable via tab buttons.",
+    "whenToUse": [
+      "Settings pages (Profile, Security, Billing)",
+      "Product overviews (Overview, Specs, Reviews)"
+    ],
+    "avoid": [
+      "Sequential multi-step forms (use Stepper/Wizard)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Tabs.yaml"
+  }
+}

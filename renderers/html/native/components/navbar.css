@@ -1,0 +1,672 @@
+/* ==========================================================================
+   Navbar (.qhr-navbar) — Comprehensive Architectural & Art School System
+   Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 · Sovereign Design System
+   100% Logical CSS · 0kb Client RSC Footprint · Multi-Archetype
+   Mobile First & Fluid Container Responsive
+   ========================================================================== */
+
+.qhr-navbar {
+  --_nav-bg: var(--qhr-surface-base, #ffffff);
+  --_nav-border: var(--qhr-border-subtle, #e2e8f0);
+  --_nav-brand: var(--qhr-content-primary, #0f172a);
+  --_nav-link: var(--qhr-content-secondary, #64748b);
+  --_nav-elevated: var(--qhr-surface-elevated, #f1f5f9);
+  --_nav-active: var(--qhr-color-primary-500, #c7a35a);
+
+  width: 100%;
+  background-color: var(--_nav-bg);
+  border-block-end: 1px solid var(--_nav-border);
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--qhr-z-sticky, 1100);
+  transition: background-color var(--qhr-duration-fast, 150ms) ease,
+              border-color var(--qhr-duration-fast, 150ms) ease;
+}
+
+[data-theme="dark"] .qhr-navbar,
+[data-mode="dark"] .qhr-navbar {
+  --_nav-bg: var(--qhr-surface-page, #07090e);
+  --_nav-border: var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  --_nav-brand: var(--qhr-content-primary, #f8fafc);
+  --_nav-link: var(--qhr-content-secondary, #94a3b8);
+  --_nav-elevated: var(--qhr-surface-elevated, #131b2e);
+}
+
+.qhr-navbar-container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--qhr-space-6, 24px);
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--qhr-space-4, 16px);
+  box-sizing: border-box;
+}
+
+.qhr-navbar--sm .qhr-navbar-container { min-height: 3rem; padding-inline: var(--qhr-space-4, 16px); }
+.qhr-navbar--md .qhr-navbar-container { min-height: 4rem; }
+.qhr-navbar--lg .qhr-navbar-container { min-height: 5rem; padding-inline: var(--qhr-space-8, 32px); }
+
+/* ── Brand ── */
+.qhr-navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qhr-space-3, 12px);
+  font-family: var(--qhr-font-heading, "Alexandria", "Cairo", sans-serif);
+  font-size: var(--qhr-text-lg, 1.125rem);
+  font-weight: 700;
+  color: var(--_nav-brand);
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: transform var(--qhr-duration-fast, 150ms) ease;
+}
+.qhr-navbar-brand:hover { transform: translateY(-1px); }
+
+.qhr-navbar-brand-emblem {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--qhr-radius-md, 8px);
+  background: var(--_nav-elevated);
+  border: 1px solid var(--_nav-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--_nav-active);
+  flex-shrink: 0;
+}
+
+/* ── Links & Navigation ── */
+.qhr-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-6, 24px);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.qhr-navbar-link {
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--_nav-link);
+  text-decoration: none;
+  padding: var(--qhr-space-2, 8px);
+  border-radius: var(--qhr-radius-sm, 6px);
+  transition: color var(--qhr-duration-fast, 150ms), background-color var(--qhr-duration-fast, 150ms);
+  white-space: nowrap;
+}
+.qhr-navbar-link:hover,
+.qhr-navbar-link.is-active {
+  color: var(--_nav-active);
+  background-color: var(--qhr-surface-subtle, rgba(255, 255, 255, 0.05));
+}
+
+.qhr-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-3, 12px);
+  flex-shrink: 0;
+}
+
+/* ── Glassmorphism ── */
+.qhr-navbar--glass {
+  background: color-mix(in srgb, var(--_nav-bg) 82%, transparent);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+/* ── Sovereign Tonal Variations ── */
+.qhr-navbar--tone-primary {
+  --_nav-bg: var(--qhr-color-primary-600, #2563eb);
+  --_nav-border: var(--qhr-color-primary-700, #1d4ed8);
+  --_nav-brand: #ffffff;
+  --_nav-link: rgba(255, 255, 255, 0.9);
+  --_nav-active: #ffffff;
+}
+
+.qhr-navbar--tone-dark {
+  --_nav-bg: #0d121f;
+  --_nav-border: rgba(255, 255, 255, 0.1);
+  --_nav-brand: #f8fafc;
+  --_nav-link: #94a3b8;
+  --_nav-active: var(--qhr-color-primary-500, #d4af37);
+}
+
+.qhr-navbar--tone-gold {
+  border-block-end: 2px solid var(--qhr-color-primary-500, #d4af37);
+  box-shadow: 0 4px 20px -5px rgba(212, 175, 55, 0.18);
+}
+
+.qhr-navbar--tone-surface {
+  --_nav-bg: var(--_nav-elevated);
+}
+
+/* 1. Title Only */
+.qhr-navbar--title-only .qhr-navbar-container { justify-content: center; }
+.qhr-navbar-page-title {
+  font-family: var(--qhr-font-heading, "Alexandria", sans-serif);
+  font-size: var(--qhr-text-base, 1rem);
+  font-weight: 700;
+  color: var(--_nav-brand);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 2. Title & Icon */
+.qhr-navbar--title-icon .qhr-navbar-container { justify-content: flex-start; gap: var(--qhr-space-4, 16px); }
+.qhr-navbar-nav-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--qhr-radius-md, 8px);
+  border: 1px solid var(--_nav-border);
+  background: var(--_nav-elevated);
+  color: var(--_nav-link);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--qhr-duration-fast, 150ms) ease;
+}
+.qhr-navbar-nav-icon-btn:hover { color: var(--_nav-active); border-color: var(--_nav-active); }
+
+/* 3. Dual Icons at Start & End */
+.qhr-navbar--dual-icons .qhr-navbar-container {
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: center;
+  gap: var(--qhr-space-3, 12px);
+}
+.qhr-navbar-title-centered {
+  text-align: center;
+  font-family: var(--qhr-font-heading, "Alexandria", sans-serif);
+  font-size: var(--qhr-text-base, 1rem);
+  font-weight: 700;
+  margin: 0;
+  color: var(--_nav-brand);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 4. Menu & Submenus */
+.qhr-navbar-dropdown { position: relative; }
+.qhr-navbar-dropdown-trigger {
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--_nav-link);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--qhr-space-2, 8px);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: var(--qhr-radius-sm, 6px);
+  transition: color var(--qhr-duration-fast, 150ms);
+  white-space: nowrap;
+}
+.qhr-navbar-dropdown-trigger:hover,
+.qhr-navbar-dropdown.is-open .qhr-navbar-dropdown-trigger { color: var(--_nav-active); }
+
+.qhr-navbar-dropdown-menu {
+  position: absolute;
+  inset-block-start: calc(100% + 8px);
+  inset-inline-start: 0;
+  min-width: 220px;
+  background: var(--_nav-bg);
+  border: 1px solid var(--_nav-border);
+  border-radius: var(--qhr-radius-md, 10px);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.18);
+  padding: var(--qhr-space-2, 8px);
+  list-style: none;
+  margin: 0;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.qhr-navbar-dropdown-item {
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  font-weight: 500;
+  padding-block: var(--qhr-space-2, 8px);
+  padding-inline: var(--qhr-space-3, 12px);
+  border-radius: var(--qhr-radius-sm, 6px);
+  color: var(--_nav-brand);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all var(--qhr-duration-fast, 150ms) ease;
+}
+.qhr-navbar-dropdown-item:hover {
+  background-color: var(--qhr-surface-subtle, rgba(255, 255, 255, 0.08));
+  color: var(--_nav-active);
+}
+
+/* 5. Search Capsule */
+.qhr-navbar-search-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qhr-space-2, 8px);
+  background: var(--_nav-elevated);
+  border: 1px solid var(--_nav-border);
+  border-radius: var(--qhr-radius-md, 8px);
+  padding-inline: var(--qhr-space-3, 12px);
+  height: 36px;
+  transition: all var(--qhr-duration-fast, 150ms) ease;
+}
+.qhr-navbar-search-capsule:focus-within {
+  border-color: var(--_nav-active);
+  box-shadow: 0 0 0 2px rgba(199, 163, 90, 0.2);
+}
+.qhr-navbar-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  color: var(--_nav-brand);
+  width: 160px;
+}
+.qhr-navbar-search-kbd {
+  font-family: var(--qhr-font-code, monospace);
+  font-size: 0.68rem;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--_nav-bg);
+  border: 1px solid var(--_nav-border);
+  color: var(--_nav-link);
+}
+
+/* 6. Indicator */
+.qhr-navbar-indicator-wrapper { position: relative; display: inline-flex; }
+.qhr-navbar-indicator-dot {
+  position: absolute;
+  inset-block-start: 4px;
+  inset-inline-end: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--qhr-color-danger-500, #ef4444);
+  border: 1.5px solid var(--_nav-bg);
+}
+
+/* 7. Center Logo Layout */
+.qhr-navbar--center-logo .qhr-navbar-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+.qhr-navbar--center-logo .qhr-navbar-brand { grid-column: 2; margin-inline: auto; }
+.qhr-navbar--center-logo .qhr-navbar-actions { grid-column: 3; justify-content: flex-end; }
+
+/* 8 & 9. Responsive Drawer & Toggle */
+.qhr-navbar-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--_nav-brand);
+  padding: 6px;
+  border-radius: var(--qhr-radius-sm, 6px);
+  flex-shrink: 0;
+}
+.qhr-navbar-toggle:hover {
+  background-color: var(--qhr-surface-subtle, rgba(255, 255, 255, 0.08));
+}
+
+.qhr-navbar-drawer { display: none; }
+.qhr-navbar-backdrop { display: none; }
+
+/* 11. Heliopolis Art Deco */
+.qhr-navbar--school-art-deco {
+  border-block-end: 2px solid var(--qhr-color-primary-500, #d4af37);
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%), var(--_nav-bg);
+}
+.qhr-navbar--school-art-deco .qhr-navbar-brand-emblem {
+  border-color: #d4af37;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+}
+
+/* 12. Belle Époque Newspaper Masthead */
+.qhr-navbar--school-masthead { border-block-end: 2px solid var(--qhr-border-strong, #cbd5e1); }
+.qhr-navbar-masthead-top {
+  border-block-end: 1px solid var(--_nav-border);
+  padding-block: 4px;
+  padding-inline: var(--qhr-space-4, 16px);
+  font-size: 0.72rem;
+  color: var(--_nav-link);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.qhr-navbar--school-masthead .qhr-navbar-brand {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-inline: auto;
+  padding-block: var(--qhr-space-2, 8px);
+}
+
+/* 13. Shubra Neo-Brutalist Slab */
+.qhr-navbar--school-brutalist {
+  border-block-end: 3px solid var(--_nav-brand);
+  border-radius: 0;
+  box-shadow: 0 4px 0 var(--_nav-brand);
+}
+.qhr-navbar--school-brutalist .qhr-navbar-brand-emblem,
+.qhr-navbar--school-brutalist .qhr-navbar-nav-icon-btn,
+.qhr-navbar--school-brutalist .qhr-navbar-search-capsule {
+  border-radius: 0;
+  border-width: 2px;
+  border-color: var(--_nav-brand);
+}
+
+/* 14. Garden City Floating Botanical Pill */
+.qhr-navbar--school-floating-pill {
+  position: sticky;
+  inset-block-start: 16px;
+  max-width: 980px;
+  margin-inline: auto;
+  border-radius: 9999px;
+  border: 1px solid var(--_nav-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  background: color-mix(in srgb, var(--_nav-bg) 88%, transparent);
+  backdrop-filter: blur(20px);
+}
+.qhr-navbar--school-floating-pill .qhr-navbar-container {
+  min-height: 3.5rem;
+  padding-inline: var(--qhr-space-6, 24px);
+}
+
+/* 15. New Cairo Cyber Terminal */
+.qhr-navbar--school-cyber-terminal {
+  font-family: var(--qhr-font-code, monospace);
+  border-block-end: 1px solid var(--qhr-color-primary-500, #06b6d4);
+  background-color: #060a13;
+  color: #06b6d4;
+  box-shadow: 0 2px 14px rgba(6, 182, 212, 0.18);
+}
+.qhr-navbar--school-cyber-terminal .qhr-navbar-brand,
+.qhr-navbar--school-cyber-terminal .qhr-navbar-link {
+  color: #06b6d4;
+  font-family: var(--qhr-font-code, monospace);
+}
+.qhr-navbar--school-cyber-terminal .qhr-navbar-brand-emblem {
+  background: rgba(6, 182, 212, 0.1);
+  border-color: #06b6d4;
+  color: #06b6d4;
+}
+.qhr-navbar-telemetry-badge {
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid #06b6d4;
+  border-radius: 4px;
+  color: #06b6d4;
+}
+
+/* 16. Fatimid Heritage Arch */
+.qhr-navbar--school-heritage {
+  border-block-end: 2px solid var(--qhr-color-primary-600, #b45309);
+  background: radial-gradient(circle at 50% 0%, rgba(180, 83, 9, 0.08), transparent 70%), var(--_nav-bg);
+}
+.qhr-navbar--school-heritage .qhr-navbar-brand-emblem {
+  border-radius: 50%;
+  border-color: var(--_nav-active);
+}
+
+/* ==========================================================================
+   Mobile & Responsive Adaptations (Both Real Viewports & Simulator Harnesses)
+   Supports: @media (max-width: 768px), .viewport--mobile, .viewport--tablet
+   ========================================================================== */
+
+/* ==========================================================================
+   Mobile & Responsive Adaptations (Both Real Viewports & Simulator Harnesses)
+   Supports: @media (max-width: 768px), .viewport--mobile, .viewport--tablet
+   ========================================================================== */
+
+/* Mobile Collapse Container & Accordion Submenus */
+.qhr-navbar-collapse {
+  display: none;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .qhr-navbar-container {
+    padding-inline: var(--qhr-space-3, 12px);
+    gap: var(--qhr-space-2, 8px);
+    min-height: 3.5rem;
+  }
+  .qhr-navbar-brand { font-size: 1rem; gap: 8px; }
+  .qhr-navbar-brand-emblem { width: 30px; height: 30px; }
+  .qhr-navbar-links { display: none; }
+  .qhr-navbar-toggle { display: inline-flex; align-items: center; justify-content: center; }
+  .qhr-navbar-actions { gap: 6px; }
+  .qhr-navbar-actions .qhr-btn { height: 32px; padding-inline: 10px; font-size: 0.78rem; }
+  .qhr-navbar-search-capsule { max-width: 130px; height: 32px; padding-inline: 8px; }
+  .qhr-navbar-search-input { width: 75px; font-size: 0.75rem; }
+  .qhr-navbar-search-kbd { display: none; }
+
+  /* In-Flow Collapsible Mobile Menu */
+  .qhr-navbar.is-open .qhr-navbar-collapse,
+  .qhr-navbar[data-open="true"] .qhr-navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-block: var(--qhr-space-3, 12px);
+    padding-inline: var(--qhr-space-4, 16px);
+    background-color: var(--_nav-bg);
+    border-block-start: 1px solid var(--_nav-border);
+    animation: qhrNavbarSlideDown 200ms ease forwards;
+  }
+
+  .qhr-navbar-collapse .qhr-navbar-links {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+    width: 100% !important;
+  }
+
+  .qhr-navbar-collapse .qhr-navbar-link {
+    padding-block: var(--qhr-space-2, 8px);
+    padding-inline: var(--qhr-space-3, 12px);
+    border-radius: var(--qhr-radius-sm, 6px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Submenus as In-Flow Accordion */
+  .qhr-navbar-collapse .qhr-navbar-dropdown {
+    width: 100%;
+  }
+
+  .qhr-navbar-collapse .qhr-navbar-dropdown-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--qhr-space-2, 8px);
+    padding-inline: var(--qhr-space-3, 12px);
+    border-radius: var(--qhr-radius-sm, 6px);
+  }
+
+  .qhr-navbar-collapse .qhr-navbar-dropdown-menu {
+    position: static !important;
+    min-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-inline-start: 2px solid var(--qhr-color-primary-500, #c7a35a) !important;
+    border-radius: 0 !important;
+    background-color: color-mix(in srgb, var(--_nav-bg) 95%, var(--_nav-brand)) !important;
+    margin-inline-start: var(--qhr-space-3, 12px) !important;
+    padding-inline: var(--qhr-space-2, 8px) !important;
+    padding-block: var(--qhr-space-1, 4px) !important;
+    gap: 4px !important;
+  }
+
+  .qhr-navbar-collapse .qhr-navbar-dropdown-item {
+    padding-block: var(--qhr-space-2, 6px);
+    padding-inline: var(--qhr-space-2, 8px);
+    font-size: var(--qhr-text-sm, 0.8125rem);
+  }
+
+  .qhr-navbar-collapse .qhr-navbar-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding-block-start: 12px !important;
+    border-block-start: 1px dashed var(--_nav-border) !important;
+    width: 100% !important;
+  }
+
+  .qhr-navbar-collapse .qhr-navbar-actions .qhr-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Offcanvas Drawer Pattern */
+  .qhr-navbar--drawer-collapse.is-open .qhr-navbar-drawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: min(82vw, 300px);
+    block-size: 100vh;
+    background: var(--_nav-bg);
+    border-inline-end: 1px solid var(--_nav-border);
+    padding: var(--qhr-space-6, 24px);
+    gap: var(--qhr-space-4, 16px);
+    z-index: 1300;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;
+  }
+  .qhr-navbar--drawer-collapse.is-open .qhr-navbar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1250;
+  }
+
+  .qhr-navbar-masthead-top {
+    flex-direction: column;
+    text-align: center;
+    gap: 2px;
+    font-size: 0.65rem;
+  }
+  .qhr-navbar--school-floating-pill {
+    margin-inline: 8px;
+    padding-inline: 8px;
+    border-radius: 9999px;
+  }
+}
+
+/* Specific overrides for Preview Simulator (.viewport--mobile / .viewport--tablet) */
+.viewport--mobile .qhr-navbar-container,
+.viewport--tablet .qhr-navbar-container {
+  padding-inline: var(--qhr-space-3, 12px);
+  gap: var(--qhr-space-2, 8px);
+  min-height: 3.5rem;
+}
+.viewport--mobile .qhr-navbar-brand { font-size: 0.95rem; gap: 6px; }
+.viewport--mobile .qhr-navbar-brand-emblem { width: 28px; height: 28px; }
+.viewport--mobile .qhr-navbar-links { display: none !important; }
+.viewport--mobile .qhr-navbar-toggle { display: inline-flex !important; }
+.viewport--mobile .qhr-navbar-actions { gap: 6px; }
+.viewport--mobile .qhr-navbar-actions .qhr-btn { height: 32px; padding-inline: 8px; font-size: 0.75rem; }
+.viewport--mobile .qhr-navbar-search-capsule { max-width: 120px; height: 30px; padding-inline: 6px; }
+.viewport--mobile .qhr-navbar-search-input { width: 65px; font-size: 0.72rem; }
+.viewport--mobile .qhr-navbar-search-kbd { display: none; }
+.viewport--mobile .qhr-navbar-masthead-top {
+  flex-direction: column;
+  text-align: center;
+  gap: 2px;
+  font-size: 0.62rem;
+}
+.viewport--mobile .qhr-navbar--school-floating-pill {
+  margin-inline: 4px;
+  border-radius: 9999px;
+}
+.viewport--mobile .qhr-navbar-page-title {
+  font-size: 0.88rem;
+  max-width: 220px;
+}
+
+/* Simulator In-Flow Collapsible Menu */
+.viewport--mobile .qhr-navbar.is-open .qhr-navbar-collapse,
+.viewport--tablet .qhr-navbar.is-open .qhr-navbar-collapse {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding-block: 12px !important;
+  padding-inline: 14px !important;
+  background-color: var(--_nav-bg) !important;
+  border-block-start: 1px solid var(--_nav-border) !important;
+}
+.viewport--mobile .qhr-navbar-collapse .qhr-navbar-links,
+.viewport--tablet .qhr-navbar-collapse .qhr-navbar-links {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 4px !important;
+  width: 100% !important;
+}
+.viewport--mobile .qhr-navbar-collapse .qhr-navbar-dropdown,
+.viewport--tablet .qhr-navbar-collapse .qhr-navbar-dropdown {
+  width: 100% !important;
+}
+.viewport--mobile .qhr-navbar-collapse .qhr-navbar-dropdown-trigger,
+.viewport--tablet .qhr-navbar-collapse .qhr-navbar-dropdown-trigger {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-block: 8px !important;
+  padding-inline: 10px !important;
+  border-radius: 6px !important;
+}
+.viewport--mobile .qhr-navbar-collapse .qhr-navbar-dropdown-menu,
+.viewport--tablet .qhr-navbar-collapse .qhr-navbar-dropdown-menu {
+  position: static !important;
+  min-width: 100% !important;
+  box-shadow: none !important;
+  border: none !important;
+  border-inline-start: 2px solid var(--qhr-color-primary-500, #c7a35a) !important;
+  border-radius: 0 !important;
+  background-color: color-mix(in srgb, var(--_nav-bg) 95%, var(--_nav-brand)) !important;
+  margin-inline-start: 10px !important;
+  padding-inline: 8px !important;
+  padding-block: 4px !important;
+  gap: 4px !important;
+}
+.viewport--mobile .qhr-navbar-collapse .qhr-navbar-actions,
+.viewport--tablet .qhr-navbar-collapse .qhr-navbar-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  padding-block-start: 10px !important;
+  border-block-start: 1px dashed var(--_nav-border) !important;
+  width: 100% !important;
+}
+.viewport--mobile .qhr-navbar-collapse .qhr-navbar-actions .qhr-btn,
+.viewport--tablet .qhr-navbar-collapse .qhr-navbar-actions .qhr-btn {
+  width: 100% !important;
+  justify-content: center !important;
+}
+
+@keyframes qhrNavbarSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

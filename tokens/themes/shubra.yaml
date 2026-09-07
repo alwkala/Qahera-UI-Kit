@@ -1,0 +1,39 @@
+version: 1.0.0
+name: shubra-pop
+description: "Shubra Theme — Vibrant Pop & Neo-Brutalism (Inspired by High-Density Festive Rhythm & Communal Energy)"
+school: "Neo-Brutalism / Vibrant Pop"
+region: "Shubra, Cairo"
+
+overrides:
+  surface:
+    base: "#121316"
+    elevated: "#1C1E24"
+    muted: "#272A32"
+    overlay: "rgba(18, 19, 22, 0.88)"
+  content:
+    primary: "#FFFFFF"
+    secondary: "#E2E8F0"
+    accent: "#F59E0B"
+    muted: "#94A3B8"
+  border:
+    subtle: "rgba(245, 158, 11, 0.25)"
+    strong: "#F59E0B"
+  color:
+    primary:
+      bg: "#DC2626"
+      fg: "#FFFFFF"
+      border: "#DC2626"
+      hover: "#EF4444"
+    secondary:
+      bg: "#1C1E24"
+      fg: "#FFFFFF"
+      border: "#F59E0B"
+      hover: "#272A32"
+    accent:
+      bg: "#F59E0B"
+      fg: "#121316"
+  radius:
+    box: "2px"
+    field: "2px"
+    selector: "2px"
+  border_width: "2px"

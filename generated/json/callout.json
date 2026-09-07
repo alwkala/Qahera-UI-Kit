@@ -1,0 +1,121 @@
+{
+  "id": "callout",
+  "name": "Callout",
+  "component": "Callout",
+  "category": "feedback",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "leading-indicator",
+      "icon",
+      "body",
+      "title",
+      "content"
+    ],
+    "variants": {
+      "subtle": {
+        "intent": "soft-tinted-panel"
+      },
+      "outline": {
+        "intent": "bordered-emphasis-callout"
+      },
+      "luxury": {
+        "intent": "gold-trimmed-editorial-quote"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "padding": 12,
+        "font_size": "var(--qhr-text-xs)"
+      },
+      "md": {
+        "padding": 16,
+        "font_size": "var(--qhr-text-sm)"
+      },
+      "lg": {
+        "padding": 24,
+        "font_size": "var(--qhr-text-base)"
+      }
+    },
+    "states": [
+      "default"
+    ],
+    "slots": {
+      "icon": "optional",
+      "title": "optional",
+      "content": "required"
+    },
+    "accessibility": {
+      "role": "note",
+      "aria": [
+        "aria-label"
+      ],
+      "keyboard": false,
+      "focusVisible": false
+    }
+  },
+  "recipe": {
+    "file": "recipes/callout.yaml",
+    "base": {
+      "position": "relative",
+      "display": "flex",
+      "gap": "{space.4}",
+      "border-radius": "{radius.lg}",
+      "padding": "{space.4}",
+      "font-family": "{font.family.body}",
+      "background-color": "{color.surface.card}",
+      "border-inline-start": "4px solid {color.primary.bg}",
+      "border-block": "1px solid {color.border.subtle}",
+      "border-inline-end": "1px solid {color.border.subtle}"
+    },
+    "variants": {
+      "subtle": {
+        "background-color": "{color.surface.subtle}"
+      },
+      "outline": {
+        "background-color": "transparent"
+      },
+      "luxury": {
+        "border-inline-start-color": "{color.primary.bg}",
+        "background-color": "{color.surface.card}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "padding": "{space.3}",
+        "font-size": "{text.xs}"
+      },
+      "md": {
+        "padding": "{space.4}",
+        "font-size": "{text.sm}"
+      },
+      "lg": {
+        "padding": "{space.6}",
+        "font-size": "{text.base}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Highlights critical editorial quotes, architectural insights, tips, or contextual notices with an elevated visual prominence.",
+    "whenToUse": [
+      "Documentation guidelines, code tips, and architectural callouts",
+      "Editorial quotes and highlighted insights in blog widgets",
+      "Security reminders in billing and profile settings"
+    ],
+    "avoid": [
+      "Critical dismissible alerts interrupting application flows (use Alert)",
+      "Transient ephemeral messages (use Toast)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Callout.yaml"
+  }
+}

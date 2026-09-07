@@ -1,0 +1,157 @@
+{
+  "id": "menu",
+  "name": "Menu",
+  "component": "Menu",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "item",
+      "link",
+      "icon",
+      "label",
+      "badge",
+      "title",
+      "submenu",
+      "submenu-toggle",
+      "divider"
+    ],
+    "variants": [
+      "default",
+      "vertical",
+      "horizontal",
+      "compact",
+      "bordered",
+      "pills",
+      "rounded",
+      "khedivial",
+      "brutalist"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "states": [
+      "default",
+      "active",
+      "hover",
+      "focus",
+      "disabled"
+    ],
+    "slots": [
+      "default",
+      "icon",
+      "badge",
+      "submenu"
+    ],
+    "accessibility": {
+      "role": "menu",
+      "keyboard": {
+        "ArrowDown": "Navigates to next menu item",
+        "ArrowUp": "Navigates to previous menu item",
+        "ArrowRight": "Opens active submenu (in LTR) or closes it (in RTL)",
+        "ArrowLeft": "Closes active submenu (in LTR) or opens it (in RTL)",
+        "Enter": "Activates link or toggles submenu",
+        "Space": "Activates link or toggles submenu"
+      },
+      "focus": "Visible focus ring on active and focused menu links",
+      "aria": [
+        {
+          "aria-label": "Navigation Menu"
+        },
+        {
+          "aria-expanded": "Indicates whether a nested submenu is open"
+        },
+        {
+          "aria-current": "Identifies current active page or route"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/menu.yaml",
+    "base": {
+      "display": "flex",
+      "flex-direction": "column",
+      "list-style": "none",
+      "margin": 0,
+      "padding": "{space.2}",
+      "gap": "{space.1}",
+      "background-color": "{color.surface.base}",
+      "border-radius": "{radius.md}",
+      "font-family": "{font.family.primary}",
+      "color": "{color.content.primary}"
+    },
+    "variants": {
+      "default": {
+        "flex-direction": "column"
+      },
+      "vertical": {
+        "flex-direction": "column",
+        "width": "100%"
+      },
+      "horizontal": {
+        "flex-direction": "row",
+        "align-items": "center",
+        "flex-wrap": "wrap"
+      },
+      "compact": {
+        "padding": "{space.1}",
+        "gap": "2px"
+      },
+      "bordered": {
+        "border": "1px solid {color.border.subtle}"
+      },
+      "pills": {
+        "gap": "{space.2}"
+      },
+      "rounded": {
+        "border-radius": "{radius.lg}"
+      },
+      "khedivial": {
+        "border-inline-start": "3px solid {color.gold.500}",
+        "background-color": "{color.surface.elevated}"
+      },
+      "brutalist": {
+        "border": "2px solid {color.content.primary}",
+        "border-radius": 0,
+        "box-shadow": "3px 3px 0px {color.content.primary}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "{font.size.xs}",
+        "gap": "2px"
+      },
+      "md": {
+        "font-size": "{font.size.sm}",
+        "gap": "{space.1}"
+      },
+      "lg": {
+        "font-size": "{font.size.base}",
+        "gap": "{space.2}"
+      }
+    },
+    "states": {}
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays a vertical or horizontal structured list of navigational links, supporting nested submenus, section headers, badges, icons, and keyboard navigation.",
+    "whenToUse": [
+      "Sidebar navigation in dashboards and administrative consoles",
+      "Nested link hierarchies with collapsible submenus and section headers",
+      "Compact horizontal action strips or breadcrumb-adjacent menus"
+    ],
+    "avoid": [
+      "Primary top-level site header with branding and search (use Navbar instead)",
+      "Wide multi-column dropdowns with promotional cards (use Megamenu instead)",
+      "Bottom-screen thumb navigation on mobile devices (use Dock instead)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Menu.yaml"
+  }
+}

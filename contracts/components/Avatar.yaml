@@ -1,0 +1,42 @@
+name: Avatar
+category: media
+purpose: >
+  Displays a visual representation of a user, team, or brand entity.
+
+anatomy:
+  - root
+  - image
+  - fallback-initials
+  - status-indicator
+
+variants:
+  - circle
+  - rounded
+
+sizes:
+  - xs
+  - sm
+  - md
+  - lg
+  - xl
+
+states:
+  - default
+
+slots:
+  - default
+
+accessibility:
+  role: img
+  keyboard: {}
+  focus: "None (unless wrapped in interactive anchor/button)"
+  aria:
+    - aria-label: "User entity name"
+
+ai:
+  description: "User or team entity visual representation"
+  use_when:
+    - "Profile pictures in navigation bars"
+    - "Comment authors and team member lists"
+  avoid_when:
+    - "Full-size photo galleries (use Image)"

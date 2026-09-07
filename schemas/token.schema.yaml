@@ -1,0 +1,64 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: QaheraTokenSchemaV1
+type: object
+required:
+  - version
+  - category
+properties:
+  version:
+    type: string
+    description: "Semantic version of the token manifest"
+  namespace:
+    type: string
+    description: "Optional token namespace prefix (default: qhr)"
+  category:
+    type: string
+    enum:
+      - colors
+      - typography
+      - spacing
+      - radius
+      - shadows
+      - motion
+      - z-index
+      - semantic
+      - primitives
+      - components
+      - core
+    description: "Authoritative design token category"
+  description:
+    type: string
+  prefix:
+    type: string
+  scale:
+    type: object
+  primitives:
+    type: object
+  semantics:
+    type: object
+  color:
+    type: object
+  surface:
+    type: object
+  content:
+    type: object
+  border:
+    type: object
+  space:
+    type: object
+  radius:
+    type: object
+  shadow:
+    type: object
+  duration:
+    type: object
+  ease:
+    type: object
+  families:
+    type: object
+  weights:
+    type: object
+  base_unit:
+    type: string
+  tokens:
+    type: object

@@ -1,0 +1,36 @@
+version: 1.0.0
+name: luxury-gold
+description: "Luxury Obsidian & Imperial Gold Theme for Qahera UI Kit (Inspired by Alwkala Alhoulie Craftsmanship)"
+
+overrides:
+  surface:
+    base: "#0F0B09"
+    elevated: "#17120F"
+    muted: "#221A15"
+    overlay: "rgba(15, 11, 9, 0.85)"
+  content:
+    primary: "#F7F3ED"
+    secondary: "#B9A896"
+    gold: "#D4AF37"
+    gold_accent: "#F2C94C"
+    muted: "#8C7E70"
+  border:
+    subtle: "rgba(212, 175, 55, 0.15)"
+    strong: "rgba(212, 175, 55, 0.35)"
+    steel: "rgba(255, 255, 255, 0.06)"
+  color:
+    primary:
+      bg: "#D4AF37"
+      fg: "#0F0B09"
+      border: "#D4AF37"
+      hover: "#F2C94C"
+    secondary:
+      bg: "#17120F"
+      fg: "#F7F3ED"
+      border: "rgba(212, 175, 55, 0.25)"
+      hover: "#221A15"
+  effects:
+    glow_emerald: "rgba(23, 105, 81, 0.48)"
+    glow_gold: "rgba(147, 107, 50, 0.30)"
+    shadow_metal: "0 16px 48px rgba(0, 0, 0, 0.7)"
+    transition_luxury: "0.5s cubic-bezier(0.25, 0.8, 0.25, 1)"

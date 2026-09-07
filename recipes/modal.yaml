@@ -1,0 +1,101 @@
+component: Modal
+name: modal
+category: overlay
+version: 1.0.0
+
+ai:
+  intent: "Focused critical blocking dialog"
+  visual_role: "Overlay dialog"
+  density: "comfortable"
+  preferred_when:
+    - "Destructive deletion confirmations"
+    - "Focused single-step forms"
+  avoid_when:
+    - "Non-blocking informational feedback (use toast or alert)"
+
+base:
+  display: flex
+  flex-direction: column
+  position: relative
+  width: 100%
+  background-color: "{color.surface.elevated}"
+  border: "1px solid {color.border.subtle}"
+  border-radius: "{radius.xl}"
+  box-shadow: "{shadow.xl}"
+  overflow: hidden
+
+variants:
+  default:
+    background-color: "{color.surface.elevated}"
+
+sizes:
+  sm:
+    max-width: "400px"
+  md:
+    max-width: "520px"
+  lg:
+    max-width: "680px"
+  xl:
+    max-width: "840px"
+
+states:
+  closed:
+    display: none
+  open:
+    display: flex
+
+contract:
+  anatomy:
+    - root
+    - backdrop
+    - dialog-container
+    - header
+    - title
+    - close-button
+    - body
+    - footer
+  props:
+    size:
+      default: md
+      values: [sm, md, lg, xl]
+    state:
+      default: closed
+      values: [closed, open]
+  slots:
+    - start
+    - default
+    - end
+
+structure:
+  base:
+    native_class: qhr-modal
+    tailwind: "relative w-full max-w-lg bg-[var(--qhr-surface-elevated)] rounded-[var(--qhr-radius-xl)] shadow-xl overflow-hidden border border-[var(--qhr-border-subtle)]"
+  sizes:
+    sm: "max-w-sm"
+    md: "max-w-md"
+    lg: "max-w-lg"
+    xl: "max-w-2xl"
+
+accessibility:
+  role: dialog
+  keyboard: "Escape closes dialog, Tab is trapped inside dialog"
+  aria_required:
+    - aria-modal: "true"
+
+use_cases:
+  destructive-confirmation:
+    intent: confirm-delete
+    variant: default
+    size: sm
+    slots:
+      header: true
+      footer: true
+    content:
+      title: "تأكيد الحذف النهائي"
+      title_en: "Confirm Permanent Deletion"
+      description: "هذا الإجراء لا يمكن التراجع عنه. هل أنت متأكد؟"
+      description_en: "This action cannot be undone. Are you sure?"
+
+rtl:
+  supported: true
+  directional_mirroring: false

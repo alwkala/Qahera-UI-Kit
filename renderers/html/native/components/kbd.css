@@ -1,0 +1,32 @@
+/* ==========================================================================
+   18. Kbd Keyboard Key (.qhr-kbd)
+   ========================================================================== */
+.qhr-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--qhr-font-mono, ui-monospace, SFMono-Regular, monospace);
+  font-weight: 600;
+  color: var(--qhr-text-muted, #94a3b8);
+  background-color: var(--qhr-surface-elevated, #1e293b);
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.15));
+  border-block-end: 2px solid var(--qhr-border-strong, #475569);
+  border-radius: var(--qhr-radius-sm, 6px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  line-height: 1;
+}
+.qhr-kbd--sm {
+  height: 20px;
+  padding-inline: var(--qhr-space-1-5, 6px);
+  font-size: 11px;
+}
+.qhr-kbd--md {
+  height: 24px;
+  padding-inline: var(--qhr-space-2, 8px);
+  font-size: 12px;
+}
+.qhr-kbd--lg {
+  height: 28px;
+  padding-inline: var(--qhr-space-2-5, 10px);
+  font-size: 14px;
+}

@@ -1,0 +1,84 @@
+component: Checkbox
+name: checkbox
+category: selection
+version: 1.0.0
+
+ai:
+  intent: "Binary toggle or multiple-choice selection"
+  visual_role: "Selection control"
+  density: "compact"
+  preferred_when:
+    - "Terms and conditions agreement"
+    - "Selecting multiple items in a filter list"
+  avoid_when:
+    - "Mutually exclusive single selection (use radio)"
+
+base:
+  display: inline-flex
+  align-items: center
+  gap: "{space.2}"
+  cursor: pointer
+  user-select: none
+  font-family: inherit
+
+variants:
+  default:
+    background-color: "{color.surface.base}"
+    border-color: "{color.border.subtle}"
+
+sizes:
+  sm:
+    box-size: "{space.4}"
+    font-size: "{text.sm}"
+  md:
+    box-size: "{space.5}"
+    font-size: "{text.base}"
+  lg:
+    box-size: "{space.6}"
+    font-size: "{text.lg}"
+
+states:
+  hover:
+    border-color: "{color.primary.bg}"
+  focus:
+    outline: "2px solid {color.primary.subtle}"
+  checked:
+    background-color: "{color.primary.bg}"
+    border-color: "{color.primary.bg}"
+    color: "{color.primary.fg}"
+  indeterminate:
+    background-color: "{color.primary.bg}"
+    border-color: "{color.primary.bg}"
+  disabled:
+    opacity: 0.5
+    cursor: not-allowed
+
+contract:
+  anatomy:
+    - root
+    - indicator-box
+    - checkmark-icon
+    - label
+    - description
+  props:
+    size:
+      default: md
+      values: [sm, md, lg]
+    state:
+      default: default
+      values: [default, hover, focus, checked, indeterminate, disabled]
+  slots:
+    - default
+
+structure:
+  base:
+    native_class: qhr-checkbox
+    tailwind: "inline-flex items-center gap-[var(--qhr-space-2)] cursor-pointer select-none font-sans text-sm"
+
+accessibility:
+  role: checkbox
+  keyboard: "Space toggles state"
+
+rtl:
+  supported: true
+  directional_mirroring: false

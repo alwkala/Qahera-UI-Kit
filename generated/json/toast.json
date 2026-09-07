@@ -1,0 +1,108 @@
+{
+  "id": "toast",
+  "name": "Toast",
+  "component": "Toast",
+  "category": "overlay",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "status-icon",
+      "text-group",
+      "title",
+      "description",
+      "action-button",
+      "close-button",
+      "progress-bar"
+    ],
+    "variants": [
+      "default"
+    ],
+    "sizes": [
+      "md"
+    ],
+    "states": [
+      "entering",
+      "visible",
+      "exiting"
+    ],
+    "slots": [
+      "start",
+      "default",
+      "end"
+    ],
+    "accessibility": {
+      "role": "status",
+      "keyboard": {
+        "Escape": "Dismisses active toast"
+      },
+      "focus": "Non-stealing focus",
+      "aria": [
+        {
+          "aria-live": "polite"
+        },
+        {
+          "aria-atomic": "true"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/toast.yaml",
+    "base": {
+      "display": "flex",
+      "align-items": "flex-start",
+      "gap": "{space.3}",
+      "padding": "{space.3-5}",
+      "border-radius": "{radius.md}",
+      "background-color": "{color.surface.elevated}",
+      "border": "1px solid {color.border.subtle}",
+      "box-shadow": "{shadow.lg}",
+      "min-width": "280px",
+      "transition-duration": "{duration.normal}",
+      "transition-timing-function": "{ease.standard}"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.elevated}"
+      }
+    },
+    "sizes": {
+      "md": {
+        "padding": "{space.3-5}",
+        "font-size": "{text.sm}"
+      }
+    },
+    "states": {
+      "entering": {
+        "opacity": 0,
+        "transform": "translateY(-8px)"
+      },
+      "visible": {
+        "opacity": 1,
+        "transform": "translateY(0)"
+      },
+      "exiting": {
+        "opacity": 0,
+        "transform": "translateY(-8px)"
+      }
+    }
+  },
+  "behavior": {
+    "file": "behavior/toast.js",
+    "moduleName": "toast"
+  },
+  "ai": {
+    "purpose": "Displays temporary, non-blocking feedback notifications that auto-dismiss.",
+    "whenToUse": [
+      "Confirming background operations ('Changes saved', 'Copied to clipboard')"
+    ],
+    "avoid": [
+      "Critical workflows requiring explicit user interaction before proceeding (use Modal)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Toast.yaml"
+  }
+}

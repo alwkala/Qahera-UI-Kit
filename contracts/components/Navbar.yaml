@@ -1,0 +1,88 @@
+name: Navbar
+category: navigation
+purpose: >
+  Displays the primary application and page header hosting branding, navigation links, submenus, search, indicators, and actions across diverse architectural archetypes.
+
+anatomy:
+  - root
+  - container
+  - brand-logo
+  - brand-title
+  - navigation-list
+  - nav-item
+  - nav-link
+  - dropdown-menu
+  - submenu-item
+  - search-capsule
+  - indicator-badge
+  - actions-group
+  - hamburger-toggle
+  - mobile-drawer
+  - backdrop
+
+variants:
+  - default
+  - transparent
+  - glass
+  - title-only
+  - title-icon
+  - dual-icons
+  - with-submenus
+  - with-search
+  - with-indicator
+  - center-logo
+  - responsive-center
+  - drawer-collapse
+  - school-art-deco
+  - school-masthead
+  - school-brutalist
+  - school-floating-pill
+  - school-cyber-terminal
+  - school-heritage
+
+sizes:
+  - sm
+  - md
+  - lg
+
+states:
+  - default
+  - mobile-open
+  - dropdown-open
+
+tone:
+  - default
+  - primary
+  - dark
+  - gold
+  - surface
+
+slots:
+  - start
+  - default
+  - end
+  - drawer
+
+accessibility:
+  role: navigation
+  keyboard:
+    Escape: "Closes active submenus and mobile navigation drawer"
+    Tab: "Cycles through header links and controls"
+    ArrowDown: "Opens and navigates submenu links"
+  focus: "Visible outline ring around active links and interactive buttons"
+  aria:
+    - aria-label: "Main Navigation"
+    - aria-expanded: "Reflects open/closed state of submenus and mobile drawer"
+
+behavior:
+  sticky: true
+  mobile_drawer_lock: true
+  submenus_interactive: true
+
+ai:
+  description: "Comprehensive primary site or application navigation bar supporting multiple functional patterns and regional art school archetypes"
+  use_when:
+    - "Top-level layout header for web applications, editorial portals, or marketing websites"
+    - "Mobile app bar with dual icons or search capsule"
+  avoid_when:
+    - "Isolated single-screen landing pages without external links"

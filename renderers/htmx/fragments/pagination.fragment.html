@@ -1,0 +1,49 @@
+<!-- Qahera UI Kit - HTMX Pagination Fragment (Static / HTML) -->
+<nav class="qhr-pagination qhr-pagination--htmx" role="navigation" aria-label="ترقيم الصفحات">
+  <div style="display: flex; align-items: center; gap: var(--qhr-space-1);">
+    <button 
+      type="button" 
+      class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+      hx-get="/api/records?page=1"
+      hx-target="#table-container"
+      hx-swap="innerHTML"
+      aria-label="الصفحة السابقة"
+      disabled
+    >
+      <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 5l7 7-7 7" />
+      </svg>
+      <span>السابق</span>
+    </button>
+
+    <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" aria-current="page">1</button>
+    <button 
+      type="button" 
+      class="qhr-btn qhr-btn--ghost qhr-btn--sm"
+      hx-get="/api/records?page=2"
+      hx-target="#table-container"
+      hx-swap="innerHTML"
+    >2</button>
+    <button 
+      type="button" 
+      class="qhr-btn qhr-btn--ghost qhr-btn--sm"
+      hx-get="/api/records?page=3"
+      hx-target="#table-container"
+      hx-swap="innerHTML"
+    >3</button>
+
+    <button 
+      type="button" 
+      class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+      hx-get="/api/records?page=2"
+      hx-target="#table-container"
+      hx-swap="innerHTML"
+      aria-label="الصفحة التالية"
+    >
+      <span>التالي</span>
+      <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+  </div>
+</nav>

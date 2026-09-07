@@ -1,0 +1,271 @@
+version: 1.0.0
+namespace: qhr
+description: AI Agent Decision Matrix — WHAT, WHEN, HOW, and WHY NOT for all 18 Components
+
+matrix:
+  button:
+    what: "Primary interactive action control"
+    when: "Triggering workflows, submitting forms, dismissing dialogs"
+    how: "Bind variant (primary|secondary|outline|ghost|destructive) and size (sm|md|lg)"
+    why_not: "Inline hyperlink navigation between external URLs (use <a> with link variant)"
+    alternatives: [badge, alert]
+
+  input:
+    what: "Single-line textual data entry"
+    when: "Short text values (names, emails, search queries, numbers)"
+    how: "Bind size and validation state (is-focused, is-disabled)"
+    why_not: "Multi-line text or predefined choice list"
+    alternatives: [textarea, select]
+
+  textarea:
+    what: "Multi-line freeform text entry"
+    when: "Comments, reviews, descriptions, feedback messages"
+    how: "Set rows or min-height; use native or tailwind base"
+    why_not: "Single-line values (names, emails)"
+    alternatives: [input]
+
+  select:
+    what: "Single-choice picker from list of options"
+    when: "Categorical choices exceeding 5 options (countries, roles, dates)"
+    how: "Use custom qhrSelect behavior or native <select> fallback"
+    why_not: "Binary choices or small group under 4 options"
+    alternatives: [radio, dropdown]
+
+  checkbox:
+    what: "Binary toggle or multi-item selection"
+    when: "Terms agreement, multi-filter selection, batch table selection"
+    how: "Bind checked state and accessible label"
+    why_not: "Mutually exclusive options"
+    alternatives: [radio]
+
+  radio:
+    what: "Single selection among mutually exclusive choices"
+    when: "Small option group (2-5 choices, e.g. shipping speeds, payment methods)"
+    how: "Group under shared name attribute"
+    why_not: "Multi-selection or lists exceeding 6 items"
+    alternatives: [checkbox, select]
+
+  card:
+    what: "Structured container grouping related information"
+    when: "Product cards, dashboard widgets, summary profiles"
+    how: "Compose header, body, footer slots with variant (outline|elevated|flat)"
+    why_not: "Ephemeral blocking feedback (use modal or toast)"
+    alternatives: [modal, alert]
+
+  badge:
+    what: "Compact status, tag, or quantitative counter"
+    when: "Entity status (Active, Inactive), category tags, unread counts"
+    how: "Bind tone (neutral|info|success|warning|danger) and variant (subtle|solid|outline)"
+    why_not: "Interactive button actions"
+    alternatives: [button, alert]
+
+  alert:
+    what: "Prominent contextual feedback banner within page flow"
+    when: "System maintenance warnings, persistent form errors, instructions"
+    how: "Bind tone and slot description"
+    why_not: "Transient feedback that auto-dismisses"
+    alternatives: [toast, modal]
+
+  toast:
+    what: "Floating temporary notification overlay with auto-dismiss"
+    when: "Confirming background operations ('Copied', 'Saved', 'Sent')"
+    how: "Dispatch global 'qhr-toast-show' event with title and tone"
+    why_not: "Critical blocking workflows requiring explicit user confirmation"
+    alternatives: [modal, alert]
+
+  modal:
+    what: "Blocking dialog overlay capturing focus"
+    when: "Destructive confirmations, single-step forms, focused attention"
+    how: "Wrap with qhrModal; wire trigger, dialog, and escape handlers"
+    why_not: "Non-critical passive information"
+    alternatives: [alert, toast]
+
+  dropdown:
+    what: "Action menu or navigation links revealed upon click"
+    when: "Profile menus, overflow kebab actions (...) on table rows"
+    how: "Wire qhrDropdown with trigger button and role='menu' list"
+    why_not: "Form value selection"
+    alternatives: [select]
+
+  tabs:
+    what: "Parallel view switcher dividing content into panels"
+    when: "Settings sections, multi-tab product overviews"
+    how: "Use role='tablist' with qhrTabs keyboard navigation"
+    why_not: "Sequential linear steps (use wizard/stepper)"
+    alternatives: [accordion]
+
+  accordion:
+    what: "Vertically stacked collapsible disclosure panels"
+    when: "FAQs, detailed specifications, dense collapsible forms"
+    how: "Wire qhrAccordion with toggle(id) and isOpen(id)"
+    why_not: "When all sections must be visible simultaneously"
+    alternatives: [tabs]
+
+  table:
+    what: "Tabular data display structured in rows and columns"
+    when: "Comparing multiple items across uniform attributes"
+    how: "Use semantic <table>, <thead>, <tbody> with .qhr-table"
+    why_not: "Mobile-first card layouts"
+    alternatives: [card]
+
+  avatar:
+    what: "Visual entity identifier (photo or initials fallback)"
+    when: "User profile pictures, team members, comment authors"
+    how: "Bind size (xs|sm|md|lg|xl) and shape (circle|rounded)"
+    why_not: "Full hero imagery or illustrative thumbnails"
+    alternatives: [badge]
+
+  tooltip:
+    what: "Brief contextual label revealed on hover or focus"
+    when: "Clarifying icon-only buttons or abbreviations"
+    how: "Bind qhrTooltip with hover/focus handlers"
+    why_not: "Essential information required on mobile touch screens"
+    alternatives: [alert]
+
+  navbar:
+    what: "Primary site header hosting branding and top navigation"
+    when: "Site-wide header across marketing sites or web apps"
+    how: "Bind qhrNavbar with mobile drawer toggle"
+    why_not: "Isolated landing pages with zero navigation"
+    alternatives: [tabs]
+
+  file-upload:
+    what: "Interactive drag-and-drop file ingestion zone"
+    when: "Document uploads, media galleries, avatar uploads"
+    how: "Bind qhrFileUpload with drag events and progress tracker"
+    why_not: "Simple single-line text inputs"
+    alternatives: [input]
+
+  switch:
+    what: "Instant binary toggle switch"
+    when: "Settings preferences, dark/light theme switching, instant activation"
+    how: "Bind checked state with role='switch' and aria-checked"
+    why_not: "Form submission where review is needed before commit (use checkbox)"
+    alternatives: [checkbox]
+
+  callout:
+    what: "High-visibility contextual callout box with accent border"
+    when: "Important notes, quotes, advisory tips, or highlighted snippets"
+    how: "Bind tone (neutral|info|success|warning|danger) and border accent"
+    why_not: "Ephemeral temporary toasts or full modal takeovers"
+    alternatives: [alert, card]
+
+  progress:
+    what: "Determinate or indeterminate progress bar"
+    when: "Multi-step workflows, file upload percentage, task completion"
+    how: "Bind value (0-100), max, and tone with aria-valuenow"
+    why_not: "Indeterminate loading without progression (use spinner)"
+    alternatives: [spinner, skeleton]
+
+  rating:
+    what: "Interactive star/numeric rating control"
+    when: "Customer reviews, product feedback, satisfaction scores"
+    how: "Bind qhrRating with interactive star selection and keyboard arrows"
+    why_not: "Binary yes/no feedback (use button or radio)"
+    alternatives: [radio]
+
+  skeleton:
+    what: "Shimmer placeholder loading silhouette"
+    when: "Simulating UI elements while async data is fetching"
+    how: "Set shape (text|rectangular|circular) and size"
+    why_not: "Actions where a blocking preloader or spinner is expected"
+    alternatives: [spinner, preloader]
+
+  spinner:
+    what: "Circular indeterminate loading animation indicator"
+    when: "Async button submission, background fetching indicator"
+    how: "Bind size (sm|md|lg) and color variant"
+    why_not: "Known duration or percentage progress (use progress bar)"
+    alternatives: [progress, skeleton]
+
+  canvas-sparks:
+    what: "Atmospheric luxury gold ambient particles"
+    when: "Luxury dark mode hero banners, celebratory landing headers"
+    how: "Layer behind content with pointer-events: none and aria-hidden='true'"
+    why_not: "Dense data tables, forms, or lightweight text documents"
+    alternatives: [card]
+
+  preloader:
+    what: "Cinematic full-screen branded loading transition"
+    when: "Initial site entry on luxury/media-rich web apps"
+    how: "Dismiss smoothly with opacity transition once DOM is ready"
+    why_not: "Micro in-page async operations"
+    alternatives: [spinner, skeleton]
+
+  drawer:
+    what: "Sliding overlay panel anchored to viewport edge"
+    when: "Mobile navigation, shopping cart sheets, detail panels"
+    how: "Bind qhrDrawer with side (start|end|top|bottom) and focus trap"
+    why_not: "Compact contextual menus (use dropdown)"
+    alternatives: [modal, dropdown]
+
+  breadcrumb:
+    what: "Hierarchical trail navigation showing page depth"
+    when: "Deep category structures, nested docs, e-commerce taxonomies"
+    how: "Render <nav aria-label='Breadcrumb'> with ordered list"
+    why_not: "Single-level flat websites"
+    alternatives: [tabs, navbar]
+
+  stepper:
+    what: "Sequential multi-step workflow progress indicator"
+    when: "Multi-page checkout, wizard onboarding, approval flows"
+    how: "Bind active step index with completed and current states"
+    why_not: "Simple single-screen forms"
+    alternatives: [progress, breadcrumb]
+
+  treeview:
+    what: "Hierarchical nested directory and taxonomy tree"
+    when: "File managers, complex organizational charts, multi-level catalogs"
+    how: "Bind qhrTreeview with expandable nodes and keyboard navigation"
+    why_not: "Flat single-level menus"
+    alternatives: [accordion, dropdown]
+
+  back-to-top:
+    what: "Floating quick action returning user to page top"
+    when: "Articles, documentation, product catalogs with high scroll depth"
+    how: "Show after scroll threshold (e.g. 400px) with smooth scroll"
+    why_not: "Single-screen dashboards or non-scrolling views"
+    alternatives: [navbar]
+
+  chip:
+    what: "Compact pill for filters, selection tags, or removable values"
+    when: "Applied search filters, multi-tag input, category toggles"
+    how: "Bind removable attribute with close icon and click event"
+    why_not: "High-priority call to actions (use button)"
+    alternatives: [badge, button]
+
+  divider:
+    what: "Visual boundary separator with optional label"
+    when: "Delineating distinct form sections or social auth separation"
+    how: "Use role='separator' with orientation (horizontal|vertical)"
+    why_not: "Arbitrary CSS margin hacks"
+    alternatives: [card]
+
+  kbd:
+    what: "Inline keyboard key indicator"
+    when: "Documenting shortcut keys, command palette cues, cheat sheets"
+    how: "Render semantic <kbd> with key combinations"
+    why_not: "Interactive button controls"
+    alternatives: [badge]
+
+  ribbon:
+    what: "Diagonal or corner decorative tag on cards"
+    when: "Promotional flags (Sale, New, VIP, Featured) on product cards"
+    how: "Position absolutely at corner with subtle rotation or banner style"
+    why_not: "Standard inline text metadata (use badge)"
+    alternatives: [badge]
+
+  timeline:
+    what: "Chronological vertical or horizontal event stream"
+    when: "Order tracking, activity history, company milestones, changelogs"
+    how: "Render chronological nodes with status markers and timestamps"
+    why_not: "Unordered random data lists (use table or card)"
+    alternatives: [stepper, table]
+
+  carousel:
+    what: "Interactive sliding media and card gallery"
+    when: "Featured product showcases, customer testimonials, banner carousels"
+    how: "Bind qhrCarousel with slide navigation and swipe support"
+    why_not: "Critical information that must be viewed simultaneously"
+    alternatives: [card, tabs]
+

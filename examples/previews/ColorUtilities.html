@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أدوات الألوان والخلفيات — Qahera UI Kit Color Utilities</title>
+  
+  <!-- الخطوط الرسمية المعتمدة: Alexandria للعناوين والهوية، و Cairo للنصوص والواجهة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../tokens/themes/themes.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --q-font-brand: 'Alexandria', 'Cairo', sans-serif;
+      --q-font-heading: 'Alexandria', 'Cairo', sans-serif;
+      --q-font-ui: 'Cairo', 'Alexandria', system-ui, -apple-system, sans-serif;
+      --q-font-body: 'Cairo', 'Alexandria', system-ui, -apple-system, sans-serif;
+      --q-font-code: 'JetBrains Mono', monospace;
+
+      --q-bg: #07090e;
+      --q-surface: #0d121f;
+      --q-surface-elevated: #131b2e;
+      --q-border: rgba(255, 255, 255, 0.08);
+      --q-text-primary: #f8fafc;
+      --q-text-secondary: #94a3b8;
+      --q-gold: #d4af37;
+      --q-gold-gradient: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%);
+    }
+
+    [data-mode="light"],
+    [data-theme="light"] {
+      --q-bg: #f8fafc;
+      --q-surface: #ffffff;
+      --q-surface-elevated: #f1f5f9;
+      --q-border: #e2e8f0;
+      --q-text-primary: #0f172a;
+      --q-text-secondary: #475569;
+      --q-gold: #b8860b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--q-bg);
+      color: var(--q-text-primary);
+      font-family: var(--q-font-body);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      direction: rtl;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--q-font-heading); }
+
+    .header-nav {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 50;
+      background: rgba(13, 18, 31, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-block-end: 1px solid var(--q-border);
+      padding-block: 14px;
+      padding-inline: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 20px;
+      padding-block: 32px 64px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .section-card {
+      background: var(--q-surface);
+      border: 1px solid var(--q-border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section-header {
+      border-block-end: 1px solid var(--q-border);
+      padding-block-end: 12px;
+      margin-block-end: 8px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--q-text-primary);
+    }
+
+    .section-desc {
+      margin: 4px 0 0 0;
+      font-size: 0.875rem;
+      color: var(--q-text-secondary);
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .color-box {
+      border-radius: 8px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.875rem;
+      font-family: var(--q-font-code);
+      min-height: 100px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .color-box:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .pattern-card {
+      border-radius: 8px;
+      padding: 32px 20px;
+      min-height: 120px;
+      display: flex;
+      align-items: flex-start;
+      font-family: var(--q-font-code);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: 1px solid var(--q-border);
+      position: relative;
+    }
+
+    .border-box {
+      background: var(--q-surface-elevated);
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      font-family: var(--q-font-code);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .text-sample-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      background: var(--q-surface-elevated);
+      padding: 18px 24px;
+      border-radius: 8px;
+      border: 1px solid var(--q-border);
+    }
+
+    .text-sample-item {
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    .toggle-btn {
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border);
+      color: var(--q-text-primary);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: var(--q-font-ui);
+      font-size: 0.825rem;
+      cursor: pointer;
+    }
+    .component-picker {
+      background-color: var(--q-surface-elevated);
+      color: var(--q-text-primary);
+      border: 1px solid var(--q-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: 6px;
+      padding-inline: 12px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 150ms ease;
+    }
+    .component-picker:hover, .component-picker:focus {
+      border-color: var(--q-gold);
+    }
+  
+    /* ── Architectural Theme Selector Capsule ── */
+    .theme-selector-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding-inline: 10px;
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border);
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+      transition: all 180ms ease;
+      position: relative;
+    }
+    [data-theme="light"] .theme-selector-capsule,
+    [data-mode="light"] .theme-selector-capsule {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+    .theme-selector-capsule:hover,
+    .theme-selector-capsule:focus-within {
+      border-color: var(--q-gold);
+      box-shadow: 0 0 0 3px var(--q-gold-glow);
+    }
+    .theme-active-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background-color: var(--q-gold);
+    }
+    .theme-picker {
+      appearance: none;
+      -webkit-appearance: none;
+      background: transparent;
+      color: var(--q-text-primary);
+      border: none;
+      outline: none;
+      padding-block: 0;
+      padding-inline-start: 4px;
+      padding-inline-end: 18px;
+      font-family: var(--q-font-heading, 'Alexandria', sans-serif);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      line-height: 1.4;
+    }
+    .theme-picker option {
+      background: var(--q-surface);
+      color: var(--q-text-primary);
+    }
+    [data-theme="light"] .theme-picker option,
+    [data-mode="light"] .theme-picker option {
+      background: #ffffff;
+      color: #0f172a;
+    }
+
+  
+    /* ==========================================================================
+       Qahera UI Kit — Sovereign Mobile & Tablet Responsive Architecture
+       Ensures 100% fluid mobile parity across all 59 preview showcases
+       ========================================================================== */
+    @media (max-width: 992px) {
+      .stage-nav {
+        flex-wrap: wrap !important;
+        padding-inline: 12px !important;
+        padding-block: 8px !important;
+        min-height: auto !important;
+        gap: 8px !important;
+      }
+      .brand-sub, .brand-badge {
+        display: none !important;
+      }
+      .brand-title {
+        font-size: 1.05rem !important;
+      }
+      .nav-controls {
+        margin-inline-start: auto !important;
+        gap: 6px !important;
+      }
+      .nav-center-group {
+        order: 3 !important;
+        width: 100% !important;
+        display: flex !important;
+        gap: 8px !important;
+      }
+      .component-selector-capsule {
+        flex: 1 !important;
+        min-width: 0 !important;
+      }
+      .component-picker {
+        width: 100% !important;
+      }
+      .capsule-badge {
+        display: none !important;
+      }
+      .theme-selector-capsule {
+        flex-shrink: 0 !important;
+        max-width: 140px !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      /* Hide viewport device simulation pills on real mobile screens */
+      .ctrl-pill-group:has(#btn-vp-desktop),
+      .ctrl-pill-group:has(#btn-vp-mobile),
+      #btn-vp-desktop, #btn-vp-tablet, #btn-vp-mobile {
+        display: none !important;
+      }
+      .stage-nav .ctrl-action-btn span {
+        display: none !important;
+      }
+      .stage-nav .ctrl-action-btn {
+        padding-inline: 8px !important;
+        min-width: 36px !important;
+        justify-content: center !important;
+      }
+
+      .stage-wrapper {
+        padding-inline: 8px !important;
+        padding-block: 8px 24px !important;
+        gap: 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .comp-header {
+        flex-direction: column !important;
+        padding: 14px 12px !important;
+        gap: 10px !important;
+        border-radius: 12px !important;
+      }
+      .comp-titles h1 {
+        font-size: 1.3rem !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+      }
+      .comp-titles h1 span.tech-tag {
+        font-size: 0.75rem !important;
+      }
+      .comp-desc {
+        font-size: 0.8rem !important;
+        line-height: 1.5 !important;
+      }
+      .comp-header > div:last-child {
+        align-items: flex-start !important;
+        width: 100% !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+      }
+
+      .stage-tabs {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+        margin-block-start: 6px !important;
+      }
+      .tab-list {
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        padding-block-end: 2px !important;
+        gap: 4px !important;
+      }
+      .stage-tab-btn {
+        padding: 8px 10px !important;
+        font-size: 0.8rem !important;
+      }
+      .copy-btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+
+      .canvas-stage-outer {
+        padding: 8px 4px !important;
+        border-radius: 12px !important;
+        min-height: auto !important;
+        background-size: 14px 14px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .canvas-viewport-container {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      .canvas-viewport-container.viewport--mobile,
+      .canvas-viewport-container.viewport--tablet {
+        max-width: 100% !important;
+      }
+      .component-frame {
+        padding: 12px 6px !important;
+        border-radius: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .stage-pager {
+        flex-direction: column !important;
+        gap: 8px !important;
+      }
+      .pager-card {
+        width: 100% !important;
+      }
+    }
+
+  </style>
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('qhr-theme') || 'dark';
+      const savedDir = localStorage.getItem('qhr-dir') || 'rtl';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.documentElement.setAttribute('dir', savedDir);
+      document.documentElement.setAttribute('lang', savedDir === 'rtl' ? 'ar' : 'en');
+    })();
+  </script>
+  <style id="qaheraLiveThemeStyles"></style>
+</head>
+<body x-data="{ 
+  theme: 'dark', 
+  dir: 'rtl', 
+  lang: 'ar',
+  toggleTheme() { 
+    this.theme = this.theme === 'dark' ? 'light' : 'dark'; 
+    document.documentElement.setAttribute('data-theme', this.theme); 
+  }, 
+  toggleDir() { 
+    this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl'; 
+    this.lang = this.dir === 'rtl' ? 'ar' : 'en'; 
+    document.documentElement.setAttribute('dir', this.dir); 
+    document.documentElement.setAttribute('lang', this.lang); 
+  } 
+}" :data-theme="theme" :dir="dir">
+
+  <nav class="header-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <a href="./index.html" style="color: var(--q-text-secondary); text-decoration: none; font-size: 0.875rem;">← عودة للفهرس</a>
+      <span style="color: var(--q-border);">|</span>
+      <h1 style="margin: 0; font-size: 1.15rem; font-weight: 800; background: var(--q-gold-gradient); -webkit-background-clip: text;
+      background-clip: text; -webkit-text-fill-color: transparent;">
+        Color Utilities
+      </h1>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <label style="font-size: 0.75rem; color: var(--q-text-muted); font-weight: 600;">Component:</label>
+        <select class="component-picker" onchange="window.location.href = this.value">
+        <optgroup label="المكونات المعمارية (Components)">
+          <option value="Accordion.html">Accordion</option>
+          <option value="Alert.html">Alert</option>
+          <option value="Avatar.html">Avatar</option>
+          <option value="back-to-top.html">BackToTop</option>
+          <option value="Badge.html">Badge</option>
+          <option value="Breadcrumb.html">Breadcrumb</option>
+          <option value="Button.html">Button</option>
+          <option value="Callout.html">Callout</option>
+          <option value="canvas-sparks.html">CanvasSparks</option>
+          <option value="Card.html">Card</option>
+          <option value="Carousel.html">Carousel</option>
+          <option value="Checkbox.html">Checkbox</option>
+          <option value="chip.html">Chip</option>
+          <option value="ColorUtilities.html" selected>Color Utilities</option>
+          <option value="divider.html">Divider</option>
+          <option value="Dock.html">Dock</option>
+          <option value="drawer.html">Drawer</option>
+          <option value="Dropdown.html">Dropdown</option>
+          <option value="file-upload.html">FileUpload</option>
+          <option value="Input.html">Input</option>
+          <option value="kbd.html">Kbd</option>
+          <option value="Megamenu.html">Megamenu</option>
+          <option value="Menu.html">Menu</option>
+          <option value="Modal.html">Modal</option>
+          <option value="navbar.html">Navbar</option>
+          <option value="Preloader.html">Preloader</option>
+          <option value="Progress.html">Progress</option>
+          <option value="Radio.html">Radio</option>
+          <option value="rating.html">Rating</option>
+          <option value="Ribbon.html">Ribbon</option>
+          <option value="Select.html">Select</option>
+          <option value="skeleton.html">Skeleton</option>
+          <option value="Spinner.html">Spinner</option>
+          <option value="Stepper.html">Stepper</option>
+          <option value="Switch.html">Switch</option>
+          <option value="Table.html">Table</option>
+          <option value="Tabs.html">Tabs</option>
+          <option value="Textarea.html">Textarea</option>
+          <option value="Timeline.html">Timeline</option>
+          <option value="Toast.html">Toast</option>
+          <option value="Tooltip.html">Tooltip</option>
+          <option value="treeview.html">Treeview</option>
+        </optgroup>
+        <optgroup label="الأنماط المعمارية التفاعلية (UX Patterns)">
+          <option value="ChatStream.html">Chat Stream (Pattern)</option>
+          <option value="Confirmation.html">Confirmation Dialog (Pattern)</option>
+          <option value="DashboardStat.html">Dashboard Stat Card (Pattern)</option>
+          <option value="DataTableToolbar.html">Data Table Toolbar (Pattern)</option>
+          <option value="DatePaginator.html">Date Paginator Strip (Pattern)</option>
+          <option value="EditorialStory.html">Editorial Story Card (Pattern)</option>
+          <option value="EmptyState.html">Empty State (Pattern)</option>
+          <option value="FileManagerGrid.html">File Manager Grid (Pattern)</option>
+          <option value="FilterBar.html">Filter Bar (Pattern)</option>
+          <option value="FormActions.html">Form Actions Bar (Pattern)</option>
+          <option value="KanbanBoard.html">Kanban Board (Pattern)</option>
+          <option value="LuxuryProductCard.html">Luxury Product Card (Pattern)</option>
+          <option value="MetricComparisonGrid.html">Metric Comparison Grid (Pattern)</option>
+          <option value="Pagination.html">Pagination Control (Pattern)</option>
+          <option value="Questionnaire.html">Questionnaire & Assessment (Pattern)</option>
+          <option value="SearchToolbar.html">Search & Command Toolbar (Pattern)</option>
+          <option value="SortableList.html">Sortable Reorderable List (Pattern)</option>
+          <option value="StoreLocator.html">Store & Branch Locator (Pattern)</option>
+          <option value="UserCard.html">User Profile Card (Pattern)</option>
+          <option value="VipMembership.html">VIP Gold Membership Card (Pattern)</option>
+        </optgroup>
+      </select>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" class="toggle-btn" @click="toggleDir()" :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'" aria-label="تبديل اتجاه الصفحة واللغة" style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </button>
+        <button type="button" class="toggle-btn" @click="toggleTheme()" :title="theme === 'dark' ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'" aria-label="تبديل مظهر الواجهة" style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;">
+          <svg x-show="theme === 'dark'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg x-show="theme === 'light'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- 1. Solid Background Colors -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">خلفيات الألوان الصريحة (Solid Colors)</h2>
+        <p class="section-desc">فئات <code>.bg-*</code> لتطبيق خلفية ملونة قياسية على أي عنصر</p>
+      </div>
+      <div class="color-grid">
+        <div class="color-box bg-primary">.bg-primary</div>
+        <div class="color-box bg-secondary">.bg-secondary</div>
+        <div class="color-box bg-success">.bg-success</div>
+        <div class="color-box bg-info">.bg-info</div>
+        <div class="color-box bg-warning">.bg-warning</div>
+        <div class="color-box bg-danger">.bg-danger</div>
+        <div class="color-box bg-dark">.bg-dark</div>
+        <div class="color-box bg-luxury">.bg-luxury</div>
+        <div class="color-box bg-purple">.bg-purple</div>
+        <div class="color-box bg-teal">.bg-teal</div>
+      </div>
+    </section>
+
+    <!-- 2. Light Colors -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">الخلفيات الهادئة والفاتحة (Light Colors)</h2>
+        <p class="section-desc">فئات <code>.bg-*-light</code> بدرجات متباينة تحافظ على سهولة القراءة وتدعم الوضعين الفاتح والداكن</p>
+      </div>
+      <div class="color-grid">
+        <div class="color-box bg-primary-light">.bg-primary-light</div>
+        <div class="color-box bg-secondary-light">.bg-secondary-light</div>
+        <div class="color-box bg-success-light">.bg-success-light</div>
+        <div class="color-box bg-info-light">.bg-info-light</div>
+        <div class="color-box bg-warning-light">.bg-warning-light</div>
+        <div class="color-box bg-danger-light">.bg-danger-light</div>
+        <div class="color-box bg-dark-light">.bg-dark-light</div>
+        <div class="color-box bg-luxury-light">.bg-luxury-light</div>
+        <div class="color-box bg-purple-light">.bg-purple-light</div>
+        <div class="color-box bg-teal-light">.bg-teal-light</div>
+      </div>
+    </section>
+
+    <!-- 3. Other Surface Colors -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">ألوان الأسطح والشفافية (Other Colors)</h2>
+        <p class="section-desc">فئات <code>.bg-white</code>, <code>.bg-transparent</code>, <code>.bg-light</code>, <code>.bg-lighter</code>, <code>.bg-lightest</code></p>
+      </div>
+      <div class="color-grid">
+        <div class="color-box bg-white">.bg-white</div>
+        <div class="color-box bg-transparent" style="border: 1px dashed var(--q-border);">.bg-transparent</div>
+        <div class="color-box bg-light">.bg-light</div>
+        <div class="color-box bg-lighter">.bg-lighter</div>
+        <div class="color-box bg-lightest">.bg-lightest</div>
+      </div>
+    </section>
+
+    <!-- 4. Standard Gradient Colors -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">التدرجات اللونية (Gradient Colors)</h2>
+        <p class="section-desc">فئات <code>.bg-gradient-*</code> بتدرجات عصرية غنية</p>
+      </div>
+      <div class="color-grid">
+        <div class="color-box bg-gradient-primary">.bg-gradient-primary</div>
+        <div class="color-box bg-gradient-secondary">.bg-gradient-secondary</div>
+        <div class="color-box bg-gradient-info">.bg-gradient-info</div>
+        <div class="color-box bg-gradient-success">.bg-gradient-success</div>
+        <div class="color-box bg-gradient-danger">.bg-gradient-danger</div>
+        <div class="color-box bg-gradient-warning">.bg-gradient-warning</div>
+        <div class="color-box bg-gradient-purple">.bg-gradient-purple</div>
+        <div class="color-box bg-gradient-teal">.bg-gradient-teal</div>
+        <div class="color-box bg-gradient-sunset">.bg-gradient-sunset</div>
+        <div class="color-box bg-gradient-ocean">.bg-gradient-ocean</div>
+      </div>
+    </section>
+
+    <!-- 5. Dark Theme Gradients (Reference Showcase) -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">التدرجات اللونية للنمط الداكن (Gradient Colors in Dark Theme)</h2>
+        <p class="section-desc">مطابقة للمعاينة المرجعية مع نهايات عميقة مشبعة</p>
+      </div>
+      <div class="color-grid">
+        <div class="color-box bg-gradient-primary-dark">.bg-gradient-primary-dark</div>
+        <div class="color-box bg-gradient-secondary-dark">.bg-gradient-secondary-dark</div>
+        <div class="color-box bg-gradient-info-dark">.bg-gradient-info-dark</div>
+        <div class="color-box bg-gradient-success-dark">.bg-gradient-success-dark</div>
+        <div class="color-box bg-gradient-danger-dark">.bg-gradient-danger-dark</div>
+        <div class="color-box bg-gradient-warning-dark">.bg-gradient-warning-dark</div>
+        <div class="color-box bg-gradient-purple-dark">.bg-gradient-purple-dark</div>
+        <div class="color-box bg-gradient-teal-dark">.bg-gradient-teal-dark</div>
+        <div class="color-box bg-gradient-sunset-dark">.bg-gradient-sunset-dark</div>
+        <div class="color-box bg-gradient-ocean-dark">.bg-gradient-ocean-dark</div>
+      </div>
+    </section>
+
+    <!-- 6. Arab, Islamic, Cairo & Egyptian Heritage Motifs (Dark Base) -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">أنماط التراث العربي والإسلامي والقاهري والمصري (Heritage Patterns — Dark Base)</h2>
+        <p class="section-desc">زخارف هندسية وموتيفات تاريخية تعبر عن أصالة القاهرة والتراث المصري والإسلامي (100% SVG مدمج بدون ملفات خارجية)</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="pattern-card bg-mashrabiya-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-mashrabiya-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; opacity: 0.85; font-family: var(--q-font-ui);">النقش المشربي القاهري (Historic Cairo Mashrabiya Lattice) — هندسة الخشب المعشق الفاطمي والمملوكي</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-arabesque-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800; color: #f5d77f;">.bg-arabesque-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; opacity: 0.85; font-family: var(--q-font-ui); color: #f5d77f;">الزخرفة النجمية الإسلامية (Islamic Star &amp; Girih) — الخاتم الثماني والهندسة الإشعاعية التراثية</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-lotus-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-lotus-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; opacity: 0.85; font-family: var(--q-font-ui);">زهرة اللوتس المصرية (Ancient Egyptian Lotus Bloom) — رمز الحياة والتجدد في الحضارة المصرية العريقة</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-pyramids-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-pyramids-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; opacity: 0.85; font-family: var(--q-font-ui);">هندسة الأهرامات المتداخلة (Giza Pyramids Chevron) — تناغم الخطوط المتدرجة الشامخة</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-nile-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-nile-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; opacity: 0.85; font-family: var(--q-font-ui);">أمواج النيل الخالد (Eternal Nile Waves Meander) — انسيابية التدفق والخصوبة النهرية</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-muqarnas-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-muqarnas-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; opacity: 0.85; font-family: var(--q-font-ui);">عقود وقباب القاهرة التاريخية (Cairene Muqarnas Arches) — طراز البوابات والمآذن الفاطمية</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Arab, Islamic, Cairo & Egyptian Heritage Motifs (White / Transparent Base) -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">أنماط التراث بخلفية بيضاء / شفافة (Heritage Patterns — White Base)</h2>
+        <p class="section-desc">زخارف ناعمة ودقيقة تناسب البطاقات والأسطح الفاتحة وترويقات الواجهة</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="pattern-card bg-mashrabiya-white">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-mashrabiya-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">النقش المشربي القاهري الفاتح</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-arabesque-white">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800; color: #b8860b;">.bg-arabesque-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: #b8860b; font-family: var(--q-font-ui);">الزخرفة النجمية الإسلامية بلمسة ذهبية ناعمة</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-lotus-white">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-lotus-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">زهرة اللوتس المصرية الفاتحة</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-pyramids-white">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-pyramids-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">هندسة الأهرامات الشامخة الفاتحة</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-nile-white">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-nile-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">أمواج النيل الفاتحة</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-muqarnas-white">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-muqarnas-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">العقود والمقرنصات القاهرية الفاتحة</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. SVG Pattern Backgrounds with Color (Standard) -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">خلفيات الأنماط الهندسية الملونة (SVG Background with Color)</h2>
+        <p class="section-desc">أنماط هندسية عامة</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="pattern-card bg-temple-dark">.bg-temple-dark</div>
+        <div class="pattern-card bg-food-dark">.bg-food-dark</div>
+        <div class="pattern-card bg-brick-dark">.bg-brick-dark</div>
+        <div class="pattern-card bg-bubbles-dark">.bg-bubbles-dark</div>
+      </div>
+    </section>
+
+    <!-- 9. SVG Pattern Backgrounds with Transparent/White Color (Standard) -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">خلفيات الأنماط الشفافة / البيضاء (SVG Background with Transparent Color)</h2>
+        <p class="section-desc">أنماط ناعمة مخصصة للبطاقات والأسطح الفاتحة</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="pattern-card bg-temple-white">.bg-temple-white</div>
+        <div class="pattern-card bg-food-white">.bg-food-white</div>
+        <div class="pattern-card bg-brick-white">.bg-brick-white</div>
+        <div class="pattern-card bg-bubbles-white">.bg-bubbles-white</div>
+      </div>
+    </section>
+
+    <!-- 10. Multipurpose Master Geometric Patterns (Dark Base) -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">الأنماط الهندسية المتقنة متعددة الاستخدامات (Master Geometric Patterns — Dark)</h2>
+        <p class="section-desc">أنماط هندسية دقيقة للمنتجات الرقمية والبطاقات ولوحات التحكم على خلفيات داكنة</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="pattern-card bg-grid-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-grid-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: rgba(255,255,255,0.7); font-family: var(--q-font-ui);">شبكة تقنية هندسية متقنة (Tech Grid)</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-dots-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-dots-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: rgba(255,255,255,0.7); font-family: var(--q-font-ui);">مصفوفة نقاط ناعمة (Micro Dot Matrix)</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-hex-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-hex-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: rgba(255,255,255,0.7); font-family: var(--q-font-ui);">خلايا سداسية هندسية (Hexagon Honeycomb)</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-diagonal-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-diagonal-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: rgba(255,255,255,0.7); font-family: var(--q-font-ui);">نسج خطوط مائلة ديناميكية (Diagonal Weave)</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-circuit-dark">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-circuit-dark</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: rgba(255,255,255,0.7); font-family: var(--q-font-ui);">مسارات ودوائر تقنية ذكية (Circuit Traces)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. Multipurpose Master Geometric Patterns (White/Transparent Base) -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">الأنماط الهندسية المتقنة متعددة الاستخدامات (Master Geometric Patterns — White)</h2>
+        <p class="section-desc">أنماط هندسية شفافة رقيقة مخصصة للبطاقات والأسطح الفاتحة بدون أي تشويش على النصوص</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="pattern-card bg-grid-white" style="border: 1px solid var(--q-border);">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-grid-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">شبكة تقنية بيضاء ناعمة (Tech Grid White)</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-dots-white" style="border: 1px solid var(--q-border);">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-dots-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">مصفوفة نقاط بيضاء للبطاقات (Micro Dot Matrix White)</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-hex-white" style="border: 1px solid var(--q-border);">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-hex-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">خلايا سداسية بيضاء خفيفة (Hexagon Honeycomb White)</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-diagonal-white" style="border: 1px solid var(--q-border);">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-diagonal-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">نسج مائل أبيض متقن (Diagonal Weave White)</span>
+          </div>
+        </div>
+        <div class="pattern-card bg-circuit-white" style="border: 1px solid var(--q-border);">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-size: 1.05rem; font-weight: 800;">.bg-circuit-white</span>
+            <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-secondary); font-family: var(--q-font-ui);">مسارات ودوائر بيضاء رقيقة (Circuit Traces White)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. Border Colors -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">ألوان الحدود (Border Colors)</h2>
+        <p class="section-desc">فئات <code>.border-*</code> لتطبيق ألوان الحدود القياسية</p>
+      </div>
+      <div class="color-grid">
+        <div class="border-box border-primary">.border-primary</div>
+        <div class="border-box border-secondary">.border-secondary</div>
+        <div class="border-box border-success">.border-success</div>
+        <div class="border-box border-info">.border-info</div>
+        <div class="border-box border-warning">.border-warning</div>
+        <div class="border-box border-danger">.border-danger</div>
+        <div class="border-box border-dark">.border-dark</div>
+        <div class="border-box border-white">.border-white</div>
+        <div class="border-box border-light">.border-light</div>
+        <div class="border-box border-luxury">.border-luxury</div>
+        <div class="border-box border-purple">.border-purple</div>
+        <div class="border-box border-teal">.border-teal</div>
+      </div>
+    </section>
+
+    <!-- 13. Text Colors -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">ألوان النصوص (Text Colors)</h2>
+        <p class="section-desc">فئات <code>.text-*</code> الصالحة للتطبيق على الفقرات وعناصر الروابط <code>&lt;a&gt;</code></p>
+      </div>
+      <div class="text-sample-row">
+        <span class="text-sample-item text-primary">.text-primary</span>
+        <span class="text-sample-item text-secondary">.text-secondary</span>
+        <span class="text-sample-item text-success">.text-success</span>
+        <span class="text-sample-item text-info">.text-info</span>
+        <span class="text-sample-item text-warning">.text-warning</span>
+        <span class="text-sample-item text-danger">.text-danger</span>
+        <span class="text-sample-item text-dark">.text-dark</span>
+        <span class="text-sample-item text-mute">.text-mute</span>
+        <span class="text-sample-item text-light">.text-light</span>
+        <span class="text-sample-item text-lighter">.text-lighter</span>
+        <span class="text-sample-item text-fade">.text-fade</span>
+        <span class="text-sample-item text-white">.text-white</span>
+        <span class="text-sample-item text-luxury">.text-luxury</span>
+        <span class="text-sample-item text-purple">.text-purple</span>
+        <span class="text-sample-item text-teal">.text-teal</span>
+      </div>
+    </section>
+
+    <!-- 14. Hover Colors -->
+    <section class="section-card">
+      <div class="section-header">
+        <h2 class="section-title">تفاعلات التحويم (Hover Colors)</h2>
+        <p class="section-desc">فئات <code>.hover-*</code> التي يمكن إضافتها لعناصر الروابط <code>&lt;a&gt;</code> أو الأزرار التفاعلية</p>
+      </div>
+      <div class="text-sample-row">
+        <a href="#" class="text-sample-item hover-primary">.hover-primary</a>
+        <a href="#" class="text-sample-item hover-secondary">.hover-secondary</a>
+        <a href="#" class="text-sample-item hover-success">.hover-success</a>
+        <a href="#" class="text-sample-item hover-info">.hover-info</a>
+        <a href="#" class="text-sample-item hover-warning">.hover-warning</a>
+        <a href="#" class="text-sample-item hover-danger">.hover-danger</a>
+        <a href="#" class="text-sample-item hover-dark">.hover-dark</a>
+        <a href="#" class="text-sample-item hover-white">.hover-white</a>
+        <a href="#" class="text-sample-item hover-light">.hover-light</a>
+        <a href="#" class="text-sample-item hover-purple">.hover-purple</a>
+        <a href="#" class="text-sample-item hover-teal">.hover-teal</a>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

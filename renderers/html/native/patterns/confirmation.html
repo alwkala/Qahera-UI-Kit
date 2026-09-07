@@ -1,0 +1,40 @@
+<!-- Qahera UI Kit - Confirmation Dialog Pattern (Native HTML) -->
+<div class="qhr-confirmation-pattern" x-data="qhrModal({ defaultOpen: false })">
+  <button type="button" class="qhr-btn qhr-btn--destructive qhr-btn--md" @click="show()">
+    <span>حذف الحساب</span>
+  </button>
+
+  <div 
+    class="qhr-modal-backdrop" 
+    x-show="open" 
+    x-cloak 
+    @keydown.escape.window="hide()"
+    tabindex="-1"
+    role="dialog"
+    aria-modal="true">
+    
+    <div class="qhr-modal-panel" @click.outside="hide()">
+      <div class="qhr-modal-header">
+        <h3 class="qhr-modal-title">تأكيد الإجراء الحرج</h3>
+        <button type="button" class="qhr-modal-close" @click="hide()" aria-label="إغلاق">
+          <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="qhr-modal-body">
+        <p>هل أنت متأكد تماماً من رغبتك في المتابعة؟ هذا الإجراء سيقوم بحذف كافة السجلات المرتبطة نهائياً.</p>
+      </div>
+
+      <div class="qhr-modal-footer">
+        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" @click="hide()">
+          <span>إلغاء</span>
+        </button>
+        <button type="button" class="qhr-btn qhr-btn--destructive qhr-btn--md" @click="hide()">
+          <span>تأكيد الحذف النهائي</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

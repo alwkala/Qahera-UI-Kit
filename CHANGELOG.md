@@ -1,0 +1,231 @@
+# Changelog
+
+All notable changes to **Qahera UI Kit** will be documented in this file.
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.5.0] - 2026-09-07
+
+### Universal Living Showcase Generator v3.0, Grand Interactive Registry Hub & Zero-Defect Preview Engine
+> *"Qahera UI Kit introduces Universal Living Showcase Generator v3.0: transforming static component previews into rich, multi-variant interactive playgrounds, restoring the full 78-item Grand Living Registry Hub with 12 Cairo Atlas neighborhood themes, and eliminating tokenizer leaks and dropdown synchronization bugs for a flawless developer experience."*
+
+### Added
+- **Universal Living Showcase Generator v3.0 (`cli/generate-previews.js`):**
+  - Autonomous CLI preview generation engine emitting 62 rich component and pattern playgrounds + Grand Living Registry Hub (`examples/previews/index.html`).
+  - **Showcase Separation Architecture (`examples/showcases/*.html`):** Decoupled preview playgrounds into 43 authoritative showcase files equipped with interactive triggers (`openLiveModal()`, `openLiveDrawer()`, real toast dispatchers, active input validations) instead of raw export-only snippets.
+  - Full suite of 11 interactive behavior scripts (`behavior/*.js`) injected with `defer` prior to Alpine.js, guaranteeing zero console errors across all previews.
+  - Multi-variant interactive stages supporting 12 Cairo Atlas neighborhood themes, responsive viewport simulation (Desktop, Tablet, Mobile), Day/Night lighting modes, and bidirectional LTR/RTL parity.
+- **Grand Interactive Living Showcase Hub (`examples/previews/index.html`):**
+  - Restored and elevated the full 78 canonical items matrix across 3 distinct architectural tiers: 40 Components, 20 Patterns, and 18 Application Templates.
+  - Instant multi-field fuzzy search engine indexing Arabic display names, English technical IDs, functional categories, tags, and paths with `/` and `Ctrl+K` keyboard shortcuts.
+  - Segmented category tabs with live item counters: All (78), Components (40), Patterns (20), Templates (18).
+  - Faceted functional category chips filter (Actions, Forms, Navigation, Overlay, Feedback, Analytics, Ecommerce, Media, AI).
+  - Dual view modes: High-fidelity 3D Card Grid with elevated surfaces and hover glows vs Compact List view.
+  - Dynamic pagination engine with selectable page sizes (12, 24, 48, All) and smooth scroll transitions.
+  - Integrated 12 Cairo Atlas neighborhood theme switcher directly in the navbar with active swatch dots and localStorage persistence.
+
+### Fixed
+- **Component Picker Dropdown Synchronization (`QAHERA-PREVIEW-001`):**
+  - Resolved bug where the header dropdown was statically defaulted to the first item ("Accordion") on every page.
+  - Dynamically injects the `selected` attribute per-component and per-pattern, with strict discrimination between identical component and pattern identifiers (e.g. Component `pagination` vs Pattern `Pagination`).
+  - Added dual-guard runtime synchronization in `initStage()` matching `window.location.pathname` to override browser bfcache or form persistence.
+- **HTML Tokenizer Script Tag Collision & DOM Reading (`QAHERA-PREVIEW-002`):**
+  - Resolved browser HTML parser issue where string literals containing `</script>` inside inline `<script>` tags prematurely closed script blocks and leaked raw JavaScript text onto pages (`"; navigator.clipboard.writeText(rawHtml)...`).
+  - Replaced script string embedding with direct DOM reading from `<code id="rawComponentSource">` via `textContent` in `copyComponentHtml()`, achieving 100% clean markup and zero script collision risk.
+- **Showcase Syntax Integrity:**
+  - Repaired truncated template and unclosed script block in `examples/showcases/toast.html`, ensuring 100% matched script tags across all 67 preview and showcase documents.
+
+---
+
+## [1.4.0] - 2026-09-07
+
+### Sovereign Cairo Studio, Cultural Neighborhood Refinement & Dual-Target Export Suite
+> *"Qahera UI Kit delivers a production-grade Theme Studio with responsive viewport simulation, strict architectural token adherence, cultural neighborhood recalibration (Royal Egyptian Green for El-Marg, Classic Azure for El-Zeitoun, Champagne Pearl & Obsidian for Zamalek), and a dual-target Canonical vs Custom developer export engine."*
+
+### Added
+- **Sovereign Theme Studio Header Architecture (`examples/previews/ThemeStudio.html`):**
+  - Responsive Viewport Switcher simulating Desktop (100%), Tablet (768px), and Mobile (390px) directly on the component stage.
+  - Focus Mode toggle allowing developers to collapse the controls sidebar to inspect responsive component grids in full width.
+  - Unified action bar streamlining fragmented export triggers into a single primary CTA («تصدير الكود»).
+- **Strict Canonical Radius Matrix Alignment & 100% Component Compliance:**
+  - Mapped studio radii sliders directly to authoritative tokens (`--qhr-radius-xl`, `--qhr-radius-lg`, `--qhr-radius-md`, `--qhr-radius-sm`, `--qhr-radius-xs`).
+  - Selecting `0px` radius now guarantees 100% razor-sharp edges across cards, buttons, inputs, selects, badges, checkboxes, switches, tables, and progress bars without exception (essential for Neo-Brutalist archetypes like Shubra).
+- **Independent Border Width vs Spacing Density Customization:**
+  - Dedicated **Border Width** stroke controller (`0px` to `4px`) isolated with `box-sizing: border-box !important` to eliminate physical footprint shifts and size inflation.
+  - Dedicated **Padding & Spacing Density** token engine with 4 levels: Compact (`0.8x`), Default (`1.0x`), Spacious (`1.25x`), and Luxury (`1.5x`), dynamically governing cards, buttons, inputs, badges, and tables.
+  - Dedicated **Elevation & Depth Level** controller (Flat, Subtle, Elevated, Floating).
+- **Dual-Target Multi-Format Export Engine (Canonical Package vs Custom Developer Preset):**
+  - **Canonical Official Mode:** Exports the authoritative Qahera UI Kit neighborhood theme specification (`@qahera/theme-*`).
+  - **Custom Developer Preset Mode:** Enables custom theme metadata input (Theme Name, Slug/ID, Author) and emits standalone, decoupled code across CSS Tokens (`qahera-[custom-id].css`), YAML 1.2 Specification (`[custom-id].yaml`), Tailwind Configuration (`tailwind.config.js`), and W3C JSON Tokens (`[custom-id]-tokens.json`) with direct one-click file downloading.
+- **Master Showcase & Registry Synchronization (`examples/previews/index.html`):**
+  - Linked `tokens/themes/themes.css` into the master registry hub and dynamically cascaded the 11 neighborhood themes across page surfaces, navbar, cards, tags, and focus states via authoritative `--qhr-*` tokens.
+  - Integrated the 11 Cairo Neighborhood themes subbar with live reactive switching, swatch indicators, and resilient local storage persistence.
+  - Added dual-mode light/dark parity across all showcase elements, respecting both `[data-mode]` and `[data-theme]`.
+  - Added a prominent direct link in the showcase navbar to `ThemeStudio.html`.
+
+### Changed
+- **Recalibrated Archetype 10: El-Marg (`el-marg` in `cairo-atlas.yaml`, `themes.css`, `ThemeStudio.html`):**
+  - Re-anchored the neighborhood identity to its historical etymology: the Royal Meadows & Estates of the Muhammad Ali Dynasty on the northeastern gateway of Cairo.
+  - Established the authentic palette: **Royal Egyptian Flag Green** (`#0E5E3A` day / `#158052` night) and **Embroidered Royal Gold** (`#D4AF37` / `#E5B83B`) inspired by the Kingdom of Egypt royal flag and embroidered crown insignia.
+  - School: `Khedivial Royal Meadows & Dynasty Estates`.
+- **Recalibrated Archetype 9: El-Zeitoun (`el-zaytoun` in `cairo-atlas.yaml`, `themes.css`, `ThemeStudio.html`):**
+  - Completely discarded the superficial and inaccurate "olive green" palette.
+  - Re-anchored the neighborhood to its authentic 20th-century residential identity as a prestigious garden suburb of classic villas: **Cairo Classic Azure** (`#1D4ED8` day / `#3B82F6` night) paired with **Sandstone Amber** (`#D97706` / `#F59E0B`).
+  - School: `Suburban Aristocratic Villas & Classic Heritage`.
+- **Redesigned Archetype 1: Zamalek (`zamalek` in `cairo-atlas.yaml`, `themes.css`, `ThemeStudio.html`):**
+  - Transformed from generic green/gold to the distinguished **Island Embassies & Diplomatic Mansions** aesthetic.
+  - Established the new authoritative palette: **Champagne Pearl & Obsidian Black** (`#FBF9F5` day ivory, `#FFFFFF` marble surface, `#18181B` obsidian primary / `#09090B` night obsidian, `#121216` dark marble, `#E5C378` antique champagne gold) with frosted glass and gilded trims.
+  - School: `Diplomatic Mansions & Champagne Pearl Obsidian`.
+
+### Fixed
+- **Showcase Index `savedDir` ReferenceError & `file:///` Storage Isolation:** Declared `savedDir` properly in `examples/previews/index.html` and wrapped storage operations with defensive `safeStorageGet`/`safeStorageSet` helpers to prevent crashes when loading via strict local `file:///` security origins.
+- **Sidebar Scroll Clipping Bug in ThemeStudio:** Replaced overflowing outer container with a fixed, 100% opaque tabs header and dedicated internal scroll container (`.sidebar-content-area`), eliminating content bleed behind navigation tabs.
+- **Windows Browser Scrollbar & Slider Polish:** Replaced raw default range inputs and OS arrow scrollbars with custom 6px pill-track sliders, gold thumbs with scale animations, and sleek 5px rounded scrollbars.
+
+---
+
+## [1.3.0] - 2026-09-07
+
+### Cairo Design Atlas (11×8 Matrix), Dual-Mode Architecture & Sovereign Theme Studio
+> *"Qahera UI Kit transitions from a cosmetic color switcher to a profound Cultural Design System: The Cairo Design Atlas — 11 neighborhood archetypes across 8 design dimensions with dual Day & Night lighting modes."*
+
+### Added
+- **Cairo Design Atlas Specification (`tokens/themes/cairo-atlas.yaml`):**
+  - Standardized the 11 Cairo Archetypes across 8 fundamental design dimensions:
+    1. `zamalek` (الزمالك): Cosmopolitan Art Deco & Emerald Island.
+    2. `downtown` (وسط البلد): Khedivial Classical & Editorial Swiss.
+    3. `heliopolis` (هليوبوليس): Art Deco & Neo-Pharaonic Sandstone.
+    4. `maadi` (المعادي): Organic Botanical & Serene Earth.
+    5. `roxy` (روكسي): Egyptian Retro / Y2K / Neon Glow.
+    6. `sakakini` (السكاكيني): Italian Gothic & Rococo Palace.
+    7. `el-hussein` (الحسين): Islamic Heritage & Historic Cairo.
+    8. `shubra` (شبرا): Vibrant Neo-Brutalism & Urban Energy.
+    9. `el-zaytoun` (الزيتون): Olive Heritage & Cosmopolitan Serenity.
+    10. `el-marg` (المرج): Raw Materiality & Industrial Terracotta.
+    11. `new-cairo` (القاهرة الجديدة): Glassmorphism & High-Tech Smart City.
+- **Thematic Topography Dual-Mode Stylesheet (`tokens/themes/themes.css` & `dist/qahera-themes.css`):**
+  - Complete dual-mode CSS custom properties for all 11 Cairo archetypes (`[data-theme="..."][data-mode="dark|light"]`).
+  - Injected universal archetype FX utilities: `.fx-scanlines`, `.fx-grain`, `.fx-glass`, `.fx-glow`, `.fx-hard-shadow`.
+- **Cairo Design Atlas Studio (`examples/previews/ThemeStudio.html`):**
+  - Interactive studio built with 100% Qahera UI Kit canonical components and Alpine.js.
+  - 11 Archetype navigation selector pills with active indicator dots.
+  - High-fidelity Lumina-grade glassmorphic KPI cards with multi-stop glowing SVG sparklines.
+  - Exclusive Roxy Retro / Y2K interactive control pod with neon glow, pixel vibes, and scanline effect toggle.
+  - Interactive 8-Dimension tuning controllers (Base Colors, Radii, Borders, FX, Motion, Density).
+  - 1-Click Code Exporter for instant production CSS and YAML tokens.
+- **Showcase Registry Synchronization (`examples/previews/index.html`):**
+  - Synchronized `themesList` dropdown with the 11 Cairo Archetypes.
+
+---
+
+## [1.2.0] - 2026-09-07
+
+### Thematic Topography, Egyptian Cultural Archetypes & Sovereign Theme Studio Roadmap
+> *"Qahera UI Kit elevates multi-theming from generic superficial colors to a rigorous synthesis of Global Design Movements and Egyptian Architectural Topography."*
+
+### Added
+- **Architectural Governance Invariant 15 (`QAHERA-THEME-001` in `AGENTS.md`):**
+  - Formally codified that themes must NEVER be arbitrary abstract names (e.g. `theme-blue`, `cool-dark`) or cosmetic labels.
+  - Every theme strictly synthesizes a recognized global design movement (Art Deco, Belle Époque, Neo-Brutalism, Modern Minimalist, Vernacular Claymorphism, Desert Raw Materiality) with an authentic Egyptian cultural, architectural, or urban context.
+  - 100% semantic token override purity in `tokens/themes/*.yaml` via `[data-theme="..."]` with zero component contract drift and zero physical CSS.
+- **Flagship Egyptian Urban & Regional Theme Library (8 New YAML Sources in `tokens/themes/`):**
+  1. `heliopolis-deco` (`tokens/themes/heliopolis.yaml`): Art Deco & Neo-Pharaonic Revival (Baron Empain sandstone ochre, Korba stepped geometry, 4px box radius).
+  2. `downtown-classic` (`tokens/themes/downtown.yaml`): Belle Époque & Neoclassical Editorial (Khedivial antique marble ivory, aged brass, heritage crimson, 6px box radius).
+  3. `new-cairo-tech` (`tokens/themes/new-cairo.yaml`): Ultra-Modern Glassmorphism & High-Tech (Deep cyber slate, electric cyan, frosted translucent surfaces, 16px box radius, pill selectors).
+  4. `maadi-botanical` (`tokens/themes/maadi.yaml`): Organic Earth & Botanical Minimal (Degla limestone linen, serene eucalyptus & sage, natural earth taupe, 14px box radius).
+  5. `shubra-pop` (`tokens/themes/shubra.yaml`): Vibrant Pop & Neo-Brutalism (High-contrast festive crimson, amber saffron, bold 2px pitch-black borders, 2px radius).
+  6. `nubian-vernacular` (`tokens/themes/nubia.yaml`): Vernacular Claymorphism & Organic Adobe (West Suhail cobalt blue, Nile silt terracotta, sun yellow, 20px organic curves).
+  7. `sinai-mineral` (`tokens/themes/sinai.yaml`): Desert Mineral & Raw Materiality (Starry midnight indigo, sand dune amber, St. Catherine rose granite, 8px mineral cuts).
+  8. `cairo-azure` (`tokens/themes/cairo-azure.yaml`): Islamic Geometric & Heritage Azure (Al-Mu'izz lapis lazuli deep blue, mosque dome turquoise, pierced lantern brass, 10px arabesque symmetry).
+- **Unified Thematic Topography Stylesheet (`tokens/themes/themes.css`):**
+  - Complete CSS custom property overrides for all 9 architectural presets supporting both component tokens (`--qhr-*`) and showcase variables (`--q-*`).
+- **Interactive Architectural Theme Picker Dropdown in Showcase (`examples/previews/index.html`):**
+  - Dropdown selector featuring real-time swatch preview dots, Arabic cultural names, global design movement subtitles, and active state indicators.
+  - Full keyboard accessibility and click-outside dismissal (`@click.outside="themeMenuOpen = false"`).
+  - Preserved quick 1-click day/night toggle icon alongside the theme picker.
+- **Theme Studio Generator Specification in `ROADMAP.md` (Phase 5 & Work Package F):**
+  - Detailed architecture for interactive theme generator (daisyUI-style) with Base Colors, Semantic Roles, Radius Matrix (Boxes/Fields/Selectors), Effects (Depth 3D, Noise), Proportional Sizing, and Border Width sliders.
+- **Atomic Knowledge Item in `tidyfactor-brain`:**
+  - Persisted `KI-Qahera-Thematic-Topography.md` under `alwkala` project scope.
+
+---
+
+## [1.1.0] - 2026-09-07
+
+### Master Showcase, Hydration Protocol, Smart Pagination & Architectural Governance
+> *"Qahera UI Kit achieves full canonical composition, 100% reliable Alpine.js hydration, high-performance client pagination, and universal registry indexing."*
+
+### Added
+- **Canonical Pagination Component (39th Registered Component with 6 Styled Variations):**
+  - Fully established first-class `Pagination` component across all 6 targets: Contract (`contracts/components/Pagination.yaml`), Recipe (`recipes/Pagination.yaml`), atomic modular CSS (`renderers/html/native/components/pagination.css`), Native HTML (`renderers/html/native/Pagination.html`), Tailwind (`renderers/html/tailwind/Pagination.html`), React RSC (`renderers/react/Pagination.tsx`), PHP Plates (`renderers/php/plates/Pagination.php`), and Vanilla Web Component (`renderers/js/components/qhr-pagination.js`).
+  - **6 Rich Styled Variations Inspired by shadcn/ui & Elevated for MENA Luxury:**
+    1. `default`: Standard elevated luxury glass bar with summary, controls, and size selector.
+    2. `outline`: High-contrast card-bordered container (`qhr-pagination--outline`) with elevated borders and soft shadow.
+    3. `pills`: Fully rounded capsules (`qhr-pagination--pills`) with circular numeric indicators.
+    4. `segmented`: Joined button group strip (`qhr-pagination--segmented`) with fused pill borders.
+    5. `ghost`: Borderless minimal styling (`qhr-pagination--ghost`) seamlessly embedded into data tables.
+    6. `compact` & `icons-only`: Space-constrained stepper triggers for dense dashboards.
+  - **Headless & Composable React Primitives:** Exported `<Pagination>`, `<PaginationContent>`, `<PaginationItem>`, `<PaginationLink>`, `<PaginationPrevious>`, `<PaginationNext>`, `<PaginationFirst>`, `<PaginationLast>`, `<PaginationEllipsis>`, and `<PaginationSummary>`.
+  - Strict 100% Logical CSS styling with zero physical properties, responsive desktop-to-mobile flex layout, high-contrast states, and bidirectional icon rotations (`[dir="rtl"] .qhr-pagination__icon-prev/next { transform: rotate(180deg); }`).
+  - Production bundle `dist/qahera.css` updated to 177.95 KB (23.91 KB gzip), strictly adhering to performance budgets.
+- **Smart Client-Side Pagination & DOM Optimization (`patterns/pagination.yaml` Dogfooding):**
+  - High-performance slice rendering (`paginatedItems`) eliminating excessive DOM nodes and guaranteeing instantaneous 0ms first-load and silky filter performance even with hundreds of items.
+  - Interactive pagination navigation bar (`qhr-pagination`) with responsive previous/next buttons, dynamic windowed page numbering with ellipsis (`1, 2, 3, ..., 7`), and live range boundary text (`عرض 1 إلى 12 من أصل 78`).
+  - Integrated page-size selector (`12`, `24`, `48`, or `الكل`) defaulting to 12 items (optimal for 3/4-column responsive card grids).
+  - Smooth stage scrolling (`stage.scrollIntoView({ behavior: 'smooth', block: 'start' })`) upon page jumps and automatic reset to Page 1 on filter or search mutation.
+- **Master Showcase & Registry Hub (`examples/previews/index.html`):**
+  - World-class interactive catalog indexing all **78 canonical items** (39 components, 20 UX patterns, 18 application templates).
+  - Instant reactive search by Arabic name, English identifier, description, category, and tags with keyboard shortcuts (`/`, `Ctrl+K`, `Escape`).
+  - Segmented control category tabs (`qhr-tabs--segmented`) and functional category chips (`qhr-chip`).
+  - Dual view modes: Elevated Cards Grid (`grid`) and Developer Tabular View (`list`) with 1-click clipboard identifier copying.
+  - Strict icon-only theme toggle button (Sun/Moon SVGs without text) and full RTL/LTR bidirectional toggle.
+- **Architectural Governance Invariants in `AGENTS.md`:**
+  - **Invariant 13 (`QAHERA-COMP-001`):** Mandatory dogfooding and canonical composition requirement across all previews and templates. Ad-hoc utility classes strictly prohibited.
+  - **Invariant 14 (`QAHERA-ALPINE-001`):** Alpine.js hydration and template integrity protocol banning attribute collisions, enforcing 100% globally unique template keys, prohibiting interactive descendants inside anchor wrappers, and eliminating nested `x-for` templates.
+
+### Fixed
+- **Alpine.js Initial Hydration Stall in Showcase:**
+  - Resolved initial-load blank cards issue caused by duplicate `:key` collisions (`Questionnaire` component vs pattern) by generating unambiguous unique keys (`uniqueKey`).
+  - Resolved HTML5 interactive descendant violation by migrating card root from `<a>` to `<article>`, preventing the browser HTML parser from splitting tags and breaking Alpine's single-root `<template x-for>` invariant.
+  - Replaced nested `<template x-for>` for card tags with atomic helper rendering `x-html="renderTags(item.tags)"`.
+  - Initialized array states with shallow copies (`[...DATA]`) and synchronized filters via `this.$nextTick()` inside `init()`.
+- **Attribute Escaping Collision:**
+  - Migrated extensive Alpine state and dataset out of inline HTML attributes (`x-data="{...}"`) into clean, decoupled `Alpine.data('registryApp', ...)` within `<script>` tags.
+
+---
+
+## [1.0.0] - 2026-09-06
+
+### Major Architecture Milestone
+> *"Qahera gives AI a structured visual vocabulary for building consistent interfaces."*
+
+### Added
+- **Token Specification v1.0 ([`docs/01-TOKEN-SPEC.md`](docs/01-TOKEN-SPEC.md)):**
+  - Canonical 3-tier taxonomy: primitives, semantic intents, component bindings, and theme overrides (`default.yaml`, `dark.yaml`).
+  - Zero-dependency recursive token reference resolver (`cli/token-resolver.js`) resolving 225 tokens across CSS variables, JSON, and Tailwind presets with circular dependency protection.
+- **Component Specification v1.0 ([`docs/02-COMPONENT-SPEC.md`](docs/02-COMPONENT-SPEC.md)):**
+  - Contract-first architecture enforcing PascalCase canonical component naming.
+  - Authored all 18 canonical component contracts in `contracts/components/*.yaml` with detailed semantic anatomy, controlled slots (`start`, `default`, `end`), keyboard focus trap specs, and 4-dimensional AI decision matrix (`contracts/ai-decision-matrix.yaml`).
+  - Strict validation schema (`schemas/component.schema.yaml`).
+- **Recipe Specification v1.0 ([`docs/03-RECIPE-SPEC.md`](docs/03-RECIPE-SPEC.md)):**
+  - Deterministic visual translation connecting contracts to tokens.
+  - Authored `cli/recipe-compiler.js` resolving token references and building normalized style models in `generated/manifests/recipes.json`.
+  - Enforced deterministic state cascade: `base -> variant -> size -> tone -> state` with state priority: `disabled > loading > invalid > selected > hover > focus`.
+  - All 18 component recipes in `recipes/*.yaml` updated to v1.0 with rich AI metadata (`intent`, `visual_role`, `density`, `preferred_when`, `avoid_when`).
+- **Documentation & Context Synchronization:**
+  - Updated `README.md`, `VERSION`, `.tidyfactor/integration.yaml`, and `ai/*.yaml` manifests to reflect canonical v1.0 readiness.
+
+---
+
+## [0.1.0-draft] - 2026-09-06
+
+### Added
+- Canonical specification (`SPEC.md`) and AI Agent governance rules (`AGENTS.md`).
+- Established YAML-First architecture across tokens, contracts, and recipes.
+- 3-tier token taxonomy (`tokens/`): colors, typography, spacing, radius, shadows, motion, z-index, and compiled `tokens.css`.
+- Core contracts (`contracts/`): component metadata, controlled variant vocabulary, interaction states, accessibility, and slots.
+- 18 canonical component recipes (`recipes/`) with AI-native metadata (WHAT, WHEN, HOW, WHY NOT).
+- 8 framework-free interactive behavior modules (`behavior/`) powered by Alpine.js.
+- Multi-target renderers starter (`renderers/`): HTML (Native/Tailwind), PHP (Plates), HTMX, and React.
+- AI progressive disclosure manifests (`ai/`).
+- Token & recipe compilation pipeline in `cli/`.
+- Interactive bilingual LTR/RTL kitchen-sink demo (`examples/html/index.html`).

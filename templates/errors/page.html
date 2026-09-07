@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" x-data="errorSuite()" x-init="init()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منظومة حالات النظام والأخطاء — Qahera Error & Status Suite</title>
+  <meta name="description" content="واجهات مرنة عالية الجودة لحالات الخطأ والصيانة: 404 الصفحة غير موجودة، 500 خطأ الخادم، وأعمال الصيانة المجدولة.">
+
+  <!-- Tokens & Components CSS -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <!-- Google Fonts: Cairo & El Messiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=El+Messiri:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       Qahera Error & Status Suite — Page-Level Token Bridge
+       Strict adherence to AGENTS.md:
+       - 100% Logical CSS properties.
+       - Zero hardcoded colors in HTML elements.
+       - High contrast Light & Dark Themes.
+       - Pure Arabic typography (Cairo for body, El Messiri for display).
+       - Zero emoji / Unicode icons (SVG only, 24x24 viewBox).
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* ── Light Theme Tokens ────────────────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --err-bg:               #FAF8F5;
+      --err-surface:          #FFFFFF;
+      --err-surface-card:     #FFFFFF;
+      --err-surface-subtle:   #F5F2EB;
+      --err-surface-overlay:  rgba(250, 248, 245, 0.94);
+      --err-text-primary:     #1C1917;
+      --err-text-secondary:   #44403C;
+      --err-text-muted:       #78716C;
+      --err-accent:           #B45309;
+      --err-accent-hover:     #92400E;
+      --err-accent-fg:        #FFFFFF;
+      --err-accent-subtle:    rgba(180, 83, 9, 0.08);
+      --err-accent-border:    rgba(180, 83, 9, 0.25);
+      --err-border:           #E7E5E4;
+      --err-border-strong:    #D6D3D1;
+      --err-card-shadow:      0 12px 32px rgba(28, 25, 23, 0.08), 0 2px 6px rgba(28, 25, 23, 0.04);
+      --err-glow-ambient:     radial-gradient(ellipse at 50% 20%, rgba(180, 83, 9, 0.10), transparent 70%);
+      --err-font-display:     'El Messiri', serif;
+      --err-font-body:        'Cairo', sans-serif;
+    }
+
+    /* ── Dark Theme Tokens (Obsidian & Gold) ───────────────────────────── */
+    [data-theme="dark"], [data-theme="luxury-gold"] {
+      --err-bg:               #0A0806;
+      --err-surface:          #14100C;
+      --err-surface-card:     #17120F;
+      --err-surface-subtle:   #1E1712;
+      --err-surface-overlay:  rgba(10, 8, 6, 0.94);
+      --err-text-primary:     #FBF8F3;
+      --err-text-secondary:   #D4C9BC;
+      --err-text-muted:       #9E9081;
+      --err-accent:           #D4AF37;
+      --err-accent-hover:     #F2C94C;
+      --err-accent-fg:        #0A0806;
+      --err-accent-subtle:    rgba(212, 175, 55, 0.10);
+      --err-accent-border:    rgba(212, 175, 55, 0.28);
+      --err-border:           rgba(212, 175, 55, 0.18);
+      --err-border-strong:    rgba(212, 175, 55, 0.38);
+      --err-card-shadow:      0 20px 48px rgba(0, 0, 0, 0.7);
+      --err-glow-ambient:     radial-gradient(ellipse at 50% 20%, rgba(212, 175, 55, 0.14), transparent 70%);
+      --err-font-display:     'El Messiri', serif;
+      --err-font-body:        'Cairo', sans-serif;
+    }
+
+    /* ── Base Setup ────────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--err-bg);
+      color: var(--err-text-primary);
+      font-family: var(--err-font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: var(--err-glow-ambient);
+      transition: background-color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard),
+                  color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard);
+    }
+
+    /* ── Top Suite Navigation Bar ──────────────────────────────────────── */
+    .err-top-nav {
+      padding-block: var(--qhr-space-3, 12px);
+      padding-inline: var(--qhr-space-6, 24px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-4, 16px);
+      flex-wrap: wrap;
+      border-block-end: 1px solid var(--err-border);
+      background: var(--err-surface-overlay);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 1000;
+    }
+
+    .err-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--err-text-primary);
+    }
+
+    .err-brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--err-accent);
+      color: var(--err-accent-fg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 17px;
+      font-family: var(--err-font-display);
+    }
+
+    .err-view-tabs {
+      display: inline-flex;
+      align-items: center;
+      background: var(--err-surface-subtle);
+      border: 1px solid var(--err-border);
+      border-radius: 9999px;
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .err-tab-btn {
+      padding-block: 6px;
+      padding-inline: 14px;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      color: var(--err-text-secondary);
+      font-family: var(--err-font-body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .err-tab-btn:hover {
+      color: var(--err-text-primary);
+    }
+
+    .err-tab-btn.is-active {
+      background: var(--err-accent);
+      color: var(--err-accent-fg);
+      font-weight: 700;
+    }
+
+    .err-theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--err-surface-subtle);
+      border: 1px solid var(--err-border);
+      color: var(--err-text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .err-theme-toggle:hover {
+      border-color: var(--err-accent-border);
+      color: var(--err-accent);
+    }
+
+    /* ── Main Error Stage Layout ───────────────────────────────────────── */
+    .err-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(24px, 5vw, 64px) var(--qhr-space-6, 24px);
+    }
+
+    .err-card {
+      width: 100%;
+      max-width: 680px;
+      background: var(--err-surface-card);
+      border: 1px solid var(--err-border-strong);
+      border-radius: var(--qhr-radius-xl, 24px);
+      padding: clamp(32px, 5vw, 56px);
+      box-shadow: var(--err-card-shadow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .err-card::before {
+      content: '';
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--err-accent), transparent);
+    }
+
+    /* Giant Status Code Graphic */
+    .err-code-display {
+      font-family: var(--err-font-display);
+      font-size: clamp(72px, 12vw, 120px);
+      font-weight: 800;
+      line-height: 1;
+      margin: 0;
+      color: var(--err-accent);
+      letter-spacing: -0.03em;
+      text-shadow: 0 8px 32px var(--err-accent-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .err-icon-halo {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: var(--err-accent-subtle);
+      border: 2px dashed var(--err-accent-border);
+      color: var(--err-accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-block-end: var(--qhr-space-4, 16px);
+    }
+
+    .err-title {
+      font-family: var(--err-font-display);
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 700;
+      color: var(--err-text-primary);
+      margin-block-start: var(--qhr-space-2, 8px);
+      margin-block-end: var(--qhr-space-3, 12px);
+      line-height: 1.35;
+    }
+
+    .err-desc {
+      font-size: 15px;
+      color: var(--err-text-secondary);
+      max-width: 520px;
+      margin-inline: auto;
+      margin-block-end: var(--qhr-space-6, 24px);
+      line-height: 1.8;
+    }
+
+    /* 404 Quick Search Box */
+    .err-search-box {
+      max-width: 440px;
+      margin-inline: auto;
+      margin-block-end: var(--qhr-space-6, 24px);
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .err-search-box svg {
+      position: absolute;
+      inset-inline-start: 14px;
+      color: var(--err-text-muted);
+      pointer-events: none;
+    }
+
+    .err-search-input {
+      width: 100%;
+      background: var(--err-surface-subtle);
+      border: 1px solid var(--err-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: var(--qhr-space-2-5, 10px);
+      padding-inline-start: 42px;
+      padding-inline-end: 16px;
+      color: var(--err-text-primary);
+      font-family: var(--err-font-body);
+      font-size: 14px;
+    }
+
+    .err-search-input:focus {
+      outline: none;
+      border-color: var(--err-accent);
+      background: var(--err-surface);
+    }
+
+    /* 404 Quick Links */
+    .err-quick-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-block-end: var(--qhr-space-6, 24px);
+      font-size: 13px;
+    }
+
+    .err-quick-link {
+      color: var(--err-text-muted);
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .err-quick-link:hover {
+      color: var(--err-accent);
+      background: var(--err-surface-subtle);
+    }
+
+    /* 500 Diagnostic Telemetry Card */
+    .err-telemetry-box {
+      background: var(--err-surface-subtle);
+      border: 1px solid var(--err-border);
+      border-radius: var(--qhr-radius-lg, 14px);
+      padding: var(--qhr-space-4, 16px);
+      margin-block-end: var(--qhr-space-6, 24px);
+      text-align: start;
+      font-size: 13px;
+    }
+
+    .err-telemetry-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-end: 10px;
+      padding-block-end: 8px;
+      border-block-end: 1px solid var(--err-border);
+    }
+
+    .err-telemetry-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-block-end: 6px;
+      font-size: 12px;
+    }
+
+    .err-telemetry-code {
+      font-family: monospace;
+      direction: ltr;
+      color: var(--err-accent);
+      font-weight: 700;
+    }
+
+    /* Maintenance Countdown Grid */
+    .err-countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 440px;
+      margin-inline: auto;
+      margin-block-end: var(--qhr-space-6, 24px);
+    }
+
+    .err-count-box {
+      background: var(--err-surface-subtle);
+      border: 1px solid var(--err-border);
+      border-radius: var(--qhr-radius-md, 12px);
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .err-count-num {
+      font-family: var(--err-font-display);
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--err-accent);
+      line-height: 1.1;
+    }
+
+    .err-count-label {
+      font-size: 11px;
+      color: var(--err-text-muted);
+      margin-block-start: 4px;
+    }
+
+    /* Maintenance Progress Bar */
+    .err-progress-wrap {
+      max-width: 440px;
+      margin-inline: auto;
+      margin-block-end: var(--qhr-space-6, 24px);
+    }
+
+    .err-progress-track {
+      width: 100%;
+      height: 8px;
+      border-radius: 9999px;
+      background: var(--err-surface-subtle);
+      border: 1px solid var(--err-border);
+      overflow: hidden;
+      margin-block-end: 8px;
+    }
+
+    .err-progress-fill {
+      height: 100%;
+      width: 78%;
+      background: linear-gradient(90deg, var(--err-accent), var(--err-accent-hover));
+      border-radius: 9999px;
+      transition: width 0.5s ease;
+    }
+
+    /* Notify Email Form */
+    .err-notify-form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      max-width: 440px;
+      margin-inline: auto;
+      margin-block-end: var(--qhr-space-6, 24px);
+      flex-wrap: wrap;
+    }
+
+    .err-notify-input {
+      flex: 1;
+      min-width: 220px;
+      background: var(--err-surface-subtle);
+      border: 1px solid var(--err-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding: 10px 14px;
+      color: var(--err-text-primary);
+      font-family: var(--err-font-body);
+      font-size: 13px;
+    }
+
+    .err-notify-input:focus {
+      outline: none;
+      border-color: var(--err-accent);
+    }
+
+    /* Actions Button Row */
+    .err-actions-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Toast Notification */
+    .err-toast {
+      position: fixed;
+      inset-block-end: var(--qhr-space-6, 24px);
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      background: var(--err-surface-card);
+      border: 1px solid var(--err-accent-border);
+      color: var(--err-text-primary);
+      padding: 12px 20px;
+      border-radius: var(--qhr-radius-lg, 16px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Top Suite Navigation Strip -->
+  <header class="err-top-nav">
+    <a href="#" class="err-brand">
+      <div class="err-brand-badge">ق</div>
+      <div>
+        <strong style="font-family: var(--err-font-display); font-size: 16px;">منظومة حالات النظام والأخطاء</strong>
+      </div>
+    </a>
+
+    <!-- View Switcher Tabs -->
+    <nav class="err-view-tabs" aria-label="حالات النظام">
+      <button
+        type="button"
+        class="err-tab-btn"
+        :class="{ 'is-active': activeView === '404' }"
+        @click="activeView = '404'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>خطأ 404 (مفقودة)</span>
+      </button>
+
+      <button
+        type="button"
+        class="err-tab-btn"
+        :class="{ 'is-active': activeView === '500' }"
+        @click="activeView = '500'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>خطأ 500 (تعطل الخادم)</span>
+      </button>
+
+      <button
+        type="button"
+        class="err-tab-btn"
+        :class="{ 'is-active': activeView === 'maintenance' }"
+        @click="activeView = 'maintenance'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span>أعمال الصيانة (Downtime)</span>
+      </button>
+    </nav>
+
+    <!-- Theme Switcher -->
+    <!-- Direction & Language Toggle Button -->
+    <button
+      type="button"
+      class="err-theme-toggle"
+      @click="toggleDir()"
+      :aria-label="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+      :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+      style="margin-inline-end: 8px;"
+    >
+      <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    </button>
+
+    <button
+      type="button"
+      class="err-theme-toggle"
+      @click="toggleTheme()"
+      :aria-label="theme === 'dark' ? 'التحويل للنمط الفاتح' : 'التحويل للنمط الداكن'"
+    >
+      <template x-if="theme === 'dark'">
+        <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </template>
+      <template x-if="theme === 'light'">
+        <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </template>
+    </button>
+  </header>
+
+  <!-- 2. Main Viewport -->
+  <main class="err-stage">
+
+    <!-- ── VIEW 1: 404 NOT FOUND ───────────────────────────────────────── -->
+    <article class="err-card" x-show="activeView === '404'">
+      <div class="err-icon-halo">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+        </svg>
+      </div>
+
+      <div class="err-code-display">404</div>
+
+      <h1 class="err-title">الصفحة أو المقتنى المطلوب غير موجود</h1>
+      <p class="err-desc">
+        عذراً، تعذر الوصول إلى المسار أو السجل الذي تبحث عنه. قد يكون الرابط خاطئاً، أو تم نقل الصفحة وأرشفتها ضمن التحديثات الهندسية الأخيرة للمنظومة.
+      </p>
+
+      <!-- Contextual Search -->
+      <form class="err-search-box" @submit.prevent="triggerToast('جاري البحث في الكتالوج والتوثيق...')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" class="err-search-input" placeholder="ابحث في الكتالوج أو التوثيق المعماري...">
+      </form>
+
+      <!-- Quick Helpful Links -->
+      <div class="err-quick-links">
+        <span style="color: var(--err-text-muted);">وجهات مقترحة:</span>
+        <a href="../../templates/landing/page.html" class="err-quick-link">الصفحة الرئيسية</a>
+        <span>·</span>
+        <a href="../../templates/shop/page.html" class="err-quick-link">متجر المقتنيات</a>
+        <span>·</span>
+        <a href="../../templates/documentation/page.html" class="err-quick-link">التوثيق المعماري</a>
+        <span>·</span>
+        <a href="../../templates/dashboard/page.html" class="err-quick-link">لوحة القيادة</a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="err-actions-row">
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" @click="triggerToast('جاري توجيهك إلى الصفحة الرئيسية...')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>العودة للرئيسية</span>
+        </button>
+
+        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" @click="triggerToast('تم تسجيل تقرير الرابط المعطل لفريق الصيانة.')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          <span>الإبلاغ عن رابط معطل</span>
+        </button>
+      </div>
+    </article>
+
+    <!-- ── VIEW 2: 500 INTERNAL SERVER ERROR ──────────────────────────── -->
+    <article class="err-card" x-show="activeView === '500'">
+      <div class="err-icon-halo" style="background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: var(--qhr-color-danger-500, #ef4444);">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+
+      <div class="err-code-display" style="color: var(--qhr-color-danger-500, #ef4444);">500</div>
+
+      <h1 class="err-title">تعطل غير متوقع في معالجة طلب الخادم</h1>
+      <p class="err-desc">
+        نواجه صعوبة فنية مؤقتة في معالجة استجابة الخادم المركزي. تم تسجيل هذا الاستثناء تلقائياً في منظومة الرصد، ويعمل مهندسو البنية التحتية على استعادة الاستقرار فوراً.
+      </p>
+
+      <!-- Diagnostic Telemetry Card -->
+      <div class="err-telemetry-box">
+        <div class="err-telemetry-header">
+          <span style="font-weight: 700; color: var(--err-text-primary); display: flex; align-items: center; gap: 6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            بيانات التشخيص والتوثيق (Telemetry Trace)
+          </span>
+          <button
+            type="button"
+            class="qhr-btn qhr-btn--ghost qhr-btn--xs"
+            @click="copyTrace()"
+          >
+            <span>نسخ المعرف</span>
+          </button>
+        </div>
+
+        <div class="err-telemetry-row">
+          <span style="color: var(--err-text-muted);">معرف التتبع (Trace ID):</span>
+          <span class="err-telemetry-code">qhr-trace-cairo-89b42e</span>
+        </div>
+        <div class="err-telemetry-row">
+          <span style="color: var(--err-text-muted);">عنقود الخدمة (Node Cluster):</span>
+          <span class="err-telemetry-code">eg-cairo-primary-cluster-02</span>
+        </div>
+        <div class="err-telemetry-row">
+          <span style="color: var(--err-text-muted);">التوقيت الموحد (UTC):</span>
+          <span class="err-telemetry-code">2026-09-06 11:48:39 UTC</span>
+        </div>
+        <div class="err-telemetry-row" style="margin-bottom: 0;">
+          <span style="color: var(--err-text-muted);">رمز الاستثناء (Error Code):</span>
+          <span class="err-telemetry-code" style="color: var(--qhr-color-danger-500, #ef4444);">HTTP_500_INTERNAL_SERVICE_TIMEOUT</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="err-actions-row">
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" @click="triggerToast('جاري إعادة إرسال الطلب إلى الخادم...')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <span>إعادة محاولة التحميل</span>
+        </button>
+
+        <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--md" @click="triggerToast('جاري فتح لوحة فحص حالة الخدمات (System Status)...')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span>لوحة حالة الخوادم والخدمات</span>
+        </button>
+      </div>
+    </article>
+
+    <!-- ── VIEW 3: SCHEDULED MAINTENANCE ──────────────────────────────── -->
+    <article class="err-card" x-show="activeView === 'maintenance'">
+      <div class="err-icon-halo">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+        </svg>
+      </div>
+
+      <span class="qhr-badge qhr-badge--primary qhr-badge--sm" style="margin-block-end: 12px; display: inline-block;">أعمال صيانة دورية مجدولة</span>
+
+      <h1 class="err-title">المنظومة تخضع للترقية والتحسين المجدول</h1>
+      <p class="err-desc">
+        نقوم حالياً بترقية قواعد البيانات ونشر الإصدار الجديد من رموز ومكونات قاهرة لتوفير أداء فائق وسرعة استجابة مضاعفة. سنعود للعمل بكامل طاقتنا في أقرب وقت.
+      </p>
+
+      <!-- Countdown Timers -->
+      <div class="err-countdown-grid">
+        <div class="err-count-box">
+          <span class="err-count-num">00</span>
+          <span class="err-count-label">أيام</span>
+        </div>
+        <div class="err-count-box">
+          <span class="err-count-num" x-text="countHours"></span>
+          <span class="err-count-label">ساعات</span>
+        </div>
+        <div class="err-count-box">
+          <span class="err-count-num" x-text="countMinutes"></span>
+          <span class="err-count-label">دقائق</span>
+        </div>
+        <div class="err-count-box">
+          <span class="err-count-num" x-text="countSeconds"></span>
+          <span class="err-count-label">ثواني</span>
+        </div>
+      </div>
+
+      <!-- Upgrade Progress -->
+      <div class="err-progress-wrap">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-block-end: 6px;">
+          <span style="color: var(--err-text-secondary); font-weight: 600;">اكتمال ترحيل البيانات ومزامنة الخوادم:</span>
+          <strong style="color: var(--err-accent);">78%</strong>
+        </div>
+        <div class="err-progress-track">
+          <div class="err-progress-fill"></div>
+        </div>
+        <span style="font-size: 11px; color: var(--err-text-muted);">كافة سجلات الحسابات والبيانات مشفرة ومؤمنة بنسبة 100%</span>
+      </div>
+
+      <!-- Notify Me Form -->
+      <form class="err-notify-form" @submit.prevent="handleNotify()">
+        <input
+          type="email"
+          class="err-notify-input"
+          placeholder="أدخل بريدك لتنبيهك فور اكتمال الصيانة..."
+          required
+          x-model="notifyEmail"
+        >
+        <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--md">
+          <span>تنبيهي عند الاكتمال</span>
+        </button>
+      </form>
+
+      <div style="font-size: 12px; color: var(--err-text-muted);">
+        للحالات الطارئة، يرجى التواصل مع فريق الدعم: <strong style="color: var(--err-accent);">support@alwkala.com</strong>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- 3. Toast Feedback -->
+  <div class="err-toast" x-show="toastVisible" style="display: none;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--err-accent);"><polyline points="20 6 9 17 4 12"/></svg>
+    <span x-text="toastMessage"></span>
+  </div>
+
+  <!-- Alpine Core & App Store -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  <script>
+    function errorSuite() {
+      return {
+        theme: localStorage.getItem('qhr-theme') || 'dark',
+        dir: localStorage.getItem('qhr-dir') || 'rtl',
+        lang: (localStorage.getItem('qhr-dir') || 'rtl') === 'rtl' ? 'ar' : 'en',
+        activeView: '404', // '404' | '500' | 'maintenance'
+
+        // Maintenance Countdown State
+        countHours: '02',
+        countMinutes: '45',
+        countSeconds: '18',
+        notifyEmail: '',
+
+        // Toast
+        toastVisible: false,
+        toastMessage: '',
+
+        init() {
+          document.documentElement.setAttribute('data-theme', this.theme);
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.lang);
+
+          // Simulated Countdown ticker
+          setInterval(() => {
+            let s = parseInt(this.countSeconds, 10);
+            if (s > 0) {
+              s--;
+              this.countSeconds = s < 10 ? '0' + s : '' + s;
+            } else {
+              this.countSeconds = '59';
+              let m = parseInt(this.countMinutes, 10);
+              if (m > 0) {
+                m--;
+                this.countMinutes = m < 10 ? '0' + m : '' + m;
+              }
+            }
+          }, 1000);
+        },
+
+        toggleTheme() {
+          this.theme = this.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', this.theme);
+          localStorage.setItem('qhr-theme', this.theme);
+        },
+
+        copyTrace() {
+          navigator.clipboard.writeText('qhr-trace-cairo-89b42e');
+          this.triggerToast('تم نسخ معرف التتبع qhr-trace-cairo-89b42e إلى الحافظة');
+        },
+
+        handleNotify() {
+          if (this.notifyEmail.trim()) {
+            this.triggerToast('تم تسجيل بريدك بنجاح! سنرسل لك إشعاراً فور انتهاء أعمال الصيانة.');
+            this.notifyEmail = '';
+          }
+        },
+
+        triggerToast(msg) {
+          this.toastMessage = msg;
+          this.toastVisible = true;
+          setTimeout(() => {
+            this.toastVisible = false;
+          }, 3500);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

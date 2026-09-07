@@ -1,0 +1,73 @@
+component: Divider
+name: divider
+category: data-display
+version: 1.0.0
+
+ai:
+  intent: "Content separator line"
+  visual_role: "Subtle boundary divider"
+  density: "compact"
+  preferred_when:
+    - "Delineating distinct form sections"
+    - "Inline center labeled separation"
+  avoid_when:
+    - "Decorative border styling hacks"
+
+base:
+  display: flex
+  align-items: center
+  width: 100%
+  color: "{color.border.subtle}"
+
+variants:
+  default:
+    border-style: solid
+  dashed:
+    border-style: dashed
+  strong:
+    border-color: "{color.border.strong}"
+
+orientations:
+  horizontal:
+    width: 100%
+  vertical:
+    height: 100%
+
+sizes:
+  sm:
+    border-width: 1px
+  md:
+    border-width: 2px
+  lg:
+    border-width: 4px
+
+states:
+  default:
+    opacity: 1
+
+contract:
+  anatomy:
+    - root
+    - line-before
+    - label
+    - line-after
+  props:
+    orientation:
+      default: horizontal
+      values: [horizontal, vertical]
+    variant:
+      default: default
+      values: [default, dashed, strong]
+  slots:
+    - default
+
+structure:
+  base:
+    native_class: qhr-divider
+    tailwind: "flex items-center w-full my-4 border-t border-[var(--qhr-border-subtle)]"
+
+accessibility:
+  role: separator
+
+rtl:
+  supported: true

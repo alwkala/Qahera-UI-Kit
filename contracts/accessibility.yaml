@@ -1,0 +1,22 @@
+version: 0.1.0-draft
+accessibility_contracts:
+  button:
+    role: button
+    focusable: true
+    keyboard: [Enter, Space]
+    disabled_handling: aria-disabled or native disabled attribute
+  dialog:
+    role: dialog
+    modal: true
+    label_source: aria-labelledby or aria-label
+    description_source: aria-describedby
+  tablist:
+    role: tablist
+    tab_role: tab
+    tabpanel_role: tabpanel
+    selection_state: aria-selected
+  accordion:
+    header_role: button
+    panel_role: region
+    expanded_state: aria-expanded
+    panel_binding: aria-controls

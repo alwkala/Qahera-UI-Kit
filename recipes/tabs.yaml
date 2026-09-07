@@ -1,0 +1,79 @@
+component: Tabs
+name: tabs
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Content navigation switching between parallel views"
+  visual_role: "Tabbed view partition"
+  density: "comfortable"
+  preferred_when:
+    - "Settings panels (Account, Security, Billing)"
+    - "Product detail tabs (Overview, Specifications, Reviews)"
+  avoid_when:
+    - "Sequential workflows (use stepper/wizard)"
+
+base:
+  display: flex
+  flex-direction: column
+  width: 100%
+  gap: "{space.4}"
+
+variants:
+  line:
+    border-bottom: "1px solid {color.border.subtle}"
+  pills:
+    gap: "{space.2}"
+  enclosed:
+    border: "1px solid {color.border.subtle}"
+    border-radius: "{radius.md}"
+
+sizes:
+  sm:
+    font-size: "{text.sm}"
+    padding-inline: "{space.3}"
+    padding-block: "{space.1-5}"
+  md:
+    font-size: "{text.base}"
+    padding-inline: "{space.4}"
+    padding-block: "{space.2}"
+  lg:
+    font-size: "{text.lg}"
+    padding-inline: "{space.5}"
+    padding-block: "{space.2-5}"
+
+states:
+  default:
+    opacity: 1
+
+contract:
+  anatomy:
+    - root
+    - tablist
+    - tab-button
+    - active-indicator
+    - panels-container
+    - tabpanel
+  props:
+    variant:
+      default: line
+      values: [line, pills, enclosed]
+    size:
+      default: md
+      values: [sm, md, lg]
+  slots:
+    - start
+    - default
+
+structure:
+  base:
+    native_class: qhr-tabs
+    tailwind: "w-full flex flex-col gap-[var(--qhr-space-4)]"
+
+accessibility:
+  role: tablist
+  keyboard: "ArrowLeft / ArrowRight switch active tab with RTL awareness"
+
+rtl:
+  supported: true
+  directional_mirroring: false

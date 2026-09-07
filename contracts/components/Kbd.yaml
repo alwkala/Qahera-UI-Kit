@@ -1,0 +1,47 @@
+id: kbd
+name: Kbd
+component: Kbd
+category: data-display
+purpose: >
+  Displays keyboard shortcut keys, key combinations, and system hotkey indicators.
+
+anatomy:
+  - root
+  - key-label
+
+variants:
+  default:
+    intent: standard-elevated-key
+  outline:
+    intent: flat-bordered-key
+
+sizes:
+  sm:
+    font_size: "var(--qhr-text-xs)"
+    padding_inline: 6
+    height: 20
+  md:
+    font_size: "var(--qhr-text-sm)"
+    padding_inline: 8
+    height: 24
+  lg:
+    font_size: "var(--qhr-text-base)"
+    padding_inline: 10
+    height: 28
+
+states:
+  - default
+
+slots:
+  default: required
+
+accessibility:
+  role: text
+
+ai:
+  purpose: "Displays keyboard shortcut keys, key combinations, and system hotkey indicators."
+  whenToUse:
+    - "Displaying hotkeys in dropdown menus and command palettes (e.g. ⌘K, Ctrl+S)"
+    - "Technical documentation and user guides"
+  avoid:
+    - "Interactive clickable buttons (use Button instead)"

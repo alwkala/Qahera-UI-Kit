@@ -1,0 +1,11 @@
+version: 0.1.0-draft
+category: radius
+scale:
+  none: "0px"
+  xs: "4px"
+  sm: "6px"
+  md: "10px"
+  lg: "16px"
+  xl: "24px"
+  full: "9999px"
+  pill: "9999px"

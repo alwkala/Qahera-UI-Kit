@@ -1,0 +1,66 @@
+id: ribbon
+name: Ribbon
+component: Ribbon
+category: data-display
+purpose: >
+  Displays an angular or folded corner banner across cards, boxes, and product displays to indicate status, exclusivity, discounts, or new arrivals.
+
+anatomy:
+  - root
+  - label
+  - fold-shadow
+
+variants:
+  folded:
+    intent: 3d-folded-edge-ribbon
+  corner:
+    intent: diagonal-corner-ribbon
+  bookmark:
+    intent: vertical-hanging-ribbon
+  flat:
+    intent: horizontal-edge-ribbon
+
+sizes:
+  sm:
+    height: 20
+    font_size: "var(--qhr-text-xs)"
+  md:
+    height: 26
+    font_size: "var(--qhr-text-xs)"
+  lg:
+    height: 32
+    font_size: "var(--qhr-text-sm)"
+
+states:
+  - default
+
+tone:
+  - primary
+  - neutral
+  - dark
+  - success
+  - info
+  - warning
+  - danger
+  - luxury
+
+slots:
+  label: required
+  icon: optional
+
+accessibility:
+  role: status
+  aria:
+    - "aria-label"
+  keyboard: false
+  focusVisible: false
+
+ai:
+  purpose: "Promotional badge or status ribbon anchored to card corners"
+  whenToUse:
+    - "Luxury e-commerce cards (e.g. 'Royal Gold', 'Best Seller', 'New')"
+    - "Discount percentages and limited-edition badges on product cards"
+    - "Subscription tier markers on pricing tables"
+  avoid:
+    - "Interactive buttons or clickable tags (use Badge or Button)"
+    - "Overcrowding multiple ribbons on a single container"

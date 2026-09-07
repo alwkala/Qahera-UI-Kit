@@ -1,0 +1,50 @@
+id: vip-membership
+name: VIP Membership & Loyalty Card
+category: marketing
+purpose: >
+  Displays a high-prestige loyalty tier card with metallic gold border, privileged benefits, and one-click subscription action.
+
+components:
+  - card
+  - badge
+  - input
+  - button
+
+anatomy:
+  - root
+  - metallic-card
+  - header
+  - tier-badge
+  - title
+  - perks-list
+  - subscribe-form
+
+slots:
+  - tier
+  - title
+  - perks
+  - action
+
+layout:
+  display: flex
+  direction: column
+  gap: var(--qhr-space-4)
+  alignment: stretch
+
+accessibility:
+  role: region
+  landmark: region
+  keyboard_flow: "Tab traverses email input field and subscription CTA button"
+
+ai:
+  purpose: "Provide an elite customer subscription card with luxury gold framing and clear perks breakdown."
+  use_when:
+    - "VIP membership programs, premium loyalty subscriptions, or executive access signups"
+  avoid_when:
+    - "Free standard newsletter signups (use simple form-actions or inline newsletter pattern)"
+  composed_of:
+    - card
+    - badge
+    - input
+    - button
+

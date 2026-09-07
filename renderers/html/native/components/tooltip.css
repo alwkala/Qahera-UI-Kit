@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Tooltip (.qhr-tooltip)
+   ========================================================================== */
+.qhr-tooltip-trigger {
+  position: relative;
+  display: inline-flex;
+}
+
+.qhr-tooltip {
+  position: absolute;
+  inset-block-end: calc(100% + var(--qhr-space-2, 8px));
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  padding-block: var(--qhr-space-1, 4px);
+  padding-inline: var(--qhr-space-2-5, 10px);
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-xs, 0.75rem);
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--qhr-color-slate-900, #0f172a);
+  border-radius: var(--qhr-radius-sm, 6px);
+  box-shadow: var(--qhr-shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.2));
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: var(--qhr-z-tooltip, 1500);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 150ms ease, visibility 150ms ease;
+}
+
+.qhr-tooltip-trigger:hover .qhr-tooltip,
+.qhr-tooltip-trigger:focus-visible .qhr-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Placements */
+.qhr-tooltip--bottom {
+  inset-block-end: auto;
+  inset-block-start: calc(100% + var(--qhr-space-2, 8px));
+}
+
+.qhr-tooltip--start {
+  inset-block-end: auto;
+  inset-block-start: 50%;
+  inset-inline-start: auto;
+  inset-inline-end: calc(100% + var(--qhr-space-2, 8px));
+  transform: translateY(-50%);
+}
+
+.qhr-tooltip--end {
+  inset-block-end: auto;
+  inset-block-start: 50%;
+  inset-inline-start: calc(100% + var(--qhr-space-2, 8px));
+  transform: translateY(-50%);
+}
+
+/* Luxury Tone Tooltip */
+.qhr-tooltip--luxury {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  color: var(--qhr-color-luxury-gold, #c9a84c);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+}

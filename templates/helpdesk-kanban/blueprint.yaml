@@ -1,0 +1,34 @@
+id: template-helpdesk-kanban
+name: Helpdesk Operations & AI Kanban
+category: operations
+purpose: >
+  Unified operations console integrating multi-column agile ticket triage with an AI Copilot chat stream for automated error summarization and rapid incident resolution.
+
+patterns:
+  - kanban-board
+  - chat-stream
+  - search-toolbar
+  - confirmation
+
+components:
+  - card
+  - badge
+  - avatar
+  - button
+  - input
+  - kbd
+  - chip
+  - modal
+
+sections:
+  - header_bar: "Brand identity, status badge, theme switcher, and rapid ticket shortcuts"
+  - kanban_workspace: "3-column ticket pipeline (Pending, In Progress, Completed) with live triage"
+  - copilot_sidebar: "Conversational AI assistant stream for ticket analysis and instant diagnosis"
+  - ticket_modal: "Accessible modal dialog for creating and dispatching new urgent support tickets"
+
+ai:
+  purpose: "Mission-critical operations console for DevOps, customer support, and IT engineering"
+  use_when:
+    - "Support ticket queues, bug tracking, customer incidents, and DevOps triage workflows"
+  avoid:
+    - "Simple static marketing pages"

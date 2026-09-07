@@ -1,0 +1,82 @@
+component: Tooltip
+name: tooltip
+category: overlay
+version: 1.0.0
+
+ai:
+  intent: "Brief contextual assistance or explanation"
+  visual_role: "Micro popup hint"
+  density: "compact"
+  preferred_when:
+    - "Icon-only buttons (Edit, Delete, Copy)"
+    - "Abbreviations or dense technical terms"
+  avoid_when:
+    - "Crucial content required for basic comprehension"
+
+base:
+  display: flex
+  position: absolute
+  z-index: 50
+  font-size: "{text.xs}"
+  font-weight: 500
+  padding-inline: "{space.2-5}"
+  padding-block: "{space.1}"
+  border-radius: "{radius.sm}"
+  box-shadow: "{shadow.md}"
+  pointer-events: none
+  white-space: nowrap
+
+variants:
+  dark:
+    background-color: "{color.slate.900}"
+    color: "{color.surface.base}"
+  light:
+    background-color: "{color.surface.elevated}"
+    color: "{color.neutral.900}"
+    border: "1px solid {color.border.subtle}"
+
+sizes:
+  sm:
+    font-size: "{text.xs}"
+  md:
+    font-size: "{text.sm}"
+
+states:
+  hidden:
+    opacity: 0
+    visibility: hidden
+  visible:
+    opacity: 1
+    visibility: visible
+
+contract:
+  anatomy:
+    - root
+    - trigger
+    - tooltip-box
+    - arrow-tip
+    - text-content
+  props:
+    variant:
+      default: dark
+      values: [dark, light]
+    size:
+      default: md
+      values: [sm, md]
+    state:
+      default: hidden
+      values: [hidden, visible]
+  slots:
+    - default
+
+structure:
+  base:
+    native_class: qhr-tooltip
+    tailwind: "absolute z-50 px-[var(--qhr-space-2-5)] py-[var(--qhr-space-1)] text-xs font-medium text-white bg-[var(--qhr-color-slate-900)] rounded-[var(--qhr-radius-sm)] shadow-md pointer-events-none whitespace-nowrap"
+
+accessibility:
+  role: tooltip
+
+rtl:
+  supported: true
+  directional_mirroring: true

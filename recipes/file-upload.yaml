@@ -1,0 +1,79 @@
+component: FileUpload
+name: file-upload
+category: forms
+version: 1.0.0
+
+ai:
+  intent: "Drag and drop asynchronous file uploader"
+  visual_role: "Interactive dropzone box"
+  density: "comfortable"
+  preferred_when:
+    - "Document and asset uploading workflows"
+    - "Importing bulk spreadsheets and datasets"
+  avoid_when:
+    - "Simple text input"
+
+base:
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  border: "2px dashed {color.border.subtle}"
+  border-radius: "{radius.lg}"
+  background-color: "{color.surface.base}"
+  transition: "all 0.2s ease"
+
+variants:
+  default:
+    border-style: dashed
+  compact:
+    padding: "var(--qhr-space-3)"
+
+sizes:
+  sm:
+    padding: "var(--qhr-space-4)"
+  md:
+    padding: "var(--qhr-space-6)"
+  lg:
+    padding: "var(--qhr-space-10)"
+
+states:
+  default:
+    border-color: "{color.border.subtle}"
+  dragover:
+    border-color: "{color.brand.primary}"
+    background-color: "{color.brand.subtle}"
+
+contract:
+  anatomy:
+    - root
+    - dropzone
+    - icon
+    - label
+    - hint
+    - file-list
+  props:
+    size:
+      default: md
+      values: [sm, md, lg]
+    variant:
+      default: default
+      values: [default, compact]
+  slots:
+    - icon
+    - label
+    - hint
+    - fileList
+
+structure:
+  base:
+    native_class: qhr-file-upload
+    tailwind: "flex flex-col items-center justify-center border-2 border-dashed border-[var(--qhr-border-subtle)] rounded-[var(--qhr-radius-lg)] bg-[var(--qhr-surface-base)] cursor-pointer text-center hover:border-[var(--qhr-brand-primary)]"
+
+accessibility:
+  role: region
+  aria_required:
+    - aria-label: "Upload dropzone"
+
+rtl:
+  supported: true

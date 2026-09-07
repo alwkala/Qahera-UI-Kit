@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<!-- Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 -->
+<html lang="ar" dir="rtl" data-theme="dark" x-data="{
+  theme: 'dark',
+  sidebarOpen: true,
+  newTicketModal: false,
+  searchQuery: '',
+  filterPriority: 'all',
+  
+  dir: 'rtl',
+  lang: 'ar',
+  
+  toggleTheme() {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', this.theme);
+  },
+
+  toggleDir() {
+    this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl';
+    this.lang = this.dir === 'rtl' ? 'ar' : 'en';
+    document.documentElement.setAttribute('dir', this.dir);
+    document.documentElement.setAttribute('lang', this.lang);
+  },
+
+  tickets: [
+    {
+      id: 'TK-1082',
+      title: 'فشل توثيق استجابة الدفع في بوابة فوري',
+      desc: 'عدم تطابق تجزئة التوقيع الرقمي (Signature Hash) عند وصول إشعار الدفع الفوري.',
+      column: 'pending',
+      priority: 'urgent',
+      priorityLabel: 'عاجل',
+      tag: 'بوابة فوري',
+      assignee: 'ع.م',
+      assigneeName: 'عمرو محمود',
+      time: 'منذ 15 دقيقة',
+      priorityClass: 'qhr-badge--danger'
+    },
+    {
+      id: 'TK-1085',
+      title: 'تأخر مزامنة فواتير ضريبة القيمة المضافة',
+      desc: 'بطء في استجابة خدمة مصلحة الضرائب أثناء اعتماد الفواتير الإلكترونية.',
+      column: 'pending',
+      priority: 'high',
+      priorityLabel: 'مرتفع',
+      tag: 'الضرائب والفواتير',
+      assignee: 'س.ن',
+      assigneeName: 'سارة نبيل',
+      time: 'منذ ساعة',
+      priorityClass: 'qhr-badge--warning'
+    },
+    {
+      id: 'TK-1079',
+      title: 'مزامنة مخازن الإسكندرية مع المستودع الرئيسي',
+      desc: 'تحديث بيانات الجرد اليدوي وفحص توازن المخزون اللحظي عبر فروع الدلتا.',
+      column: 'in_progress',
+      priority: 'medium',
+      priorityLabel: 'متوسط',
+      tag: 'المخازن واللوجستيات',
+      assignee: 'س.ح',
+      assigneeName: 'سامح حسن',
+      time: 'منذ ساعتين',
+      priorityClass: 'qhr-badge--primary'
+    },
+    {
+      id: 'TK-1077',
+      title: 'إعادة ضبط مفاتيح Webhook لمنصة Shopify',
+      desc: 'تحديث رموز التوثيق وإعادة توجيه حركة الطلبات الواردة إلى البيئة الحية.',
+      column: 'in_progress',
+      priority: 'medium',
+      priorityLabel: 'متوسط',
+      tag: 'تكامل المنصات',
+      assignee: 'م.ك',
+      assigneeName: 'محمد كمال',
+      time: 'منذ 3 ساعات',
+      priorityClass: 'qhr-badge--primary'
+    },
+    {
+      id: 'TK-1074',
+      title: 'تفعيل دعم شهادات SSL وتحديث مفاتيح API',
+      desc: 'تم بنجاح تجديد الشهادات الرقمية ونشر المفاتيح المشفرة على كافة نقاط النهاية.',
+      column: 'completed',
+      priority: 'low',
+      priorityLabel: 'مكتمل',
+      tag: 'الأمان والشبكات',
+      assignee: 'أ.ف',
+      assigneeName: 'أحمد فؤاد',
+      time: 'منذ 5 ساعات',
+      priorityClass: 'qhr-badge--success'
+    }
+  ],
+
+  newTicket: {
+    title: '',
+    desc: '',
+    tag: 'بوابة فوري',
+    priority: 'urgent',
+    assignee: 'ع.م',
+    assigneeName: 'عمرو محمود'
+  },
+
+  createTicket() {
+    if (!this.newTicket.title.trim()) return;
+    const nextNum = 1086 + Math.floor(Math.random() * 20);
+    const pClass = this.newTicket.priority === 'urgent' ? 'qhr-badge--danger' : (this.newTicket.priority === 'high' ? 'qhr-badge--warning' : 'qhr-badge--primary');
+    const pLabel = this.newTicket.priority === 'urgent' ? 'عاجل' : (this.newTicket.priority === 'high' ? 'مرتفع' : 'متوسط');
+    
+    this.tickets.unshift({
+      id: `TK-${nextNum}`,
+      title: this.newTicket.title,
+      desc: this.newTicket.desc || 'تذكرة عمليات جديدة مسجلة للتدخل السريع.',
+      column: 'pending',
+      priority: this.newTicket.priority,
+      priorityLabel: pLabel,
+      tag: this.newTicket.tag,
+      assignee: this.newTicket.assignee,
+      assigneeName: this.newTicket.assigneeName,
+      time: 'الآن',
+      priorityClass: pClass
+    });
+
+    this.newTicket.title = '';
+    this.newTicket.desc = '';
+    this.newTicketModal = false;
+  },
+
+  moveTicket(ticketId, targetColumn) {
+    const t = this.tickets.find(item => item.id === ticketId);
+    if (t) {
+      t.column = targetColumn;
+      if (targetColumn === 'completed') {
+        t.priorityClass = 'qhr-badge--success';
+        t.priorityLabel = 'مكتمل';
+      }
+    }
+  },
+
+  filteredTickets(col) {
+    return this.tickets.filter(t => {
+      const matchCol = t.column === col;
+      const matchQuery = this.searchQuery ? (t.title.includes(this.searchQuery) || t.id.includes(this.searchQuery) || t.tag.includes(this.searchQuery)) : true;
+      const matchPri = this.filterPriority === 'all' ? true : t.priority === this.filterPriority;
+      return matchCol && matchQuery && matchPri;
+    });
+  },
+
+  chatInput: '',
+  isThinking: false,
+  messages: [
+    {
+      sender: 'user',
+      text: 'مرحباً، هل يمكنك تلخيص سجل الأخطاء في التذكرة #TK-1082 الخاصة ببوابة فوري؟',
+      time: '10:42 ص'
+    },
+    {
+      sender: 'bot',
+      text: 'أهلاً بك يا باشمهندس. بتحليل السجلات اللحظية للتذكرة **#TK-1082**، الخطأ ناتج عن عدم تطابق تجزئة التوقيع الرقمي (Signature Hash) بسبب تجديد شهادة الأمان دون تحديث متغير البيئة `FAWRY_SECRET_KEY` في خادم الـ Webhook.',
+      suggestion: 'تم إعداد ترقيع فوري بالملف `fawry-handler.js:48` لتحديث دالة التحقق (HMAC-SHA256).',
+      time: '10:42 ص'
+    }
+  ],
+
+  sendMessage() {
+    const text = this.chatInput.trim();
+    if (!text) return;
+
+    this.messages.push({
+      sender: 'user',
+      text: text,
+      time: new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })
+    });
+    this.chatInput = '';
+    this.isThinking = true;
+
+    setTimeout(() => {
+      this.isThinking = false;
+      this.messages.push({
+        sender: 'bot',
+        text: `تم استلام استفسارك بخصوص العمليات. لقد قمت بفحص سجلات الخادم ومطابقة المتغيرات، والنظام جاهز لتنفيذ الإجراء المطلوب مباشرة.`,
+        time: new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' })
+      });
+      this.$nextTick(() => {
+        const c = document.getElementById('chatMessagesStream');
+        if (c) c.scrollTop = c.scrollHeight;
+      });
+    }, 1200);
+
+    this.$nextTick(() => {
+      const c = document.getElementById('chatMessagesStream');
+      if (c) c.scrollTop = c.scrollHeight;
+    });
+  },
+
+  clearChat() {
+    this.messages = [];
+  }
+}" @keydown.window.alt.n="newTicketModal = true" @keydown.escape.window="newTicketModal = false">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بوابة العمليات والدعم الفني — Qahera UI Kit</title>
+  
+  <!-- خطوط الهوية: Alexandria للعناوين والأرقام، و Cairo للنصوص وعناصر الواجهة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --q-font-brand: 'Alexandria', 'Cairo', sans-serif;
+      --q-font-heading: 'Alexandria', 'Cairo', sans-serif;
+      --q-font-body: 'Cairo', 'Alexandria', sans-serif;
+      --q-font-mono: 'JetBrains Mono', monospace;
+
+      /* النمط الداكن الافتراضي الصارم */
+      --q-bg: #07090e;
+      --q-surface: #0d121f;
+      --q-surface-elevated: #131b2e;
+      --q-surface-muted: #1a233a;
+      --q-border: rgba(255, 255, 255, 0.08);
+      --q-border-strong: rgba(255, 255, 255, 0.16);
+      --q-text-primary: #f8fafc;
+      --q-text-secondary: #94a3b8;
+      --q-text-muted: #64748b;
+      
+      --q-gold: #d4af37;
+      --q-gold-glow: rgba(212, 175, 55, 0.25);
+      --q-gold-gradient: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%);
+      --q-card-glow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] {
+      --q-bg: #f8fafc;
+      --q-surface: #ffffff;
+      --q-surface-elevated: #f1f5f9;
+      --q-surface-muted: #e2e8f0;
+      --q-border: #e2e8f0;
+      --q-border-strong: #cbd5e1;
+      --q-text-primary: #0f172a;
+      --q-text-secondary: #475569;
+      --q-text-muted: #94a3b8;
+      
+      --q-gold: #b45309;
+      --q-gold-glow: rgba(180, 83, 9, 0.18);
+      --q-gold-gradient: linear-gradient(135deg, #78350f 0%, #b45309 60%, #92400e 100%);
+      --q-card-glow: 0 6px 20px -5px rgba(0, 0, 0, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--q-bg);
+      color: var(--q-text-primary);
+      font-family: var(--q-font-body);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background-color 200ms ease, color 200ms ease;
+    }
+
+    h1, h2, h3, h4, .brand-title {
+      font-family: var(--q-font-heading);
+    }
+
+    /* Sovereign Header */
+    .ops-header {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 100;
+      min-height: 64px;
+      padding-block: 10px;
+      padding-inline: var(--qhr-space-6, 24px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: var(--q-surface);
+      border-block-end: 1px solid var(--q-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transition: background 200ms ease, border-color 200ms ease;
+    }
+
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-emblem {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #131b2e 0%, #0d121f 100%);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      color: var(--q-gold);
+    }
+    [data-theme="light"] .brand-emblem {
+      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+      border-color: rgba(180, 83, 9, 0.35);
+    }
+
+    .brand-titles h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: var(--q-gold-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--q-text-muted);
+      font-weight: 500;
+    }
+
+    /* Workspace Split Layout */
+    .ops-workspace {
+      display: grid;
+      grid-template-columns: 1fr 390px;
+      flex: 1;
+      min-height: calc(100vh - 64px);
+      transition: grid-template-columns 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .ops-workspace.sidebar-collapsed {
+      grid-template-columns: 1fr 0px;
+    }
+
+    @media (max-width: 1024px) {
+      .ops-workspace {
+        grid-template-columns: 1fr;
+      }
+      .ops-workspace.sidebar-open-mobile {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Kanban Area */
+    .kanban-stage {
+      padding: var(--qhr-space-6, 24px);
+      background-color: var(--q-bg);
+      background-image: radial-gradient(var(--q-border) 1px, transparent 1px);
+      background-size: 24px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-x: auto;
+    }
+
+    .kanban-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .kanban-board-columns {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(320px, 1fr));
+      gap: 20px;
+      align-items: start;
+      min-height: 600px;
+    }
+
+    @media (max-width: 1100px) {
+      .kanban-board-columns {
+        grid-template-columns: repeat(3, 320px);
+        overflow-x: auto;
+      }
+    }
+
+    .kanban-col-wrapper {
+      background: var(--q-surface);
+      border: 1px solid var(--q-border);
+      border-radius: var(--qhr-radius-2xl, 20px);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--q-card-glow);
+    }
+
+    .kanban-col-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block-end: 12px;
+      border-block-end: 1px solid var(--q-border);
+    }
+    .kanban-col-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kanban-col-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--q-text-primary);
+      margin: 0;
+    }
+    .kanban-counter-pill {
+      font-family: var(--q-font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border);
+      color: var(--q-text-secondary);
+    }
+
+    .cards-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 120px;
+    }
+
+    .kanban-ticket-card {
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      cursor: grab;
+      transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .kanban-ticket-card:hover {
+      border-color: var(--q-gold);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .ticket-id {
+      font-family: var(--q-font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--q-text-muted);
+    }
+    .ticket-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--q-text-primary);
+      margin: 0;
+      line-height: 1.45;
+    }
+    .ticket-desc {
+      font-size: 0.8rem;
+      color: var(--q-text-secondary);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .ticket-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-block-start: 10px;
+      border-block-start: 1px solid var(--q-border);
+    }
+
+    /* Copilot Chat Area */
+    .copilot-panel {
+      background: var(--q-surface);
+      border-inline-start: 1px solid var(--q-border);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-shadow: -4px 0 20px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .copilot-header {
+      padding: 16px 20px;
+      border-block-end: 1px solid var(--q-border);
+      background: var(--q-surface-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .copilot-stream {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .copilot-bubble {
+      max-width: 90%;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .copilot-bubble--user {
+      align-self: flex-start;
+      background: #0b6bcb;
+      color: #ffffff;
+      border-start-start-radius: 4px;
+      box-shadow: 0 4px 12px rgba(11, 107, 203, 0.25);
+    }
+    .copilot-bubble--bot {
+      align-self: flex-end;
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border);
+      color: var(--q-text-primary);
+      border-start-end-radius: 4px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .copilot-composer {
+      padding: 16px;
+      background: var(--q-surface-elevated);
+      border-block-start: 1px solid var(--q-border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Quick Modal */
+    .modal-backdrop-custom {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-box {
+      background: var(--q-surface);
+      border: 1px solid var(--q-border-strong);
+      border-radius: var(--qhr-radius-2xl, 20px);
+      width: 100%;
+      max-width: 520px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شريط العنوان العلوي السيادي (Sovereign Header) -->
+  <header class="ops-header">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="../../examples/previews/index.html" class="brand-cluster" title="العودة إلى فهرس قاهرة">
+        <div class="brand-emblem">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v4M12 14v4M16 14v4" />
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <h1>
+            <span>بوابة العمليات والدعم الفني</span>
+            <span class="qhr-badge qhr-badge--primary qhr-badge--sm" style="font-family: var(--q-font-mono); font-size: 0.7rem;">Ops v1.0</span>
+          </h1>
+          <div class="brand-sub">نظام كانبان التفاعلي والذكاء الاصطناعي المعماري · Qahera UI Kit</div>
+        </div>
+      </a>
+
+      <div style="height: 24px; width: 1px; background: var(--q-border);"></div>
+
+      <!-- إحصائية فورية -->
+      <span class="qhr-badge qhr-badge--primary qhr-badge--md" style="font-weight: 700;">
+        <span x-text="tickets.length"></span>
+        <span>تذاكر نشطة</span>
+      </span>
+    </div>
+
+    <!-- أدوات التحكم والبحث والإجراءات السريعة -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      
+      <!-- زر تبديل الاتجاه واللغة RTL / LTR -->
+      <button 
+        type="button" 
+        class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+        @click="toggleDir()"
+        :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+        aria-label="تبديل اتجاه الصفحة واللغة"
+        style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+      >
+        <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      </button>
+
+      <!-- زر تبديل المظهر الليلي والنهاري الفاخر (أيقونة فقط بدون نص) -->
+      <button 
+        type="button" 
+        class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+        @click="toggleTheme()"
+        aria-label="تبديل المظهر"
+        :title="theme === 'dark' ? 'تفعيل النمط النهاري' : 'تفعيل النمط الليلي'"
+        style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+      >
+        <svg x-show="theme === 'dark'" class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg x-show="theme === 'light'" class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+
+      <!-- زر فتح نافذة تذكرة جديدة -->
+      <button 
+        type="button" 
+        class="qhr-btn qhr-btn--primary qhr-btn--sm"
+        @click="newTicketModal = true"
+        style="font-weight: 700; gap: 6px;"
+      >
+        <svg class="qhr-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <span>تذكرة سريعة</span>
+        <kbd class="qhr-kbd qhr-kbd--xs" style="background: rgba(0,0,0,0.25); color: #fff; border: none;">Alt + N</kbd>
+      </button>
+
+      <!-- زر إظهار/إخفاء المساعد الذكي -->
+      <button 
+        type="button" 
+        class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+        @click="sidebarOpen = !sidebarOpen"
+        aria-label="تبديل لوحة المساعد الذكي"
+        title="تبديل لوحة المساعد الذكي"
+      >
+        <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+        <span x-text="sidebarOpen ? 'إخفاء المساعد' : 'مساعد القاهرة'"></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- مساحة العمل المنقسمة (Workspace Split) -->
+  <div class="ops-workspace" :class="{ 'sidebar-collapsed': !sidebarOpen }">
+    
+    <!-- مساحة الكانبان الرئيسية -->
+    <main class="kanban-stage" role="region" aria-label="لوحة كانبان إدارة التذاكر">
+      
+      <!-- شريط الفلاتر والبحث في الكانبان -->
+      <div class="kanban-toolbar">
+        <div style="display: flex; align-items: center; gap: 10px; flex: 1; max-width: 420px;">
+          <div style="position: relative; width: 100%;">
+            <input 
+              type="text" 
+              class="qhr-input" 
+              placeholder="ابحث برقم التذكرة أو العنوان أو التصنيف..." 
+              x-model="searchQuery" 
+              style="width: 100%; font-size: 0.85rem; padding-inline-start: 36px;"
+            />
+            <span style="position: absolute; inset-inline-start: 12px; inset-block-start: 50%; transform: translateY(-50%); color: var(--q-text-muted); pointer-events: none;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 0.8rem; color: var(--q-text-muted); font-weight: 600;">تصفية حسب الأولوية:</span>
+          <button type="button" class="qhr-btn qhr-btn--sm" :class="filterPriority === 'all' ? 'qhr-btn--primary' : 'qhr-btn--ghost'" @click="filterPriority = 'all'">الكل</button>
+          <button type="button" class="qhr-btn qhr-btn--sm" :class="filterPriority === 'urgent' ? 'qhr-btn--danger' : 'qhr-btn--ghost'" @click="filterPriority = 'urgent'">عاجل</button>
+          <button type="button" class="qhr-btn qhr-btn--sm" :class="filterPriority === 'high' ? 'qhr-btn--warning' : 'qhr-btn--ghost'" @click="filterPriority = 'high'">مرتفع</button>
+          <button type="button" class="qhr-btn qhr-btn--sm" :class="filterPriority === 'medium' ? 'qhr-btn--secondary' : 'qhr-btn--ghost'" @click="filterPriority = 'medium'">متوسط</button>
+        </div>
+      </div>
+
+      <!-- أعمدة الكانبان الثلاثة -->
+      <div class="kanban-board-columns">
+        
+        <!-- عمود: قيد الانتظار -->
+        <section class="kanban-col-wrapper" aria-labelledby="colPendingTitle">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title-group">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);"></span>
+              <h2 id="colPendingTitle" class="kanban-col-title">قيد الانتظار</h2>
+            </div>
+            <span class="kanban-counter-pill" x-text="filteredTickets('pending').length"></span>
+          </div>
+
+          <div class="cards-stack">
+            <template x-for="ticket in filteredTickets('pending')" :key="ticket.id">
+              <article class="kanban-ticket-card" tabindex="0" role="article">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span class="qhr-badge qhr-badge--sm" :class="ticket.priorityClass" x-text="ticket.priorityLabel"></span>
+                  <span class="ticket-id" x-text="'#' + ticket.id"></span>
+                </div>
+                <h3 class="ticket-title" x-text="ticket.title"></h3>
+                <p class="ticket-desc" x-text="ticket.desc"></p>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <span class="qhr-chip qhr-chip--sm" x-text="ticket.tag"></span>
+                </div>
+                <div class="ticket-meta-row">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div class="qhr-avatar qhr-avatar--xs" style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #d4af37, #aa771c); color: #07090e; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center;" x-text="ticket.assignee"></div>
+                    <span style="font-size: 0.75rem; color: var(--q-text-muted);" x-text="ticket.time"></span>
+                  </div>
+                  <button 
+                    type="button" 
+                    class="qhr-btn qhr-btn--secondary qhr-btn--xs"
+                    @click="moveTicket(ticket.id, 'in_progress')"
+                    title="بدء المعالجة"
+                  >
+                    <span>بدء المعالجة &larr;</span>
+                  </button>
+                </div>
+              </article>
+            </template>
+          </div>
+
+          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" @click="newTicketModal = true" style="border: 1px dashed var(--q-border); width: 100%;">
+            <span>+ إضافة تذكرة انتظار</span>
+          </button>
+        </section>
+
+        <!-- عمود: جاري المعالجة -->
+        <section class="kanban-col-wrapper" aria-labelledby="colProgressTitle">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title-group">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #0284c7; box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);"></span>
+              <h2 id="colProgressTitle" class="kanban-col-title">جاري المعالجة</h2>
+            </div>
+            <span class="kanban-counter-pill" x-text="filteredTickets('in_progress').length"></span>
+          </div>
+
+          <div class="cards-stack">
+            <template x-for="ticket in filteredTickets('in_progress')" :key="ticket.id">
+              <article class="kanban-ticket-card" tabindex="0" role="article" style="border-inline-start: 3px solid #0284c7;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span class="qhr-badge qhr-badge--sm" :class="ticket.priorityClass" x-text="ticket.priorityLabel"></span>
+                  <span class="ticket-id" x-text="'#' + ticket.id"></span>
+                </div>
+                <h3 class="ticket-title" x-text="ticket.title"></h3>
+                <p class="ticket-desc" x-text="ticket.desc"></p>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <span class="qhr-chip qhr-chip--sm" x-text="ticket.tag"></span>
+                  <span class="qhr-badge qhr-badge--info qhr-badge--xs" style="display: inline-flex; align-items: center; gap: 3px;">
+                    <span style="width: 5px; height: 5px; border-radius: 50%; background: currentColor;"></span>
+                    <span>نشط</span>
+                  </span>
+                </div>
+                <div class="ticket-meta-row">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div class="qhr-avatar qhr-avatar--xs" style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center;" x-text="ticket.assignee"></div>
+                    <span style="font-size: 0.75rem; color: var(--q-text-muted);" x-text="ticket.time"></span>
+                  </div>
+                  <div style="display: flex; gap: 4px;">
+                    <button 
+                      type="button" 
+                      class="qhr-btn qhr-btn--ghost qhr-btn--xs"
+                      @click="moveTicket(ticket.id, 'pending')"
+                      title="إعادة للانتظار"
+                    >
+                      <span>&rarr;</span>
+                    </button>
+                    <button 
+                      type="button" 
+                      class="qhr-btn qhr-btn--primary qhr-btn--xs"
+                      @click="moveTicket(ticket.id, 'completed')"
+                      title="اعتماد الإنجاز"
+                    >
+                      <span>إنجاز ✓</span>
+                    </button>
+                  </div>
+                </div>
+              </article>
+            </template>
+          </div>
+
+          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" @click="newTicketModal = true" style="border: 1px dashed var(--q-border); width: 100%;">
+            <span>+ سحب تذكرة للمعالجة</span>
+          </button>
+        </section>
+
+        <!-- عمود: تم الإنجاز والتحقق -->
+        <section class="kanban-col-wrapper" aria-labelledby="colDoneTitle">
+          <div class="kanban-col-header">
+            <div class="kanban-col-title-group">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);"></span>
+              <h2 id="colDoneTitle" class="kanban-col-title">تم الإنجاز</h2>
+            </div>
+            <span class="kanban-counter-pill" x-text="filteredTickets('completed').length"></span>
+          </div>
+
+          <div class="cards-stack">
+            <template x-for="ticket in filteredTickets('completed')" :key="ticket.id">
+              <article class="kanban-ticket-card" tabindex="0" role="article" style="border-inline-start: 3px solid #10b981; opacity: 0.9;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span class="qhr-badge qhr-badge--success qhr-badge--sm">مكتمل</span>
+                  <span class="ticket-id" x-text="'#' + ticket.id"></span>
+                </div>
+                <h3 class="ticket-title" style="text-decoration: line-through; opacity: 0.85;" x-text="ticket.title"></h3>
+                <p class="ticket-desc" x-text="ticket.desc"></p>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <span class="qhr-chip qhr-chip--sm" x-text="ticket.tag"></span>
+                  <span class="qhr-badge qhr-badge--success qhr-badge--xs">تم التحقق</span>
+                </div>
+                <div class="ticket-meta-row">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div class="qhr-avatar qhr-avatar--xs" style="width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #10b981, #047857); color: #fff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center;" x-text="ticket.assignee"></div>
+                    <span style="font-size: 0.75rem; color: #10b981; font-weight: 600;">تم الإغلاق بنجاح</span>
+                  </div>
+                  <button 
+                    type="button" 
+                    class="qhr-btn qhr-btn--ghost qhr-btn--xs"
+                    @click="moveTicket(ticket.id, 'in_progress')"
+                    title="إعادة الفتح"
+                  >
+                    <span>إعادة فتح</span>
+                  </button>
+                </div>
+              </article>
+            </template>
+          </div>
+
+          <div style="padding: 12px; text-align: center; font-size: 0.75rem; color: var(--q-text-muted);">
+            يتم أرشفة التذاكر المكتملة تلقائياً كل 24 ساعة.
+          </div>
+        </section>
+
+      </div>
+
+    </main>
+
+    <!-- الشريط الجانبي التفاعلي: مساعد القاهرة والذكاء الاصطناعي (Copilot Stream) -->
+    <aside class="copilot-panel" x-show="sidebarOpen" role="region" aria-label="المساعد الذكي لمراجعة التذاكر">
+      
+      <!-- رأس نافذة المساعد -->
+      <div class="copilot-header">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="position: relative;">
+            <div class="brand-emblem" style="width: 36px; height: 36px; border-radius: 10px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <span style="position: absolute; inset-block-end: -2px; inset-inline-end: -2px; width: 10px; height: 10px; border-radius: 50%; background: #10b981; border: 2px solid var(--q-surface);"></span>
+          </div>
+          <div>
+            <div style="font-family: var(--q-font-heading); font-size: 0.95rem; font-weight: 800; color: var(--q-text-primary);">مساعد القاهرة الذكي</div>
+            <div style="font-size: 0.72rem; color: #10b981; font-weight: 600;">متصل ومراقب لسجلات العمليات</div>
+          </div>
+        </div>
+
+        <button 
+          type="button" 
+          class="qhr-btn qhr-btn--ghost qhr-btn--sm"
+          @click="clearChat()"
+          aria-label="تفريغ المحادثة"
+          title="تفريغ سجل المحادثة"
+        >
+          <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        </button>
+      </div>
+
+      <!-- تدفق الرسائل الحية -->
+      <div id="chatMessagesStream" class="copilot-stream" role="log" aria-live="polite">
+        
+        <template x-for="(msg, idx) in messages" :key="idx">
+          <div :class="msg.sender === 'user' ? 'copilot-bubble copilot-bubble--user' : 'copilot-bubble copilot-bubble--bot'">
+            <div x-text="msg.text"></div>
+            <template x-if="msg.suggestion">
+              <div style="margin-block-start: 10px; padding: 10px 12px; border-radius: 8px; background: var(--q-surface); border: 1px solid var(--q-border); font-size: 0.8rem;">
+                <div style="display: flex; align-items: center; gap: 6px; color: var(--q-gold); font-weight: 700; margin-block-end: 4px;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                  <span>مقترح الإصلاح السريع:</span>
+                </div>
+                <div style="color: var(--q-text-secondary);" x-text="msg.suggestion"></div>
+                <div style="margin-block-start: 8px; display: flex; gap: 6px;">
+                  <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--xs" @click="moveTicket('TK-1082', 'in_progress')">بدء المعالجة آلياً</button>
+                </div>
+              </div>
+            </template>
+            <div style="margin-block-start: 6px; font-size: 0.68rem; opacity: 0.7; text-align: end;" x-text="msg.time"></div>
+          </div>
+        </template>
+
+        <!-- مؤشر التفكير اللحظي للذكاء الاصطناعي -->
+        <template x-if="isThinking">
+          <div class="copilot-bubble copilot-bubble--bot" style="display: flex; align-items: center; gap: 8px;">
+            <div class="qhr-spinner qhr-spinner--sm" style="width: 16px; height: 16px;"></div>
+            <span style="font-size: 0.82rem; color: var(--q-gold);">جاري قراءة السجلات ومطابقة التذاكر...</span>
+          </div>
+        </template>
+
+      </div>
+
+      <!-- محرر كتابة الرسالة -->
+      <form class="copilot-composer" @submit.prevent="sendMessage()">
+        <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" aria-label="إرفاق ملف أو سجل أخطاء" title="إرفاق سجل Log">
+          <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+        </button>
+        <input 
+          type="text" 
+          class="qhr-input" 
+          placeholder="اكتب استفسارك للمساعد الذكي..." 
+          x-model="chatInput" 
+          style="flex: 1; font-size: 0.85rem;"
+          aria-label="رسالة المساعد الذكي"
+        />
+        <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--md" style="font-weight: 700; padding-inline: 14px;">
+          <span>إرسال</span>
+          <svg class="qhr-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </form>
+
+    </aside>
+
+  </div>
+
+  <!-- نافذة مشروطة لإضافة تذكرة سريعة (New Ticket Modal) -->
+  <div 
+    class="modal-backdrop-custom" 
+    x-show="newTicketModal" 
+    x-cloak 
+    role="dialog" 
+    aria-modal="true" 
+    aria-labelledby="modalNewTicketTitle"
+  >
+    <div class="modal-box" @click.outside="newTicketModal = false">
+      <div style="padding: 18px 24px; border-block-end: 1px solid var(--q-border); display: flex; align-items: center; justify-content: space-between; background: var(--q-surface-elevated);">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="brand-emblem" style="width: 32px; height: 32px; border-radius: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </div>
+          <h3 id="modalNewTicketTitle" style="margin: 0; font-size: 1.05rem; font-weight: 800; color: var(--q-text-primary);">تسجيل تذكرة عمليات جديدة</h3>
+        </div>
+        <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs" @click="newTicketModal = false" aria-label="إغلاق">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <form @submit.prevent="createTicket()" style="padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+        <div>
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--q-text-secondary); margin-block-end: 6px;">عنوان العطل أو العملية</label>
+          <input 
+            type="text" 
+            class="qhr-input" 
+            placeholder="مثال: تعطل مزامنة مدفوعات البطاقات الائتمانية" 
+            x-model="newTicket.title" 
+            required 
+            style="width: 100%; font-size: 0.9rem;"
+          />
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--q-text-secondary); margin-block-end: 6px;">مستوى الأولوية</label>
+            <select class="qhr-select" x-model="newTicket.priority" style="width: 100%;">
+              <option value="urgent">عاجل جداً (P1)</option>
+              <option value="high">مرتفع (P2)</option>
+              <option value="medium">متوسط (P3)</option>
+              <option value="low">منخفض (P4)</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--q-text-secondary); margin-block-end: 6px;">القسم / التصنيف</label>
+            <select class="qhr-select" x-model="newTicket.tag" style="width: 100%;">
+              <option value="بوابة فوري">بوابة فوري</option>
+              <option value="الضرائب والفواتير">الضرائب والفواتير</option>
+              <option value="المخازن واللوجستيات">المخازن واللوجستيات</option>
+              <option value="تكامل المنصات">تكامل المنصات</option>
+              <option value="الأمان والشبكات">الأمان والشبكات</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--q-text-secondary); margin-block-end: 6px;">تفاصيل التذكرة والسجلات</label>
+          <textarea 
+            class="qhr-textarea" 
+            rows="3" 
+            placeholder="أدخل ملخص العطل، ونقاط النهاية المتأثرة، وأي تفاصيل تقنية مساعدة..." 
+            x-model="newTicket.desc"
+            style="width: 100%; font-size: 0.85rem;"
+          ></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-block-start: 8px;">
+          <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" @click="newTicketModal = false">إلغاء</button>
+          <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--md" style="font-weight: 700;">تسجيل وإرسال للتوزيع</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

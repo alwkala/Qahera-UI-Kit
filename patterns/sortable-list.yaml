@@ -1,0 +1,51 @@
+id: sortable-list
+name: Sortable Reorderable List
+category: selection
+purpose: >
+  Provides intuitive drag-and-drop or keyboard-accessible reordering for priority lists, dashboard widgets, and task pipelines.
+
+components:
+  - card
+  - button
+  - badge
+
+anatomy:
+  - list-container
+  - sortable-item
+  - drag-handle
+  - item-content
+  - item-actions
+  - drop-placeholder
+
+slots:
+  - items
+  - dragHandle
+  - itemContent
+  - itemActions
+
+layout:
+  display: flex
+  direction: column
+  gap: var(--qhr-space-3)
+  alignment: stretch
+
+accessibility:
+  role: list
+  landmark: region
+  keyboard_flow: >
+    Items can be selected with Space/Enter and reordered using Up/Down arrow keys.
+    Screen readers announce item repositioning with live region updates.
+  aria_live: polite
+
+ai:
+  purpose: "Interactive drag-and-drop reordering pattern for priority items"
+  use_when:
+    - "Task queue prioritization and Kanban backlog arrangement"
+    - "Rearranging modular dashboard widgets and card layouts"
+    - "Menu item and navigation hierarchy customizers"
+  avoid_when:
+    - "Static read-only lists without customizable order"
+  composed_of:
+    - card
+    - button
+    - badge

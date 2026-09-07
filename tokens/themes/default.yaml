@@ -1,0 +1,17 @@
+version: 1.0.0
+name: default
+description: Standard Light Theme for Qahera UI Kit
+
+overrides:
+  surface:
+    base: "#ffffff"
+    elevated: "#ffffff"
+    muted: "{color.slate.50}"
+    overlay: "rgba(15, 23, 42, 0.5)"
+  content:
+    primary: "{color.slate.900}"
+    secondary: "{color.slate.600}"
+    muted: "{color.slate.400}"
+  border:
+    subtle: "{color.slate.200}"
+    strong: "{color.slate.300}"

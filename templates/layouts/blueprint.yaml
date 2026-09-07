@@ -1,0 +1,33 @@
+id: template-layouts
+name: Multi-Mode Layout Architecture & Structural Suite
+category: layout
+purpose: >
+  Demonstrates modular enterprise layouts including Boxed Layout, Fixed Layout (Fixed Header & Sidebar), and Collapsed Mini-Sidebar Rail with real-time interactive switching.
+
+patterns:
+  - dashboard-stat
+  - search-toolbar
+  - pagination
+
+components:
+  - navbar
+  - card
+  - button
+  - badge
+  - tooltip
+  - table
+
+features:
+  - boxed_layout: "Centrally constrained max-width container with outer canvas elevation and distinct framing"
+  - fixed_layout: "Fixed-position navigation header and independently scrolling sidebar rail with sticky breadcrumbs"
+  - sidebar_collapsed: "Mini-rail icon navigation (72px) with floating tooltips, animated label transitions, and rail toggles"
+  - fluid_layout: "Full-width edge-to-edge responsive layout for high-density data and wide monitors"
+  - live_layout_hud: "Interactive layout control panel enabling live switching between layout modes, scrolling states, and themes"
+
+ai:
+  purpose: "Structural shell architecture for administrative platforms, SaaS dashboards, and complex enterprise web apps"
+  use_when:
+    - "Designing application frames, admin consoles, or portals requiring customizable viewport layouts"
+    - "Building interfaces where users or system settings require Boxed or Collapsed Sidebar navigation"
+  avoid_when:
+    - "Simple single-column marketing landing pages or auth forms"

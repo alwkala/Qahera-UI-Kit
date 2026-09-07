@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Treeview (.qhr-treeview)
+   ========================================================================== */
+.qhr-treeview {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+}
+
+.qhr-treeview-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.qhr-treeview-node {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-2, 8px);
+  padding-block: var(--qhr-space-1-5, 6px);
+  padding-inline: var(--qhr-space-3, 12px);
+  border-radius: var(--qhr-radius-md, 10px);
+  color: var(--qhr-content-primary, #0f172a);
+  cursor: pointer;
+  font-size: var(--qhr-text-sm, 0.875rem);
+  font-weight: 500;
+  transition: background-color var(--qhr-duration-fast, 150ms) ease;
+}
+[data-theme="dark"] .qhr-treeview-node {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+
+.qhr-treeview-node:hover {
+  background-color: var(--qhr-surface-muted, #f1f5f9);
+}
+[data-theme="dark"] .qhr-treeview-node:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.qhr-treeview-node[data-selected="true"] {
+  background-color: rgba(199, 163, 90, 0.15);
+  color: var(--qhr-color-primary-600, #a68430);
+  font-weight: 700;
+}
+[data-theme="dark"] .qhr-treeview-node[data-selected="true"] {
+  color: var(--qhr-color-luxury-gold, #dfc378);
+}
+
+.qhr-treeview-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  color: var(--qhr-content-secondary, #94a3b8);
+  transition: transform var(--qhr-duration-fast, 150ms) ease;
+}
+.qhr-treeview-toggle[data-expanded="true"] {
+  transform: rotate(90deg);
+}
+[dir="rtl"] .qhr-treeview-toggle[data-expanded="true"] {
+  transform: rotate(-90deg);
+}
+
+.qhr-treeview-children {
+  display: none;
+  flex-direction: column;
+  padding-inline-start: var(--qhr-space-5, 20px);
+  list-style: none;
+  margin: 0;
+}
+.qhr-treeview-item[data-expanded="true"] > .qhr-treeview-children {
+  display: flex;
+}

@@ -1,0 +1,80 @@
+name: Megamenu
+category: navigation
+purpose: >
+  Displays an expansive multi-column navigation panel hosting categorised link lists, promotional media, feature cards, and quick actions.
+
+anatomy:
+  - root
+  - trigger
+  - panel
+  - grid
+  - column
+  - column-title
+  - link-list
+  - link-item
+  - link-icon
+  - link-text
+  - link-desc
+  - featured-card
+  - banner
+
+variants:
+  - default
+  - 2-cols
+  - 3-cols
+  - 4-cols
+  - with-featured
+  - full-width
+  - glass
+
+sizes:
+  - md
+  - lg
+  - xl
+
+states:
+  - default
+  - open
+  - closed
+
+tone:
+  - default
+  - primary
+  - dark
+  - gold
+  - surface
+
+slots:
+  - trigger
+  - default
+  - featured
+  - footer
+
+accessibility:
+  role: region
+  keyboard:
+    Escape: "Closes open megamenu panel and returns focus to trigger"
+    Tab: "Navigates sequentially through category links and featured buttons"
+    ArrowDown: "Navigates down the active category column"
+    ArrowUp: "Navigates up the active category column"
+  focus: "Visible outline on category links and featured cards"
+  aria:
+    - aria-label: "Megamenu Content"
+    - aria-expanded: "Reflects visibility of megamenu panel"
+    - aria-haspopup: "true on trigger button"
+
+behavior:
+  click_outside_dismiss: true
+  escape_dismiss: true
+  mobile_drilldown: true
+
+ai:
+  description: "Expansive multi-column navigation surface for large portals, e-commerce, and enterprise SaaS solutions"
+  use_when:
+    - "Sites with deep architectural hierarchies and more than 15 top-tier destinations"
+    - "Product suites requiring visual descriptions, icons, and featured promotional callouts"
+    - "Enterprise header navigation menus"
+  avoid_when:
+    - "Simple linear websites with fewer than 6 links (use Menu or Navbar dropdown)"
+    - "Sidebar lists inside dashboards (use Menu instead)"
+    - "Mobile app primary screens (use Dock or Drawer instead)"

@@ -1,0 +1,2343 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" x-data="shopApp()" x-init="init()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر المقتنيات الملكية — Qahera Luxury Shop & Filter Engine</title>
+  <meta name="description" content="متجر المقتنيات الفاخرة مع نظام تصفية جانبي شامل ودقيق للتصنيف، السعر، الألوان والخامات، المقاسات، ودور الصياغة.">
+
+  <!-- Tokens & Components CSS -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <!-- Google Fonts: Cairo & El Messiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=El+Messiri:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       Qahera Shop & Sidebar Navigation — Page-Level Token Bridge
+       Strict adherence to AGENTS.md:
+       - 100% Logical CSS properties.
+       - Zero hardcoded colors in HTML markup.
+       - High-contrast Dark & Light Themes.
+       - Pure Arabic typography (Cairo for body, El Messiri for display).
+       - Zero emoji / Unicode icons (SVG only, 24x24 viewBox).
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* ── Light Theme Bridge Tokens (Ivory & Champagne Gold) ────────────── */
+    :root, [data-theme="light"] {
+      --shop-bg:                #FAF8F5;
+      --shop-surface:           #FFFFFF;
+      --shop-surface-card:      #FFFFFF;
+      --shop-surface-elevated:  #F5F2EB;
+      --shop-surface-subtle:    #F0ECE4;
+      --shop-surface-overlay:   rgba(250, 248, 245, 0.90);
+      --shop-text-primary:      #1C1917;
+      --shop-text-secondary:    #44403C;
+      --shop-text-muted:        #78716C;
+      --shop-accent:            #B45309;
+      --shop-accent-hover:      #92400E;
+      --shop-accent-fg:         #FFFFFF;
+      --shop-accent-subtle:     rgba(180, 83, 9, 0.08);
+      --shop-accent-border:     rgba(180, 83, 9, 0.25);
+      --shop-border:            #E7E5E4;
+      --shop-border-strong:     #D6D3D1;
+      --shop-nav-bg:            rgba(255, 255, 255, 0.92);
+      --shop-nav-border:        #E7E5E4;
+      --shop-card-shadow:       0 6px 20px rgba(28, 25, 23, 0.06), 0 1px 3px rgba(28, 25, 23, 0.04);
+      --shop-card-shadow-hover: 0 16px 36px rgba(180, 83, 9, 0.12), 0 4px 12px rgba(28, 25, 23, 0.06);
+      --shop-sidebar-bg:        #FFFFFF;
+      --shop-font-display:      'El Messiri', serif;
+      --shop-font-body:         'Cairo', sans-serif;
+    }
+
+    /* ── Dark Theme Bridge Tokens (Obsidian & Imperial Gold) ───────────── */
+    [data-theme="dark"], [data-theme="luxury-gold"] {
+      --shop-bg:                #0A0806;
+      --shop-surface:           #14100C;
+      --shop-surface-card:      #17120F;
+      --shop-surface-elevated:  #221A15;
+      --shop-surface-subtle:    #1E1712;
+      --shop-surface-overlay:   rgba(10, 8, 6, 0.92);
+      --shop-text-primary:      #FBF8F3;
+      --shop-text-secondary:    #D4C9BC;
+      --shop-text-muted:        #9E9081;
+      --shop-accent:            #D4AF37;
+      --shop-accent-hover:      #F2C94C;
+      --shop-accent-fg:         #0A0806;
+      --shop-accent-subtle:     rgba(212, 175, 55, 0.10);
+      --shop-accent-border:     rgba(212, 175, 55, 0.28);
+      --shop-border:            rgba(212, 175, 55, 0.18);
+      --shop-border-strong:     rgba(212, 175, 55, 0.38);
+      --shop-nav-bg:            rgba(15, 11, 9, 0.90);
+      --shop-nav-border:        rgba(212, 175, 55, 0.18);
+      --shop-card-shadow:       0 12px 36px rgba(0, 0, 0, 0.6);
+      --shop-card-shadow-hover: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(212, 175, 55, 0.18);
+      --shop-sidebar-bg:        #14100C;
+      --shop-font-display:      'El Messiri', serif;
+      --shop-font-body:         'Cairo', sans-serif;
+    }
+
+    /* ── Base Setup ────────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--shop-bg);
+      color: var(--shop-text-primary);
+      font-family: var(--shop-font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+      transition: background-color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard),
+                  color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard);
+    }
+
+    /* ── Navbar ────────────────────────────────────────────────────────── */
+    .shop-navbar {
+      position: sticky;
+      inset-block-start: 0;
+      inset-inline: 0;
+      z-index: 1000;
+      background: var(--shop-nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-block-end: 1px solid var(--shop-nav-border);
+      transition: background var(--qhr-motion-duration-normal, 250ms),
+                  border-color var(--qhr-motion-duration-normal, 250ms);
+    }
+
+    .shop-navbar-inner {
+      max-width: 1440px;
+      margin-inline: auto;
+      padding-block: var(--qhr-space-3, 12px);
+      padding-inline: var(--qhr-space-6, 24px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-4, 16px);
+    }
+
+    .shop-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-3, 12px);
+      text-decoration: none;
+      color: var(--shop-text-primary);
+    }
+
+    .shop-brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--shop-accent);
+      color: var(--shop-accent-fg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      font-family: var(--shop-font-display);
+      box-shadow: 0 4px 12px var(--shop-accent-subtle);
+    }
+
+    .shop-brand-title {
+      font-family: var(--shop-font-display);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .shop-brand-sub {
+      font-size: 11px;
+      color: var(--shop-text-muted);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .shop-nav-search {
+      flex: 1;
+      max-width: 480px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-inline: var(--qhr-space-6, 24px);
+    }
+
+    .shop-nav-search svg {
+      position: absolute;
+      inset-inline-start: var(--qhr-space-3, 12px);
+      color: var(--shop-text-muted);
+      pointer-events: none;
+    }
+
+    .shop-nav-input {
+      width: 100%;
+      background: var(--shop-surface-subtle);
+      border: 1px solid var(--shop-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: var(--qhr-space-2, 8px);
+      padding-inline-start: var(--qhr-space-10, 40px);
+      padding-inline-end: var(--qhr-space-8, 32px);
+      color: var(--shop-text-primary);
+      font-family: var(--shop-font-body);
+      font-size: var(--qhr-text-sm, 14px);
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-nav-input:focus {
+      outline: none;
+      border-color: var(--shop-accent);
+      background: var(--shop-surface);
+    }
+
+    .shop-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-3, 12px);
+    }
+
+    .shop-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--shop-surface-subtle);
+      border: 1px solid var(--shop-border);
+      color: var(--shop-text-primary);
+      cursor: pointer;
+      position: relative;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-action-btn:hover {
+      background: var(--shop-accent-subtle);
+      border-color: var(--shop-accent-border);
+      color: var(--shop-accent);
+      transform: translateY(-1px);
+    }
+
+    .shop-badge-count {
+      position: absolute;
+      inset-block-start: -4px;
+      inset-inline-end: -4px;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 9999px;
+      background: var(--shop-accent);
+      color: var(--shop-accent-fg);
+      font-size: 10px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline: 4px;
+    }
+
+    /* ── Main Layout (Sidebar + Content) ───────────────────────────────── */
+    .shop-layout {
+      max-width: 1440px;
+      margin-inline: auto;
+      padding-inline: var(--qhr-space-6, 24px);
+      padding-block: var(--qhr-space-8, 32px);
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: var(--qhr-space-8, 32px);
+      align-items: start;
+    }
+
+    /* ── Breadcrumbs Bar ───────────────────────────────────────────────── */
+    .shop-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+      font-size: var(--qhr-text-xs, 12px);
+      color: var(--shop-text-muted);
+      margin-block-end: var(--qhr-space-3, 12px);
+    }
+
+    .shop-breadcrumbs a {
+      color: var(--shop-text-muted);
+      text-decoration: none;
+      transition: color var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-breadcrumbs a:hover {
+      color: var(--shop-accent);
+    }
+
+    .shop-breadcrumbs-sep {
+      display: inline-flex;
+      align-items: center;
+      opacity: 0.5;
+    }
+
+    /* ── Top Control Bar ───────────────────────────────────────────────── */
+    .shop-control-bar {
+      background: var(--shop-surface);
+      border: 1px solid var(--shop-border);
+      border-radius: var(--qhr-radius-lg, 16px);
+      padding: var(--qhr-space-4, 16px) var(--qhr-space-5, 20px);
+      margin-block-end: var(--qhr-space-6, 24px);
+      box-shadow: var(--shop-card-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-4, 16px);
+      flex-wrap: wrap;
+    }
+
+    .shop-control-info h1 {
+      font-family: var(--shop-font-display);
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 2px 0;
+      color: var(--shop-text-primary);
+    }
+
+    .shop-control-count {
+      font-size: 13px;
+      color: var(--shop-text-secondary);
+    }
+
+    .shop-control-tools {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-3, 12px);
+      flex-wrap: wrap;
+    }
+
+    .shop-sort-select {
+      background: var(--shop-surface-subtle);
+      border: 1px solid var(--shop-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: var(--qhr-space-2, 8px);
+      padding-inline: var(--qhr-space-3, 12px);
+      color: var(--shop-text-primary);
+      font-family: var(--shop-font-body);
+      font-size: var(--qhr-text-sm, 13px);
+      cursor: pointer;
+    }
+
+    .shop-sort-select:focus {
+      outline: none;
+      border-color: var(--shop-accent);
+    }
+
+    .shop-view-toggle {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--shop-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      overflow: hidden;
+      background: var(--shop-surface-subtle);
+    }
+
+    .shop-view-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      color: var(--shop-text-muted);
+      cursor: pointer;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-view-btn.is-active {
+      background: var(--shop-accent);
+      color: var(--shop-accent-fg);
+    }
+
+    .shop-mobile-filter-trigger {
+      display: none;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+      background: var(--shop-surface-subtle);
+      border: 1px solid var(--shop-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: var(--qhr-space-2, 8px);
+      padding-inline: var(--qhr-space-3, 12px);
+      color: var(--shop-text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* ── Active Filters Strip ──────────────────────────────────────────── */
+    .shop-active-strip {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+      flex-wrap: wrap;
+      margin-block-end: var(--qhr-space-5, 20px);
+      padding-block: var(--qhr-space-2, 8px);
+    }
+
+    .shop-filter-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--qhr-space-1-5, 6px);
+      padding-block: 4px;
+      padding-inline: 10px;
+      background: var(--shop-accent-subtle);
+      border: 1px solid var(--shop-accent-border);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--shop-accent);
+    }
+
+    .shop-filter-tag-remove {
+      background: transparent;
+      border: none;
+      color: var(--shop-accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      opacity: 0.75;
+      transition: opacity var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-filter-tag-remove:hover {
+      opacity: 1;
+    }
+
+    .shop-clear-all-btn {
+      background: transparent;
+      border: none;
+      color: var(--shop-text-muted);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: underline;
+      padding-inline: var(--qhr-space-2, 8px);
+    }
+
+    .shop-clear-all-btn:hover {
+      color: var(--shop-accent);
+    }
+
+    /* ── Sidebar Filters Component ─────────────────────────────────────── */
+    .shop-sidebar {
+      background: var(--shop-sidebar-bg);
+      border: 1px solid var(--shop-border);
+      border-radius: var(--qhr-radius-xl, 20px);
+      padding: var(--qhr-space-6, 24px);
+      box-shadow: var(--shop-card-shadow);
+      position: sticky;
+      inset-block-start: 90px;
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-6, 24px);
+    }
+
+    .shop-filter-group {
+      border-block-end: 1px solid var(--shop-border);
+      padding-block-end: var(--qhr-space-5, 20px);
+    }
+
+    .shop-filter-group:last-child {
+      border-block-end: none;
+      padding-block-end: 0;
+    }
+
+    .shop-filter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-end: var(--qhr-space-3-5, 14px);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .shop-filter-title {
+      font-family: var(--shop-font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--shop-text-primary);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+    }
+
+    /* 1. Category Tree Options */
+    .shop-cat-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-1-5, 6px);
+    }
+
+    .shop-cat-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: var(--qhr-space-1-5, 6px);
+      padding-inline: var(--qhr-space-2, 8px);
+      border-radius: var(--qhr-radius-md, 8px);
+      color: var(--shop-text-secondary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-cat-item:hover {
+      background: var(--shop-surface-subtle);
+      color: var(--shop-accent);
+    }
+
+    .shop-cat-item.is-active {
+      background: var(--shop-accent-subtle);
+      color: var(--shop-accent);
+      font-weight: 700;
+    }
+
+    .shop-cat-count {
+      font-size: 11px;
+      color: var(--shop-text-muted);
+      background: var(--shop-surface-subtle);
+      padding-inline: 6px;
+      padding-block: 2px;
+      border-radius: 9999px;
+    }
+
+    .shop-cat-item.is-active .shop-cat-count {
+      background: var(--shop-accent);
+      color: var(--shop-accent-fg);
+    }
+
+    /* 2. Price Range */
+    .shop-price-inputs {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+      margin-block-end: var(--qhr-space-3, 12px);
+    }
+
+    .shop-price-box {
+      flex: 1;
+      background: var(--shop-surface-subtle);
+      border: 1px solid var(--shop-border);
+      border-radius: var(--qhr-radius-md, 8px);
+      padding-block: 6px;
+      padding-inline: 10px;
+      font-size: 12px;
+      color: var(--shop-text-primary);
+      text-align: center;
+      font-family: monospace;
+      font-weight: 700;
+    }
+
+    .shop-slider-range {
+      width: 100%;
+      accent-color: var(--shop-accent);
+      cursor: pointer;
+    }
+
+    .shop-price-presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--qhr-space-1-5, 6px);
+      margin-block-start: var(--qhr-space-3, 12px);
+    }
+
+    .shop-preset-pill {
+      font-size: 11px;
+      padding-block: 3px;
+      padding-inline: 8px;
+      border-radius: 6px;
+      background: var(--shop-surface-subtle);
+      border: 1px solid var(--shop-border);
+      color: var(--shop-text-secondary);
+      cursor: pointer;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-preset-pill:hover, .shop-preset-pill.is-active {
+      background: var(--shop-accent-subtle);
+      border-color: var(--shop-accent-border);
+      color: var(--shop-accent);
+    }
+
+    /* 3. Color Swatches / Metal Finishes */
+    .shop-color-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--qhr-space-2-5, 10px);
+    }
+
+    .shop-color-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 4px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--shop-surface-subtle);
+      border: 1.5px solid var(--shop-border);
+      cursor: pointer;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-color-btn:hover {
+      border-color: var(--shop-accent-border);
+    }
+
+    .shop-color-btn.is-active {
+      border-color: var(--shop-accent);
+      background: var(--shop-accent-subtle);
+    }
+
+    .shop-color-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+
+    .shop-color-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--shop-text-secondary);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    /* 4. Sizes Filter */
+    .shop-sizes-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--qhr-space-2, 8px);
+    }
+
+    .shop-size-chip {
+      min-width: 38px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline: 8px;
+      border-radius: var(--qhr-radius-md, 8px);
+      background: var(--shop-surface-subtle);
+      border: 1px solid var(--shop-border);
+      color: var(--shop-text-secondary);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-size-chip:hover {
+      border-color: var(--shop-accent-border);
+      color: var(--shop-text-primary);
+    }
+
+    .shop-size-chip.is-active {
+      background: var(--shop-accent);
+      border-color: var(--shop-accent);
+      color: var(--shop-accent-fg);
+    }
+
+    /* 5. Brands Checkboxes */
+    .shop-brand-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-2, 8px);
+    }
+
+    .shop-checkbox-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-2, 8px);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--shop-text-secondary);
+      cursor: pointer;
+      padding-block: 2px;
+    }
+
+    .shop-checkbox-inner {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+    }
+
+    .shop-custom-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1.5px solid var(--shop-border-strong);
+      background: var(--shop-surface-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--shop-accent-fg);
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-custom-check.is-checked {
+      background: var(--shop-accent);
+      border-color: var(--shop-accent);
+    }
+
+    /* ── Product Listing (Grid & List Views) ───────────────────────────── */
+    .shop-products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--qhr-space-6, 24px);
+    }
+
+    .shop-products-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-4, 16px);
+    }
+
+    /* Grid Card */
+    .shop-card {
+      background: var(--shop-surface-card);
+      border: 1px solid var(--shop-border);
+      border-radius: var(--qhr-radius-lg, 16px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shop-card-shadow);
+      transition: all var(--qhr-motion-duration-normal, 250ms);
+      position: relative;
+    }
+
+    .shop-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shop-card-shadow-hover);
+      border-color: var(--shop-accent-border);
+    }
+
+    .shop-card-art {
+      width: 100%;
+      height: 230px;
+      background: var(--shop-surface-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-block-end: 1px solid var(--shop-border);
+    }
+
+    .shop-card-art-circle {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 2px dashed var(--shop-accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--shop-accent);
+      background: var(--shop-accent-subtle);
+      transition: transform var(--qhr-motion-duration-normal, 250ms);
+    }
+
+    .shop-card:hover .shop-card-art-circle {
+      transform: scale(1.06) rotate(4deg);
+    }
+
+    .shop-card-top-badges {
+      position: absolute;
+      inset-block-start: 12px;
+      inset-inline: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .shop-card-wish-btn {
+      pointer-events: auto;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--shop-surface-overlay);
+      border: 1px solid var(--shop-border);
+      color: var(--shop-text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .shop-card-wish-btn:hover, .shop-card-wish-btn.is-wished {
+      color: var(--qhr-color-danger-500, #ef4444);
+      border-color: var(--qhr-color-danger-500, #ef4444);
+    }
+
+    .shop-card-body {
+      padding: var(--qhr-space-5, 20px);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .shop-card-brand {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--shop-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-block-end: 4px;
+    }
+
+    .shop-card-title {
+      font-family: var(--shop-font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--shop-text-primary);
+      margin: 0 0 6px 0;
+      line-height: 1.35;
+    }
+
+    .shop-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--shop-text-muted);
+      margin-block-end: 12px;
+    }
+
+    .shop-stars {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      color: var(--shop-accent);
+    }
+
+    .shop-card-footer {
+      margin-block-start: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block-start: 12px;
+      border-block-start: 1px solid var(--shop-border);
+      gap: 8px;
+    }
+
+    .shop-price-current {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--shop-accent);
+      font-family: var(--shop-font-display);
+    }
+
+    .shop-price-old {
+      font-size: 12px;
+      color: var(--shop-text-muted);
+      text-decoration: line-through;
+      margin-inline-start: 4px;
+    }
+
+    /* List Card Layout */
+    .shop-list-card {
+      background: var(--shop-surface-card);
+      border: 1px solid var(--shop-border);
+      border-radius: var(--qhr-radius-lg, 16px);
+      padding: var(--qhr-space-4, 16px);
+      box-shadow: var(--shop-card-shadow);
+      display: grid;
+      grid-template-columns: 200px 1fr auto;
+      gap: var(--qhr-space-5, 20px);
+      align-items: center;
+      transition: border-color var(--qhr-motion-duration-normal, 250ms);
+    }
+
+    .shop-list-card:hover {
+      border-color: var(--shop-accent-border);
+    }
+
+    .shop-list-thumb {
+      height: 160px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--shop-surface-subtle);
+      border: 1px solid var(--shop-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--shop-accent);
+    }
+
+    /* ── Empty State ───────────────────────────────────────────────────── */
+    .shop-empty {
+      background: var(--shop-surface);
+      border: 1px dashed var(--shop-border-strong);
+      border-radius: var(--qhr-radius-xl, 20px);
+      padding-block: var(--qhr-space-16, 64px);
+      text-align: center;
+      margin-block: var(--qhr-space-8, 32px);
+    }
+
+    .shop-empty-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--shop-accent-subtle);
+      color: var(--shop-accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-block-end: 16px;
+    }
+
+    /* ── Mobile Filter Drawer (Slide-Over) ─────────────────────────────── */
+    .shop-mobile-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2100;
+    }
+
+    .shop-mobile-drawer-panel {
+      position: fixed;
+      inset-block: 0;
+      inset-inline-start: 0;
+      width: 100%;
+      max-width: 340px;
+      background: var(--shop-surface);
+      border-inline-end: 1px solid var(--shop-border-strong);
+      z-index: 2110;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 10px 0 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .shop-drawer-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--qhr-space-5, 20px);
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-5, 20px);
+    }
+
+    /* ── Slide-Over Cart Drawer ────────────────────────────────────────── */
+    .shop-cart-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2200;
+    }
+
+    .shop-cart-panel {
+      position: fixed;
+      inset-block: 0;
+      inset-inline-end: 0;
+      width: 100%;
+      max-width: 440px;
+      background: var(--shop-surface);
+      border-inline-start: 1px solid var(--shop-border-strong);
+      z-index: 2210;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ── Toast ─────────────────────────────────────────────────────────── */
+    .shop-toast {
+      position: fixed;
+      inset-block-end: var(--qhr-space-6, 24px);
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      background: var(--shop-surface-card);
+      border: 1px solid var(--shop-accent-border);
+      color: var(--shop-text-primary);
+      padding: 12px 20px;
+      border-radius: var(--qhr-radius-lg, 16px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .shop-layout {
+        grid-template-columns: 1fr;
+      }
+      .shop-sidebar {
+        display: none;
+      }
+      .shop-mobile-filter-trigger {
+        display: inline-flex;
+      }
+      .shop-list-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Header & Navigation -->
+  <header class="shop-navbar">
+    <div class="shop-navbar-inner">
+      <!-- Brand -->
+      <a href="#" class="shop-brand">
+        <span class="shop-brand-badge">ق</span>
+        <div>
+          <span class="shop-brand-title">قاهرة للمقتنيات الفاخرة</span>
+          <span class="shop-brand-sub">متجر المجوهرات والفولاذ الملكي</span>
+        </div>
+      </a>
+
+      <!-- Live Search in Navbar -->
+      <div class="shop-nav-search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <path d="M21 21l-4.35-4.35" />
+        </svg>
+        <input
+          type="search"
+          class="shop-nav-input"
+          placeholder="ابحث بالاسم، الدار، أو خامة الصياغة..."
+          x-model="searchQuery"
+          @input="currentPage = 1"
+        >
+      </div>
+
+      <!-- Actions -->
+      <div class="shop-nav-actions">
+        <!-- Theme Toggle -->
+        <!-- Direction & Language Toggle Button -->
+        <button
+          type="button"
+          class="shop-action-btn"
+          @click="toggleDir()"
+          :aria-label="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+          :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+        >
+          <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </button>
+
+        <button
+          type="button"
+          class="shop-action-btn"
+          @click="toggleTheme()"
+          :aria-label="theme === 'dark' ? 'التحويل للنمط النهاري' : 'التحويل للنمط الداكن'"
+        >
+          <template x-if="theme === 'dark'">
+            <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+          </template>
+          <template x-if="theme === 'light'">
+            <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </template>
+        </button>
+
+        <!-- Wishlist -->
+        <button
+          type="button"
+          class="shop-action-btn"
+          @click="triggerToast('قائمة الرغبات تحتوي على ' + wishlist.length + ' مقتنيات')"
+          aria-label="قائمة المفضلة"
+        >
+          <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <span class="shop-badge-count" x-text="wishlist.length" x-show="wishlist.length > 0"></span>
+        </button>
+
+        <!-- Cart Drawer Trigger -->
+        <button
+          type="button"
+          class="shop-action-btn"
+          @click="cartOpen = true"
+          aria-label="سلة المقتنيات"
+        >
+          <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span class="shop-badge-count" x-text="cartTotalCount" x-show="cartTotalCount > 0"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Shop Main Layout -->
+  <main class="shop-layout">
+
+    <!-- ── Left/Start: Comprehensive Sidebar Filter UI ─────────────────── -->
+    <aside class="shop-sidebar" aria-label="تصفية المنتجات">
+      
+      <!-- Filter Header -->
+      <div style="display: flex; align-items: center; justify-content: space-between; padding-block-end: var(--qhr-space-3, 12px); border-block-end: 1px solid var(--shop-border);">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--shop-accent);">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+          </svg>
+          <h2 style="font-family: var(--shop-font-display); font-size: 17px; font-weight: 700; margin: 0;">تصفية المقتنيات</h2>
+        </div>
+        <button
+          type="button"
+          class="shop-clear-all-btn"
+          x-show="hasActiveFilters"
+          @click="resetAllFilters()"
+        >
+          إعادة تعيين الكل
+        </button>
+      </div>
+
+      <!-- Filter Group 1: Category Tree -->
+      <div class="shop-filter-group">
+        <div class="shop-filter-header">
+          <h3 class="shop-filter-title">
+            <span>التصنيف الرئيسي</span>
+          </h3>
+        </div>
+        <ul class="shop-cat-list">
+          <li
+            class="shop-cat-item"
+            :class="{ 'is-active': selectedCategory === 'all' }"
+            @click="selectedCategory = 'all'; currentPage = 1"
+          >
+            <span>كافة المقتنيات</span>
+            <span class="shop-cat-count" x-text="products.length"></span>
+          </li>
+          <template x-for="cat in categories" :key="cat.id">
+            <li
+              class="shop-cat-item"
+              :class="{ 'is-active': selectedCategory === cat.id }"
+              @click="selectedCategory = cat.id; currentPage = 1"
+            >
+              <span x-text="cat.name"></span>
+              <span class="shop-cat-count" x-text="countCategory(cat.id)"></span>
+            </li>
+          </template>
+        </ul>
+      </div>
+
+      <!-- Filter Group 2: Price Range Slider -->
+      <div class="shop-filter-group">
+        <div class="shop-filter-header">
+          <h3 class="shop-filter-title">
+            <span>نطاق السعر</span>
+          </h3>
+          <span style="font-size: 12px; font-weight: 700; color: var(--shop-accent);" x-text="'حتى ' + maxPrice + ' ر.س'"></span>
+        </div>
+
+        <div class="shop-price-inputs">
+          <div class="shop-price-box">300 ر.س</div>
+          <span style="color: var(--shop-text-muted);">—</span>
+          <div class="shop-price-box" x-text="maxPrice + ' ر.س'"></div>
+        </div>
+
+        <input
+          type="range"
+          min="300"
+          max="5000"
+          step="100"
+          class="shop-slider-range"
+          x-model="maxPrice"
+          @input="currentPage = 1"
+        >
+
+        <div class="shop-price-presets">
+          <button type="button" class="shop-preset-pill" :class="{ 'is-active': maxPrice == 1500 }" @click="maxPrice = 1500; currentPage = 1">أقل من 1,500</button>
+          <button type="button" class="shop-preset-pill" :class="{ 'is-active': maxPrice == 2500 }" @click="maxPrice = 2500; currentPage = 1">حتى 2,500</button>
+          <button type="button" class="shop-preset-pill" :class="{ 'is-active': maxPrice == 5000 }" @click="maxPrice = 5000; currentPage = 1">كافة الأسعار</button>
+        </div>
+      </div>
+
+      <!-- Filter Group 3: Color Swatches & Metal Finishes -->
+      <div class="shop-filter-group">
+        <div class="shop-filter-header">
+          <h3 class="shop-filter-title">
+            <span>اللون والمعدن</span>
+          </h3>
+          <span style="font-size: 11px; color: var(--shop-text-muted);" x-text="selectedColors.length > 0 ? selectedColors.length + ' محدد' : 'الكل'"></span>
+        </div>
+
+        <div class="shop-color-grid">
+          <template x-for="c in colorOptions" :key="c.id">
+            <button
+              type="button"
+              class="shop-color-btn"
+              :class="{ 'is-active': selectedColors.includes(c.id) }"
+              @click="toggleColor(c.id)"
+            >
+              <div class="shop-color-dot" :style="'background-color: ' + c.hex">
+                <template x-if="selectedColors.includes(c.id)">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" :style="'color: ' + (c.id === 'silver' ? '#0F0B09' : '#FFFFFF')">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </template>
+              </div>
+              <span class="shop-color-name" x-text="c.name"></span>
+            </button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Filter Group 4: Sizes -->
+      <div class="shop-filter-group">
+        <div class="shop-filter-header">
+          <h3 class="shop-filter-title">
+            <span>المقاس المتاح</span>
+          </h3>
+          <span style="font-size: 11px; color: var(--shop-text-muted);" x-text="selectedSizes.length > 0 ? selectedSizes.length + ' محدد' : 'الكل'"></span>
+        </div>
+
+        <div class="shop-sizes-grid">
+          <template x-for="s in sizeOptions" :key="s">
+            <button
+              type="button"
+              class="shop-size-chip"
+              :class="{ 'is-active': selectedSizes.includes(s) }"
+              @click="toggleSize(s)"
+              x-text="s"
+            ></button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Filter Group 5: Brands & Ateliers -->
+      <div class="shop-filter-group">
+        <div class="shop-filter-header">
+          <h3 class="shop-filter-title">
+            <span>دار الصياغة</span>
+          </h3>
+          <span style="font-size: 11px; color: var(--shop-text-muted);" x-text="selectedBrands.length > 0 ? selectedBrands.length + ' محدد' : 'الكل'"></span>
+        </div>
+
+        <div class="shop-brand-list">
+          <template x-for="b in brandOptions" :key="b.id">
+            <label class="shop-checkbox-label">
+              <div class="shop-checkbox-inner">
+                <div
+                  class="shop-custom-check"
+                  :class="{ 'is-checked': selectedBrands.includes(b.id) }"
+                  @click="toggleBrand(b.id)"
+                >
+                  <template x-if="selectedBrands.includes(b.id)">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </template>
+                </div>
+                <span x-text="b.name"></span>
+              </div>
+              <span style="font-size: 11px; color: var(--shop-text-muted);" x-text="'(' + countBrand(b.id) + ')'"></span>
+            </label>
+          </template>
+        </div>
+      </div>
+
+      <!-- Filter Group 6: Availability Perks -->
+      <div class="shop-filter-group">
+        <label class="shop-checkbox-label" style="margin-block-end: 8px;">
+          <div class="shop-checkbox-inner">
+            <div
+              class="shop-custom-check"
+              :class="{ 'is-checked': onlyInStock }"
+              @click="onlyInStock = !onlyInStock; currentPage = 1"
+            >
+              <template x-if="onlyInStock">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </template>
+            </div>
+            <span>شحن فوري متوفر</span>
+          </div>
+        </label>
+
+        <label class="shop-checkbox-label">
+          <div class="shop-checkbox-inner">
+            <div
+              class="shop-custom-check"
+              :class="{ 'is-checked': onlySale }"
+              @click="onlySale = !onlySale; currentPage = 1"
+            >
+              <template x-if="onlySale">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </template>
+            </div>
+            <span>خصومات وعروض خاصة</span>
+          </div>
+        </label>
+      </div>
+
+    </aside>
+
+    <!-- ── Right/End: Catalog Results & Control Area ──────────────────── -->
+    <section>
+      
+      <!-- Breadcrumbs -->
+      <div class="shop-breadcrumbs">
+        <a href="#">الرئيسية</a>
+        <span class="shop-breadcrumbs-sep">/</span>
+        <a href="#">المتجر</a>
+        <span class="shop-breadcrumbs-sep">/</span>
+        <span style="color: var(--shop-text-primary);" x-text="categoryNameById(selectedCategory)"></span>
+      </div>
+
+      <!-- Control Bar -->
+      <div class="shop-control-bar">
+        <div class="shop-control-info">
+          <h1 x-text="categoryNameById(selectedCategory)"></h1>
+          <div class="shop-control-count">
+            عرض <strong style="color: var(--shop-text-primary);" x-text="paginatedProducts.length"></strong> من أصل <strong style="color: var(--shop-text-primary);" x-text="filteredProducts.length"></strong> مقتنى فاخر
+          </div>
+        </div>
+
+        <div class="shop-control-tools">
+          <!-- Mobile Filter Drawer Trigger -->
+          <button
+            type="button"
+            class="shop-mobile-filter-trigger"
+            @click="mobileFilterOpen = true"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+            </svg>
+            <span>التصفية</span>
+            <template x-if="activeFilterCount > 0">
+              <span class="qhr-badge qhr-badge--primary qhr-badge--xs" x-text="activeFilterCount"></span>
+            </template>
+          </button>
+
+          <!-- Sorting -->
+          <select class="shop-sort-select" x-model="sortBy">
+            <option value="featured">الموصى به (الأكثر تميزاً)</option>
+            <option value="price-asc">السعر: من الأقل إلى الأعلى</option>
+            <option value="price-desc">السعر: من الأعلى إلى الأقل</option>
+            <option value="rating">أعلى تقييم للعملاء</option>
+            <option value="name">الاسم الأبجدي</option>
+          </select>
+
+          <!-- View Mode Toggle (Grid vs List) -->
+          <div class="shop-view-toggle">
+            <button
+              type="button"
+              class="shop-view-btn"
+              :class="{ 'is-active': viewMode === 'grid' }"
+              @click="viewMode = 'grid'"
+              aria-label="عرض شبكي"
+              title="عرض شبكي"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="shop-view-btn"
+              :class="{ 'is-active': viewMode === 'list' }"
+              @click="viewMode = 'list'"
+              aria-label="عرض قائمة"
+              title="عرض قائمة"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="8" y1="6" x2="21" y2="6" />
+                <line x1="8" y1="12" x2="21" y2="12" />
+                <line x1="8" y1="18" x2="21" y2="18" />
+                <line x1="3" y1="6" x2="3.01" y2="6" />
+                <line x1="3" y1="12" x2="3.01" y2="12" />
+                <line x1="3" y1="18" x2="3.01" y2="18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Filters Strip (Dismissible tags) -->
+      <div class="shop-active-strip" x-show="hasActiveFilters">
+        <span style="font-size: 12px; font-weight: 700; color: var(--shop-text-muted);">الفلاتر المفعلة:</span>
+
+        <!-- Category tag -->
+        <template x-if="selectedCategory !== 'all'">
+          <span class="shop-filter-tag">
+            <span x-text="categoryNameById(selectedCategory)"></span>
+            <button type="button" class="shop-filter-tag-remove" @click="selectedCategory = 'all'">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </span>
+        </template>
+
+        <!-- Price tag -->
+        <template x-if="maxPrice < 5000">
+          <span class="shop-filter-tag">
+            <span x-text="'حتى ' + maxPrice + ' ر.س'"></span>
+            <button type="button" class="shop-filter-tag-remove" @click="maxPrice = 5000">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </span>
+        </template>
+
+        <!-- Color tags -->
+        <template x-for="cid in selectedColors" :key="cid">
+          <span class="shop-filter-tag">
+            <span x-text="colorNameById(cid)"></span>
+            <button type="button" class="shop-filter-tag-remove" @click="toggleColor(cid)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </span>
+        </template>
+
+        <!-- Size tags -->
+        <template x-for="sz in selectedSizes" :key="sz">
+          <span class="shop-filter-tag">
+            <span x-text="'مقاس ' + sz"></span>
+            <button type="button" class="shop-filter-tag-remove" @click="toggleSize(sz)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </span>
+        </template>
+
+        <!-- Brand tags -->
+        <template x-for="bid in selectedBrands" :key="bid">
+          <span class="shop-filter-tag">
+            <span x-text="brandNameById(bid)"></span>
+            <button type="button" class="shop-filter-tag-remove" @click="toggleBrand(bid)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </span>
+        </template>
+
+        <!-- Only In Stock -->
+        <template x-if="onlyInStock">
+          <span class="shop-filter-tag">
+            <span>شحن فوري</span>
+            <button type="button" class="shop-filter-tag-remove" @click="onlyInStock = false">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </span>
+        </template>
+
+        <!-- Only Sale -->
+        <template x-if="onlySale">
+          <span class="shop-filter-tag">
+            <span>عروض خاصة</span>
+            <button type="button" class="shop-filter-tag-remove" @click="onlySale = false">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </span>
+        </template>
+
+        <button type="button" class="shop-clear-all-btn" @click="resetAllFilters()">إلغاء جميع الفلاتر</button>
+      </div>
+
+      <!-- ── Product Cards Display ──────────────────────────────────────── -->
+
+      <!-- Mode 1: Grid View -->
+      <template x-if="viewMode === 'grid' && filteredProducts.length > 0">
+        <div class="shop-products-grid">
+          <template x-for="prod in paginatedProducts" :key="prod.id">
+            <article class="shop-card">
+              <!-- Art Thumbnail -->
+              <div class="shop-card-art">
+                <div class="shop-card-art-circle">
+                  <!-- Category Icon -->
+                  <template x-if="prod.category === 'rings'">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="14" r="7" /><path d="M12 2l3 5H9l3-5z" />
+                    </svg>
+                  </template>
+                  <template x-if="prod.category === 'bracelets'">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="2" y="6" width="20" height="12" rx="6" /><circle cx="12" cy="12" r="2" />
+                    </svg>
+                  </template>
+                  <template x-if="prod.category === 'necklaces'">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M6 3c0 8 6 14 6 14s6-6 6-14" /><polygon points="12 18 10 22 14 22 12 18" />
+                    </svg>
+                  </template>
+                  <template x-if="prod.category === 'earrings'">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="6" r="3" /><path d="M12 9v7m-3 3a3 3 0 0 0 6 0" />
+                    </svg>
+                  </template>
+                  <template x-if="prod.category === 'watches'">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="7" /><polyline points="12 9 12 12 13.5 13.5" /><path d="M16.51 17.35l-.35 3.83a2 2 0 0 1-2 1.82H9.83a2 2 0 0 1-2-1.82l-.35-3.83m.01-10.7l.35-3.83A2 2 0 0 1 9.83 1h4.34a2 2 0 0 1 2 1.82l.35 3.83" />
+                    </svg>
+                  </template>
+                </div>
+
+                <!-- Top badges & Wishlist -->
+                <div class="shop-card-top-badges">
+                  <span class="qhr-badge qhr-badge--primary qhr-badge--xs" x-text="prod.badge"></span>
+                  <button
+                    type="button"
+                    class="shop-card-wish-btn"
+                    :class="{ 'is-wished': isWished(prod.id) }"
+                    @click="toggleWishlist(prod)"
+                    aria-label="إضافة للمفضلة"
+                  >
+                    <svg width="15" height="15" viewBox="0 0 24 24" :fill="isWished(prod.id) ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Body -->
+              <div class="shop-card-body">
+                <span class="shop-card-brand" x-text="brandNameById(prod.brandId)"></span>
+                <h3 class="shop-card-title" x-text="prod.title"></h3>
+
+                <!-- Rating -->
+                <div class="shop-rating-row">
+                  <div class="shop-stars">
+                    <template x-for="star in 5" :key="star">
+                      <svg width="13" height="13" viewBox="0 0 24 24" :fill="star <= prod.rating ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    </template>
+                  </div>
+                  <span x-text="'(' + prod.reviewsCount + ')'"></span>
+                </div>
+
+                <!-- Footer -->
+                <div class="shop-card-footer">
+                  <div>
+                    <span class="shop-price-current" x-text="prod.price + ' ر.س'"></span>
+                    <template x-if="prod.originalPrice">
+                      <span class="shop-price-old" x-text="prod.originalPrice + ' ر.س'"></span>
+                    </template>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="qhr-btn qhr-btn--primary qhr-btn--sm"
+                    @click="addToCart(prod)"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" />
+                      <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                    </svg>
+                    <span>طلب</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </template>
+        </div>
+      </template>
+
+      <!-- Mode 2: List View -->
+      <template x-if="viewMode === 'list' && filteredProducts.length > 0">
+        <div class="shop-products-list">
+          <template x-for="prod in paginatedProducts" :key="prod.id">
+            <article class="shop-list-card">
+              <!-- Thumbnail -->
+              <div class="shop-list-thumb">
+                <template x-if="prod.category === 'rings'">
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7" /><path d="M12 2l3 5H9l3-5z" /></svg>
+                </template>
+                <template x-if="prod.category === 'bracelets'">
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="6" /></svg>
+                </template>
+                <template x-if="prod.category === 'necklaces'">
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3c0 8 6 14 6 14s6-6 6-14" /></svg>
+                </template>
+                <template x-if="prod.category === 'earrings'">
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="3" /><path d="M12 9v7m-3 3a3 3 0 0 0 6 0" /></svg>
+                </template>
+                <template x-if="prod.category === 'watches'">
+                  <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7" /></svg>
+                </template>
+              </div>
+
+              <!-- Main Details -->
+              <div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-block-end: 4px;">
+                  <span class="shop-card-brand" x-text="brandNameById(prod.brandId)"></span>
+                  <span class="qhr-badge qhr-badge--outline qhr-badge--xs" x-text="prod.badge"></span>
+                </div>
+                <h3 class="shop-card-title" style="font-size: 19px;" x-text="prod.title"></h3>
+                <p style="color: var(--shop-text-secondary); font-size: 13px; margin: 0 0 8px 0; line-height: 1.6;" x-text="prod.description"></p>
+
+                <div style="display: flex; align-items: center; gap: 16px; font-size: 12px; color: var(--shop-text-muted);">
+                  <span>الخامة: <strong style="color: var(--shop-text-primary);" x-text="colorNameById(prod.colorId)"></strong></span>
+                  <span>المقاسات: <strong style="color: var(--shop-text-primary);" x-text="prod.sizes.join(', ')"></strong></span>
+                  <span>التقييم: <strong style="color: var(--shop-accent);" x-text="prod.rating + ' / 5'"></strong></span>
+                </div>
+              </div>
+
+              <!-- Price & CTA -->
+              <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 12px; min-width: 140px;">
+                <div style="text-align: end;">
+                  <div class="shop-price-current" style="font-size: 22px;" x-text="prod.price + ' ر.س'"></div>
+                  <template x-if="prod.originalPrice">
+                    <span class="shop-price-old" x-text="prod.originalPrice + ' ر.س'"></span>
+                  </template>
+                </div>
+                <button
+                  type="button"
+                  class="qhr-btn qhr-btn--primary qhr-btn--md"
+                  style="width: 100%;"
+                  @click="addToCart(prod)"
+                >
+                  <span>طلب مقتنى</span>
+                </button>
+              </div>
+            </article>
+          </template>
+        </div>
+      </template>
+
+      <!-- Empty State -->
+      <div class="shop-empty" x-show="filteredProducts.length === 0">
+        <div class="shop-empty-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" />
+            <line x1="8" y1="11" x2="14" y2="11" />
+          </svg>
+        </div>
+        <h3 style="font-family: var(--shop-font-display); font-size: 20px; font-weight: 700; color: var(--shop-text-primary); margin: 0 0 8px 0;">لا توجد مقتنيات مطابقة لخيارات التصفية</h3>
+        <p style="color: var(--shop-text-secondary); font-size: 14px; max-width: 420px; margin-inline: auto; margin-block-end: 20px;">
+          جرّب توسيع نطاق السعر، أو إزالة بعض معايير الألوان والمقاسات لعرض المزيد من القطع في الكتالوج.
+        </p>
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" @click="resetAllFilters()">
+          <span>إعادة تعيين كافة الفلاتر</span>
+        </button>
+      </div>
+
+      <!-- Pagination -->
+      <div style="display: flex; justify-content: center; margin-block-start: var(--qhr-space-10, 40px);" x-show="totalPages > 1">
+        <div style="display: flex; gap: 8px;">
+          <button
+            type="button"
+            class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+            :disabled="currentPage === 1"
+            @click="currentPage--; window.scrollTo({ top: 0, behavior: 'smooth' })"
+          >
+            السابق
+          </button>
+          <template x-for="p in totalPages" :key="p">
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--sm"
+              :class="currentPage === p ? 'qhr-btn--primary' : 'qhr-btn--secondary'"
+              @click="currentPage = p; window.scrollTo({ top: 0, behavior: 'smooth' })"
+              x-text="p"
+            ></button>
+          </template>
+          <button
+            type="button"
+            class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+            :disabled="currentPage === totalPages"
+            @click="currentPage++; window.scrollTo({ top: 0, behavior: 'smooth' })"
+          >
+            التالي
+          </button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- 3. Mobile Filter Slide-Over Drawer -->
+  <div
+    class="shop-mobile-drawer-backdrop"
+    x-show="mobileFilterOpen"
+    @click="mobileFilterOpen = false"
+    style="display: none;"
+  ></div>
+  <aside
+    class="shop-mobile-drawer-panel"
+    x-show="mobileFilterOpen"
+    role="dialog"
+    aria-label="تصفية المقتنيات للجوال"
+    style="display: none;"
+  >
+    <div style="padding: 16px 20px; border-block-end: 1px solid var(--shop-border); display: flex; align-items: center; justify-content: space-between;">
+      <h3 style="font-family: var(--shop-font-display); font-size: 18px; margin: 0;">تصفية المقتنيات</h3>
+      <button type="button" class="shop-action-btn" @click="mobileFilterOpen = false" aria-label="إغلاق">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="shop-drawer-scroll">
+      <!-- Fast Actions in Mobile -->
+      <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" @click="resetAllFilters()">إعادة تعيين الكل</button>
+
+      <!-- Category -->
+      <div>
+        <h4 style="font-size: 14px; font-weight: 700; margin-block-end: 8px;">التصنيف</h4>
+        <select class="shop-sort-select" style="width: 100%;" x-model="selectedCategory">
+          <option value="all">كافة المقتنيات</option>
+          <template x-for="cat in categories" :key="cat.id">
+            <option :value="cat.id" x-text="cat.name"></option>
+          </template>
+        </select>
+      </div>
+
+      <!-- Price -->
+      <div>
+        <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-block-end: 6px;">
+          <span>السعر الأقصى</span>
+          <span style="color: var(--shop-accent);" x-text="maxPrice + ' ر.س'"></span>
+        </div>
+        <input type="range" min="300" max="5000" step="100" class="shop-slider-range" x-model="maxPrice">
+      </div>
+
+      <!-- Color Swatches -->
+      <div>
+        <h4 style="font-size: 14px; font-weight: 700; margin-block-end: 8px;">الألوان والخامات</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <template x-for="c in colorOptions" :key="c.id">
+            <button
+              type="button"
+              class="shop-preset-pill"
+              :class="{ 'is-active': selectedColors.includes(c.id) }"
+              @click="toggleColor(c.id)"
+              x-text="c.name"
+            ></button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Sizes -->
+      <div>
+        <h4 style="font-size: 14px; font-weight: 700; margin-block-end: 8px;">المقاسات</h4>
+        <div class="shop-sizes-grid">
+          <template x-for="s in sizeOptions" :key="s">
+            <button
+              type="button"
+              class="shop-size-chip"
+              :class="{ 'is-active': selectedSizes.includes(s) }"
+              @click="toggleSize(s)"
+              x-text="s"
+            ></button>
+          </template>
+        </div>
+      </div>
+
+      <!-- Brands -->
+      <div>
+        <h4 style="font-size: 14px; font-weight: 700; margin-block-end: 8px;">دار الصياغة</h4>
+        <div class="shop-brand-list">
+          <template x-for="b in brandOptions" :key="b.id">
+            <label class="shop-checkbox-label">
+              <div class="shop-checkbox-inner">
+                <div class="shop-custom-check" :class="{ 'is-checked': selectedBrands.includes(b.id) }" @click="toggleBrand(b.id)">
+                  <template x-if="selectedBrands.includes(b.id)">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                  </template>
+                </div>
+                <span x-text="b.name"></span>
+              </div>
+            </label>
+          </template>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 16px 20px; border-block-start: 1px solid var(--shop-border); background: var(--shop-surface-subtle);">
+      <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" style="width: 100%;" @click="mobileFilterOpen = false">
+        <span>عرض النتائج (<span x-text="filteredProducts.length"></span>)</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 4. Flyout Cart Drawer -->
+  <div
+    class="shop-cart-backdrop"
+    x-show="cartOpen"
+    @click="cartOpen = false"
+    style="display: none;"
+  ></div>
+  <aside
+    class="shop-cart-panel"
+    x-show="cartOpen"
+    role="dialog"
+    aria-label="سلة المقتنيات الملكية"
+    style="display: none;"
+  >
+    <div style="padding: 20px; border-block-end: 1px solid var(--shop-border); display: flex; align-items: center; justify-content: space-between;">
+      <h3 style="font-family: var(--shop-font-display); font-size: 18px; margin: 0; display: flex; align-items: center; gap: 8px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1" /><circle cx="20" cy="21" r="1" /><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" /></svg>
+        <span>سلة المقتنيات</span>
+        <span style="font-size: 13px; color: var(--shop-text-muted);" x-text="'(' + cartTotalCount + ')'"></span>
+      </h3>
+      <button type="button" class="shop-action-btn" @click="cartOpen = false" aria-label="إغلاق السلة">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div style="flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px;">
+      <template x-if="cart.length === 0">
+        <div style="text-align: center; padding-block: 40px; color: var(--shop-text-muted);">
+          <p style="font-weight: 600; color: var(--shop-text-primary);">السلة فارغة حالياً</p>
+          <p style="font-size: 13px;">اختر مقتنياتك المفضلة وأضفها للسلة</p>
+        </div>
+      </template>
+
+      <template x-for="item in cart" :key="item.id">
+        <div style="display: flex; gap: 12px; padding-block-end: 12px; border-block-end: 1px solid var(--shop-border);">
+          <div style="width: 56px; height: 56px; border-radius: 8px; background: var(--shop-surface-subtle); border: 1px solid var(--shop-border); display: flex; align-items: center; justify-content: center; color: var(--shop-accent); flex-shrink: 0;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="14" r="7" /><path d="M12 2l3 5H9l3-5z" /></svg>
+          </div>
+          <div style="flex: 1;">
+            <h4 style="font-size: 14px; font-weight: 700; margin: 0 0 4px 0;" x-text="item.title"></h4>
+            <div style="font-size: 13px; font-weight: 700; color: var(--shop-accent);" x-text="item.price + ' ر.س'"></div>
+            <div style="display: flex; align-items: center; gap: 6px; margin-block-start: 6px;">
+              <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--xs" @click="decrementCart(item.id)">-</button>
+              <span style="font-size: 12px; font-weight: 700; padding-inline: 4px;" x-text="item.quantity"></span>
+              <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--xs" @click="incrementCart(item.id)">+</button>
+              <button type="button" style="margin-inline-start: auto; background: transparent; border: none; color: var(--qhr-color-danger-500, #ef4444); cursor: pointer; font-size: 12px;" @click="removeFromCart(item.id)">حذف</button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <div style="padding: 20px; border-block-start: 1px solid var(--shop-border); background: var(--shop-surface-subtle);" x-show="cart.length > 0">
+      <div style="display: flex; justify-content: space-between; font-size: 15px; margin-block-end: 8px;">
+        <span>المجموع:</span>
+        <strong style="color: var(--shop-accent); font-family: var(--shop-font-display); font-size: 18px;" x-text="cartTotalFormatted"></strong>
+      </div>
+      <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--lg" style="width: 100%;" @click="triggerToast('جاري تحويلك لبوابة الدفع الآمن...')">
+        <span>متابعة الشراء الفاخر</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 5. Toast -->
+  <div class="shop-toast" x-show="toastVisible" style="display: none;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--shop-accent);">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+    <span x-text="toastMessage"></span>
+  </div>
+
+  <!-- Alpine Core & App Store -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  <script>
+    function shopApp() {
+      return {
+        theme: localStorage.getItem('qhr-theme') || 'dark',
+        dir: localStorage.getItem('qhr-dir') || 'rtl',
+        lang: (localStorage.getItem('qhr-dir') || 'rtl') === 'rtl' ? 'ar' : 'en',
+        viewMode: 'grid',
+        searchQuery: '',
+        selectedCategory: 'all',
+        maxPrice: 5000,
+        selectedColors: [],
+        selectedSizes: [],
+        selectedBrands: [],
+        onlyInStock: false,
+        onlySale: false,
+        sortBy: 'featured',
+        currentPage: 1,
+        itemsPerPage: 6,
+        mobileFilterOpen: false,
+        cartOpen: false,
+        toastVisible: false,
+        toastMessage: '',
+
+        wishlist: ['prod-1', 'prod-3'],
+        cart: [
+          { id: 'prod-1', title: 'خاتم الأفق الذهبي عيار 18', price: 1850, quantity: 1 }
+        ],
+
+        categories: [
+          { id: 'rings', name: 'الخواتم الملكية' },
+          { id: 'bracelets', name: 'الأساور والمصوغات' },
+          { id: 'necklaces', name: 'السلاسل والقلائد' },
+          { id: 'earrings', name: 'الأقراط والبروشات' },
+          { id: 'watches', name: 'الساعات والتحف' }
+        ],
+
+        colorOptions: [
+          { id: 'gold', name: 'ذهب إمبراطوري', hex: '#D4AF37' },
+          { id: 'silver', name: 'ستيل فضي 316L', hex: '#CBD5E1' },
+          { id: 'obsidian', name: 'أوبسيديان أسود', hex: '#1C1917' },
+          { id: 'rosegold', name: 'ذهب وردي', hex: '#E0A899' },
+          { id: 'bronze', name: 'برونز عتيق', hex: '#A87C4F' },
+          { id: 'emerald', name: 'زمرد ملكي', hex: '#15803D' },
+        ],
+
+        sizeOptions: ['6', '7', '8', '9', '10', '11', 'S', 'M', 'L', 'XL', '45cm', '50cm'],
+
+        brandOptions: [
+          { id: 'alqahera', name: 'دار قاهرة الفاخرة' },
+          { id: 'alhoulie', name: 'الحولي للأحجار الكريمة' },
+          { id: 'elsagha', name: 'ورشة الصاغة التراثية' },
+          { id: 'nile', name: 'النيل للأوبسيديان' },
+          { id: 'pharaohs', name: 'الفراعنة للصلب 316L' },
+        ],
+
+        products: [
+          {
+            id: 'prod-1',
+            title: 'خاتم الأفق الذهبي عيار 18',
+            category: 'rings',
+            brandId: 'alqahera',
+            price: 1850,
+            originalPrice: 2200,
+            badge: 'ستيل 316L',
+            colorId: 'gold',
+            sizes: ['7', '8', '9', '10'],
+            inStock: true,
+            onSale: true,
+            rating: 5,
+            reviewsCount: 38,
+            description: 'مصاغ بدقة من فولاذ 316L الطبي ومطلي بذهب عيار 18 بتقنية PVD الفراغية لضمان ثبات اللون مدى الحياة.'
+          },
+          {
+            id: 'prod-2',
+            title: 'سوار النيل الملكي المنقوش',
+            category: 'bracelets',
+            brandId: 'alhoulie',
+            price: 1450,
+            originalPrice: null,
+            badge: 'مقاوم للماء',
+            colorId: 'silver',
+            sizes: ['S', 'M', 'L'],
+            inStock: true,
+            onSale: false,
+            rating: 5,
+            reviewsCount: 24,
+            description: 'سوار مصمت بنقوش هيروغليفية مجردة، صقل غير لامع فائق الأناقة مع قفل أمان ميكانيكي.'
+          },
+          {
+            id: 'prod-3',
+            title: 'قلادة المشربية الفاطمية',
+            category: 'necklaces',
+            brandId: 'elsagha',
+            price: 2100,
+            originalPrice: 2500,
+            badge: 'صناعة يدوية',
+            colorId: 'gold',
+            sizes: ['45cm', '50cm'],
+            inStock: true,
+            onSale: true,
+            rating: 5,
+            reviewsCount: 42,
+            description: 'حفر ليزري ميكروني مستوحى من زخارف مشربيات القاهرة القديمة، مرفقة بشهادة توثيق حرفي.'
+          },
+          {
+            id: 'prod-4',
+            title: 'سوار الهيبة الأوبسيدياني',
+            category: 'bracelets',
+            brandId: 'nile',
+            price: 1250,
+            originalPrice: null,
+            badge: 'أوبسيديان بركاني',
+            colorId: 'obsidian',
+            sizes: ['M', 'L', 'XL'],
+            inStock: false,
+            onSale: false,
+            rating: 4,
+            reviewsCount: 19,
+            description: 'أحجار أوبسيديان طبيعية مع حبات فاصلة من الفولاذ الأسود المعتم المقاوم للخدش.'
+          },
+          {
+            id: 'prod-5',
+            title: 'خاتم حورس التاجي المنحوت',
+            category: 'rings',
+            brandId: 'pharaohs',
+            price: 1680,
+            originalPrice: 1950,
+            badge: 'إصدار ملكي',
+            colorId: 'gold',
+            sizes: ['8', '9', '10', '11'],
+            inStock: true,
+            onSale: true,
+            rating: 5,
+            reviewsCount: 31,
+            description: 'رمز عين حورس الحامية مصوغة بنفر بارز ومطلية بالذهب عيار 18 مع جوانب مضلعة.'
+          },
+          {
+            id: 'prod-6',
+            title: 'قرط زهرة اللوتس الفاطمية',
+            category: 'earrings',
+            brandId: 'elsagha',
+            price: 980,
+            originalPrice: null,
+            badge: 'طبي لا يتحسس',
+            colorId: 'rosegold',
+            sizes: ['S'],
+            inStock: true,
+            onSale: false,
+            rating: 5,
+            reviewsCount: 15,
+            description: 'أقراط ناعمة خفيفة الوزن لا تسبب أي تحسس للبشرة ومطلية بالذهب الوردي الأنيق.'
+          },
+          {
+            id: 'prod-7',
+            title: 'قلادة قرص شمس رع الذهبية',
+            category: 'necklaces',
+            brandId: 'alqahera',
+            price: 2450,
+            originalPrice: 2900,
+            badge: 'قطعة نادرة',
+            colorId: 'gold',
+            sizes: ['50cm'],
+            inStock: true,
+            onSale: true,
+            rating: 5,
+            reviewsCount: 29,
+            description: 'سلسلة مصفحة متينة مع دلاية مستديرة محفورة يدوياً تحاكي قرص الشمس الذهبي المجنح.'
+          },
+          {
+            id: 'prod-8',
+            title: 'ساعة القاهرة الميكانيكية التراثية',
+            category: 'watches',
+            brandId: 'alqahera',
+            price: 4200,
+            originalPrice: 4800,
+            badge: 'أوتوماتيك 316L',
+            colorId: 'silver',
+            sizes: ['M', 'L'],
+            inStock: true,
+            onSale: true,
+            rating: 5,
+            reviewsCount: 52,
+            description: 'حركة ميكانيكية أوتوماتيكية سويسرية داخل هيكل فولاذي 316L مع ميناء مطلي بأرقام عربية مشرقية.'
+          },
+          {
+            id: 'prod-9',
+            title: 'سوار البرونز العتيق المنحوت',
+            category: 'bracelets',
+            brandId: 'alhoulie',
+            price: 1150,
+            originalPrice: null,
+            badge: 'برونز معتق',
+            colorId: 'bronze',
+            sizes: ['S', 'M', 'L'],
+            inStock: true,
+            onSale: false,
+            rating: 4,
+            reviewsCount: 12,
+            description: 'صياغة يدوية من خليط البرونز المقاوم للأكسدة مع لمسات عتيقة تعود لعصر المماليك.'
+          },
+          {
+            id: 'prod-10',
+            title: 'خاتم الجعران الزمردي المقدس',
+            category: 'rings',
+            brandId: 'alhoulie',
+            price: 2850,
+            originalPrice: 3200,
+            badge: 'زمرد طبيعي',
+            colorId: 'emerald',
+            sizes: ['7', '8', '9'],
+            inStock: true,
+            onSale: true,
+            rating: 5,
+            reviewsCount: 27,
+            description: 'حجر زمرد ملكي أخضر محفور بشكل الجعران الفرعوني ومثبت على قاعدة ذهبية عيار 18.'
+          },
+          {
+            id: 'prod-11',
+            title: 'أزرار أكمام النخبة الأوبسيديانية',
+            category: 'watches',
+            brandId: 'nile',
+            price: 890,
+            originalPrice: null,
+            badge: 'أوبسيديان وفولاذ',
+            colorId: 'obsidian',
+            sizes: ['S'],
+            inStock: true,
+            onSale: false,
+            rating: 5,
+            reviewsCount: 18,
+            description: 'أزرار أكمام رسمية راقية تجمع بين صقل الحجر البركاني وإطار الفولاذ المصمت.'
+          },
+          {
+            id: 'prod-12',
+            title: 'سلسلة الحبل الملكي المجدولة',
+            category: 'necklaces',
+            brandId: 'pharaohs',
+            price: 1750,
+            originalPrice: 2000,
+            badge: 'جدل يدوي 316L',
+            colorId: 'silver',
+            sizes: ['45cm', '50cm', '60cm'],
+            inStock: true,
+            onSale: true,
+            rating: 5,
+            reviewsCount: 34,
+            description: 'حلقات متداخلة بصلابة خارقة تقاوم السحب والشد، صقل نهائي فضي يعكس الضوء بنعومة.'
+          }
+        ],
+
+        init() {
+          document.documentElement.setAttribute('data-theme', this.theme);
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.lang);
+        },
+
+        toggleTheme() {
+          this.theme = this.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', this.theme);
+          localStorage.setItem('qhr-theme', this.theme);
+        },
+
+        categoryNameById(id) {
+          if (id === 'all') return 'كافة المقتنيات الملكية';
+          const found = this.categories.find(c => c.id === id);
+          return found ? found.name : id;
+        },
+
+        brandNameById(id) {
+          const found = this.brandOptions.find(b => b.id === id);
+          return found ? found.name : id;
+        },
+
+        colorNameById(id) {
+          const found = this.colorOptions.find(c => c.id === id);
+          return found ? found.name : id;
+        },
+
+        countCategory(cid) {
+          return this.products.filter(p => p.category === cid).length;
+        },
+
+        countBrand(bid) {
+          return this.products.filter(p => p.brandId === bid).length;
+        },
+
+        toggleColor(cid) {
+          if (this.selectedColors.includes(cid)) {
+            this.selectedColors = this.selectedColors.filter(c => c !== cid);
+          } else {
+            this.selectedColors.push(cid);
+          }
+          this.currentPage = 1;
+        },
+
+        toggleSize(sz) {
+          if (this.selectedSizes.includes(sz)) {
+            this.selectedSizes = this.selectedSizes.filter(s => s !== sz);
+          } else {
+            this.selectedSizes.push(sz);
+          }
+          this.currentPage = 1;
+        },
+
+        toggleBrand(bid) {
+          if (this.selectedBrands.includes(bid)) {
+            this.selectedBrands = this.selectedBrands.filter(b => b !== bid);
+          } else {
+            this.selectedBrands.push(bid);
+          }
+          this.currentPage = 1;
+        },
+
+        get hasActiveFilters() {
+          return this.selectedCategory !== 'all' ||
+                 this.maxPrice < 5000 ||
+                 this.selectedColors.length > 0 ||
+                 this.selectedSizes.length > 0 ||
+                 this.selectedBrands.length > 0 ||
+                 this.onlyInStock ||
+                 this.onlySale ||
+                 this.searchQuery !== '';
+        },
+
+        get activeFilterCount() {
+          let count = 0;
+          if (this.selectedCategory !== 'all') count++;
+          if (this.maxPrice < 5000) count++;
+          count += this.selectedColors.length;
+          count += this.selectedSizes.length;
+          count += this.selectedBrands.length;
+          if (this.onlyInStock) count++;
+          if (this.onlySale) count++;
+          return count;
+        },
+
+        resetAllFilters() {
+          this.selectedCategory = 'all';
+          this.maxPrice = 5000;
+          this.selectedColors = [];
+          this.selectedSizes = [];
+          this.selectedBrands = [];
+          this.onlyInStock = false;
+          this.onlySale = false;
+          this.searchQuery = '';
+          this.currentPage = 1;
+        },
+
+        get filteredProducts() {
+          let list = [...this.products];
+
+          // Search
+          if (this.searchQuery.trim() !== '') {
+            const q = this.searchQuery.toLowerCase();
+            list = list.filter(p =>
+              p.title.toLowerCase().includes(q) ||
+              this.brandNameById(p.brandId).toLowerCase().includes(q) ||
+              p.description.toLowerCase().includes(q)
+            );
+          }
+
+          // Category
+          if (this.selectedCategory !== 'all') {
+            list = list.filter(p => p.category === this.selectedCategory);
+          }
+
+          // Price
+          list = list.filter(p => p.price <= this.maxPrice);
+
+          // Color
+          if (this.selectedColors.length > 0) {
+            list = list.filter(p => this.selectedColors.includes(p.colorId));
+          }
+
+          // Size
+          if (this.selectedSizes.length > 0) {
+            list = list.filter(p => p.sizes.some(s => this.selectedSizes.includes(s)));
+          }
+
+          // Brand
+          if (this.selectedBrands.length > 0) {
+            list = list.filter(p => this.selectedBrands.includes(p.brandId));
+          }
+
+          // In stock
+          if (this.onlyInStock) {
+            list = list.filter(p => p.inStock);
+          }
+
+          // Sale
+          if (this.onlySale) {
+            list = list.filter(p => p.onSale);
+          }
+
+          // Sort
+          if (this.sortBy === 'price-asc') {
+            list.sort((a, b) => a.price - b.price);
+          } else if (this.sortBy === 'price-desc') {
+            list.sort((a, b) => b.price - a.price);
+          } else if (this.sortBy === 'rating') {
+            list.sort((a, b) => b.rating - a.rating);
+          } else if (this.sortBy === 'name') {
+            list.sort((a, b) => a.title.localeCompare(b.title, 'ar'));
+          }
+
+          return list;
+        },
+
+        get totalPages() {
+          return Math.ceil(this.filteredProducts.length / this.itemsPerPage) || 1;
+        },
+
+        get paginatedProducts() {
+          const start = (this.currentPage - 1) * this.itemsPerPage;
+          return this.filteredProducts.slice(start, start + this.itemsPerPage);
+        },
+
+        /* ── Wishlist ─────────────────────────────────────────────────── */
+        isWished(id) {
+          return this.wishlist.includes(id);
+        },
+
+        toggleWishlist(prod) {
+          if (this.isWished(prod.id)) {
+            this.wishlist = this.wishlist.filter(i => i !== prod.id);
+            this.triggerToast(`تمت إزالة "${prod.title}" من المفضلة`);
+          } else {
+            this.wishlist.push(prod.id);
+            this.triggerToast(`تمت إضافة "${prod.title}" إلى المفضلة`);
+          }
+        },
+
+        /* ── Cart ─────────────────────────────────────────────────────── */
+        get cartTotalCount() {
+          return this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        },
+
+        get cartTotal() {
+          return this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        },
+
+        get cartTotalFormatted() {
+          return this.cartTotal.toLocaleString('ar-EG') + ' ر.س';
+        },
+
+        addToCart(prod) {
+          const existing = this.cart.find(i => i.id === prod.id);
+          if (existing) {
+            existing.quantity++;
+          } else {
+            this.cart.push({
+              id: prod.id,
+              title: prod.title,
+              price: prod.price,
+              quantity: 1
+            });
+          }
+          this.triggerToast(`تمت إضافة "${prod.title}" إلى سلة المقتنيات`);
+        },
+
+        incrementCart(id) {
+          const item = this.cart.find(i => i.id === id);
+          if (item) item.quantity++;
+        },
+
+        decrementCart(id) {
+          const item = this.cart.find(i => i.id === id);
+          if (item) {
+            if (item.quantity > 1) item.quantity--;
+            else this.removeFromCart(id);
+          }
+        },
+
+        removeFromCart(id) {
+          this.cart = this.cart.filter(i => i.id !== id);
+          this.triggerToast('تم حذف المقتنى من السلة');
+        },
+
+        triggerToast(msg) {
+          this.toastMessage = msg;
+          this.toastVisible = true;
+          setTimeout(() => {
+            this.toastVisible = false;
+          }, 3500);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

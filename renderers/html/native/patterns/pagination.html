@@ -1,0 +1,31 @@
+<!-- Qahera UI Kit - Pagination Pattern (Native HTML) -->
+<nav class="qhr-pagination" role="navigation" aria-label="ترقيم الصفحات" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--qhr-space-3); padding: var(--qhr-space-3) 0;">
+  <div style="font-size: var(--qhr-text-sm); color: var(--qhr-color-neutral-600);">
+    عرض <strong>1 إلى 10</strong> من أصل <strong>94</strong> نتيجة
+  </div>
+
+  <div style="display: flex; align-items: center; gap: var(--qhr-space-1);">
+    <!-- Previous Page -->
+    <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" aria-label="الصفحة السابقة" disabled>
+      <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 5l7 7-7 7" />
+      </svg>
+      <span>السابق</span>
+    </button>
+
+    <!-- Page Numbers -->
+    <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" aria-current="page">1</button>
+    <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm">2</button>
+    <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm">3</button>
+    <span style="padding: 0 var(--qhr-space-2); color: var(--qhr-color-neutral-400);">...</span>
+    <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm">10</button>
+
+    <!-- Next Page -->
+    <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" aria-label="الصفحة التالية">
+      <span>التالي</span>
+      <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+  </div>
+</nav>

@@ -1,0 +1,122 @@
+{
+  "id": "carousel",
+  "name": "Carousel",
+  "component": "Carousel",
+  "category": "media",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "track",
+      "slide",
+      "prev-button",
+      "next-button",
+      "indicators",
+      "indicator-dot"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-slide-carousel"
+      },
+      "luxury": {
+        "intent": "opulent-hero-showcase"
+      },
+      "fade": {
+        "intent": "cross-dissolve-transitions"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": 240
+      },
+      "md": {
+        "height": 380
+      },
+      "lg": {
+        "height": 520
+      }
+    },
+    "states": [
+      "default",
+      "active",
+      "paused"
+    ],
+    "slots": {
+      "slides": "required",
+      "prevButton": "optional",
+      "nextButton": "optional",
+      "indicators": "optional"
+    },
+    "accessibility": {
+      "role": "region",
+      "aria": [
+        "aria-roledescription=carousel",
+        "aria-label"
+      ],
+      "keyboard": true,
+      "focusVisible": true
+    }
+  },
+  "recipe": {
+    "file": "recipes/carousel.yaml",
+    "base": {
+      "position": "relative",
+      "overflow": "hidden",
+      "width": "100%",
+      "border-radius": "{radius.xl}",
+      "background-color": "{color.surface.card}",
+      "border": "1px solid {color.border.subtle}"
+    },
+    "variants": {
+      "default": {
+        "box-shadow": "var(--qhr-shadow-md)"
+      },
+      "luxury": {
+        "box-shadow": "var(--qhr-shadow-lg)",
+        "border": "1px solid {color.primary.bg}"
+      },
+      "fade": {
+        "transition": "opacity var(--qhr-motion-duration-slow) ease-in-out"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "min-height": "240px"
+      },
+      "md": {
+        "min-height": "380px"
+      },
+      "lg": {
+        "min-height": "520px"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      },
+      "active": {
+        "opacity": 1
+      },
+      "paused": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays an interactive sequence of slides or promotional showcases with forward/backward navigation and indicator dots.",
+    "whenToUse": [
+      "Hero promotional banners in e-commerce stores",
+      "Featured editorial articles and luxury product spotlights",
+      "Customer testimonial and review highlights"
+    ],
+    "avoid": [
+      "Dense data tables or critical primary forms",
+      "Over-animating background elements that degrade reading focus"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Carousel.yaml"
+  }
+}

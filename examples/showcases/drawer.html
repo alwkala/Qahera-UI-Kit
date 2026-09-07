@@ -1,0 +1,49 @@
+<!-- Qahera UI Kit - Master Drawer Showcase -->
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. فتح الأدراج الجانبية التفاعلية (Interactive Drawers)</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; background: var(--q-surface); padding: 20px; border-radius: 16px; border: 1px solid var(--q-border);">
+      <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" onclick="openLiveDrawer('start')">فتح درج البداية (Start Drawer)</button>
+      <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" onclick="openLiveDrawer('end')">فتح درج النهاية (End Drawer)</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- درج تفاعلي -->
+<div id="live-drawer-backdrop" class="qhr-drawer-backdrop" onclick="closeLiveDrawer()"></div>
+<aside id="live-drawer" class="qhr-drawer qhr-drawer--start qhr-drawer--md" data-state="closed">
+  <div class="qhr-drawer-header">
+    <h4 class="qhr-drawer-title">قائمة التصفية السريعة</h4>
+    <button type="button" class="qhr-modal-close" onclick="closeLiveDrawer()" aria-label="إغلاق">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="qhr-drawer-body">
+    <p style="color: var(--q-text-secondary); line-height: 1.6;">استخدم هذا الدرج لعرض فلاتر البحث المتقدمة، تفاصيل العناصر المختارة، أو قوائم التصفح للهواتف.</p>
+    <div style="margin-block-start: 20px; display: flex; flex-direction: column; gap: 12px;">
+      <label class="qhr-checkbox"><input type="checkbox" checked><span>المكونات النشطة</span></label>
+      <label class="qhr-checkbox"><input type="checkbox" checked><span>الأنماط الهندسية التراثية</span></label>
+      <label class="qhr-checkbox"><input type="checkbox"><span>عناصر التجربة التجريبية</span></label>
+    </div>
+  </div>
+  <div class="qhr-drawer-footer">
+    <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" onclick="closeLiveDrawer()">إغلاق</button>
+    <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" onclick="closeLiveDrawer()">تطبيق الفلاتر</button>
+  </div>
+</aside>
+
+<script>
+function openLiveDrawer(dir) {
+  const b = document.getElementById('live-drawer-backdrop');
+  const d = document.getElementById('live-drawer');
+  d.className = 'qhr-drawer qhr-drawer--' + dir + ' qhr-drawer--md';
+  b.setAttribute('data-state', 'open');
+  d.setAttribute('data-state', 'open');
+}
+function closeLiveDrawer() {
+  document.getElementById('live-drawer-backdrop').setAttribute('data-state', 'closed');
+  document.getElementById('live-drawer').setAttribute('data-state', 'closed');
+}
+</script>

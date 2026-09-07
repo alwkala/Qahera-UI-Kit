@@ -1,0 +1,168 @@
+<!-- Qahera UI Kit - Master Alert Showcase -->
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+
+  <!-- 1. التنبيهات الناعمة القياسية (Subtle Tones) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. التنبيهات الناعمة القياسية (Subtle Tones)</h3>
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      
+      <!-- Info Alert -->
+      <div class="qhr-alert qhr-alert--info" role="alert">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">تحديث أمني مجدول</h4>
+          <p class="qhr-alert-description">سيتم إجراء صيانة وقائية على خوادم قاعدة البيانات المركزية الليلة في تمام الساعة 02:00 صباحاً.</p>
+        </div>
+        <button type="button" class="qhr-alert-close" aria-label="إغلاق التنبيه">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- Success Alert -->
+      <div class="qhr-alert qhr-alert--success" role="alert">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">تمت مزامنة البيانات بنجاح</h4>
+          <p class="qhr-alert-description">تم حفظ كافة تعديلات الواجهة وتوليد الأصول البرمجية لجميع الأطر الستة دون أي تعارض.</p>
+        </div>
+      </div>
+
+      <!-- Warning Alert -->
+      <div class="qhr-alert qhr-alert--warning" role="alert">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">اقتراب استهلاك الحصة الشهرية</h4>
+          <p class="qhr-alert-description">لقد استهلكت 85% من سعة التخزين السحابي المخصصة لحسابك المؤسسي.</p>
+        </div>
+      </div>
+
+      <!-- Danger Alert -->
+      <div class="qhr-alert qhr-alert--danger" role="alert">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">فشل الاتصال بالبوابة المالية</h4>
+          <p class="qhr-alert-description">تعذر إكمال عملية الدفع نظراً لعدم استجابة مزود الخدمة، يرجى المحاولة بعد قليل.</p>
+        </div>
+        <div class="qhr-alert-actions">
+          <button type="button" class="qhr-btn qhr-btn--danger qhr-btn--xs">إعادة المحاولة</button>
+        </div>
+      </div>
+
+      <!-- Luxury Alert -->
+      <div class="qhr-alert qhr-alert--luxury" role="alert">
+        <span class="qhr-alert-icon" style="color: var(--q-gold);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">ترقية استثنائية لمشتركي قاهرة</h4>
+          <p class="qhr-alert-description">حسابك مؤهل للحصول على ميزات التوليد الذكي التلقائي للأنماط المعمارية التراثية مجاناً.</p>
+        </div>
+        <button type="button" class="qhr-btn qhr-btn--luxury qhr-btn--xs">تفعيل الميزة</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. التنبيهات الصلبة المشبعة (Solid Alerts) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">2. التنبيهات الصلبة المشبعة (Solid / Filled Alerts)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+      
+      <div class="qhr-alert qhr-alert--solid qhr-alert--info">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">تنبيه رئيسي صلب</h4>
+          <p class="qhr-alert-description">تنبيه بارز يجذب عين المستخدم على الفور في حالات الطوارئ.</p>
+        </div>
+      </div>
+
+      <div class="qhr-alert qhr-alert--solid qhr-alert--success">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">تمت العملية بنجاح تام</h4>
+          <p class="qhr-alert-description">تم اعتماد الإعدادات الجديدة وتطبيقها على مستوى المنظومة.</p>
+        </div>
+      </div>
+
+      <div class="qhr-alert qhr-alert--solid qhr-alert--danger">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">خطأ حرج في النظام</h4>
+          <p class="qhr-alert-description">تعذر التحقق من التوقيع الرقمي للحزمة البرمجية.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3. التنبيهات الخطية (Outline Alerts) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">3. التنبيهات الخطية والشرائح الجانبية (Outline & Accent Strip)</h3>
+    <div style="display: flex; flex-direction: column; gap: 14px;">
+      
+      <div class="qhr-alert qhr-alert--outline qhr-alert--accent qhr-alert--info">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">تنبيه خطي مع شريحة جانبية سميكة (.qhr-alert--accent)</h4>
+          <p class="qhr-alert-description">تصميم خفيف وشفاف يبرز جهة البداية عبر شريحة ملونة تدعم RTL و LTR تلقائياً.</p>
+        </div>
+      </div>
+
+      <div class="qhr-alert qhr-alert--outline qhr-alert--accent qhr-alert--success">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">تأكيد الترخيص السنوي</h4>
+          <p class="qhr-alert-description">تم تجديد ترخيص الاستخدام المؤسسي بنجاح حتى العام القادم.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. مقاسات التنبيهات (Sizes xs to lg) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">4. المقاسات المعيارية (Sizes)</h3>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      
+      <div class="qhr-alert qhr-alert--info qhr-alert--sm">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">تنبيه صغير (Small .qhr-alert--sm)</h4>
+          <p class="qhr-alert-description">ملائم للقوائم الجانبية ومربعات الحوار الضيقة.</p>
+        </div>
+      </div>
+
+      <div class="qhr-alert qhr-alert--info qhr-alert--lg">
+        <span class="qhr-alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </span>
+        <div class="qhr-alert-content">
+          <h4 class="qhr-alert-title">تنبيه كبير (Large .qhr-alert--lg)</h4>
+          <p class="qhr-alert-description">ملائم لإعلانات صفحات الهبوط ولوحات التحذير الرئيسية في أعلى الصفحات.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

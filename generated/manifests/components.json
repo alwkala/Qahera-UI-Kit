@@ -1,0 +1,390 @@
+{
+  "schema": "qahera.component-manifest/v1",
+  "compiler": "1.0.0",
+  "sourceHash": "362986bbdc2ae6719830e2b765c2ca178f63658932eaca9ef3c03ea2e8d3f2a9",
+  "counts": {
+    "components": 42,
+    "recipes": 42,
+    "patterns": 20
+  },
+  "components": [
+    {
+      "id": "accordion",
+      "name": "Accordion",
+      "component": "Accordion",
+      "category": "disclosure",
+      "contract": "contracts/components/Accordion.yaml",
+      "recipe": "recipes/accordion.yaml",
+      "behavior": "behavior/accordion.js"
+    },
+    {
+      "id": "alert",
+      "name": "Alert",
+      "component": "Alert",
+      "category": "feedback",
+      "contract": "contracts/components/Alert.yaml",
+      "recipe": "recipes/alert.yaml",
+      "behavior": null
+    },
+    {
+      "id": "avatar",
+      "name": "Avatar",
+      "component": "Avatar",
+      "category": "media",
+      "contract": "contracts/components/Avatar.yaml",
+      "recipe": "recipes/avatar.yaml",
+      "behavior": null
+    },
+    {
+      "id": "back-to-top",
+      "name": "BackToTop",
+      "component": "BackToTop",
+      "category": "navigation",
+      "contract": "contracts/components/BackToTop.yaml",
+      "recipe": "recipes/back-to-top.yaml",
+      "behavior": "behavior/back-to-top.js"
+    },
+    {
+      "id": "badge",
+      "name": "Badge",
+      "component": "Badge",
+      "category": "feedback",
+      "contract": "contracts/components/Badge.yaml",
+      "recipe": "recipes/badge.yaml",
+      "behavior": null
+    },
+    {
+      "id": "breadcrumb",
+      "name": "Breadcrumb",
+      "component": "Breadcrumb",
+      "category": "navigation",
+      "contract": "contracts/components/Breadcrumb.yaml",
+      "recipe": "recipes/breadcrumb.yaml",
+      "behavior": null
+    },
+    {
+      "id": "button",
+      "name": "Button",
+      "component": "Button",
+      "category": "actions",
+      "contract": "contracts/components/Button.yaml",
+      "recipe": "recipes/button.yaml",
+      "behavior": null
+    },
+    {
+      "id": "callout",
+      "name": "Callout",
+      "component": "Callout",
+      "category": "feedback",
+      "contract": "contracts/components/Callout.yaml",
+      "recipe": "recipes/callout.yaml",
+      "behavior": null
+    },
+    {
+      "id": "canvas-sparks",
+      "name": "CanvasSparks",
+      "component": "CanvasSparks",
+      "category": "feedback",
+      "contract": "contracts/components/CanvasSparks.yaml",
+      "recipe": "recipes/canvas-sparks.yaml",
+      "behavior": "behavior/canvas-sparks.js"
+    },
+    {
+      "id": "card",
+      "name": "Card",
+      "component": "Card",
+      "category": "containers",
+      "contract": "contracts/components/Card.yaml",
+      "recipe": "recipes/card.yaml",
+      "behavior": null
+    },
+    {
+      "id": "carousel",
+      "name": "Carousel",
+      "component": "Carousel",
+      "category": "media",
+      "contract": "contracts/components/Carousel.yaml",
+      "recipe": "recipes/carousel.yaml",
+      "behavior": null
+    },
+    {
+      "id": "checkbox",
+      "name": "Checkbox",
+      "component": "Checkbox",
+      "category": "selection",
+      "contract": "contracts/components/Checkbox.yaml",
+      "recipe": "recipes/checkbox.yaml",
+      "behavior": null
+    },
+    {
+      "id": "chip",
+      "name": "Chip",
+      "component": "Chip",
+      "category": "data-display",
+      "contract": "contracts/components/Chip.yaml",
+      "recipe": "recipes/chip.yaml",
+      "behavior": null
+    },
+    {
+      "id": "divider",
+      "name": "Divider",
+      "component": "Divider",
+      "category": "data-display",
+      "contract": "contracts/components/Divider.yaml",
+      "recipe": "recipes/divider.yaml",
+      "behavior": null
+    },
+    {
+      "id": "dock",
+      "name": "Dock",
+      "component": "Dock",
+      "category": "navigation",
+      "contract": "contracts/components/Dock.yaml",
+      "recipe": "recipes/dock.yaml",
+      "behavior": null
+    },
+    {
+      "id": "drawer",
+      "name": "Drawer",
+      "component": "Drawer",
+      "category": "overlay",
+      "contract": "contracts/components/Drawer.yaml",
+      "recipe": "recipes/drawer.yaml",
+      "behavior": null
+    },
+    {
+      "id": "dropdown",
+      "name": "Dropdown",
+      "component": "Dropdown",
+      "category": "navigation",
+      "contract": "contracts/components/Dropdown.yaml",
+      "recipe": "recipes/dropdown.yaml",
+      "behavior": "behavior/dropdown.js"
+    },
+    {
+      "id": "file-upload",
+      "name": "FileUpload",
+      "component": "FileUpload",
+      "category": "forms",
+      "contract": "contracts/components/FileUpload.yaml",
+      "recipe": "recipes/file-upload.yaml",
+      "behavior": null
+    },
+    {
+      "id": "input",
+      "name": "Input",
+      "component": "Input",
+      "category": "forms",
+      "contract": "contracts/components/Input.yaml",
+      "recipe": "recipes/input.yaml",
+      "behavior": null
+    },
+    {
+      "id": "kbd",
+      "name": "Kbd",
+      "component": "Kbd",
+      "category": "data-display",
+      "contract": "contracts/components/Kbd.yaml",
+      "recipe": "recipes/kbd.yaml",
+      "behavior": null
+    },
+    {
+      "id": "megamenu",
+      "name": "Megamenu",
+      "component": "Megamenu",
+      "category": "navigation",
+      "contract": "contracts/components/Megamenu.yaml",
+      "recipe": "recipes/megamenu.yaml",
+      "behavior": null
+    },
+    {
+      "id": "menu",
+      "name": "Menu",
+      "component": "Menu",
+      "category": "navigation",
+      "contract": "contracts/components/Menu.yaml",
+      "recipe": "recipes/menu.yaml",
+      "behavior": null
+    },
+    {
+      "id": "modal",
+      "name": "Modal",
+      "component": "Modal",
+      "category": "overlay",
+      "contract": "contracts/components/Modal.yaml",
+      "recipe": "recipes/modal.yaml",
+      "behavior": "behavior/modal.js"
+    },
+    {
+      "id": "navbar",
+      "name": "Navbar",
+      "component": "Navbar",
+      "category": "navigation",
+      "contract": "contracts/components/Navbar.yaml",
+      "recipe": "recipes/navbar.yaml",
+      "behavior": "behavior/navbar.js"
+    },
+    {
+      "id": "pagination",
+      "name": "Pagination",
+      "component": "Pagination",
+      "category": "navigation",
+      "contract": "contracts/components/Pagination.yaml",
+      "recipe": "recipes/Pagination.yaml",
+      "behavior": null
+    },
+    {
+      "id": "preloader",
+      "name": "Preloader",
+      "component": "Preloader",
+      "category": "feedback",
+      "contract": "contracts/components/Preloader.yaml",
+      "recipe": "recipes/preloader.yaml",
+      "behavior": "behavior/preloader.js"
+    },
+    {
+      "id": "progress",
+      "name": "Progress",
+      "component": "Progress",
+      "category": "feedback",
+      "contract": "contracts/components/Progress.yaml",
+      "recipe": "recipes/progress.yaml",
+      "behavior": null
+    },
+    {
+      "id": "radio",
+      "name": "Radio",
+      "component": "Radio",
+      "category": "selection",
+      "contract": "contracts/components/Radio.yaml",
+      "recipe": "recipes/radio.yaml",
+      "behavior": null
+    },
+    {
+      "id": "rating",
+      "name": "Rating",
+      "component": "Rating",
+      "category": "feedback",
+      "contract": "contracts/components/Rating.yaml",
+      "recipe": "recipes/rating.yaml",
+      "behavior": null
+    },
+    {
+      "id": "ribbon",
+      "name": "Ribbon",
+      "component": "Ribbon",
+      "category": "data-display",
+      "contract": "contracts/components/Ribbon.yaml",
+      "recipe": "recipes/ribbon.yaml",
+      "behavior": null
+    },
+    {
+      "id": "select",
+      "name": "Select",
+      "component": "Select",
+      "category": "forms",
+      "contract": "contracts/components/Select.yaml",
+      "recipe": "recipes/select.yaml",
+      "behavior": "behavior/select.js"
+    },
+    {
+      "id": "skeleton",
+      "name": "Skeleton",
+      "component": "Skeleton",
+      "category": "feedback",
+      "contract": "contracts/components/Skeleton.yaml",
+      "recipe": "recipes/skeleton.yaml",
+      "behavior": null
+    },
+    {
+      "id": "spinner",
+      "name": "Spinner",
+      "component": "Spinner",
+      "category": "feedback",
+      "contract": "contracts/components/Spinner.yaml",
+      "recipe": "recipes/spinner.yaml",
+      "behavior": null
+    },
+    {
+      "id": "stepper",
+      "name": "Stepper",
+      "component": "Stepper",
+      "category": "navigation",
+      "contract": "contracts/components/Stepper.yaml",
+      "recipe": "recipes/stepper.yaml",
+      "behavior": null
+    },
+    {
+      "id": "switch",
+      "name": "Switch",
+      "component": "Switch",
+      "category": "selection",
+      "contract": "contracts/components/Switch.yaml",
+      "recipe": "recipes/switch.yaml",
+      "behavior": null
+    },
+    {
+      "id": "table",
+      "name": "Table",
+      "component": "Table",
+      "category": "data-display",
+      "contract": "contracts/components/Table.yaml",
+      "recipe": "recipes/table.yaml",
+      "behavior": null
+    },
+    {
+      "id": "tabs",
+      "name": "Tabs",
+      "component": "Tabs",
+      "category": "navigation",
+      "contract": "contracts/components/Tabs.yaml",
+      "recipe": "recipes/tabs.yaml",
+      "behavior": "behavior/tabs.js"
+    },
+    {
+      "id": "textarea",
+      "name": "Textarea",
+      "component": "Textarea",
+      "category": "forms",
+      "contract": "contracts/components/Textarea.yaml",
+      "recipe": "recipes/textarea.yaml",
+      "behavior": null
+    },
+    {
+      "id": "timeline",
+      "name": "Timeline",
+      "component": "Timeline",
+      "category": "data-display",
+      "contract": "contracts/components/Timeline.yaml",
+      "recipe": "recipes/timeline.yaml",
+      "behavior": null
+    },
+    {
+      "id": "toast",
+      "name": "Toast",
+      "component": "Toast",
+      "category": "overlay",
+      "contract": "contracts/components/Toast.yaml",
+      "recipe": "recipes/toast.yaml",
+      "behavior": "behavior/toast.js"
+    },
+    {
+      "id": "tooltip",
+      "name": "Tooltip",
+      "component": "Tooltip",
+      "category": "overlay",
+      "contract": "contracts/components/Tooltip.yaml",
+      "recipe": "recipes/tooltip.yaml",
+      "behavior": "behavior/tooltip.js"
+    },
+    {
+      "id": "treeview",
+      "name": "Treeview",
+      "component": "Treeview",
+      "category": "navigation",
+      "contract": "contracts/components/Treeview.yaml",
+      "recipe": "recipes/treeview.yaml",
+      "behavior": null
+    }
+  ]
+}

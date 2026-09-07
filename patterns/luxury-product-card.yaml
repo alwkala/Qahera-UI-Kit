@@ -1,0 +1,52 @@
+id: luxury-product-card
+name: Luxury Product Card
+category: ecommerce
+purpose: >
+  Displays a high-end fashion, jewelry, or accessory product with image container, material badge, pricing, and quick-add CTA.
+
+components:
+  - card
+  - badge
+  - button
+
+anatomy:
+  - root
+  - media-container
+  - product-image
+  - material-badge
+  - content
+  - collection-name
+  - product-title
+  - price-tag
+  - actions
+
+slots:
+  - image
+  - badge
+  - title
+  - subtitle
+  - price
+  - action
+
+layout:
+  display: flex
+  direction: column
+  gap: var(--qhr-space-3)
+  alignment: stretch
+
+accessibility:
+  role: article
+  landmark: article
+  keyboard_flow: "Tab moves focus between image link, product title link, and quick-add action button"
+
+ai:
+  purpose: "Display high-end curated products with visual elegance, material tags, and intuitive purchase actions."
+  use_when:
+    - "E-commerce product grids, luxury collections, seasonal drops, or featured catalog items"
+  avoid_when:
+    - "Dense spreadsheet-like inventory management tables with inline cell editing"
+  composed_of:
+    - card
+    - badge
+    - button
+

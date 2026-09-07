@@ -1,0 +1,87 @@
+component: Toast
+name: toast
+category: overlay
+version: 1.0.0
+
+ai:
+  intent: "Floating temporary feedback notification"
+  visual_role: "Ephemeral toast alert"
+  density: "compact"
+  preferred_when:
+    - "Action confirmations (Copied to clipboard, Item added)"
+  avoid_when:
+    - "Critical alerts requiring immediate action (use modal)"
+
+base:
+  display: flex
+  align-items: flex-start
+  gap: "{space.3}"
+  padding: "{space.3-5}"
+  border-radius: "{radius.md}"
+  background-color: "{color.surface.elevated}"
+  border: "1px solid {color.border.subtle}"
+  box-shadow: "{shadow.lg}"
+  min-width: "280px"
+  transition-duration: "{duration.normal}"
+  transition-timing-function: "{ease.standard}"
+
+variants:
+  default:
+    background-color: "{color.surface.elevated}"
+
+sizes:
+  md:
+    padding: "{space.3-5}"
+    font-size: "{text.sm}"
+
+states:
+  entering:
+    opacity: 0
+    transform: translateY(-8px)
+  visible:
+    opacity: 1
+    transform: translateY(0)
+  exiting:
+    opacity: 0
+    transform: translateY(-8px)
+
+contract:
+  anatomy:
+    - root
+    - status-icon
+    - text-group
+    - title
+    - description
+    - action-button
+    - close-button
+    - progress-bar
+  props:
+    tone:
+      default: info
+      values: [neutral, info, success, warning, danger]
+    variant:
+      default: default
+      values: [default]
+    size:
+      default: md
+      values: [md]
+    state:
+      default: visible
+      values: [entering, visible, exiting]
+  slots:
+    - start
+    - default
+    - end
+
+structure:
+  base:
+    native_class: qhr-toast
+    tailwind: "flex items-start gap-[var(--qhr-space-3)] p-[var(--qhr-space-3-5)] rounded-[var(--qhr-radius-md)] bg-[var(--qhr-surface-elevated)] border border-[var(--qhr-border-subtle)] shadow-lg min-w-[280px]"
+
+accessibility:
+  role: status
+  aria_live: polite
+
+rtl:
+  supported: true
+  directional_mirroring: false

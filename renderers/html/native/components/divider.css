@@ -1,0 +1,111 @@
+/* ==========================================================================
+   19. Divider (.qhr-divider)
+   ========================================================================== */
+.qhr-divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-block: var(--qhr-space-4, 16px);
+  color: var(--qhr-text-muted, #94a3b8);
+  font-size: var(--qhr-text-xs, 0.75rem);
+}
+.qhr-divider::before,
+.qhr-divider::after {
+  content: "";
+  flex: 1;
+  border-block-start: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.1));
+}
+.qhr-divider--dashed::before,
+.qhr-divider--dashed::after {
+  border-block-start-style: dashed;
+}
+.qhr-divider--strong::before,
+.qhr-divider--strong::after {
+  border-block-start: 2px solid var(--qhr-border-strong, rgba(212, 175, 55, 0.3));
+}
+.qhr-divider:not(:empty)::before {
+  margin-inline-end: var(--qhr-space-3, 12px);
+}
+.qhr-divider:not(:empty)::after {
+  margin-inline-start: var(--qhr-space-3, 12px);
+}
+.qhr-divider--vertical {
+  display: inline-flex;
+  flex-direction: column;
+  width: auto;
+  height: 100%;
+  min-height: 1.5em;
+  margin-block: 0;
+  margin-inline: var(--qhr-space-3, 12px);
+  vertical-align: middle;
+}
+.qhr-divider--vertical::before,
+.qhr-divider--vertical::after {
+  border-block-start: none;
+  border-inline-start: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.1));
+}
+
+/* Dotted Divider */
+.qhr-divider--dotted::before,
+.qhr-divider--dotted::after {
+  border-block-start-style: dotted;
+  border-block-start-width: 2px;
+}
+
+/* Gradient Divider */
+.qhr-divider--gradient::before {
+  border-block-start: none;
+  height: 1px;
+  background: linear-gradient(to inline-end, transparent, var(--qhr-border-strong, #c9a84c));
+}
+.qhr-divider--gradient::after {
+  border-block-start: none;
+  height: 1px;
+  background: linear-gradient(to inline-start, transparent, var(--qhr-border-strong, #c9a84c));
+}
+
+/* Text / Badge Alignment */
+.qhr-divider--start::before {
+  flex: 0 0 var(--qhr-space-6, 24px);
+}
+.qhr-divider--end::after {
+  flex: 0 0 var(--qhr-space-6, 24px);
+}
+
+/* Colored Tones */
+.qhr-divider--primary::before,
+.qhr-divider--primary::after {
+  border-block-start-color: var(--qhr-color-primary-500, #c7a35a);
+}
+.qhr-divider--success::before,
+.qhr-divider--success::after {
+  border-block-start-color: var(--qhr-color-success-500, #10b981);
+}
+.qhr-divider--danger::before,
+.qhr-divider--danger::after {
+  border-block-start-color: var(--qhr-color-danger-500, #ef4444);
+}
+.qhr-divider--luxury::before,
+.qhr-divider--luxury::after {
+  border-block-start-color: var(--qhr-color-luxury-gold, #c9a84c);
+}
+
+/* Centered Icon / Badge inside Divider */
+.qhr-divider-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--qhr-space-2, 8px);
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+.qhr-divider-badge {
+  font-family: var(--qhr-font-heading, 'Alexandria', 'Cairo', sans-serif);
+  font-weight: 700;
+  font-size: var(--qhr-text-xs, 0.75rem);
+  padding-block: var(--qhr-space-1, 4px);
+  padding-inline: var(--qhr-space-3, 12px);
+  border-radius: var(--qhr-radius-full, 9999px);
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.1));
+}
+

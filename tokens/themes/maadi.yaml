@@ -1,0 +1,39 @@
+version: 1.0.0
+name: maadi-botanical
+description: "Maadi Theme — Organic Earth & Botanical Minimal (Inspired by Tree-Lined Avenues & Degla Limestone Villas)"
+school: "Organic Earth / Botanical Minimal"
+region: "Maadi, Cairo"
+
+overrides:
+  surface:
+    base: "#0E1512"
+    elevated: "#15201C"
+    muted: "#1D2D27"
+    overlay: "rgba(14, 21, 18, 0.88)"
+  content:
+    primary: "#F4F7F4"
+    secondary: "#B7C7BF"
+    accent: "#52796F"
+    muted: "#7A8F85"
+  border:
+    subtle: "rgba(82, 121, 111, 0.20)"
+    strong: "rgba(82, 121, 111, 0.42)"
+  color:
+    primary:
+      bg: "#52796F"
+      fg: "#0E1512"
+      border: "#52796F"
+      hover: "#669287"
+    secondary:
+      bg: "#15201C"
+      fg: "#F4F7F4"
+      border: "rgba(82, 121, 111, 0.25)"
+      hover: "#1D2D27"
+    accent:
+      bg: "#847577"
+      fg: "#FFFFFF"
+  radius:
+    box: "14px"
+    field: "10px"
+    selector: "16px"
+  border_width: "1px"

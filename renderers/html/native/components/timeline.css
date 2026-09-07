@@ -1,0 +1,70 @@
+/* ── 8. Timeline (.qhr-timeline) ──────────────────────────────────── */
+.qhr-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--qhr-space-5, 20px);
+}
+.qhr-timeline::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 15px;
+  inset-block: 8px;
+  width: 2px;
+  background: var(--qhr-border-subtle, rgba(212,175,55,0.2));
+}
+.qhr-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--qhr-space-4, 16px);
+  position: relative;
+}
+.qhr-timeline-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--qhr-surface-card, #130f0b);
+  border: 2px solid var(--qhr-color-primary-base, #c7a35a);
+  color: var(--qhr-color-primary-base, #c7a35a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.qhr-timeline-content {
+  flex: 1;
+  font-size: var(--qhr-text-sm, 13px);
+  color: var(--qhr-text-primary, #fbf8f3);
+}
+.qhr-timeline-title {
+  font-weight: 700;
+  margin-block-end: 2px;
+}
+.qhr-timeline-time {
+  font-size: var(--qhr-text-xs, 11px);
+  color: var(--qhr-text-muted, #94a3b8);
+}
+
+/* Horizontal Timeline */
+.qhr-timeline--horizontal {
+  flex-direction: row;
+  overflow-x: auto;
+  padding-block-start: var(--qhr-space-4, 16px);
+}
+.qhr-timeline--horizontal::before {
+  inset-inline: 16px;
+  inset-block-start: 31px;
+  inset-block-end: auto;
+  width: auto;
+  height: 2px;
+}
+.qhr-timeline--horizontal .qhr-timeline-item {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 140px;
+}

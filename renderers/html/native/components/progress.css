@@ -1,0 +1,496 @@
+/* ==========================================================================
+   Progress Bar & Radial Indicator (.qhr-progress, .qhr-progress-circle)
+   Architecture: Pure Logical CSS, WCAG 2.1 AA, 0kb RSC Boundary
+   Pre-emit critique: P5 H5 E5 S5 R5 V5 D5
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Base Linear Progress Track
+   -------------------------------------------------------------------------- */
+.qhr-progress {
+  position: relative;
+  width: 100%;
+  height: var(--qhr-space-2-5, 10px);
+  overflow: hidden;
+  border-radius: var(--qhr-radius-pill, 9999px);
+  background-color: var(--qhr-surface-muted, #e2e8f0);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  direction: ltr; /* Keeps percentage calculation directionally consistent */
+}
+[dir="rtl"] .qhr-progress {
+  direction: rtl;
+}
+[data-theme="dark"] .qhr-progress {
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Filled Active Bar */
+.qhr-progress-bar {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  height: 100%;
+  background-color: var(--qhr-color-primary-500, #c7a35a);
+  border-radius: inherit;
+  transition: width var(--qhr-motion-duration-normal, 300ms) cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: var(--qhr-font-ui, 'Cairo', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  padding-inline: var(--qhr-space-1, 4px);
+}
+
+/* --------------------------------------------------------------------------
+   2. Vertical Progress Bars (.qhr-progress--vertical, .vertical)
+   -------------------------------------------------------------------------- */
+.qhr-progress--vertical,
+.qhr-progress.vertical {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: var(--qhr-space-5, 20px);
+  height: var(--qhr-progress-v-height, 160px);
+  min-height: 120px;
+}
+.qhr-progress--vertical .qhr-progress-bar,
+.qhr-progress.vertical .qhr-progress-bar {
+  position: absolute;
+  inset-block: auto 0;
+  inset-inline: 0;
+  width: 100%;
+  height: 0;
+  transition: height var(--qhr-motion-duration-normal, 300ms) cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Vertical Sizing Variations */
+.qhr-progress--vertical.qhr-progress--xl,
+.qhr-progress--vertical.progress-xl { width: 32px; }
+.qhr-progress--vertical.qhr-progress--lg,
+.qhr-progress--vertical.progress-lg { width: 24px; }
+.qhr-progress--vertical.qhr-progress--md,
+.qhr-progress--vertical.progress-md { width: 18px; }
+.qhr-progress--vertical.qhr-progress--sm,
+.qhr-progress--vertical.progress-sm,
+.qhr-progress--vertical.sm { width: 14px; }
+.qhr-progress--vertical.qhr-progress--xs,
+.qhr-progress--vertical.progress-xs,
+.qhr-progress--vertical.xs { width: 8px; }
+.qhr-progress--vertical.qhr-progress--xxs,
+.qhr-progress--vertical.progress-xxs,
+.qhr-progress--vertical.xxs { width: 4px; }
+
+/* --------------------------------------------------------------------------
+   3. Indeterminate & Streaming Wave State
+   -------------------------------------------------------------------------- */
+.qhr-progress--indeterminate .qhr-progress-bar {
+  width: 35%;
+  animation: qhr-progress-indeterminate 1.6s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+}
+
+@keyframes qhr-progress-indeterminate {
+  0% {
+    inset-inline-start: -35%;
+    width: 35%;
+  }
+  50% {
+    inset-inline-start: 30%;
+    width: 60%;
+  }
+  100% {
+    inset-inline-start: 100%;
+    width: 35%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. Striped & Animated Patterns
+   -------------------------------------------------------------------------- */
+.qhr-progress--striped .qhr-progress-bar,
+.qhr-progress-bar.striped {
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.18) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1.25rem 1.25rem;
+}
+
+.qhr-progress--animated .qhr-progress-bar,
+.qhr-progress-bar-animated,
+.progress-bar-animated {
+  animation: qhr-progress-stripes 1.2s linear infinite;
+}
+
+@keyframes qhr-progress-stripes {
+  from {
+    background-position: 1.25rem 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+.qhr-progress--vertical.qhr-progress--animated .qhr-progress-bar,
+.qhr-progress--vertical .qhr-progress-bar-animated,
+.qhr-progress--vertical .progress-bar-animated {
+  animation: qhr-progress-stripes-vertical 1.2s linear infinite;
+}
+@keyframes qhr-progress-stripes-vertical {
+  from {
+    background-position: 0 1.25rem;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Semantic Tones & Palettes
+   -------------------------------------------------------------------------- */
+.qhr-progress--primary .qhr-progress-bar {
+  background-color: var(--qhr-color-primary-500, #c7a35a);
+}
+.qhr-progress--neutral .qhr-progress-bar {
+  background-color: var(--qhr-color-neutral-500, #64748b);
+}
+.qhr-progress--info .qhr-progress-bar,
+.qhr-progress--blue .qhr-progress-bar {
+  background-color: var(--qhr-color-info-500, #3b82f6);
+}
+.qhr-progress--success .qhr-progress-bar,
+.qhr-progress--green .qhr-progress-bar {
+  background-color: var(--qhr-color-success-500, #10b981);
+}
+.qhr-progress--warning .qhr-progress-bar,
+.qhr-progress--orange .qhr-progress-bar {
+  background-color: var(--qhr-color-warning-500, #f59e0b);
+}
+.qhr-progress--danger .qhr-progress-bar,
+.qhr-progress--red .qhr-progress-bar {
+  background-color: var(--qhr-color-danger-500, #ef4444);
+}
+.qhr-progress--secondary .qhr-progress-bar,
+.qhr-progress--purple .qhr-progress-bar {
+  background-color: var(--qhr-color-purple-500, #8b5cf6);
+}
+.qhr-progress--dark .qhr-progress-bar,
+.qhr-progress--navy .qhr-progress-bar {
+  background-color: #1e293b;
+}
+[data-theme="dark"] .qhr-progress--dark .qhr-progress-bar,
+[data-theme="dark"] .qhr-progress--navy .qhr-progress-bar {
+  background-color: #334155;
+}
+
+/* Luxury Egyptian Gold & Metallic Tiers */
+.qhr-progress--luxury .qhr-progress-bar {
+  background: linear-gradient(90deg, #aa771c 0%, #d4af37 50%, #f5d77f 100%);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.35);
+}
+[data-theme="light"] .qhr-progress--luxury .qhr-progress-bar {
+  background: linear-gradient(90deg, #78350f 0%, #b45309 50%, #d97706 100%);
+  box-shadow: 0 0 8px rgba(180, 83, 9, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   6. Standard Sizes (Horizontal)
+   -------------------------------------------------------------------------- */
+.qhr-progress--xxs, .qhr-progress.xxs, .qhr-progress.progress-xxs { height: 2px; }
+.qhr-progress--xs,  .qhr-progress.xs,  .qhr-progress.progress-xs  { height: 4px; }
+.qhr-progress--sm,  .qhr-progress.sm,  .qhr-progress.progress-sm  { height: 6px; }
+.qhr-progress--md,  .qhr-progress.md,  .qhr-progress.progress-md  { height: 10px; }
+.qhr-progress--lg,  .qhr-progress.lg,  .qhr-progress.progress-lg  { height: 16px; font-size: 0.72rem; }
+.qhr-progress--xl,  .qhr-progress.xl,  .qhr-progress.progress-xl  { height: 24px; font-size: 0.8rem; }
+
+/* --------------------------------------------------------------------------
+   7. States (Paused, Error, Complete)
+   -------------------------------------------------------------------------- */
+.qhr-progress--paused .qhr-progress-bar {
+  opacity: 0.65;
+  filter: grayscale(0.4);
+}
+.qhr-progress--complete .qhr-progress-bar {
+  background-color: var(--qhr-color-success-500, #10b981);
+}
+
+/* --------------------------------------------------------------------------
+   8. Segmented / Partitioned Multi-Bar
+   -------------------------------------------------------------------------- */
+.qhr-progress-segmented {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: var(--qhr-space-2-5, 10px);
+  overflow: hidden;
+  border-radius: var(--qhr-radius-pill, 9999px);
+  background-color: var(--qhr-surface-muted, #e2e8f0);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+  gap: 2px;
+}
+[data-theme="dark"] .qhr-progress-segmented {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.qhr-progress-segment {
+  position: relative;
+  height: 100%;
+  transition: width var(--qhr-motion-duration-normal, 300ms) ease;
+}
+.qhr-progress-segment:first-child {
+  border-start-start-radius: var(--qhr-radius-pill, 9999px);
+  border-end-start-radius: var(--qhr-radius-pill, 9999px);
+}
+.qhr-progress-segment:last-child {
+  border-start-end-radius: var(--qhr-radius-pill, 9999px);
+  border-end-end-radius: var(--qhr-radius-pill, 9999px);
+}
+
+/* Segment Legend / Legend Grid */
+.qhr-progress-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--qhr-space-4, 16px);
+  font-family: var(--qhr-font-ui, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-xs, 0.75rem);
+  margin-block-start: var(--qhr-space-2, 8px);
+}
+.qhr-progress-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--qhr-content-secondary, #64748b);
+}
+[data-theme="dark"] .qhr-progress-legend-item {
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+.qhr-progress-legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   9. Stepped Milestones & Checkpoints
+   -------------------------------------------------------------------------- */
+.qhr-progress-milestones {
+  position: relative;
+  width: 100%;
+  margin-block-start: 12px;
+}
+.qhr-milestone-ticks {
+  position: absolute;
+  inset-block-start: -4px;
+  inset-inline: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.qhr-milestone-tick {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--qhr-surface-primary, #ffffff);
+  border: 2px solid var(--qhr-surface-muted, #cbd5e1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 200ms ease;
+}
+[data-theme="dark"] .qhr-milestone-tick {
+  background: #0d121f;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.qhr-milestone-tick.active {
+  background: var(--qhr-color-primary-500, #c7a35a);
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px var(--qhr-color-primary-500, #c7a35a);
+}
+[data-theme="light"] .qhr-milestone-tick.active {
+  background: var(--qhr-color-primary-600, #b45309);
+  box-shadow: 0 0 0 2px var(--qhr-color-primary-600, #b45309);
+}
+.qhr-milestone-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-block-start: 14px;
+  font-family: var(--qhr-font-ui, 'Cairo', sans-serif);
+  font-size: 0.72rem;
+  color: var(--qhr-content-secondary, #64748b);
+}
+
+/* --------------------------------------------------------------------------
+   10. Circular / Radial Progress Ring (.qhr-progress-circle)
+   -------------------------------------------------------------------------- */
+.qhr-progress-circle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.qhr-progress-circle svg {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+.qhr-progress-circle-track {
+  fill: none;
+  stroke: var(--qhr-surface-muted, #e2e8f0);
+}
+[data-theme="dark"] .qhr-progress-circle-track {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+.qhr-progress-circle-bar {
+  fill: none;
+  stroke: var(--qhr-color-primary-500, #c7a35a);
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--qhr-motion-duration-normal, 400ms) cubic-bezier(0.4, 0, 0.2, 1);
+}
+.qhr-progress-circle--success .qhr-progress-circle-bar   { stroke: var(--qhr-color-success-500, #10b981); }
+.qhr-progress-circle--info .qhr-progress-circle-bar      { stroke: var(--qhr-color-info-500, #3b82f6); }
+.qhr-progress-circle--warning .qhr-progress-circle-bar   { stroke: var(--qhr-color-warning-500, #f59e0b); }
+.qhr-progress-circle--danger .qhr-progress-circle-bar    { stroke: var(--qhr-color-danger-500, #ef4444); }
+.qhr-progress-circle--secondary .qhr-progress-circle-bar { stroke: var(--qhr-color-purple-500, #8b5cf6); }
+
+.qhr-progress-circle-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.qhr-progress-circle-val {
+  font-family: var(--qhr-font-heading, 'Alexandria', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--qhr-content-primary, #0f172a);
+  line-height: 1;
+}
+[data-theme="dark"] .qhr-progress-circle-val {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+.qhr-progress-circle-label {
+  font-family: var(--qhr-font-ui, 'Cairo', sans-serif);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--qhr-content-secondary, #64748b);
+  margin-block-start: 2px;
+}
+[data-theme="dark"] .qhr-progress-circle-label {
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+
+/* --------------------------------------------------------------------------
+   11. Progress Container & Contextual Task Cards
+   -------------------------------------------------------------------------- */
+.qhr-progress-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qhr-space-1-5, 6px);
+  width: 100%;
+}
+.qhr-progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--qhr-font-ui, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-xs, 0.75rem);
+}
+.qhr-progress-title {
+  font-weight: 700;
+  color: var(--qhr-content-primary, #0f172a);
+}
+[data-theme="dark"] .qhr-progress-title {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+.qhr-progress-val {
+  font-weight: 700;
+  font-family: var(--qhr-font-code, monospace);
+  color: var(--qhr-content-secondary, #64748b);
+}
+[data-theme="dark"] .qhr-progress-val {
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+.qhr-progress-helper {
+  font-size: 0.72rem;
+  color: var(--qhr-content-secondary, #64748b);
+  margin-block-start: 2px;
+}
+[data-theme="dark"] .qhr-progress-helper {
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+
+/* Interactive Task / Upload Card */
+.qhr-progress-card {
+  background: var(--qhr-surface-primary, #ffffff);
+  border: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  border-radius: var(--qhr-radius-lg, 14px);
+  padding: var(--qhr-space-4, 16px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 200ms ease;
+}
+[data-theme="dark"] .qhr-progress-card {
+  background: #0d121f;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+.qhr-progress-card:hover {
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+}
+.qhr-progress-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.qhr-progress-card-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.qhr-progress-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: var(--qhr-surface-muted, #f1f5f9);
+  color: var(--qhr-color-primary-500, #c7a35a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .qhr-progress-card-icon {
+  background: rgba(255, 255, 255, 0.05);
+}
+.qhr-progress-card-meta {
+  display: flex;
+  flex-direction: column;
+}
+.qhr-progress-card-name {
+  font-family: var(--qhr-font-heading, 'Alexandria', sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--qhr-content-primary, #0f172a);
+}
+[data-theme="dark"] .qhr-progress-card-name {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+.qhr-progress-card-sub {
+  font-size: 0.72rem;
+  color: var(--qhr-content-secondary, #64748b);
+}
+[data-theme="dark"] .qhr-progress-card-sub {
+  color: var(--qhr-content-secondary, #94a3b8);
+}

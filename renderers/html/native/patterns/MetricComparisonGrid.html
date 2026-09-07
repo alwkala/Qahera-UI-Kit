@@ -1,0 +1,79 @@
+<!-- Qahera UI Kit — Metric Comparison Grid Pattern (Native HTML) -->
+<div class="qhr-metric-comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--qhr-space-5, 20px);" role="region" aria-label="شبكة مقارنة المؤشرات والمقاييس">
+
+  <!-- Metric Card 1 -->
+  <div class="qhr-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px; border-radius: var(--qhr-radius-xl, 16px);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-size: 13px; font-weight: 600; color: var(--qhr-text-muted, #64748b);">معدل التحويل (CR)</span>
+      <span class="qhr-badge qhr-badge--success qhr-badge--sm" style="display: inline-flex; align-items: center; gap: 4px;">
+        <svg class="qhr-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 15l7-7 7 7"/></svg>
+        <span>+4.8%</span>
+      </span>
+    </div>
+    <div>
+      <div style="font-family: var(--qhr-font-heading, sans-serif); font-size: 28px; font-weight: 800; color: var(--qhr-text-primary, #f8fafc);">3.84%</div>
+      <div style="font-size: 12px; color: var(--qhr-text-secondary, #94a3b8); margin-block-start: 4px;">الهدف الربع سنوي: 3.50%</div>
+    </div>
+    <div class="qhr-divider" style="margin: 0;"></div>
+    <div>
+      <div style="display: flex; justify-content: space-between; font-size: 11px; margin-block-end: 6px; color: var(--qhr-text-muted, #64748b);">
+        <span>إنجاز الهدف</span>
+        <span style="color: var(--qhr-color-success-500, #10b981); font-weight: 700;">110%</span>
+      </div>
+      <div class="qhr-progress qhr-progress--success qhr-progress--xs" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+        <div class="qhr-progress-bar" style="width: 100%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metric Card 2 -->
+  <div class="qhr-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px; border-radius: var(--qhr-radius-xl, 16px);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-size: 13px; font-weight: 600; color: var(--qhr-text-muted, #64748b);">زمن استجابة الخادم (TTFB)</span>
+      <span class="qhr-badge qhr-badge--primary qhr-badge--sm" style="display: inline-flex; align-items: center; gap: 4px;">
+        <svg class="qhr-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+        <span>-28ms</span>
+      </span>
+    </div>
+    <div>
+      <div style="font-family: var(--qhr-font-heading, sans-serif); font-size: 28px; font-weight: 800; color: var(--qhr-color-primary-500, #d4af37);">42ms</div>
+      <div style="font-size: 12px; color: var(--qhr-text-secondary, #94a3b8); margin-block-start: 4px;">المعيار القياسي: &lt; 100ms</div>
+    </div>
+    <div class="qhr-divider" style="margin: 0;"></div>
+    <div>
+      <div style="display: flex; justify-content: space-between; font-size: 11px; margin-block-end: 6px; color: var(--qhr-text-muted, #64748b);">
+        <span>كفاءة الأداء الفائق</span>
+        <span style="color: var(--qhr-color-primary-500, #d4af37); font-weight: 700;">ممتاز</span>
+      </div>
+      <div class="qhr-progress qhr-progress--luxury qhr-progress--xs" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
+        <div class="qhr-progress-bar" style="width: 92%;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metric Card 3 -->
+  <div class="qhr-card" style="padding: 24px; display: flex; flex-direction: column; gap: 16px; border-radius: var(--qhr-radius-xl, 16px);">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-size: 13px; font-weight: 600; color: var(--qhr-text-muted, #64748b);">معدل الاحتفاظ بالعملاء</span>
+      <span class="qhr-badge qhr-badge--warning qhr-badge--sm" style="display: inline-flex; align-items: center; gap: 4px;">
+        <svg class="qhr-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+        <span>0.0%</span>
+      </span>
+    </div>
+    <div>
+      <div style="font-family: var(--qhr-font-heading, sans-serif); font-size: 28px; font-weight: 800; color: var(--qhr-text-primary, #f8fafc);">94.2%</div>
+      <div style="font-size: 12px; color: var(--qhr-text-secondary, #94a3b8); margin-block-start: 4px;">مستقر على مدار 30 يوماً</div>
+    </div>
+    <div class="qhr-divider" style="margin: 0;"></div>
+    <div>
+      <div style="display: flex; justify-content: space-between; font-size: 11px; margin-block-end: 6px; color: var(--qhr-text-muted, #64748b);">
+        <span>نسبة الثبات</span>
+        <span style="color: var(--qhr-color-warning-500, #f59e0b); font-weight: 700;">94%</span>
+      </div>
+      <div class="qhr-progress qhr-progress--warning qhr-progress--xs" role="progressbar" aria-valuenow="94" aria-valuemin="0" aria-valuemax="100">
+        <div class="qhr-progress-bar" style="width: 94%;"></div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+<!-- Qahera UI Kit - Master Carousel Showcase -->
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. شريط الشرائح التفاعلي (Interactive Media Carousel)</h3>
+    <div class="qhr-carousel" id="demo-carousel" style="max-width: 650px; margin-inline: auto;">
+      <div class="qhr-carousel-track" id="carousel-track">
+        <div class="qhr-carousel-slide bg-gradient-ocean" style="height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; padding: 24px; text-align: center;">
+          <h3 style="font-size: 1.5rem; margin: 0 0 8px 0; color: #fff;">المنظومة المعمارية الأولى عربياً</h3>
+          <p style="margin: 0; opacity: 0.9;">بناء واجهات برمجية AI-Native تدعم 6 بيئات عمل بدقة متناهية.</p>
+        </div>
+        <div class="qhr-carousel-slide bg-gradient-purple" style="height: 260px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; padding: 24px; text-align: center;">
+          <h3 style="font-size: 1.5rem; margin: 0 0 8px 0; color: #fff;">أصالة القاهرة بلمسات عالمية</h3>
+          <p style="margin: 0; opacity: 0.9;">موتيفات إسلامية وقاهرية مدمجة كلياً بملفات SVG خفيفة وسريعة.</p>
+        </div>
+      </div>
+      <button type="button" class="qhr-carousel-control qhr-carousel-control--prev" onclick="slideCarousel(-1)" aria-label="السابق">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button type="button" class="qhr-carousel-control qhr-carousel-control--next" onclick="slideCarousel(1)" aria-label="التالي">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let currentSlide = 0;
+function slideCarousel(dir) {
+  const track = document.getElementById('carousel-track');
+  currentSlide = (currentSlide + dir + 2) % 2;
+  track.style.transform = 'translateX(' + (currentSlide * -100) + '%)';
+}
+</script>

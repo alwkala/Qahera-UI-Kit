@@ -1,0 +1,30 @@
+<!-- Qahera UI Kit - Native HTML Toast -->
+<div class="qhr-toast-container" x-data="qhrToast()" aria-live="polite">
+  <!-- Trigger Buttons for Demo -->
+  <div style="display: flex; gap: var(--qhr-space-2);">
+    <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" @click="add('نجاح العملية', 'تم حفظ التعديلات في النظام.', 'success')">
+      إظهار إشعار نجاح
+    </button>
+    <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" @click="add('تنبيه هام', 'يرجى مراجعة إعدادات الأمان.', 'warning')">
+      إظهار إشعار تحذير
+    </button>
+  </div>
+
+  <!-- Toast Items Loop -->
+  <template x-for="t in items" :key="t.id">
+    <div 
+      class="qhr-toast" 
+      :class="'qhr-toast--' + t.tone" 
+      role="status">
+      <div class="qhr-toast-content">
+        <strong class="qhr-toast-title" x-text="t.title"></strong>
+        <p class="qhr-toast-message" x-text="t.message" x-show="t.message"></p>
+      </div>
+      <button type="button" class="qhr-toast-close" @click="remove(t.id)" aria-label="إغلاق الإشعار">
+        <svg class="qhr-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </template>
+</div>

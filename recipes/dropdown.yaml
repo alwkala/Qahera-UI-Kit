@@ -1,0 +1,83 @@
+component: Dropdown
+name: dropdown
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Floating contextual menu of actions or links"
+  visual_role: "Menu overlay"
+  density: "compact"
+  preferred_when:
+    - "User account profile menus"
+    - "Card action overflow menus (... or kebab)"
+  avoid_when:
+    - "Form value selection (use select)"
+
+base:
+  display: flex
+  flex-direction: column
+  position: absolute
+  z-index: 50
+  min-width: "180px"
+  background-color: "{color.surface.elevated}"
+  border: "1px solid {color.border.subtle}"
+  border-radius: "{radius.md}"
+  box-shadow: "{shadow.lg}"
+  padding: "{space.1}"
+
+variants:
+  default:
+    background-color: "{color.surface.elevated}"
+
+sizes:
+  sm:
+    min-width: "140px"
+    font-size: "{text.xs}"
+  md:
+    min-width: "180px"
+    font-size: "{text.sm}"
+
+states:
+  closed:
+    display: none
+  open:
+    display: flex
+
+contract:
+  anatomy:
+    - root
+    - trigger-button
+    - menu-container
+    - menu-header
+    - menu-divider
+    - menu-item
+    - item-icon
+    - item-label
+    - item-badge
+    - separator
+  props:
+    size:
+      default: md
+      values: [sm, md]
+    placement:
+      default: bottom-start
+      values: [bottom-start, bottom-end, top-start, top-end]
+    state:
+      default: closed
+      values: [closed, open]
+  slots:
+    - start
+    - default
+
+structure:
+  base:
+    native_class: qhr-dropdown-menu
+    tailwind: "absolute z-50 min-w-[180px] bg-[var(--qhr-surface-elevated)] border border-[var(--qhr-border-subtle)] rounded-[var(--qhr-radius-md)] shadow-lg p-[var(--qhr-space-1)]"
+
+accessibility:
+  role: menu
+  keyboard: "Arrow keys navigate menu items, Escape closes menu"
+
+rtl:
+  supported: true
+  directional_mirroring: false

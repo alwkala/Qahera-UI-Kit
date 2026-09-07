@@ -1,0 +1,58 @@
+id: confirmation
+name: Confirmation Dialog
+category: overlay
+purpose: >
+  Halts the user workflow to require explicit, deliberate confirmation before executing destructive, irreversible, or high-impact actions.
+
+components:
+  - modal
+  - button
+
+anatomy:
+  - backdrop
+  - dialog-card
+  - status-icon
+  - header
+  - warning-message
+  - cancel-button
+  - confirm-button
+
+slots:
+  - icon
+  - title
+  - description
+  - cancel-action
+  - confirm-action
+
+layout:
+  display: flex
+  direction: column
+  gap: var(--qhr-space-4)
+  alignment: stretch
+  responsive:
+    sm: "max-width: 100%; border-radius: var(--qhr-radius-lg);"
+    md: "max-width: 460px; margin: 0 auto;"
+
+accessibility:
+  role: alertdialog
+  landmark: dialog
+  keyboard_flow: >
+    Focus is immediately trapped inside the dialog upon opening.
+    Initial focus is placed on the cancel button (safer default for destructive actions).
+    Escape cancels and closes the dialog.
+    Tab cycles strictly between Cancel and Confirm buttons.
+  aria_live: assertive
+
+ai:
+  purpose: "Modal gatekeeper for destructive and irreversible actions"
+  use_when:
+    - "Deleting user accounts, resources, data tables, or irreversible configuration"
+    - "Discarding unsaved changes with high data loss potential"
+  avoid_when:
+    - "Low-impact, reversible actions (use single-click action with undo Toast instead)"
+    - "Simple informational messages (use standard Modal or Alert)"
+  composed_of:
+    - modal
+    - button
+  related_patterns:
+    - form-actions

@@ -1,0 +1,42 @@
+<!-- Qahera UI Kit - HTMX Table Row Fragment (Inline Edit State) -->
+<tr id="table-row-101" class="qhr-table-row qhr-table-row--editing" style="background-color: var(--qhr-color-primary-50);">
+  <td class="qhr-table-td">
+    <input type="text" name="name" value="محمد القاسم" class="qhr-input qhr-input--sm" style="width: 100%;" />
+  </td>
+  <td class="qhr-table-td">
+    <input type="text" name="role" value="مهندس بنية سحابية" class="qhr-input qhr-input--sm" style="width: 100%;" />
+  </td>
+  <td class="qhr-table-td">
+    <select name="status" class="qhr-select qhr-select--sm" style="width: 100%;">
+      <option value="active" selected>نشط</option>
+      <option value="pending">معلق</option>
+      <option value="inactive">غير نشط</option>
+    </select>
+  </td>
+  <td class="qhr-table-td" style="text-align: end; white-space: nowrap;">
+    <button 
+      type="button" 
+      class="qhr-btn qhr-btn--primary qhr-btn--sm"
+      hx-put="/api/users/101"
+      hx-include="closest tr"
+      hx-target="closest tr"
+      hx-swap="outerHTML"
+      aria-label="حفظ التعديلات"
+    >
+      <svg class="qhr-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+      <span>حفظ</span>
+    </button>
+    <button 
+      type="button" 
+      class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+      hx-get="/api/users/101/row"
+      hx-target="closest tr"
+      hx-swap="outerHTML"
+      aria-label="إلغاء التعديل"
+    >
+      <span>إلغاء</span>
+    </button>
+  </td>
+</tr>

@@ -1,0 +1,50 @@
+id: kanban-board
+name: Kanban Board
+category: containers
+purpose: >
+  Columnar agile workflow pattern organizing tasks, tickets, and pipeline states with draggable cards, priority badges, and user avatars.
+
+components:
+  - card
+  - badge
+  - avatar
+  - button
+  - chip
+
+anatomy:
+  - board-container
+  - column-list
+  - column-header
+  - column-counter
+  - card-stack
+  - task-card
+  - card-tags
+  - card-assignees
+
+slots:
+  - columns
+  - cards
+  - actions
+
+layout:
+  display: flex
+  gap: var(--qhr-space-4)
+  overflow-x: auto
+
+accessibility:
+  role: region
+  landmark: main
+  aria_live: polite
+
+ai:
+  purpose: "Pipeline workflow and task status management"
+  use_when:
+    - "Agile task tracking, support ticket queues, and recruitment CRM stages"
+  avoid_when:
+    - "Simple linear data lists (use Table instead)"
+  composed_of:
+    - card
+    - badge
+    - avatar
+    - button
+    - chip

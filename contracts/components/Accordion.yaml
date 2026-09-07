@@ -1,0 +1,53 @@
+name: Accordion
+category: disclosure
+purpose: >
+  Organizes deep information in vertically stacked collapsible panels.
+
+anatomy:
+  - root
+  - item
+  - header-button
+  - header-title
+  - chevron-icon
+  - content-region
+  - content-body
+
+variants:
+  - bordered
+  - separate
+  - flush
+
+sizes:
+  - sm
+  - md
+
+states:
+  - collapsed
+  - expanded
+
+slots:
+  - default
+
+accessibility:
+  role: region
+  keyboard:
+    Enter: "Toggles expanded state of focused accordion item"
+    Space: "Toggles expanded state of focused accordion item"
+    ArrowDown: "Moves focus to next header"
+    ArrowUp: "Moves focus to previous header"
+  focus: "Ring around focused header button"
+  aria:
+    - aria-expanded: when item is open
+    - aria-controls: matching content panel id
+
+behavior:
+  allow_multiple: false
+  smooth_transition: true
+
+ai:
+  description: "Collapsible panel disclosure stack"
+  use_when:
+    - "Frequently Asked Questions (FAQ) sections"
+    - "Nested product specifications or collapsible settings"
+  avoid_when:
+    - "All content must be visible at the same glance"

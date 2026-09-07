@@ -1,0 +1,77 @@
+id: modal
+name: Modal
+component: Modal
+category: overlay
+purpose: >
+  Displays a blocking dialog surface capturing user attention for a critical workflow.
+
+anatomy:
+  - root
+  - backdrop
+  - dialog-container
+  - header
+  - title
+  - close-button
+  - body
+  - footer
+
+variants:
+  default:
+    intent: standard-workflow-dialog
+  destructive:
+    intent: high-risk-confirmation
+
+sizes:
+  sm:
+    max_width: 400
+    padding: 16
+  md:
+    max_width: 540
+    padding: 24
+  lg:
+    max_width: 720
+    padding: 32
+  xl:
+    max_width: 960
+    padding: 32
+
+states:
+  - closed
+  - open
+
+slots:
+  header: optional
+  body: required
+  footer: optional
+
+accessibility:
+  role: dialog
+  keyboard: true
+  focusVisible: true
+  keyboard_keys:
+    Escape: "Closes modal dialog"
+    Tab: "Traps focus within interactive elements of dialog"
+    Shift+Tab: "Reverse focus cycle within dialog"
+  aria:
+    - aria-modal: "true"
+    - aria-labelledby: "dialog-title"
+
+behavior:
+  focus_trap: true
+  body_scroll_lock: true
+  click_outside_close: true
+  escape_close: true
+  return_focus: true
+
+ai:
+  purpose: "Modal dialog for high-priority blocking workflows"
+  whenToUse:
+    - "Destructive deletion confirmations (paired with confirmation pattern)"
+    - "Critical multi-input forms requiring total user focus"
+    - "Terms or policy approvals before proceeding"
+  avoid:
+    - "Passive feedback or status updates (use Toast or Alert instead)"
+    - "Standard page content navigation"
+  common_patterns:
+    - confirmation
+    - form-actions

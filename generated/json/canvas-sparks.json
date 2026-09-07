@@ -1,0 +1,91 @@
+{
+  "id": "canvas-sparks",
+  "name": "CanvasSparks",
+  "component": "CanvasSparks",
+  "category": "feedback",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "canvas"
+    ],
+    "variants": {
+      "default": {
+        "intent": "gold-metallic-particles"
+      },
+      "emerald": {
+        "intent": "emerald-glow-particles"
+      }
+    },
+    "sizes": {
+      "full": {
+        "width": "100%",
+        "height": "100%"
+      }
+    },
+    "states": [
+      "running",
+      "paused"
+    ],
+    "slots": {},
+    "accessibility": {
+      "role": "presentation",
+      "aria": [
+        {
+          "aria-hidden": "true"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/canvas-sparks.yaml",
+    "base": {
+      "position": "absolute",
+      "inset": 0,
+      "width": "100%",
+      "height": "100%",
+      "pointer-events": "none",
+      "z-index": 1
+    },
+    "variants": {
+      "default": {
+        "opacity": 0.75
+      },
+      "emerald": {
+        "opacity": 0.65
+      }
+    },
+    "sizes": {
+      "full": {
+        "width": "100%",
+        "height": "100%"
+      }
+    },
+    "states": {
+      "running": {
+        "display": "block"
+      },
+      "paused": {
+        "display": "none"
+      }
+    }
+  },
+  "behavior": {
+    "file": "behavior/canvas-sparks.js",
+    "moduleName": "canvas-sparks"
+  },
+  "ai": {
+    "purpose": "Renders a lightweight atmospheric particle simulation of metallic golden embers on an HTML canvas, active in dark theme with zero CPU overhead when inactive.",
+    "whenToUse": [
+      "Hero sections of luxury, celebratory, or cinematic web experiences",
+      "High-prestige dark mode interfaces"
+    ],
+    "avoid": [
+      "Dense administrative tables, data entry forms, or content-heavy body copy"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/CanvasSparks.yaml"
+  }
+}

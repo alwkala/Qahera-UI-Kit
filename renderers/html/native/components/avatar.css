@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Avatar (.qhr-avatar)
+   ========================================================================== */
+.qhr-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: var(--qhr-font-heading, 'Alexandria', 'Cairo', sans-serif);
+  font-weight: 700;
+  background-color: var(--qhr-surface-muted, #f1f5f9);
+  color: var(--qhr-content-secondary, #475569);
+  user-select: none;
+  vertical-align: middle;
+  position: relative;
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .qhr-avatar {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  color: var(--qhr-content-primary, #f8fafc);
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.1));
+}
+
+.qhr-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.qhr-avatar--circle { border-radius: var(--qhr-radius-pill, 9999px); }
+.qhr-avatar--rounded { border-radius: var(--qhr-radius-md, 10px); }
+
+.qhr-avatar--xs { width: 1.5rem; height: 1.5rem; font-size: 0.65rem; }
+.qhr-avatar--sm { width: 2rem; height: 2rem; font-size: 0.75rem; }
+.qhr-avatar--md { width: 2.5rem; height: 2.5rem; font-size: 0.875rem; }
+.qhr-avatar--lg { width: 3rem; height: 3rem; font-size: 1rem; }
+.qhr-avatar--xl { width: 4rem; height: 4rem; font-size: 1.25rem; }
+
+/* Luxury Avatar */
+.qhr-avatar--luxury {
+  background: radial-gradient(circle, #dfc378 0%, #aa771c 100%);
+  color: #121008;
+  box-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
+}
+
+/* Status Badge */
+.qhr-avatar-status {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+  width: 25%;
+  height: 25%;
+  border-radius: 50%;
+  border: 2px solid var(--qhr-surface-base, #ffffff);
+}
+.qhr-avatar-status--online { background-color: var(--qhr-color-success-500, #10b981); }
+.qhr-avatar-status--offline { background-color: var(--qhr-color-slate-400, #94a3b8); }
+
+/* Avatar Group */
+.qhr-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+.qhr-avatar-group .qhr-avatar {
+  border: 2px solid var(--qhr-surface-base, #ffffff);
+  margin-inline-start: -0.75rem;
+}
+.qhr-avatar-group .qhr-avatar:first-child {
+  margin-inline-start: 0;
+}
+[data-theme="dark"] .qhr-avatar-group .qhr-avatar {
+  border-color: var(--qhr-surface-page, #07090e);
+}

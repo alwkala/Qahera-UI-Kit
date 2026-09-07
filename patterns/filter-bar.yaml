@@ -1,0 +1,54 @@
+id: filter-bar
+name: Filter Bar
+category: navigation
+purpose: >
+  Displays active filtering criteria and quick category toggle chips with result counters.
+
+components:
+  - badge
+  - button
+
+anatomy:
+  - root
+  - chip-group
+  - active-chip
+  - count-badge
+  - clear-all-trigger
+
+slots:
+  - filters
+  - counter
+  - reset
+
+layout:
+  display: flex
+  direction: row
+  gap: var(--qhr-space-2)
+  alignment: center
+  responsive:
+    sm: "flex-wrap: wrap; gap: var(--qhr-space-2);"
+    md: "flex-wrap: nowrap; overflow-x: auto;"
+
+accessibility:
+  role: group
+  landmark: region
+  keyboard_flow: >
+    Left/Right arrow keys navigate between filter chips.
+    Enter or Space toggles active state.
+    Tab exits the chip group to the clear-all button.
+  aria_live: polite
+
+ai:
+  purpose: "Faceted category and tag filtering bar"
+  use_when:
+    - "Users need multi-select or single-select filtering on collections"
+    - "Displaying applied filter state with quick removal badges"
+  avoid_when:
+    - "Complex nested SQL-like query builders"
+    - "Primary navigation tabs (use Tabs component instead)"
+  composed_of:
+    - badge
+    - button
+  related_patterns:
+    - search-toolbar
+    - data-table-toolbar

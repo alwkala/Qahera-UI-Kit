@@ -1,0 +1,43 @@
+version: 1.0.0
+namespace: qhr
+description: Universal Component Meta-Contract and Controlled Vocabulary
+
+categories:
+  actions: [button]
+  forms: [input, textarea, select, file-upload]
+  selection: [checkbox, radio, switch]
+  containers: [card]
+  feedback: [badge, alert, callout, progress, rating, skeleton, spinner, canvas-sparks, preloader]
+  overlay: [toast, modal, tooltip, drawer]
+  navigation: [dropdown, tabs, navbar, breadcrumb, stepper, treeview, back-to-top]
+  disclosure: [accordion]
+  data-display: [table, chip, divider, kbd, ribbon, timeline]
+  media: [avatar, carousel]
+
+vocabulary:
+  props:
+    variant:
+      values: [primary, secondary, outline, ghost, link, destructive]
+      binding_html: "data-variant"
+      binding_react: "variant"
+      binding_php: "$variant"
+    size:
+      values: [xs, sm, md, lg, xl]
+      binding_html: "data-size"
+      binding_react: "size"
+      binding_php: "$size"
+    tone:
+      values: [neutral, info, success, warning, danger]
+      binding_html: "data-tone"
+      binding_react: "tone"
+      binding_php: "$tone"
+    state:
+      values: [default, hover, focus, disabled, loading]
+      binding_html: "data-state"
+      binding_react: "state"
+      binding_php: "$state"
+
+rules:
+  - "Every component must declare its contract before implementation."
+  - "Renderer targets may change syntax but never semantic prop names."
+  - "Component styling must map directly to tokens in tokens/components.yaml."

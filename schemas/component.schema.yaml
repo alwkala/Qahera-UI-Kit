@@ -1,0 +1,77 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: QaheraComponentContractSchemaV1
+type: object
+required:
+  - name
+  - category
+  - purpose
+  - anatomy
+  - variants
+  - sizes
+  - states
+  - slots
+  - accessibility
+  - ai
+properties:
+  name:
+    type: string
+    pattern: "^[A-Z][a-zA-Z0-9]+$"
+    description: "Canonical component name in PascalCase (e.g. Button, Input, Modal)"
+  category:
+    type: string
+    enum: [actions, forms, selection, containers, feedback, overlay, navigation, disclosure, data-display, media]
+  purpose:
+    type: string
+    description: "Semantic purpose statement explaining why this component exists"
+  anatomy:
+    type: array
+    items: { type: string }
+    description: "Semantic constituent parts (e.g. root, icon-start, label, icon-end)"
+  variants:
+    oneOf:
+      - type: array
+        items: { type: string }
+      - type: object
+        description: "Map of variant names to their semantic intents (e.g. primary: { intent: primary-action })"
+  sizes:
+    oneOf:
+      - type: array
+        items: { type: string }
+      - type: object
+        description: "Map of size names to explicit dimensions (e.g. sm: { height: 32 })"
+  states:
+    type: array
+    items: { type: string }
+  tone:
+    type: array
+    items: { type: string }
+  slots:
+    oneOf:
+      - type: array
+        items: { type: string }
+      - type: object
+        description: "Map of slot names to requirement level (optional/required)"
+  composition:
+    type: object
+  accessibility:
+    type: object
+    required: [role]
+    properties:
+      role: { type: string }
+      keyboard: { oneOf: [{ type: object }, { type: boolean }] }
+      focus: { type: string }
+      focusVisible: { type: boolean }
+      aria: { type: array }
+  behavior:
+    type: object
+  ai:
+    type: object
+    properties:
+      purpose: { type: string }
+      description: { type: string }
+      whenToUse: { type: array, items: { type: string } }
+      use_when: { type: array, items: { type: string } }
+      avoid: { type: array, items: { type: string } }
+      avoid_when: { type: array, items: { type: string } }
+      common_patterns: { type: array, items: { type: string } }
+      composition_notes: { type: string }

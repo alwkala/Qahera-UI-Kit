@@ -1,0 +1,42 @@
+version: 0.1.0-draft
+props:
+  variant:
+    type: enum
+    description: Visual prominence and stylistic expression
+    allowed_values:
+      - primary: Main call to action
+      - secondary: Alternative supporting action
+      - outline: Subtle bordered action
+      - ghost: Flat action with hover background
+      - link: Underlined hyperlink-like action
+      - destructive: High-risk or permanent deletion action
+
+  size:
+    type: enum
+    description: Dimensional scale, paddings, and font sizes
+    allowed_values:
+      - xs: Compact micro-scale (e.g. data tables, tags)
+      - sm: Compact small scale (dense UI)
+      - md: Default standard scale
+      - lg: Prominent large scale
+      - xl: Hero / headline scale
+
+  tone:
+    type: enum
+    description: Semantic intent and status coloring
+    allowed_values:
+      - neutral: Balanced informational tone
+      - info: Helpful neutral context
+      - success: Positive confirmation or success state
+      - warning: Cautionary note or intermediate status
+      - danger: Critical error or destructive state
+
+  state:
+    type: enum
+    description: Interaction lifecycle state
+    allowed_values:
+      - default: Idle, ready for interaction
+      - hover: Cursor hovered over control
+      - focus: Keyboard or programmatic focus active
+      - disabled: Interaction blocked, opacity reduced
+      - loading: Asynchronous task in progress, spinner displayed

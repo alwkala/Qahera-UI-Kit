@@ -1,0 +1,55 @@
+name: Tabs
+category: navigation
+purpose: >
+  Partitions content into parallel panels switchable via tab buttons.
+
+anatomy:
+  - root
+  - tablist
+  - tab-button
+  - active-indicator
+  - panels-container
+  - tabpanel
+
+variants:
+  - line
+  - pills
+  - enclosed
+
+sizes:
+  - sm
+  - md
+  - lg
+
+states:
+  - default
+
+slots:
+  - start
+  - default
+
+accessibility:
+  role: tablist
+  keyboard:
+    ArrowRight: "Moves focus to next tab (LTR) or previous tab (RTL)"
+    ArrowLeft: "Moves focus to previous tab (LTR) or next tab (RTL)"
+    Home: "Focuses first tab"
+    End: "Focuses last tab"
+    Space: "Activates focused tab"
+    Enter: "Activates focused tab"
+  focus: "Ring on active tab header"
+  aria:
+    - aria-selected: when tab is active
+    - aria-controls: matching tabpanel id
+
+behavior:
+  keyboard_loop: true
+  direction_aware: true
+
+ai:
+  description: "Parallel view switcher dividing complex layouts into tabs"
+  use_when:
+    - "Settings pages (Profile, Security, Billing)"
+    - "Product overviews (Overview, Specs, Reviews)"
+  avoid_when:
+    - "Sequential multi-step forms (use Stepper/Wizard)"

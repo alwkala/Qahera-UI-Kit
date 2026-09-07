@@ -1,0 +1,23 @@
+version: 1.0.0
+name: dark
+description: High-Contrast Dark Theme for Qahera UI Kit
+
+overrides:
+  surface:
+    base: "{color.slate.950}"
+    elevated: "{color.slate.900}"
+    muted: "{color.slate.800}"
+    overlay: "rgba(2, 6, 23, 0.85)"
+  content:
+    primary: "{color.slate.50}"
+    secondary: "{color.slate.200}"
+    muted: "{color.slate.400}"
+  border:
+    subtle: "{color.slate.800}"
+    strong: "{color.slate.700}"
+  color:
+    secondary:
+      bg: "{color.slate.800}"
+      fg: "{color.slate.50}"
+      border: "{color.slate.700}"
+      hover: "{color.slate.700}"

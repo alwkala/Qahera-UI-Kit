@@ -1,0 +1,36 @@
+/* ==========================================================================
+   BackToTop (.qhr-back-to-top)
+   ========================================================================== */
+.qhr-back-to-top {
+  position: fixed;
+  inset-inline-end: 24px;
+  inset-block-end: 24px;
+  z-index: var(--qhr-z-sticky, 1100);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--qhr-radius-pill, 9999px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--qhr-surface-elevated, #ffffff);
+  border: 1px solid var(--qhr-color-primary-500, #c7a35a);
+  color: var(--qhr-color-primary-500, #c7a35a);
+  box-shadow: var(--qhr-shadow-lg, 0 10px 25px -5px rgba(0, 0, 0, 0.15));
+  transition: transform var(--qhr-duration-fast, 150ms) ease, box-shadow var(--qhr-duration-fast, 150ms) ease;
+}
+
+[data-theme="dark"] .qhr-back-to-top {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(201, 168, 76, 0.15);
+}
+
+.qhr-back-to-top:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--qhr-shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.25));
+}
+
+.qhr-back-to-top svg {
+  width: 20px;
+  height: 20px;
+}

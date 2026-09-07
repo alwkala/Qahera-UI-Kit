@@ -1,0 +1,126 @@
+{
+  "id": "spinner",
+  "name": "Spinner",
+  "component": "Spinner",
+  "category": "feedback",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "svg",
+      "circle-track",
+      "circle-head"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-circular-spinner"
+      },
+      "gold": {
+        "intent": "luxury-gold-shimmer"
+      },
+      "track": {
+        "intent": "contrasting-background-track"
+      }
+    },
+    "sizes": {
+      "xs": {
+        "dimension": 16
+      },
+      "sm": {
+        "dimension": 20
+      },
+      "md": {
+        "dimension": 28
+      },
+      "lg": {
+        "dimension": 40
+      },
+      "xl": {
+        "dimension": 56
+      }
+    },
+    "states": [
+      "active",
+      "paused"
+    ],
+    "slots": {
+      "srLabel": "optional"
+    },
+    "accessibility": {
+      "role": "status",
+      "aria": [
+        "aria-live=polite",
+        "aria-busy=true"
+      ],
+      "keyboard": false,
+      "focusVisible": false
+    }
+  },
+  "recipe": {
+    "file": "recipes/spinner.yaml",
+    "base": {
+      "display": "inline-block",
+      "vertical-align": "middle",
+      "animation": "qhr-spin 0.8s linear infinite",
+      "color": "{color.primary.bg}"
+    },
+    "variants": {
+      "default": {
+        "color": "{color.primary.bg}"
+      },
+      "gold": {
+        "color": "{color.primary.bg}"
+      },
+      "track": {
+        "color": "currentColor"
+      }
+    },
+    "sizes": {
+      "xs": {
+        "width": "16px",
+        "height": "16px"
+      },
+      "sm": {
+        "width": "20px",
+        "height": "20px"
+      },
+      "md": {
+        "width": "28px",
+        "height": "28px"
+      },
+      "lg": {
+        "width": "40px",
+        "height": "40px"
+      },
+      "xl": {
+        "width": "56px",
+        "height": "56px"
+      }
+    },
+    "states": {
+      "active": {
+        "opacity": 1
+      },
+      "paused": {
+        "animation-play-state": "paused"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Indicates indeterminate background processing, data retrieval, or asynchronous task execution with an animated circular stroke.",
+    "whenToUse": [
+      "Inside button during asynchronous submission (`loading` state)",
+      "Inside table rows or card bodies while fetching telemetry",
+      "Dropdown menu item lazy loading"
+    ],
+    "avoid": [
+      "Full-screen application bootup transitions (use Preloader)",
+      "Known percentage completion processes (use Progress)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Spinner.yaml"
+  }
+}

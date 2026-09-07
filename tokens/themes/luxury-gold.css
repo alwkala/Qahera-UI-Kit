@@ -1,0 +1,38 @@
+/**
+ * Qahera UI Kit — Luxury Obsidian & Imperial Gold Theme
+ * Inspired by Alwkala Alhoulie Egyptian Luxury Craftsmanship
+ */
+
+[data-theme="luxury-gold"] {
+  --qhr-color-bg: #0F0B09;
+  --qhr-color-surface: #17120F;
+  --qhr-color-surface-elevated: #221A15;
+  --qhr-color-surface-overlay: rgba(15, 11, 9, 0.85);
+
+  --qhr-color-text: #F7F3ED;
+  --qhr-color-text-secondary: #B9A896;
+  --qhr-color-text-muted: #8C7E70;
+
+  --qhr-color-primary: #D4AF37;
+  --qhr-color-primary-hover: #F2C94C;
+  --qhr-color-primary-fg: #0F0B09;
+  --qhr-color-primary-50: rgba(212, 175, 55, 0.08);
+  --qhr-color-primary-100: rgba(212, 175, 55, 0.15);
+
+  --qhr-color-gold: #D4AF37;
+  --qhr-color-gold-accent: #F2C94C;
+  --qhr-color-gold-muted: #C7A35A;
+
+  --qhr-color-border: rgba(212, 175, 55, 0.18);
+  --qhr-color-border-strong: rgba(212, 175, 55, 0.35);
+  --qhr-border-steel: rgba(255, 255, 255, 0.06);
+
+  --qhr-glow-emerald: rgba(23, 105, 81, 0.48);
+  --qhr-glow-gold: rgba(147, 107, 50, 0.30);
+  --qhr-shadow-metal: 0 16px 48px rgba(0, 0, 0, 0.7);
+
+  --qhr-font-family-display: 'El Messiri', 'Playfair Display', serif;
+  --qhr-font-family-body: 'Cairo', 'Manrope', sans-serif;
+
+  --qhr-motion-luxury: 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}

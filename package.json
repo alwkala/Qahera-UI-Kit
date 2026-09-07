@@ -1,0 +1,31 @@
+{
+  "name": "qahera-ui-kit",
+  "version": "1.5.0",
+  "description": "AI-Native, Contract-Driven Design System & Multi-Target Component Architecture",
+  "main": "bin/qahera.js",
+  "bin": {
+    "qahera": "bin/qahera.js"
+  },
+  "scripts": {
+    "build": "node bin/qahera.js",
+    "preview": "node bin/qahera.js preview",
+    "test": "node ci/audit-all.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "design-system",
+    "ai-native",
+    "qahera",
+    "tidyfactor",
+    "components",
+    "arabic-ui",
+    "rtl"
+  ],
+  "author": "Alwkala",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "typescript": "^5.7.0"
+  }
+}

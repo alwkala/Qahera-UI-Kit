@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Skeleton Shimmer (.qhr-skeleton)
+   ========================================================================== */
+.qhr-skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--qhr-surface-muted, #e2e8f0) 25%,
+    rgba(255, 255, 255, 0.6) 50%,
+    var(--qhr-surface-muted, #e2e8f0) 75%
+  );
+  background-size: 200% 100%;
+  animation: qhr-shimmer 1.6s infinite ease-in-out;
+  border-radius: var(--qhr-radius-md, 10px);
+}
+
+[data-theme="dark"] .qhr-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--qhr-surface-elevated, #1e293b) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    var(--qhr-surface-elevated, #1e293b) 75%
+  );
+  background-size: 200% 100%;
+}
+
+[dir="rtl"] .qhr-skeleton {
+  animation-direction: reverse;
+}
+
+@keyframes qhr-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.qhr-skeleton--text {
+  height: 1rem;
+  border-radius: var(--qhr-radius-sm, 6px);
+  margin-block: var(--qhr-space-1, 4px);
+}
+.qhr-skeleton--heading {
+  height: 1.5rem;
+  width: 65%;
+  border-radius: var(--qhr-radius-sm, 6px);
+  margin-block-end: var(--qhr-space-2, 8px);
+}
+.qhr-skeleton--circular {
+  border-radius: var(--qhr-radius-pill, 9999px);
+}
+.qhr-skeleton--rectangular {
+  border-radius: var(--qhr-radius-lg, 14px);
+}

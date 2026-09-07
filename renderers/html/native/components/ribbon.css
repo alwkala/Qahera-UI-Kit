@@ -1,0 +1,266 @@
+/* ── 10. Ribbon (.qhr-ribbon) ─────────────────────────────────────── */
+
+.qhr-ribbon {
+  position: absolute;
+  z-index: 10;
+  font-family: var(--qhr-font-heading, 'Alexandria', 'Cairo', sans-serif);
+  font-weight: 700;
+  font-size: var(--qhr-text-xs, 12px);
+  letter-spacing: 0.02em;
+  text-align: center;
+  user-select: none;
+  white-space: nowrap;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--qhr-space-1, 4px);
+  color: #ffffff;
+  background-color: var(--qhr-color-primary, #0b6bcb);
+  --qhr-ribbon-fold-color: #073b6d;
+}
+
+/* ── Sizes ─────────────────────────────────────────────────────────── */
+.qhr-ribbon--sm {
+  font-size: 11px;
+  padding-block: 4px;
+  padding-inline: var(--qhr-space-3, 12px);
+}
+
+.qhr-ribbon--md {
+  font-size: 12px;
+  padding-block: var(--qhr-space-1-5, 6px);
+  padding-inline: var(--qhr-space-4, 16px);
+}
+
+.qhr-ribbon--lg {
+  font-size: 13px;
+  padding-block: var(--qhr-space-2, 8px);
+  padding-inline: var(--qhr-space-5, 20px);
+}
+
+/* ── Variant 1: 3D Folded Edge Ribbon (Start & End) ───────────────── */
+.qhr-ribbon--folded,
+.qhr-ribbon--folded-start {
+  inset-block-start: 14px;
+  inset-inline-start: -8px;
+  padding-block: var(--qhr-space-2, 7px);
+  padding-inline: var(--qhr-space-4, 16px);
+  border-start-end-radius: var(--qhr-radius-sm, 4px);
+  border-end-end-radius: var(--qhr-radius-sm, 4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.qhr-ribbon--folded::before,
+.qhr-ribbon--folded-start::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-start: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--qhr-ribbon-fold-color, #073b6d);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+[dir="rtl"] .qhr-ribbon--folded::before,
+[dir="rtl"] .qhr-ribbon--folded-start::before {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.qhr-ribbon--folded-end {
+  inset-block-start: 14px;
+  inset-inline-end: -8px;
+  padding-block: var(--qhr-space-2, 7px);
+  padding-inline: var(--qhr-space-4, 16px);
+  border-start-start-radius: var(--qhr-radius-sm, 4px);
+  border-end-start-radius: var(--qhr-radius-sm, 4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.qhr-ribbon--folded-end::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-end: 0;
+  width: 8px;
+  height: 8px;
+  background-color: var(--qhr-ribbon-fold-color, #073b6d);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+[dir="rtl"] .qhr-ribbon--folded-end::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+/* ── Variant 2: Diagonal Corner Ribbon ─────────────────────────────── */
+.qhr-ribbon--corner,
+.qhr-ribbon--corner-start {
+  inset-block-start: 18px;
+  inset-inline-start: -38px;
+  width: 140px;
+  padding-block: 5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+[dir="ltr"] .qhr-ribbon--corner,
+[dir="ltr"] .qhr-ribbon--corner-start {
+  transform: rotate(-45deg);
+}
+
+[dir="rtl"] .qhr-ribbon--corner,
+[dir="rtl"] .qhr-ribbon--corner-start {
+  transform: rotate(45deg);
+}
+
+.qhr-ribbon--corner-end {
+  inset-block-start: 18px;
+  inset-inline-end: -38px;
+  width: 140px;
+  padding-block: 5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+[dir="ltr"] .qhr-ribbon--corner-end {
+  transform: rotate(45deg);
+}
+
+[dir="rtl"] .qhr-ribbon--corner-end {
+  transform: rotate(-45deg);
+}
+
+/* ── Variant 3: Hanging Bookmark Flag ──────────────────────────────── */
+.qhr-ribbon--bookmark {
+  inset-block-start: 0;
+  inset-inline-end: 18px;
+  padding-block-start: 8px;
+  padding-block-end: 14px;
+  padding-inline: var(--qhr-space-3, 12px);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 6px), 0 100%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Variant 4: Flat Modern Edge Ribbon ────────────────────────────── */
+.qhr-ribbon--flat {
+  inset-block-start: 14px;
+  inset-inline-start: 0;
+  border-start-end-radius: var(--qhr-radius-md, 6px);
+  border-end-end-radius: var(--qhr-radius-md, 6px);
+  padding-block: var(--qhr-space-1-5, 6px);
+  padding-inline: var(--qhr-space-3-5, 14px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Semantic Tones (Aligned 1:1 with Reference UI) ───────────────── */
+
+/* 1. Dark / Neutral */
+.qhr-ribbon--dark,
+.qhr-ribbon--neutral {
+  background-color: var(--qhr-color-slate-900, #0f172a);
+  color: #ffffff;
+  --qhr-ribbon-fold-color: #020617;
+}
+
+/* 2. Primary (Royal Blue) */
+.qhr-ribbon--primary {
+  background-color: var(--qhr-color-blue-600, #0b6bcb);
+  color: #ffffff;
+  --qhr-ribbon-fold-color: #073b6d;
+}
+
+/* 3. Success (Emerald Green) */
+.qhr-ribbon--success {
+  background-color: var(--qhr-color-emerald-600, #10b981);
+  color: #ffffff;
+  --qhr-ribbon-fold-color: #047857;
+}
+
+/* 4. Info (Purple / Indigo) */
+.qhr-ribbon--info {
+  background-color: #6366f1;
+  color: #ffffff;
+  --qhr-ribbon-fold-color: #4338ca;
+}
+
+/* 5. Warning (Amber / Orange) */
+.qhr-ribbon--warning {
+  background-color: #f59e0b;
+  color: #ffffff;
+  --qhr-ribbon-fold-color: #b45309;
+}
+
+/* 6. Danger (Coral / Ruby Red) */
+.qhr-ribbon--danger {
+  background-color: #f43f5e;
+  color: #ffffff;
+  --qhr-ribbon-fold-color: #be123c;
+}
+
+/* 7. Luxury Gold (Signature) */
+.qhr-ribbon--luxury,
+.qhr-ribbon--gold {
+  background: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%);
+  color: #0a0806;
+  --qhr-ribbon-fold-color: #78520f;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* ── Ribbon Container & Showcase Grid ─────────────────────────────── */
+.qhr-ribbons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--qhr-space-6, 24px);
+  width: 100%;
+}
+
+.qhr-card--ribbon {
+  position: relative;
+  background-color: var(--qhr-color-surface, #ffffff);
+  border: 1px solid var(--qhr-color-border, #e2e8f0);
+  border-radius: var(--qhr-radius-lg, 12px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+[data-theme="dark"] .qhr-card--ribbon {
+  background-color: var(--qhr-color-surface, #0d121f);
+  border-color: var(--qhr-color-border, rgba(255, 255, 255, 0.08));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.qhr-card--ribbon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .qhr-card--ribbon:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.qhr-card--overflow-hidden {
+  overflow: hidden;
+}
+
+.qhr-card-content {
+  padding: var(--qhr-space-6, 24px);
+  padding-block-start: var(--qhr-space-10, 48px);
+}
+
+.qhr-card-text {
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-sm, 14px);
+  line-height: 1.65;
+  color: var(--qhr-color-text-secondary, #64748b);
+  margin: 0;
+}
+
+[data-theme="dark"] .qhr-card-text {
+  color: var(--qhr-color-text-secondary, #94a3b8);
+}
+

@@ -1,0 +1,125 @@
+{
+  "id": "card",
+  "name": "Card",
+  "component": "Card",
+  "category": "containers",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "header",
+      "title",
+      "subtitle",
+      "body",
+      "footer",
+      "action-bar"
+    ],
+    "variants": {
+      "outline": {
+        "intent": "bordered-card-surface"
+      },
+      "elevated": {
+        "intent": "floating-shadow-surface"
+      },
+      "flat": {
+        "intent": "soft-background-surface"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "padding": 12,
+        "border_radius": "var(--qhr-radius-md)"
+      },
+      "md": {
+        "padding": 20,
+        "border_radius": "var(--qhr-radius-lg)"
+      },
+      "lg": {
+        "padding": 32,
+        "border_radius": "var(--qhr-radius-xl)"
+      }
+    },
+    "states": [
+      "default",
+      "hover",
+      "active"
+    ],
+    "slots": {
+      "header": "optional",
+      "title": "optional",
+      "subtitle": "optional",
+      "body": "required",
+      "footer": "optional"
+    },
+    "accessibility": {
+      "role": "region",
+      "keyboard": false,
+      "focusVisible": false
+    }
+  },
+  "recipe": {
+    "file": "recipes/card.yaml",
+    "base": {
+      "display": "flex",
+      "flex-direction": "column",
+      "background-color": "{color.surface.elevated}",
+      "border": "1px solid {color.border.subtle}",
+      "border-radius": "{radius.lg}",
+      "overflow": "hidden",
+      "transition-duration": "{duration.normal}",
+      "transition-timing-function": "{ease.standard}"
+    },
+    "variants": {
+      "outline": {
+        "box-shadow": "none"
+      },
+      "elevated": {
+        "box-shadow": "{shadow.md}"
+      },
+      "flat": {
+        "background-color": "{color.surface.muted}",
+        "border-color": "transparent"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "padding": "{space.3}"
+      },
+      "md": {
+        "padding": "{space.5}"
+      },
+      "lg": {
+        "padding": "{space.8}"
+      }
+    },
+    "states": {
+      "hover": {
+        "box-shadow": "{shadow.lg}"
+      },
+      "focus": {
+        "outline": "2px solid {color.primary.bg}"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Groups related content, metadata, and actions into an elevated visual container.",
+    "whenToUse": [
+      "Dashboard metric cards (dashboard-stat)",
+      "Empty state panels (empty-state)",
+      "E-commerce product items and collection cards",
+      "User profiles and settings group panels"
+    ],
+    "avoid": [
+      "Blocking modal confirmations (use Modal)",
+      "Ephemeral feedback notifications (use Toast)"
+    ],
+    "related": [
+      "dashboard-stat",
+      "empty-state"
+    ]
+  },
+  "source": {
+    "file": "contracts/components/Card.yaml"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "id": "checkbox",
+  "name": "Checkbox",
+  "component": "Checkbox",
+  "category": "selection",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "indicator-box",
+      "checkmark-icon",
+      "label",
+      "description"
+    ],
+    "variants": [
+      "default"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "states": [
+      "default",
+      "hover",
+      "focus",
+      "checked",
+      "indeterminate",
+      "disabled"
+    ],
+    "slots": [
+      "default"
+    ],
+    "accessibility": {
+      "role": "checkbox",
+      "keyboard": {
+        "Space": "Toggles checked state"
+      },
+      "focus": "Focus ring around indicator box",
+      "aria": [
+        {
+          "aria-checked": "when checked or indeterminate"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/checkbox.yaml",
+    "base": {
+      "display": "inline-flex",
+      "align-items": "center",
+      "gap": "{space.2}",
+      "cursor": "pointer",
+      "user-select": "none",
+      "font-family": "inherit"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.base}",
+        "border-color": "{color.border.subtle}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "box-size": "{space.4}",
+        "font-size": "{text.sm}"
+      },
+      "md": {
+        "box-size": "{space.5}",
+        "font-size": "{text.base}"
+      },
+      "lg": {
+        "box-size": "{space.6}",
+        "font-size": "{text.lg}"
+      }
+    },
+    "states": {
+      "hover": {
+        "border-color": "{color.primary.bg}"
+      },
+      "focus": {
+        "outline": "2px solid {color.primary.subtle}"
+      },
+      "checked": {
+        "background-color": "{color.primary.bg}",
+        "border-color": "{color.primary.bg}",
+        "color": "{color.primary.fg}"
+      },
+      "indeterminate": {
+        "background-color": "{color.primary.bg}",
+        "border-color": "{color.primary.bg}"
+      },
+      "disabled": {
+        "opacity": 0.5,
+        "cursor": "not-allowed"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Permits binary toggling (true/false) or multiple independent selections.",
+    "whenToUse": [
+      "Agreeing to terms and conditions",
+      "Multi-item selection in data tables or filter menus"
+    ],
+    "avoid": [
+      "Mutually exclusive options where exactly one must be selected (use Radio)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Checkbox.yaml"
+  }
+}

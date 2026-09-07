@@ -1,0 +1,137 @@
+id: button
+name: Button
+component: Button
+category: actions
+purpose: >
+  Triggers an explicit user action, form submission, or state change.
+
+anatomy:
+  - root
+  - label
+  - icon-start
+  - icon-end
+  - spinner
+
+variants:
+  primary:
+    intent: primary-action
+  secondary:
+    intent: secondary-action
+  outline:
+    intent: subtle-alternative
+  ghost:
+    intent: low-emphasis-action
+  link:
+    intent: inline-navigation
+  destructive:
+    intent: destructive-action
+
+tones:
+  default:
+    intent: neutral-slate-tone
+  primary:
+    intent: brand-primary-tone
+  secondary:
+    intent: supporting-slate-tone
+  info:
+    intent: purple-accent-tone
+  success:
+    intent: positive-confirmation-tone
+  danger:
+    intent: high-risk-rose-tone
+  warning:
+    intent: amber-cautionary-tone
+  dark:
+    intent: deep-obsidian-tone
+  light:
+    intent: soft-subtle-tone
+
+shapes:
+  default:
+    intent: standard-rounded-corners
+  rounded:
+    intent: pill-capsule-corners
+  flat:
+    intent: square-unrounded-corners
+  circle:
+    intent: circular-icon-button
+
+styles:
+  solid:
+    intent: opaque-filled-background
+  gradient:
+    intent: dynamic-linear-gradient
+  light:
+    intent: soft-pastel-tinted
+  outline:
+    intent: transparent-with-colored-border
+  outline-light:
+    intent: transparent-with-subtle-border
+
+sizes:
+  xs:
+    height: 24
+    padding_inline: 8
+    font_size: "var(--qhr-text-xs)"
+  sm:
+    height: 32
+    padding_inline: 12
+    font_size: "var(--qhr-text-sm)"
+  md:
+    height: 40
+    padding_inline: 16
+    font_size: "var(--qhr-text-base)"
+  lg:
+    height: 48
+    padding_inline: 20
+    font_size: "var(--qhr-text-lg)"
+  xl:
+    height: 56
+    padding_inline: 32
+    font_size: "var(--qhr-text-xl)"
+
+states:
+  - default
+  - hover
+  - active
+  - focus
+  - disabled
+  - loading
+
+slots:
+  leadingIcon: optional
+  default: required
+  trailingIcon: optional
+
+accessibility:
+  role: button
+  keyboard: true
+  focusVisible: true
+  keyboard_keys:
+    Enter: "Activates button action"
+    Space: "Activates button action"
+  aria:
+    - aria-disabled: when state=disabled
+    - aria-busy: when state=loading
+
+behavior:
+  loading:
+    disable: true
+    preserve_dimensions: true
+
+ai:
+  purpose: "Primary action control triggering immediate state transition"
+  whenToUse:
+    - "Main page action"
+    - "Form submission (primary)"
+    - "Dismissal or cancellation (secondary)"
+    - "Dangerous or irreversible operations (destructive)"
+  avoid:
+    - "Using multiple primary actions in the same visual container"
+    - "Using as a hyperlink without action (use standard anchor)"
+    - "Displaying static badge status (use Badge instead)"
+  common_patterns:
+    - form-actions
+    - search-toolbar
+    - confirmation
+  composition_notes: "Pair with icon-start or icon-end for visual affordance"

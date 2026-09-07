@@ -1,0 +1,39 @@
+version: 1.0.0
+name: downtown-classic
+description: "Downtown Theme — Belle Époque & Neoclassical Editorial (Inspired by Khedivial Cairo, Talaat Harb & Groppi)"
+school: "Belle Époque / Neoclassical Editorial"
+region: "Downtown / Khedivial Cairo"
+
+overrides:
+  surface:
+    base: "#161311"
+    elevated: "#211D19"
+    muted: "#2D2722"
+    overlay: "rgba(22, 19, 17, 0.88)"
+  content:
+    primary: "#F8F5EE"
+    secondary: "#C9BEAF"
+    brass: "#C29B38"
+    muted: "#8C8071"
+  border:
+    subtle: "rgba(194, 155, 56, 0.16)"
+    strong: "rgba(194, 155, 56, 0.36)"
+  color:
+    primary:
+      bg: "#C29B38"
+      fg: "#161311"
+      border: "#C29B38"
+      hover: "#D6B254"
+    secondary:
+      bg: "#211D19"
+      fg: "#F8F5EE"
+      border: "rgba(194, 155, 56, 0.22)"
+      hover: "#2D2722"
+    accent:
+      bg: "#832729"
+      fg: "#F8F5EE"
+  radius:
+    box: "6px"
+    field: "4px"
+    selector: "4px"
+  border_width: "1px"

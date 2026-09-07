@@ -1,0 +1,74 @@
+component: Pagination
+name: pagination
+category: navigation
+version: 1.1.0
+
+ai:
+  intent: "Structured multi-page navigation and record boundary control"
+  visual_role: "Composable bar with summary, numeric links, and page size picker"
+  density: "comfortable"
+  preferred_when:
+    - "Result sets exceed a single viewport (typically > 12 records)"
+    - "Catalogs, tables, and card registries requiring deterministic page navigation"
+  avoid_when:
+    - "Infinite feeds without discrete page jumps"
+    - "Short lists with fewer than 10 items"
+
+base:
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 100%
+  box-sizing: border-box
+  padding-block: "{space.3}"
+  padding-inline: "{space.4}"
+  background: "{surface.elevated}"
+  border-radius: "{radius.lg}"
+  font-family: "{font.family.body}"
+
+variants:
+  default:
+    border: "1px solid {border.subtle}"
+  outline:
+    border: "1px solid {border.strong}"
+    box-shadow: "{shadow.sm}"
+  ghost:
+    background: "transparent"
+    border: "none"
+    padding: "0"
+  pills:
+    border-radius: "9999px"
+    border: "1px solid {border.subtle}"
+  segmented:
+    background: "{surface.subtle}"
+    border: "1px solid {border.subtle}"
+    gap: "0"
+  compact:
+    justify-content: center
+    gap: "{space.2}"
+  icons-only:
+    gap: "{space.1}"
+
+sizes:
+  sm:
+    font-size: "{text.xs}"
+    gap: "{space.2}"
+  md:
+    font-size: "{text.sm}"
+    gap: "{space.4}"
+  lg:
+    font-size: "{text.base}"
+    gap: "{space.6}"
+
+states:
+  default:
+    opacity: 1
+  hover:
+    border-color: "{color.primary.base}"
+  disabled:
+    opacity: 0.4
+    cursor: not-allowed
+
+structure:
+  base:
+    native_class: qhr-pagination

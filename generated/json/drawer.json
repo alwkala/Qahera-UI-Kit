@@ -1,0 +1,127 @@
+{
+  "id": "drawer",
+  "name": "Drawer",
+  "component": "Drawer",
+  "category": "overlay",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "backdrop",
+      "panel",
+      "header",
+      "title",
+      "close-button",
+      "body",
+      "footer"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-side-drawer"
+      },
+      "elevated": {
+        "intent": "floating-prominent-drawer"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "width": 320
+      },
+      "md": {
+        "width": 420
+      },
+      "lg": {
+        "width": 560
+      },
+      "xl": {
+        "width": 720
+      }
+    },
+    "states": [
+      "closed",
+      "open"
+    ],
+    "slots": {
+      "header": "optional",
+      "body": "required",
+      "footer": "optional"
+    },
+    "accessibility": {
+      "role": "dialog",
+      "keyboard": true,
+      "focusVisible": true,
+      "keyboard_keys": {
+        "Escape": "Closes drawer",
+        "Tab": "Traps focus within drawer contents"
+      },
+      "aria": {
+        "0": {
+          "\"aria-modal\"": "true"
+        },
+        "1": {
+          "\"aria-labelledby\"": "drawer-title"
+        }
+      }
+    }
+  },
+  "recipe": {
+    "file": "recipes/drawer.yaml",
+    "base": {
+      "display": "flex",
+      "flex-direction": "column",
+      "position": "fixed",
+      "top": 0,
+      "bottom": 0,
+      "background-color": "{color.surface.elevated}",
+      "box-shadow": "{shadow.xl}",
+      "z-index": 50
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.elevated}"
+      },
+      "elevated": {
+        "background-color": "{color.surface.base}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "width": "320px"
+      },
+      "md": {
+        "width": "420px"
+      },
+      "lg": {
+        "width": "560px"
+      },
+      "xl": {
+        "width": "720px"
+      }
+    },
+    "states": {
+      "closed": {
+        "visibility": "hidden"
+      },
+      "open": {
+        "visibility": "visible"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays an offcanvas side panel sliding from the viewport edge for navigation, filters, or auxiliary details.",
+    "whenToUse": [
+      "Complex multifaceted filter sidebars on mobile and desktop",
+      "Viewing detailed row entity or item side overview without leaving page",
+      "Mobile global navigation menus"
+    ],
+    "avoid": [
+      "Simple confirmations (use Modal or Toast instead)",
+      "Persistent desktop sidebar navigation (use Nav instead)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Drawer.yaml"
+  }
+}

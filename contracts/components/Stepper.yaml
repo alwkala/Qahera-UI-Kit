@@ -1,0 +1,65 @@
+id: stepper
+name: Stepper
+component: Stepper
+category: navigation
+purpose: >
+  Guides users through a sequential multi-step workflow, depicting completed, active, and upcoming stages.
+
+anatomy:
+  - root
+  - step-list
+  - step-item
+  - step-indicator
+  - step-line
+  - step-label
+  - step-description
+
+variants:
+  horizontal:
+    intent: standard-horizontal-stepper
+  vertical:
+    intent: side-panel-linear-steps
+  numbers:
+    intent: explicit-numeric-indicators
+  dots:
+    intent: compact-dot-stepper
+
+sizes:
+  sm:
+    indicator_size: 24
+    font_size: "var(--qhr-text-xs)"
+  md:
+    indicator_size: 32
+    font_size: "var(--qhr-text-sm)"
+  lg:
+    indicator_size: 40
+    font_size: "var(--qhr-text-base)"
+
+states:
+  - upcoming
+  - current
+  - completed
+  - disabled
+
+slots:
+  steps: required
+  indicator: optional
+  content: optional
+
+accessibility:
+  role: navigation
+  aria:
+    - "aria-label=steps"
+    - "aria-current=step"
+  keyboard: true
+  focusVisible: true
+
+ai:
+  purpose: "Sequential multi-step workflow navigation indicator"
+  whenToUse:
+    - "Multi-step enterprise registration (e.g. Register 2)"
+    - "E-Commerce checkout (Cart -> Shipping -> Payment -> Confirmation)"
+    - "Onboarding wizards and system setup procedures"
+  avoid:
+    - "Continuous percentage metrics without discrete steps (use Progress)"
+    - "Independent tabs without chronological order (use Tabs)"

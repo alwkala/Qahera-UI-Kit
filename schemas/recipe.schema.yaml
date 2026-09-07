@@ -1,0 +1,73 @@
+$schema: "https://json-schema.org/draft/2020-12/schema"
+title: QaheraRecipeSchemaV1
+type: object
+required:
+  - component
+  - base
+  - variants
+  - sizes
+  - states
+  - ai
+properties:
+  component:
+    type: string
+    pattern: "^[A-Z][a-zA-Z0-9]+$"
+    description: "Canonical component name in PascalCase matching contract (e.g. Button, Input, Modal)"
+  name:
+    type: string
+    description: "Optional lower-case alias (e.g. button)"
+  category:
+    type: string
+    enum: [actions, forms, selection, containers, feedback, overlay, navigation, disclosure, data-display, media]
+  extends:
+    type: array
+    items: { type: string }
+    description: "Shared recipe foundations inherited deterministically"
+  base:
+    type: object
+    description: "Base visual declarations shared across all variants and sizes"
+  variants:
+    type: object
+    description: "Visual styles specific to each component variant (e.g. primary, secondary, outline)"
+  sizes:
+    type: object
+    description: "Spatial and typography scale declarations (e.g. sm, md, lg)"
+  states:
+    type: object
+    description: "Interactive visual state overrides (e.g. hover, focus, disabled, loading, invalid, selected)"
+  responsive:
+    type: object
+    description: "Responsive breakpoint overrides using tokenized breakpoints"
+  capabilities:
+    type: object
+    description: "Renderer capability overrides or fallbacks"
+  ai:
+    type: object
+    required:
+      - intent
+      - visual_role
+      - density
+      - preferred_when
+      - avoid_when
+    properties:
+      intent: { type: string }
+      visual_role: { type: string }
+      density: { type: string, enum: [compact, comfortable, spacious] }
+      preferred_when: { type: array, items: { type: string } }
+      avoid_when: { type: array, items: { type: string } }
+  structure:
+    type: object
+    description: "Optional legacy/renderer-level class structure mappings for backward compatibility"
+  contract:
+    type: object
+    description: "Optional inline contract reference snapshot"
+  accessibility:
+    type: object
+  use_cases:
+    type: object
+    description: "Task-driven practical use cases and intent bindings for AI agents and developer references"
+  rtl:
+    type: object
+    properties:
+      supported: { type: boolean }
+      directional_mirroring: { type: boolean }

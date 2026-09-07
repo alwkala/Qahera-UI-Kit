@@ -1,0 +1,29 @@
+<!-- Qahera UI Kit - HTMX Real-time Field Validation Fragment (Static / HTML) -->
+<div class="qhr-form-group qhr-form-group--htmx" id="group-email">
+  <label for="field-email" class="qhr-label">
+    البريد الإلكتروني <span class="qhr-label-required">*</span>
+  </label>
+  
+  <div class="qhr-input-wrapper">
+    <input 
+      type="email" 
+      id="field-email" 
+      name="email" 
+      value="invalid-email"
+      class="qhr-input is-invalid"
+      aria-invalid="true"
+      aria-describedby="msg-email"
+      hx-post="/api/validate/email"
+      hx-trigger="keyup changed delay:400ms"
+      hx-target="#group-email"
+      hx-swap="outerHTML"
+      style="border-color: var(--qhr-color-danger-500);"
+    />
+  </div>
+
+  <div id="msg-email" 
+       class="qhr-form-feedback" 
+       style="font-size: var(--qhr-text-xs); margin-top: var(--qhr-space-1); color: var(--qhr-color-danger-600);">
+    يرجى إدخال عنوان بريد إلكتروني صحيح ومطابق للمواصفات.
+  </div>
+</div>

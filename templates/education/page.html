@@ -1,0 +1,2006 @@
+<!DOCTYPE html>
+<!-- Qahera UI Kit — Enhanced Education & Digital Academy Template (v2.0) -->
+<!-- Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 · Inspired by Digital360° Academy Architecture -->
+<html lang="ar" dir="rtl" data-theme="dark" x-data="{
+  theme: 'dark',
+  viewMode: 'academy', // 'academy' (Landing & Tracks) or 'lms' (Student Portal)
+  activeTab: 'courses',
+  courseFilter: 'all',
+  searchQuery: '',
+  billingCycle: 'annual', // 'monthly' | 'annual'
+  selectedCourseForSyllabus: null,
+  syllabusModal: false,
+  enrollModal: false,
+  enrolledCourseTitle: '',
+  toastMessage: '',
+  toastVisible: false,
+
+  dir: 'rtl',
+  lang: 'ar',
+
+  toggleTheme() {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', this.theme);
+  },
+
+  toggleDir() {
+    this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl';
+    this.lang = this.dir === 'rtl' ? 'ar' : 'en';
+    document.documentElement.setAttribute('dir', this.dir);
+    document.documentElement.setAttribute('lang', this.lang);
+  },
+
+  showToast(msg) {
+    this.toastMessage = msg;
+    this.toastVisible = true;
+    setTimeout(() => { this.toastVisible = false; }, 4000);
+  },
+
+  openEnroll(courseTitle) {
+    this.enrolledCourseTitle = courseTitle;
+    this.enrollModal = true;
+  },
+
+  confirmEnroll() {
+    this.enrollModal = false;
+    this.showToast('تم تسجيل طلبك بنجاح في ' + this.enrolledCourseTitle + ' — سيتواصل معك مستشارك الأكاديمي.');
+  },
+
+  openSyllabus(course) {
+    this.selectedCourseForSyllabus = course;
+    this.syllabusModal = true;
+  },
+
+  /* 4 Canonical Learning Tracks (Digital360 Architecture) */
+  tracks: [
+    {
+      id: 'digital-arts',
+      title: 'الفنون الرقمية والواجهات البصرية',
+      subtitle: 'Digital Arts & UI Media Creation',
+      desc: 'من القصة البصرية والمونتاج إلى هندسة الواجهات الرقمية وتوليد الميديا الإبداعية بأدوات الذكاء الاصطناعي.',
+      category: 'arts',
+      color: 'var(--qhr-color-purple-500, #a855f7)',
+      price: '1,200 ج.م',
+      duration: '٤ أسابيع',
+      hours: '١٨ ساعة تطبيقية',
+      deliverable: 'مشروع Portfolio + هوية كاملة',
+      skills: ['القصة المصورة', 'مونتاج الفيديو', 'الهوية البصرية', 'تصميم UI/UX', 'توليد الميديا بالـ AI', 'الموشن جرافيك'],
+      instructor: 'م. وائل صلاح الدين',
+      role: 'استشاري نظم ومعماري واجهات',
+      avatarText: 'و.ص'
+    },
+    {
+      id: 'ai-agents',
+      title: 'الذكاء الاصطناعي وهندسة البرومبت',
+      subtitle: 'AI Engineering & Prompt Architecture',
+      desc: 'إتقان هندسة الأوامر المتقدمة، بناء الوكلاء المستقلين، دمج نماذج LLM مع النظم المؤسسية وVibe Coding العملي.',
+      category: 'ai',
+      color: 'var(--qhr-color-primary, #0ea5e9)',
+      price: '1,450 ج.م',
+      duration: '٤ أسابيع',
+      hours: '٢٢ ساعة تطبيقية',
+      deliverable: 'وكيل ذكي مخصص + سياق ذاكرة',
+      skills: ['هندسة الأوامر المتقدمة', 'وكلاء الذكاء الاصطناعي', 'تطوير Vibe Coding', 'معمارية الذاكرة Context', 'تكامل APIs', 'Automated Workflows'],
+      instructor: 'م. مروان شريف',
+      role: 'كبير مهندسي الذكاء الاصطناعي',
+      avatarText: 'م.ش'
+    },
+    {
+      id: 'tech-business',
+      title: 'التكنولوجيا وريادة الأعمال الرقمية',
+      subtitle: 'Tech Business & Digital Ventures',
+      desc: 'من الفكرة حتى الإطلاق التجاري — حل المشكلات بالتفكير التصميمي، Business Model Canvas، واكتشاف العملاء وتسريع النمو.',
+      category: 'business',
+      color: 'var(--qhr-color-emerald-500, #10b981)',
+      price: '1,200 ج.م',
+      duration: '٤ أسابيع',
+      hours: '١٦ ساعة تطبيقية',
+      deliverable: 'خطة إطلاق MVP + نموذج العمل',
+      skills: ['التفكير التصميمي', 'Business Model Canvas', 'تسعير المنتجات الرقمية', 'اكتشاف العميل', 'عرض الاستثمار Pitching', 'إدارة المشروعات الرشيقة'],
+      instructor: 'د. طارق مراد',
+      role: 'مستشار ريادة الأعمال الرقمية',
+      avatarText: 'ط.م'
+    },
+    {
+      id: 'growth-marketing',
+      title: 'التسويق الرقمي وقمع التحويل (CRO)',
+      subtitle: 'Digital Growth & Performance Marketing',
+      desc: 'بناء مسارات الاستحواذ، قمع التحويل عالي الكفاءة، تحسين معدل التحويل CRO، واستراتيجيات النمو متعددة القنوات.',
+      category: 'marketing',
+      color: 'var(--qhr-color-amber-500, #f59e0b)',
+      price: '1,200 ج.م',
+      duration: '٤ أسابيع',
+      hours: '٢٠ ساعة تطبيقية',
+      deliverable: 'حملة رقمية متكاملة + تقرير ROI',
+      skills: ['أبحاث السوق الرقمي', 'قمع التحويل الفائق', 'تحسين محركات البحث SEO', 'الإعلانات الممولة Meta & Google', 'تحليلات الأداء Telemetry', 'Copywriting الإقناعي'],
+      instructor: 'سارة عبد الله',
+      role: 'قائدة استراتيجيات النمو الرقمي',
+      avatarText: 'س.ع'
+    }
+  ],
+
+  /* 12-Week Marathon Curriculum Roadmap */
+  marathonMonths: [
+    {
+      num: '01',
+      title: 'أسس الإبداع والهوية الرقمية',
+      domain: 'الفنون الرقمية والمعمارية',
+      color: 'var(--qhr-color-purple-500, #a855f7)',
+      weeks: [
+        { week: 'الأسبوع 1', title: 'القصة البصرية والتصميم المعماري', output: '✦ Storyboard & Style Tile' },
+        { week: 'الأسبوع 2', title: 'هندسة الميديا وتخطيط المشاهد بالذكاء الاصطناعي', output: '✦ مشاهد المشروع المصممة' },
+        { week: 'الأسبوع 3', title: 'التصوير الاحترافي وتكامل الإضاءة', output: '✦ Video Raw Footage' },
+        { week: 'الأسبوع 4', title: 'أساسيات المونتاج الصوتي والمرئي', output: '✦ فيديو احترافي جاهز للنشر' }
+      ]
+    },
+    {
+      num: '02',
+      title: 'مهارات الإنتاج بالذكاء الاصطناعي',
+      domain: 'الذكاء الاصطناعي وتوليد الأكواد',
+      color: 'var(--qhr-color-primary, #0ea5e9)',
+      weeks: [
+        { week: 'الأسبوع 5', title: 'هندسة الأوامر المتقدمة والبرومبت الهيكلي', output: '✦ مكتبة برومبت مؤسسية' },
+        { week: 'الأسبوع 6', title: 'توليد الصور والهويات الاصطناعية Midjourney/Flux', output: '✦ معرض أصول رقمية متكامل' },
+        { week: 'الأسبوع 7', title: 'برمجة Vibe Coding وبناء النماذج الأولية', output: '✦ تطبيق تفاعلي مبني بالـ AI' },
+        { week: 'الأسبوع 8', title: 'بناء الوكلاء الأذكياء وأتمتة المهام اليومية', output: '✦ وكيل رقمي متصل بالسياق' }
+      ]
+    },
+    {
+      num: '03',
+      title: 'التسويق التجاري والإطلاق في السوق',
+      domain: 'ريادة الأعمال والنمو السريع',
+      color: 'var(--qhr-color-emerald-500, #10b981)',
+      weeks: [
+        { week: 'الأسبوع 9', title: 'بناء نموذج العمل واختبار السوق الأولي', output: '✦ Lean Canvas للمشروع' },
+        { week: 'الأسبوع 10', title: 'صفحات الهبوط وقمع المبيعات عالي التحويل', output: '✦ صفحة هبوط نشطة وجاهزة' },
+        { week: 'الأسبوع 11', title: 'الحملات الإعلانية الممولة وإدارة الميزانية', output: '✦ خطة حملة بتقرير العائد' },
+        { week: 'الأسبوع 12', title: 'معرض هاكاثون التخرج وعرض المشاريع على المستثمرين', output: '✦ Portfolio نهائي + شهادة معتمدة' }
+      ]
+    }
+  ],
+
+  /* Enrolled Courses for LMS View */
+  courses: [
+    {
+      id: 'c1',
+      title: 'هندسة نظم التصميم المعمارية للذكاء الاصطناعي',
+      category: 'arts',
+      categoryLabel: 'نظم التصميم',
+      instructor: 'م. وائل صلاح الدين',
+      instructorInitials: 'و.ص',
+      duration: '١٨ ساعة',
+      level: 'متقدم',
+      completedLessons: 20,
+      totalLessons: 24,
+      progress: 85,
+      syllabus: [
+        { title: 'مدخل إلى ميثاق الحوكمة وتوكنات قاهرة المعمارية', duration: '45 دقيقة', completed: true },
+        { title: 'بناء الحدود الصلبة لعتبة 0kb RSC ومكونات الخادم', duration: '60 دقيقة', completed: true },
+        { title: 'معايير التماثل الاتجاهي 100% Logical CSS للأزرار والقوائم', duration: '50 دقيقة', completed: true },
+        { title: 'بناء الأنماط المركبة واختبارات الوصولية WCAG 2.1 AA', duration: '75 دقيقة', completed: false }
+      ]
+    },
+    {
+      id: 'c2',
+      title: 'تطوير تطبيقات الويب فائقة الأداء بـ React 19 و Next.js 16',
+      category: 'ai',
+      categoryLabel: 'تطوير الواجهات',
+      instructor: 'سارة عبد الله',
+      instructorInitials: 'س.ع',
+      duration: '٢٦ ساعة',
+      level: 'متوسط',
+      completedLessons: 19,
+      totalLessons: 32,
+      progress: 60,
+      syllabus: [
+        { title: 'ميزات React 19 الجديدة ودوال الإجراءات Server Actions', duration: '55 دقيقة', completed: true },
+        { title: 'إدارة الحالة المتقدمة بدون أطر ثقيلة وتخفيف حزم العميل', duration: '65 دقيقة', completed: true },
+        { title: 'تحسين أداء مؤشرات الويب الأساسية Core Web Vitals', duration: '70 دقيقة', completed: false }
+      ]
+    },
+    {
+      id: 'c3',
+      title: 'بناء النوى البرمجية الآمنة وقواعد الحوكمة الرقمية بـ PHP 8',
+      category: 'business',
+      categoryLabel: 'الأنظمة الخلفية',
+      instructor: 'د. طارق مراد',
+      instructorInitials: 'ط.م',
+      duration: '١٤ ساعة',
+      level: 'متقدم',
+      completedLessons: 5,
+      totalLessons: 18,
+      progress: 30,
+      syllabus: [
+        { title: 'تصميم هيكل المونوث المعياري Modular Monolith', duration: '50 دقيقة', completed: true },
+        { title: 'عزل مساحات الأسماء وإدارة الصلاحيات الصارمة RBAC', duration: '60 دقيقة', completed: false },
+        { title: 'تحسين استعلامات قواعد البيانات وإدارة الذاكرة المؤقتة', duration: '45 دقيقة', completed: false }
+      ]
+    },
+    {
+      id: 'c4',
+      title: 'تطوير واجهات وتطبيقات الذكاء الاصطناعي التوليدي LLM',
+      category: 'ai',
+      categoryLabel: 'الذكاء الاصطناعي',
+      instructor: 'م. مروان شريف',
+      instructorInitials: 'م.ش',
+      duration: '٢٠ ساعة',
+      level: 'متقدم',
+      completedLessons: 12,
+      totalLessons: 16,
+      progress: 75,
+      syllabus: [
+        { title: 'أساسيات هندسة الأوامر وهيكلة ردود JSON الدلالية', duration: '40 دقيقة', completed: true },
+        { title: 'تكامل واجهات برمجة التطبيقات وتدفق النصوص Streaming UI', duration: '55 دقيقة', completed: true },
+        { title: 'بناء عملاء ومساعدين أذكياء مخصصين لنظم إدارة الأعمال', duration: '80 دقيقة', completed: false }
+      ]
+    }
+  ],
+
+  filteredCourses() {
+    return this.courses.filter(c => {
+      const matchCat = this.courseFilter === 'all' || c.category === this.courseFilter;
+      const matchQuery = !this.searchQuery ? true : (c.title.includes(this.searchQuery) || c.instructor.includes(this.searchQuery) || c.categoryLabel.includes(this.searchQuery));
+      return matchCat && matchQuery;
+    });
+  },
+
+  /* Track Orientation Assessment (Questionnaire Pattern) */
+  quiz: {
+    currentStep: 1,
+    totalSteps: 3,
+    answers: { 1: null, 2: null, 3: null },
+    isSubmitted: false,
+    recommendedTrack: '',
+    scoreText: '',
+    questions: [
+      {
+        id: 1,
+        title: 'ما هو هدفك المهني الرئيسي خلال الأشهر الستة القادمة؟',
+        desc: 'حدد المسار الأقرب لطموحك لمساعدتنا في توجيهك للمسار الأمثل.',
+        options: [
+          { key: 'A', text: 'بناء واجهات برمجية متقدمة وتطبيقات تفاعلية عالية الجودة', target: 'digital-arts' },
+          { key: 'B', text: 'توظيف أدوات الذكاء الاصطناعي وبناء وكلاء أذكياء لأتمتة العمل', target: 'ai-agents' },
+          { key: 'C', text: 'إطلاق مشروع ناشئ أو استشارات تقنية متخصصة وزيادة الدخل', target: 'tech-business' },
+          { key: 'D', text: 'إتقان مسارات الاستحواذ والتسويق عالي التحويل للمنتجات الرقمية', target: 'growth-marketing' }
+        ]
+      },
+      {
+        id: 2,
+        title: 'ما هي خلفيتك التقنية الحالية؟',
+        desc: 'لا تشترط معرفة مسبقة معقدة؛ المسارات مصممة من الصفر حتى الاحتراف.',
+        options: [
+          { key: 'A', text: 'مبتدئ تماماً وأرغب في تأسيس صلب دون تعقيد نظري', target: 'foundation' },
+          { key: 'B', text: 'مصمم أو صانع محتوى أرغب في تعزيز مهاراتي بالذكاء الاصطناعي', target: 'digital-arts' },
+          { key: 'C', text: 'مطور واجهات أو برمجيات أريد هندسة نظم وتوليد الكود بالـ AI', target: 'ai-agents' },
+          { key: 'D', text: 'رائد أعمال أو مدير منتج أسعى لفهم التكنولوجيا وقيادتها', target: 'tech-business' }
+        ]
+      },
+      {
+        id: 3,
+        title: 'كيف تفضل التطبيق خلال المعسكر؟',
+        desc: 'نظام التعليم في الأكاديمية يعتمد بالكامل على المشاريع الحية.',
+        options: [
+          { key: 'A', text: 'العمل على مشروع تطبيقي حقيقي (Portfolio) يُعرض على أصحاب العمل', target: 'all' },
+          { key: 'B', text: 'جلسات تفاعلية حية وإرشاد شخصي أسبوعي (1-on-1 Mentorship)', target: 'pro' },
+          { key: 'C', text: 'حل تحديات برمجية وهندسية وبناء نماذج أولية قابلة للإنتاج', target: 'ai-agents' }
+        ]
+      }
+    ]
+  },
+
+  selectAnswer(step, key) {
+    if (this.quiz.isSubmitted) return;
+    this.quiz.answers[step] = key;
+  },
+
+  submitQuiz() {
+    const a1 = this.quiz.answers[1];
+    if (a1 === 'B') {
+      this.quiz.recommendedTrack = 'مسار الذكاء الاصطناعي وهندسة البرومبت';
+      this.quiz.scoreText = 'توافق 98% — يوصى بالانضمام لماراثون الذكاء الاصطناعي وبناء الوكلاء';
+    } else if (a1 === 'C') {
+      this.quiz.recommendedTrack = 'مسار التكنولوجيا وريادة الأعمال الرقمية';
+      this.quiz.scoreText = 'توافق 95% — يوصى بمسار Tech Business لبناء نموذج العمل وإطلاق مشروعك';
+    } else if (a1 === 'D') {
+      this.quiz.recommendedTrack = 'مسار التسويق الرقمي وقمع التحويل';
+      this.quiz.scoreText = 'توافق 96% — يوصى بمسار Growth Marketing للتفوق في قمع المبيعات';
+    } else {
+      this.quiz.recommendedTrack = 'مسار الفنون الرقمية وهندسة الواجهات';
+      this.quiz.scoreText = 'توافق 94% — يوصى بمسار Digital Arts لصناعة المحتوى وتطوير الواجهات';
+    }
+    this.quiz.isSubmitted = true;
+  },
+
+  resetQuiz() {
+    this.quiz.currentStep = 1;
+    this.quiz.answers = { 1: null, 2: null, 3: null };
+    this.quiz.isSubmitted = false;
+    this.quiz.recommendedTrack = '';
+    this.quiz.scoreText = '';
+  }
+}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أكاديمية قاهرة الرقمية — مهاراتك المعمارية لمستقبل التقنية</title>
+  
+  <!-- الخطوط القياسية المعتمدة: Alexandria للعناوين والهوية، و Cairo للنصوص والواجهة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <script defer src="../../behavior/modal.js"></script>
+  <script defer src="../../behavior/tabs.js"></script>
+  <script defer src="../../behavior/accordion.js"></script>
+  <script defer src="../../behavior/back-to-top.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --q-font-heading: 'Alexandria', 'Cairo', sans-serif;
+      --q-font-body: 'Cairo', 'Alexandria', sans-serif;
+      --q-font-mono: 'JetBrains Mono', monospace;
+
+      /* النمط الداكن الفاخر للواجهة المعمارية */
+      --q-bg: #07090e;
+      --q-surface: #0d121f;
+      --q-surface-elevated: #131a2b;
+      --q-surface-card: #0f1626;
+      --q-border: rgba(255, 255, 255, 0.08);
+      --q-border-subtle: rgba(255, 255, 255, 0.05);
+      --q-border-strong: rgba(255, 255, 255, 0.16);
+
+      --q-text-primary: #f8fafc;
+      --q-text-secondary: #94a3b8;
+      --q-text-muted: #64748b;
+
+      --q-gold: #d4af37;
+      --q-gold-hover: #b5952f;
+      --q-gold-subtle: rgba(212, 175, 55, 0.12);
+      --q-gold-glow: rgba(212, 175, 55, 0.25);
+      --q-gold-gradient: linear-gradient(135deg, #fce293 0%, #d4af37 50%, #996e19 100%);
+
+      --q-accent-red: #e11d48;
+      --q-accent-emerald: #10b981;
+      --q-radius-pill: 9999px;
+      --q-card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] {
+      --q-bg: #f8fafc;
+      --q-surface: #ffffff;
+      --q-surface-elevated: #f1f5f9;
+      --q-surface-card: #ffffff;
+      --q-border: #e2e8f0;
+      --q-border-subtle: #f8fafc;
+      --q-border-strong: #cbd5e1;
+
+      --q-text-primary: #0f172a;
+      --q-text-secondary: #334155;
+      --q-text-muted: #64748b; /* Accessible WCAG 2.1 AA slate-500 */
+
+      --q-gold: #b45309;
+      --q-gold-hover: #92400e;
+      --q-gold-subtle: rgba(180, 83, 9, 0.08);
+      --q-gold-glow: rgba(180, 83, 9, 0.15);
+      --q-gold-gradient: linear-gradient(135deg, #78350f 0%, #b45309 60%, #92400e 100%);
+
+      --q-card-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: var(--q-bg);
+      color: var(--q-text-primary);
+      font-family: var(--q-font-body);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      transition: background-color 200ms ease, color 200ms ease;
+    }
+
+    h1, h2, h3, h4, .font-heading {
+      font-family: var(--q-font-heading);
+    }
+
+    /* Top Sticky Navbar */
+    .edu-navbar {
+      background: rgba(13, 18, 31, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-block-end: 1px solid var(--q-border);
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 100;
+      transition: background-color 200ms ease;
+    }
+    [data-theme="light"] .edu-navbar {
+      background: rgba(255, 255, 255, 0.94);
+      border-block-end-color: var(--q-border);
+    }
+
+    .navbar-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: var(--qhr-space-3, 12px) var(--qhr-space-6, 24px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .navbar-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--q-gold-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px var(--q-gold-glow);
+      color: #000;
+      font-weight: 900;
+      font-family: var(--q-font-heading);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .brand-text-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: var(--q-gold-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--q-text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .navbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Mode Switcher (Academy vs LMS) */
+    .view-switcher {
+      display: inline-flex;
+      background: var(--q-surface-elevated);
+      padding: 4px;
+      border-radius: var(--q-radius-pill);
+      border: 1px solid var(--q-border);
+      gap: 4px;
+      white-space: nowrap;
+    }
+    [data-theme="light"] .view-switcher {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+    }
+
+    .view-switcher-btn {
+      background: transparent;
+      border: none;
+      color: var(--q-text-secondary);
+      padding: 7px 16px;
+      border-radius: var(--q-radius-pill);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 180ms ease;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    .view-switcher-btn svg {
+      flex-shrink: 0;
+    }
+
+    /* Active State in Dark Mode */
+    .view-switcher-btn.active {
+      background: var(--q-gold);
+      color: #000;
+      box-shadow: 0 2px 8px var(--q-gold-glow);
+    }
+
+    /* Active State in Light Mode — Crisp Obsidian Navy */
+    [data-theme="light"] .view-switcher-btn.active {
+      background: #0f172a;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.2);
+    }
+    [data-theme="light"] .view-switcher-btn:not(.active) {
+      color: #475569;
+    }
+    [data-theme="light"] .view-switcher-btn:not(.active):hover {
+      color: #0f172a;
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    /* Responsive Navbar Breakpoint (< 860px) */
+    @media (max-width: 860px) {
+      .navbar-inner {
+        flex-wrap: wrap;
+        padding: 10px 16px;
+        gap: 8px 12px;
+      }
+      .brand-sub {
+        display: none; /* Hide subtitle on mobile for cleanliness */
+      }
+      .brand-title {
+        font-size: 1.1rem;
+      }
+      .brand-badge {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
+      .view-switcher {
+        width: 100%;
+        order: 3; /* Spans full width as dedicated row */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 3px;
+        margin-block-start: 4px;
+      }
+      .view-switcher-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 8px 6px;
+        font-size: 0.82rem;
+        min-height: 36px;
+      }
+    }
+
+    /* Main Container */
+    .edu-main {
+      max-width: 1320px;
+      width: 100%;
+      margin: 0 auto;
+      padding: var(--qhr-space-8, 32px) var(--qhr-space-6, 24px);
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    @media (max-width: 640px) {
+      .edu-main {
+        padding: var(--qhr-space-5, 20px) var(--qhr-space-3, 12px);
+        gap: 32px;
+      }
+    }
+
+    /* Hero Section (Digital360 Architecture) */
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+      padding: var(--qhr-space-8, 32px) 0;
+    }
+    @media (max-width: 992px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--q-gold-subtle);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--q-gold);
+      padding: 6px 14px;
+      border-radius: var(--q-radius-pill);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-block-end: 18px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.25;
+      margin: 0 0 20px 0;
+      letter-spacing: -0.02em;
+    }
+    .hero-title .highlight {
+      background: var(--q-gold-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.08rem;
+      line-height: 1.75;
+      color: var(--q-text-secondary);
+      margin: 0 0 28px 0;
+      max-width: 580px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-block-end: 32px;
+    }
+
+    /* Telemetry Hero Stats */
+    .hero-stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding-block-start: 24px;
+      border-block-start: 1px solid var(--q-border);
+    }
+    @media (max-width: 640px) {
+      .hero-stats-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .hero-stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-stat-number {
+      font-family: var(--q-font-heading);
+      font-size: 1.65rem;
+      font-weight: 900;
+      color: var(--q-text-primary);
+    }
+    .hero-stat-label {
+      font-size: 0.8rem;
+      color: var(--q-text-muted);
+      font-weight: 600;
+    }
+
+    /* Hero Visual Card */
+    .hero-card-featured {
+      background: var(--q-surface);
+      border: 1px solid var(--q-border-strong);
+      border-radius: var(--qhr-radius-2xl, 24px);
+      padding: 32px;
+      box-shadow: var(--q-card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card-featured::before {
+      content: '';
+      position: absolute;
+      inset-inline-end: -80px;
+      inset-block-start: -80px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--q-gold-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .marathon-card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(225, 29, 72, 0.12);
+      border: 1px solid rgba(225, 29, 72, 0.3);
+      color: var(--q-accent-red);
+      padding: 5px 12px;
+      border-radius: var(--q-radius-pill);
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-block-end: 14px;
+    }
+
+    .hero-card-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 0 0 8px 0;
+    }
+    .hero-card-sub {
+      font-size: 0.9rem;
+      color: var(--q-text-secondary);
+      line-height: 1.6;
+      margin: 0 0 20px 0;
+    }
+
+    .skill-pills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-block-end: 24px;
+    }
+    .skill-pill {
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border);
+      color: var(--q-text-secondary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: var(--q-radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-block-end: 32px;
+    }
+    .section-header.text-center {
+      text-align: center;
+      align-items: center;
+    }
+    .section-eyebrow {
+      color: var(--q-gold);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.3;
+    }
+    .section-sub {
+      font-size: 0.95rem;
+      color: var(--q-text-secondary);
+      max-width: 640px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Track Cards Grid */
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 24px;
+    }
+    .track-card {
+      background: var(--q-surface);
+      border: 1px solid var(--q-border);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: var(--q-card-shadow);
+      transition: all 200ms ease;
+      position: relative;
+    }
+    .track-card:hover {
+      border-color: var(--q-gold);
+      transform: translateY(-4px);
+    }
+    .track-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .track-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--q-gold);
+    }
+    .track-price-pill {
+      background: var(--q-gold-subtle);
+      color: var(--q-gold);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 4px 12px;
+      border-radius: var(--q-radius-pill);
+    }
+
+    .track-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0 0 6px 0;
+    }
+    .track-subtitle {
+      font-size: 0.82rem;
+      color: var(--q-text-muted);
+      font-weight: 600;
+      margin: 0 0 12px 0;
+    }
+    .track-desc {
+      font-size: 0.9rem;
+      color: var(--q-text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .track-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-block: 14px;
+    }
+    .track-chip-item {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: var(--q-surface-elevated);
+      color: var(--q-text-secondary);
+      border: 1px solid var(--q-border-subtle);
+    }
+
+    .track-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 12px;
+      border-block: 1px solid var(--q-border-subtle);
+      font-size: 0.82rem;
+      color: var(--q-text-muted);
+      font-weight: 600;
+    }
+
+    /* Marathon Roadmap (12 Weeks) */
+    .marathon-timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 992px) {
+      .marathon-timeline-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .marathon-month-card {
+      background: var(--q-surface);
+      border: 1px solid var(--q-border);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      box-shadow: var(--q-card-shadow);
+    }
+    .month-header-strip {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-block-end: 14px;
+      border-block-end: 1px solid var(--q-border);
+    }
+    .month-badge-digit {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border-strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--q-font-heading);
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--q-gold);
+    }
+    .month-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .month-name {
+      font-weight: 800;
+      font-size: 1rem;
+      margin: 0;
+    }
+    .month-domain-sub {
+      font-size: 0.78rem;
+      color: var(--q-text-muted);
+      font-weight: 600;
+    }
+
+    .weeks-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .week-card-row {
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-border-subtle);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .week-header-sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--q-gold);
+    }
+    .week-skill-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--q-text-primary);
+    }
+    .week-output-badge {
+      font-size: 0.76rem;
+      color: var(--q-accent-emerald);
+      font-weight: 600;
+    }
+
+    /* Pricing & Membership */
+    .pricing-toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-block-end: 32px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+    .pricing-card {
+      background: var(--q-surface);
+      border: 1px solid var(--q-border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: var(--q-card-shadow);
+      position: relative;
+    }
+    .pricing-card.popular {
+      border-color: var(--q-gold);
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.04) 0%, var(--q-surface) 100%);
+    }
+    .popular-ribbon {
+      position: absolute;
+      inset-block-start: -12px;
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      background: var(--q-gold-gradient);
+      color: #000;
+      font-size: 0.75rem;
+      font-weight: 900;
+      padding: 4px 14px;
+      border-radius: var(--q-radius-pill);
+      box-shadow: 0 4px 10px var(--q-gold-glow);
+    }
+
+    .plan-price-num {
+      font-family: var(--q-font-heading);
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--q-text-primary);
+    }
+    .plan-currency {
+      font-size: 1rem;
+      color: var(--q-text-muted);
+      font-weight: 600;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--q-text-secondary);
+    }
+    .feature-icon {
+      color: var(--q-accent-emerald);
+      flex-shrink: 0;
+    }
+
+    /* Lead Instructor Section */
+    .instructor-card {
+      background: var(--q-surface);
+      border: 1px solid var(--q-border-strong);
+      border-radius: var(--qhr-radius-2xl, 24px);
+      padding: 36px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 36px;
+      align-items: center;
+      box-shadow: var(--q-card-shadow);
+    }
+    @media (max-width: 840px) {
+      .instructor-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+    .instructor-avatar-large {
+      width: 180px;
+      height: 180px;
+      border-radius: 28px;
+      margin: 0 auto;
+      background: var(--q-surface-elevated);
+      border: 3px solid var(--q-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px var(--q-gold-glow);
+      color: var(--q-gold);
+    }
+    .instructor-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding-block: 20px;
+      margin-block: 20px;
+      border-block: 1px solid var(--q-border);
+    }
+    @media (max-width: 600px) {
+      .instructor-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Questionnaire Quiz */
+    .quiz-card-wrapper {
+      background: var(--q-surface);
+      border: 1px solid var(--q-border-strong);
+      border-radius: var(--qhr-radius-2xl, 24px);
+      padding: 36px;
+      box-shadow: var(--q-card-shadow);
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .quiz-choice-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-radius: 14px;
+      background: var(--q-surface-elevated);
+      border: 1.5px solid var(--q-border);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .quiz-choice-item:hover {
+      border-color: var(--q-gold);
+      transform: translateX(-3px);
+    }
+    .quiz-choice-item.selected {
+      border-color: var(--q-gold);
+      background: var(--q-gold-subtle);
+    }
+
+    /* Final CTA */
+    .final-cta-card {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, var(--q-surface) 100%);
+      border: 1px solid var(--q-gold);
+      border-radius: var(--qhr-radius-2xl, 24px);
+      padding: 48px 36px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      box-shadow: var(--q-card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Toast Notification */
+    .edu-toast {
+      position: fixed;
+      inset-block-end: 24px;
+      inset-inline-end: 24px;
+      background: var(--q-surface-elevated);
+      border: 1px solid var(--q-gold);
+      padding: 14px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. HEADER / NAVBAR -->
+  <header class="edu-navbar">
+    <div class="navbar-inner">
+      <!-- Brand Logo -->
+      <div class="navbar-brand-row">
+        <a href="#" class="brand-link" aria-label="أكاديمية قاهرة الرقمية">
+          <div class="brand-badge">360</div>
+          <div class="brand-text-wrap">
+            <span class="brand-title">أكاديمية قاهرة 360°</span>
+            <span class="brand-sub">بناء المهارات التي تصنع المستقبل</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- View Switcher (Landing vs Student LMS) -->
+      <div class="view-switcher" role="tablist" aria-label="طريقة العرض">
+        <button 
+          type="button" 
+          class="view-switcher-btn" 
+          :class="{ 'active': viewMode === 'academy' }" 
+          @click="viewMode = 'academy'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>الأكاديمية والماراثون</span>
+        </button>
+        <button 
+          type="button" 
+          class="view-switcher-btn" 
+          :class="{ 'active': viewMode === 'lms' }" 
+          @click="viewMode = 'lms'">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <span>بوابة الطالب (LMS)</span>
+        </button>
+      </div>
+
+      <!-- Controls: Theme Toggle & Quick Action -->
+      <div class="navbar-actions">
+        <!-- زر تبديل الاتجاه واللغة RTL / LTR -->
+        <button 
+          type="button" 
+          class="qhr-btn qhr-btn--ghost qhr-btn--sm" 
+          @click="toggleDir()" 
+          :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+          aria-label="تبديل اتجاه الصفحة واللغة"
+          style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </button>
+
+        <!-- زر تبديل الوضع النهاري / الداكن (أيقونة فقط بدون نص) -->
+        <button 
+          type="button" 
+          class="qhr-btn qhr-btn--ghost qhr-btn--sm" 
+          @click="toggleTheme()" 
+          :title="theme === 'dark' ? 'تفعيل الوضع النهاري' : 'تفعيل الوضع الليلي'"
+          aria-label="تبديل مظهر الواجهة"
+          style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;">
+          <svg x-show="theme === 'dark'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg x-show="theme === 'light'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <a href="#tracks" class="qhr-btn qhr-btn--primary qhr-btn--sm" x-show="viewMode === 'academy'">
+          <span>المسارات</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================================================================= -->
+  <!-- VIEW 1: ACADEMY & MARATHON LANDING (Digital360° Architecture)     -->
+  <!-- ================================================================= -->
+  <main class="edu-main" x-show="viewMode === 'academy'">
+
+    <!-- SECTION 1: HERO & MARATHON HOOKS -->
+    <section class="hero-container">
+      <div>
+        <div class="hero-eyebrow">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+          <span>دفعة خريف 2026 مفتوحة الآن للتسجيل</span>
+        </div>
+
+        <h1 class="hero-title">
+          لا نعلّم الأدوات فحسب...<br>
+          <span class="highlight">نبني المهارات الهندسية</span><br>
+          التي تصنع المستقبل
+        </h1>
+
+        <p class="hero-desc">
+          أكاديمية رقمية معمارية متخصصة في التدريب العملي المتقدم. من نظم التصميم المعتمدة وهندسة الذكاء الاصطناعي التوليدي، إلى ريادة الأعمال وبناء المشاريع الحية القابلة للتوظيف الفوري.
+        </p>
+
+        <div class="hero-cta-group">
+          <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--lg" @click="openEnroll('ماراثون المهارات الرقمية الكامل')">
+            <span>احجز مقعدك في الماراثون</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+          <a href="#assessment" class="qhr-btn qhr-btn--outline qhr-btn--lg">
+            <span>اختبار تحديد المسار</span>
+          </a>
+        </div>
+
+        <!-- Telemetry Stats Strip -->
+        <div class="hero-stats-strip">
+          <div class="hero-stat-item">
+            <span class="hero-stat-number">+10,000</span>
+            <span class="hero-stat-label">متدرب وخريج</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-number">+20</span>
+            <span class="hero-stat-label">سنة خبرة استشارية</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-number">94%</span>
+            <span class="hero-stat-label">نسبة نجاح التوظيف</span>
+          </div>
+          <div class="hero-stat-item">
+            <span class="hero-stat-number">100%</span>
+            <span class="hero-stat-label">تطبيق عملي حي</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="hero-card-featured">
+        <div class="marathon-card-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          <span>ماراثون المهارات الرقمية المتقدمة</span>
+        </div>
+
+        <h2 class="hero-card-title">12 أسبوعاً · 12 مهارة عملية</h2>
+        <p class="hero-card-sub">برنامج مكثف هجين يجمع 4 مسارات تخصصية، ورش عمل أسبوعية مباشرة، وبناء ملف أعمال (Portfolio) متكامل يعرض في هاكاثون التخرج.</p>
+
+        <div class="skill-pills-wrap">
+          <span class="skill-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+            <span>إنتاج الفيديو والميديا</span>
+          </span>
+          <span class="skill-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <span>نظم التصميم UI/UX</span>
+          </span>
+          <span class="skill-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"></path><path d="M12 6v6l4 2"></path></svg>
+            <span>هندسة الـ AI Agents</span>
+          </span>
+          <span class="skill-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>برمجة Vibe Coding</span>
+          </span>
+          <span class="skill-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path></svg>
+            <span>ريادة الأعمال الرقمية</span>
+          </span>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-block-start: 16px; border-block-start: 1px solid var(--q-border);">
+          <div style="display: flex; flex-direction: column;">
+            <span style="font-size: 0.8rem; color: var(--q-text-muted); font-weight: 600;">الدفعة القادمة:</span>
+            <span style="font-size: 0.95rem; font-weight: 800; color: var(--q-gold);">15 أكتوبر 2026 (متبقي 7 مقاعد)</span>
+          </div>
+          <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" @click="openEnroll('الماراثون الكامل')">
+            <span>انضم الآن</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: 4 CANONICAL TRACKS -->
+    <section id="tracks">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">المسارات الأربعة المتكاملة</span>
+        <h2 class="section-title">كتالوج المسارات والدورات التخصصية</h2>
+        <p class="section-sub">كل مسار صُمم كوحدة معمارية مستقلة لمدة 4 أسابيع؛ يمكنك دراسة مسار منفرد أو الالتحاق بالماراثون الشامل.</p>
+      </div>
+
+      <div class="tracks-grid">
+        <template x-for="track in tracks" :key="track.id">
+          <div class="track-card">
+            <div>
+              <div class="track-top-bar">
+                <div class="track-icon-box">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                </div>
+                <span class="track-price-pill" x-text="track.price"></span>
+              </div>
+
+              <h3 class="track-name" style="margin-block-start: 14px;" x-text="track.title"></h3>
+              <div class="track-subtitle" x-text="track.subtitle"></div>
+              <p class="track-desc" x-text="track.desc"></p>
+
+              <div class="track-chips">
+                <template x-for="skill in track.skills" :key="skill">
+                  <span class="track-chip-item" x-text="skill"></span>
+                </template>
+              </div>
+            </div>
+
+            <div>
+              <div class="track-meta-row">
+                <span x-text="'⏱️ ' + track.hours"></span>
+                <span x-text="'📅 ' + track.duration"></span>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--q-accent-emerald); font-weight: 700; margin-block: 10px;" x-text="'✦ ' + track.deliverable"></div>
+
+              <div style="display: flex; gap: 10px; margin-block-start: 14px;">
+                <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" style="flex: 1;" @click="openEnroll(track.title)">
+                  <span>التسجيل في المسار</span>
+                </button>
+                <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--sm" @click="openSyllabus({ title: track.title, syllabus: [] })">
+                  <span>المنهج</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- SECTION 3: 12-WEEK MARATHON TIMELINE -->
+    <section id="marathon">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">البرنامج المكثف الرئيسي</span>
+        <h2 class="section-title">ماراثون المهارات الرقمية (12 أسبوعاً)</h2>
+        <p class="section-sub">رحلة هيكلية منظمة من التأسيس المعماري حتى بناء الحلول وإطلاقها تجارياً.</p>
+      </div>
+
+      <div class="marathon-timeline-grid">
+        <template x-for="month in marathonMonths" :key="month.num">
+          <div class="marathon-month-card">
+            <div class="month-header-strip">
+              <div class="month-badge-digit" x-text="month.num"></div>
+              <div class="month-title-wrap">
+                <h3 class="month-name" x-text="month.title"></h3>
+                <span class="month-domain-sub" x-text="month.domain"></span>
+              </div>
+            </div>
+
+            <div class="weeks-stack">
+              <template x-for="week in month.weeks" :key="week.week">
+                <div class="week-card-row">
+                  <div class="week-header-sub">
+                    <span x-text="week.week"></span>
+                  </div>
+                  <div class="week-skill-title" x-text="week.title"></div>
+                  <div class="week-output-badge" x-text="week.output"></div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- SECTION 4: INTERACTIVE QUESTIONNAIRE / TRACK QUIZ -->
+    <section id="assessment">
+      <div class="quiz-card-wrapper">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">نمط الاستبيان وتقييم المسار (Questionnaire Pattern)</span>
+          <h2 class="section-title">اختبار تحديد المسار والمستوى الأمثل</h2>
+          <p class="section-sub">أجب عن 3 أسئلة سريعة لنحدد لك المسار الأكثر توافقاً مع أهدافك وخلفيتك المهنية.</p>
+        </div>
+
+        <!-- Quiz Form Body -->
+        <div x-show="!quiz.isSubmitted">
+          <!-- Step indicator -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-block-end: 24px;">
+            <span style="font-weight: 700; color: var(--q-gold); font-size: 0.9rem;" x-text="'السؤال ' + quiz.currentStep + ' من ' + quiz.totalSteps"></span>
+            <span style="font-size: 0.85rem; color: var(--q-text-muted);" x-text="Math.round((quiz.currentStep / quiz.totalSteps) * 100) + '% مكتمل'"></span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="qhr-progress" style="margin-block-end: 28px;">
+            <div class="qhr-progress-bar" :style="'width: ' + ((quiz.currentStep / quiz.totalSteps) * 100) + '%;'"></div>
+          </div>
+
+          <!-- Active Question -->
+          <template x-for="q in quiz.questions" :key="q.id">
+            <div x-show="quiz.currentStep === q.id" style="display: flex; flex-direction: column; gap: 16px;">
+              <div>
+                <h3 style="margin: 0 0 6px 0; font-size: 1.25rem; font-weight: 800;" x-text="q.title"></h3>
+                <p style="margin: 0; font-size: 0.9rem; color: var(--q-text-secondary);" x-text="q.desc"></p>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 10px; margin-block-start: 12px;">
+                <template x-for="opt in q.options" :key="opt.key">
+                  <div 
+                    class="quiz-choice-item" 
+                    :class="{ 'selected': quiz.answers[q.id] === opt.key }"
+                    @click="selectAnswer(q.id, opt.key)">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <span style="width: 28px; height: 28px; border-radius: 8px; background: var(--q-surface); border: 1px solid var(--q-border-strong); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem;" x-text="opt.key"></span>
+                      <span style="font-size: 0.95rem; font-weight: 600;" x-text="opt.text"></span>
+                    </div>
+                    <svg x-show="quiz.answers[q.id] === opt.key" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--q-gold);" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </div>
+                </template>
+              </div>
+
+              <!-- Action Controls -->
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-block-start: 24px;">
+                <button 
+                  type="button" 
+                  class="qhr-btn qhr-btn--ghost qhr-btn--sm" 
+                  :disabled="quiz.currentStep === 1" 
+                  @click="quiz.currentStep--">
+                  <span>السابق</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  class="qhr-btn qhr-btn--primary qhr-btn--md" 
+                  x-show="quiz.currentStep < quiz.totalSteps" 
+                  :disabled="!quiz.answers[quiz.currentStep]"
+                  @click="quiz.currentStep++">
+                  <span>التالي</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+
+                <button 
+                  type="button" 
+                  class="qhr-btn qhr-btn--primary qhr-btn--md" 
+                  x-show="quiz.currentStep === quiz.totalSteps" 
+                  :disabled="!quiz.answers[quiz.currentStep]"
+                  @click="submitQuiz()">
+                  <span>عرض النتيجة والتوصية</span>
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Quiz Recommendation Result -->
+        <div x-show="quiz.isSubmitted" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <div style="width: 64px; height: 64px; border-radius: 50%; background: var(--q-gold-subtle); border: 2px solid var(--q-gold); display: flex; align-items: center; justify-content: center; color: var(--q-gold);">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+
+          <h3 style="font-size: 1.6rem; font-weight: 800; margin: 0;" x-text="quiz.recommendedTrack"></h3>
+          <p style="font-size: 1.05rem; color: var(--q-accent-emerald); font-weight: 700; margin: 0;" x-text="quiz.scoreText"></p>
+          <p style="max-width: 520px; font-size: 0.9rem; color: var(--q-text-secondary); line-height: 1.6;">تم تحليل إجاباتك بناءً على معايير الأكاديمية ويوصى بحجز مقعدك فوراً في هذا المسار للاستفادة من خصم التسجيل المبكر.</p>
+
+          <div style="display: flex; gap: 12px; margin-block-start: 12px;">
+            <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--lg" @click="openEnroll(quiz.recommendedTrack)">
+              <span>احجز مقعدك في هذا المسار</span>
+            </button>
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--lg" @click="resetQuiz()">
+              <span>إعادة الاختبار</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: PRICING & TUITION TIERS -->
+    <section id="pricing">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">خطط الاشتراك والالتحاق</span>
+        <h2 class="section-title">استثمر في مهاراتك ومستقبلك المهني</h2>
+        <p class="section-sub">خيارات دفع مرنة مع إمكانية التقسيط، وخصم 29% عند الاشتراك في الماراثون الكامل.</p>
+      </div>
+
+      <!-- Early Bird Alert Banner -->
+      <div style="background: linear-gradient(90deg, rgba(225, 29, 72, 0.12) 0%, rgba(212, 175, 55, 0.12) 100%); border: 1px solid var(--q-gold); border-radius: 16px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-block-end: 32px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="width: 44px; height: 44px; border-radius: 12px; background: var(--q-gold); color: #000; display: flex; align-items: center; justify-content: center; font-weight: 900;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <div>
+            <div style="font-weight: 800; font-size: 1.05rem;">خصم التسجيل المبكر (Early Bird)</div>
+            <div style="font-size: 0.85rem; color: var(--q-text-secondary);">سعر خاص لأول 20 متدرباً فقط — وفر 2,100 ج.م على الماراثون الكامل</div>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="text-align: left;">
+            <span style="text-decoration: line-through; color: var(--q-text-muted); font-size: 0.9rem;">5,100 ج.م</span>
+            <div style="font-family: var(--q-font-heading); font-size: 1.6rem; font-weight: 900; color: var(--q-gold);">2,999 ج.م</div>
+          </div>
+          <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" @click="openEnroll('عرض التسجيل المبكر 2,999 ج.م')">
+            <span>احجز بالسعر المخفض</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Pricing Cards Grid -->
+      <div class="pricing-grid">
+        <!-- 1. Single Track -->
+        <div class="pricing-card">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px 0;">المسار المنفرد</h3>
+            <p style="font-size: 0.85rem; color: var(--q-text-muted); margin: 0 0 16px 0;">دراسة مسار واحد مخصص لمدة 4 أسابيع</p>
+            <div class="plan-price-num">1,200 <span class="plan-currency">ج.م</span></div>
+          </div>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>حضور جميع محاضرات المسار (٤ أسابيع)</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>٤ ورش عمل تطبيقية ومراجعة المشاريع</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>شهادة إتمام معتمدة قابلة للتحقق</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>وصول للتسجيلات لمدة 6 أشهر</span>
+            </li>
+          </ul>
+
+          <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--md" style="width: 100%;" @click="openEnroll('المسار المنفرد (1,200 ج.م)')">
+            <span>اختر مساراً</span>
+          </button>
+        </div>
+
+        <!-- 2. Full Marathon (Popular) -->
+        <div class="pricing-card popular">
+          <div class="popular-ribbon">الأكثر طلباً واكتمالاً</div>
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px 0;">الماراثون الكامل (12 أسبوعاً)</h3>
+            <p style="font-size: 0.85rem; color: var(--q-text-muted); margin: 0 0 16px 0;">كافة المسارات الأربعة + هاكاثون التخرج</p>
+            <div class="plan-price-num">3,600 <span class="plan-currency">ج.م</span></div>
+          </div>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>وصول لكافة المسارات الأربعة (12 أسبوعاً)</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>16 ورشة تطبيقية مباشرة مع قادة الفرق</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>بناء ملف أعمال Portfolio متكامل للتوظيف</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>مراجعة خاصة للسيرة الذاتية وملف LinkedIn</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>وصول دائم لمدى الحياة لكافة التحديثات</span>
+            </li>
+          </ul>
+
+          <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--lg" style="width: 100%;" @click="openEnroll('الماراثون الكامل (3,600 ج.م)')">
+            <span>التسجيل في الماراثون</span>
+          </button>
+        </div>
+
+        <!-- 3. VIP Mentorship -->
+        <div class="pricing-card">
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px 0;">باقة الإرشاد الفردي (VIP)</h3>
+            <p style="font-size: 0.85rem; color: var(--q-text-muted); margin: 0 0 16px 0;">الماراثون الكامل مع جلسات توجيه 1-on-1 خاصة</p>
+            <div class="plan-price-num">5,800 <span class="plan-currency">ج.م</span></div>
+          </div>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>كافة ميزات الماراثون الكامل</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>6 جلسات إرشاد مهني فردية (1-on-1)</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>تدقيق كودي ومعماري مخصص لمشروعك الخاص</span>
+            </li>
+            <li class="feature-item">
+              <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>توصية مهنية مباشرة لشركاء التوظيف</span>
+            </li>
+          </ul>
+
+          <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--md" style="width: 100%;" @click="openEnroll('باقة الإرشاد الفردي VIP (5,800 ج.م)')">
+            <span>احجز باقة VIP</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: INSTRUCTOR & MENTOR SPOTLIGHT -->
+    <section id="instructor">
+      <div class="instructor-card">
+        <div style="text-align: center;">
+          <div class="instructor-avatar-large">
+            <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+          <div style="margin-block-start: 16px;">
+            <div style="font-weight: 800; font-size: 1.25rem;">م. وائل صلاح الدين عمر</div>
+            <div style="font-size: 0.82rem; color: var(--q-gold); font-weight: 700;">المشرف العام ومعماري النظم الرقمية</div>
+          </div>
+        </div>
+
+        <div>
+          <span class="section-eyebrow">قائد المعسكر والمدرب الرئيسي</span>
+          <h2 style="font-size: 1.7rem; font-weight: 800; margin: 6px 0 14px 0;">تعرف على مدربك ومستشارك الأكاديمي</h2>
+          <p style="color: var(--q-text-secondary); line-height: 1.75; font-size: 0.95rem; margin: 0;">
+            مستشار أعمال رقمي ومعماري نظم برمجية بخبرة تزيد عن 20 عاماً في تصميم وبناء وتوسيع منصات الويب وأنظمة EdTech المعمارية المدعومة بالذكاء الاصطناعي. ساهم في تدريب أكثر من 10,000 مهندس ومصمم ومؤسس في مصر والوطن العربي عبر برامج تطبيقية تركز على القيمة السوقية الفورية.
+          </p>
+
+          <!-- Metrics Strip -->
+          <div class="instructor-stats-grid">
+            <div>
+              <div style="font-family: var(--q-font-heading); font-size: 1.5rem; font-weight: 900; color: var(--q-text-primary);">+10,000</div>
+              <div style="font-size: 0.78rem; color: var(--q-text-muted); font-weight: 600;">متدرب وخريج</div>
+            </div>
+            <div>
+              <div style="font-family: var(--q-font-heading); font-size: 1.5rem; font-weight: 900; color: var(--q-text-primary);">+20</div>
+              <div style="font-size: 0.78rem; color: var(--q-text-muted); font-weight: 600;">سنة خبرة صناعية</div>
+            </div>
+            <div>
+              <div style="font-family: var(--q-font-heading); font-size: 1.5rem; font-weight: 900; color: var(--q-text-primary);">+16</div>
+              <div style="font-size: 0.78rem; color: var(--q-text-muted); font-weight: 600;">فعالية ومؤتمر دولي</div>
+            </div>
+            <div>
+              <div style="font-family: var(--q-font-heading); font-size: 1.5rem; font-weight: 900; color: var(--q-text-primary);">5 دول</div>
+              <div style="font-size: 0.78rem; color: var(--q-text-muted); font-weight: 600;">مشاريع إقليمية</div>
+            </div>
+          </div>
+
+          <!-- Verified Accreditations -->
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span class="skill-pill">Microsoft Certified (MCP)</span>
+            <span class="skill-pill">Google Gemini Educator</span>
+            <span class="skill-pill">Udacity Digital Growth Specialist</span>
+            <span class="skill-pill">HP LIFE Agile PM</span>
+            <span class="skill-pill">DaVinci Resolve Certified</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: INTERACTIVE FAQ ACCORDION -->
+    <section id="faq">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">الأسئلة الشائعة</span>
+        <h2 class="section-title">كل ما تريد معرفته عن الأكاديمية والماراثون</h2>
+        <p class="section-sub">إجابات شفافة ومباشرة على أكثر الاستفسارات تكراراً.</p>
+      </div>
+
+      <div class="qhr-accordion qhr-accordion--bordered" x-data="qhrAccordion({ multiple: false, defaultOpen: [0] })" style="max-width: 880px; margin: 0 auto; width: 100%;">
+        <!-- Q1 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(0) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(0)" :aria-expanded="isOpen(0)">
+            <span class="qhr-accordion-title">هل الدراسة أونلاين أم حضورية؟</span>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(0)">
+            <div class="qhr-accordion-body">
+              البرنامج مصمم بنظام هجين عالي المرونة: المحاضرات النظرية والتطبيقية تبث مباشرة أونلاين عبر منصتنا التفاعلية مع تسجيل عالي الجودة لجميع الجلسات، بينما تُتاح الورش العملية والمعامل التطبيقية اختيارياً في مقراتنا بالقاهرة والجيزة.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(1) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(1)" :aria-expanded="isOpen(1)">
+            <span class="qhr-accordion-title">ما هي المتطلبات السابقة للتسجيل؟ هل يشترط خبرة برمجية؟</span>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(1)">
+            <div class="qhr-accordion-body">
+              لا يُشترط وجود خبرة سابقة في البرمجة. المسارات مبنية بأسلوب تصاعدي يبدأ من استيعاب المنطق المعماري وأدوات التوليد الحديثة (Vibe Coding و Prompting) وصولاً إلى الهياكل المتقدمة. المتطلب الوحيد هو جهاز حاسوب واتصال جيد بالإنترنت وشغف للتطبيق.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(2) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(2)" :aria-expanded="isOpen(2)">
+            <span class="qhr-accordion-title">هل أحصل على شهادة معتمدة بعد إتمام الماراثون؟</span>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(2)">
+            <div class="qhr-accordion-body">
+              نعم، بعد تسليم ومناقشة مشاريع المسار في معرض هاكاثون التخرج، يحصل كل خريج على شهادة إتمام معتمدة من أكاديمية قاهرة 360° مزودة بمعرف تشفيري فريد ورابط فحص رقمي يمكن إضافته مباشرة لملف LinkedIn وسيرتك الذاتية.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(3) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(3)" :aria-expanded="isOpen(3)">
+            <span class="qhr-accordion-title">هل تتوفر خطط تقسيط للمصروفات الدراسية؟</span>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(3)">
+            <div class="qhr-accordion-body">
+              نعم، ندعم خيارات التقسيط الميسر عبر البطاقات الائتمانية البنكية بدون فوائد، بالإضافة إلى خدمات فاليو (valU)، سهولة، وفوري، فضلاً عن إمكانية الدفع على دفعتين متساويتين مع بداية كل شهر دراسي.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: FINAL HIGH-CONVERSION CTA -->
+    <section class="final-cta-card">
+      <div class="hero-eyebrow">ابدأ رحلتك اليوم</div>
+      <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; margin: 0;">
+        اصنع مستقبلك الرقمي مع <span class="highlight">أكاديمية قاهرة 360°</span>
+      </h2>
+      <p style="max-width: 620px; font-size: 1.05rem; color: var(--q-text-secondary); line-height: 1.7; margin: 0;">
+        انضم لمجتمع استثنائي من المطورين، المصممين، ورواد الأعمال الرقميين. مقاعد الدفعة محدودة لضمان جودة المتابعة والإرشاد الفردي.
+      </p>
+
+      <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-block-start: 10px;">
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--lg" @click="openEnroll('الماراثون الكامل — العرض النهائي')">
+          <span>سجّل مقعدك الآن</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+        <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--lg" @click="viewMode = 'lms'">
+          <span>استكشف بوابة الطالب التجريبية</span>
+        </button>
+      </div>
+
+      <div style="font-size: 0.8rem; color: var(--q-text-muted); font-weight: 600; margin-block-start: 8px;">
+        ضمان استرداد كامل خلال 14 يوماً · بدون مخاطرة · شهادات معتمدة
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- VIEW 2: STUDENT LMS & ENROLLED PORTAL (Authenticated State)      -->
+  <!-- ================================================================= -->
+  <main class="edu-main" x-show="viewMode === 'lms'" style="display: none;">
+
+    <!-- Welcome Bar -->
+    <div style="background: var(--q-surface); border: 1px solid var(--q-border); border-radius: 20px; padding: 24px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h1 style="font-size: 1.5rem; font-weight: 800; margin: 0 0 4px 0;">مرحباً بك مجدداً، عمر خالد 👋</h1>
+        <p style="font-size: 0.88rem; color: var(--q-text-secondary); margin: 0;">أنت مسجل في مسارين نشطين — واصل تقدمك لإكمال مهام الأسبوع الحالي.</p>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" @click="viewMode = 'academy'">
+          <span>استعراض المسارات الجديدة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Student Telemetry Metrics -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 16px;">
+      <div style="background: var(--q-surface); border: 1px solid var(--q-border); border-radius: 16px; padding: 20px;">
+        <div style="font-size: 0.8rem; color: var(--q-text-muted); font-weight: 600;">الدورات المسجلة</div>
+        <div style="font-family: var(--q-font-heading); font-size: 1.8rem; font-weight: 900; margin-block-start: 4px;">4 مسارات</div>
+      </div>
+      <div style="background: var(--q-surface); border: 1px solid var(--q-border); border-radius: 16px; padding: 20px;">
+        <div style="font-size: 0.8rem; color: var(--q-text-muted); font-weight: 600;">ساعات الإنجاز</div>
+        <div style="font-family: var(--q-font-heading); font-size: 1.8rem; font-weight: 900; margin-block-start: 4px;">56 ساعة</div>
+      </div>
+      <div style="background: var(--q-surface); border: 1px solid var(--q-border); border-radius: 16px; padding: 20px;">
+        <div style="font-size: 0.8rem; color: var(--q-text-muted); font-weight: 600;">الشهادات المحققة</div>
+        <div style="font-family: var(--q-font-heading); font-size: 1.8rem; font-weight: 900; color: var(--q-gold); margin-block-start: 4px;">2 شهادات</div>
+      </div>
+      <div style="background: var(--q-surface); border: 1px solid var(--q-border); border-radius: 16px; padding: 20px;">
+        <div style="font-size: 0.8rem; color: var(--q-text-muted); font-weight: 600;">معدل الإتمام العام</div>
+        <div style="font-family: var(--q-font-heading); font-size: 1.8rem; font-weight: 900; color: var(--q-accent-emerald); margin-block-start: 4px;">68%</div>
+      </div>
+    </div>
+
+    <!-- LMS Filter Toolbar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+      <div style="display: flex; gap: 8px;">
+        <button type="button" class="qhr-btn qhr-btn--sm" :class="courseFilter === 'all' ? 'qhr-btn--primary' : 'qhr-btn--ghost'" @click="courseFilter = 'all'">الكل</button>
+        <button type="button" class="qhr-btn qhr-btn--sm" :class="courseFilter === 'arts' ? 'qhr-btn--primary' : 'qhr-btn--ghost'" @click="courseFilter = 'arts'">الفنون والواجهات</button>
+        <button type="button" class="qhr-btn qhr-btn--sm" :class="courseFilter === 'ai' ? 'qhr-btn--primary' : 'qhr-btn--ghost'" @click="courseFilter = 'ai'">الذكاء الاصطناعي</button>
+        <button type="button" class="qhr-btn qhr-btn--sm" :class="courseFilter === 'business' ? 'qhr-btn--primary' : 'qhr-btn--ghost'" @click="courseFilter = 'business'">ريادة الأعمال</button>
+      </div>
+
+      <div style="max-width: 300px; width: 100%;">
+        <input type="text" class="qhr-input" placeholder="ابحث في دوراتك المسجلة..." x-model="searchQuery">
+      </div>
+    </div>
+
+    <!-- Enrolled Courses Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 24px;">
+      <template x-for="course in filteredCourses()" :key="course.id">
+        <div style="background: var(--q-surface); border: 1px solid var(--q-border); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px;">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-block-end: 12px;">
+              <span class="qhr-badge qhr-badge--primary qhr-badge--xs" x-text="course.categoryLabel"></span>
+              <span style="font-size: 0.82rem; font-weight: 700; color: var(--q-text-muted);" x-text="course.duration"></span>
+            </div>
+
+            <h3 style="font-size: 1.15rem; font-weight: 800; margin: 0 0 10px 0; line-height: 1.4;" x-text="course.title"></h3>
+
+            <div style="display: flex; align-items: center; gap: 10px; margin-block-end: 16px;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--q-surface-elevated); border: 1px solid var(--q-border-strong); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 800; color: var(--q-gold);" x-text="course.instructorInitials"></div>
+              <span style="font-size: 0.85rem; color: var(--q-text-secondary);" x-text="course.instructor"></span>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700;">
+                <span style="color: var(--q-text-muted);" x-text="course.completedLessons + ' من ' + course.totalLessons + ' درساً'"></span>
+                <span style="color: var(--q-gold);" x-text="course.progress + '%'"></span>
+              </div>
+              <div class="qhr-progress">
+                <div class="qhr-progress-bar" :style="'width: ' + course.progress + '%;'"></div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-block-start: 14px; border-block-start: 1px solid var(--q-border-subtle);">
+            <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" style="flex: 1 1 130px; min-height: 38px;">
+              <span>متابعة الدرس</span>
+            </button>
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--sm" style="flex: 1 1 90px; min-height: 38px;" @click="openSyllabus(course)">
+              <span>منهج الدورة</span>
+            </button>
+          </div>
+        </div>
+      </template>
+    </div>
+
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- MODALS & DIALOGS                                                  -->
+  <!-- ================================================================= -->
+
+  <!-- 1. Quick Enrollment Modal -->
+  <div class="qhr-modal-backdrop" x-show="enrollModal" x-cloak style="position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px;">
+    <div class="qhr-modal" @click.outside="enrollModal = false" style="background: var(--q-surface); border: 1px solid var(--q-border-strong); border-radius: 20px; max-width: 480px; width: 100%; padding: 32px; box-shadow: var(--q-card-shadow);">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-block-end: 18px;">
+        <h3 style="margin: 0; font-size: 1.25rem; font-weight: 800;">تأكيد حجز المقعد</h3>
+        <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs" @click="enrollModal = false">✕</button>
+      </div>
+
+      <p style="font-size: 0.9rem; color: var(--q-text-secondary); margin: 0 0 20px 0;">
+        أنت على وشك التسجيل في: <strong style="color: var(--q-gold);" x-text="enrolledCourseTitle"></strong>
+      </p>
+
+      <form @submit.prevent="confirmEnroll()" style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-block-end: 6px;">الاسم بالكامل</label>
+          <input type="text" class="qhr-input" required placeholder="مثال: عمر خالد السعيد">
+        </div>
+        <div>
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-block-end: 6px;">البريد الإلكتروني</label>
+          <input type="email" class="qhr-input" required placeholder="name@example.com">
+        </div>
+        <div>
+          <label style="display: block; font-size: 0.82rem; font-weight: 700; margin-block-end: 6px;">رقم الهاتف / واتساب</label>
+          <input type="tel" class="qhr-input" required placeholder="+20 100 000 0000">
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-block-start: 12px;">
+          <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--md" style="flex: 1;">
+            <span>تأكيد الحجز الفوري</span>
+          </button>
+          <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" @click="enrollModal = false">
+            <span>إلغاء</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Course Syllabus Modal -->
+  <div class="qhr-modal-backdrop" x-show="syllabusModal" x-cloak style="position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px;">
+    <div class="qhr-modal" @click.outside="syllabusModal = false" style="background: var(--q-surface); border: 1px solid var(--q-border-strong); border-radius: 20px; max-width: 600px; width: 100%; padding: 32px; box-shadow: var(--q-card-shadow); max-height: 85vh; overflow-y: auto;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-block-end: 18px;">
+        <h3 style="margin: 0; font-size: 1.25rem; font-weight: 800;" x-text="selectedCourseForSyllabus?.title || 'منهج المسار'"></h3>
+        <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--xs" @click="syllabusModal = false">✕</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-block-start: 16px;">
+        <template x-for="(lesson, idx) in (selectedCourseForSyllabus?.syllabus || [])" :key="idx">
+          <div style="background: var(--q-surface-elevated); border: 1px solid var(--q-border-subtle); border-radius: 12px; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="font-weight: 800; color: var(--q-gold); font-size: 0.85rem;" x-text="'الدرس ' + (idx + 1)"></span>
+              <span style="font-size: 0.92rem; font-weight: 600;" x-text="lesson.title"></span>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--q-text-muted);" x-text="lesson.duration"></span>
+          </div>
+        </template>
+        <div x-show="!selectedCourseForSyllabus?.syllabus?.length" style="text-align: center; padding: 24px; color: var(--q-text-muted); font-size: 0.9rem;">
+          سيتم تزويدك بالمنهج التفصيلي الكامل فور تسجيلك وتأكيد المقعد مع المشرف الأكاديمي.
+        </div>
+      </div>
+
+      <div style="margin-block-start: 24px; text-align: left;">
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" @click="syllabusModal = false; openEnroll(selectedCourseForSyllabus?.title)">
+          <span>التسجيل الآن في هذا المسار</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Message -->
+  <div class="edu-toast" x-show="toastVisible" x-cloak x-transition>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--q-gold);" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span x-text="toastMessage"></span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="background: var(--q-surface); border-block-start: 1px solid var(--q-border); padding: 48px var(--qhr-space-6, 24px) 24px; margin-block-start: auto;">
+    <div style="max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 32px; padding-block-end: 36px; border-block-end: 1px solid var(--q-border);">
+      <div>
+        <div class="brand-link" style="margin-block-end: 14px;">
+          <div class="brand-badge">360</div>
+          <div class="brand-text-wrap">
+            <span class="brand-title">أكاديمية قاهرة 360°</span>
+          </div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--q-text-secondary); line-height: 1.6; margin: 0;">
+          لا نعلّم الأدوات فحسب... نبني المهارات المعمارية التي تصنع المستقبل. منصة تدريبية رائدة في نظم التصميم، الذكاء الاصطناعي، وريادة الأعمال.
+        </p>
+      </div>
+      <div>
+        <div style="font-weight: 800; font-size: 0.95rem; margin-block-end: 14px; color: var(--q-text-primary);">المسارات الأربعة</div>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--q-text-secondary);">
+          <li>الفنون الرقمية والواجهات (Digital Arts)</li>
+          <li>الذكاء الاصطناعي وهندسة البرومبت</li>
+          <li>التكنولوجيا وريادة الأعمال الرقمية</li>
+          <li>التسويق الرقمي وقمع التحويل الفائق</li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-weight: 800; font-size: 0.95rem; margin-block-end: 14px; color: var(--q-text-primary);">الحوكمة والمعايير</div>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: var(--q-text-secondary);">
+          <li>نظام تصميم قاهرة (Qahera UI Kit)</li>
+          <li>عتبة 0kb RSC ومكونات الخادم</li>
+          <li>التماثل الكامل 100% Logical CSS</li>
+          <li>معايير الوصولية العالمية WCAG 2.1 AA</li>
+        </ul>
+      </div>
+    </div>
+    <div style="max-width: 1320px; margin: 0 auto; padding-block-start: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.8rem; color: var(--q-text-muted);">
+      <div>جميع الحقوق محفوظة © 2026 أكاديمية قاهرة · استوديو الوكالة (Alwkala)</div>
+      <div>بنيت بنظام تصميم قاهرة — خطوط Alexandria & Cairo المعتمدة</div>
+    </div>
+  </footer>
+
+</body>
+</html>

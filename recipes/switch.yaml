@@ -1,0 +1,57 @@
+component: Switch
+name: switch
+category: selection
+version: 1.0.0
+
+ai:
+  intent: "Instant binary setting toggle"
+  visual_role: "Sliding pill thumb on rounded track"
+  density: "compact"
+  preferred_when:
+    - "System settings and feature activation"
+    - "Preferences and notifications toggles"
+  avoid_when:
+    - "Multi-selection checkboxes in forms"
+
+base:
+  position: relative
+  display: inline-flex
+  align-items: center
+  cursor: pointer
+  user-select: none
+  vertical-align: middle
+
+variants:
+  default:
+    background-color: "{color.surface.subtle}"
+  gold:
+    background-color: "{color.surface.subtle}"
+
+sizes:
+  sm:
+    width: "36px"
+    height: "20px"
+  md:
+    width: "44px"
+    height: "24px"
+  lg:
+    width: "52px"
+    height: "28px"
+
+states:
+  default:
+    opacity: 1
+  checked:
+    background-color: "{color.primary.bg}"
+  hover:
+    opacity: 0.9
+  focus:
+    outline: "2px solid {color.primary.bg}"
+    outline-offset: "2px"
+  disabled:
+    opacity: 0.5
+    cursor: not-allowed
+
+structure:
+  base:
+    native_class: qhr-switch

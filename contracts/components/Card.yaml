@@ -1,0 +1,65 @@
+id: card
+name: Card
+component: Card
+category: containers
+purpose: >
+  Groups related content, metadata, and actions into an elevated visual container.
+
+anatomy:
+  - root
+  - header
+  - title
+  - subtitle
+  - body
+  - footer
+  - action-bar
+
+variants:
+  outline:
+    intent: bordered-card-surface
+  elevated:
+    intent: floating-shadow-surface
+  flat:
+    intent: soft-background-surface
+
+sizes:
+  sm:
+    padding: 12
+    border_radius: "var(--qhr-radius-md)"
+  md:
+    padding: 20
+    border_radius: "var(--qhr-radius-lg)"
+  lg:
+    padding: 32
+    border_radius: "var(--qhr-radius-xl)"
+
+states:
+  - default
+  - hover
+  - active
+
+slots:
+  header: optional
+  title: optional
+  subtitle: optional
+  body: required
+  footer: optional
+
+accessibility:
+  role: region
+  keyboard: false
+  focusVisible: false
+
+ai:
+  purpose: "Content container providing visual boundaries and hierarchy"
+  whenToUse:
+    - "Dashboard metric cards (dashboard-stat)"
+    - "Empty state panels (empty-state)"
+    - "E-commerce product items and collection cards"
+    - "User profiles and settings group panels"
+  avoid:
+    - "Blocking modal confirmations (use Modal)"
+    - "Ephemeral feedback notifications (use Toast)"
+  common_patterns:
+    - dashboard-stat
+    - empty-state

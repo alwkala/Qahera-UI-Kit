@@ -1,0 +1,126 @@
+{
+  "id": "breadcrumb",
+  "name": "Breadcrumb",
+  "component": "Breadcrumb",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "list",
+      "item",
+      "link",
+      "separator",
+      "current"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-breadcrumbs"
+      },
+      "slash": {
+        "intent": "forward-slash-separator"
+      },
+      "chevron": {
+        "intent": "directional-chevron-separator"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font_size": "var(--qhr-text-xs)",
+        "gap": 4
+      },
+      "md": {
+        "font_size": "var(--qhr-text-sm)",
+        "gap": 6
+      },
+      "lg": {
+        "font_size": "var(--qhr-text-base)",
+        "gap": 8
+      }
+    },
+    "states": [
+      "default",
+      "hover",
+      "current"
+    ],
+    "slots": {
+      "homeIcon": "optional",
+      "items": "required",
+      "separator": "optional"
+    },
+    "accessibility": {
+      "role": "navigation",
+      "aria": [
+        "aria-label=breadcrumb",
+        "aria-current=page"
+      ],
+      "keyboard": true,
+      "focusVisible": true
+    }
+  },
+  "recipe": {
+    "file": "recipes/breadcrumb.yaml",
+    "base": {
+      "display": "flex",
+      "align-items": "center",
+      "flex-wrap": "wrap",
+      "list-style": "none",
+      "margin": 0,
+      "padding": 0,
+      "font-family": "{font.family.body}"
+    },
+    "variants": {
+      "default": {
+        "color": "{color.neutral.600}"
+      },
+      "slash": {
+        "color": "{color.neutral.600}"
+      },
+      "chevron": {
+        "color": "{color.neutral.600}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "{text.xs}",
+        "gap": "{space.1}"
+      },
+      "md": {
+        "font-size": "{text.sm}",
+        "gap": "{space.1-5}"
+      },
+      "lg": {
+        "font-size": "{text.base}",
+        "gap": "{space.2}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      },
+      "hover": {
+        "color": "{color.primary.bg}"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays the hierarchical path of the current page within the site structure, allowing quick navigation up the parent tree.",
+    "whenToUse": [
+      "Deeply nested e-commerce catalog categories",
+      "Documentation pages and multi-tier administrative dashboards",
+      "Multi-step checkout or application funnels"
+    ],
+    "avoid": [
+      "Single-level top-level landing pages without parent hierarchy",
+      "Replacing primary navbar navigation"
+    ],
+    "related": [
+      "search-toolbar",
+      "filter-bar"
+    ]
+  },
+  "source": {
+    "file": "contracts/components/Breadcrumb.yaml"
+  }
+}

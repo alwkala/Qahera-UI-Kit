@@ -1,0 +1,39 @@
+version: 1.0.0
+name: heliopolis-deco
+description: "Heliopolis Theme — Art Deco & Neo-Pharaonic Revival (Inspired by Baron Empain & Korba Architecture)"
+school: "Art Deco / Egyptian Revival"
+region: "Heliopolis, Cairo"
+
+overrides:
+  surface:
+    base: "#181411"
+    elevated: "#231C18"
+    muted: "#302620"
+    overlay: "rgba(24, 20, 17, 0.88)"
+  content:
+    primary: "#FAF3EA"
+    secondary: "#D4C2B0"
+    accent: "#E0A96D"
+    muted: "#968372"
+  border:
+    subtle: "rgba(224, 169, 109, 0.18)"
+    strong: "rgba(224, 169, 109, 0.40)"
+  color:
+    primary:
+      bg: "#E0A96D"
+      fg: "#181411"
+      border: "#E0A96D"
+      hover: "#ECC499"
+    secondary:
+      bg: "#231C18"
+      fg: "#FAF3EA"
+      border: "rgba(224, 169, 109, 0.25)"
+      hover: "#302620"
+    accent:
+      bg: "#9A3412"
+      fg: "#FAF3EA"
+  radius:
+    box: "4px"
+    field: "2px"
+    selector: "4px"
+  border_width: "1px"

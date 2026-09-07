@@ -1,0 +1,31 @@
+id: template-emails
+name: Transactional & Operational Email Suite
+category: communications
+purpose: >
+  Production-grade responsive email template suite covering 6 vital transactional workflows: Welcome Email, Verify Email, Change Password, User Profile Update, Expired Card Notice, and Closed Account Confirmation.
+
+patterns:
+  - form-actions
+  - empty-state
+
+components:
+  - button
+  - card
+  - badge
+  - avatar
+
+features:
+  - welcome_email: "Onboarding welcome message with brand introduction, platform privileges, and get-started CTA"
+  - verify_email: "Account verification containing 6-digit OTP code and instant confirmation token button"
+  - change_password: "Security notification for password updates with device, location, and IP audit metadata"
+  - user_update: "Profile modification notification summarizing changed security details with report link"
+  - expired_card: "Billing alert for expiring or expired payment cards with direct payment update portal link"
+  - closed_account: "Account closure confirmation detailing data retention policies and 30-day reactivation window"
+  - email_simulator: "Live preview viewer supporting Desktop (600px) and Mobile (375px) simulation with theme switching and HTML copy"
+
+ai:
+  purpose: "Transactional, notification, and lifecycle email communications for web apps, SaaS, and e-commerce"
+  use_when:
+    - "Sending customer onboarding, security alerts, billing notices, or account status notifications"
+  avoid_when:
+    - "Rich interactive web dashboards (use dashboard or admin templates)"

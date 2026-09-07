@@ -1,0 +1,27 @@
+<!-- Qahera UI Kit - Master Canvas Sparks Showcase -->
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. خلفية الشرارات الحركية التفاعلية (Interactive Canvas Sparks)</h3>
+    <div style="position: relative; width: 100%; height: 380px; background: var(--q-surface); border: 1px solid var(--q-border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px;">
+      
+      <!-- Canvas Sparks Layer -->
+      <div class="qhr-canvas-sparks-wrapper" 
+           x-data="qhrCanvasSparks({ count: 45, speed: 1.2 })" 
+           style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
+        <canvas x-ref="canvas" aria-hidden="true" style="width: 100%; height: 100%; display: block;"></canvas>
+      </div>
+
+      <!-- Foreground Content -->
+      <div style="position: relative; z-index: 2; max-width: 500px;">
+        <span class="qhr-badge qhr-badge--primary qhr-badge--pill qhr-badge--sm" style="margin-block-end: 12px;">خلفية فيزيائية خفيفة 0kb CPU</span>
+        <h4 style="font-family: var(--q-font-heading); font-size: 1.4rem; font-weight: 800; margin: 0 0 8px 0; color: var(--q-text-primary);">حركة جزيئات وشرارات ذهبية بانسيابية 60fps</h4>
+        <p style="color: var(--q-text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+          تعمل هذه الشرارات باستخدام Canvas 2D خفيف مع محاكاة قوى الجاذبية وحركة المؤشر، دون أي تأثير على أداء الصفحة أو استهلاك البطارية.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

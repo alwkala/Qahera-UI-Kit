@@ -1,0 +1,68 @@
+component: Rating
+name: rating
+category: feedback
+version: 1.0.0
+
+ai:
+  intent: "Visual star rating evaluator"
+  visual_role: "Star sequence rating bar"
+  density: "compact"
+  preferred_when:
+    - "Customer product reviews"
+    - "User satisfaction scores"
+  avoid_when:
+    - "Binary switches or single toggles"
+
+base:
+  display: inline-flex
+  align-items: center
+  gap: "{space.1}"
+
+variants:
+  default:
+    color: "{color.brand.accent}"
+  accent:
+    color: "{color.brand.primary}"
+
+sizes:
+  sm:
+    font-size: "14px"
+  md:
+    font-size: "18px"
+  lg:
+    font-size: "24px"
+
+states:
+  readonly:
+    pointer-events: none
+  interactive:
+    cursor: pointer
+
+contract:
+  anatomy:
+    - root
+    - stars-group
+    - star-item
+    - star-icon
+  props:
+    size:
+      default: md
+      values: [sm, md, lg]
+    variant:
+      default: default
+      values: [default, accent]
+  slots:
+    - label
+
+structure:
+  base:
+    native_class: qhr-rating
+    tailwind: "inline-flex items-center gap-1.5 text-[var(--qhr-brand-accent)]"
+
+accessibility:
+  role: slider
+  aria_required:
+    - aria-valuenow: "current-rating"
+
+rtl:
+  supported: true

@@ -1,0 +1,2832 @@
+{
+  "schema": "qahera.recipe-manifest/v1",
+  "compiler": "1.0.0",
+  "sourceHash": "362986bbdc2ae6719830e2b765c2ca178f63658932eaca9ef3c03ea2e8d3f2a9",
+  "recipeCount": 42,
+  "recipes": {
+    "Accordion": {
+      "id": "accordion",
+      "component": "Accordion",
+      "category": "disclosure",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "width": "100%",
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.lg}",
+        "overflow": "hidden"
+      },
+      "variants": {
+        "bordered": {
+          "border": "1px solid {color.border.subtle}"
+        },
+        "separate": {
+          "gap": "{space.2}",
+          "border": "none"
+        },
+        "flush": {
+          "border-radius": 0,
+          "border-inline": "none"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.sm}",
+          "padding": "{space.3}"
+        },
+        "md": {
+          "font-size": "{text.base}",
+          "padding": "{space.4}"
+        }
+      },
+      "states": {
+        "collapsed": {
+          "max-height": 0
+        },
+        "expanded": {
+          "max-height": "auto"
+        }
+      },
+      "ai": {
+        "purpose": "Organizes deep information in vertically stacked collapsible panels.",
+        "whenToUse": [
+          "Frequently Asked Questions (FAQ) sections",
+          "Nested product specifications or collapsible settings"
+        ],
+        "avoid": [
+          "All content must be visible at the same glance"
+        ],
+        "related": []
+      }
+    },
+    "Alert": {
+      "id": "alert",
+      "component": "Alert",
+      "category": "feedback",
+      "base": {
+        "display": "flex",
+        "width": "100%",
+        "align-items": "flex-start",
+        "gap": "{space.3}",
+        "padding": "{space.4}",
+        "border-radius": "{radius.md}",
+        "border": "1px solid {color.border.subtle}",
+        "font-family": "inherit",
+        "font-size": "{text.sm}"
+      },
+      "variants": {
+        "subtle": {
+          "background-color": "{color.neutral.100}",
+          "border-color": "{color.border.subtle}"
+        },
+        "solid": {
+          "background-color": "{color.primary.bg}",
+          "color": "{color.primary.fg}"
+        },
+        "outline": {
+          "background-color": "transparent",
+          "border-color": "{color.primary.bg}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "padding": "{space.3}",
+          "font-size": "{text.xs}"
+        },
+        "md": {
+          "padding": "{space.4}",
+          "font-size": "{text.sm}"
+        },
+        "lg": {
+          "padding": "{space.5}",
+          "font-size": "{text.base}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Displays prominent contextual messages and feedback directly within page layouts.",
+        "whenToUse": [
+          "Critical form validation errors requiring review",
+          "System status or maintenance announcements",
+          "Persistent contextual instructions"
+        ],
+        "avoid": [
+          "Temporary floating notifications that auto-dismiss (use Toast)",
+          "Blocking confirmations that interrupt navigation (use Modal)"
+        ],
+        "related": []
+      }
+    },
+    "Avatar": {
+      "id": "avatar",
+      "component": "Avatar",
+      "category": "media",
+      "base": {
+        "display": "inline-flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "overflow": "hidden",
+        "background-color": "{color.surface.muted}",
+        "color": "{color.neutral.900}",
+        "font-weight": 500,
+        "user-select": "none"
+      },
+      "variants": {
+        "circle": {
+          "border-radius": "{radius.pill}"
+        },
+        "rounded": {
+          "border-radius": "{radius.md}"
+        }
+      },
+      "sizes": {
+        "xs": {
+          "width": "{space.6}",
+          "height": "{space.6}",
+          "font-size": "{text.xs}"
+        },
+        "sm": {
+          "width": "{space.8}",
+          "height": "{space.8}",
+          "font-size": "{text.sm}"
+        },
+        "md": {
+          "width": "{space.10}",
+          "height": "{space.10}",
+          "font-size": "{text.base}"
+        },
+        "lg": {
+          "width": "{space.12}",
+          "height": "{space.12}",
+          "font-size": "{text.lg}"
+        },
+        "xl": {
+          "width": "{space.16}",
+          "height": "{space.16}",
+          "font-size": "{text.xl}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Displays a visual representation of a user, team, or brand entity.",
+        "whenToUse": [
+          "Profile pictures in navigation bars",
+          "Comment authors and team member lists"
+        ],
+        "avoid": [
+          "Full-size photo galleries (use Image)"
+        ],
+        "related": []
+      }
+    },
+    "BackToTop": {
+      "id": "back-to-top",
+      "component": "BackToTop",
+      "category": "navigation",
+      "base": {
+        "position": "fixed",
+        "inset-inline-end": "var(--qhr-space-6)",
+        "bottom": "var(--qhr-space-6)",
+        "z-index": 900,
+        "width": "48px",
+        "height": "48px",
+        "border-radius": "50%",
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "cursor": "pointer",
+        "opacity": 0,
+        "transform": "translateY(16px)",
+        "transition": "all 0.4s var(--qhr-motion-luxury, cubic-bezier(0.25, 0.8, 0.25, 1))",
+        "box-shadow": "var(--qhr-shadow-lg)"
+      },
+      "variants": {
+        "default": {
+          "background-color": "var(--qhr-color-surface-elevated)",
+          "border": "1px solid var(--qhr-color-border)",
+          "color": "var(--qhr-color-text)"
+        },
+        "luxury": {
+          "background-color": "var(--qhr-color-surface)",
+          "border": "1px solid var(--qhr-color-border-strong)",
+          "color": "var(--qhr-color-gold)"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "width": "40px",
+          "height": "40px"
+        },
+        "md": {
+          "width": "48px",
+          "height": "48px"
+        },
+        "lg": {
+          "width": "56px",
+          "height": "56px"
+        }
+      },
+      "states": {
+        "visible": {
+          "opacity": 1,
+          "transform": "translateY(0)"
+        },
+        "hover": {
+          "transform": "translateY(-4px)",
+          "box-shadow": "var(--qhr-shadow-xl)"
+        },
+        "active": {
+          "transform": "translateY(0)"
+        }
+      },
+      "ai": {
+        "purpose": "Displays a floating action button that monitors scroll depth and smoothly scrolls the viewport back to the top of the page.",
+        "whenToUse": [
+          "Documentation pages, deep articles, or extensive product listings with high scroll depth"
+        ],
+        "avoid": [
+          "Fixed height viewports, modal dialogs, or short dashboard screens"
+        ],
+        "related": []
+      }
+    },
+    "Badge": {
+      "id": "badge",
+      "component": "Badge",
+      "category": "feedback",
+      "base": {
+        "display": "inline-flex",
+        "align-items": "center",
+        "font-weight": 500,
+        "border-radius": "{radius.pill}",
+        "user-select": "none",
+        "white-space": "nowrap"
+      },
+      "variants": {
+        "subtle": {
+          "background-color": "{color.neutral.100}",
+          "color": "{color.neutral.900}"
+        },
+        "solid": {
+          "background-color": "{color.primary.bg}",
+          "color": "{color.primary.fg}"
+        },
+        "outline": {
+          "background-color": "transparent",
+          "border": "1px solid {color.border.subtle}"
+        },
+        "destructive": {
+          "background-color": "{color.danger.bg}",
+          "color": "{color.danger.fg}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.xs}",
+          "padding-inline": "{space.2}",
+          "padding-block": "{space.0-5}",
+          "gap": "{space.1}"
+        },
+        "md": {
+          "font-size": "{text.sm}",
+          "padding-inline": "{space.2-5}",
+          "padding-block": "{space.1}",
+          "gap": "{space.1-5}"
+        },
+        "lg": {
+          "font-size": "{text.base}",
+          "padding-inline": "{space.3}",
+          "padding-block": "{space.1-5}",
+          "gap": "{space.2}"
+        },
+        "xl": {
+          "font-size": "{text.lg}",
+          "padding-inline": "{space.4}",
+          "padding-block": "{space.2}",
+          "gap": "{space.2-5}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        },
+        "hover": {
+          "opacity": 0.85
+        },
+        "focus": {
+          "outline": "2px solid {color.primary.bg}"
+        }
+      },
+      "ai": {
+        "purpose": "Communicates compact metadata, categorical status, or quantitative counters.",
+        "whenToUse": [
+          "Entity state indicator (Active, Pending, Suspended, Archived)",
+          "Unread count pill or category tags",
+          "Applied filter chips in filter-bar",
+          "Delta metric tag in dashboard-stat",
+          "Interactive badge links (using asChild or href)"
+        ],
+        "avoid": [
+          "Prominent system-wide action buttons (use Button)",
+          "High-severity alert banners (use Alert)"
+        ],
+        "related": [
+          "filter-bar",
+          "dashboard-stat",
+          "data-table-toolbar"
+        ]
+      }
+    },
+    "Breadcrumb": {
+      "id": "breadcrumb",
+      "component": "Breadcrumb",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "align-items": "center",
+        "flex-wrap": "wrap",
+        "list-style": "none",
+        "margin": 0,
+        "padding": 0,
+        "font-family": "{font.family.body}"
+      },
+      "variants": {
+        "default": {
+          "color": "{color.neutral.600}"
+        },
+        "slash": {
+          "color": "{color.neutral.600}"
+        },
+        "chevron": {
+          "color": "{color.neutral.600}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.xs}",
+          "gap": "{space.1}"
+        },
+        "md": {
+          "font-size": "{text.sm}",
+          "gap": "{space.1-5}"
+        },
+        "lg": {
+          "font-size": "{text.base}",
+          "gap": "{space.2}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        },
+        "hover": {
+          "color": "{color.primary.bg}"
+        }
+      },
+      "ai": {
+        "purpose": "Displays the hierarchical path of the current page within the site structure, allowing quick navigation up the parent tree.",
+        "whenToUse": [
+          "Deeply nested e-commerce catalog categories",
+          "Documentation pages and multi-tier administrative dashboards",
+          "Multi-step checkout or application funnels"
+        ],
+        "avoid": [
+          "Single-level top-level landing pages without parent hierarchy",
+          "Replacing primary navbar navigation"
+        ],
+        "related": [
+          "search-toolbar",
+          "filter-bar"
+        ]
+      }
+    },
+    "Button": {
+      "id": "button",
+      "component": "Button",
+      "category": "actions",
+      "base": {
+        "display": "inline-flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "font-weight": 500,
+        "border-radius": "{radius.md}",
+        "transition-duration": "{duration.fast}",
+        "transition-timing-function": "{ease.standard}",
+        "cursor": "pointer",
+        "user-select": "none"
+      },
+      "variants": {
+        "primary": {
+          "background": "{color.primary.bg}",
+          "color": "{color.primary.fg}",
+          "hover": {
+            "background": "{color.primary.hover}"
+          }
+        },
+        "secondary": {
+          "background": "{color.neutral.100}",
+          "color": "{color.neutral.900}",
+          "hover": {
+            "background": "{color.neutral.200}"
+          }
+        },
+        "outline": {
+          "background": "transparent",
+          "color": "{color.primary.bg}",
+          "border": "1px solid {color.primary.bg}"
+        },
+        "ghost": {
+          "background": "transparent",
+          "color": "{color.primary.bg}",
+          "hover": {
+            "background": "{color.primary.subtle}"
+          }
+        },
+        "link": {
+          "background": "transparent",
+          "color": "{color.primary.bg}",
+          "text-decoration": "underline"
+        },
+        "destructive": {
+          "background": "{color.danger.bg}",
+          "color": "{color.danger.fg}",
+          "hover": {
+            "background": "{color.danger.hover}"
+          }
+        }
+      },
+      "sizes": {
+        "xs": {
+          "font-size": "{text.xs}",
+          "padding-inline": "{space.2}",
+          "padding-block": "{space.1}"
+        },
+        "sm": {
+          "font-size": "{text.sm}",
+          "padding-inline": "{space.3}",
+          "padding-block": "{space.1-5}"
+        },
+        "md": {
+          "font-size": "{text.base}",
+          "padding-inline": "{space.4}",
+          "padding-block": "{space.2}"
+        },
+        "lg": {
+          "font-size": "{text.lg}",
+          "padding-inline": "{space.6}",
+          "padding-block": "{space.3}"
+        },
+        "xl": {
+          "font-size": "{text.xl}",
+          "padding-inline": "{space.8}",
+          "padding-block": "{space.4}"
+        }
+      },
+      "states": {
+        "hover": {
+          "filter": "brightness(0.95)"
+        },
+        "focus": {
+          "outline": "2px solid {color.primary.bg}",
+          "outline-offset": "2px"
+        },
+        "disabled": {
+          "opacity": 0.5,
+          "cursor": "not-allowed",
+          "pointer-events": "none"
+        },
+        "loading": {
+          "opacity": 0.8,
+          "cursor": "wait",
+          "pointer-events": "none"
+        }
+      },
+      "ai": {
+        "purpose": "Triggers an explicit user action, form submission, or state change.",
+        "whenToUse": [
+          "Main page action",
+          "Form submission (primary)",
+          "Dismissal or cancellation (secondary)",
+          "Dangerous or irreversible operations (destructive)"
+        ],
+        "avoid": [
+          "Using multiple primary actions in the same visual container",
+          "Using as a hyperlink without action (use standard anchor)",
+          "Displaying static badge status (use Badge instead)"
+        ],
+        "related": [
+          "form-actions",
+          "search-toolbar",
+          "confirmation"
+        ]
+      }
+    },
+    "Callout": {
+      "id": "callout",
+      "component": "Callout",
+      "category": "feedback",
+      "base": {
+        "position": "relative",
+        "display": "flex",
+        "gap": "{space.4}",
+        "border-radius": "{radius.lg}",
+        "padding": "{space.4}",
+        "font-family": "{font.family.body}",
+        "background-color": "{color.surface.card}",
+        "border-inline-start": "4px solid {color.primary.bg}",
+        "border-block": "1px solid {color.border.subtle}",
+        "border-inline-end": "1px solid {color.border.subtle}"
+      },
+      "variants": {
+        "subtle": {
+          "background-color": "{color.surface.subtle}"
+        },
+        "outline": {
+          "background-color": "transparent"
+        },
+        "luxury": {
+          "border-inline-start-color": "{color.primary.bg}",
+          "background-color": "{color.surface.card}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "padding": "{space.3}",
+          "font-size": "{text.xs}"
+        },
+        "md": {
+          "padding": "{space.4}",
+          "font-size": "{text.sm}"
+        },
+        "lg": {
+          "padding": "{space.6}",
+          "font-size": "{text.base}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Highlights critical editorial quotes, architectural insights, tips, or contextual notices with an elevated visual prominence.",
+        "whenToUse": [
+          "Documentation guidelines, code tips, and architectural callouts",
+          "Editorial quotes and highlighted insights in blog widgets",
+          "Security reminders in billing and profile settings"
+        ],
+        "avoid": [
+          "Critical dismissible alerts interrupting application flows (use Alert)",
+          "Transient ephemeral messages (use Toast)"
+        ],
+        "related": []
+      }
+    },
+    "CanvasSparks": {
+      "id": "canvas-sparks",
+      "component": "CanvasSparks",
+      "category": "feedback",
+      "base": {
+        "position": "absolute",
+        "inset": 0,
+        "width": "100%",
+        "height": "100%",
+        "pointer-events": "none",
+        "z-index": 1
+      },
+      "variants": {
+        "default": {
+          "opacity": 0.75
+        },
+        "emerald": {
+          "opacity": 0.65
+        }
+      },
+      "sizes": {
+        "full": {
+          "width": "100%",
+          "height": "100%"
+        }
+      },
+      "states": {
+        "running": {
+          "display": "block"
+        },
+        "paused": {
+          "display": "none"
+        }
+      },
+      "ai": {
+        "purpose": "Renders a lightweight atmospheric particle simulation of metallic golden embers on an HTML canvas, active in dark theme with zero CPU overhead when inactive.",
+        "whenToUse": [
+          "Hero sections of luxury, celebratory, or cinematic web experiences",
+          "High-prestige dark mode interfaces"
+        ],
+        "avoid": [
+          "Dense administrative tables, data entry forms, or content-heavy body copy"
+        ],
+        "related": []
+      }
+    },
+    "Card": {
+      "id": "card",
+      "component": "Card",
+      "category": "containers",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "background-color": "{color.surface.elevated}",
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.lg}",
+        "overflow": "hidden",
+        "transition-duration": "{duration.normal}",
+        "transition-timing-function": "{ease.standard}"
+      },
+      "variants": {
+        "outline": {
+          "box-shadow": "none"
+        },
+        "elevated": {
+          "box-shadow": "{shadow.md}"
+        },
+        "flat": {
+          "background-color": "{color.surface.muted}",
+          "border-color": "transparent"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "padding": "{space.3}"
+        },
+        "md": {
+          "padding": "{space.5}"
+        },
+        "lg": {
+          "padding": "{space.8}"
+        }
+      },
+      "states": {
+        "hover": {
+          "box-shadow": "{shadow.lg}"
+        },
+        "focus": {
+          "outline": "2px solid {color.primary.bg}"
+        }
+      },
+      "ai": {
+        "purpose": "Groups related content, metadata, and actions into an elevated visual container.",
+        "whenToUse": [
+          "Dashboard metric cards (dashboard-stat)",
+          "Empty state panels (empty-state)",
+          "E-commerce product items and collection cards",
+          "User profiles and settings group panels"
+        ],
+        "avoid": [
+          "Blocking modal confirmations (use Modal)",
+          "Ephemeral feedback notifications (use Toast)"
+        ],
+        "related": [
+          "dashboard-stat",
+          "empty-state"
+        ]
+      }
+    },
+    "Carousel": {
+      "id": "carousel",
+      "component": "Carousel",
+      "category": "media",
+      "base": {
+        "position": "relative",
+        "overflow": "hidden",
+        "width": "100%",
+        "border-radius": "{radius.xl}",
+        "background-color": "{color.surface.card}",
+        "border": "1px solid {color.border.subtle}"
+      },
+      "variants": {
+        "default": {
+          "box-shadow": "var(--qhr-shadow-md)"
+        },
+        "luxury": {
+          "box-shadow": "var(--qhr-shadow-lg)",
+          "border": "1px solid {color.primary.bg}"
+        },
+        "fade": {
+          "transition": "opacity var(--qhr-motion-duration-slow) ease-in-out"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "min-height": "240px"
+        },
+        "md": {
+          "min-height": "380px"
+        },
+        "lg": {
+          "min-height": "520px"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        },
+        "active": {
+          "opacity": 1
+        },
+        "paused": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Displays an interactive sequence of slides or promotional showcases with forward/backward navigation and indicator dots.",
+        "whenToUse": [
+          "Hero promotional banners in e-commerce stores",
+          "Featured editorial articles and luxury product spotlights",
+          "Customer testimonial and review highlights"
+        ],
+        "avoid": [
+          "Dense data tables or critical primary forms",
+          "Over-animating background elements that degrade reading focus"
+        ],
+        "related": []
+      }
+    },
+    "Checkbox": {
+      "id": "checkbox",
+      "component": "Checkbox",
+      "category": "selection",
+      "base": {
+        "display": "inline-flex",
+        "align-items": "center",
+        "gap": "{space.2}",
+        "cursor": "pointer",
+        "user-select": "none",
+        "font-family": "inherit"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.base}",
+          "border-color": "{color.border.subtle}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "box-size": "{space.4}",
+          "font-size": "{text.sm}"
+        },
+        "md": {
+          "box-size": "{space.5}",
+          "font-size": "{text.base}"
+        },
+        "lg": {
+          "box-size": "{space.6}",
+          "font-size": "{text.lg}"
+        }
+      },
+      "states": {
+        "hover": {
+          "border-color": "{color.primary.bg}"
+        },
+        "focus": {
+          "outline": "2px solid {color.primary.subtle}"
+        },
+        "checked": {
+          "background-color": "{color.primary.bg}",
+          "border-color": "{color.primary.bg}",
+          "color": "{color.primary.fg}"
+        },
+        "indeterminate": {
+          "background-color": "{color.primary.bg}",
+          "border-color": "{color.primary.bg}"
+        },
+        "disabled": {
+          "opacity": 0.5,
+          "cursor": "not-allowed"
+        }
+      },
+      "ai": {
+        "purpose": "Permits binary toggling (true/false) or multiple independent selections.",
+        "whenToUse": [
+          "Agreeing to terms and conditions",
+          "Multi-item selection in data tables or filter menus"
+        ],
+        "avoid": [
+          "Mutually exclusive options where exactly one must be selected (use Radio)"
+        ],
+        "related": []
+      }
+    },
+    "Chip": {
+      "id": "chip",
+      "component": "Chip",
+      "category": "data-display",
+      "base": {
+        "display": "inline-flex",
+        "align-items": "center",
+        "border-radius": "{radius.full}",
+        "border": "1px solid {color.border.subtle}",
+        "background-color": "{color.surface.elevated}",
+        "transition": "all 0.15s ease"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.elevated}",
+          "color": "{color.text.base}"
+        },
+        "primary": {
+          "background-color": "{color.brand.subtle}",
+          "color": "{color.brand.primary}",
+          "border-color": "{color.brand.primary}"
+        },
+        "outline": {
+          "background-color": "transparent",
+          "border-color": "{color.border.subtle}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "height": "24px",
+          "padding": "0 var(--qhr-space-2)"
+        },
+        "md": {
+          "height": "32px",
+          "padding": "0 var(--qhr-space-3)"
+        },
+        "lg": {
+          "height": "40px",
+          "padding": "0 var(--qhr-space-4)"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        },
+        "selected": {
+          "background-color": "{color.brand.subtle}"
+        },
+        "disabled": {
+          "opacity": 0.5,
+          "pointer-events": "none"
+        }
+      },
+      "ai": {
+        "purpose": "Compact interactive element representing an attribute, text tag, selection filter, or removable token.",
+        "whenToUse": [
+          "Active filter pills in search bars and data tables",
+          "Tag entry inputs (TagInput)",
+          "Compact entity mentions"
+        ],
+        "avoid": [
+          "Main call to action triggers (use Button instead)",
+          "Passive notification alerts (use Badge or Alert instead)"
+        ],
+        "related": []
+      }
+    },
+    "Divider": {
+      "id": "divider",
+      "component": "Divider",
+      "category": "data-display",
+      "base": {
+        "display": "flex",
+        "align-items": "center",
+        "width": "100%",
+        "color": "{color.border.subtle}"
+      },
+      "variants": {
+        "default": {
+          "border-style": "solid"
+        },
+        "dashed": {
+          "border-style": "dashed"
+        },
+        "strong": {
+          "border-color": "{color.border.strong}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "border-width": "1px"
+        },
+        "md": {
+          "border-width": "2px"
+        },
+        "lg": {
+          "border-width": "4px"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Visual separator delineating content blocks horizontally or vertically, with optional embedded center label.",
+        "whenToUse": [
+          "Separating sections of a form or list",
+          "Inline social login divider (e.g. 'أو' / 'Or')",
+          "Vertical divider between toolbar button groups"
+        ],
+        "avoid": [
+          "Purely decorative border hacks"
+        ],
+        "related": []
+      }
+    },
+    "Dock": {
+      "id": "dock",
+      "component": "Dock",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "space-around",
+        "position": "fixed",
+        "inset-inline": 0,
+        "inset-block-end": 0,
+        "min-height": "3.75rem",
+        "background-color": "{color.surface.elevated}",
+        "border-block-start": "1px solid {color.border.subtle}",
+        "padding-inline": "{space.4}",
+        "padding-block-end": "env(safe-area-inset-bottom, 8px)",
+        "z-index": 100
+      },
+      "variants": {
+        "default": {
+          "width": "100%"
+        },
+        "fixed": {
+          "position": "fixed",
+          "inset-inline": 0,
+          "inset-block-end": 0
+        },
+        "floating": {
+          "position": "fixed",
+          "inset-inline-start": "50%;",
+          "transform": "translateX(-50%)",
+          "inset-block-end": "{space.4}",
+          "width": "min(92vw, 480px)",
+          "border-radius": "{radius.full}",
+          "box-shadow": "{shadow.xl}"
+        },
+        "rounded": {
+          "border-radius": "{radius.xl} {radius.xl} 0 0"
+        },
+        "pills": {
+          "gap": "{space.2}"
+        },
+        "glass": {
+          "background-color": "{color.surface.glass}",
+          "backdrop-filter": "blur(20px)"
+        },
+        "center-fab": {
+          "position": "relative"
+        },
+        "luxury-gold": {
+          "border-block-start": "2px solid {color.gold.500}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "min-height": "3.25rem"
+        },
+        "md": {
+          "min-height": "3.75rem"
+        },
+        "lg": {
+          "min-height": "4.25rem"
+        }
+      },
+      "states": {},
+      "ai": {
+        "purpose": "Displays a bottom-anchored navigation bar primarily designed for handheld and mobile viewports, providing thumb-accessible quick actions, tab destinations, and status indicators.",
+        "whenToUse": [
+          "Primary mobile navigation for web apps, PWA applications, or responsive mobile views",
+          "Thumb-friendly 3 to 5 primary destinations (Home, Search, Orders, Profile, Notifications)",
+          "Floating action dock anchored to the viewport bottom"
+        ],
+        "avoid": [
+          "Desktop-first dashboards with extensive sidebar space (use Menu or Navbar instead)",
+          "Secondary page navigation with more than 5 tabs",
+          "Breadcrumb trails or deep page sub-trees"
+        ],
+        "related": []
+      }
+    },
+    "Drawer": {
+      "id": "drawer",
+      "component": "Drawer",
+      "category": "overlay",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "position": "fixed",
+        "top": 0,
+        "bottom": 0,
+        "background-color": "{color.surface.elevated}",
+        "box-shadow": "{shadow.xl}",
+        "z-index": 50
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.elevated}"
+        },
+        "elevated": {
+          "background-color": "{color.surface.base}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "width": "320px"
+        },
+        "md": {
+          "width": "420px"
+        },
+        "lg": {
+          "width": "560px"
+        },
+        "xl": {
+          "width": "720px"
+        }
+      },
+      "states": {
+        "closed": {
+          "visibility": "hidden"
+        },
+        "open": {
+          "visibility": "visible"
+        }
+      },
+      "ai": {
+        "purpose": "Displays an offcanvas side panel sliding from the viewport edge for navigation, filters, or auxiliary details.",
+        "whenToUse": [
+          "Complex multifaceted filter sidebars on mobile and desktop",
+          "Viewing detailed row entity or item side overview without leaving page",
+          "Mobile global navigation menus"
+        ],
+        "avoid": [
+          "Simple confirmations (use Modal or Toast instead)",
+          "Persistent desktop sidebar navigation (use Nav instead)"
+        ],
+        "related": []
+      }
+    },
+    "Dropdown": {
+      "id": "dropdown",
+      "component": "Dropdown",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "position": "absolute",
+        "z-index": 50,
+        "min-width": "180px",
+        "background-color": "{color.surface.elevated}",
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.md}",
+        "box-shadow": "{shadow.lg}",
+        "padding": "{space.1}"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.elevated}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "min-width": "140px",
+          "font-size": "{text.xs}"
+        },
+        "md": {
+          "min-width": "180px",
+          "font-size": "{text.sm}"
+        }
+      },
+      "states": {
+        "closed": {
+          "display": "none"
+        },
+        "open": {
+          "display": "flex"
+        }
+      },
+      "ai": {
+        "purpose": "Displays a contextual floating menu revealing secondary actions or navigation links.",
+        "whenToUse": [
+          "User profile menu in headers",
+          "Table row actions (kebab menu ...)"
+        ],
+        "avoid": [
+          "Form field value selection (use Select)"
+        ],
+        "related": []
+      }
+    },
+    "FileUpload": {
+      "id": "file-upload",
+      "component": "FileUpload",
+      "category": "forms",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "align-items": "center",
+        "justify-content": "center",
+        "border": "2px dashed {color.border.subtle}",
+        "border-radius": "{radius.lg}",
+        "background-color": "{color.surface.base}",
+        "transition": "all 0.2s ease"
+      },
+      "variants": {
+        "default": {
+          "border-style": "dashed"
+        },
+        "compact": {
+          "padding": "var(--qhr-space-3)"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "padding": "var(--qhr-space-4)"
+        },
+        "md": {
+          "padding": "var(--qhr-space-6)"
+        },
+        "lg": {
+          "padding": "var(--qhr-space-10)"
+        }
+      },
+      "states": {
+        "default": {
+          "border-color": "{color.border.subtle}"
+        },
+        "dragover": {
+          "border-color": "{color.brand.primary}",
+          "background-color": "{color.brand.subtle}"
+        }
+      },
+      "ai": {
+        "purpose": "Interactive drag-and-drop zone with file picker, validation status, and upload progression indicators.",
+        "whenToUse": [
+          "Document, image, or media asset submission forms",
+          "Importing CSV, Excel or JSON data files"
+        ],
+        "avoid": [
+          "Simple text inputs",
+          "Instant zero-file single click forms"
+        ],
+        "related": []
+      }
+    },
+    "Input": {
+      "id": "input",
+      "component": "Input",
+      "category": "forms",
+      "base": {
+        "display": "flex",
+        "width": "100%",
+        "align-items": "center",
+        "font-family": "inherit",
+        "background-color": "{color.surface.base}",
+        "color": "{color.neutral.900}",
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.md}",
+        "outline": "none",
+        "transition-duration": "{duration.fast}",
+        "transition-timing-function": "{ease.standard}"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.base}",
+          "border-color": "{color.border.subtle}"
+        },
+        "filled": {
+          "background-color": "{color.neutral.100}",
+          "border-color": "transparent"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.sm}",
+          "padding-inline": "{space.3}",
+          "padding-block": "{space.1-5}",
+          "border-radius": "{radius.sm}"
+        },
+        "md": {
+          "font-size": "{text.base}",
+          "padding-inline": "{space.3-5}",
+          "padding-block": "{space.2}",
+          "border-radius": "{radius.md}"
+        },
+        "lg": {
+          "font-size": "{text.lg}",
+          "padding-inline": "{space.4}",
+          "padding-block": "{space.3}",
+          "border-radius": "{radius.lg}"
+        }
+      },
+      "states": {
+        "hover": {
+          "border-color": "{color.primary.bg}"
+        },
+        "focus": {
+          "border-color": "{color.primary.bg}",
+          "outline": "2px solid {color.primary.subtle}"
+        },
+        "disabled": {
+          "background-color": "{color.neutral.100}",
+          "opacity": 0.6,
+          "cursor": "not-allowed"
+        },
+        "invalid": {
+          "border-color": "{color.danger.bg}",
+          "outline": "2px solid {color.danger.subtle}"
+        }
+      },
+      "ai": {
+        "purpose": "Captures a single line of textual or numeric data from the user.",
+        "whenToUse": [
+          "Short textual inputs (names, emails, search queries, quantities)",
+          "Form fields within forms or modal dialogues",
+          "Search query input in search-toolbar"
+        ],
+        "avoid": [
+          "Multi-line freeform text (use Textarea instead)",
+          "Selecting from predefined options (use Select or Radio instead)"
+        ],
+        "related": [
+          "search-toolbar",
+          "data-table-toolbar",
+          "form-actions"
+        ]
+      }
+    },
+    "Kbd": {
+      "id": "kbd",
+      "component": "Kbd",
+      "category": "data-display",
+      "base": {
+        "display": "inline-flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "font-family": "{font.family.mono}",
+        "background-color": "{color.surface.elevated}",
+        "border": "1px solid {color.border.subtle}",
+        "border-bottom": "2px solid {color.border.strong}",
+        "border-radius": "{radius.sm}",
+        "color": "{color.text.muted}",
+        "font-weight": 600
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.elevated}"
+        },
+        "outline": {
+          "background-color": "transparent"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "height": "20px",
+          "padding": "0 var(--qhr-space-1)",
+          "font-size": "11px"
+        },
+        "md": {
+          "height": "24px",
+          "padding": "0 var(--qhr-space-2)",
+          "font-size": "12px"
+        },
+        "lg": {
+          "height": "28px",
+          "padding": "0 var(--qhr-space-2)",
+          "font-size": "14px"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Displays keyboard shortcut keys, key combinations, and system hotkey indicators.",
+        "whenToUse": [
+          "Displaying hotkeys in dropdown menus and command palettes (e.g. ⌘K, Ctrl+S)",
+          "Technical documentation and user guides"
+        ],
+        "avoid": [
+          "Interactive clickable buttons (use Button instead)"
+        ],
+        "related": []
+      }
+    },
+    "Megamenu": {
+      "id": "megamenu",
+      "component": "Megamenu",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "position": "absolute",
+        "inset-inline-start": 0,
+        "inset-block-start": "100%",
+        "width": "100%",
+        "background-color": "{color.surface.elevated}",
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.lg}",
+        "box-shadow": "{shadow.xl}",
+        "padding": "{space.6}",
+        "z-index": 50
+      },
+      "variants": {
+        "default": {
+          "width": "100%"
+        },
+        "2-cols": {
+          "display": "grid",
+          "grid-template-columns": "repeat(2, 1fr)",
+          "gap": "{space.6}"
+        },
+        "3-cols": {
+          "display": "grid",
+          "grid-template-columns": "repeat(3, 1fr)",
+          "gap": "{space.6}"
+        },
+        "4-cols": {
+          "display": "grid",
+          "grid-template-columns": "repeat(4, 1fr)",
+          "gap": "{space.6}"
+        },
+        "with-featured": {
+          "display": "grid",
+          "grid-template-columns": "2.5fr 1fr",
+          "gap": "{space.6}"
+        },
+        "full-width": {
+          "width": "100vw",
+          "inset-inline": 0
+        },
+        "glass": {
+          "background-color": "{color.surface.glass}",
+          "backdrop-filter": "blur(20px)"
+        }
+      },
+      "sizes": {
+        "md": {
+          "padding": "{space.4}"
+        },
+        "lg": {
+          "padding": "{space.6}"
+        },
+        "xl": {
+          "padding": "{space.8}"
+        }
+      },
+      "states": {},
+      "ai": {
+        "purpose": "Displays an expansive multi-column navigation panel hosting categorised link lists, promotional media, feature cards, and quick actions.",
+        "whenToUse": [
+          "Sites with deep architectural hierarchies and more than 15 top-tier destinations",
+          "Product suites requiring visual descriptions, icons, and featured promotional callouts",
+          "Enterprise header navigation menus"
+        ],
+        "avoid": [
+          "Simple linear websites with fewer than 6 links (use Menu or Navbar dropdown)",
+          "Sidebar lists inside dashboards (use Menu instead)",
+          "Mobile app primary screens (use Dock or Drawer instead)"
+        ],
+        "related": []
+      }
+    },
+    "Menu": {
+      "id": "menu",
+      "component": "Menu",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "list-style": "none",
+        "margin": 0,
+        "padding": "{space.2}",
+        "gap": "{space.1}",
+        "background-color": "{color.surface.base}",
+        "border-radius": "{radius.md}",
+        "font-family": "{font.family.primary}",
+        "color": "{color.content.primary}"
+      },
+      "variants": {
+        "default": {
+          "flex-direction": "column"
+        },
+        "vertical": {
+          "flex-direction": "column",
+          "width": "100%"
+        },
+        "horizontal": {
+          "flex-direction": "row",
+          "align-items": "center",
+          "flex-wrap": "wrap"
+        },
+        "compact": {
+          "padding": "{space.1}",
+          "gap": "2px"
+        },
+        "bordered": {
+          "border": "1px solid {color.border.subtle}"
+        },
+        "pills": {
+          "gap": "{space.2}"
+        },
+        "rounded": {
+          "border-radius": "{radius.lg}"
+        },
+        "khedivial": {
+          "border-inline-start": "3px solid {color.gold.500}",
+          "background-color": "{color.surface.elevated}"
+        },
+        "brutalist": {
+          "border": "2px solid {color.content.primary}",
+          "border-radius": 0,
+          "box-shadow": "3px 3px 0px {color.content.primary}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{font.size.xs}",
+          "gap": "2px"
+        },
+        "md": {
+          "font-size": "{font.size.sm}",
+          "gap": "{space.1}"
+        },
+        "lg": {
+          "font-size": "{font.size.base}",
+          "gap": "{space.2}"
+        }
+      },
+      "states": {},
+      "ai": {
+        "purpose": "Displays a vertical or horizontal structured list of navigational links, supporting nested submenus, section headers, badges, icons, and keyboard navigation.",
+        "whenToUse": [
+          "Sidebar navigation in dashboards and administrative consoles",
+          "Nested link hierarchies with collapsible submenus and section headers",
+          "Compact horizontal action strips or breadcrumb-adjacent menus"
+        ],
+        "avoid": [
+          "Primary top-level site header with branding and search (use Navbar instead)",
+          "Wide multi-column dropdowns with promotional cards (use Megamenu instead)",
+          "Bottom-screen thumb navigation on mobile devices (use Dock instead)"
+        ],
+        "related": []
+      }
+    },
+    "Modal": {
+      "id": "modal",
+      "component": "Modal",
+      "category": "overlay",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "position": "relative",
+        "width": "100%",
+        "background-color": "{color.surface.elevated}",
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.xl}",
+        "box-shadow": "{shadow.xl}",
+        "overflow": "hidden"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.elevated}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "max-width": "400px"
+        },
+        "md": {
+          "max-width": "520px"
+        },
+        "lg": {
+          "max-width": "680px"
+        },
+        "xl": {
+          "max-width": "840px"
+        }
+      },
+      "states": {
+        "closed": {
+          "display": "none"
+        },
+        "open": {
+          "display": "flex"
+        }
+      },
+      "ai": {
+        "purpose": "Displays a blocking dialog surface capturing user attention for a critical workflow.",
+        "whenToUse": [
+          "Destructive deletion confirmations (paired with confirmation pattern)",
+          "Critical multi-input forms requiring total user focus",
+          "Terms or policy approvals before proceeding"
+        ],
+        "avoid": [
+          "Passive feedback or status updates (use Toast or Alert instead)",
+          "Standard page content navigation"
+        ],
+        "related": [
+          "confirmation",
+          "form-actions"
+        ]
+      }
+    },
+    "Navbar": {
+      "id": "navbar",
+      "component": "Navbar",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "width": "100%",
+        "align-items": "center",
+        "justify-content": "space-between",
+        "background-color": "{color.surface.base}",
+        "border-bottom": "1px solid {color.border.subtle}",
+        "z-index": 40,
+        "transition-duration": "{duration.fast}",
+        "transition-timing-function": "{ease.standard}"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.base}"
+        },
+        "transparent": {
+          "background-color": "transparent",
+          "border-bottom": "none"
+        },
+        "glass": {
+          "background-color": "{color.surface.glass}",
+          "backdrop-filter": "blur(16px)"
+        },
+        "title-only": {
+          "justify-content": "center"
+        },
+        "title-icon": {
+          "gap": "{space.4}"
+        },
+        "dual-icons": {
+          "justify-content": "space-between"
+        },
+        "with-submenus": {
+          "position": "relative"
+        },
+        "with-search": {
+          "gap": "{space.4}"
+        },
+        "with-indicator": {
+          "position": "relative"
+        },
+        "center-logo": {
+          "justify-content": "space-between"
+        },
+        "responsive-center": {
+          "justify-content": "space-between"
+        },
+        "drawer-collapse": {
+          "position": "sticky"
+        },
+        "school-art-deco": {
+          "border-bottom": "2px solid {color.gold.500}"
+        },
+        "school-masthead": {
+          "flex-direction": "column",
+          "border-bottom": "2px solid {color.border.strong}"
+        },
+        "school-brutalist": {
+          "border-bottom": "3px solid {color.content.primary}",
+          "box-shadow": "0 4px 0 {color.content.primary}"
+        },
+        "school-floating-pill": {
+          "border-radius": "9999px",
+          "margin-inline": "auto"
+        },
+        "school-cyber-terminal": {
+          "font-family": "{font.mono}",
+          "border-bottom": "1px solid {color.cyan.500}"
+        },
+        "school-heritage": {
+          "border-bottom": "1px solid {color.amber.600}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "height": "{space.12}",
+          "padding-inline": "{space.4}"
+        },
+        "md": {
+          "height": "{space.16}",
+          "padding-inline": "{space.6}"
+        },
+        "lg": {
+          "height": "{space.20}",
+          "padding-inline": "{space.8}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        },
+        "mobile-open": {
+          "overflow": "hidden"
+        },
+        "dropdown-open": {
+          "z-index": 50
+        }
+      },
+      "ai": {
+        "purpose": "Displays the primary application and page header hosting branding, navigation links, submenus, search, indicators, and actions across diverse architectural archetypes.",
+        "whenToUse": [
+          "Top-level layout header for web applications, editorial portals, or marketing websites",
+          "Mobile app bar with dual icons or search capsule"
+        ],
+        "avoid": [
+          "Isolated single-screen landing pages without external links"
+        ],
+        "related": []
+      }
+    },
+    "Pagination": {
+      "id": "pagination",
+      "component": "Pagination",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "space-between",
+        "width": "100%",
+        "box-sizing": "border-box",
+        "padding-block": "{space.3}",
+        "padding-inline": "{space.4}",
+        "background": "{surface.elevated}",
+        "border-radius": "{radius.lg}",
+        "font-family": "{font.family.body}"
+      },
+      "variants": {
+        "default": {
+          "border": "1px solid {border.subtle}"
+        },
+        "outline": {
+          "border": "1px solid {border.strong}",
+          "box-shadow": "{shadow.sm}"
+        },
+        "ghost": {
+          "background": "transparent",
+          "border": "none",
+          "padding": "0"
+        },
+        "pills": {
+          "border-radius": "9999px",
+          "border": "1px solid {border.subtle}"
+        },
+        "segmented": {
+          "background": "{surface.subtle}",
+          "border": "1px solid {border.subtle}",
+          "gap": "0"
+        },
+        "compact": {
+          "justify-content": "center",
+          "gap": "{space.2}"
+        },
+        "icons-only": {
+          "gap": "{space.1}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.xs}",
+          "gap": "{space.2}"
+        },
+        "md": {
+          "font-size": "{text.sm}",
+          "gap": "{space.4}"
+        },
+        "lg": {
+          "font-size": "{text.base}",
+          "gap": "{space.6}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        },
+        "hover": {
+          "border-color": "{color.primary.base}"
+        },
+        "disabled": {
+          "opacity": 0.4,
+          "cursor": "not-allowed"
+        }
+      },
+      "ai": {
+        "purpose": "Provides structured multi-page navigation, direct jump controls, page size selector, and record boundary status. Inspired by composable headless primitives with rich styled variants.",
+        "whenToUse": [
+          "Result sets exceed a single viewport (typically > 12 records)",
+          "Server or client paginated catalogs, tables, and card registries",
+          "Composed data tables requiring compact or icons-only pagination"
+        ],
+        "avoid": [
+          "Continuous infinite feeds without discrete pages",
+          "Small lists with fewer than 10 items"
+        ],
+        "related": []
+      }
+    },
+    "Preloader": {
+      "id": "preloader",
+      "component": "Preloader",
+      "category": "feedback",
+      "base": {
+        "position": "fixed",
+        "inset": 0,
+        "background-color": "var(--qhr-color-bg)",
+        "z-index": 9999,
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "transition": "opacity 0.6s var(--qhr-motion-luxury, cubic-bezier(0.25, 0.8, 0.25, 1))"
+      },
+      "variants": {
+        "default": {
+          "background-color": "var(--qhr-color-bg)"
+        },
+        "luxury": {
+          "background-color": "var(--qhr-color-bg)",
+          "border-top": "2px solid var(--qhr-color-gold)"
+        }
+      },
+      "sizes": {
+        "md": {
+          "max-width": "280px"
+        }
+      },
+      "states": {
+        "active": {
+          "opacity": 1,
+          "pointer-events": "auto"
+        },
+        "dismissed": {
+          "opacity": 0,
+          "pointer-events": "none"
+        }
+      },
+      "ai": {
+        "purpose": "Displays an atmospheric initial loading overlay with logo, animated progress bar, and digital percentage before revealing cinematic or rich page content.",
+        "whenToUse": [
+          "First-time application loads, heavy cinematic presentations, or portfolio landing pages"
+        ],
+        "avoid": [
+          "Internal page-to-page SPA transitions or individual component async data fetching"
+        ],
+        "related": []
+      }
+    },
+    "Progress": {
+      "id": "progress",
+      "component": "Progress",
+      "category": "feedback",
+      "base": {
+        "position": "relative",
+        "width": "100%",
+        "overflow": "hidden",
+        "border-radius": "{radius.pill}",
+        "background-color": "{color.surface.subtle}"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.subtle}"
+        },
+        "striped": {
+          "background-image": "linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent)"
+        },
+        "animated": {
+          "animation": "qhr-progress-stripes 1s linear infinite"
+        },
+        "gradient": {
+          "background-image": "linear-gradient(90deg, {color.primary.bg}, {color.neutral.300})"
+        },
+        "indeterminate": {
+          "animation": "qhr-progress-indeterminate 1.5s infinite ease-in-out"
+        },
+        "segmented": {
+          "display": "flex"
+        },
+        "vertical": {
+          "display": "inline-flex",
+          "flex-direction": "column",
+          "justify-content": "flex-end"
+        }
+      },
+      "sizes": {
+        "xxs": {
+          "height": "2px"
+        },
+        "xs": {
+          "height": "4px"
+        },
+        "sm": {
+          "height": "6px"
+        },
+        "md": {
+          "height": "10px"
+        },
+        "lg": {
+          "height": "16px"
+        },
+        "xl": {
+          "height": "24px"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        },
+        "indeterminate": {
+          "animation": "qhr-progress-indeterminate 1.5s infinite ease-in-out"
+        },
+        "complete": {
+          "opacity": 1
+        },
+        "paused": {
+          "opacity": 0.6
+        },
+        "error": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Visualizes the deterministic or indeterminate completion status of an operation, task, or metric indicator.",
+        "whenToUse": [
+          "Horizontal and vertical metric indicators and level meters",
+          "File upload and asset synchronization status",
+          "KPI goal completion bars in dashboards",
+          "Multi-step form completion indicators",
+          "Disk, memory, and equalizer column monitors"
+        ],
+        "avoid": [
+          "Discrete stepped wizard navigation (use Stepper)",
+          "Standalone loading spinners without progress context (use Spinner or Preloader)"
+        ],
+        "related": []
+      }
+    },
+    "Radio": {
+      "id": "radio",
+      "component": "Radio",
+      "category": "selection",
+      "base": {
+        "display": "inline-flex",
+        "align-items": "center",
+        "gap": "{space.2}",
+        "cursor": "pointer",
+        "user-select": "none",
+        "font-family": "inherit"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.base}",
+          "border-color": "{color.border.subtle}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "circle-size": "{space.4}",
+          "font-size": "{text.sm}"
+        },
+        "md": {
+          "circle-size": "{space.5}",
+          "font-size": "{text.base}"
+        },
+        "lg": {
+          "circle-size": "{space.6}",
+          "font-size": "{text.lg}"
+        }
+      },
+      "states": {
+        "hover": {
+          "border-color": "{color.primary.bg}"
+        },
+        "focus": {
+          "outline": "2px solid {color.primary.subtle}"
+        },
+        "checked": {
+          "border-color": "{color.primary.bg}",
+          "dot-color": "{color.primary.bg}"
+        },
+        "disabled": {
+          "opacity": 0.5,
+          "cursor": "not-allowed"
+        }
+      },
+      "ai": {
+        "purpose": "Permits selection of exactly one option from a mutually exclusive group.",
+        "whenToUse": [
+          "Selecting one option among 2 to 5 visible choices (shipping, payment methods)"
+        ],
+        "avoid": [
+          "Independent toggles (use Checkbox)",
+          "Long choice lists exceeding 6 options (use Select)"
+        ],
+        "related": []
+      }
+    },
+    "Rating": {
+      "id": "rating",
+      "component": "Rating",
+      "category": "feedback",
+      "base": {
+        "display": "inline-flex",
+        "align-items": "center",
+        "gap": "{space.1}"
+      },
+      "variants": {
+        "default": {
+          "color": "{color.brand.accent}"
+        },
+        "accent": {
+          "color": "{color.brand.primary}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "14px"
+        },
+        "md": {
+          "font-size": "18px"
+        },
+        "lg": {
+          "font-size": "24px"
+        }
+      },
+      "states": {
+        "readonly": {
+          "pointer-events": "none"
+        },
+        "interactive": {
+          "cursor": "pointer"
+        }
+      },
+      "ai": {
+        "purpose": "Displays quantitative star rating evaluation and user feedback capture.",
+        "whenToUse": [
+          "Product reviews and customer evaluations in e-commerce",
+          "Feedback submission forms"
+        ],
+        "avoid": [
+          "Binary yes/no toggles (use Switch or Radio)"
+        ],
+        "related": []
+      }
+    },
+    "Ribbon": {
+      "id": "ribbon",
+      "component": "Ribbon",
+      "category": "data-display",
+      "base": {
+        "position": "absolute",
+        "z-index": 10,
+        "font-family": "{font.family.body}",
+        "font-weight": 700,
+        "text-align": "center",
+        "user-select": "none",
+        "white-space": "nowrap"
+      },
+      "variants": {
+        "folded": {
+          "inset-block-start": "14px",
+          "inset-inline-start": "-8px",
+          "padding-inline": "{space.4}",
+          "padding-block": "{space.2}"
+        },
+        "corner": {
+          "inset-block-start": "18px",
+          "inset-inline-start": "-38px",
+          "transform": "rotate(-45deg)",
+          "padding-inline": "{space.6}"
+        },
+        "bookmark": {
+          "inset-block-start": "0",
+          "inset-inline-end": "16px",
+          "border-radius": "0 0 6px 6px",
+          "padding-block": "{space.2}",
+          "padding-inline": "{space.3}"
+        },
+        "flat": {
+          "inset-block-start": "12px",
+          "inset-inline-start": "0",
+          "border-radius": "0 {radius.md} {radius.md} 0",
+          "padding-inline": "{space.3}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.xs}",
+          "height": "20px",
+          "line-height": "20px"
+        },
+        "md": {
+          "font-size": "{text.xs}",
+          "height": "26px",
+          "line-height": "26px"
+        },
+        "lg": {
+          "font-size": "{text.sm}",
+          "height": "32px",
+          "line-height": "32px"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Displays an angular or folded corner banner across cards, boxes, and product displays to indicate status, exclusivity, discounts, or new arrivals.",
+        "whenToUse": [
+          "Luxury e-commerce cards (e.g. 'Royal Gold', 'Best Seller', 'New')",
+          "Discount percentages and limited-edition badges on product cards",
+          "Subscription tier markers on pricing tables"
+        ],
+        "avoid": [
+          "Interactive buttons or clickable tags (use Badge or Button)",
+          "Overcrowding multiple ribbons on a single container"
+        ],
+        "related": []
+      }
+    },
+    "Select": {
+      "id": "select",
+      "component": "Select",
+      "category": "forms",
+      "base": {
+        "display": "flex",
+        "width": "100%",
+        "align-items": "center",
+        "justify-content": "space-between",
+        "font-family": "inherit",
+        "background-color": "{color.surface.base}",
+        "color": "{color.neutral.900}",
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.md}",
+        "cursor": "pointer",
+        "user-select": "none",
+        "transition-duration": "{duration.fast}",
+        "transition-timing-function": "{ease.standard}"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.base}",
+          "border-color": "{color.border.subtle}"
+        },
+        "outline": {
+          "background-color": "transparent",
+          "border-color": "{color.primary.bg}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.sm}",
+          "padding-inline": "{space.3}",
+          "padding-block": "{space.1-5}"
+        },
+        "md": {
+          "font-size": "{text.base}",
+          "padding-inline": "{space.3-5}",
+          "padding-block": "{space.2}"
+        },
+        "lg": {
+          "font-size": "{text.lg}",
+          "padding-inline": "{space.4}",
+          "padding-block": "{space.3}"
+        }
+      },
+      "states": {
+        "hover": {
+          "border-color": "{color.primary.bg}"
+        },
+        "focus": {
+          "border-color": "{color.primary.bg}",
+          "outline": "2px solid {color.primary.subtle}"
+        },
+        "open": {
+          "border-color": "{color.primary.bg}",
+          "box-shadow": "{shadow.md}"
+        },
+        "disabled": {
+          "background-color": "{color.neutral.100}",
+          "opacity": 0.6,
+          "cursor": "not-allowed"
+        }
+      },
+      "ai": {
+        "purpose": "Enables selection of a single option from an expandable dropdown list.",
+        "whenToUse": [
+          "Choosing one option from 5 or more predefined choices (countries, roles, page sizes)",
+          "Page size selector in pagination pattern",
+          "Column/filter picker in data-table-toolbar"
+        ],
+        "avoid": [
+          "Binary choice (use Checkbox)",
+          "Mutually exclusive choices under 4 items (use Radio)"
+        ],
+        "related": [
+          "pagination",
+          "data-table-toolbar"
+        ]
+      }
+    },
+    "Skeleton": {
+      "id": "skeleton",
+      "component": "Skeleton",
+      "category": "feedback",
+      "base": {
+        "display": "block",
+        "background-color": "{color.surface.elevated}",
+        "border-radius": "{radius.md}",
+        "position": "relative",
+        "overflow": "hidden"
+      },
+      "variants": {
+        "default": {
+          "opacity": 0.8
+        },
+        "wave": {
+          "opacity": 1
+        }
+      },
+      "sizes": {
+        "sm": {
+          "height": "16px"
+        },
+        "md": {
+          "height": "24px"
+        },
+        "lg": {
+          "height": "48px"
+        }
+      },
+      "states": {
+        "loading": {
+          "animation": "qhr-shimmer 1.5s infinite linear"
+        },
+        "idle": {
+          "animation": "none"
+        }
+      },
+      "ai": {
+        "purpose": "Displays animated shimmer placeholders simulating layout geometry while asynchronous data loads.",
+        "whenToUse": [
+          "Card loading state",
+          "Avatar and profile header loading",
+          "Table rows during pagination or initial fetch"
+        ],
+        "avoid": [
+          "Long-term blocking operations where progress percentage is known (use Progress)"
+        ],
+        "related": []
+      }
+    },
+    "Spinner": {
+      "id": "spinner",
+      "component": "Spinner",
+      "category": "feedback",
+      "base": {
+        "display": "inline-block",
+        "vertical-align": "middle",
+        "animation": "qhr-spin 0.8s linear infinite",
+        "color": "{color.primary.bg}"
+      },
+      "variants": {
+        "default": {
+          "color": "{color.primary.bg}"
+        },
+        "gold": {
+          "color": "{color.primary.bg}"
+        },
+        "track": {
+          "color": "currentColor"
+        }
+      },
+      "sizes": {
+        "xs": {
+          "width": "16px",
+          "height": "16px"
+        },
+        "sm": {
+          "width": "20px",
+          "height": "20px"
+        },
+        "md": {
+          "width": "28px",
+          "height": "28px"
+        },
+        "lg": {
+          "width": "40px",
+          "height": "40px"
+        },
+        "xl": {
+          "width": "56px",
+          "height": "56px"
+        }
+      },
+      "states": {
+        "active": {
+          "opacity": 1
+        },
+        "paused": {
+          "animation-play-state": "paused"
+        }
+      },
+      "ai": {
+        "purpose": "Indicates indeterminate background processing, data retrieval, or asynchronous task execution with an animated circular stroke.",
+        "whenToUse": [
+          "Inside button during asynchronous submission (`loading` state)",
+          "Inside table rows or card bodies while fetching telemetry",
+          "Dropdown menu item lazy loading"
+        ],
+        "avoid": [
+          "Full-screen application bootup transitions (use Preloader)",
+          "Known percentage completion processes (use Progress)"
+        ],
+        "related": []
+      }
+    },
+    "Stepper": {
+      "id": "stepper",
+      "component": "Stepper",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "align-items": "center",
+        "width": "100%",
+        "list-style": "none",
+        "margin": 0,
+        "padding": 0,
+        "font-family": "{font.family.body}"
+      },
+      "variants": {
+        "horizontal": {
+          "flex-direction": "row",
+          "justify-content": "space-between"
+        },
+        "vertical": {
+          "flex-direction": "column",
+          "align-items": "flex-start"
+        },
+        "numbers": {
+          "gap": "{space.4}"
+        },
+        "dots": {
+          "gap": "{space.2}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.xs}",
+          "gap": "{space.2}"
+        },
+        "md": {
+          "font-size": "{text.sm}",
+          "gap": "{space.4}"
+        },
+        "lg": {
+          "font-size": "{text.base}",
+          "gap": "{space.6}"
+        }
+      },
+      "states": {
+        "upcoming": {
+          "opacity": 0.6
+        },
+        "current": {
+          "font-weight": 700
+        },
+        "completed": {
+          "opacity": 1
+        },
+        "disabled": {
+          "opacity": 0.4
+        }
+      },
+      "ai": {
+        "purpose": "Guides users through a sequential multi-step workflow, depicting completed, active, and upcoming stages.",
+        "whenToUse": [
+          "Multi-step enterprise registration (e.g. Register 2)",
+          "E-Commerce checkout (Cart -> Shipping -> Payment -> Confirmation)",
+          "Onboarding wizards and system setup procedures"
+        ],
+        "avoid": [
+          "Continuous percentage metrics without discrete steps (use Progress)",
+          "Independent tabs without chronological order (use Tabs)"
+        ],
+        "related": []
+      }
+    },
+    "Switch": {
+      "id": "switch",
+      "component": "Switch",
+      "category": "selection",
+      "base": {
+        "position": "relative",
+        "display": "inline-flex",
+        "align-items": "center",
+        "cursor": "pointer",
+        "user-select": "none",
+        "vertical-align": "middle"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.subtle}"
+        },
+        "gold": {
+          "background-color": "{color.surface.subtle}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "width": "36px",
+          "height": "20px"
+        },
+        "md": {
+          "width": "44px",
+          "height": "24px"
+        },
+        "lg": {
+          "width": "52px",
+          "height": "28px"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        },
+        "checked": {
+          "background-color": "{color.primary.bg}"
+        },
+        "hover": {
+          "opacity": 0.9
+        },
+        "focus": {
+          "outline": "2px solid {color.primary.bg}",
+          "outline-offset": "2px"
+        },
+        "disabled": {
+          "opacity": 0.5,
+          "cursor": "not-allowed"
+        }
+      },
+      "ai": {
+        "purpose": "Enables users to toggle instantly between two mutually exclusive binary states (active / inactive, on / off).",
+        "whenToUse": [
+          "Application settings and notifications switches",
+          "Dark/Light mode or language switching",
+          "Feature flags and privacy toggles"
+        ],
+        "avoid": [
+          "Form fields requiring delayed form submission button (use Checkbox)",
+          "Multiple selectable options from a set (use Radio or Select)"
+        ],
+        "related": []
+      }
+    },
+    "Table": {
+      "id": "table",
+      "component": "Table",
+      "category": "data-display",
+      "base": {
+        "display": "table",
+        "width": "100%",
+        "border-collapse": "collapse",
+        "font-family": "inherit",
+        "font-size": "{text.sm}",
+        "text-align": "start"
+      },
+      "variants": {
+        "default": {
+          "border-bottom": "1px solid {color.border.subtle}"
+        },
+        "striped": {
+          "background-color": "{color.surface.base}"
+        },
+        "bordered": {
+          "border": "1px solid {color.border.subtle}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "padding-inline": "{space.2-5}",
+          "padding-block": "{space.1-5}",
+          "font-size": "{text.xs}"
+        },
+        "md": {
+          "padding-inline": "{space.4}",
+          "padding-block": "{space.2-5}",
+          "font-size": "{text.sm}"
+        },
+        "lg": {
+          "padding-inline": "{space.6}",
+          "padding-block": "{space.3-5}",
+          "font-size": "{text.base}"
+        }
+      },
+      "states": {
+        "hover": {
+          "background-color": "{color.neutral.50}"
+        }
+      },
+      "ai": {
+        "purpose": "Displays structured datasets organized in columns and rows for comparison.",
+        "whenToUse": [
+          "Comparing uniform records (users, orders, invoices, transactions)"
+        ],
+        "avoid": [
+          "Mobile-first single-entity workflows (use Cards on small viewports)"
+        ],
+        "related": []
+      }
+    },
+    "Tabs": {
+      "id": "tabs",
+      "component": "Tabs",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "width": "100%",
+        "gap": "{space.4}"
+      },
+      "variants": {
+        "line": {
+          "border-bottom": "1px solid {color.border.subtle}"
+        },
+        "pills": {
+          "gap": "{space.2}"
+        },
+        "enclosed": {
+          "border": "1px solid {color.border.subtle}",
+          "border-radius": "{radius.md}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.sm}",
+          "padding-inline": "{space.3}",
+          "padding-block": "{space.1-5}"
+        },
+        "md": {
+          "font-size": "{text.base}",
+          "padding-inline": "{space.4}",
+          "padding-block": "{space.2}"
+        },
+        "lg": {
+          "font-size": "{text.lg}",
+          "padding-inline": "{space.5}",
+          "padding-block": "{space.2-5}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Partitions content into parallel panels switchable via tab buttons.",
+        "whenToUse": [
+          "Settings pages (Profile, Security, Billing)",
+          "Product overviews (Overview, Specs, Reviews)"
+        ],
+        "avoid": [
+          "Sequential multi-step forms (use Stepper/Wizard)"
+        ],
+        "related": []
+      }
+    },
+    "Textarea": {
+      "id": "textarea",
+      "component": "Textarea",
+      "category": "forms",
+      "base": {
+        "display": "flex",
+        "width": "100%",
+        "min-height": "100px",
+        "font-family": "inherit",
+        "background-color": "{color.surface.base}",
+        "color": "{color.neutral.900}",
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.md}",
+        "outline": "none",
+        "resize": "vertical",
+        "transition-duration": "{duration.fast}",
+        "transition-timing-function": "{ease.standard}"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.base}",
+          "border-color": "{color.border.subtle}"
+        },
+        "filled": {
+          "background-color": "{color.neutral.100}",
+          "border-color": "transparent"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.sm}",
+          "padding-inline": "{space.2-5}",
+          "padding-block": "{space.2}",
+          "border-radius": "{radius.sm}"
+        },
+        "md": {
+          "font-size": "{text.base}",
+          "padding-inline": "{space.3}",
+          "padding-block": "{space.2-5}",
+          "border-radius": "{radius.md}"
+        },
+        "lg": {
+          "font-size": "{text.lg}",
+          "padding-inline": "{space.4}",
+          "padding-block": "{space.3}",
+          "border-radius": "{radius.lg}"
+        }
+      },
+      "states": {
+        "hover": {
+          "border-color": "{color.primary.bg}"
+        },
+        "focus": {
+          "border-color": "{color.primary.bg}",
+          "outline": "2px solid {color.primary.subtle}"
+        },
+        "disabled": {
+          "background-color": "{color.neutral.100}",
+          "opacity": 0.6,
+          "cursor": "not-allowed"
+        },
+        "invalid": {
+          "border-color": "{color.danger.bg}",
+          "outline": "2px solid {color.danger.subtle}"
+        }
+      },
+      "ai": {
+        "purpose": "Captures multi-line freeform textual data from the user.",
+        "whenToUse": [
+          "Extended descriptions, reviews, notes, support messages"
+        ],
+        "avoid": [
+          "Short single-line fields (use Input)"
+        ],
+        "related": []
+      }
+    },
+    "Timeline": {
+      "id": "timeline",
+      "component": "Timeline",
+      "category": "data-display",
+      "base": {
+        "position": "relative",
+        "list-style": "none",
+        "margin": 0,
+        "padding": 0,
+        "display": "flex",
+        "flex-direction": "column",
+        "font-family": "{font.family.body}"
+      },
+      "variants": {
+        "vertical": {
+          "flex-direction": "column"
+        },
+        "horizontal": {
+          "flex-direction": "row",
+          "overflow-x": "auto"
+        },
+        "activity": {
+          "flex-direction": "column"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "gap": "{space.4}"
+        },
+        "md": {
+          "gap": "{space.6}"
+        },
+        "lg": {
+          "gap": "{space.8}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        },
+        "active": {
+          "font-weight": 600
+        },
+        "completed": {
+          "opacity": 1
+        },
+        "pending": {
+          "opacity": 0.7
+        }
+      },
+      "ai": {
+        "purpose": "Presents a chronological sequence of events, operational milestones, or user activity logs connected by a vertical or horizontal axis.",
+        "whenToUse": [
+          "Audit logs, order delivery history, and user activity streams",
+          "Organizational milestones, historical company chronologies",
+          "Task completion histories in project management dashboards"
+        ],
+        "avoid": [
+          "Linear multi-step forms where user input is required per step (use Stepper)",
+          "Unordered entity lists (use Table or Card)"
+        ],
+        "related": []
+      }
+    },
+    "Toast": {
+      "id": "toast",
+      "component": "Toast",
+      "category": "overlay",
+      "base": {
+        "display": "flex",
+        "align-items": "flex-start",
+        "gap": "{space.3}",
+        "padding": "{space.3-5}",
+        "border-radius": "{radius.md}",
+        "background-color": "{color.surface.elevated}",
+        "border": "1px solid {color.border.subtle}",
+        "box-shadow": "{shadow.lg}",
+        "min-width": "280px",
+        "transition-duration": "{duration.normal}",
+        "transition-timing-function": "{ease.standard}"
+      },
+      "variants": {
+        "default": {
+          "background-color": "{color.surface.elevated}"
+        }
+      },
+      "sizes": {
+        "md": {
+          "padding": "{space.3-5}",
+          "font-size": "{text.sm}"
+        }
+      },
+      "states": {
+        "entering": {
+          "opacity": 0,
+          "transform": "translateY(-8px)"
+        },
+        "visible": {
+          "opacity": 1,
+          "transform": "translateY(0)"
+        },
+        "exiting": {
+          "opacity": 0,
+          "transform": "translateY(-8px)"
+        }
+      },
+      "ai": {
+        "purpose": "Displays temporary, non-blocking feedback notifications that auto-dismiss.",
+        "whenToUse": [
+          "Confirming background operations ('Changes saved', 'Copied to clipboard')"
+        ],
+        "avoid": [
+          "Critical workflows requiring explicit user interaction before proceeding (use Modal)"
+        ],
+        "related": []
+      }
+    },
+    "Tooltip": {
+      "id": "tooltip",
+      "component": "Tooltip",
+      "category": "overlay",
+      "base": {
+        "display": "flex",
+        "position": "absolute",
+        "z-index": 50,
+        "font-size": "{text.xs}",
+        "font-weight": 500,
+        "padding-inline": "{space.2-5}",
+        "padding-block": "{space.1}",
+        "border-radius": "{radius.sm}",
+        "box-shadow": "{shadow.md}",
+        "pointer-events": "none",
+        "white-space": "nowrap"
+      },
+      "variants": {
+        "dark": {
+          "background-color": "{color.slate.900}",
+          "color": "{color.surface.base}"
+        },
+        "light": {
+          "background-color": "{color.surface.elevated}",
+          "color": "{color.neutral.900}",
+          "border": "1px solid {color.border.subtle}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "font-size": "{text.xs}"
+        },
+        "md": {
+          "font-size": "{text.sm}"
+        }
+      },
+      "states": {
+        "hidden": {
+          "opacity": 0,
+          "visibility": "hidden"
+        },
+        "visible": {
+          "opacity": 1,
+          "visibility": "visible"
+        }
+      },
+      "ai": {
+        "purpose": "Displays brief contextual assistance or explanation upon hover or keyboard focus.",
+        "whenToUse": [
+          "Clarifying icon-only buttons (Save, Delete, Edit)",
+          "Explaining abbreviations or dense UI concepts"
+        ],
+        "avoid": [
+          "Crucial content required for basic interaction on mobile touch screens"
+        ],
+        "related": []
+      }
+    },
+    "Treeview": {
+      "id": "treeview",
+      "component": "Treeview",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "width": "100%",
+        "list-style": "none",
+        "padding": 0,
+        "margin": 0
+      },
+      "variants": {
+        "default": {
+          "background-color": "transparent"
+        },
+        "clean": {
+          "background-color": "{color.surface.base}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "line-height": "28px",
+          "font-size": "var(--qhr-text-xs)"
+        },
+        "md": {
+          "line-height": "36px",
+          "font-size": "var(--qhr-text-sm)"
+        },
+        "lg": {
+          "line-height": "44px",
+          "font-size": "var(--qhr-text-base)"
+        }
+      },
+      "states": {
+        "selected": {
+          "background-color": "var(--qhr-color-primary-subtle)",
+          "color": "var(--qhr-color-primary)"
+        },
+        "hover": {
+          "background-color": "var(--qhr-color-surface-hover)"
+        },
+        "expanded": {
+          "display": "block"
+        },
+        "collapsed": {
+          "display": "none"
+        }
+      },
+      "ai": {
+        "purpose": "Hierarchical list representation for displaying nested folders, categories, and deep tree structures with expand/collapse control.",
+        "whenToUse": [
+          "Cloud storage file and folder directories",
+          "Deep multi-level taxonomy classification in admin panels",
+          "Codebase or documentation table of contents"
+        ],
+        "avoid": [
+          "Flat single-level lists (use Nav or List)"
+        ],
+        "related": []
+      }
+    }
+  }
+}

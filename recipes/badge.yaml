@@ -1,0 +1,104 @@
+component: Badge
+name: badge
+category: feedback
+version: 1.0.0
+
+ai:
+  intent: "Status, counter, or category tag"
+  visual_role: "Compact badge indicator"
+  density: "compact"
+  preferred_when:
+    - "Order status (Pending, Completed, Cancelled)"
+    - "Unread notification badges"
+    - "Tagging and categories"
+  avoid_when:
+    - "Action triggers (use button)"
+
+base:
+  display: inline-flex
+  align-items: center
+  font-weight: 500
+  border-radius: "{radius.pill}"
+  user-select: none
+  white-space: nowrap
+
+variants:
+  subtle:
+    background-color: "{color.neutral.100}"
+    color: "{color.neutral.900}"
+  solid:
+    background-color: "{color.primary.bg}"
+    color: "{color.primary.fg}"
+  outline:
+    background-color: transparent
+    border: "1px solid {color.border.subtle}"
+  destructive:
+    background-color: "{color.danger.bg}"
+    color: "{color.danger.fg}"
+
+sizes:
+  sm:
+    font-size: "{text.xs}"
+    padding-inline: "{space.2}"
+    padding-block: "{space.0-5}"
+    gap: "{space.1}"
+  md:
+    font-size: "{text.sm}"
+    padding-inline: "{space.2-5}"
+    padding-block: "{space.1}"
+    gap: "{space.1-5}"
+  lg:
+    font-size: "{text.base}"
+    padding-inline: "{space.3}"
+    padding-block: "{space.1-5}"
+    gap: "{space.2}"
+  xl:
+    font-size: "{text.lg}"
+    padding-inline: "{space.4}"
+    padding-block: "{space.2}"
+    gap: "{space.2-5}"
+
+states:
+  default:
+    opacity: 1
+  hover:
+    opacity: 0.85
+  focus:
+    outline: "2px solid {color.primary.bg}"
+
+contract:
+  anatomy:
+    - root
+    - dot-indicator
+    - icon
+    - label
+  props:
+    variant:
+      default: subtle
+      values: [subtle, solid, outline, destructive]
+    tone:
+      default: neutral
+      values: [neutral, info, success, warning, danger, primary, secondary, light, dark, grey]
+    size:
+      default: md
+      values: [sm, md, lg, xl]
+  slots:
+    - start
+    - default
+    - end
+
+structure:
+  base:
+    native_class: qhr-badge
+    tailwind: "inline-flex items-center font-medium rounded-[var(--qhr-radius-pill)] select-none"
+  sizes:
+    sm: "text-xs px-[var(--qhr-space-2)] py-[var(--qhr-space-0-5)] gap-[var(--qhr-space-1)]"
+    md: "text-sm px-[var(--qhr-space-2-5)] py-[var(--qhr-space-1)] gap-[var(--qhr-space-1-5)]"
+    lg: "text-base px-[var(--qhr-space-3)] py-[var(--qhr-space-1-5)] gap-[var(--qhr-space-2)]"
+
+accessibility:
+  role: status
+
+rtl:
+  supported: true
+  directional_mirroring: false

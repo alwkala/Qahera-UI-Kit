@@ -1,0 +1,58 @@
+<!-- Qahera UI Kit — Questionnaire & Multi-Step Assessment Pattern -->
+<div class="qhr-questionnaire">
+
+  <!-- Progress Tracking Header -->
+  <div class="qhr-progress-wrapper" style="margin-block-end: 20px;">
+    <div class="qhr-progress-header">
+      <span class="qhr-progress-title">السؤال 2 من 5</span>
+      <span class="qhr-progress-val">40%</span>
+    </div>
+    <div class="qhr-progress qhr-progress--luxury qhr-progress--sm" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
+      <div class="qhr-progress-bar" style="width: 40%;"></div>
+    </div>
+  </div>
+
+  <!-- Question Card -->
+  <div class="qhr-questionnaire-card">
+    <div class="qhr-questionnaire-header">
+      <span class="qhr-questionnaire-category">أنظمة التصميم المعماري</span>
+      <span class="qhr-questionnaire-points">10 درجات</span>
+    </div>
+
+    <h2 class="qhr-questionnaire-title">ما هي الخاصية المنطقية لضبط الهامش الأيمن في بيئة RTL؟</h2>
+    <p class="qhr-questionnaire-desc">اختر الإجابة الأدق المتوافقة مع معايير CSS Logical Properties بدون انحراف اتجاهي.</p>
+
+    <div class="qhr-questionnaire-choices">
+      <!-- Choice 1 -->
+      <label class="qhr-questionnaire-choice">
+        <span class="qhr-questionnaire-choice-badge">أ</span>
+        <span class="qhr-questionnaire-choice-text">margin-right: 16px</span>
+        <span class="qhr-questionnaire-choice-indicator"><span class="qhr-questionnaire-choice-dot"></span></span>
+      </label>
+
+      <!-- Choice 2 (Selected) -->
+      <label class="qhr-questionnaire-choice is-selected">
+        <span class="qhr-questionnaire-choice-badge">ب</span>
+        <span class="qhr-questionnaire-choice-text">margin-inline-start: 16px</span>
+        <span class="qhr-questionnaire-choice-indicator"><span class="qhr-questionnaire-choice-dot"></span></span>
+      </label>
+
+      <!-- Choice 3 -->
+      <label class="qhr-questionnaire-choice">
+        <span class="qhr-questionnaire-choice-badge">ج</span>
+        <span class="qhr-questionnaire-choice-text">margin-inline-end: 16px</span>
+        <span class="qhr-questionnaire-choice-indicator"><span class="qhr-questionnaire-choice-dot"></span></span>
+      </label>
+    </div>
+
+    <!-- Actions Strip -->
+    <div class="qhr-questionnaire-actions">
+      <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm">السابق</button>
+      <div style="display: flex; gap: var(--qhr-space-2, 8px);">
+        <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm">تخطي</button>
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm">التالي &larr;</button>
+      </div>
+    </div>
+  </div>
+
+</div>

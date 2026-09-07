@@ -1,0 +1,54 @@
+<!-- Qahera UI Kit — Date Paginator Pattern (Native HTML) -->
+<div class="qhr-date-paginator" style="display: flex; align-items: center; justify-content: space-between; gap: var(--qhr-space-3, 12px); padding: var(--qhr-space-4, 16px); background: var(--qhr-surface, #0d121f); border: 1px solid var(--qhr-border, rgba(255,255,255,0.08)); border-radius: var(--qhr-radius-xl, 16px); max-width: 680px; margin: 0 auto;" role="tablist" aria-label="شريط الأيام والتقويم">
+
+  <!-- Prev Nav Button -->
+  <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" aria-label="الأسبوع السابق" style="flex-shrink: 0;">
+    <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </button>
+
+  <!-- Date Strip -->
+  <div class="qhr-date-strip" style="display: flex; align-items: center; justify-content: center; gap: var(--qhr-space-2, 8px); flex: 1; overflow-x: auto;">
+    
+    <!-- Day 1 -->
+    <button type="button" role="tab" aria-selected="false" class="qhr-date-cell" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 14px; border-radius: 12px; border: 1px solid transparent; background: transparent; color: var(--qhr-text-secondary, #94a3b8); cursor: pointer; transition: all 150ms ease;">
+      <span style="font-size: 11px; font-weight: 600;">الأحد</span>
+      <span style="font-size: 16px; font-weight: 700; color: var(--qhr-text-primary, #f8fafc);">06</span>
+    </button>
+
+    <!-- Day 2 (Active Today) -->
+    <button type="button" role="tab" aria-selected="true" class="qhr-date-cell is-active" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--qhr-color-primary-500, #d4af37); background: rgba(212, 175, 55, 0.12); color: var(--qhr-color-primary-500, #d4af37); cursor: pointer; position: relative;">
+      <span style="font-size: 11px; font-weight: 700;">اليوم</span>
+      <span style="font-size: 16px; font-weight: 800; color: var(--qhr-color-primary-500, #d4af37);">07</span>
+      <span style="position: absolute; inset-block-end: 4px; width: 5px; height: 5px; border-radius: 50%; background: currentColor;"></span>
+    </button>
+
+    <!-- Day 3 -->
+    <button type="button" role="tab" aria-selected="false" class="qhr-date-cell" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 14px; border-radius: 12px; border: 1px solid transparent; background: transparent; color: var(--qhr-text-secondary, #94a3b8); cursor: pointer; transition: all 150ms ease;">
+      <span style="font-size: 11px; font-weight: 600;">الثلاثاء</span>
+      <span style="font-size: 16px; font-weight: 700; color: var(--qhr-text-primary, #f8fafc);">08</span>
+    </button>
+
+    <!-- Day 4 -->
+    <button type="button" role="tab" aria-selected="false" class="qhr-date-cell" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 14px; border-radius: 12px; border: 1px solid transparent; background: transparent; color: var(--qhr-text-secondary, #94a3b8); cursor: pointer; transition: all 150ms ease;">
+      <span style="font-size: 11px; font-weight: 600;">الأربعاء</span>
+      <span style="font-size: 16px; font-weight: 700; color: var(--qhr-text-primary, #f8fafc);">09</span>
+    </button>
+
+    <!-- Day 5 -->
+    <button type="button" role="tab" aria-selected="false" class="qhr-date-cell" style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 14px; border-radius: 12px; border: 1px solid transparent; background: transparent; color: var(--qhr-text-secondary, #94a3b8); cursor: pointer; transition: all 150ms ease;">
+      <span style="font-size: 11px; font-weight: 600;">الخميس</span>
+      <span style="font-size: 16px; font-weight: 700; color: var(--qhr-text-primary, #f8fafc);">10</span>
+    </button>
+
+  </div>
+
+  <!-- Next Nav Button -->
+  <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" aria-label="الأسبوع القادم" style="flex-shrink: 0;">
+    <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+  </button>
+
+</div>

@@ -1,0 +1,280 @@
+version: 1.0.0
+statement: "Qahera gives AI a structured visual vocabulary for building consistent interfaces."
+components:
+  - name: Accordion
+    canonical: Accordion
+    category: disclosure
+    purpose: "Organizes deep information in vertically stacked collapsible panels."
+    interactive: true
+    behavior: behavior/accordion.js
+    contract: contracts/components/Accordion.yaml
+    recipe: recipes/accordion.yaml
+  - name: Alert
+    canonical: Alert
+    category: feedback
+    purpose: "Displays prominent contextual messages and feedback directly within page layouts."
+    interactive: false
+    contract: contracts/components/Alert.yaml
+    recipe: recipes/alert.yaml
+  - name: Avatar
+    canonical: Avatar
+    category: media
+    purpose: "Displays a visual representation of a user, team, or brand entity."
+    interactive: false
+    contract: contracts/components/Avatar.yaml
+    recipe: recipes/avatar.yaml
+  - name: BackToTop
+    canonical: BackToTop
+    category: navigation
+    purpose: "Displays a floating action button that monitors scroll depth and smoothly scrolls the viewport back to the top of the page."
+    interactive: true
+    behavior: behavior/back-to-top.js
+    contract: contracts/components/BackToTop.yaml
+    recipe: recipes/back-to-top.yaml
+  - name: Badge
+    canonical: Badge
+    category: feedback
+    purpose: "Communicates compact metadata, categorical status, or quantitative counters."
+    interactive: false
+    contract: contracts/components/Badge.yaml
+    recipe: recipes/badge.yaml
+  - name: Breadcrumb
+    canonical: Breadcrumb
+    category: navigation
+    purpose: "Displays the hierarchical path of the current page within the site structure, allowing quick navigation up the parent tree."
+    interactive: false
+    contract: contracts/components/Breadcrumb.yaml
+    recipe: recipes/breadcrumb.yaml
+  - name: Button
+    canonical: Button
+    category: actions
+    purpose: "Triggers an explicit user action, form submission, or state change."
+    interactive: false
+    contract: contracts/components/Button.yaml
+    recipe: recipes/button.yaml
+  - name: Callout
+    canonical: Callout
+    category: feedback
+    purpose: "Highlights critical editorial quotes, architectural insights, tips, or contextual notices with an elevated visual prominence."
+    interactive: false
+    contract: contracts/components/Callout.yaml
+    recipe: recipes/callout.yaml
+  - name: CanvasSparks
+    canonical: CanvasSparks
+    category: feedback
+    purpose: "Renders a lightweight atmospheric particle simulation of metallic golden embers on an HTML canvas, active in dark theme with zero CPU overhead when inactive."
+    interactive: true
+    behavior: behavior/canvas-sparks.js
+    contract: contracts/components/CanvasSparks.yaml
+    recipe: recipes/canvas-sparks.yaml
+  - name: Card
+    canonical: Card
+    category: containers
+    purpose: "Groups related content, metadata, and actions into an elevated visual container."
+    interactive: false
+    contract: contracts/components/Card.yaml
+    recipe: recipes/card.yaml
+  - name: Carousel
+    canonical: Carousel
+    category: media
+    purpose: "Displays an interactive sequence of slides or promotional showcases with forward/backward navigation and indicator dots."
+    interactive: false
+    contract: contracts/components/Carousel.yaml
+    recipe: recipes/carousel.yaml
+  - name: Checkbox
+    canonical: Checkbox
+    category: selection
+    purpose: "Permits binary toggling (true/false) or multiple independent selections."
+    interactive: false
+    contract: contracts/components/Checkbox.yaml
+    recipe: recipes/checkbox.yaml
+  - name: Chip
+    canonical: Chip
+    category: data-display
+    purpose: "Compact interactive element representing an attribute, text tag, selection filter, or removable token."
+    interactive: false
+    contract: contracts/components/Chip.yaml
+    recipe: recipes/chip.yaml
+  - name: Divider
+    canonical: Divider
+    category: data-display
+    purpose: "Visual separator delineating content blocks horizontally or vertically, with optional embedded center label."
+    interactive: false
+    contract: contracts/components/Divider.yaml
+    recipe: recipes/divider.yaml
+  - name: Drawer
+    canonical: Drawer
+    category: overlay
+    purpose: "Displays an offcanvas side panel sliding from the viewport edge for navigation, filters, or auxiliary details."
+    interactive: false
+    contract: contracts/components/Drawer.yaml
+    recipe: recipes/drawer.yaml
+  - name: Dropdown
+    canonical: Dropdown
+    category: navigation
+    purpose: "Displays a contextual floating menu revealing secondary actions or navigation links."
+    interactive: true
+    behavior: behavior/dropdown.js
+    contract: contracts/components/Dropdown.yaml
+    recipe: recipes/dropdown.yaml
+  - name: FileUpload
+    canonical: FileUpload
+    category: forms
+    purpose: "Interactive drag-and-drop zone with file picker, validation status, and upload progression indicators."
+    interactive: false
+    contract: contracts/components/FileUpload.yaml
+    recipe: recipes/file-upload.yaml
+  - name: Input
+    canonical: Input
+    category: forms
+    purpose: "Captures a single line of textual or numeric data from the user."
+    interactive: false
+    contract: contracts/components/Input.yaml
+    recipe: recipes/input.yaml
+  - name: Kbd
+    canonical: Kbd
+    category: data-display
+    purpose: "Displays keyboard shortcut keys, key combinations, and system hotkey indicators."
+    interactive: false
+    contract: contracts/components/Kbd.yaml
+    recipe: recipes/kbd.yaml
+  - name: Modal
+    canonical: Modal
+    category: overlay
+    purpose: "Displays a blocking dialog surface capturing user attention for a critical workflow."
+    interactive: true
+    behavior: behavior/modal.js
+    contract: contracts/components/Modal.yaml
+    recipe: recipes/modal.yaml
+  - name: Navbar
+    canonical: Navbar
+    category: navigation
+    purpose: "Displays the primary application header hosting branding, navigation links, and actions."
+    interactive: true
+    behavior: behavior/navbar.js
+    contract: contracts/components/Navbar.yaml
+    recipe: recipes/navbar.yaml
+  - name: Preloader
+    canonical: Preloader
+    category: feedback
+    purpose: "Displays an atmospheric initial loading overlay with logo, animated progress bar, and digital percentage before revealing cinematic or rich page content."
+    interactive: true
+    behavior: behavior/preloader.js
+    contract: contracts/components/Preloader.yaml
+    recipe: recipes/preloader.yaml
+  - name: Progress
+    canonical: Progress
+    category: feedback
+    purpose: "Visualizes the deterministic or indeterminate completion status of an operation or goal metric."
+    interactive: false
+    contract: contracts/components/Progress.yaml
+    recipe: recipes/progress.yaml
+  - name: Radio
+    canonical: Radio
+    category: selection
+    purpose: "Permits selection of exactly one option from a mutually exclusive group."
+    interactive: false
+    contract: contracts/components/Radio.yaml
+    recipe: recipes/radio.yaml
+  - name: Rating
+    canonical: Rating
+    category: feedback
+    purpose: "Displays quantitative star rating evaluation and user feedback capture."
+    interactive: false
+    contract: contracts/components/Rating.yaml
+    recipe: recipes/rating.yaml
+  - name: Ribbon
+    canonical: Ribbon
+    category: data-display
+    purpose: "Displays an angular or folded corner banner across cards, boxes, and product displays to indicate status, exclusivity, discounts, or new arrivals."
+    interactive: false
+    contract: contracts/components/Ribbon.yaml
+    recipe: recipes/ribbon.yaml
+  - name: Select
+    canonical: Select
+    category: forms
+    purpose: "Enables selection of a single option from an expandable dropdown list."
+    interactive: true
+    behavior: behavior/select.js
+    contract: contracts/components/Select.yaml
+    recipe: recipes/select.yaml
+  - name: Skeleton
+    canonical: Skeleton
+    category: feedback
+    purpose: "Displays animated shimmer placeholders simulating layout geometry while asynchronous data loads."
+    interactive: false
+    contract: contracts/components/Skeleton.yaml
+    recipe: recipes/skeleton.yaml
+  - name: Spinner
+    canonical: Spinner
+    category: feedback
+    purpose: "Indicates indeterminate background processing, data retrieval, or asynchronous task execution with an animated circular stroke."
+    interactive: false
+    contract: contracts/components/Spinner.yaml
+    recipe: recipes/spinner.yaml
+  - name: Stepper
+    canonical: Stepper
+    category: navigation
+    purpose: "Guides users through a sequential multi-step workflow, depicting completed, active, and upcoming stages."
+    interactive: false
+    contract: contracts/components/Stepper.yaml
+    recipe: recipes/stepper.yaml
+  - name: Switch
+    canonical: Switch
+    category: selection
+    purpose: "Enables users to toggle instantly between two mutually exclusive binary states (active / inactive, on / off)."
+    interactive: false
+    contract: contracts/components/Switch.yaml
+    recipe: recipes/switch.yaml
+  - name: Table
+    canonical: Table
+    category: data-display
+    purpose: "Displays structured datasets organized in columns and rows for comparison."
+    interactive: false
+    contract: contracts/components/Table.yaml
+    recipe: recipes/table.yaml
+  - name: Tabs
+    canonical: Tabs
+    category: navigation
+    purpose: "Partitions content into parallel panels switchable via tab buttons."
+    interactive: true
+    behavior: behavior/tabs.js
+    contract: contracts/components/Tabs.yaml
+    recipe: recipes/tabs.yaml
+  - name: Textarea
+    canonical: Textarea
+    category: forms
+    purpose: "Captures multi-line freeform textual data from the user."
+    interactive: false
+    contract: contracts/components/Textarea.yaml
+    recipe: recipes/textarea.yaml
+  - name: Timeline
+    canonical: Timeline
+    category: data-display
+    purpose: "Presents a chronological sequence of events, operational milestones, or user activity logs connected by a vertical or horizontal axis."
+    interactive: false
+    contract: contracts/components/Timeline.yaml
+    recipe: recipes/timeline.yaml
+  - name: Toast
+    canonical: Toast
+    category: overlay
+    purpose: "Displays temporary, non-blocking feedback notifications that auto-dismiss."
+    interactive: true
+    behavior: behavior/toast.js
+    contract: contracts/components/Toast.yaml
+    recipe: recipes/toast.yaml
+  - name: Tooltip
+    canonical: Tooltip
+    category: overlay
+    purpose: "Displays brief contextual assistance or explanation upon hover or keyboard focus."
+    interactive: true
+    behavior: behavior/tooltip.js
+    contract: contracts/components/Tooltip.yaml
+    recipe: recipes/tooltip.yaml
+  - name: Treeview
+    canonical: Treeview
+    category: navigation
+    purpose: "Hierarchical list representation for displaying nested folders, categories, and deep tree structures with expand/collapse control."
+    interactive: false
+    contract: contracts/components/Treeview.yaml
+    recipe: recipes/treeview.yaml

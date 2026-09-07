@@ -1,0 +1,31 @@
+id: template-admin
+name: Admin Resource Management (CRUD)
+category: admin
+purpose: >
+  Offers full data grid exploration, faceted multi-filtering, batch operations, record creation, and destructive confirmation modals.
+
+patterns:
+  - data-table-toolbar
+  - filter-bar
+  - pagination
+  - confirmation
+  - form-actions
+
+components:
+  - table
+  - input
+  - button
+  - select
+  - badge
+  - modal
+  - dropdown
+
+features:
+  - bulk_selection: "Select all or specific rows to run bulk actions"
+  - column_filtering: "Faceted search and category filters"
+  - deletion_gate: "Requires confirmation pattern modal before executing permanent deletion"
+
+ai:
+  purpose: "Standard administrative data table and resource management view"
+  use_when:
+    - "Managing database entities (Users, Products, Orders, Invoices, Logs)"

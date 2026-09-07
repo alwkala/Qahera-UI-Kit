@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Radio (.qhr-radio)
+   ========================================================================== */
+.qhr-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qhr-space-2-5, 10px);
+  cursor: pointer;
+  user-select: none;
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  color: var(--qhr-content-primary, #0f172a);
+}
+
+[data-theme="dark"] .qhr-radio {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+
+.qhr-radio input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  border: 1.5px solid var(--qhr-border-strong, #cbd5e1);
+  background-color: var(--qhr-surface-base, #ffffff);
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  border-radius: var(--qhr-radius-pill, 9999px);
+  transition: all var(--qhr-duration-fast, 150ms) var(--qhr-ease-standard, ease);
+}
+
+[data-theme="dark"] .qhr-radio input[type="radio"] {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  border-color: var(--qhr-border-subtle, #1e293b);
+}
+
+.qhr-radio input[type="radio"]:checked {
+  background-color: var(--qhr-color-primary-500, #c7a35a);
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+}
+
+.qhr-radio input[type="radio"]:checked::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--qhr-radius-pill, 9999px);
+  background-color: #ffffff;
+}
+
+.qhr-radio:hover input[type="radio"] {
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+}
+
+.qhr-radio input[type="radio"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(199, 163, 90, 0.25);
+}
+
+/* Radio Card Option Variant */
+.qhr-radio-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--qhr-space-3, 12px);
+  padding: var(--qhr-space-4, 16px);
+  border: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  border-radius: var(--qhr-radius-lg, 14px);
+  background-color: var(--qhr-surface-elevated, #ffffff);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+[data-theme="dark"] .qhr-radio-card {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  border-color: var(--qhr-border-subtle, #1e293b);
+}
+.qhr-radio-card:has(input[type="radio"]:checked) {
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+  background-color: rgba(199, 163, 90, 0.05);
+}

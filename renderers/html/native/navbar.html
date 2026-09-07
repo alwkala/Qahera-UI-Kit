@@ -1,0 +1,35 @@
+<!-- Qahera UI Kit - Native HTML Navbar -->
+<header class="qhr-navbar" x-data="qhrNavbar()">
+  <div class="qhr-navbar-container">
+    <a href="#" class="qhr-navbar-brand">
+      <span class="qhr-avatar qhr-avatar--rounded qhr-avatar--sm">ق</span>
+      <span>قاهرة · Qahera UI Kit</span>
+    </a>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button 
+      type="button" 
+      class="qhr-navbar-toggle" 
+      @click="toggle()" 
+      :aria-expanded="open" 
+      aria-label="تبديل القائمة">
+      <svg class="qhr-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Navigation Links -->
+    <ul class="qhr-navbar-links" :class="{ 'is-open': open }">
+      <li><a href="#dashboard" class="qhr-navbar-link is-active">الرئيسية</a></li>
+      <li><a href="#features" class="qhr-navbar-link">المميزات</a></li>
+      <li><a href="#pricing" class="qhr-navbar-link">الأسعار</a></li>
+      <li><a href="#docs" class="qhr-navbar-link">التوثيق المعياري</a></li>
+    </ul>
+
+    <!-- Actions Area -->
+    <div class="qhr-navbar-actions">
+      <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm">تسجيل الدخول</button>
+      <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm">ابدأ الآن</button>
+    </div>
+  </div>
+</header>

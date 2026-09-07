@@ -1,0 +1,48 @@
+<!-- Qahera UI Kit - Master Preloader Showcase -->
+<div style="display: flex; flex-direction: column; gap: 28px; width: 100%;">
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. محاكاة شاشة التحميل الكاملة (Interactive Fullscreen Trigger)</h3>
+    <div style="background: var(--q-surface); padding: 24px; border-radius: 16px; border: 1px solid var(--q-border); display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+      <p style="margin: 0 0 12px 0; color: var(--q-text-secondary); font-size: 0.9rem;">
+        اضغط على الزر أدناه لتشغيل شاشة التحميل القاهرية الفاخرة لمدة 3 ثوانٍ لمعاينة الأداء الحركي.
+      </p>
+      <button type="button" class="qhr-btn qhr-btn--luxury qhr-btn--md" onclick="triggerPreloader()">
+        <span>تشغيل شاشة التحميل الفاخرة (3 ثوانٍ)</span>
+      </button>
+    </div>
+  </div>
+
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">2. المعاينة المضمنة لشعار ونبض شاشة التحميل (Inline Demonstration)</h3>
+    <div style="position: relative; height: 260px; border-radius: 16px; overflow: hidden; border: 1px solid var(--q-border); background: var(--q-surface-elevated); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;">
+      <div class="qhr-preloader-emblem">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--q-gold);">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+      </div>
+      <div class="qhr-preloader-text">QAHERA UI KIT · جاري التحميل</div>
+      <div class="qhr-preloader-bar"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- شاشة التحميل التفاعلية -->
+<div id="live-preloader" class="qhr-preloader qhr-preloader--glass" style="display: none;">
+  <div class="qhr-preloader-emblem">
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--q-gold);">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </svg>
+  </div>
+  <div class="qhr-preloader-text">تهيئة أصول قاهرة المعمارية...</div>
+  <div class="qhr-preloader-bar"></div>
+</div>
+
+<script>
+function triggerPreloader() {
+  const p = document.getElementById('live-preloader');
+  p.style.display = 'flex';
+  setTimeout(() => { p.style.display = 'none'; }, 3000);
+}
+</script>

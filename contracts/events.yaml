@@ -1,0 +1,70 @@
+version: 1.0.0
+namespace: qhr
+description: Canonical Event Emitter Contract for Qahera UI Kit Components
+
+events:
+  qhr-change:
+    description: Fired when value or state of an interactive control changes
+    payload:
+      value: "Selected or entered value"
+      label: "Human-readable label"
+    components: [select, input, textarea, checkbox, radio, switch, rating, file-upload]
+
+  qhr-open:
+    description: Fired when an overlay or disclosure panel opens
+    payload:
+      id: "Component unique identifier"
+      trigger: "DOM node that initiated the open event"
+    components: [modal, dropdown, accordion, select, navbar, drawer]
+
+  qhr-close:
+    description: Fired when an overlay or disclosure panel closes
+    payload:
+      id: "Component unique identifier"
+      reason: "escape | click-outside | button | programmatic"
+    components: [modal, dropdown, accordion, select, navbar, drawer]
+
+  qhr-tab-select:
+    description: Fired when active tab index is switched
+    payload:
+      index: "Zero-based tab index"
+      id: "Selected tab panel identifier"
+    components: [tabs]
+
+  qhr-slide-change:
+    description: Fired when active carousel slide index changes
+    payload:
+      index: "Zero-based slide index"
+      total: "Total count of slides"
+    components: [carousel]
+
+  qhr-step-change:
+    description: Fired when active stepper step changes
+    payload:
+      step: "One-based or zero-based step index"
+      previous: "Previous step index"
+    components: [stepper]
+
+  qhr-tree-select:
+    description: Fired when a treeview node is selected or expanded
+    payload:
+      id: "Node identifier"
+      label: "Node text"
+      expanded: "Boolean indicating expansion state"
+    components: [treeview]
+
+  qhr-toast-show:
+    description: Global event dispatched to request displaying a toast notification
+    payload:
+      title: "Toast headline text"
+      message: "Detailed body message"
+      tone: "neutral | info | success | warning | danger"
+      duration: "Time in ms before auto-dismiss (default 4000)"
+    components: [toast]
+
+  qhr-toast-dismiss:
+    description: Fired when a toast is removed from the active stack
+    payload:
+      id: "Unique toast instance ID"
+    components: [toast]
+

@@ -1,0 +1,278 @@
+/**
+ * Qahera UI Kit — Menu Component (Native CSS)
+ * 
+ * Vertical and horizontal structured navigation lists, supporting nested submenus,
+ * section titles, badges, icons, and keyboard accessibility.
+ * 
+ * @spec 01-CORE-SPEC §3.2
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   1. Root Menu Container
+   ========================================================================== */
+
+.qhr-menu {
+  --_menu-bg: var(--qhr-surface-base, #0d1520);
+  --_menu-fg: var(--qhr-content-primary, #f8fafc);
+  --_menu-fg-muted: var(--qhr-content-secondary, #94a3b8);
+  --_menu-border: var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  --_menu-hover-bg: color-mix(in srgb, var(--_menu-fg) 8%, transparent);
+  --_menu-active-bg: color-mix(in srgb, var(--qhr-color-primary-500, #c7a35a) 15%, transparent);
+  --_menu-active-fg: var(--qhr-color-primary-400, #e6ca85);
+  --_menu-active-border: var(--qhr-color-primary-500, #c7a35a);
+
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: var(--qhr-space-2, 8px);
+  gap: var(--qhr-space-1, 4px);
+  background-color: var(--_menu-bg);
+  border-radius: var(--qhr-radius-md, 8px);
+  font-family: var(--qhr-font-family-primary, 'Cairo', sans-serif);
+  color: var(--_menu-fg);
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   2. Menu Items & Links
+   ========================================================================== */
+
+.qhr-menu-item {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.qhr-menu-link,
+.qhr-menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-3, 12px);
+  padding-block: var(--qhr-space-2, 8px);
+  padding-inline: var(--qhr-space-3, 12px);
+  border-radius: var(--qhr-radius-sm, 6px);
+  font-size: var(--qhr-text-sm, 0.875rem);
+  font-weight: 500;
+  color: var(--_menu-fg);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color var(--qhr-duration-fast, 150ms) ease,
+              color var(--qhr-duration-fast, 150ms) ease,
+              border-color var(--qhr-duration-fast, 150ms) ease;
+}
+
+.qhr-menu-link:hover,
+.qhr-menu-toggle:hover {
+  background-color: var(--_menu-hover-bg);
+  color: var(--_menu-fg);
+}
+
+.qhr-menu-link:focus-visible,
+.qhr-menu-toggle:focus-visible {
+  outline: 2px solid var(--qhr-color-primary-500, #c7a35a);
+  outline-offset: 2px;
+}
+
+.qhr-menu-link.is-active,
+.qhr-menu-link[aria-current="page"] {
+  background-color: var(--_menu-active-bg);
+  color: var(--_menu-active-fg);
+  font-weight: 600;
+}
+
+.qhr-menu-link.is-disabled,
+.qhr-menu-link:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Icon & Label & Badges */
+.qhr-menu-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  color: var(--_menu-fg-muted);
+}
+
+.qhr-menu-link.is-active .qhr-menu-icon {
+  color: var(--_menu-active-fg);
+}
+
+.qhr-menu-label {
+  flex: 1;
+  min-inline-size: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qhr-menu-badge {
+  flex-shrink: 0;
+  margin-inline-start: auto;
+}
+
+.qhr-menu-chevron {
+  flex-shrink: 0;
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+  margin-inline-start: auto;
+  transition: transform var(--qhr-duration-fast, 150ms) ease;
+}
+
+.qhr-menu-item.is-open > .qhr-menu-toggle > .qhr-menu-chevron,
+.qhr-menu-toggle[aria-expanded="true"] > .qhr-menu-chevron {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   3. Section Title & Divider
+   ========================================================================== */
+
+.qhr-menu-title {
+  padding-block: var(--qhr-space-2, 8px);
+  padding-inline: var(--qhr-space-3, 12px);
+  font-size: var(--qhr-text-xs, 0.75rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--_menu-fg-muted);
+  list-style: none;
+}
+
+.qhr-menu-divider {
+  block-size: 1px;
+  background-color: var(--_menu-border);
+  margin-block: var(--qhr-space-2, 8px);
+  list-style: none;
+}
+
+/* ==========================================================================
+   4. Nested Submenus (Tree Accordion)
+   ========================================================================== */
+
+.qhr-menu-sub {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2px;
+  margin-inline-start: var(--qhr-space-4, 16px);
+  padding-inline-start: var(--qhr-space-2, 8px);
+  border-inline-start: 1px solid var(--_menu-border);
+  margin-block-start: 4px;
+}
+
+.qhr-menu-sub .qhr-menu-link {
+  font-size: var(--qhr-text-xs, 0.8125rem);
+  padding-block: var(--qhr-space-1, 6px);
+  padding-inline: var(--qhr-space-2, 8px);
+}
+
+/* ==========================================================================
+   5. Variants
+   ========================================================================== */
+
+/* Horizontal */
+.qhr-menu--horizontal {
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--qhr-space-2, 8px);
+}
+
+.qhr-menu--horizontal .qhr-menu-sub {
+  position: absolute;
+  inset-block-start: calc(100% + 4px);
+  inset-inline-start: 0;
+  background-color: var(--_menu-bg);
+  border: 1px solid var(--_menu-border);
+  border-radius: var(--qhr-radius-md, 8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  min-inline-size: 180px;
+  z-index: 50;
+  margin-inline-start: 0;
+  padding: var(--qhr-space-2, 8px);
+}
+
+/* Bordered */
+.qhr-menu--bordered {
+  border: 1px solid var(--_menu-border);
+}
+
+/* Compact */
+.qhr-menu--compact {
+  padding: var(--qhr-space-1, 4px);
+  gap: 2px;
+}
+
+.qhr-menu--compact .qhr-menu-link {
+  padding-block: var(--qhr-space-1, 4px);
+  padding-inline: var(--qhr-space-2, 8px);
+  font-size: var(--qhr-text-xs, 0.78rem);
+}
+
+/* Pills */
+.qhr-menu--pills .qhr-menu-link {
+  border-radius: 9999px;
+}
+
+/* Khedivial Heritage */
+.qhr-menu--khedivial {
+  border-inline-start: 3px solid var(--qhr-color-primary-500, #c7a35a);
+  background-color: var(--qhr-surface-elevated, #131d2a);
+}
+
+.qhr-menu--khedivial .qhr-menu-link.is-active {
+  border-inline-start: 2px solid var(--qhr-color-primary-500, #c7a35a);
+  border-radius: 0 var(--qhr-radius-sm, 6px) var(--qhr-radius-sm, 6px) 0;
+}
+
+/* Shubra Brutalist */
+.qhr-menu--brutalist {
+  border: 2px solid var(--_menu-fg);
+  border-radius: 0;
+  box-shadow: 3px 3px 0 var(--_menu-fg);
+}
+
+.qhr-menu--brutalist .qhr-menu-link {
+  border-radius: 0;
+}
+
+.qhr-menu--brutalist .qhr-menu-link:hover {
+  background-color: var(--_menu-fg);
+  color: var(--_menu-bg);
+}
+
+.qhr-menu--brutalist .qhr-menu-link.is-active {
+  background-color: var(--qhr-color-primary-500, #c7a35a);
+  color: #000;
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   6. Sizes
+   ========================================================================== */
+
+.qhr-menu--sm .qhr-menu-link {
+  padding-block: 4px;
+  padding-inline: 8px;
+  font-size: 0.75rem;
+}
+
+.qhr-menu--lg .qhr-menu-link {
+  padding-block: 12px;
+  padding-inline: 16px;
+  font-size: 1rem;
+}

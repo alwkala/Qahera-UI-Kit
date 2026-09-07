@@ -1,0 +1,238 @@
+<!-- Qahera UI Kit — Accordion Showcase Gallery -->
+<div style="display: flex; flex-direction: column; gap: var(--qhr-space-8, 32px); width: 100%;">
+
+  <!-- 1. FAQ Standard Accordion (Bordered Variant) -->
+  <div style="display: flex; flex-direction: column; gap: var(--qhr-space-3, 12px);">
+    <div>
+      <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--qhr-content-primary, #0f172a);">1. نمط الأسئلة الشائعة المتصل (Bordered Accordion)</h3>
+      <p style="margin: 4px 0 0 0; font-size: 0.85rem; color: var(--qhr-text-muted, #64748b);">تمدد أحادي مع إغلاق تلقائي للأسئلة الأخرى (Single-Expand Mode)</p>
+    </div>
+
+    <div class="qhr-accordion qhr-accordion--bordered" x-data="qhrAccordion({ multiple: false, defaultOpen: [0] })">
+      
+      <!-- Item 1 -->
+      <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(0) }">
+        <button 
+          type="button" 
+          class="qhr-accordion-trigger" 
+          @click="toggle(0)" 
+          :aria-expanded="isOpen(0)" 
+          aria-controls="accordion-panel-0">
+          <div class="qhr-accordion-content-meta">
+            <span class="qhr-accordion-title">
+              <span>ما هي منظومة قاهرة لتصميم الواجهات؟</span>
+              <span class="qhr-badge qhr-badge--primary qhr-badge--xs">أساسي</span>
+            </span>
+            <span class="qhr-accordion-subtitle">الهوية المعمارية والبصمة الصفرية</span>
+          </div>
+          <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div 
+          id="accordion-panel-0" 
+          class="qhr-accordion-content" 
+          x-show="isOpen(0)" 
+          x-collapse>
+          <div class="qhr-accordion-body">
+            منظومة قاهرة (Qahera UI Kit) هي نظام تصميم متكامل للشرق الأوسط والعالم العربي، مبني على عقود برمجية محكمة (YAML Contracts) وبصمة عميل صفرية (0kb Client RSC) وتماثل كامل للاتجاهين LTR و RTL بالاعتماد الكلي على خصائص CSS المنطقية.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(1) }">
+        <button 
+          type="button" 
+          class="qhr-accordion-trigger" 
+          @click="toggle(1)" 
+          :aria-expanded="isOpen(1)" 
+          aria-controls="accordion-panel-1">
+          <div class="qhr-accordion-content-meta">
+            <span class="qhr-accordion-title">كيف تدعم المنظومة الاتجاه من اليمين لليسار (RTL)؟</span>
+            <span class="qhr-accordion-subtitle">البنية التحتية مقابل السمات المؤقتة</span>
+          </div>
+          <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div 
+          id="accordion-panel-1" 
+          class="qhr-accordion-content" 
+          x-show="isOpen(1)" 
+          x-collapse>
+          <div class="qhr-accordion-body">
+            الاتجاه ليس قالباً ثانوياً بل بنية تحتية أصيلة عبر خصائص <code>margin-inline-start</code> و <code>padding-inline-end</code> و <code>border-block-end</code>، مما يضمن التماثل الدقيق بدون الحاجة لكتابة قواعد CSS مضاعفة.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(2) }">
+        <button 
+          type="button" 
+          class="qhr-accordion-trigger" 
+          @click="toggle(2)" 
+          :aria-expanded="isOpen(2)" 
+          aria-controls="accordion-panel-2">
+          <div class="qhr-accordion-content-meta">
+            <span class="qhr-accordion-title">ما هي الخطوط الطباعية المعتمدة في الواجهة؟</span>
+            <span class="qhr-accordion-subtitle">الانضباط الطباعي العربي</span>
+          </div>
+          <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div 
+          id="accordion-panel-2" 
+          class="qhr-accordion-content" 
+          x-show="isOpen(2)" 
+          x-collapse>
+          <div class="qhr-accordion-body">
+            الخطوط الأساسية الحصرية هي خط <strong>Alexandria</strong> للعناوين والشعار والهوية، وخط <strong>Cairo</strong> للنصوص والواجهة وعناصر التحكم، مع حظر خط Amiri تماماً لملاءمته للكتب وليس واجهات المستخدم العصرية.
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 (Disabled State) -->
+      <div class="qhr-accordion-item qhr-accordion-item--disabled">
+        <button 
+          type="button" 
+          class="qhr-accordion-trigger" 
+          disabled
+          aria-disabled="true">
+          <div class="qhr-accordion-content-meta">
+            <span class="qhr-accordion-title">
+              <span>عنصر معطل غير متاح حالياً (Disabled Item)</span>
+              <span class="qhr-badge qhr-badge--neutral qhr-badge--xs">قريباً</span>
+            </span>
+            <span class="qhr-accordion-subtitle">خاصية مغلقة تجريبية</span>
+          </div>
+          <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. Separate Card-Stack Accordion (Multiple-Expand Mode) -->
+  <div style="display: flex; flex-direction: column; gap: var(--qhr-space-3, 12px);">
+    <div>
+      <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--qhr-content-primary, #0f172a);">2. نمط البطاقات المنفصلة متعددة الفتح (Separate Cards Accordion)</h3>
+      <p style="margin: 4px 0 0 0; font-size: 0.85rem; color: var(--qhr-text-muted, #64748b);">بطاقات مستقلة تدعم فتح أكثر من قسم معاً (Multi-Expand: true) مع أيقونات تمييزية</p>
+    </div>
+
+    <div class="qhr-accordion qhr-accordion--separate" x-data="qhrAccordion({ multiple: true, defaultOpen: ['card-1'] })">
+      
+      <!-- Card Item 1 -->
+      <div class="qhr-accordion-item" :class="{ 'is-open': isOpen('card-1') }">
+        <button 
+          type="button" 
+          class="qhr-accordion-trigger" 
+          @click="toggle('card-1')" 
+          :aria-expanded="isOpen('card-1')" 
+          aria-controls="card-panel-1">
+          <span class="qhr-accordion-lead">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <div class="qhr-accordion-content-meta">
+            <span class="qhr-accordion-title">الأمان والعزل التام في البيئة السحابية</span>
+            <span class="qhr-accordion-subtitle">بروتوكولات التشفير وسياسات RLS</span>
+          </div>
+          <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="card-panel-1" class="qhr-accordion-content" x-show="isOpen('card-1')" x-collapse>
+          <div class="qhr-accordion-body">
+            يتم تطبيق سياسات Row-Level Security الصارمة على مستوى قاعدة البيانات لضمان عدم تسريب البيانات بين المستأجرين في المنصات متعددة الأطراف (Multi-Tenant).
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Item 2 -->
+      <div class="qhr-accordion-item" :class="{ 'is-open': isOpen('card-2') }">
+        <button 
+          type="button" 
+          class="qhr-accordion-trigger" 
+          @click="toggle('card-2')" 
+          :aria-expanded="isOpen('card-2')" 
+          aria-controls="card-panel-2">
+          <span class="qhr-accordion-lead">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </span>
+          <div class="qhr-accordion-content-meta">
+            <span class="qhr-accordion-title">سرعة التحميل والاستجابة اللحظية</span>
+            <span class="qhr-accordion-subtitle">ميزانية أداء صارمة لا تتجاوز 24KB</span>
+          </div>
+          <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="card-panel-2" class="qhr-accordion-content" x-show="isOpen('card-2')" x-collapse>
+          <div class="qhr-accordion-body">
+            بفضل بنية الأنماط المجزأة وعدم الاعتماد على مكتبات ثقيلة، تحقق كافة المكونات درجات 100/100 في مؤشرات أداء Core Web Vitals مع بصمة مضغوطة للغاية.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3. Luxury Accordion Variant -->
+  <div style="display: flex; flex-direction: column; gap: var(--qhr-space-3, 12px);">
+    <div>
+      <h3 style="margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--qhr-content-primary, #0f172a);">3. نمط الفخامة الذهبي (Luxury Accordion)</h3>
+      <p style="margin: 4px 0 0 0; font-size: 0.85rem; color: var(--qhr-text-muted, #64748b);">خلفية داكنة مع حدود وتفاصيل ذهبية مميزة مستوحاة من طراز الوكالة الفاخر</p>
+    </div>
+
+    <div class="qhr-accordion qhr-accordion--luxury" x-data="qhrAccordion({ multiple: false, defaultOpen: ['lux-1'] })">
+      
+      <div class="qhr-accordion-item" :class="{ 'is-open': isOpen('lux-1') }">
+        <button 
+          type="button" 
+          class="qhr-accordion-trigger" 
+          @click="toggle('lux-1')" 
+          :aria-expanded="isOpen('lux-1')">
+          <div class="qhr-accordion-content-meta">
+            <span class="qhr-accordion-title">عضوية النخبة وتخصيص الواجهات الممتازة</span>
+            <span class="qhr-accordion-subtitle" style="color: rgba(212, 175, 55, 0.7);">المستوى الذهبي الفاخر</span>
+          </div>
+          <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="qhr-accordion-content" x-show="isOpen('lux-1')" x-collapse>
+          <div class="qhr-accordion-body" style="color: #cbd5e1;">
+            تتيح واجهة النمط الذهبي تجارب مستخدم حصرية للعلامات التجارية الراقية ومواقع الإطلاق الفاخرة، مع لمسات التدرجات الذهبية والتباين الداكن العميق.
+          </div>
+        </div>
+      </div>
+
+      <div class="qhr-accordion-item" :class="{ 'is-open': isOpen('lux-2') }">
+        <button 
+          type="button" 
+          class="qhr-accordion-trigger" 
+          @click="toggle('lux-2')" 
+          :aria-expanded="isOpen('lux-2')">
+          <div class="qhr-accordion-content-meta">
+            <span class="qhr-accordion-title">مخطط التوسع ومجموعات التصميم الإقليمية</span>
+            <span class="qhr-accordion-subtitle" style="color: rgba(212, 175, 55, 0.7);">منظومة ألكس وقنا</span>
+          </div>
+          <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="qhr-accordion-content" x-show="isOpen('lux-2')" x-collapse>
+          <div class="qhr-accordion-body" style="color: #cbd5e1;">
+            تتكامل منظومة قاهرة بسلاسة مع حزمة Alex Admin Kit للوحات التحكم الإدارية و Qena UI Kit لتطبيقات الهواتف المتقدمة.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

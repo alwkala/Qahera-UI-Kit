@@ -1,0 +1,83 @@
+id: questionnaire
+name: Multi-Step Questionnaire & Assessment Flow
+category: assessment
+purpose: >
+  Orchestrates multi-step surveys, questionnaires, onboarding flows, and educational test assessments with single-choice, multiple-choice, freeform questions, progress tracking, and validation.
+
+components:
+  - progress
+  - card
+  - radio
+  - checkbox
+  - button
+  - badge
+
+anatomy:
+  - root
+  - progress-meter
+  - question-card
+  - category-badge
+  - points-indicator
+  - prompt-title
+  - description-text
+  - choices-list
+  - choice-item
+  - choice-shortcut-badge
+  - choice-label
+  - choice-indicator
+  - feedback-panel
+  - actions-bar
+  - previous-button
+  - skip-button
+  - next-button
+  - result-summary
+
+slots:
+  - progress
+  - category
+  - points
+  - prompt
+  - description
+  - choices
+  - feedback
+  - actions
+
+layout:
+  display: flex
+  direction: column
+  gap: var(--qhr-space-6)
+  alignment: stretch
+  responsive:
+    sm: "width: 100%; max-width: 100%;"
+    md: "width: 100%; max-width: 720px; margin: 0 auto;"
+
+accessibility:
+  role: form
+  landmark: main
+  keyboard_flow: >
+    Tab navigates sequentially between question choices and action buttons.
+    Arrow Up/Down cycles through choices in single-choice mode.
+    Space selects or unselects choices.
+    Keyboard shortcuts (A, B, C, D) or (1, 2, 3, 4) select answers directly.
+    Enter triggers Next/Confirm action.
+  aria_live: polite
+
+ai:
+  purpose: "Multi-step questionnaire, quiz, and survey assessment engine"
+  use_when:
+    - "Interactive educational tests and student knowledge assessments"
+    - "Multi-step customer onboarding questionnaires and diagnostic intake flows"
+    - "Public opinion polls, survey research, and multi-question evaluation forms"
+  avoid_when:
+    - "Single-field quick forms (use standard Input with Button)"
+    - "Complex data entry tables with multiple simultaneous rows (use Table with Drawer)"
+  composed_of:
+    - progress
+    - card
+    - radio
+    - checkbox
+    - button
+    - badge
+  related_patterns:
+    - form-actions
+    - confirmation

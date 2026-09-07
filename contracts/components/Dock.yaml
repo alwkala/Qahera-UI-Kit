@@ -1,0 +1,77 @@
+name: Dock
+category: navigation
+purpose: >
+  Displays a bottom-anchored navigation bar primarily designed for handheld and mobile viewports, providing thumb-accessible quick actions, tab destinations, and status indicators.
+
+anatomy:
+  - root
+  - container
+  - item
+  - icon
+  - label
+  - badge
+  - active-indicator
+  - center-action
+
+variants:
+  - default
+  - fixed
+  - floating
+  - rounded
+  - pills
+  - glass
+  - center-fab
+  - luxury-gold
+
+sizes:
+  - sm
+  - md
+  - lg
+
+states:
+  - default
+  - active
+  - hover
+  - focus
+
+tone:
+  - default
+  - primary
+  - dark
+  - gold
+  - surface
+
+slots:
+  - default
+  - start
+  - center
+  - end
+
+accessibility:
+  role: navigation
+  keyboard:
+    ArrowLeft: "Navigates to previous dock item"
+    ArrowRight: "Navigates to next dock item"
+    Home: "Navigates to first dock item"
+    End: "Navigates to last dock item"
+    Enter: "Activates focused dock tab"
+    Space: "Activates focused dock tab"
+  focus: "Visible focus ring on active tab buttons"
+  aria:
+    - aria-label: "Bottom Navigation Dock"
+    - aria-current: "Identifies active tab page"
+
+behavior:
+  safe_area_padding: true
+  auto_hide_on_scroll: false
+
+ai:
+  description: "Bottom navigation bar or floating dock for mobile viewports, responsive layouts, and handheld application UX"
+  use_when:
+    - "Primary mobile navigation for web apps, PWA applications, or responsive mobile views"
+    - "Thumb-friendly 3 to 5 primary destinations (Home, Search, Orders, Profile, Notifications)"
+    - "Floating action dock anchored to the viewport bottom"
+  avoid_when:
+    - "Desktop-first dashboards with extensive sidebar space (use Menu or Navbar instead)"
+    - "Secondary page navigation with more than 5 tabs"
+    - "Breadcrumb trails or deep page sub-trees"

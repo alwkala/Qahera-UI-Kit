@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" x-data="emailSuite()" x-init="init()" :data-theme="theme">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حزمة قوالب البريد الإلكتروني والمعاملات — Qahera Email Suite</title>
+  <meta name="description" content="منظومة قوالب البريد الإلكتروني المعاملاتية لقاهرة: Welcome Email، Verify Email، Change Password، User Update، Expired Card، و Closed Account.">
+
+  <!-- Tokens & Components CSS -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <!-- Google Fonts: Cairo & El Messiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=El+Messiri:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Alpine Core 3.14.8 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       Qahera Email Suite — Scoped Token Bridge & Simulator
+       Strict Compliance with AGENTS.md:
+       - 100% Logical CSS for viewer shell.
+       - Zero hardcoded colors in UI shell.
+       - High contrast Dark (Obsidian & Gold) and Light (Ivory & Sand).
+       - Cairo & El Messiri Arabic typography.
+       - Zero emoji (Canonical 24x24 SVGs only).
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* ── Dark Theme (Obsidian & Gold) ─────────────────────────────────── */
+    :root, [data-theme="dark"], [data-theme="luxury-gold"] {
+      --eml-bg:               #070503;
+      --eml-shell:            #0D0A07;
+      --eml-surface-card:     #14100C;
+      --eml-surface-subtle:   #1C1610;
+      --eml-surface-header:   rgba(14, 11, 8, 0.94);
+      --eml-text-primary:     #FBF8F3;
+      --eml-text-secondary:   #D5C9BC;
+      --eml-text-muted:       #9E9081;
+      --eml-accent:           #D4AF37;
+      --eml-accent-hover:     #F2C94C;
+      --eml-accent-fg:        #0A0806;
+      --eml-accent-subtle:    rgba(212, 175, 55, 0.12);
+      --eml-accent-border:    rgba(212, 175, 55, 0.28);
+      --eml-border:           rgba(212, 175, 55, 0.18);
+      --eml-border-strong:    rgba(212, 175, 55, 0.38);
+      --eml-card-shadow:      0 12px 40px rgba(0, 0, 0, 0.7);
+      --eml-email-canvas:     #0D0B08;
+      --eml-email-card:       #15110C;
+      --eml-email-card-border:rgba(212, 175, 55, 0.24);
+      --eml-email-subtle:     #1C1610;
+      --eml-font-display:     'El Messiri', serif;
+      --eml-font-body:        'Cairo', sans-serif;
+    }
+
+    /* ── Light Theme (Ivory & Warm Sand) ──────────────────────────────── */
+    [data-theme="light"] {
+      --eml-bg:               #EFEBE4;
+      --eml-shell:            #FAF8F5;
+      --eml-surface-card:     #FFFFFF;
+      --eml-surface-subtle:   #F5F1E9;
+      --eml-surface-header:   rgba(250, 248, 245, 0.95);
+      --eml-text-primary:     #1C1917;
+      --eml-text-secondary:   #44403C;
+      --eml-text-muted:       #78716C;
+      --eml-accent:           #B45309;
+      --eml-accent-hover:     #92400E;
+      --eml-accent-fg:        #FFFFFF;
+      --eml-accent-subtle:    rgba(180, 83, 9, 0.08);
+      --eml-accent-border:    rgba(180, 83, 9, 0.25);
+      --eml-border:           #E7E5E4;
+      --eml-border-strong:    #D6D3D1;
+      --eml-card-shadow:      0 12px 32px rgba(28, 25, 23, 0.08);
+      --eml-email-canvas:     #F3EFE8;
+      --eml-email-card:       #FFFFFF;
+      --eml-email-card-border:#E7E5E4;
+      --eml-email-subtle:     #FAF8F5;
+      --eml-font-display:     'El Messiri', serif;
+      --eml-font-body:        'Cairo', sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--eml-bg);
+      color: var(--eml-text-primary);
+      font-family: var(--eml-font-body);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard);
+    }
+
+    /* ── Top Header Bar ────────────────────────────────────────────────── */
+    .eml-header {
+      position: sticky;
+      inset-block-start: 0;
+      inset-inline: 0;
+      z-index: 1000;
+      background: var(--eml-surface-header);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-block-end: 1px solid var(--eml-border);
+      padding-block: var(--qhr-space-3, 12px);
+      padding-inline: var(--qhr-space-6, 24px);
+    }
+
+    .eml-header-inner {
+      max-width: 1400px;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .eml-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .eml-brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: linear-gradient(135deg, var(--eml-accent), #92400E);
+      color: var(--eml-accent-fg);
+      font-family: var(--eml-font-display);
+      font-size: 22px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ── Main Layout (Sidebar Selector + Preview Canvas) ───────────────── */
+    .eml-workspace {
+      max-width: 1400px;
+      margin-inline: auto;
+      padding: var(--qhr-space-6, 24px);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: var(--qhr-space-6, 24px);
+      align-items: start;
+    }
+
+    /* ── Sidebar Navigation ────────────────────────────────────────────── */
+    .eml-sidebar {
+      background: var(--eml-surface-card);
+      border: 1px solid var(--eml-border);
+      border-radius: var(--qhr-radius-xl, 20px);
+      padding: var(--qhr-space-5, 20px);
+      box-shadow: var(--eml-card-shadow);
+      position: sticky;
+      inset-block-start: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .eml-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .eml-item-btn {
+      width: 100%;
+      text-align: start;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--eml-text-secondary);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 14px;
+      border-radius: var(--qhr-radius-md, 10px);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eml-item-btn:hover {
+      background: var(--eml-surface-subtle);
+      color: var(--eml-text-primary);
+    }
+
+    .eml-item-btn.is-active {
+      background: var(--eml-accent-subtle);
+      border-color: var(--eml-accent-border);
+      color: var(--eml-accent);
+    }
+
+    .eml-item-icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── Preview Simulator Shell ───────────────────────────────────────── */
+    .eml-simulator-shell {
+      background: var(--eml-surface-card);
+      border: 1px solid var(--eml-border);
+      border-radius: var(--qhr-radius-xl, 20px);
+      box-shadow: var(--eml-card-shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .eml-simulator-toolbar {
+      padding: 12px 20px;
+      background: var(--eml-surface-subtle);
+      border-block-end: 1px solid var(--eml-border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .eml-viewport-toggle {
+      display: inline-flex;
+      background: var(--eml-surface-card);
+      border: 1px solid var(--eml-border);
+      border-radius: 8px;
+      padding: 2px;
+    }
+
+    /* ── Simulated Email Canvas ────────────────────────────────────────── */
+    .eml-canvas-outer {
+      background-color: var(--eml-email-canvas);
+      padding: var(--qhr-space-10, 40px) var(--qhr-space-4, 16px);
+      min-height: 600px;
+      display: flex;
+      justify-content: center;
+      transition: background-color var(--qhr-motion-duration-slow, 350ms);
+      overflow-x: auto;
+    }
+
+    /* The Real Responsive Email Card Container (600px standard) */
+    .eml-card-container {
+      width: 100%;
+      background-color: var(--eml-email-card);
+      border: 1px solid var(--eml-email-card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      transition: max-width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .eml-card-container.is-desktop {
+      max-width: 600px;
+    }
+
+    .eml-card-container.is-mobile {
+      max-width: 375px;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Internal Email Card Components */
+    .eml-email-header {
+      padding: 28px 32px;
+      text-align: center;
+      border-block-end: 1px solid var(--eml-email-card-border);
+      background: var(--eml-email-subtle);
+    }
+
+    .eml-email-body {
+      padding: 36px 32px;
+      color: var(--eml-text-primary);
+    }
+
+    .eml-email-footer {
+      padding: 24px 32px;
+      border-block-start: 1px solid var(--eml-email-card-border);
+      background: var(--eml-email-subtle);
+      text-align: center;
+      font-size: 12px;
+      color: var(--eml-text-muted);
+    }
+
+    /* OTP Code Boxes */
+    .eml-otp-container {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 24px 0;
+      direction: ltr;
+    }
+
+    .eml-otp-digit {
+      width: 46px;
+      height: 52px;
+      border-radius: 10px;
+      background: var(--eml-email-subtle);
+      border: 1.5px solid var(--eml-accent);
+      color: var(--eml-accent);
+      font-family: var(--eml-font-display);
+      font-size: 24px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Telemetry / Audit Details Box */
+    .eml-audit-box {
+      background: var(--eml-email-subtle);
+      border: 1px solid var(--eml-email-card-border);
+      border-radius: 12px;
+      padding: 16px;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    .eml-audit-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-block-end: 1px solid var(--eml-email-card-border);
+    }
+    .eml-audit-row:last-child {
+      border-block-end: none;
+    }
+
+    /* Credit Card Mockup Box */
+    .eml-card-mockup {
+      background: linear-gradient(135deg, #1C1917, #0A0806);
+      border: 1px solid var(--eml-accent-border);
+      border-radius: 14px;
+      padding: 20px;
+      color: #FBF8F3;
+      margin: 20px 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Toast */
+    .eml-toast {
+      position: fixed;
+      inset-block-end: var(--qhr-space-6, 24px);
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      background: var(--eml-surface-card);
+      border: 1px solid var(--eml-accent-border);
+      color: var(--eml-text-primary);
+      padding: 12px 24px;
+      border-radius: var(--qhr-radius-lg, 16px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 960px) {
+      .eml-workspace {
+        grid-template-columns: 1fr;
+      }
+      .eml-sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Bar -->
+  <header class="eml-header">
+    <div class="eml-header-inner">
+      <a href="#" class="eml-brand">
+        <div class="eml-brand-badge">ق</div>
+        <div>
+          <strong style="font-family: var(--eml-font-display); font-size: 18px; display: block; line-height: 1.2;">قاهرة لرسائل البريد المعاملاتية</strong>
+          <span style="font-size: 11px; color: var(--eml-text-muted);">Transactional & Operational Email Suite</span>
+        </div>
+      </a>
+
+      <!-- Direction & Language Switcher -->
+      <button
+        type="button"
+        class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+        @click="toggleDir()"
+        :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+        aria-label="تبديل اتجاه الصفحة واللغة"
+        style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+      >
+        <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      </button>
+
+      <!-- Theme Switcher (Icon only without text) -->
+      <button
+        type="button"
+        class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+        @click="toggleTheme()"
+        aria-label="تبديل المظهر اللوني"
+        :title="theme === 'dark' ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'"
+        style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+      >
+        <span x-show="theme === 'dark'" style="display: inline-flex; align-items: center; justify-content: center;"><svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        <span x-show="theme === 'light'" style="display: inline-flex; align-items: center; justify-content: center;"><svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Workspace (Sidebar + Canvas Simulator) -->
+  <main class="eml-workspace">
+
+    <!-- Sidebar: Template Navigation -->
+    <aside class="eml-sidebar" aria-label="قائمة قوالب البريد الإلكتروني">
+      <div>
+        <h2 style="font-family: var(--eml-font-display); font-size: 17px; font-weight: 700; margin: 0 0 4px; color: var(--eml-accent);">
+          القوالب المعاملاتية (٦ قوالب)
+        </h2>
+        <span style="font-size: 12px; color: var(--eml-text-muted);">اختر النموذج لعرضه في شاشة المحاكاة:</span>
+      </div>
+
+      <ul class="eml-list">
+        <!-- 1. Welcome Email -->
+        <li>
+          <button
+            type="button"
+            class="eml-item-btn"
+            :class="{ 'is-active': activeTemplate === 'welcome' }"
+            @click="activeTemplate = 'welcome'"
+          >
+            <span class="eml-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <span>الترحيب بالحساب (Welcome)</span>
+          </button>
+        </li>
+
+        <!-- 2. Verify Email -->
+        <li>
+          <button
+            type="button"
+            class="eml-item-btn"
+            :class="{ 'is-active': activeTemplate === 'verify' }"
+            @click="activeTemplate = 'verify'"
+          >
+            <span class="eml-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </span>
+            <span>تأكيد البريد (Verify OTP)</span>
+          </button>
+        </li>
+
+        <!-- 3. Change Password -->
+        <li>
+          <button
+            type="button"
+            class="eml-item-btn"
+            :class="{ 'is-active': activeTemplate === 'password' }"
+            @click="activeTemplate = 'password'"
+          >
+            <span class="eml-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <span>تغيير كلمة المرور (Password)</span>
+          </button>
+        </li>
+
+        <!-- 4. User Update -->
+        <li>
+          <button
+            type="button"
+            class="eml-item-btn"
+            :class="{ 'is-active': activeTemplate === 'update' }"
+            @click="activeTemplate = 'update'"
+          >
+            <span class="eml-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </span>
+            <span>تحديث البيانات (User Update)</span>
+          </button>
+        </li>
+
+        <!-- 5. Expired Card -->
+        <li>
+          <button
+            type="button"
+            class="eml-item-btn"
+            :class="{ 'is-active': activeTemplate === 'expired-card' }"
+            @click="activeTemplate = 'expired-card'"
+          >
+            <span class="eml-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            </span>
+            <span>انتهاء البطاقة (Expired Card)</span>
+          </button>
+        </li>
+
+        <!-- 6. Closed Account -->
+        <li>
+          <button
+            type="button"
+            class="eml-item-btn"
+            :class="{ 'is-active': activeTemplate === 'closed-account' }"
+            @click="activeTemplate = 'closed-account'"
+          >
+            <span class="eml-item-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </span>
+            <span>إغلاق الحساب (Closed Account)</span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Quick Action Buttons -->
+      <div style="border-block-start: 1px solid var(--eml-border); padding-block-start: 14px; display: flex; flex-direction: column; gap: 8px;">
+        <button
+          type="button"
+          class="qhr-btn qhr-btn--primary qhr-btn--sm"
+          @click="copyEmailHTML()"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span>نسخ كود HTML للبريد</span>
+        </button>
+        <button
+          type="button"
+          class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+          @click="sendTestEmail()"
+        >
+          <span>إرسال بريد اختباري</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Preview Simulator -->
+    <div class="eml-simulator-shell">
+      
+      <!-- Simulator Toolbar -->
+      <div class="eml-simulator-toolbar">
+        <div>
+          <strong style="font-size: 14px;" x-text="templateTitle"></strong>
+          <span style="font-size: 12px; color: var(--eml-text-muted); display: block;" x-text="templateDesc"></span>
+        </div>
+
+        <!-- Viewport Mode Buttons -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="eml-viewport-toggle">
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--xs"
+              :class="viewport === 'desktop' ? 'qhr-btn--primary' : 'qhr-btn--ghost'"
+              @click="viewport = 'desktop'"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <span>سطح المكتب (600px)</span>
+            </button>
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--xs"
+              :class="viewport === 'mobile' ? 'qhr-btn--primary' : 'qhr-btn--ghost'"
+              @click="viewport = 'mobile'"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <span>الهاتف (375px)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canvas Area hosting the Email Card -->
+      <div class="eml-canvas-outer">
+        
+        <div
+          class="eml-card-container"
+          :class="{
+            'is-desktop': viewport === 'desktop',
+            'is-mobile': viewport === 'mobile'
+          }"
+        >
+          <!-- Email Universal Header -->
+          <div class="eml-email-header">
+            <div style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, var(--eml-accent), #92400E); color: var(--eml-accent-fg); font-family: var(--eml-font-display); font-size: 24px; font-weight: 800; margin-bottom: 12px; box-shadow: 0 4px 14px rgba(0,0,0,0.3);">
+              ق
+            </div>
+            <div style="font-family: var(--eml-font-display); font-size: 18px; font-weight: 700; color: var(--eml-text-primary);">
+              منظومة قاهرة للتصميم المعماري
+            </div>
+            <span style="font-size: 11px; color: var(--eml-text-muted); display: block; margin-top: 2px;">
+              الوكالة للتقنيات والحلول المتقدمة · Alwkala Studio
+            </span>
+          </div>
+
+          <!-- Email Content Body (Dynamic Switcher) -->
+          <div class="eml-email-body">
+
+            <!-- 1. WELCOME EMAIL -->
+            <template x-if="activeTemplate === 'welcome'">
+              <div>
+                <div style="text-align: center; margin-bottom: 24px;">
+                  <span class="qhr-badge qhr-badge--primary qhr-badge--md" style="margin-bottom: 12px;">أهلاً بك معنا</span>
+                  <h1 style="font-family: var(--eml-font-display); font-size: 24px; font-weight: 800; margin: 0 0 8px; color: var(--eml-text-primary);">
+                    مرحباً بك في منظومة قاهرة الفاخرة!
+                  </h1>
+                  <p style="font-size: 14px; color: var(--eml-text-secondary); margin: 0;">
+                    يسعدنا انضمامك إلى مجتمعنا المعماري الرائد للأنظمة والتطبيقات فائقة الجودة.
+                  </p>
+                </div>
+
+                <p style="font-size: 14px; color: var(--eml-text-secondary); line-height: 1.7;">
+                  عزيزي <strong>د. أحمد رضوان</strong>، تم تفعيل حسابك بنجاح. أصبحت الآن قادراً على استكشاف الكتالوج المعماري الكامل، والاستفادة من حزم التصميم ومكونات الذكاء الاصطناعي السيادية.
+                </p>
+
+                <!-- Perks Box -->
+                <div class="eml-audit-box">
+                  <strong style="display: block; margin-bottom: 8px; color: var(--eml-accent);">مزايا عضويتك الأساسية:</strong>
+                  <div class="eml-audit-row">
+                    <span>الوصول للكتالوج الشامل</span>
+                    <strong style="color: #10B981;">مفعل</strong>
+                  </div>
+                  <div class="eml-audit-row">
+                    <span>مكتبة الأيقونات المعيارية (41 أيقونة)</span>
+                    <strong style="color: #10B981;">غير محدود</strong>
+                  </div>
+                  <div class="eml-audit-row">
+                    <span>الدعم الفني المخصص</span>
+                    <strong style="color: #10B981;">24/7</strong>
+                  </div>
+                </div>
+
+                <div style="text-align: center; margin: 32px 0 24px;">
+                  <a href="#" class="qhr-btn qhr-btn--primary qhr-btn--lg" style="text-decoration: none; padding-inline: 36px; display: inline-block;">
+                    الدخول إلى لوحة القيادة
+                  </a>
+                </div>
+
+                <p style="font-size: 12px; color: var(--eml-text-muted); text-align: center; margin: 0;">
+                  إذا كانت لديك أي استفسارات، يمكنك الرد مباشرة على هذه الرسالة للتواصل مع فريق الدعم.
+                </p>
+              </div>
+            </template>
+
+            <!-- 2. VERIFY EMAIL (OTP) -->
+            <template x-if="activeTemplate === 'verify'">
+              <div>
+                <div style="text-align: center; margin-bottom: 24px;">
+                  <span class="qhr-badge qhr-badge--primary qhr-badge--md" style="margin-bottom: 12px;">رمز التحقق اللحظي</span>
+                  <h1 style="font-family: var(--eml-font-display); font-size: 24px; font-weight: 800; margin: 0 0 8px; color: var(--eml-text-primary);">
+                    تأكيد عنوان بريدك الإلكتروني
+                  </h1>
+                  <p style="font-size: 14px; color: var(--eml-text-secondary); margin: 0;">
+                    استخدم الرمز السداسي التالي لإكمال عملية تسجيل الدخول وتوثيق الحساب.
+                  </p>
+                </div>
+
+                <!-- OTP Display -->
+                <div class="eml-otp-container">
+                  <div class="eml-otp-digit">8</div>
+                  <div class="eml-otp-digit">4</div>
+                  <div class="eml-otp-digit">2</div>
+                  <div class="eml-otp-digit">9</div>
+                  <div class="eml-otp-digit">1</div>
+                  <div class="eml-otp-digit">6</div>
+                </div>
+
+                <div style="text-align: center; margin: 28px 0 20px;">
+                  <a href="#" class="qhr-btn qhr-btn--primary qhr-btn--md" style="text-decoration: none; padding-inline: 32px; display: inline-block;">
+                    تأكيد الحساب بنقرة واحدة
+                  </a>
+                </div>
+
+                <div class="eml-audit-box">
+                  <div style="display: flex; align-items: center; gap: 8px; color: var(--eml-text-muted);">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>صلاحية هذا الرمز تنتهي خلال <strong>١٥ دقيقة</strong> لأسباب أمنية.</span>
+                  </div>
+                </div>
+
+                <p style="font-size: 12px; color: var(--eml-text-muted); text-align: center; margin: 0;">
+                  إذا لم تكن أنت من طلب هذا الرمز، يرجى تجاهل هذه الرسالة أو إبلاغ فريق الأمان.
+                </p>
+              </div>
+            </template>
+
+            <!-- 3. CHANGE PASSWORD -->
+            <template x-if="activeTemplate === 'password'">
+              <div>
+                <div style="text-align: center; margin-bottom: 24px;">
+                  <span class="qhr-badge qhr-badge--warning qhr-badge--md" style="margin-bottom: 12px;">تنبيه أمان</span>
+                  <h1 style="font-family: var(--eml-font-display); font-size: 24px; font-weight: 800; margin: 0 0 8px; color: var(--eml-text-primary);">
+                    تم تحديث كلمة المرور لحسابك
+                  </h1>
+                  <p style="font-size: 14px; color: var(--eml-text-secondary); margin: 0;">
+                    نحيطك علماً بأنه قد تم تغيير كلمة المرور المرتبطة بحسابك مؤخراً.
+                  </p>
+                </div>
+
+                <!-- Security Telemetry Box -->
+                <div class="eml-audit-box">
+                  <strong style="display: block; margin-bottom: 8px; color: var(--eml-accent);">تفاصيل جلسة التغيير:</strong>
+                  <div class="eml-audit-row">
+                    <span>التاريخ والوقت:</span>
+                    <strong>اليوم، 11:42 صباحاً (توقيت القاهرة)</strong>
+                  </div>
+                  <div class="eml-audit-row">
+                    <span>الجهاز والمتصفح:</span>
+                    <strong>Chrome 128 · Windows 11</strong>
+                  </div>
+                  <div class="eml-audit-row">
+                    <span>عنوان الـ IP:</span>
+                    <strong style="direction: ltr;">197.38.114.22 (القاهرة، مصر)</strong>
+                  </div>
+                </div>
+
+                <p style="font-size: 14px; color: var(--eml-text-secondary); line-height: 1.7;">
+                  إذا قمت أنت بهذا التغيير، فلا داعي لاتخاذ أي إجراء آخر. أما إذا لم تكن أنت من قام بذلك، فيرجى الضغط فوراً على الرابط أدناه لتأمين حسابك واستعادته.
+                </p>
+
+                <div style="text-align: center; margin: 30px 0 20px;">
+                  <a href="#" class="qhr-btn qhr-btn--destructive qhr-btn--md" style="text-decoration: none; padding-inline: 28px; display: inline-block;">
+                    تأمين الحساب وإيقاف الجلسات
+                  </a>
+                </div>
+              </div>
+            </template>
+
+            <!-- 4. USER UPDATE -->
+            <template x-if="activeTemplate === 'update'">
+              <div>
+                <div style="text-align: center; margin-bottom: 24px;">
+                  <span class="qhr-badge qhr-badge--primary qhr-badge--md" style="margin-bottom: 12px;">تحديث السجل</span>
+                  <h1 style="font-family: var(--eml-font-display); font-size: 24px; font-weight: 800; margin: 0 0 8px; color: var(--eml-text-primary);">
+                    تم تعديل بيانات ملفك الشخصي
+                  </h1>
+                  <p style="font-size: 14px; color: var(--eml-text-secondary); margin: 0;">
+                    ملخص للتغييرات التي طرأت على إعدادات حسابك في منظومة قاهرة.
+                  </p>
+                </div>
+
+                <!-- Update Diff Summary -->
+                <div class="eml-audit-box">
+                  <strong style="display: block; margin-bottom: 10px; color: var(--eml-accent);">الحقول المعدلة:</strong>
+                  <div class="eml-audit-row">
+                    <span>اسم المستخدم:</span>
+                    <strong>م. علي الصاوي</strong>
+                  </div>
+                  <div class="eml-audit-row">
+                    <span>رقم الهاتف المعتمد:</span>
+                    <strong style="direction: ltr;">+20 100 123 4567</strong>
+                  </div>
+                  <div class="eml-audit-row">
+                    <span>المصادقة الثنائية (2FA):</span>
+                    <strong style="color: #10B981;">مفعلة عبر التطبيق</strong>
+                  </div>
+                </div>
+
+                <div style="text-align: center; margin: 28px 0 20px;">
+                  <a href="#" class="qhr-btn qhr-btn--secondary qhr-btn--md" style="text-decoration: none; padding-inline: 30px; display: inline-block;">
+                    مراجعة إعدادات الحساب
+                  </a>
+                </div>
+
+                <p style="font-size: 12px; color: var(--eml-text-muted); text-align: center; margin: 0;">
+                  إذا لم تكن على علم بهذه التعديلات، يرجى التواصل مع مسؤول النظام فوراً.
+                </p>
+              </div>
+            </template>
+
+            <!-- 5. EXPIRED CARD -->
+            <template x-if="activeTemplate === 'expired-card'">
+              <div>
+                <div style="text-align: center; margin-bottom: 24px;">
+                  <span class="qhr-badge qhr-badge--warning qhr-badge--md" style="margin-bottom: 12px;">تنبيه فواتير</span>
+                  <h1 style="font-family: var(--eml-font-display); font-size: 24px; font-weight: 800; margin: 0 0 8px; color: var(--eml-text-primary);">
+                    بطاقة الدفع الخاصة بك قاربت على الانتهاء
+                  </h1>
+                  <p style="font-size: 14px; color: var(--eml-text-secondary); margin: 0;">
+                    لتفادي أي انقطاع في خدمات المنظومة أو تجديد الاشتراكات، يرجى تحديث وسيلة الدفع.
+                  </p>
+                </div>
+
+                <!-- Credit Card Visual Box -->
+                <div class="eml-card-mockup">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+                    <span style="font-size: 12px; color: var(--eml-accent); font-weight: 700;">بطاقة ائتمانية</span>
+                    <span class="qhr-badge qhr-badge--danger qhr-badge--xs">تنتهي قريباً</span>
+                  </div>
+                  <div style="font-family: 'Consolas', monospace; font-size: 18px; letter-spacing: 2px; direction: ltr; margin-bottom: 14px;">
+                    •••• •••• •••• 4289
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                    <span>حامل البطاقة: <strong>A. RADWAN</strong></span>
+                    <span>الانتهاء: <strong style="color: #EF4444;">09 / 26</strong></span>
+                  </div>
+                </div>
+
+                <p style="font-size: 14px; color: var(--eml-text-secondary); line-height: 1.7;">
+                  نود تذكيرك بأن موعد تجديد اشتراك باقة المؤسسات القادم هو <strong>١ أكتوبر ٢٠٢٦</strong>، ولن نتمكن من معالجة الدفع بالبطاقة الحالية.
+                </p>
+
+                <div style="text-align: center; margin: 30px 0 20px;">
+                  <a href="#" class="qhr-btn qhr-btn--primary qhr-btn--lg" style="text-decoration: none; padding-inline: 36px; display: inline-block;">
+                    تحديث بيانات البطاقة الآن
+                  </a>
+                </div>
+              </div>
+            </template>
+
+            <!-- 6. CLOSED ACCOUNT -->
+            <template x-if="activeTemplate === 'closed-account'">
+              <div>
+                <div style="text-align: center; margin-bottom: 24px;">
+                  <span class="qhr-badge qhr-badge--secondary qhr-badge--md" style="margin-bottom: 12px;">تأكيد الإغلاق</span>
+                  <h1 style="font-family: var(--eml-font-display); font-size: 24px; font-weight: 800; margin: 0 0 8px; color: var(--eml-text-primary);">
+                    تم إغلاق حسابك في قاهرة
+                  </h1>
+                  <p style="font-size: 14px; color: var(--eml-text-secondary); margin: 0;">
+                    بناءً على طلبك، تم تعطيل الحساب وإنهاء كافة الاشتراكات النشطة.
+                  </p>
+                </div>
+
+                <div class="eml-audit-box">
+                  <strong style="display: block; margin-bottom: 8px; color: var(--eml-accent);">سياسة الاحتفاظ بالبيانات:</strong>
+                  <div class="eml-audit-row">
+                    <span>مهلة الاسترجاع:</span>
+                    <strong>٣٠ يوماً من تاريخ اليوم</strong>
+                  </div>
+                  <div class="eml-audit-row">
+                    <span>تاريخ الحذف النهائي:</span>
+                    <strong>٦ أكتوبر ٢٠٢٦</strong>
+                  </div>
+                  <div class="eml-audit-row">
+                    <span>النسخ الاحتياطي:</span>
+                    <span>متاح للتحميل قبل الحذف</span>
+                  </div>
+                </div>
+
+                <p style="font-size: 14px; color: var(--eml-text-secondary); line-height: 1.7;">
+                  نأسف لمغادرتك! إذا غيرت رأيك خلال الـ 30 يوماً القادمة، يمكنك استعادة كافة بياناتك وإعادة تفعيل الحساب بمجرد تسجيل الدخول مجدداً.
+                </p>
+
+                <div style="text-align: center; margin: 30px 0 20px;">
+                  <a href="#" class="qhr-btn qhr-btn--secondary qhr-btn--md" style="text-decoration: none; padding-inline: 32px; display: inline-block;">
+                    استعادة الحساب الآن
+                  </a>
+                </div>
+              </div>
+            </template>
+
+          </div>
+
+          <!-- Email Universal Footer -->
+          <div class="eml-email-footer">
+            <div style="margin-bottom: 8px;">
+              <a href="#" style="color: var(--eml-accent); text-decoration: none; margin: 0 6px;">مركز المساعدة</a> ·
+              <a href="#" style="color: var(--eml-accent); text-decoration: none; margin: 0 6px;">سياسة الخصوصية</a> ·
+              <a href="#" style="color: var(--eml-accent); text-decoration: none; margin: 0 6px;">إلغاء الاشتراك</a>
+            </div>
+            <div>
+              استوديو الوكالة للتقنية · القاهرة، جمهورية مصر العربية<br />
+              جميع الحقوق محفوظة © منظومة قاهرة للتصميم المعماري v1.0
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="eml-toast" x-show="showToast" x-transition style="display: none;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span x-text="toastMessage"></span>
+  </div>
+
+  <script>
+    function emailSuite() {
+      return {
+        theme: localStorage.getItem('qhr-theme') || 'dark',
+        dir: localStorage.getItem('qhr-dir') || 'rtl',
+        lang: (localStorage.getItem('qhr-dir') || 'rtl') === 'rtl' ? 'ar' : 'en',
+        activeTemplate: 'welcome',
+        viewport: 'desktop', // 'desktop' | 'mobile'
+        showToast: false,
+        toastMessage: '',
+
+        init() {
+          document.documentElement.setAttribute('data-theme', this.theme);
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.lang);
+        },
+
+        toggleTheme() {
+          this.theme = this.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', this.theme);
+          localStorage.setItem('qhr-theme', this.theme);
+          this.triggerToast(this.theme === 'dark' ? 'تم تفعيل النمط الداكن (Obsidian & Gold)' : 'تم تفعيل النمط الفاتح (Ivory & Gold)');
+        },
+
+        get templateTitle() {
+          const map = {
+            'welcome': 'رسالة الترحيب والانضمام (Welcome Email)',
+            'verify': 'رسالة توثيق البريد برمز OTP (Verify Email)',
+            'password': 'تنبيه أمان وتغيير كلمة المرور (Change Password)',
+            'update': 'إشعار تحديث بيانات الملف الشخصي (User Update)',
+            'expired-card': 'تنبيه انتهاء بطاقة الدفع الائتمانية (Expired Card)',
+            'closed-account': 'إشعار إغلاق وتعطيل الحساب (Closed Account)'
+          };
+          return map[this.activeTemplate] || '';
+        },
+
+        get templateDesc() {
+          const map = {
+            'welcome': 'قالب ترحيبي فاخر بتدرجات الذهب لتعريف العميل بالمزايا وحثه على الدخول للوحة التحكم.',
+            'verify': 'رسالة تأكيد فورية تحتوي على 6 خانات OTP وزر التوثيق السريع برمز مشفر.',
+            'password': 'إشعار أمني فوري يتضمن بيانات الجلسة وعنوان IP مع زر لتأمين الحساب في حال الاشتباه.',
+            'update': 'موجز تفصيلي بالحقول والبيانات المعدلة لضمان الشفافية وأمان الحساب.',
+            'expired-card': 'تنبيه استباقي لتحديث بطاقة الدفع وتجنب انقطاع الخدمة أو تعليق التجديد.',
+            'closed-account': 'تأكيد رسمي لإغلاق الحساب مع توضيح سياسة الـ 30 يوماً للاسترجاع قبل الحذف النهائي.'
+          };
+          return map[this.activeTemplate] || '';
+        },
+
+        copyEmailHTML() {
+          const card = document.querySelector('.eml-card-container');
+          if (card) {
+            const html = `<!DOCTYPE html>\n<html lang="ar" dir="rtl">\n<head><meta charset="UTF-8"><title>${this.templateTitle}</title></head>\n<body style="margin:0;padding:24px;background:#0A0806;font-family:'Cairo',Arial,sans-serif;">\n${card.outerHTML}\n</body></html>`;
+            navigator.clipboard?.writeText(html);
+            this.triggerToast('تم نسخ كود HTML للبريد المختار إلى الحافظة بنجاح!');
+          }
+        },
+
+        sendTestEmail() {
+          this.triggerToast(`تمت محاكاة إرسال البريد (${this.activeTemplate}) إلى: user@example.com`);
+        },
+
+        triggerToast(msg) {
+          this.toastMessage = msg;
+          this.showToast = true;
+          setTimeout(() => {
+            this.showToast = false;
+          }, 3200);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

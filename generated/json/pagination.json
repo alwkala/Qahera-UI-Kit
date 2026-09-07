@@ -1,0 +1,170 @@
+{
+  "id": "pagination",
+  "name": "Pagination",
+  "component": "Pagination",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "summary",
+      "content",
+      "item",
+      "btn-first",
+      "btn-prev",
+      "pages",
+      "page-link",
+      "page-active",
+      "ellipsis",
+      "btn-next",
+      "btn-last",
+      "size-picker"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-page-navigation"
+      },
+      "outline": {
+        "intent": "high-contrast-card-bounded"
+      },
+      "ghost": {
+        "intent": "flat-minimal-table-embedded"
+      },
+      "pills": {
+        "intent": "rounded-capsule-luxury-indicators"
+      },
+      "segmented": {
+        "intent": "connected-group-pill-toolbar"
+      },
+      "compact": {
+        "intent": "space-constrained-stepper"
+      },
+      "icons-only": {
+        "intent": "dense-table-icon-triggers"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": "30px",
+        "font_size": "var(--qhr-text-xs)"
+      },
+      "md": {
+        "height": "36px",
+        "font_size": "var(--qhr-text-sm)"
+      },
+      "lg": {
+        "height": "42px",
+        "font_size": "var(--qhr-text-base)"
+      }
+    },
+    "states": [
+      "default",
+      "hover",
+      "active",
+      "disabled",
+      "focus"
+    ],
+    "slots": {
+      "summary": "optional",
+      "content": "required",
+      "size-picker": "optional"
+    },
+    "accessibility": {
+      "role": "navigation",
+      "aria": [
+        "aria-label=pagination",
+        "aria-current=page"
+      ],
+      "keyboard": true,
+      "focusVisible": true
+    }
+  },
+  "recipe": {
+    "file": "recipes/Pagination.yaml",
+    "base": {
+      "display": "flex",
+      "align-items": "center",
+      "justify-content": "space-between",
+      "width": "100%",
+      "box-sizing": "border-box",
+      "padding-block": "{space.3}",
+      "padding-inline": "{space.4}",
+      "background": "{surface.elevated}",
+      "border-radius": "{radius.lg}",
+      "font-family": "{font.family.body}"
+    },
+    "variants": {
+      "default": {
+        "border": "1px solid {border.subtle}"
+      },
+      "outline": {
+        "border": "1px solid {border.strong}",
+        "box-shadow": "{shadow.sm}"
+      },
+      "ghost": {
+        "background": "transparent",
+        "border": "none",
+        "padding": "0"
+      },
+      "pills": {
+        "border-radius": "9999px",
+        "border": "1px solid {border.subtle}"
+      },
+      "segmented": {
+        "background": "{surface.subtle}",
+        "border": "1px solid {border.subtle}",
+        "gap": "0"
+      },
+      "compact": {
+        "justify-content": "center",
+        "gap": "{space.2}"
+      },
+      "icons-only": {
+        "gap": "{space.1}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "{text.xs}",
+        "gap": "{space.2}"
+      },
+      "md": {
+        "font-size": "{text.sm}",
+        "gap": "{space.4}"
+      },
+      "lg": {
+        "font-size": "{text.base}",
+        "gap": "{space.6}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      },
+      "hover": {
+        "border-color": "{color.primary.base}"
+      },
+      "disabled": {
+        "opacity": 0.4,
+        "cursor": "not-allowed"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Provides structured multi-page navigation, direct jump controls, page size selector, and record boundary status. Inspired by composable headless primitives with rich styled variants.",
+    "whenToUse": [
+      "Result sets exceed a single viewport (typically > 12 records)",
+      "Server or client paginated catalogs, tables, and card registries",
+      "Composed data tables requiring compact or icons-only pagination"
+    ],
+    "avoid": [
+      "Continuous infinite feeds without discrete pages",
+      "Small lists with fewer than 10 items"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Pagination.yaml"
+  }
+}

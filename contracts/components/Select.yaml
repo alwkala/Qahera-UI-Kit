@@ -1,0 +1,73 @@
+id: select
+name: Select
+component: Select
+category: forms
+purpose: >
+  Enables selection of a single option from an expandable dropdown list.
+
+anatomy:
+  - root
+  - trigger
+  - value-label
+  - chevron-indicator
+  - popover
+  - options-list
+  - option-item
+
+variants:
+  default:
+    intent: standard-select-picker
+  outline:
+    intent: bordered-subtle-picker
+
+sizes:
+  sm:
+    height: 32
+    padding_inline: 10
+    font_size: "var(--qhr-text-sm)"
+  md:
+    height: 40
+    padding_inline: 12
+    font_size: "var(--qhr-text-base)"
+  lg:
+    height: 48
+    padding_inline: 16
+    font_size: "var(--qhr-text-lg)"
+
+states:
+  - default
+  - hover
+  - focus
+  - open
+  - disabled
+
+slots:
+  trigger: required
+  options: required
+  leadingIcon: optional
+
+accessibility:
+  role: combobox
+  keyboard: true
+  focusVisible: true
+  keyboard_keys:
+    ArrowDown: "Opens menu or highlights next option"
+    ArrowUp: "Highlights previous option"
+    Enter: "Selects active option and closes"
+    Escape: "Closes menu without selection"
+  aria:
+    - aria-expanded: when open
+    - aria-haspopup: listbox
+
+ai:
+  purpose: "Dropdown selector for choosing one option among many"
+  whenToUse:
+    - "Choosing one option from 5 or more predefined choices (countries, roles, page sizes)"
+    - "Page size selector in pagination pattern"
+    - "Column/filter picker in data-table-toolbar"
+  avoid:
+    - "Binary choice (use Checkbox)"
+    - "Mutually exclusive choices under 4 items (use Radio)"
+  common_patterns:
+    - pagination
+    - data-table-toolbar

@@ -1,0 +1,45 @@
+<!-- Qahera UI Kit - HTMX Server-Driven Tabs Fragment (Static / HTML) -->
+<div class="qhr-tabs qhr-tabs--htmx">
+  <div class="qhr-tabs-list" role="tablist">
+    <button 
+      type="button" 
+      class="qhr-tab is-active"
+      role="tab"
+      aria-selected="true"
+      hx-get="/api/tabs/overview"
+      hx-target="#htmx-tab-panel"
+      hx-swap="innerHTML"
+      onclick="this.closest('.qhr-tabs-list').querySelectorAll('.qhr-tab').forEach(b => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); }); this.classList.add('is-active'); this.setAttribute('aria-selected', 'true');"
+    >
+      المعلومات العامة
+    </button>
+    <button 
+      type="button" 
+      class="qhr-tab"
+      role="tab"
+      aria-selected="false"
+      hx-get="/api/tabs/security"
+      hx-target="#htmx-tab-panel"
+      hx-swap="innerHTML"
+      onclick="this.closest('.qhr-tabs-list').querySelectorAll('.qhr-tab').forEach(b => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); }); this.classList.add('is-active'); this.setAttribute('aria-selected', 'true');"
+    >
+      إعدادات الأمان
+    </button>
+    <button 
+      type="button" 
+      class="qhr-tab"
+      role="tab"
+      aria-selected="false"
+      hx-get="/api/tabs/billing"
+      hx-target="#htmx-tab-panel"
+      hx-swap="innerHTML"
+      onclick="this.closest('.qhr-tabs-list').querySelectorAll('.qhr-tab').forEach(b => { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); }); this.classList.add('is-active'); this.setAttribute('aria-selected', 'true');"
+    >
+      الفواتير والاشتراكات
+    </button>
+  </div>
+
+  <div id="htmx-tab-panel" class="qhr-tab-panel" role="tabpanel">
+    <p>محتوى التبويب الافتراضي المحمل مباشرة من الخادم عبر تقنية الهايبرميديا.</p>
+  </div>
+</div>

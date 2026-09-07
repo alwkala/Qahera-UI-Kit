@@ -1,0 +1,81 @@
+component: Radio
+name: radio
+category: selection
+version: 1.0.0
+
+ai:
+  intent: "Mutually exclusive single-choice option"
+  visual_role: "Single-selection control"
+  density: "compact"
+  preferred_when:
+    - "Payment method selection (Card, Cash, Wallet)"
+    - "Delivery speed options"
+  avoid_when:
+    - "Independent multi-selections (use checkbox)"
+    - "Long lists exceeding 6 items (use select)"
+
+base:
+  display: inline-flex
+  align-items: center
+  gap: "{space.2}"
+  cursor: pointer
+  user-select: none
+  font-family: inherit
+
+variants:
+  default:
+    background-color: "{color.surface.base}"
+    border-color: "{color.border.subtle}"
+
+sizes:
+  sm:
+    circle-size: "{space.4}"
+    font-size: "{text.sm}"
+  md:
+    circle-size: "{space.5}"
+    font-size: "{text.base}"
+  lg:
+    circle-size: "{space.6}"
+    font-size: "{text.lg}"
+
+states:
+  hover:
+    border-color: "{color.primary.bg}"
+  focus:
+    outline: "2px solid {color.primary.subtle}"
+  checked:
+    border-color: "{color.primary.bg}"
+    dot-color: "{color.primary.bg}"
+  disabled:
+    opacity: 0.5
+    cursor: not-allowed
+
+contract:
+  anatomy:
+    - root
+    - outer-circle
+    - inner-dot
+    - label
+    - description
+  props:
+    size:
+      default: md
+      values: [sm, md, lg]
+    state:
+      default: default
+      values: [default, hover, focus, checked, disabled]
+  slots:
+    - default
+
+structure:
+  base:
+    native_class: qhr-radio
+    tailwind: "inline-flex items-center gap-[var(--qhr-space-2)] cursor-pointer select-none font-sans text-sm"
+
+accessibility:
+  role: radio
+  keyboard: "Arrow keys navigate within radiogroup, Space selects"
+
+rtl:
+  supported: true
+  directional_mirroring: false

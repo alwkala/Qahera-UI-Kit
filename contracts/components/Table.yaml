@@ -1,0 +1,46 @@
+name: Table
+category: data-display
+purpose: >
+  Displays structured datasets organized in columns and rows for comparison.
+
+anatomy:
+  - root
+  - table-element
+  - thead
+  - header-row
+  - header-cell
+  - tbody
+  - body-row
+  - body-cell
+  - tfoot
+
+variants:
+  - default
+  - striped
+  - bordered
+
+sizes:
+  - sm
+  - md
+  - lg
+
+states:
+  - default
+  - hover
+
+slots:
+  - start
+  - default
+  - end
+
+accessibility:
+  role: table
+  keyboard: {}
+  focus: "Table cells can receive focus if interactive"
+
+ai:
+  description: "Tabular structured data representation"
+  use_when:
+    - "Comparing uniform records (users, orders, invoices, transactions)"
+  avoid_when:
+    - "Mobile-first single-entity workflows (use Cards on small viewports)"

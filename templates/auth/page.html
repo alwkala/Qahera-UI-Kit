@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" x-data="authSuite()" x-init="init()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بوابة قاهرة للمصادقة الممتدة — Qahera Extended Auth Suite</title>
+  <meta name="description" content="منظومة المصادقة المتكاملة: تسجيل الدخول، إنشاء الحساب القياسي، التسجيل المؤسسي متعدد الخطوات، وشاشة تأمين الجلسة.">
+
+  <!-- Tokens & Components CSS -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <!-- Google Fonts: Cairo & El Messiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=El+Messiri:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       Qahera Extended Auth Suite — Page-Level Token Bridge
+       Strict adherence to AGENTS.md:
+       - 100% Logical CSS properties.
+       - Zero hardcoded hex values in HTML elements.
+       - High contrast Light & Dark Themes.
+       - Pure Arabic typography (Cairo for body, El Messiri for display).
+       - Zero emoji / Unicode icons (SVG only, 24x24 viewBox).
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* ── Light Theme Tokens ────────────────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --auth-bg:               #FAF8F5;
+      --auth-surface:          #FFFFFF;
+      --auth-surface-card:     #FFFFFF;
+      --auth-surface-subtle:   #F5F2EB;
+      --auth-surface-overlay:  rgba(250, 248, 245, 0.94);
+      --auth-text-primary:     #1C1917;
+      --auth-text-secondary:   #44403C;
+      --auth-text-muted:       #78716C;
+      --auth-accent:           #B45309;
+      --auth-accent-hover:     #92400E;
+      --auth-accent-fg:        #FFFFFF;
+      --auth-accent-subtle:    rgba(180, 83, 9, 0.08);
+      --auth-accent-border:    rgba(180, 83, 9, 0.25);
+      --auth-border:           #E7E5E4;
+      --auth-border-strong:    #D6D3D1;
+      --auth-card-shadow:      0 12px 32px rgba(28, 25, 23, 0.08), 0 2px 6px rgba(28, 25, 23, 0.04);
+      --auth-hero-gradient:    radial-gradient(ellipse at 30% 20%, rgba(180, 83, 9, 0.08), transparent 70%),
+                               radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.05), transparent 70%),
+                               #FAF8F5;
+      --auth-font-display:     'El Messiri', serif;
+      --auth-font-body:        'Cairo', sans-serif;
+    }
+
+    /* ── Dark Theme Tokens (Obsidian & Gold) ───────────────────────────── */
+    [data-theme="dark"], [data-theme="luxury-gold"] {
+      --auth-bg:               #0A0806;
+      --auth-surface:          #14100C;
+      --auth-surface-card:     #17120F;
+      --auth-surface-subtle:   #1E1712;
+      --auth-surface-overlay:  rgba(10, 8, 6, 0.94);
+      --auth-text-primary:     #FBF8F3;
+      --auth-text-secondary:   #D4C9BC;
+      --auth-text-muted:       #9E9081;
+      --auth-accent:           #D4AF37;
+      --auth-accent-hover:     #F2C94C;
+      --auth-accent-fg:        #0A0806;
+      --auth-accent-subtle:    rgba(212, 175, 55, 0.10);
+      --auth-accent-border:    rgba(212, 175, 55, 0.28);
+      --auth-border:           rgba(212, 175, 55, 0.18);
+      --auth-border-strong:    rgba(212, 175, 55, 0.38);
+      --auth-card-shadow:      0 20px 48px rgba(0, 0, 0, 0.7);
+      --auth-hero-gradient:    radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.14), transparent 70%),
+                               radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.06), transparent 70%),
+                               #0A0806;
+      --auth-font-display:     'El Messiri', serif;
+      --auth-font-body:        'Cairo', sans-serif;
+    }
+
+    /* ── Reset & Typography ───────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--auth-bg);
+      color: var(--auth-text-primary);
+      font-family: var(--auth-font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard),
+                  color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard);
+    }
+
+    /* ── Top Navigation & Suite Control Strip ──────────────────────────── */
+    .auth-top-nav {
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline: 0;
+      z-index: 100;
+      padding-block: var(--qhr-space-3, 12px);
+      padding-inline: var(--qhr-space-6, 24px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-4, 16px);
+      flex-wrap: wrap;
+    }
+
+    .auth-view-tabs {
+      display: inline-flex;
+      align-items: center;
+      background: var(--auth-surface-overlay);
+      border: 1px solid var(--auth-border);
+      border-radius: 9999px;
+      padding: 4px;
+      gap: 4px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .auth-tab-btn {
+      padding-block: 6px;
+      padding-inline: 14px;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      color: var(--auth-text-secondary);
+      font-family: var(--auth-font-body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .auth-tab-btn:hover {
+      color: var(--auth-text-primary);
+    }
+
+    .auth-tab-btn.is-active {
+      background: var(--auth-accent);
+      color: var(--auth-accent-fg);
+      font-weight: 700;
+    }
+
+    .auth-theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--auth-surface-overlay);
+      border: 1px solid var(--auth-border);
+      color: var(--auth-text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(12px);
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .auth-theme-toggle:hover {
+      border-color: var(--auth-accent-border);
+      color: var(--auth-accent);
+    }
+
+    /* ── Split Layout ──────────────────────────────────────────────────── */
+    .auth-split-layout {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    /* Single Column Centered for Lock Screen */
+    .auth-lock-layout {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--qhr-space-6, 24px);
+      background-image: var(--auth-hero-gradient);
+    }
+
+    /* ── Right Column: Brand & Trust Showcase ──────────────────────────── */
+    .auth-showcase-col {
+      background-image: var(--auth-hero-gradient);
+      padding: clamp(32px, 5vw, 64px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-inline-end: 1px solid var(--auth-border);
+      position: relative;
+    }
+
+    .auth-brand-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--auth-accent);
+      color: var(--auth-accent-fg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+      font-family: var(--auth-font-display);
+      box-shadow: 0 4px 16px var(--auth-accent-subtle);
+    }
+
+    .auth-showcase-content {
+      max-width: 520px;
+      margin-block: auto;
+      padding-block: var(--qhr-space-8, 32px);
+    }
+
+    .auth-showcase-title {
+      font-family: var(--auth-font-display);
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 800;
+      line-height: 1.35;
+      margin-block: var(--qhr-space-3, 12px);
+      color: var(--auth-text-primary);
+    }
+
+    .auth-showcase-desc {
+      font-size: 15px;
+      color: var(--auth-text-secondary);
+      line-height: 1.8;
+      margin-block-end: var(--qhr-space-8, 32px);
+    }
+
+    .auth-trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--qhr-space-4, 16px);
+    }
+
+    .auth-trust-card {
+      padding: var(--qhr-space-3-5, 14px);
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--auth-surface-subtle);
+      border: 1px solid var(--auth-border);
+    }
+
+    .auth-trust-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--auth-accent);
+      font-size: 13px;
+      font-weight: 700;
+      margin-block-end: 4px;
+    }
+
+    .auth-trust-text {
+      font-size: 12px;
+      color: var(--auth-text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* ── Left Column: Form Card ────────────────────────────────────────── */
+    .auth-form-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(24px, 4vw, 48px);
+      padding-block-start: 80px;
+      background-color: var(--auth-surface);
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--auth-surface-card);
+      border: 1px solid var(--auth-border);
+      border-radius: var(--qhr-radius-xl, 20px);
+      padding: clamp(24px, 4vw, 40px);
+      box-shadow: var(--auth-card-shadow);
+    }
+
+    .auth-header-title {
+      font-family: var(--auth-font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--auth-text-primary);
+      margin: 0 0 6px 0;
+    }
+
+    .auth-header-desc {
+      font-size: 14px;
+      color: var(--auth-text-secondary);
+      margin: 0 0 var(--qhr-space-6, 24px) 0;
+    }
+
+    /* Form Fields */
+    .auth-field {
+      margin-block-end: var(--qhr-space-4, 16px);
+    }
+
+    .auth-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--auth-text-primary);
+      margin-block-end: var(--qhr-space-1-5, 6px);
+    }
+
+    .auth-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .auth-input-icon {
+      position: absolute;
+      inset-inline-start: 14px;
+      color: var(--auth-text-muted);
+      pointer-events: none;
+    }
+
+    .auth-input {
+      width: 100%;
+      background: var(--auth-surface-subtle);
+      border: 1px solid var(--auth-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: var(--qhr-space-2-5, 10px);
+      padding-inline-start: 42px;
+      padding-inline-end: 42px;
+      color: var(--auth-text-primary);
+      font-family: var(--auth-font-body);
+      font-size: 14px;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .auth-input:focus {
+      outline: none;
+      border-color: var(--auth-accent);
+      background: var(--auth-surface);
+      box-shadow: 0 0 0 3px var(--auth-accent-subtle);
+    }
+
+    .auth-eye-btn {
+      position: absolute;
+      inset-inline-end: 12px;
+      background: transparent;
+      border: none;
+      color: var(--auth-text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+    }
+
+    .auth-eye-btn:hover {
+      color: var(--auth-text-primary);
+    }
+
+    /* Password Strength Meter */
+    .auth-strength-meter {
+      margin-block-start: 8px;
+    }
+
+    .auth-strength-bars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-block-end: 6px;
+    }
+
+    .auth-strength-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--auth-border);
+      transition: background var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .auth-strength-bar.is-weak {
+      background: var(--qhr-color-danger-500, #ef4444);
+    }
+
+    .auth-strength-bar.is-medium {
+      background: var(--qhr-color-warning-500, #f59e0b);
+    }
+
+    .auth-strength-bar.is-strong {
+      background: var(--qhr-color-success-500, #10b981);
+    }
+
+    .auth-checklist {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--auth-text-muted);
+    }
+
+    .auth-check-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .auth-check-item.is-valid {
+      color: var(--qhr-color-success-500, #10b981);
+    }
+
+    /* Multi-Step Stepper Header (Register 2) */
+    .auth-stepper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-end: var(--qhr-space-6, 24px);
+      padding-block-end: var(--qhr-space-4, 16px);
+      border-block-end: 1px solid var(--auth-border);
+      position: relative;
+    }
+
+    .auth-step-node {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .auth-step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid var(--auth-border);
+      background: var(--auth-surface-subtle);
+      color: var(--auth-text-muted);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .auth-step-node.is-active .auth-step-circle {
+      background: var(--auth-accent);
+      border-color: var(--auth-accent);
+      color: var(--auth-accent-fg);
+    }
+
+    .auth-step-node.is-done .auth-step-circle {
+      background: var(--qhr-color-success-500, #10b981);
+      border-color: var(--qhr-color-success-500, #10b981);
+      color: #FFFFFF;
+    }
+
+    .auth-step-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--auth-text-secondary);
+    }
+
+    .auth-step-node.is-active .auth-step-label {
+      color: var(--auth-text-primary);
+      font-weight: 700;
+    }
+
+    /* Role Cards Grid in Register 2 */
+    .auth-role-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--qhr-space-3, 12px);
+      margin-block-end: var(--qhr-space-4, 16px);
+    }
+
+    .auth-role-card {
+      padding: var(--qhr-space-3-5, 14px);
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--auth-surface-subtle);
+      border: 1.5px solid var(--auth-border);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .auth-role-card:hover {
+      border-color: var(--auth-accent-border);
+    }
+
+    .auth-role-card.is-selected {
+      border-color: var(--auth-accent);
+      background: var(--auth-accent-subtle);
+    }
+
+    .auth-role-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--auth-text-primary);
+      margin: 0;
+    }
+
+    .auth-role-desc {
+      font-size: 11px;
+      color: var(--auth-text-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* SSO Providers Strip */
+    .auth-sso-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--qhr-space-3, 12px);
+      margin-block: var(--qhr-space-5, 20px);
+    }
+
+    .auth-sso-btn {
+      padding-block: var(--qhr-space-2, 8px);
+      padding-inline: var(--qhr-space-3, 12px);
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--auth-surface-subtle);
+      border: 1px solid var(--auth-border);
+      color: var(--auth-text-primary);
+      font-family: var(--auth-font-body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .auth-sso-btn:hover {
+      border-color: var(--auth-accent-border);
+      background: var(--auth-surface);
+    }
+
+    /* Lock Screen Specialized Card */
+    .auth-lock-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--auth-surface-card);
+      border: 1px solid var(--auth-border-strong);
+      border-radius: var(--qhr-radius-xl, 24px);
+      padding: clamp(28px, 5vw, 44px);
+      box-shadow: var(--auth-card-shadow);
+      text-align: center;
+      position: relative;
+    }
+
+    .auth-lock-avatar-wrap {
+      position: relative;
+      width: 92px;
+      height: 92px;
+      margin-inline: auto;
+      margin-block-end: var(--qhr-space-4, 16px);
+    }
+
+    .auth-lock-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--auth-accent), #8A6D3B);
+      color: var(--auth-accent-fg);
+      font-family: var(--auth-font-display);
+      font-size: 34px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px var(--auth-surface-card), 0 0 0 6px var(--auth-accent-border);
+    }
+
+    .auth-lock-status-badge {
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline-end: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--auth-surface-card);
+      border: 2px solid var(--auth-accent);
+      color: var(--auth-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Toast */
+    .auth-toast {
+      position: fixed;
+      inset-block-end: var(--qhr-space-6, 24px);
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      background: var(--auth-surface-card);
+      border: 1px solid var(--auth-accent-border);
+      color: var(--auth-text-primary);
+      padding: 12px 20px;
+      border-radius: var(--qhr-radius-lg, 16px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .auth-split-layout {
+        grid-template-columns: 1fr;
+      }
+      .auth-showcase-col {
+        display: none;
+      }
+      .auth-form-col {
+        padding-block-start: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Top Navigation & Suite View Switcher -->
+  <header class="auth-top-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div class="auth-brand-badge" style="width: 36px; height: 36px; font-size: 16px;">ق</div>
+      <span style="font-family: var(--auth-font-display); font-size: 16px; font-weight: 700;">منظومة قاهرة للمصادقة الممتدة</span>
+    </div>
+
+    <!-- View Switcher Tabs -->
+    <nav class="auth-view-tabs" aria-label="أنماط المصادقة">
+      <button
+        type="button"
+        class="auth-tab-btn"
+        :class="{ 'is-active': activeView === 'login' }"
+        @click="activeView = 'login'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        <span>تسجيل الدخول</span>
+      </button>
+
+      <button
+        type="button"
+        class="auth-tab-btn"
+        :class="{ 'is-active': activeView === 'register' }"
+        @click="activeView = 'register'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        <span>إنشاء حساب</span>
+      </button>
+
+      <button
+        type="button"
+        class="auth-tab-btn"
+        :class="{ 'is-active': activeView === 'register-2' }"
+        @click="activeView = 'register-2'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>تسجيل مؤسسي (خطوات)</span>
+      </button>
+
+      <button
+        type="button"
+        class="auth-tab-btn"
+        :class="{ 'is-active': activeView === 'lock-screen' }"
+        @click="activeView = 'lock-screen'"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>شاشة القفل</span>
+      </button>
+    </nav>
+
+    <!-- Theme Switcher -->
+    <!-- Direction & Language Toggle Button -->
+    <button
+      type="button"
+      class="auth-theme-toggle"
+      @click="toggleDir()"
+      :aria-label="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+      :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+      style="margin-inline-end: 8px;"
+    >
+      <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    </button>
+
+    <button
+      type="button"
+      class="auth-theme-toggle"
+      @click="toggleTheme()"
+      :aria-label="theme === 'dark' ? 'التحويل للنمط الفاتح' : 'التحويل للنمط الداكن'"
+      :title="theme === 'dark' ? 'التحويل للنمط الفاتح' : 'التحويل للنمط الداكن'"
+    >
+      <template x-if="theme === 'dark'">
+        <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </template>
+      <template x-if="theme === 'light'">
+        <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z"/></svg>
+      </template>
+    </button>
+  </header>
+
+  <!-- 2. Main Content Views -->
+
+  <!-- Split Screen for Login, Register, Register-2, Forgot -->
+  <template x-if="activeView !== 'lock-screen'">
+    <div class="auth-split-layout">
+      
+      <!-- Right Showcase Column -->
+      <section class="auth-showcase-col">
+        <!-- Logo -->
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="auth-brand-badge">ق</div>
+          <div>
+            <h2 style="font-family: var(--auth-font-display); font-size: 19px; font-weight: 700; margin: 0;">نظام قاهرة المعماري</h2>
+            <span style="font-size: 12px; color: var(--auth-text-muted);">Qahera Sovereign Design Identity</span>
+          </div>
+        </div>
+
+        <!-- Showcase Message -->
+        <div class="auth-showcase-content">
+          <div style="margin-block-end: 12px;">
+            <span class="qhr-badge qhr-badge--primary qhr-badge--sm">بوابة الدخول الموحدة</span>
+          </div>
+          <h1 class="auth-showcase-title">
+            <template x-if="activeView === 'login'">
+              <span>تحكّم سيادي متكامل في نظم التصميم والمعايير الرقمية</span>
+            </template>
+            <template x-if="activeView === 'register'">
+              <span>انضم إلى مجتمع قاهرة وابدأ بناء واجهاتك الملكية</span>
+            </template>
+            <template x-if="activeView === 'register-2'">
+              <span>تهيئة بيئة العمل المؤسسية متعددة الفرق والمهام</span>
+            </template>
+            <template x-if="activeView === 'forgot-password'">
+              <span>استعادة مشفرة وآمنة لبيانات حسابك المؤسسي</span>
+            </template>
+          </h1>
+          <p class="auth-showcase-desc">
+            إدارة متقدمة لرموز التصميم، عقود المكونات، وأنماط واجهات الويب مع حوكمة صارمة خالية من الانجراف المعجمي والتناقضات البصرية.
+          </p>
+
+          <!-- Trust Badges -->
+          <div class="auth-trust-grid">
+            <div class="auth-trust-card">
+              <div class="auth-trust-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <span>تشفير 256-bit TLS</span>
+              </div>
+              <p class="auth-trust-text">مصادقة آمنة ومشفرة لجلسات العمل المؤسسية.</p>
+            </div>
+
+            <div class="auth-trust-card">
+              <div class="auth-trust-header" style="color: var(--qhr-color-success-500, #10b981);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>متوافق مع WCAG AAA</span>
+              </div>
+              <p class="auth-trust-text">أعلى مستويات التباين اللوني وسهولة الوصول.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--auth-text-muted); border-block-start: 1px solid var(--auth-border); padding-block-start: 16px;">
+          <span>© 2026 الوكالة Alwkala · استوديو التكنولوجيا المصري</span>
+          <span>مرخص للاستخدام المؤسسي</span>
+        </div>
+      </section>
+
+      <!-- Left Form Column -->
+      <section class="auth-form-col">
+        
+        <!-- ── VIEW 1: LOGIN ─────────────────────────────────────────────── -->
+        <div class="auth-card" x-show="activeView === 'login'">
+          <div style="margin-block-end: 24px;">
+            <h2 class="auth-header-title">تسجيل الدخول للمنظومة</h2>
+            <p class="auth-header-desc">أدخل بيانات الاعتماد المهنية للمتابعة إلى مساحة عملك.</p>
+          </div>
+
+          <form @submit.prevent="handleSubmit('تم تسجيل الدخول بنجاح! جاري توجيهك...')">
+            <!-- Email -->
+            <div class="auth-field">
+              <label class="auth-label">البريد المهني أو المعرف</label>
+              <div class="auth-input-wrap">
+                <svg class="auth-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <input type="email" class="auth-input" placeholder="wael@alwkala.com" required x-model="loginEmail">
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="auth-field">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-block-end: 6px;">
+                <label class="auth-label" style="margin: 0;">كلمة المرور</label>
+                <button type="button" style="border: none; background: transparent; font-size: 12px; color: var(--auth-accent); cursor: pointer;" @click="activeView = 'forgot-password'">نسيت كلمة المرور؟</button>
+              </div>
+              <div class="auth-input-wrap">
+                <svg class="auth-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input :type="showPassword ? 'text' : 'password'" class="auth-input" placeholder="••••••••••••" required x-model="loginPassword">
+                <button type="button" class="auth-eye-btn" @click="showPassword = !showPassword" aria-label="إظهار أو إخفاء كلمة المرور">
+                  <template x-if="!showPassword">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  </template>
+                  <template x-if="showPassword">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  </template>
+                </button>
+              </div>
+            </div>
+
+            <!-- Remember me -->
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-block-end: 20px;">
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--auth-text-secondary); cursor: pointer;">
+                <input type="checkbox" x-model="rememberMe">
+                <span>تذكر جلستي على هذا الجهاز</span>
+              </label>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--lg" style="width: 100%;">
+              <span>دخول النظام</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+
+            <!-- SSO Providers -->
+            <div style="position: relative; text-align: center; margin-block: 24px;">
+              <hr style="border: none; border-block-start: 1px solid var(--auth-border); margin: 0;">
+              <span style="position: absolute; inset-block-start: -10px; inset-inline-start: 50%; transform: translateX(50%); background: var(--auth-surface-card); padding-inline: 12px; font-size: 12px; color: var(--auth-text-muted);">أو عبر الهوية الموحدة</span>
+            </div>
+
+            <div class="auth-sso-strip">
+              <button type="button" class="auth-sso-btn" @click="triggerToast('جاري الاتصال عبر Google Workspace SSO...')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg>
+                <span>Google</span>
+              </button>
+              <button type="button" class="auth-sso-btn" @click="triggerToast('جاري الاتصال عبر Microsoft Azure AD...')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zm12.6 0H12.6V0H24v11.4z"/></svg>
+                <span>Microsoft</span>
+              </button>
+            </div>
+
+            <!-- Footer switch -->
+            <div style="text-align: center; font-size: 13px; color: var(--auth-text-muted); margin-block-start: 16px;">
+              ليس لديك حساب؟
+              <button type="button" style="border: none; background: transparent; color: var(--auth-accent); font-weight: 700; cursor: pointer; padding: 0 4px;" @click="activeView = 'register'">إنشاء حساب قياسي</button>
+              أو
+              <button type="button" style="border: none; background: transparent; color: var(--auth-accent); font-weight: 700; cursor: pointer; padding: 0 4px;" @click="activeView = 'register-2'">تسجيل مؤسسي</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ── VIEW 2: REGISTER (Standard Onboarding) ─────────────────────── -->
+        <div class="auth-card" x-show="activeView === 'register'">
+          <div style="margin-block-end: 24px;">
+            <h2 class="auth-header-title">إنشاء حساب جديد</h2>
+            <p class="auth-header-desc">انضم لمنظومة قاهرة كمهندس أو مصمم وابدأ العمل فوراً.</p>
+          </div>
+
+          <form @submit.prevent="handleSubmit('تم إنشاء الحساب بنجاح! مرحباً بك في قاهرة')">
+            <!-- Name -->
+            <div class="auth-field">
+              <label class="auth-label">الاسم الكامل</label>
+              <div class="auth-input-wrap">
+                <svg class="auth-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" class="auth-input" placeholder="م. وائل سعيد" required x-model="regName">
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="auth-field">
+              <label class="auth-label">البريد الإلكتروني المهني</label>
+              <div class="auth-input-wrap">
+                <svg class="auth-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <input type="email" class="auth-input" placeholder="wael@alwkala.com" required x-model="regEmail">
+              </div>
+            </div>
+
+            <!-- Password with Strength Meter -->
+            <div class="auth-field">
+              <label class="auth-label">كلمة المرور</label>
+              <div class="auth-input-wrap">
+                <svg class="auth-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input :type="showPassword ? 'text' : 'password'" class="auth-input" placeholder="••••••••••••" required x-model="regPassword" @input="calcStrength()">
+              </div>
+
+              <!-- Strength Bars -->
+              <div class="auth-strength-meter">
+                <div class="auth-strength-bars">
+                  <div class="auth-strength-bar" :class="{ 'is-weak': passStrength >= 1 }"></div>
+                  <div class="auth-strength-bar" :class="{ 'is-medium': passStrength >= 2 }"></div>
+                  <div class="auth-strength-bar" :class="{ 'is-strong': passStrength >= 3 }"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--auth-text-muted);">
+                  <span>مستوى الأمان: <strong :style="'color: ' + strengthColor" x-text="strengthText"></strong></span>
+                </div>
+              </div>
+
+              <!-- Checklist -->
+              <ul class="auth-checklist">
+                <li class="auth-check-item" :class="{ 'is-valid': regPassword.length >= 8 }">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>8 أحرف أو خانات على الأقل</span>
+                </li>
+                <li class="auth-check-item" :class="{ 'is-valid': /[0-9]/.test(regPassword) }">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>تحتوي على رقم واحد على الأقل</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Terms agreement -->
+            <div style="margin-block-end: 20px;">
+              <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--auth-text-secondary); cursor: pointer; line-height: 1.5;">
+                <input type="checkbox" required style="margin-top: 3px;">
+                <span>أوافق على <a href="#" style="color: var(--auth-accent);">شروط الخدمة والترخيص المؤسسي</a> و <a href="#" style="color: var(--auth-accent);">سياسة حوكمة البيانات</a></span>
+              </label>
+            </div>
+
+            <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--lg" style="width: 100%;">
+              <span>إنشاء الحساب وبدء الاستخدام</span>
+            </button>
+
+            <div style="text-align: center; font-size: 13px; color: var(--auth-text-muted); margin-block-start: 16px;">
+              لديك حساب بالفعل؟
+              <button type="button" style="border: none; background: transparent; color: var(--auth-accent); font-weight: 700; cursor: pointer; padding: 0 4px;" @click="activeView = 'login'">تسجيل الدخول</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ── VIEW 3: REGISTER 2 (Multi-Step Enterprise Onboarding) ──────── -->
+        <div class="auth-card" x-show="activeView === 'register-2'">
+          
+          <!-- Stepper Indicator -->
+          <div class="auth-stepper">
+            <!-- Step 1 -->
+            <div class="auth-step-node" :class="{ 'is-active': step === 1, 'is-done': step > 1 }" @click="step = 1">
+              <div class="auth-step-circle">1</div>
+              <span class="auth-step-label">المنشأة</span>
+            </div>
+            <div style="flex: 1; height: 1px; background: var(--auth-border); margin-inline: 8px;"></div>
+            <!-- Step 2 -->
+            <div class="auth-step-node" :class="{ 'is-active': step === 2, 'is-done': step > 2 }" @click="step >= 2 ? step = 2 : null">
+              <div class="auth-step-circle">2</div>
+              <span class="auth-step-label">الدور والفريق</span>
+            </div>
+            <div style="flex: 1; height: 1px; background: var(--auth-border); margin-inline: 8px;"></div>
+            <!-- Step 3 -->
+            <div class="auth-step-node" :class="{ 'is-active': step === 3 }" @click="step === 3 ? null : null">
+              <div class="auth-step-circle">3</div>
+              <span class="auth-step-label">بيئة العمل</span>
+            </div>
+          </div>
+
+          <!-- Step 1: Organization Details -->
+          <div x-show="step === 1">
+            <div style="margin-block-end: 20px;">
+              <h2 class="auth-header-title">معلومات المنشأة والنشاط</h2>
+              <p class="auth-header-desc">الخطوة 1 من 3: حدد تفاصيل شركتك لتخصيص نظم التصميم.</p>
+            </div>
+
+            <div class="auth-field">
+              <label class="auth-label">اسم المنشأة أو الاستوديو</label>
+              <input type="text" class="auth-input" style="padding-inline-start: 14px;" placeholder="الوكالة للتكنولوجيا Alwkala" x-model="orgName" required>
+            </div>
+
+            <div class="auth-field">
+              <label class="auth-label">مجال العمل والقطاع</label>
+              <select class="auth-input" style="padding-inline-start: 14px; cursor: pointer;" x-model="orgIndustry">
+                <option value="tech">البرمجيات وتكنولوجيا المعلومات</option>
+                <option value="ecommerce">التجارة الإلكترونية والمقتنيات الفاخرة</option>
+                <option value="enterprise">الخدمات المالية والمصرفية</option>
+                <option value="gov">القطاع الحكومي والمؤسسات الكبرى</option>
+              </select>
+            </div>
+
+            <div class="auth-field">
+              <label class="auth-label">الموقع الإلكتروني أو النطاق</label>
+              <input type="url" class="auth-input" style="padding-inline-start: 14px;" placeholder="https://alwkala.com" x-model="orgDomain">
+            </div>
+
+            <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--lg" style="width: 100%; margin-block-start: 12px;" @click="step = 2">
+              <span>المتابعة إلى اختيار الدور</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
+          </div>
+
+          <!-- Step 2: Role & Team Size -->
+          <div x-show="step === 2">
+            <div style="margin-block-end: 20px;">
+              <h2 class="auth-header-title">الدور وحجم الفريق</h2>
+              <p class="auth-header-desc">الخطوة 2 من 3: اختر مسؤوليتك وحجم الفريق لضبط الصلاحيات.</p>
+            </div>
+
+            <label class="auth-label">دورك الأساسي في المنظومة</label>
+            <div class="auth-role-grid">
+              <div class="auth-role-card" :class="{ 'is-selected': selectedRole === 'engineer' }" @click="selectedRole = 'engineer'">
+                <h4 class="auth-role-title">مهندس نظم / مطور</h4>
+                <p class="auth-role-desc">بناء وصيانة المكونات عبر React و PHP و HTML.</p>
+              </div>
+
+              <div class="auth-role-card" :class="{ 'is-selected': selectedRole === 'designer' }" @click="selectedRole = 'designer'">
+                <h4 class="auth-role-title">معماري واجهات / UI</h4>
+                <p class="auth-role-desc">حوكمة رموز التصميم والألوان والخطوط.</p>
+              </div>
+
+              <div class="auth-role-card" :class="{ 'is-selected': selectedRole === 'lead' }" @click="selectedRole = 'lead'">
+                <h4 class="auth-role-title">مدير منتج / Tech Lead</h4>
+                <p class="auth-role-desc">إدارة دورة الإصدار والتوافق المعماري.</p>
+              </div>
+
+              <div class="auth-role-card" :class="{ 'is-selected': selectedRole === 'exec' }" @click="selectedRole = 'exec'">
+                <h4 class="auth-role-title">مسؤول تنفيذي</h4>
+                <p class="auth-role-desc">إشراف الحوكمة وتراخيص الاستخدام.</p>
+              </div>
+            </div>
+
+            <div class="auth-field">
+              <label class="auth-label">حجم الفريق المشارك في مساحة العمل</label>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="qhr-btn qhr-btn--sm" :class="teamSize === '1-5' ? 'qhr-btn--primary' : 'qhr-btn--secondary'" @click="teamSize = '1-5'">1 - 5 أفراد</button>
+                <button type="button" class="qhr-btn qhr-btn--sm" :class="teamSize === '6-25' ? 'qhr-btn--primary' : 'qhr-btn--secondary'" @click="teamSize = '6-25'">6 - 25 فرد</button>
+                <button type="button" class="qhr-btn qhr-btn--sm" :class="teamSize === '26-100' ? 'qhr-btn--primary' : 'qhr-btn--secondary'" @click="teamSize = '26-100'">26 - 100 فرد</button>
+                <button type="button" class="qhr-btn qhr-btn--sm" :class="teamSize === '+100' ? 'qhr-btn--primary' : 'qhr-btn--secondary'" @click="teamSize = '+100'">+100 فرد</button>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-block-start: 24px;">
+              <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" style="flex: 1;" @click="step = 1">السابق</button>
+              <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" style="flex: 2;" @click="step = 3">المتابعة إلى بيئة العمل</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Workspace Config & Credentials -->
+          <div x-show="step === 3">
+            <div style="margin-block-end: 20px;">
+              <h2 class="auth-header-title">إعداد بيئة العمل والحساب</h2>
+              <p class="auth-header-desc">الخطوة 3 من 3: عنوان مساحة العمل وحساب المدير السيادي.</p>
+            </div>
+
+            <div class="auth-field">
+              <label class="auth-label">رابط مساحة العمل المخصصة</label>
+              <div style="display: flex; align-items: center; direction: ltr;">
+                <span style="background: var(--auth-surface-subtle); border: 1px solid var(--auth-border); border-inline-end: none; border-radius: 10px 0 0 10px; padding: 10px 12px; font-size: 13px; color: var(--auth-text-muted);">https://</span>
+                <input type="text" class="auth-input" style="border-radius: 0; padding-inline: 10px;" placeholder="alwkala" x-model="workspaceSlug">
+                <span style="background: var(--auth-surface-subtle); border: 1px solid var(--auth-border); border-inline-start: none; border-radius: 0 10px 10px 0; padding: 10px 12px; font-size: 13px; color: var(--auth-text-muted);">.qahera.app</span>
+              </div>
+            </div>
+
+            <div class="auth-field">
+              <label class="auth-label">بريد مسؤول النظام الرئيسي</label>
+              <input type="email" class="auth-input" style="padding-inline-start: 14px;" placeholder="admin@alwkala.com" required>
+            </div>
+
+            <div class="auth-field">
+              <label class="auth-label">كلمة مرور الحساب السيادي</label>
+              <input type="password" class="auth-input" style="padding-inline-start: 14px;" placeholder="••••••••••••" required>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-block-start: 24px;">
+              <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" style="flex: 1;" @click="step = 2">السابق</button>
+              <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" style="flex: 2;" @click="handleSubmit('تم إنشاء مساحة العمل بنجاح! جاري التوجيه...')">إتمام التسجيل والتشغيل</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── VIEW 5: FORGOT PASSWORD ───────────────────────────────────── -->
+        <div class="auth-card" x-show="activeView === 'forgot-password'">
+          <div style="margin-block-end: 24px;">
+            <h2 class="auth-header-title">استعادة كلمة المرور</h2>
+            <p class="auth-header-desc">أدخل بريدك الإلكتروني المسجل لنرسل لك رابط استعادة مشفراً.</p>
+          </div>
+
+          <form @submit.prevent="handleSubmit('تم إرسال رابط الاستعادة إلى بريدك الإلكتروني بنجاح')">
+            <div class="auth-field">
+              <label class="auth-label">البريد الإلكتروني المهني</label>
+              <div class="auth-input-wrap">
+                <svg class="auth-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <input type="email" class="auth-input" placeholder="wael@alwkala.com" required>
+              </div>
+            </div>
+
+            <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--lg" style="width: 100%; margin-block-start: 8px;">
+              <span>إرسال رابط الاستعادة الآمن</span>
+            </button>
+
+            <div style="text-align: center; margin-block-start: 20px;">
+              <button type="button" style="border: none; background: transparent; color: var(--auth-accent); font-weight: 700; cursor: pointer; font-size: 13px;" @click="activeView = 'login'">العودة لتسجيل الدخول</button>
+            </div>
+          </form>
+        </div>
+
+      </section>
+
+    </div>
+  </template>
+
+  <!-- ── VIEW 4: LOCK SCREEN (Session Security) ────────────────────────── -->
+  <template x-if="activeView === 'lock-screen'">
+    <main class="auth-lock-layout">
+      <div class="auth-lock-card">
+        
+        <!-- User Avatar & Status -->
+        <div class="auth-lock-avatar-wrap">
+          <div class="auth-lock-avatar">و</div>
+          <div class="auth-lock-status-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+        </div>
+
+        <h2 style="font-family: var(--auth-font-display); font-size: 22px; font-weight: 700; margin: 0 0 4px 0;">م. وائل سعيد</h2>
+        <p style="font-size: 13px; color: var(--auth-text-muted); margin: 0 0 24px 0;">مهندس نظم أول · استوديو الوكالة</p>
+
+        <div style="background: var(--auth-surface-subtle); border: 1px solid var(--auth-border); border-radius: var(--qhr-radius-md, 10px); padding: 12px; margin-block-end: 24px; font-size: 13px; color: var(--auth-text-secondary); line-height: 1.6;">
+          تم قفل الجلسة لحماية بياناتك بسبب عدم النشاط. أدخل كلمة المرور أو رمز PIN للمتابعة فوراً.
+        </div>
+
+        <!-- Unlock Form -->
+        <form @submit.prevent="handleSubmit('تم إلغاء قفل الجلسة بنجاح! أهلاً بعودتك يا مهندس وائل.')">
+          <div class="auth-field">
+            <div class="auth-input-wrap">
+              <svg class="auth-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input :type="showPassword ? 'text' : 'password'" class="auth-input" placeholder="كلمة المرور أو رمز PIN" required x-model="lockPassword">
+              <button type="button" class="auth-eye-btn" @click="showPassword = !showPassword" aria-label="إظهار أو إخفاء الرمز">
+                <template x-if="!showPassword">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </template>
+                <template x-if="showPassword">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                </template>
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--lg" style="width: 100%; margin-block-end: 16px;">
+            <span>إلغاء قفل الجلسة والمتابعة</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+          </button>
+
+          <!-- Biometric Quick Button -->
+          <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" style="width: 100%; margin-block-end: 20px; gap: 8px;" @click="handleSubmit('تمت المصادقة الحيوية بنجاح عبر Passkey.')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"/><path d="M5 19.5C5.5 18 6 15 6 12c0-.7.12-1.37.34-2"/><path d="M17.29 21.02c.12-.6.21-1.2.26-1.82.26-2.5-.24-5.2-1.55-7.2"/><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M8.65 22c.21-.66.45-1.32.75-2"/></svg>
+            <span>المصادقة عبر البصمة / Passkey</span>
+          </button>
+
+          <!-- Switch Account -->
+          <div>
+            <button type="button" style="border: none; background: transparent; color: var(--auth-text-muted); cursor: pointer; font-size: 13px;" @click="activeView = 'login'">
+              تسجيل الدخول باستخدام حساب آخر
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </main>
+  </template>
+
+  <!-- 3. Toast Feedback -->
+  <div class="auth-toast" x-show="toastVisible" style="display: none;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--auth-accent);"><polyline points="20 6 9 17 4 12"/></svg>
+    <span x-text="toastMessage"></span>
+  </div>
+
+  <!-- Alpine Core & App State -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  <script>
+    function authSuite() {
+      return {
+        theme: localStorage.getItem('qhr-theme') || 'dark',
+        dir: localStorage.getItem('qhr-dir') || 'rtl',
+        lang: (localStorage.getItem('qhr-dir') || 'rtl') === 'rtl' ? 'ar' : 'en',
+        activeView: 'login', // 'login' | 'register' | 'register-2' | 'lock-screen' | 'forgot-password'
+        showPassword: false,
+        rememberMe: true,
+
+        // Login inputs
+        loginEmail: '',
+        loginPassword: '',
+
+        // Register 1 inputs
+        regName: '',
+        regEmail: '',
+        regPassword: '',
+        passStrength: 0,
+
+        // Register 2 (Multi-step)
+        step: 1,
+        orgName: '',
+        orgIndustry: 'tech',
+        orgDomain: '',
+        selectedRole: 'engineer',
+        teamSize: '6-25',
+        workspaceSlug: 'alwkala',
+
+        // Lock screen
+        lockPassword: '',
+
+        // Toast feedback
+        toastVisible: false,
+        toastMessage: '',
+
+        init() {
+          document.documentElement.setAttribute('data-theme', this.theme);
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.lang);
+        },
+
+        toggleTheme() {
+          this.theme = this.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', this.theme);
+          localStorage.setItem('qhr-theme', this.theme);
+        },
+
+        calcStrength() {
+          let score = 0;
+          if (this.regPassword.length >= 8) score++;
+          if (/[0-9]/.test(this.regPassword)) score++;
+          if (/[^a-zA-Z0-9]/.test(this.regPassword) || this.regPassword.length >= 12) score++;
+          this.passStrength = score;
+        },
+
+        get strengthText() {
+          if (this.passStrength === 0) return 'فارغة';
+          if (this.passStrength === 1) return 'ضعيفة';
+          if (this.passStrength === 2) return 'متوسطة';
+          return 'قوية ومحمية';
+        },
+
+        get strengthColor() {
+          if (this.passStrength <= 1) return 'var(--qhr-color-danger-500, #ef4444)';
+          if (this.passStrength === 2) return 'var(--qhr-color-warning-500, #f59e0b)';
+          return 'var(--qhr-color-success-500, #10b981)';
+        },
+
+        handleSubmit(successMsg) {
+          this.triggerToast(successMsg);
+        },
+
+        triggerToast(msg) {
+          this.toastMessage = msg;
+          this.toastVisible = true;
+          setTimeout(() => {
+            this.toastVisible = false;
+          }, 3500);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

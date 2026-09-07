@@ -1,0 +1,68 @@
+id: file-upload
+name: FileUpload
+component: FileUpload
+category: forms
+purpose: >
+  Interactive drag-and-drop zone with file picker, validation status, and upload progression indicators.
+
+anatomy:
+  - root
+  - dropzone
+  - icon
+  - label
+  - hint
+  - file-list
+  - file-item
+  - progress-bar
+  - remove-button
+
+variants:
+  default:
+    intent: standard-file-dropzone
+  compact:
+    intent: inline-minimal-dropzone
+
+sizes:
+  sm:
+    padding: 16
+    icon_size: 24
+  md:
+    padding: 24
+    icon_size: 32
+  lg:
+    padding: 36
+    icon_size: 40
+
+states:
+  - default
+  - dragover
+  - uploading
+  - success
+  - error
+  - disabled
+
+slots:
+  icon: optional
+  label: required
+  hint: optional
+  fileList: optional
+
+accessibility:
+  role: region
+  keyboard: true
+  focusVisible: true
+  keyboard_keys:
+    Enter: "Triggers native hidden file input"
+    Space: "Triggers native hidden file input"
+  aria:
+    0: {"aria-label":"Upload files dropzone"}
+    1: {"aria-live":"polite"}
+
+ai:
+  purpose: "Interactive drag-and-drop zone with file picker, validation status, and upload progression indicators."
+  whenToUse:
+    - "Document, image, or media asset submission forms"
+    - "Importing CSV, Excel or JSON data files"
+  avoid:
+    - "Simple text inputs"
+    - "Instant zero-file single click forms"

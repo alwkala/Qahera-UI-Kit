@@ -1,0 +1,203 @@
+<!-- Qahera UI Kit — Authoritative Badge Gallery & Showcase -->
+<div style="display: flex; flex-direction: column; gap: var(--qhr-space-8); padding: var(--qhr-space-6);">
+
+  <!-- الشارات المفرغة والتفاعلية (Outline & Interactive Badges) -->
+  <section>
+    <h3 style="margin-block-end: 16px; font-weight: 700;">الشارات المفرغة والتفاعلية (Outline &amp; Interactive)</h3>
+    <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+      <span class="qhr-badge qhr-badge--outline qhr-badge--primary">أساسي مفرغ</span>
+      <span class="qhr-badge qhr-badge--outline qhr-badge--secondary">ثانوي مفرغ</span>
+      <span class="qhr-badge qhr-badge--outline qhr-badge--success">ناجح مفرغ</span>
+      <span class="qhr-badge qhr-badge--outline qhr-badge--danger">تحذيري مفرغ</span>
+      <span class="qhr-badge qhr-badge--outline qhr-badge--info">معلومات مفرغ</span>
+      <a href="#link" class="qhr-badge qhr-badge--secondary" title="شارة كرابط قابل للنقر">
+        <span>شارة تفاعلية &larr;</span>
+      </a>
+      <a href="#remove" class="qhr-badge qhr-badge--outline qhr-badge--danger" title="إلغاء">
+        <span>إلغاء &times;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 1. Basic badge styling -->
+  <section>
+    <h3 style="margin-block-end: 16px; font-weight: 700;">Basic badge styling</h3>
+    <div style="display: grid; grid-template-columns: 160px 100px 1fr; gap: 16px; align-items: center;">
+      <span>Primary badge</span>
+      <div><span class="qhr-badge qhr-badge--primary">Primary</span></div>
+      <div style="font-size: 0.85rem; color: var(--qhr-text-muted);">Primary To use, add <code>.qhr-badge--primary</code> to the base <code>.qhr-badge</code> class</div>
+
+      <span>Secondary badge</span>
+      <div><span class="qhr-badge qhr-badge--secondary">Secondary</span></div>
+      <div style="font-size: 0.85rem; color: var(--qhr-text-muted);">Secondary To use, add <code>.qhr-badge--secondary</code> to the base <code>.qhr-badge</code> class</div>
+
+      <span>Info badge</span>
+      <div><span class="qhr-badge qhr-badge--info">Info</span></div>
+      <div style="font-size: 0.85rem; color: var(--qhr-text-muted);">Info To use, add <code>.qhr-badge--info</code> to the base <code>.qhr-badge</code> class</div>
+
+      <span>Success badge</span>
+      <div><span class="qhr-badge qhr-badge--success">Success</span></div>
+      <div style="font-size: 0.85rem; color: var(--qhr-text-muted);">Success To use, add <code>.qhr-badge--success</code> to the base <code>.qhr-badge</code> class</div>
+
+      <span>Danger badge</span>
+      <div><span class="qhr-badge qhr-badge--danger">Danger</span></div>
+      <div style="font-size: 0.85rem; color: var(--qhr-text-muted);">Danger To use, add <code>.qhr-badge--danger</code> to the base <code>.qhr-badge</code> class</div>
+
+      <span>Warning badge</span>
+      <div><span class="qhr-badge qhr-badge--warning">Warning</span></div>
+      <div style="font-size: 0.85rem; color: var(--qhr-text-muted);">Warning To use, add <code>.qhr-badge--warning</code> to the base <code>.qhr-badge</code> class</div>
+
+      <span>Light badge</span>
+      <div><span class="qhr-badge qhr-badge--light">Light</span></div>
+      <div style="font-size: 0.85rem; color: var(--qhr-text-muted);">Light To use, add <code>.qhr-badge--light</code> to the base <code>.qhr-badge</code> class</div>
+
+      <span>Dark badge</span>
+      <div><span class="qhr-badge qhr-badge--dark">Dark</span></div>
+      <div style="font-size: 0.85rem; color: var(--qhr-text-muted);">Dark To use, add <code>.qhr-badge--dark</code> to the base <code>.qhr-badge</code> class</div>
+    </div>
+  </section>
+
+  <!-- 2. Pill Badges & Mono Colors -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+    <!-- Pill -->
+    <section>
+      <h3 style="margin-block-end: 12px; font-weight: 700;">Pill</h3>
+      <div style="display: flex; gap: 8px; align-items: center; margin-block-end: 12px; flex-wrap: wrap;">
+        <span class="qhr-badge qhr-badge--pill qhr-badge--light">Text</span>
+        <span class="qhr-badge qhr-badge--pill qhr-badge--primary">7</span>
+        <span class="qhr-badge qhr-badge--pill qhr-badge--success">+7</span>
+        <span class="qhr-badge qhr-badge--pill qhr-badge--info">-7</span>
+        <span class="qhr-badge qhr-badge--pill qhr-badge--warning">10</span>
+        <span class="qhr-badge qhr-badge--pill qhr-badge--dark">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </span>
+        <span class="qhr-badge qhr-badge--pill qhr-badge--grey">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        </span>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--qhr-text-muted);"><code>.qhr-badge--pill</code> applies to <code>.qhr-badge</code>.</p>
+    </section>
+
+    <!-- Mono colors -->
+    <section>
+      <h3 style="margin-block-end: 12px; font-weight: 700;">Mono colors</h3>
+      <div style="display: flex; gap: 8px; align-items: center; margin-block-end: 12px;">
+        <span class="qhr-badge qhr-badge--dark">Dark</span>
+        <span class="qhr-badge qhr-badge--grey">Grey</span>
+        <span class="qhr-badge qhr-badge--secondary">Secondary</span>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--qhr-text-muted);"><code>.qhr-badge--*</code> which * is one of the neutral color names.</p>
+    </section>
+  </div>
+
+  <!-- 3. Sizing & Dot badges -->
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+    <!-- Sizing -->
+    <section>
+      <h3 style="margin-block-end: 12px; font-weight: 700;">Sizing</h3>
+      <div style="display: flex; gap: 8px; align-items: center; margin-block-end: 12px; flex-wrap: wrap;">
+        <span class="qhr-badge qhr-badge--primary qhr-badge--xl">Extra large</span>
+        <span class="qhr-badge qhr-badge--info qhr-badge--lg">Large</span>
+        <span class="qhr-badge qhr-badge--warning qhr-badge--md">Medium</span>
+        <span class="qhr-badge qhr-badge--danger qhr-badge--sm">Small</span>
+        <span class="qhr-badge qhr-badge--primary qhr-badge--lg">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+        </span>
+        <span class="qhr-badge qhr-badge--info qhr-badge--md">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </span>
+        <span class="qhr-badge qhr-badge--warning qhr-badge--sm">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+        </span>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--qhr-text-muted);">Available sizes are <code>sm</code>, <code>md</code>, <code>lg</code>, <code>xl</code></p>
+    </section>
+
+    <!-- Dot badges -->
+    <section>
+      <h3 style="margin-block-end: 12px; font-weight: 700;">Dot badges</h3>
+      <div style="display: flex; flex-direction: column; gap: 8px; margin-block-end: 12px;">
+        <!-- sm -->
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--sm qhr-badge-dot--primary"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--sm qhr-badge-dot--success"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--sm qhr-badge-dot--info"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--sm qhr-badge-dot--warning"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--sm qhr-badge-dot--danger"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--sm qhr-badge-dot--dark"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--sm qhr-badge-dot--grey"></span>
+        </div>
+        <!-- md -->
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--md qhr-badge-dot--primary"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--md qhr-badge-dot--success"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--md qhr-badge-dot--info"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--md qhr-badge-dot--warning"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--md qhr-badge-dot--danger"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--md qhr-badge-dot--dark"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--md qhr-badge-dot--secondary"></span>
+        </div>
+        <!-- lg -->
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--lg qhr-badge-dot--primary"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--lg qhr-badge-dot--success"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--lg qhr-badge-dot--info"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--lg qhr-badge-dot--warning"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--lg qhr-badge-dot--danger"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--lg qhr-badge-dot--dark"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--lg qhr-badge-dot--secondary"></span>
+          <span class="qhr-badge-dot--standalone qhr-badge-dot--lg qhr-badge-dot--grey"></span>
+        </div>
+      </div>
+      <p style="font-size: 0.85rem; color: var(--qhr-text-muted);"><code>.qhr-badge-dot</code> applies to <code>.qhr-badge</code> or standalone.</p>
+    </section>
+  </div>
+
+  <!-- 4. Ring badges -->
+  <section>
+    <h3 style="margin-block-end: 12px; font-weight: 700;">Ring badges</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px; margin-block-end: 12px;">
+      <!-- sm rings -->
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span class="qhr-badge-ring qhr-badge-ring--sm qhr-badge-ring--primary"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--sm qhr-badge-ring--success"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--sm qhr-badge-ring--info"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--sm qhr-badge-ring--warning"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--sm qhr-badge-ring--danger"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--sm qhr-badge-ring--dark"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--sm qhr-badge-ring--grey"></span>
+      </div>
+      <!-- md rings -->
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span class="qhr-badge-ring qhr-badge-ring--md qhr-badge-ring--primary"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--md qhr-badge-ring--success"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--md qhr-badge-ring--info"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--md qhr-badge-ring--warning"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--md qhr-badge-ring--danger"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--md qhr-badge-ring--dark"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--md qhr-badge-ring--secondary"></span>
+      </div>
+      <!-- lg rings -->
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span class="qhr-badge-ring qhr-badge-ring--lg qhr-badge-ring--primary"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--lg qhr-badge-ring--success"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--lg qhr-badge-ring--info"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--lg qhr-badge-ring--warning"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--lg qhr-badge-ring--danger"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--lg qhr-badge-ring--dark"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--lg qhr-badge-ring--secondary"></span>
+        <span class="qhr-badge-ring qhr-badge-ring--lg qhr-badge-ring--grey"></span>
+      </div>
+      <!-- xl rings with fill -->
+      <div style="display: flex; gap: 8px; align-items: center; margin-block-start: 8px;">
+        <span class="qhr-badge-ring fill qhr-badge-ring--sm qhr-badge-ring--primary"></span>
+        <span class="qhr-badge-ring fill qhr-badge-ring--md qhr-badge-ring--primary"></span>
+        <span class="qhr-badge-ring fill qhr-badge-ring--lg qhr-badge-ring--primary"></span>
+        <span class="qhr-badge-ring fill qhr-badge-ring--xl qhr-badge-ring--primary"></span>
+      </div>
+    </div>
+    <p style="font-size: 0.85rem; color: var(--qhr-text-muted);"><code>.qhr-badge-ring</code> applies ring borders, and <code>.fill</code> can apply solid fill.</p>
+  </section>
+
+</div>
+

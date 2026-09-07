@@ -1,0 +1,50 @@
+id: store-locator
+name: Store Locator Card
+category: layout
+purpose: >
+  Displays flagship store, showroom, or boutique location details including branch name, address, hours, and direction actions.
+
+components:
+  - card
+  - badge
+  - button
+
+anatomy:
+  - root
+  - branch-header
+  - branch-title
+  - status-badge
+  - address-body
+  - working-hours
+  - contact-phone
+  - actions-toolbar
+
+slots:
+  - title
+  - address
+  - hours
+  - phone
+  - directionsAction
+
+layout:
+  display: flex
+  direction: column
+  gap: var(--qhr-space-3)
+  alignment: stretch
+
+accessibility:
+  role: region
+  landmark: region
+  keyboard_flow: "Tab navigates through store phone link, directions button, and action controls"
+
+ai:
+  purpose: "Display physical showroom, store branch, or boutique locations with contact info and map links."
+  use_when:
+    - "Store finder lists, branch directories, contact pages, or regional boutique hubs"
+  avoid_when:
+    - "Digital-only services without physical retail or pickup presence"
+  composed_of:
+    - card
+    - badge
+    - button
+

@@ -1,0 +1,96 @@
+id: badge
+name: Badge
+component: Badge
+category: feedback
+purpose: >
+  Communicates compact metadata, categorical status, or quantitative counters.
+
+anatomy:
+  - root
+  - dot-indicator
+  - icon
+  - label
+
+variants:
+  solid:
+    intent: high-prominence-tag
+  subtle:
+    intent: low-emphasis-status
+  outline:
+    intent: secondary-indicator
+  destructive:
+    intent: error-or-critical-marker
+
+shapes:
+  default:
+    intent: subtle-rounded-corners
+  pill:
+    intent: pill-capsule-corners
+
+sizes:
+  sm:
+    height: 18
+    padding_inline: 6
+    font_size: "11px"
+  md:
+    height: 24
+    padding_inline: 10
+    font_size: "var(--qhr-text-xs)"
+  lg:
+    height: 28
+    padding_inline: 14
+    font_size: "var(--qhr-text-sm)"
+  xl:
+    height: 34
+    padding_inline: 18
+    font_size: "var(--qhr-text-base)"
+
+states:
+  - default
+  - hover
+  - focus
+
+tone:
+  - primary
+  - secondary
+  - info
+  - success
+  - danger
+  - warning
+  - light
+  - dark
+  - grey
+
+slots:
+  leadingIcon: optional
+  label: required
+  trailingIcon: optional
+
+accessibility:
+  role: status
+  keyboard: false
+  focusVisible: true
+
+ai:
+  purpose: "Compact visual label for status, counts, or entity categories with Shadcn-parity composition"
+  shadcn_parity:
+    cva_helper: "badgeVariants({ variant, size, shape })"
+    as_child_support: true
+    variants_map:
+      default: "qhr-badge--primary"
+      secondary: "qhr-badge--secondary"
+      destructive: "qhr-badge--destructive"
+      outline: "qhr-badge--outline"
+  whenToUse:
+    - "Entity state indicator (Active, Pending, Suspended, Archived)"
+    - "Unread count pill or category tags"
+    - "Applied filter chips in filter-bar"
+    - "Delta metric tag in dashboard-stat"
+    - "Interactive badge links (using asChild or href)"
+  avoid:
+    - "Prominent system-wide action buttons (use Button)"
+    - "High-severity alert banners (use Alert)"
+  common_patterns:
+    - filter-bar
+    - dashboard-stat
+    - data-table-toolbar

@@ -1,0 +1,44 @@
+<!-- Qahera UI Kit - Master Textarea Showcase -->
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+
+  <!-- 1. المتغيرات البنائية -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. المتغيرات البنائية لمساحة النص (Standard, Filled, Flushed)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+      <div>
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-block-end: 6px; color: var(--q-text-secondary);">حقل نصي افتراضي (Outlined)</label>
+        <textarea class="qhr-textarea" rows="3" placeholder="أدخل تفاصيل الطلب أو الملاحظات المعمارية..."></textarea>
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-block-end: 6px; color: var(--q-text-secondary);">حقل نصي معبأ (Filled)</label>
+        <textarea class="qhr-textarea qhr-textarea--filled" rows="3" placeholder="أدخل الملاحظة الداخلية لفريق العمل..."></textarea>
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.8rem; font-weight: 600; margin-block-end: 6px; color: var(--q-text-secondary);">حقل خطي سفلي (Flushed)</label>
+        <textarea class="qhr-textarea qhr-textarea--flushed" rows="3" placeholder="أدخل وصف المقتنى الفاخر..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. عداد الأحرف وحالات التحقق -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">2. عداد الأحرف وحالات التحقق التفاعلية (Character Counter & States)</h3>
+    <div style="display: flex; flex-direction: column; gap: 16px; max-width: 540px;" x-data="{ text: '', max: 250 }">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-block-end: 6px;">
+          <label style="font-size: 0.82rem; font-weight: 600; color: var(--q-text-primary);">رسالة التقييم الفني</label>
+          <span style="font-size: 0.75rem; font-family: var(--q-font-mono); color: var(--q-text-muted);" x-text="text.length + ' / ' + max + ' حرفاً'"></span>
+        </div>
+        <textarea class="qhr-textarea" rows="4" maxlength="250" x-model="text" placeholder="اكتب مراجعتك التفصيلية هنا..."></textarea>
+      </div>
+
+      <!-- Error State -->
+      <div>
+        <label style="display: block; font-size: 0.82rem; font-weight: 600; margin-block-end: 6px; color: var(--qhr-color-danger-500, #ef4444);">حالة الخطأ مع رسالة توجيهية</label>
+        <textarea class="qhr-textarea is-invalid" rows="2" placeholder="حقل يحتوي على خطأ في البيانات..."></textarea>
+        <span style="display: block; font-size: 0.75rem; color: var(--qhr-color-danger-500, #ef4444); margin-block-start: 4px;">يجب ألا يقل الوصف عن 50 حرفاً لتأكيد الاعتماد.</span>
+      </div>
+    </div>
+  </div>
+
+</div>

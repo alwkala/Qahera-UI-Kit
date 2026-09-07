@@ -1,0 +1,64 @@
+id: spinner
+name: Spinner
+component: Spinner
+category: feedback
+purpose: >
+  Indicates indeterminate background processing, data retrieval, or asynchronous task execution with an animated circular stroke.
+
+anatomy:
+  - root
+  - svg
+  - circle-track
+  - circle-head
+
+variants:
+  default:
+    intent: standard-circular-spinner
+  gold:
+    intent: luxury-gold-shimmer
+  track:
+    intent: contrasting-background-track
+
+sizes:
+  xs:
+    dimension: 16
+  sm:
+    dimension: 20
+  md:
+    dimension: 28
+  lg:
+    dimension: 40
+  xl:
+    dimension: 56
+
+states:
+  - active
+  - paused
+
+tone:
+  - neutral
+  - info
+  - success
+  - warning
+  - danger
+
+slots:
+  srLabel: optional
+
+accessibility:
+  role: status
+  aria:
+    - "aria-live=polite"
+    - "aria-busy=true"
+  keyboard: false
+  focusVisible: false
+
+ai:
+  purpose: "Compact indeterminate loading spinner for inline and modal operations"
+  whenToUse:
+    - "Inside button during asynchronous submission (`loading` state)"
+    - "Inside table rows or card bodies while fetching telemetry"
+    - "Dropdown menu item lazy loading"
+  avoid:
+    - "Full-screen application bootup transitions (use Preloader)"
+    - "Known percentage completion processes (use Progress)"

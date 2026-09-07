@@ -1,0 +1,128 @@
+{
+  "id": "treeview",
+  "name": "Treeview",
+  "component": "Treeview",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "tree-group",
+      "tree-item",
+      "expand-icon",
+      "item-icon",
+      "item-label",
+      "badge"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-file-tree"
+      },
+      "clean": {
+        "intent": "borderless-minimal-tree"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "item_height": 28,
+        "font_size": "var(--qhr-text-xs)"
+      },
+      "md": {
+        "item_height": 36,
+        "font_size": "var(--qhr-text-sm)"
+      },
+      "lg": {
+        "item_height": 44,
+        "font_size": "var(--qhr-text-base)"
+      }
+    },
+    "states": [
+      "default",
+      "expanded",
+      "collapsed",
+      "selected",
+      "disabled"
+    ],
+    "slots": {
+      "icon": "optional",
+      "default": "required",
+      "trailing": "optional"
+    },
+    "accessibility": {
+      "role": "tree",
+      "keyboard": true,
+      "focusVisible": true,
+      "keyboard_keys": {
+        "ArrowDown": "Moves focus to next tree item",
+        "ArrowUp": "Moves focus to previous tree item",
+        "ArrowRight": "Expands current item or moves to first child",
+        "ArrowLeft": "Collapses current item or moves to parent",
+        "Enter": "Selects current tree item"
+      }
+    }
+  },
+  "recipe": {
+    "file": "recipes/treeview.yaml",
+    "base": {
+      "display": "flex",
+      "flex-direction": "column",
+      "width": "100%",
+      "list-style": "none",
+      "padding": 0,
+      "margin": 0
+    },
+    "variants": {
+      "default": {
+        "background-color": "transparent"
+      },
+      "clean": {
+        "background-color": "{color.surface.base}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "line-height": "28px",
+        "font-size": "var(--qhr-text-xs)"
+      },
+      "md": {
+        "line-height": "36px",
+        "font-size": "var(--qhr-text-sm)"
+      },
+      "lg": {
+        "line-height": "44px",
+        "font-size": "var(--qhr-text-base)"
+      }
+    },
+    "states": {
+      "selected": {
+        "background-color": "var(--qhr-color-primary-subtle)",
+        "color": "var(--qhr-color-primary)"
+      },
+      "hover": {
+        "background-color": "var(--qhr-color-surface-hover)"
+      },
+      "expanded": {
+        "display": "block"
+      },
+      "collapsed": {
+        "display": "none"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Hierarchical list representation for displaying nested folders, categories, and deep tree structures with expand/collapse control.",
+    "whenToUse": [
+      "Cloud storage file and folder directories",
+      "Deep multi-level taxonomy classification in admin panels",
+      "Codebase or documentation table of contents"
+    ],
+    "avoid": [
+      "Flat single-level lists (use Nav or List)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Treeview.yaml"
+  }
+}

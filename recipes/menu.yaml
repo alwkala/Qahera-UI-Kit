@@ -1,0 +1,74 @@
+component: Menu
+name: menu
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Structured list of navigation links with support for nested submenus, badges, icons, and headers"
+  visual_role: "Hierarchical link list for sidebars, cards, drawers, and embedded panels"
+  density: "comfortable"
+  preferred_when:
+    - "Sidebar navigation in dashboards and web applications"
+    - "Collapsible nested tree navigation"
+    - "Quick horizontal link strips"
+  avoid_when:
+    - "Top header identity and search bar (use Navbar)"
+    - "Bottom handheld navigation on mobile (use Dock)"
+
+base:
+  display: flex
+  flex-direction: column
+  list-style: none
+  margin: 0
+  padding: "{space.2}"
+  gap: "{space.1}"
+  background-color: "{color.surface.base}"
+  border-radius: "{radius.md}"
+  font-family: "{font.family.primary}"
+  color: "{color.content.primary}"
+
+variants:
+  default:
+    flex-direction: column
+  vertical:
+    flex-direction: column
+    width: 100%
+  horizontal:
+    flex-direction: row
+    align-items: center
+    flex-wrap: wrap
+  compact:
+    padding: "{space.1}"
+    gap: "2px"
+  bordered:
+    border: "1px solid {color.border.subtle}"
+  pills:
+    gap: "{space.2}"
+  rounded:
+    border-radius: "{radius.lg}"
+  khedivial:
+    border-inline-start: "3px solid {color.gold.500}"
+    background-color: "{color.surface.elevated}"
+  brutalist:
+    border: "2px solid {color.content.primary}"
+    border-radius: 0
+    box-shadow: "3px 3px 0px {color.content.primary}"
+
+sizes:
+  sm:
+    font-size: "{font.size.xs}"
+    gap: "2px"
+  md:
+    font-size: "{font.size.sm}"
+    gap: "{space.1}"
+  lg:
+    font-size: "{font.size.base}"
+    gap: "{space.2}"
+
+tokens:
+  - --qhr-surface-base
+  - --qhr-surface-elevated
+  - --qhr-content-primary
+  - --qhr-content-secondary
+  - --qhr-border-subtle
+  - --qhr-color-primary-500

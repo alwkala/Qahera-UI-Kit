@@ -1,0 +1,116 @@
+{
+  "id": "rating",
+  "name": "Rating",
+  "component": "Rating",
+  "category": "feedback",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "stars-group",
+      "star-item",
+      "star-icon",
+      "value-label"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-gold-stars"
+      },
+      "accent": {
+        "intent": "brand-primary-stars"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "star_size": 16,
+        "gap": 4
+      },
+      "md": {
+        "star_size": 20,
+        "gap": 6
+      },
+      "lg": {
+        "star_size": 28,
+        "gap": 8
+      }
+    },
+    "states": [
+      "readonly",
+      "interactive",
+      "disabled"
+    ],
+    "slots": {
+      "label": "optional"
+    },
+    "accessibility": {
+      "role": "slider",
+      "keyboard": true,
+      "focusVisible": true,
+      "keyboard_keys": {
+        "ArrowRight": "Increments rating",
+        "ArrowLeft": "Decrements rating"
+      },
+      "aria": {
+        "0": {
+          "\"aria-valuemin\"": "1"
+        },
+        "1": {
+          "\"aria-valuemax\"": "5"
+        },
+        "2": {
+          "\"aria-valuenow\"": "current-rating"
+        }
+      }
+    }
+  },
+  "recipe": {
+    "file": "recipes/rating.yaml",
+    "base": {
+      "display": "inline-flex",
+      "align-items": "center",
+      "gap": "{space.1}"
+    },
+    "variants": {
+      "default": {
+        "color": "{color.brand.accent}"
+      },
+      "accent": {
+        "color": "{color.brand.primary}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "14px"
+      },
+      "md": {
+        "font-size": "18px"
+      },
+      "lg": {
+        "font-size": "24px"
+      }
+    },
+    "states": {
+      "readonly": {
+        "pointer-events": "none"
+      },
+      "interactive": {
+        "cursor": "pointer"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays quantitative star rating evaluation and user feedback capture.",
+    "whenToUse": [
+      "Product reviews and customer evaluations in e-commerce",
+      "Feedback submission forms"
+    ],
+    "avoid": [
+      "Binary yes/no toggles (use Switch or Radio)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Rating.yaml"
+  }
+}

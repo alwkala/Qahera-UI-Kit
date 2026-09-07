@@ -1,0 +1,267 @@
+/* ==========================================================================
+   Questionnaire & Multi-Step Assessment Pattern (.qhr-questionnaire)
+   Architecture: Pure Logical CSS, WCAG 2.1 AA, 0kb RSC Boundary
+   Pre-emit critique: P5 H5 E5 S5 R5 V5 D5
+   ========================================================================== */
+
+.qhr-questionnaire {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qhr-space-6, 24px);
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+/* Card Container */
+.qhr-questionnaire-card {
+  background: var(--qhr-surface-primary, #ffffff);
+  border: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  border-radius: var(--qhr-radius-xl, 18px);
+  padding: var(--qhr-space-8, 32px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: all 200ms ease;
+}
+[data-theme="dark"] .qhr-questionnaire-card {
+  background: #0d121f;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Question Header Strip */
+.qhr-questionnaire-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-block-end: var(--qhr-space-4, 16px);
+}
+.qhr-questionnaire-category {
+  font-family: var(--qhr-font-ui, 'Cairo', sans-serif);
+  font-size: var(--qhr-text-xs, 0.75rem);
+  font-weight: 700;
+  color: var(--qhr-color-info-600, #2563eb);
+  background: rgba(37, 99, 235, 0.08);
+  padding-block: 4px;
+  padding-inline: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+[data-theme="dark"] .qhr-questionnaire-category {
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+.qhr-questionnaire-points {
+  font-family: var(--qhr-font-code, monospace);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--qhr-content-secondary, #64748b);
+}
+[data-theme="dark"] .qhr-questionnaire-points {
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+
+/* Prompt Typography */
+.qhr-questionnaire-title {
+  font-family: var(--qhr-font-heading, 'Alexandria', sans-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--qhr-content-primary, #0f172a);
+  margin: 0 0 var(--qhr-space-2, 8px) 0;
+  line-height: 1.4;
+}
+[data-theme="dark"] .qhr-questionnaire-title {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+.qhr-questionnaire-desc {
+  font-family: var(--qhr-font-ui, 'Cairo', sans-serif);
+  font-size: 0.88rem;
+  color: var(--qhr-content-secondary, #64748b);
+  margin: 0 0 var(--qhr-space-6, 24px) 0;
+  line-height: 1.6;
+}
+[data-theme="dark"] .qhr-questionnaire-desc {
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+
+/* Choices Grid / Stack */
+.qhr-questionnaire-choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qhr-space-3, 12px);
+  margin-block-end: var(--qhr-space-6, 24px);
+}
+
+.qhr-questionnaire-choice {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-3-5, 14px);
+  padding: 14px 18px;
+  background: var(--qhr-surface-primary, #ffffff);
+  border: 2px solid var(--qhr-border-subtle, #e2e8f0);
+  border-radius: var(--qhr-radius-lg, 14px);
+  cursor: pointer;
+  user-select: none;
+  transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+[data-theme="dark"] .qhr-questionnaire-choice {
+  background: #131b2e;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.qhr-questionnaire-choice:hover {
+  border-color: var(--qhr-color-primary-400, #d4af37);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+.qhr-questionnaire-choice:focus-visible {
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+  box-shadow: 0 0 0 3px var(--q-gold-glow, rgba(212, 175, 55, 0.2));
+}
+
+/* Selected State */
+.qhr-questionnaire-choice.is-selected {
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+  background: rgba(212, 175, 55, 0.04);
+  box-shadow: 0 0 0 1px var(--qhr-color-primary-500, #c7a35a);
+}
+[data-theme="dark"] .qhr-questionnaire-choice.is-selected {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--q-gold, #d4af37);
+}
+
+/* Evaluation Feedback States (Quiz mode) */
+.qhr-questionnaire-choice.is-correct {
+  border-color: #10b981 !important;
+  background: rgba(16, 185, 129, 0.08) !important;
+  box-shadow: 0 0 0 1px #10b981 !important;
+}
+.qhr-questionnaire-choice.is-wrong {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+  box-shadow: 0 0 0 1px #ef4444 !important;
+}
+
+/* Shortcut Badge (A, B, C, D / أ، ب، ج، د) */
+.qhr-questionnaire-choice-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--qhr-surface-muted, #f1f5f9);
+  color: var(--qhr-content-secondary, #64748b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--qhr-font-heading, 'Alexandria', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  border: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  transition: all 180ms ease;
+}
+[data-theme="dark"] .qhr-questionnaire-choice-badge {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+.qhr-questionnaire-choice.is-selected .qhr-questionnaire-choice-badge {
+  background: var(--qhr-color-primary-500, #c7a35a);
+  color: #ffffff;
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+}
+
+.qhr-questionnaire-choice-text {
+  flex: 1;
+  font-family: var(--qhr-font-ui, 'Cairo', sans-serif);
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--qhr-content-primary, #0f172a);
+}
+[data-theme="dark"] .qhr-questionnaire-choice-text {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+
+/* Indicator Radio Circle */
+.qhr-questionnaire-choice-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--qhr-border-strong, #cbd5e1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 180ms ease;
+}
+[data-theme="dark"] .qhr-questionnaire-choice-indicator {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.qhr-questionnaire-choice.is-selected .qhr-questionnaire-choice-indicator {
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+}
+.qhr-questionnaire-choice-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--qhr-color-primary-500, #c7a35a);
+  transform: scale(0);
+  transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.qhr-questionnaire-choice.is-selected .qhr-questionnaire-choice-dot {
+  transform: scale(1);
+}
+
+/* Feedback Explanation Panel */
+.qhr-questionnaire-feedback {
+  padding: 16px 20px;
+  border-radius: var(--qhr-radius-md, 12px);
+  margin-block-end: var(--qhr-space-5, 20px);
+  font-family: var(--qhr-font-ui, 'Cairo', sans-serif);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.qhr-questionnaire-feedback--success {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid #10b981;
+  color: #065f46;
+}
+[data-theme="dark"] .qhr-questionnaire-feedback--success {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.15);
+}
+.qhr-questionnaire-feedback--danger {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid #ef4444;
+  color: #991b1b;
+}
+[data-theme="dark"] .qhr-questionnaire-feedback--danger {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.15);
+}
+
+/* Actions Footer Strip */
+.qhr-questionnaire-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block-start: var(--qhr-space-5, 20px);
+  border-block-start: 1px solid var(--qhr-border-subtle, #e2e8f0);
+}
+[data-theme="dark"] .qhr-questionnaire-actions {
+  border-block-start-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Summary Results Screen */
+.qhr-questionnaire-summary {
+  background: var(--qhr-surface-primary, #ffffff);
+  border: 1px solid var(--qhr-border-subtle, #e2e8f0);
+  border-radius: var(--qhr-radius-xl, 18px);
+  padding: var(--qhr-space-10, 40px);
+  text-align: center;
+}
+[data-theme="dark"] .qhr-questionnaire-summary {
+  background: #0d121f;
+  border-color: rgba(255, 255, 255, 0.08);
+}

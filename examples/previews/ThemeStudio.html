@@ -1,0 +1,2945 @@
+<!DOCTYPE html>
+<!-- Qahera UI Kit — استوديو القاهرة (Cairo Studio) v1.1 -->
+<html lang="ar" dir="rtl" data-theme="zamalek" data-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>استوديو القاهرة — Qahera Studio</title>
+  <meta name="description" content="استوديو تخصيص ومعاينة ثيمات منظومة قاهرة على المكونات والأنماط المعمارية المعتمدة.">
+
+  <!-- الخطوط الرسمية المعتمدة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../tokens/themes/themes.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <!-- Live Dynamic Theme Injection -->
+  <style id="themeStudioLiveStyles"></style>
+
+  <style>
+    :root {
+      --q-font-heading: 'Alexandria', 'Cairo', sans-serif;
+      --q-font-body: 'Cairo', 'Alexandria', sans-serif;
+      --q-font-mono: 'JetBrains Mono', monospace;
+
+      --ts-bg: #07090e;
+      --ts-surface: #0d121f;
+      --ts-surface-elevated: #131b2e;
+      --ts-border: rgba(255, 255, 255, 0.08);
+      --ts-border-strong: rgba(255, 255, 255, 0.16);
+      --ts-text-primary: #f8fafc;
+      --ts-text-secondary: #94a3b8;
+      --ts-text-muted: #64748b;
+      --ts-gold: #d4af37;
+    }
+
+    [data-mode="light"] {
+      --ts-bg: #f8fafc;
+      --ts-surface: #ffffff;
+      --ts-surface-elevated: #f1f5f9;
+      --ts-border: #e2e8f0;
+      --ts-border-strong: #cbd5e1;
+      --ts-text-primary: #0f172a;
+      --ts-text-secondary: #475569;
+      --ts-text-muted: #94a3b8;
+      --ts-gold: #b45309;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--q-font-body);
+      background-color: var(--ts-bg);
+      color: var(--ts-text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── 1. Top Studio Primary Header ─────────────────────────────────── */
+    .studio-navbar {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 50;
+      background: rgba(13, 18, 31, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-block-end: 1px solid var(--ts-border);
+      padding-block: 8px;
+      padding-inline: clamp(16px, 2.5vw, 32px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    [data-mode="light"] .studio-navbar {
+      background: rgba(255, 255, 255, 0.94);
+      border-block-end-color: var(--ts-border);
+    }
+
+    .brand-back-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-emblem {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #d4af37, #aa771c);
+      color: #000;
+      font-family: var(--q-font-heading);
+      font-weight: 900;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+      flex-shrink: 0;
+    }
+    .studio-title-meta h1 {
+      font-family: var(--q-font-heading);
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .theme-active-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-block: 3px;
+      padding-inline: 10px;
+      background: var(--ts-surface-elevated);
+      border: 1px solid var(--ts-border);
+      border-radius: 9999px;
+      white-space: nowrap;
+    }
+
+    /* Quick Themes Selector Row */
+    .themes-subbar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-block: 6px;
+      padding-inline: clamp(16px, 2.5vw, 32px);
+      background: rgba(0, 0, 0, 0.22);
+      border-block-end: 1px solid var(--ts-border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    [data-mode="light"] .themes-subbar {
+      background: rgba(0, 0, 0, 0.02);
+    }
+    .themes-subbar::-webkit-scrollbar { display: none; }
+
+    .themes-subbar-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--ts-text-muted);
+      margin-inline-end: 4px;
+      white-space: nowrap;
+    }
+
+    .theme-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding-block: 4px;
+      padding-inline: 11px;
+      border-radius: 9999px;
+      border: 1px solid var(--ts-border);
+      background: transparent;
+      color: var(--ts-text-secondary);
+      font-family: var(--q-font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 180ms ease;
+    }
+    .theme-pill-btn:hover {
+      color: var(--ts-text-primary);
+      border-color: var(--ts-border-strong);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .theme-pill-btn.is-active {
+      background: var(--ts-surface-elevated);
+      color: var(--ts-gold);
+      border-color: var(--ts-gold);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+    }
+    .theme-swatch-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Segmented Control Buttons (Mode & Viewport) */
+    .mode-switch-segmented {
+      display: inline-flex;
+      align-items: center;
+      background: var(--ts-surface-elevated);
+      border: 1px solid var(--ts-border);
+      border-radius: 9999px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .mode-switch-btn {
+      border: none;
+      background: transparent;
+      padding-block: 4px;
+      padding-inline: 9px;
+      border-radius: 9999px;
+      color: var(--ts-text-muted);
+      font-family: var(--q-font-body);
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 160ms ease;
+    }
+    .mode-switch-btn.is-active {
+      background: var(--ts-surface);
+      color: var(--ts-gold);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+    .mode-switch-btn.is-active.is-light {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    /* Studio Main Layout (Sidebar + Stage) */
+    .studio-layout {
+      display: flex;
+      flex: 1;
+      min-height: calc(100vh - 95px);
+    }
+
+    /* Sidebar Controls — Fixed Header & Dedicated Scroll Area */
+    .studio-sidebar {
+      width: 330px;
+      flex-shrink: 0;
+      border-inline-end: 1px solid var(--ts-border);
+      background: var(--ts-surface);
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - 95px);
+      max-height: calc(100vh - 95px);
+      position: sticky;
+      inset-block-start: 95px;
+      overflow: hidden; /* Outer container NEVER scrolls to prevent tab bleed */
+      transition: width 200ms ease;
+      z-index: 20;
+    }
+
+    /* Pinned, Opaque Tabs Nav */
+    .sidebar-tabs-nav {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      gap: 4px;
+      border-block-end: 1px solid var(--ts-border);
+      background: var(--ts-surface); /* 100% Solid Opaque */
+      flex-shrink: 0;
+      z-index: 2;
+    }
+    [data-mode="light"] .sidebar-tabs-nav {
+      background: #ffffff;
+      border-block-end-color: var(--ts-border);
+    }
+
+    /* Tab Buttons - Segmented Design */
+    .sidebar-tab-btn {
+      flex: 1;
+      border: 1px solid transparent;
+      background: transparent;
+      padding-block: 8px;
+      padding-inline: 8px;
+      color: var(--ts-text-muted);
+      font-family: var(--q-font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border-radius: 8px;
+      transition: all 160ms ease;
+    }
+    .sidebar-tab-btn:hover {
+      color: var(--ts-text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    [data-mode="light"] .sidebar-tab-btn:hover {
+      background: rgba(0, 0, 0, 0.04);
+    }
+    .sidebar-tab-btn.is-active {
+      color: var(--ts-gold);
+      border-color: var(--ts-border-strong);
+      background: var(--ts-surface-elevated);
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+    }
+    [data-mode="light"] .sidebar-tab-btn.is-active {
+      background: #f1f5f9;
+      color: var(--ts-gold);
+      border-color: var(--ts-border-strong);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Dedicated Internal Scroll Area */
+    .sidebar-content-area {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--ts-border-strong) transparent;
+    }
+    .sidebar-content-area::-webkit-scrollbar {
+      width: 5px;
+    }
+    .sidebar-content-area::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .sidebar-content-area::-webkit-scrollbar-thumb {
+      background: var(--ts-border-strong);
+      border-radius: 9999px;
+    }
+    .sidebar-content-area::-webkit-scrollbar-thumb:hover {
+      background: var(--ts-gold);
+    }
+
+    .section-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--ts-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-block-end: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .color-picker-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 8px 10px;
+      background: var(--ts-surface-elevated);
+      border: 1px solid var(--ts-border);
+      border-radius: 8px;
+    }
+    .color-meta {
+      display: flex;
+      flex-direction: column;
+    }
+    .color-meta-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ts-text-primary);
+    }
+    .color-meta-sub {
+      font-size: 0.68rem;
+      color: var(--ts-text-muted);
+    }
+    .color-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ts-color-swatch {
+      appearance: none;
+      -webkit-appearance: none;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+      background: none;
+      padding: 0;
+    }
+    .ts-color-swatch::-webkit-color-swatch-wrapper { padding: 0; }
+    .ts-color-swatch::-webkit-color-swatch {
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+    }
+    .ts-hex-code {
+      font-family: var(--q-font-mono);
+      font-size: 0.72rem;
+      color: var(--ts-text-secondary);
+      direction: ltr;
+    }
+
+    /* Radius Matrix Buttons */
+    .radius-selector-row {
+      display: flex;
+      gap: 6px;
+      background: var(--ts-surface-elevated);
+      padding: 4px;
+      border-radius: 8px;
+      border: 1px solid var(--ts-border);
+    }
+    .radius-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: var(--ts-text-muted);
+      padding-block: 6px;
+      font-family: var(--q-font-mono);
+      font-size: 0.76rem;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .radius-btn:hover { color: var(--ts-text-primary); }
+    .radius-btn.is-active {
+      background: var(--ts-surface);
+      color: var(--ts-gold);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    /* Effects Group & Parameters Drawer */
+    .effect-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .effect-toggle-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: var(--ts-surface-elevated);
+      border: 1px solid var(--ts-border);
+      border-radius: 8px;
+      transition: border-color 150ms ease;
+    }
+    .effect-toggle-item.is-expanded {
+      border-radius: 8px 8px 0 0;
+      border-block-end-color: transparent;
+    }
+    .effect-toggle-item:hover {
+      border-color: var(--ts-border-strong);
+    }
+    .effect-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .effect-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ts-text-primary);
+    }
+    .effect-sub {
+      font-size: 0.68rem;
+      color: var(--ts-text-muted);
+      line-height: 1.3;
+    }
+
+    .effect-params-drawer {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--ts-border);
+      border-block-start: 1px dashed var(--ts-border);
+      border-radius: 0 0 8px 8px;
+    }
+    [data-mode="light"] .effect-params-drawer {
+      background: rgba(0, 0, 0, 0.03);
+    }
+    /* Custom Luxury Range Sliders & Badges */
+    .param-slider-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-block: 4px;
+    }
+    .param-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--ts-text-secondary);
+    }
+    .param-val-badge {
+      font-family: var(--q-font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ts-gold);
+      background: var(--ts-surface-elevated);
+      border: 1px solid var(--ts-border-strong);
+      padding: 2px 7px;
+      border-radius: 6px;
+      direction: ltr;
+      letter-spacing: 0.02em;
+    }
+    [data-mode="light"] .param-val-badge {
+      background: #ffffff;
+      border-color: #cbd5e1;
+    }
+
+    /* Sleek Track & Thumb for all Sliders */
+    .ts-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 9999px;
+      background: var(--ts-surface-elevated);
+      border: 1px solid var(--ts-border-strong);
+      outline: none;
+      cursor: pointer;
+      margin: 4px 0;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+    [data-mode="light"] .ts-slider {
+      background: #e2e8f0;
+      border-color: #cbd5e1;
+    }
+    .ts-slider:hover {
+      border-color: var(--ts-gold);
+    }
+    .ts-slider:focus-visible {
+      outline: 2px solid var(--ts-gold);
+      outline-offset: 2px;
+    }
+
+    /* WebKit Thumb */
+    .ts-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--ts-gold);
+      border: 2.5px solid var(--ts-surface);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), 0 0 8px rgba(212, 175, 55, 0.4);
+      cursor: pointer;
+      transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 160ms ease, background-color 160ms ease;
+    }
+    [data-mode="light"] .ts-slider::-webkit-slider-thumb {
+      border-color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 0 6px rgba(180, 83, 9, 0.3);
+    }
+    .ts-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.22);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 12px rgba(212, 175, 55, 0.7);
+    }
+    .ts-slider::-webkit-slider-thumb:active {
+      transform: scale(1.08);
+      background: #f1d575;
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.9);
+    }
+
+    /* Firefox Thumb & Track */
+    .ts-slider::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--ts-gold);
+      border: 2.5px solid var(--ts-surface);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4), 0 0 8px rgba(212, 175, 55, 0.4);
+      cursor: pointer;
+      transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 160ms ease;
+    }
+    .ts-slider::-moz-range-thumb:hover {
+      transform: scale(1.22);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 12px rgba(212, 175, 55, 0.7);
+    }
+    .ts-slider::-moz-range-track {
+      background: var(--ts-surface-elevated);
+      border: 1px solid var(--ts-border-strong);
+      height: 6px;
+      border-radius: 9999px;
+    }
+
+    /* Global Modern Scrollbars */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--ts-border-strong) transparent;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--ts-border-strong);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--ts-gold);
+    }
+
+    /* Stage Area */
+    .studio-stage {
+      flex: 1;
+      position: relative;
+      background-color: var(--qhr-surface-base, var(--ts-bg));
+      color: var(--qhr-content-primary, var(--ts-text-primary));
+      padding: clamp(20px, 3vw, 40px);
+      overflow-y: auto;
+      transition: background-color 200ms ease, color 200ms ease;
+    }
+
+    /* Overlays Layer for Stage (Non-interactive) */
+    .stage-effects-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .fx-scanlines-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.18) 0px,
+        rgba(0, 0, 0, 0.18) 1.5px,
+        transparent 1.5px,
+        transparent 3.5px
+      );
+    }
+    [data-mode="light"] .fx-scanlines-overlay {
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.05) 0px,
+        rgba(0, 0, 0, 0.05) 1.5px,
+        transparent 1.5px,
+        transparent 3.5px
+      );
+    }
+    .fx-vignette-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, 0.55) 100%);
+    }
+
+    .fx-grain-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+    [data-mode="light"] .fx-grain-overlay {
+      mix-blend-mode: multiply;
+    }
+
+    .glass-ambient-system {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .glass-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(55px);
+      pointer-events: none;
+      opacity: 0.85;
+      animation: floatOrb 20s ease-in-out infinite alternate;
+    }
+    .glass-orb-primary {
+      width: 480px;
+      height: 480px;
+      inset-block-start: 4%;
+      inset-inline-start: 12%;
+    }
+    .glass-orb-accent {
+      width: 420px;
+      height: 420px;
+      inset-block-start: 42%;
+      inset-inline-end: 8%;
+      animation-duration: 24s;
+      animation-delay: -6s;
+    }
+    .glass-orb-tertiary {
+      width: 380px;
+      height: 380px;
+      inset-block-end: 8%;
+      inset-inline-start: 28%;
+      animation-duration: 28s;
+      animation-delay: -12s;
+    }
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(35px, -30px) scale(1.08); }
+      100% { transform: translate(-25px, 40px) scale(0.95); }
+    }
+
+    /* Stage Interactive Content Wrap */
+    .stage-content-wrap {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      transition: max-width 250ms ease, box-shadow 250ms ease;
+    }
+    .stage-viewport-frame {
+      border: 1px dashed var(--ts-border-strong);
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(0,0,0,0.15);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+
+    .stage-section-header {
+      border-block-end: 1px solid var(--qhr-border-subtle, var(--ts-border));
+      padding-block-end: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .stage-section-title {
+      font-family: var(--q-font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--qhr-content-primary, inherit);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .stage-section-title svg {
+      color: var(--qhr-color-primary, var(--ts-gold));
+    }
+
+    .stage-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .stage-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    /* Guaranteed Dark/Light Contrast for Stage Cards */
+    .qhr-card {
+      background-color: var(--qhr-surface-elevated, #131b2e);
+      color: var(--qhr-content-primary, #f8fafc);
+      border: 1px solid var(--qhr-border-subtle, rgba(255,255,255,0.1));
+      transition: box-shadow 200ms ease, background-color 200ms ease, border-color 200ms ease;
+    }
+
+    /* ── 2. Refined Developer Handoff Export Modal ─────────────────────── */
+    .ts-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(8, 12, 20, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 3vh, 24px);
+      overflow-y: auto;
+    }
+    [data-mode="light"] .ts-modal-overlay {
+      background: rgba(15, 23, 42, 0.52);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .ts-modal-box {
+      width: 100%;
+      max-width: 860px;
+      max-height: min(86vh, 670px);
+      background: var(--ts-surface, #0f172a);
+      border: 1px solid var(--ts-border-strong);
+      border-radius: 16px;
+      box-shadow: 0 25px 60px -15px rgba(0,0,0,0.85), 0 0 0 1px rgba(255,255,255,0.08);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: tsModalIn 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-mode="light"] .ts-modal-box {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(15, 23, 42, 0.06);
+    }
+    @keyframes tsModalIn {
+      from { opacity: 0; transform: scale(0.97) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .ts-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-block-end: 1px solid var(--ts-border);
+      background: rgba(0,0,0,0.18);
+      flex-shrink: 0;
+    }
+    [data-mode="light"] .ts-modal-header {
+      background: #f8fafc;
+      border-block-end-color: #e2e8f0;
+    }
+    .ts-modal-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .ts-modal-icon-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: var(--ts-surface-elevated);
+      color: var(--ts-gold);
+      border: 1px solid var(--ts-border);
+    }
+    [data-mode="light"] .ts-modal-icon-badge {
+      background: #eef2f6;
+      border-color: #cbd5e1;
+      color: #b45309;
+    }
+    .ts-modal-title {
+      font-family: var(--q-font-heading);
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin: 0;
+      color: var(--ts-text-primary);
+    }
+    .ts-modal-subtitle {
+      font-size: 0.72rem;
+      color: var(--ts-text-muted);
+      margin: 0;
+    }
+    .ts-modal-close-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--ts-text-muted);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .ts-modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--ts-text-primary);
+      border-color: var(--ts-border);
+    }
+    [data-mode="light"] .ts-modal-close-btn:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+
+    /* Target Strip */
+    .ts-modal-target-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 20px;
+      background: var(--ts-surface-elevated);
+      border-block-end: 1px solid var(--ts-border);
+      gap: 12px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    [data-mode="light"] .ts-modal-target-strip {
+      background: #f1f5f9;
+      border-block-end-color: #e2e8f0;
+    }
+    .ts-strip-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--ts-text-primary);
+    }
+
+    /* Custom Meta Strip */
+    .ts-custom-meta-strip {
+      padding: 8px 20px;
+      background: rgba(0,0,0,0.3);
+      border-block-end: 1px solid var(--ts-border);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    [data-mode="light"] .ts-custom-meta-strip {
+      background: #f8fafc;
+      border-block-end-color: #e2e8f0;
+    }
+    .ts-meta-field {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .ts-meta-field label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--ts-text-muted);
+    }
+    [data-mode="light"] .ts-meta-field label {
+      color: #64748b;
+    }
+    .ts-compact-input {
+      height: 30px;
+      padding: 0 10px;
+      border-radius: 6px;
+      border: 1px solid var(--ts-border-strong);
+      background: var(--ts-surface);
+      color: var(--ts-text-primary);
+      font-family: var(--q-font-body);
+      font-size: 0.78rem;
+      outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    [data-mode="light"] .ts-compact-input {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+    .ts-compact-input:focus {
+      border-color: var(--ts-gold);
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25);
+    }
+    .ts-compact-input.ts-font-mono {
+      font-family: var(--q-font-mono);
+      font-size: 0.75rem;
+    }
+
+    /* Export Format Nav Tabs */
+    .export-format-nav {
+      display: flex;
+      background: rgba(0, 0, 0, 0.22);
+      border-block-end: 1px solid var(--ts-border);
+      padding-inline: 16px;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    [data-mode="light"] .export-format-nav {
+      background: #f1f5f9;
+      border-block-end-color: #e2e8f0;
+    }
+    .export-format-btn {
+      border: none;
+      background: transparent;
+      padding-block: 8px;
+      padding-inline: 12px;
+      color: var(--ts-text-muted);
+      font-family: var(--q-font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-block-end: 2px solid transparent;
+      transition: all 150ms ease;
+    }
+    [data-mode="light"] .export-format-btn {
+      color: #64748b;
+    }
+    .export-format-btn:hover {
+      color: var(--ts-text-primary);
+    }
+    [data-mode="light"] .export-format-btn:hover {
+      color: #0f172a;
+    }
+    .export-format-btn.is-active {
+      color: var(--ts-gold);
+      border-block-end-color: var(--ts-gold);
+      background: var(--ts-surface);
+    }
+    [data-mode="light"] .export-format-btn.is-active {
+      background: #ffffff;
+      color: #b45309;
+      border-block-end-color: #b45309;
+    }
+
+    .fmt-pill {
+      display: inline-block;
+      font-family: var(--q-font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+      line-height: 1.2;
+    }
+    .fmt-pill--css { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .fmt-pill--yaml { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .fmt-pill--tw { background: rgba(20, 184, 166, 0.15); color: #2dd4bf; border: 1px solid rgba(20, 184, 166, 0.3); }
+    .fmt-pill--json { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+
+    /* Code Preview Box Area (IDE Window) */
+    .ts-code-body {
+      flex: 1;
+      min-height: 0;
+      padding: 12px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      overflow: hidden;
+      background: var(--ts-surface);
+    }
+    [data-mode="light"] .ts-code-body {
+      background: #ffffff;
+    }
+
+    .ts-code-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 12px;
+      background: #080d18;
+      border: 1px solid var(--ts-border-strong);
+      border-block-end: none;
+      border-start-start-radius: 8px;
+      border-start-end-radius: 8px;
+      font-size: 0.72rem;
+      flex-shrink: 0;
+    }
+    [data-mode="light"] .ts-code-header-bar {
+      background: #1e293b;
+      border-color: #cbd5e1;
+    }
+    .ts-file-identity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ide-dots {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .ide-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+    .ide-dot--red { background: #ef4444; }
+    .ide-dot--yellow { background: #f59e0b; }
+    .ide-dot--green { background: #10b981; }
+
+    .ts-filename {
+      font-family: var(--q-font-mono);
+      color: #93c5fd;
+      font-weight: 600;
+      direction: ltr;
+    }
+    .ts-file-badge {
+      font-size: 0.62rem;
+      padding: 1px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #e2e8f0;
+    }
+    .ts-file-stats {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ts-stat-chip {
+      color: #94a3b8;
+      font-size: 0.68rem;
+    }
+    .ts-quick-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.06);
+      color: #e2e8f0;
+      font-size: 0.68rem;
+      font-family: var(--q-font-body);
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .ts-quick-copy-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+    }
+
+    .ts-code-pre {
+      flex: 1;
+      min-height: 160px;
+      max-height: 100%;
+      background: #05070d;
+      border: 1px solid var(--ts-border-strong);
+      border-end-start-radius: 8px;
+      border-end-end-radius: 8px;
+      padding: 12px 16px;
+      font-family: var(--q-font-mono);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: #93c5fd;
+      overflow: auto;
+      white-space: pre;
+      direction: ltr;
+      text-align: left;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    [data-mode="light"] .ts-code-pre {
+      background: #0b1120;
+      border-color: #cbd5e1;
+      color: #93c5fd;
+    }
+
+    /* Modal Footer */
+    .ts-modal-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      border-block-start: 1px solid var(--ts-border);
+      background: rgba(0,0,0,0.18);
+      flex-shrink: 0;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    [data-mode="light"] .ts-modal-footer {
+      background: #f8fafc;
+      border-block-start-color: #e2e8f0;
+    }
+    .ts-footer-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ts-integration-note {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      color: var(--ts-text-muted);
+    }
+    [data-mode="light"] .ts-integration-note {
+      color: #64748b;
+    }
+    .ts-footer-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+
+<body x-data="cairoStudioApp()">
+
+  <!-- ── 1. Refined Studio Primary Header ──────────────────────────────── -->
+  <header class="studio-navbar">
+    <!-- Brand & Theme Title -->
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <a href="index.html" class="brand-back-group" title="العودة إلى المعرض الشامل">
+        <div class="brand-emblem">ق</div>
+        <div class="studio-title-meta">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <h1>استوديو القاهرة</h1>
+            <span class="qhr-badge qhr-badge--xs qhr-badge--primary" style="font-size: 0.65rem; padding: 1px 6px;">v1.1</span>
+          </div>
+          <span>معاينة وتخصيص ثيمات المنظومة</span>
+        </div>
+      </a>
+
+      <!-- Active Neighborhood Breadcrumb Chip -->
+      <div class="theme-active-chip">
+        <span class="theme-swatch-dot" :style="'background-color: ' + (currentMode === 'dark' ? currentTheme.night.primary : currentTheme.day.primary)"></span>
+        <span style="font-size: 0.78rem; font-weight: 700;" x-text="currentTheme.name"></span>
+        <span style="font-size: 0.7rem; color: var(--ts-text-muted);" x-text="'· ' + currentTheme.school"></span>
+      </div>
+    </div>
+
+    <!-- Center Section: Viewport Switcher & Dark/Light Segmented -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <!-- Viewport Device Switcher -->
+      <div class="mode-switch-segmented" role="group" aria-label="تبديل حجم الشاشة">
+        <button type="button" class="mode-switch-btn" :class="{ 'is-active': viewportMode === 'desktop' }" @click="viewportMode = 'desktop'" title="عرض شاشة كاملة (Desktop)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>
+          <span style="font-size: 0.72rem;">مكتبي</span>
+        </button>
+        <button type="button" class="mode-switch-btn" :class="{ 'is-active': viewportMode === 'tablet' }" @click="viewportMode = 'tablet'" title="جهاز لوحي (Tablet 768px)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+          <span style="font-size: 0.72rem;">لوحي</span>
+        </button>
+        <button type="button" class="mode-switch-btn" :class="{ 'is-active': viewportMode === 'mobile' }" @click="viewportMode = 'mobile'" title="هاتف ذكي (Mobile 390px)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>
+          <span style="font-size: 0.72rem;">هاتف</span>
+        </button>
+      </div>
+
+      <!-- Mode Switch Segmented (نهاري / ليلي) -->
+      <div class="mode-switch-segmented" role="group" aria-label="تبديل النمط اللوني">
+        <button type="button" class="mode-switch-btn" :class="{ 'is-active': currentMode === 'dark' }" @click="setMode('dark')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <span>ليلي</span>
+        </button>
+        <button type="button" class="mode-switch-btn" :class="{ 'is-active is-light': currentMode === 'light' }" @click="setMode('light')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <span>نهاري</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Actions Section: Toggle Sidebar, Reset, Export -->
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <!-- Toggle Sidebar Focus -->
+      <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" @click="sidebarOpen = !sidebarOpen" :title="sidebarOpen ? 'إخفاء شريط التحكم لتوسيع المسرح' : 'إظهار شريط التحكم'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/></svg>
+        <span x-text="sidebarOpen ? 'تركيز' : 'لوحة التحكم'"></span>
+      </button>
+
+      <!-- Reset to Theme Defaults -->
+      <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" @click="resetToCurrentTheme()" title="إعادة تعيين الألوان والحواف للقيم الأصلية">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+        <span>إعادة ضبط</span>
+      </button>
+
+      <!-- Unified Export Code Button -->
+      <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" @click="openExportModal('css')" style="font-weight: 700;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <span>تصدير الكود</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── 2. Integrated 11 Neighborhood Themes Navigation Subbar ────────── -->
+  <div class="themes-subbar">
+    <span class="themes-subbar-label">أحياء القاهرة:</span>
+    <template x-for="t in themes" :key="t.id">
+      <button 
+        type="button" 
+        class="theme-pill-btn" 
+        :class="{ 'is-active': activeThemeId === t.id }"
+        @click="selectTheme(t.id)">
+        <span class="theme-swatch-dot" :style="'background-color: ' + (currentMode === 'dark' ? t.night.primary : t.day.primary)"></span>
+        <span x-text="t.name"></span>
+      </button>
+    </template>
+  </div>
+
+  <!-- ── 3. Main Studio Workspace ──────────────────────────────────────── -->
+  <main class="studio-layout">
+
+    <!-- Left Controls Sidebar -->
+    <aside class="studio-sidebar" x-show="sidebarOpen" x-transition>
+      <nav class="sidebar-tabs-nav">
+        <button type="button" class="sidebar-tab-btn" :class="{ 'is-active': activeTab === 'palette' }" @click="activeTab = 'palette'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+          <span>الألوان</span>
+        </button>
+        <button type="button" class="sidebar-tab-btn" :class="{ 'is-active': activeTab === 'geometry' }" @click="activeTab = 'geometry'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="4"/></svg>
+          <span>الحواف</span>
+        </button>
+        <button type="button" class="sidebar-tab-btn" :class="{ 'is-active': activeTab === 'effects' }" @click="activeTab = 'effects'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+          <span>المؤثرات</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-content-area">
+
+        <!-- TAB 1: PALETTE -->
+        <div x-show="activeTab === 'palette'" style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="section-title">
+            <span>لوحة الألوان الأساسية</span>
+            <span class="qhr-badge qhr-badge--xs qhr-badge--primary" x-text="currentTheme.name"></span>
+          </div>
+
+          <div class="color-picker-item">
+            <div class="color-meta">
+              <span class="color-meta-title">لون الأرضية (Background)</span>
+              <span class="color-meta-sub">خلفية الصفحة الرئيسية</span>
+            </div>
+            <div class="color-input-wrap">
+              <input type="color" class="ts-color-swatch" x-model="colors.bg" @input="updateStyles()">
+              <span class="ts-hex-code" x-text="colors.bg"></span>
+            </div>
+          </div>
+
+          <div class="color-picker-item">
+            <div class="color-meta">
+              <span class="color-meta-title">سطح البطاقات (Surface)</span>
+              <span class="color-meta-sub">خلفية المكونات والحاويات</span>
+            </div>
+            <div class="color-input-wrap">
+              <input type="color" class="ts-color-swatch" x-model="colors.surface" @input="updateStyles()">
+              <span class="ts-hex-code" x-text="colors.surface"></span>
+            </div>
+          </div>
+
+          <div class="color-picker-item">
+            <div class="color-meta">
+              <span class="color-meta-title">اللون الرئيسي (Primary)</span>
+              <span class="color-meta-sub">الأزرار الأساسية والعناصر النشطة</span>
+            </div>
+            <div class="color-input-wrap">
+              <input type="color" class="ts-color-swatch" x-model="colors.primary" @input="updateStyles()">
+              <span class="ts-hex-code" x-text="colors.primary"></span>
+            </div>
+          </div>
+
+          <div class="color-picker-item">
+            <div class="color-meta">
+              <span class="color-meta-title">نص الزر الرئيسي (Primary FG)</span>
+              <span class="color-meta-sub">لون النص داخل الأزرار الرئيسية</span>
+            </div>
+            <div class="color-input-wrap">
+              <input type="color" class="ts-color-swatch" x-model="colors.primaryFg" @input="updateStyles()">
+              <span class="ts-hex-code" x-text="colors.primaryFg"></span>
+            </div>
+          </div>
+
+          <div class="color-picker-item">
+            <div class="color-meta">
+              <span class="color-meta-title">لون التمييز (Accent)</span>
+              <span class="color-meta-sub">المؤشرات والشارات والتركيز</span>
+            </div>
+            <div class="color-input-wrap">
+              <input type="color" class="ts-color-swatch" x-model="colors.accent" @input="updateStyles()">
+              <span class="ts-hex-code" x-text="colors.accent"></span>
+            </div>
+          </div>
+
+          <div class="color-picker-item">
+            <div class="color-meta">
+              <span class="color-meta-title">النص الأساسي (Primary Text)</span>
+              <span class="color-meta-sub">العناوين والأرقام والقيم الكبرى</span>
+            </div>
+            <div class="color-input-wrap">
+              <input type="color" class="ts-color-swatch" x-model="colors.text" @input="updateStyles()">
+              <span class="ts-hex-code" x-text="colors.text"></span>
+            </div>
+          </div>
+
+          <div class="color-picker-item">
+            <div class="color-meta">
+              <span class="color-meta-title">النص الثانوي (Secondary Text)</span>
+              <span class="color-meta-sub">العناوين الفرعية والأوصاف</span>
+            </div>
+            <div class="color-input-wrap">
+              <input type="color" class="ts-color-swatch" x-model="colors.textSecondary" @input="updateStyles()">
+              <span class="ts-hex-code" x-text="colors.textSecondary"></span>
+            </div>
+          </div>
+
+          <div class="color-picker-item">
+            <div class="color-meta">
+              <span class="color-meta-title">لون الحدود (Border)</span>
+              <span class="color-meta-sub">فواصل وبطاقات المكونات</span>
+            </div>
+            <div class="color-input-wrap">
+              <input type="color" class="ts-color-swatch" x-model="colors.border" @input="updateStyles()">
+              <span class="ts-hex-code" x-text="colors.border"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: GEOMETRY, PADDING & FOUNDATIONAL TOKENS -->
+        <div x-show="activeTab === 'geometry'" style="display: flex; flex-direction: column; gap: 14px;">
+          
+          <!-- 1. Radius Matrix -->
+          <div class="section-title">
+            <span>استدارة الصناديق (Boxes & Cards)</span>
+            <span class="param-val-badge" x-text="radius.boxes"></span>
+          </div>
+          <div class="radius-selector-row">
+            <template x-for="r in ['0px', '4px', '8px', '12px', '16px', '24px']" :key="r">
+              <button type="button" class="radius-btn" :class="{ 'is-active': radius.boxes === r }" @click="radius.boxes = r; updateStyles()" x-text="r"></button>
+            </template>
+          </div>
+
+          <div class="section-title" style="margin-block-start: 4px;">
+            <span>استدارة الحقول والأزرار (Controls & Fields)</span>
+            <span class="param-val-badge" x-text="radius.fields === '9999px' ? 'Pill' : radius.fields"></span>
+          </div>
+          <div class="radius-selector-row">
+            <template x-for="r in ['0px', '2px', '4px', '8px', '12px', '9999px']" :key="r">
+              <button type="button" class="radius-btn" :class="{ 'is-active': radius.fields === r }" @click="radius.fields = r; updateStyles()" x-text="r === '9999px' ? 'Pill' : r"></button>
+            </template>
+          </div>
+
+          <div class="section-title" style="margin-block-start: 4px;">
+            <span>استدارة الشارات والمحددات (Badges & Selectors)</span>
+            <span class="param-val-badge" x-text="radius.selectors === '9999px' ? 'Pill' : radius.selectors"></span>
+          </div>
+          <div class="radius-selector-row">
+            <template x-for="r in ['0px', '4px', '8px', '12px', '9999px']" :key="r">
+              <button type="button" class="radius-btn" :class="{ 'is-active': radius.selectors === r }" @click="radius.selectors = r; updateStyles()" x-text="r === '9999px' ? 'Pill' : r"></button>
+            </template>
+          </div>
+
+          <!-- 2. Border Width Control -->
+          <div class="section-title" style="margin-block-start: 6px;">
+            <span>سماكة الحدود الصريحة (Border Width)</span>
+            <span class="param-val-badge" x-text="borderWidth"></span>
+          </div>
+          <div class="radius-selector-row" style="margin-block-end: 4px;">
+            <template x-for="bw in ['0px', '1px', '2px', '3px', '4px']" :key="bw">
+              <button type="button" class="radius-btn" :class="{ 'is-active': borderWidth === bw }" @click="borderWidth = bw; borderWidthRaw = parseInt(bw); updateStyles()" x-text="bw"></button>
+            </template>
+          </div>
+          <input type="range" min="0" max="4" step="1" x-model.number="borderWidthRaw" @input="borderWidth = borderWidthRaw + 'px'; updateStyles()" class="ts-slider">
+
+          <!-- 3. Component Padding & Density Control -->
+          <div class="section-title" style="margin-block-start: 6px;">
+            <span>التباعد والحشو الداخلي (Padding & Density)</span>
+            <span class="param-val-badge" x-text="density === 'compact' ? 'مدمج' : (density === 'default' ? 'متوازن' : (density === 'spacious' ? 'رحب' : 'فاخر'))"></span>
+          </div>
+          <div class="radius-selector-row">
+            <button type="button" class="radius-btn" :class="{ 'is-active': density === 'compact' }" @click="density = 'compact'; updateStyles()">مدمج</button>
+            <button type="button" class="radius-btn" :class="{ 'is-active': density === 'default' }" @click="density = 'default'; updateStyles()">متوازن</button>
+            <button type="button" class="radius-btn" :class="{ 'is-active': density === 'spacious' }" @click="density = 'spacious'; updateStyles()">رحب</button>
+            <button type="button" class="radius-btn" :class="{ 'is-active': density === 'luxury' }" @click="density = 'luxury'; updateStyles()">فاخر</button>
+          </div>
+
+          <!-- 4. Elevation / Shadows Control -->
+          <div class="section-title" style="margin-block-start: 6px;">
+            <span>مستوى الظلال والارتفاع (Elevation)</span>
+            <span class="param-val-badge" x-text="elevationLevel === 'flat' ? 'مسطح' : (elevationLevel === 'subtle' ? 'ناعم' : (elevationLevel === 'elevated' ? 'مرتفع' : 'عائم'))"></span>
+          </div>
+          <div class="radius-selector-row">
+            <button type="button" class="radius-btn" :class="{ 'is-active': elevationLevel === 'flat' }" @click="elevationLevel = 'flat'; updateStyles()">مسطح</button>
+            <button type="button" class="radius-btn" :class="{ 'is-active': elevationLevel === 'subtle' }" @click="elevationLevel = 'subtle'; updateStyles()">ناعم</button>
+            <button type="button" class="radius-btn" :class="{ 'is-active': elevationLevel === 'elevated' }" @click="elevationLevel = 'elevated'; updateStyles()">مرتفع</button>
+            <button type="button" class="radius-btn" :class="{ 'is-active': elevationLevel === 'floating' }" @click="elevationLevel = 'floating'; updateStyles()">عائم</button>
+          </div>
+
+        </div>
+
+        <!-- TAB 3: EFFECTS WITH DYNAMIC INTENSITY CONTROLS -->
+        <div x-show="activeTab === 'effects'" style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="section-title">
+            <span>المؤثرات ومعايير الشدة</span>
+            <span class="qhr-badge qhr-badge--xs qhr-badge--primary">7 مؤثرات</span>
+          </div>
+
+          <!-- 1. Neon Glow -->
+          <div class="effect-group">
+            <div class="effect-toggle-item" :class="{ 'is-expanded': effects.glow }">
+              <div class="effect-meta">
+                <span class="effect-title">التوهج النيوني (Neon Glow)</span>
+                <span class="effect-sub">إشعاع ضوئي ملون حول البطاقات والأزرار</span>
+              </div>
+              <label class="qhr-switch qhr-switch--sm">
+                <input type="checkbox" x-model="effects.glow" @change="updateStyles()">
+                <span class="qhr-switch__track"></span>
+              </label>
+            </div>
+            <div class="effect-params-drawer" x-show="effects.glow" x-transition>
+              <div class="param-slider-row">
+                <div class="param-header">
+                  <span>نطاق الإشعاع (Radius)</span>
+                  <span class="param-val-badge" x-text="effects.glowIntensity + 'px'"></span>
+                </div>
+                <input type="range" min="8" max="40" step="2" x-model.number="effects.glowIntensity" @input="updateStyles()" class="ts-slider">
+              </div>
+              <div class="param-slider-row">
+                <div class="param-header">
+                  <span>كثافة الضوء (Opacity)</span>
+                  <span class="param-val-badge" x-text="effects.glowOpacity + '%'"></span>
+                </div>
+                <input type="range" min="15" max="80" step="5" x-model.number="effects.glowOpacity" @input="updateStyles()" class="ts-slider">
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Hard Shadow -->
+          <div class="effect-group">
+            <div class="effect-toggle-item" :class="{ 'is-expanded': effects.hardShadow }">
+              <div class="effect-meta">
+                <span class="effect-title">الظلال الحادة (Hard Shadow)</span>
+                <span class="effect-sub">ظلال صلبة بنمط ريترو / بروتاليزم</span>
+              </div>
+              <label class="qhr-switch qhr-switch--sm">
+                <input type="checkbox" x-model="effects.hardShadow" @change="updateStyles()">
+                <span class="qhr-switch__track"></span>
+              </label>
+            </div>
+            <div class="effect-params-drawer" x-show="effects.hardShadow" x-transition>
+              <div class="param-slider-row">
+                <div class="param-header">
+                  <span>عمق الإزاحة (Offset)</span>
+                  <span class="param-val-badge" x-text="effects.shadowOffset + 'px'"></span>
+                </div>
+                <input type="range" min="2" max="12" step="1" x-model.number="effects.shadowOffset" @input="updateStyles()" class="ts-slider">
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Glassmorphism -->
+          <div class="effect-group">
+            <div class="effect-toggle-item" :class="{ 'is-expanded': effects.glass }">
+              <div class="effect-meta">
+                <span class="effect-title">الزجاج الضبابي (Glassmorphism)</span>
+                <span class="effect-sub">شفافية بلورية وعزل ضبابي حقيقي (Backdrop Blur)</span>
+              </div>
+              <label class="qhr-switch qhr-switch--sm">
+                <input type="checkbox" x-model="effects.glass" @change="updateStyles()">
+                <span class="qhr-switch__track"></span>
+              </label>
+            </div>
+            <div class="effect-params-drawer" x-show="effects.glass" x-transition>
+              <div class="param-slider-row">
+                <div class="param-header">
+                  <span>مقدار التمويه (Blur)</span>
+                  <span class="param-val-badge" x-text="effects.glassBlur + 'px'"></span>
+                </div>
+                <input type="range" min="4" max="36" step="2" x-model.number="effects.glassBlur" @input="updateStyles()" class="ts-slider">
+              </div>
+              <div class="param-slider-row">
+                <div class="param-header">
+                  <span>كثافة السطح (Surface Fill)</span>
+                  <span class="param-val-badge" x-text="effects.glassOpacity + '%'"></span>
+                </div>
+                <input type="range" min="15" max="85" step="5" x-model.number="effects.glassOpacity" @input="updateStyles()" class="ts-slider">
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. CRT Scanlines -->
+          <div class="effect-group">
+            <div class="effect-toggle-item" :class="{ 'is-expanded': effects.scanlines }">
+              <div class="effect-meta">
+                <span class="effect-title">خطوط المسح التناظرية (CRT Scanlines)</span>
+                <span class="effect-sub">شاشات كلاسيكية دقيقة مع تظليل حواف سينمائي</span>
+              </div>
+              <label class="qhr-switch qhr-switch--sm">
+                <input type="checkbox" x-model="effects.scanlines" @change="updateStyles()">
+                <span class="qhr-switch__track"></span>
+              </label>
+            </div>
+            <div class="effect-params-drawer" x-show="effects.scanlines" x-transition>
+              <div class="param-slider-row">
+                <div class="param-header">
+                  <span>وضوح الخطوط (Opacity)</span>
+                  <span class="param-val-badge" x-text="effects.scanlinesOpacity + '%'"></span>
+                </div>
+                <input type="range" min="15" max="100" step="5" x-model.number="effects.scanlinesOpacity" @input="updateStyles()" class="ts-slider">
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Tactile Grain -->
+          <div class="effect-group">
+            <div class="effect-toggle-item" :class="{ 'is-expanded': effects.grain }">
+              <div class="effect-meta">
+                <span class="effect-title">خامة الحبيبات والورق (Tactile Grain)</span>
+                <span class="effect-sub">ملمس أرشيفي ورقي وفيلمي للأحياء التراثية</span>
+              </div>
+              <label class="qhr-switch qhr-switch--sm">
+                <input type="checkbox" x-model="effects.grain" @change="updateStyles()">
+                <span class="qhr-switch__track"></span>
+              </label>
+            </div>
+            <div class="effect-params-drawer" x-show="effects.grain" x-transition>
+              <div class="param-slider-row">
+                <div class="param-header">
+                  <span>شدة الخشونة (Grain Strength)</span>
+                  <span class="param-val-badge" x-text="effects.grainOpacity + '%'"></span>
+                </div>
+                <input type="range" min="5" max="40" step="2" x-model.number="effects.grainOpacity" @input="updateStyles()" class="ts-slider">
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. Ambient Mesh Glow -->
+          <div class="effect-group">
+            <div class="effect-toggle-item" :class="{ 'is-expanded': effects.ambientMesh }">
+              <div class="effect-meta">
+                <span class="effect-title">التوهج المحيطي الشبكي (Ambient Mesh)</span>
+                <span class="effect-sub">هالات ضوئية عائمة في زوايا المسرح تبرز الزجاج</span>
+              </div>
+              <label class="qhr-switch qhr-switch--sm">
+                <input type="checkbox" x-model="effects.ambientMesh" @change="updateStyles()">
+                <span class="qhr-switch__track"></span>
+              </label>
+            </div>
+            <div class="effect-params-drawer" x-show="effects.ambientMesh" x-transition>
+              <div class="param-slider-row">
+                <div class="param-header">
+                  <span>سطوع الهالات (Mesh Intensity)</span>
+                  <span class="param-val-badge" x-text="effects.meshIntensity + '%'"></span>
+                </div>
+                <input type="range" min="10" max="45" step="5" x-model.number="effects.meshIntensity" @input="updateStyles()" class="ts-slider">
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Accent Borders -->
+          <div class="effect-group">
+            <div class="effect-toggle-item" :class="{ 'is-expanded': effects.accentBorders }">
+              <div class="effect-meta">
+                <span class="effect-title">الحدود المشعة (Accent Borders)</span>
+                <span class="effect-sub">إبراز الحواف العلوية للبطاقات بلون التمييز</span>
+              </div>
+              <label class="qhr-switch qhr-switch--sm">
+                <input type="checkbox" x-model="effects.accentBorders" @change="updateStyles()">
+                <span class="qhr-switch__track"></span>
+              </label>
+            </div>
+            <div class="effect-params-drawer" x-show="effects.accentBorders" x-transition>
+              <div class="param-slider-row">
+                <div class="param-header">
+                  <span>سماكة الحافة (Border Width)</span>
+                  <span class="param-val-badge" x-text="effects.accentBorderWidth + 'px'"></span>
+                </div>
+                <input type="range" min="1" max="6" step="1" x-model.number="effects.accentBorderWidth" @input="updateStyles()" class="ts-slider">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- ── Stage Showcase ──────────────────────────────────────────────── -->
+    <section class="studio-stage">
+
+      <!-- Overlays Layer -->
+      <div class="stage-effects-layer">
+        <div class="fx-scanlines-overlay" x-show="effects.scanlines" :style="'opacity: ' + (effects.scanlinesOpacity / 100)"></div>
+        <div class="fx-vignette-overlay" x-show="effects.scanlines"></div>
+        <div class="fx-grain-overlay" x-show="effects.grain" :style="'opacity: ' + (effects.grainOpacity / 100)"></div>
+
+        <div class="glass-ambient-system" x-show="effects.glass" x-transition.opacity.duration.300ms>
+          <div class="glass-orb glass-orb-primary" :style="'background: radial-gradient(circle, ' + colors.primary + '88 0%, ' + colors.primary + '20 40%, transparent 70%);'"></div>
+          <div class="glass-orb glass-orb-accent" :style="'background: radial-gradient(circle, ' + colors.accent + '77 0%, ' + colors.accent + '15 45%, transparent 70%);'"></div>
+          <div class="glass-orb glass-orb-tertiary" :style="'background: radial-gradient(circle, ' + (currentMode === 'dark' ? '#00f0ff55' : '#3b82f644') + ' 0%, transparent 65%);'"></div>
+        </div>
+      </div>
+
+      <!-- Main Interactive Stage Content Wrap with Responsive Viewport Control -->
+      <div class="stage-content-wrap"
+           :class="{ 'stage-viewport-frame': viewportMode !== 'desktop' }"
+           :style="viewportMode === 'tablet' ? 'max-width: 768px; margin-inline: auto;' : (viewportMode === 'mobile' ? 'max-width: 390px; margin-inline: auto;' : 'width: 100%;')">
+
+        <!-- Stage Section 1: KPI & Metrics -->
+        <div class="stage-section-header">
+          <h2 class="stage-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            <span>مؤشرات الأداء والبطاقات الإحصائية</span>
+          </h2>
+          <span class="qhr-badge qhr-badge--neutral qhr-badge--xs" x-text="currentTheme.name + ' · ' + currentTheme.school"></span>
+        </div>
+
+        <div class="stage-grid-3">
+          <!-- Metric Card 1 -->
+          <div class="qhr-card qhr-card--elevated">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-block-end: 12px;">
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--qhr-content-secondary, var(--ts-text-secondary));">إجمالي العمليات</span>
+              <span class="qhr-badge qhr-badge--accent qhr-badge--xs qhr-badge--pill">+18.4% تمييز</span>
+            </div>
+            <div style="font-family: var(--q-font-heading); font-size: 1.75rem; font-weight: 800; line-height: 1.1; margin-block-end: 8px; color: var(--qhr-content-primary, var(--ts-text-primary));">
+              EGP 428,500
+            </div>
+            <div style="margin-block-start: 12px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--qhr-content-muted, var(--ts-text-muted)); margin-block-end: 6px;">
+                <span>معدل الإنجاز الشهري</span>
+                <span>82%</span>
+              </div>
+              <div class="qhr-progress qhr-progress--sm">
+                <div class="qhr-progress__bar" style="width: 82%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metric Card 2 -->
+          <div class="qhr-card qhr-card--elevated">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-block-end: 12px;">
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--qhr-content-secondary, var(--ts-text-secondary));">الحسابات النشطة</span>
+              <span class="qhr-badge qhr-badge--primary qhr-badge--xs qhr-badge--pill">مباشر</span>
+            </div>
+            <div style="font-family: var(--q-font-heading); font-size: 1.75rem; font-weight: 800; line-height: 1.1; margin-block-end: 8px; color: var(--qhr-content-primary, var(--ts-text-primary));">
+              14,290
+            </div>
+            <div style="margin-block-start: 12px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--qhr-content-muted, var(--ts-text-muted)); margin-block-end: 6px;">
+                <span>سعة الخوادم المستهلكة</span>
+                <span>64%</span>
+              </div>
+              <div class="qhr-progress qhr-progress--sm qhr-progress--info">
+                <div class="qhr-progress__bar" style="width: 64%;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metric Card 3 -->
+          <div class="qhr-card qhr-card--elevated">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-block-end: 12px;">
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--qhr-content-secondary, var(--ts-text-secondary));">زمن الاستجابة</span>
+              <span class="qhr-badge qhr-badge--neutral qhr-badge--xs qhr-badge--pill">0kb RSC</span>
+            </div>
+            <div style="font-family: var(--q-font-heading); font-size: 1.75rem; font-weight: 800; line-height: 1.1; margin-block-end: 8px; color: var(--qhr-content-primary, var(--ts-text-primary));">
+              18.2 ms
+            </div>
+            <div style="margin-block-start: 12px;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.76rem; color: var(--qhr-content-muted, var(--ts-text-muted)); margin-block-end: 6px;">
+                <span>استقرار النظام المعماري</span>
+                <span>99.9%</span>
+              </div>
+              <div class="qhr-progress qhr-progress--sm qhr-progress--success">
+                <div class="qhr-progress__bar" style="width: 99%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage Section 2: Actions & Buttons Matrix -->
+        <div class="stage-section-header">
+          <h2 class="stage-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6Z"/></svg>
+            <span>الأزرار وحالات التفاعل والشارات</span>
+          </h2>
+        </div>
+
+        <div class="stage-grid-2">
+          <!-- Buttons Box -->
+          <div class="qhr-card">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--qhr-content-secondary, var(--ts-text-secondary)); margin-block-end: 14px;">أنماط وأحجام الأزرار المعمارية</span>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-block-end: 16px;">
+              <button type="button" class="qhr-btn qhr-btn--primary">إجراء رئيسي</button>
+              <button type="button" class="qhr-btn qhr-btn--secondary">إجراء ثانوي</button>
+              <button type="button" class="qhr-btn qhr-btn--outline">تأطير</button>
+              <button type="button" class="qhr-btn qhr-btn--ghost">شفاف</button>
+              <button type="button" class="qhr-btn qhr-btn--destructive">حذف</button>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+              <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                <span>زر صغير</span>
+              </button>
+              <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md">زر متوسط</button>
+              <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--lg">زر كبير</button>
+              <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--pill">زر دائري Pill</button>
+            </div>
+          </div>
+
+          <!-- Badges & Controls Box -->
+          <div class="qhr-card">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--qhr-content-secondary, var(--ts-text-secondary)); margin-block-end: 14px;">الشارات ومفاتيح التبديل السريعة</span>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-block-end: 16px;">
+              <span class="qhr-badge qhr-badge--neutral">محايد</span>
+              <span class="qhr-badge qhr-badge--primary">رئيسي (Primary)</span>
+              <span class="qhr-badge qhr-badge--accent">تمييز (Accent)</span>
+              <span class="qhr-badge qhr-badge--success">ناجح</span>
+              <span class="qhr-badge qhr-badge--warning">تنبيه</span>
+              <span class="qhr-badge qhr-badge--danger">خطر</span>
+              <span class="qhr-badge qhr-badge--primary qhr-badge--pill">شارة دائرية</span>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+              <label class="qhr-switch">
+                <input type="checkbox" checked>
+                <span class="qhr-switch__track"></span>
+                <span class="qhr-switch__label">تفعيل المزامنة</span>
+              </label>
+
+              <label class="qhr-checkbox">
+                <input type="checkbox" checked>
+                <span class="qhr-checkbox__box"></span>
+                <span class="qhr-checkbox__label">تأكيد الاعتماد</span>
+              </label>
+
+              <label class="qhr-radio">
+                <input type="radio" name="demoRadio" checked>
+                <span class="qhr-radio__dot"></span>
+                <span class="qhr-radio__label">خيار معماري</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage Section 3: Forms & Inputs -->
+        <div class="stage-section-header">
+          <h2 class="stage-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+            <span>عناصر الإدخال والتحكم بالنصوص</span>
+          </h2>
+        </div>
+
+        <div class="stage-grid-2">
+          <!-- Text Input & Select Box -->
+          <div class="qhr-card">
+            <div class="qhr-form-group" style="margin-block-end: 14px;">
+              <label class="qhr-label">اسم المشروع المعماري</label>
+              <input type="text" class="qhr-input" value="منظومة قاهرة للتصميم الذكي" placeholder="أدخل اسم المنظومة...">
+              <span class="qhr-helper-text">يستجيب لون التركيز للون التمييز (Accent Focus Ring)</span>
+            </div>
+
+            <div class="qhr-form-group">
+              <label class="qhr-label">المدرسة المعمارية المطبقة</label>
+              <select class="qhr-select">
+                <option selected>آرت ديكو سكندري / إمرالد كوزموبوليتان</option>
+                <option>كلاسيكي خديوي / سويسري تحريري</option>
+                <option>نوستالجيا روكسي / Y2K نيون سايبر</option>
+                <option>حداثة مينيمال / نيو كايرو ديجيتال</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Textarea Box -->
+          <div class="qhr-card">
+            <div class="qhr-form-group">
+              <label class="qhr-label">بيان التخصيص والملاحظات</label>
+              <textarea class="qhr-textarea" rows="4" placeholder="اكتب ملاحظات الهوية المعمارية هنا...">تم اعتماد الهوية الصارمة لأحياء القاهرة، مع تفعيل حزم التباين العالي (WCAG 2.1 AA) والتوافق 100% مع معايير التصدير الهندسية.</textarea>
+              <span class="qhr-helper-text">متوافق بالكامل مع الوضعين الليلي والنهاري</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage Section 4: Data Table & Canonical Pagination -->
+        <div class="stage-section-header">
+          <h2 class="stage-section-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg>
+            <span>جداول البيانات ووحدة التصفح المعتمدة</span>
+          </h2>
+        </div>
+
+        <div class="qhr-card" style="padding: 0; overflow: hidden;">
+          <table class="qhr-table" style="margin: 0; width: 100%;">
+            <thead>
+              <tr>
+                <th>اسم المكون</th>
+                <th>المعرف المعماري</th>
+                <th>المسار القياسي</th>
+                <th>الحالة</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 700;">البطاقة الإحصائية</td>
+                <td><code>card</code></td>
+                <td><code>contracts/components/card.yaml</code></td>
+                <td><span class="qhr-badge qhr-badge--success qhr-badge--xs">معتمد وموثق</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700;">وحدة تصفح الصفحات</td>
+                <td><code>pagination</code></td>
+                <td><code>contracts/components/pagination.yaml</code></td>
+                <td><span class="qhr-badge qhr-badge--success qhr-badge--xs">عالي التباين</span></td>
+              </tr>
+              <tr>
+                <td style="font-weight: 700;">مفتاح التبديل الثنائي</td>
+                <td><code>switch</code></td>
+                <td><code>contracts/components/switch.yaml</code></td>
+                <td><span class="qhr-badge qhr-badge--info qhr-badge--xs">تفاعلي كامل</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="padding: 12px 16px; border-block-start: 1px solid var(--qhr-border-subtle, var(--ts-border)); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <span style="font-size: 0.8rem; color: var(--qhr-content-muted, var(--ts-text-muted));">عرض 1 إلى 3 من أصل 39 عنصراً</span>
+            
+            <nav class="qhr-pagination qhr-pagination--sm" aria-label="تقسيم الصفحات">
+              <button type="button" class="qhr-pagination__btn" disabled>السابق</button>
+              <button type="button" class="qhr-pagination__btn is-active">1</button>
+              <button type="button" class="qhr-pagination__btn">2</button>
+              <button type="button" class="qhr-pagination__btn">3</button>
+              <button type="button" class="qhr-pagination__btn">التالي</button>
+            </nav>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ── 4. Luxury Developer Handoff Export Modal (Viewport Safe & Dual Mode) ─ -->
+  <div class="ts-modal-overlay" x-show="exportModalOpen" x-transition style="display: none;" @click.self="exportModalOpen = false" @keydown.escape.window="exportModalOpen = false" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle">
+    <div class="ts-modal-box">
+      <!-- Modal Header -->
+      <div class="ts-modal-header">
+        <div class="ts-modal-title-wrap">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span class="ts-modal-icon-badge">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </span>
+            <h3 id="exportModalTitle" class="ts-modal-title">تصدير مواصفات وكود الثيم</h3>
+            <span class="qhr-badge qhr-badge--xs" :class="currentMode === 'dark' ? 'qhr-badge--neutral' : 'qhr-badge--accent'" x-text="currentMode === 'dark' ? 'الوضع الليلي' : 'الوضع النهاري'"></span>
+          </div>
+          <p class="ts-modal-subtitle" x-text="exportTarget === 'canonical' ? ('الحزمة الرسمية المعتمدة · ' + currentTheme.name + ' (' + currentTheme.school + ')') : ('ثيم مخصص جديد للمطور · ' + customThemeName)"></p>
+        </div>
+        <button type="button" class="ts-modal-close-btn" @click="exportModalOpen = false" title="إغلاق النافذة (Esc)">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <!-- Export Target Mode Switcher (Canonical vs Custom) -->
+      <div class="ts-modal-target-strip">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span class="ts-strip-label">وضع التصدير:</span>
+          <div class="mode-switch-segmented">
+            <button type="button" class="mode-switch-btn" :class="{ 'is-active': exportTarget === 'canonical' }" @click="setExportTarget('canonical')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+              <span>ثيم رسمي معتمد (Canonical)</span>
+            </button>
+            <button type="button" class="mode-switch-btn" :class="{ 'is-active': exportTarget === 'custom' }" @click="setExportTarget('custom')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              <span>ثيم مخصص جديد (Custom Preset)</span>
+            </button>
+          </div>
+        </div>
+
+        <span class="qhr-badge qhr-badge--xs" :class="exportTarget === 'canonical' ? 'qhr-badge--primary' : 'qhr-badge--accent'" x-text="exportTarget === 'canonical' ? 'حزمة المنظومة الرسمية' : 'ثيم مستقل خاص'"></span>
+      </div>
+
+      <!-- Custom Theme Metadata Inputs (Active only in Custom Mode - Compact 3-column inline grid) -->
+      <div class="ts-custom-meta-strip" x-show="exportTarget === 'custom'" x-transition>
+        <div class="ts-meta-field">
+          <label>اسم الثيم المخصص</label>
+          <input type="text" class="ts-compact-input" x-model="customThemeName" @input="generateExportCode()" placeholder="مثال: جاردن سيتي - الجديد">
+        </div>
+        <div class="ts-meta-field">
+          <label>المعرف البرمجي (Slug / ID)</label>
+          <input type="text" class="ts-compact-input ts-font-mono" x-model="customThemeId" @input="generateExportCode()" placeholder="custom-garden-city" dir="ltr">
+        </div>
+        <div class="ts-meta-field">
+          <label>المطور / الاستوديو</label>
+          <input type="text" class="ts-compact-input" x-model="customAuthor" @input="generateExportCode()" placeholder="فريق واجهات الوكالة">
+        </div>
+      </div>
+
+      <!-- Format Switcher Tabs -->
+      <div class="export-format-nav">
+        <button type="button" class="export-format-btn" :class="{ 'is-active': exportFormat === 'css' }" @click="setExportFormat('css')">
+          <span class="fmt-pill fmt-pill--css">CSS</span>
+          <span>CSS Tokens</span>
+        </button>
+        <button type="button" class="export-format-btn" :class="{ 'is-active': exportFormat === 'yaml' }" @click="setExportFormat('yaml')">
+          <span class="fmt-pill fmt-pill--yaml">YAML</span>
+          <span>YAML Spec</span>
+        </button>
+        <button type="button" class="export-format-btn" :class="{ 'is-active': exportFormat === 'tailwind' }" @click="setExportFormat('tailwind')">
+          <span class="fmt-pill fmt-pill--tw">TW</span>
+          <span>Tailwind Config</span>
+        </button>
+        <button type="button" class="export-format-btn" :class="{ 'is-active': exportFormat === 'json' }" @click="setExportFormat('json')">
+          <span class="fmt-pill fmt-pill--json">JSON</span>
+          <span>JSON Tokens</span>
+        </button>
+      </div>
+
+      <!-- Code Box Area (IDE Window) -->
+      <div class="ts-code-body">
+        <div class="ts-code-header-bar">
+          <div class="ts-file-identity">
+            <div class="ide-dots">
+              <span class="ide-dot ide-dot--red"></span>
+              <span class="ide-dot ide-dot--yellow"></span>
+              <span class="ide-dot ide-dot--green"></span>
+            </div>
+            <span class="ts-filename" x-text="exportFileName"></span>
+            <span class="ts-file-badge" x-text="fileFormatMeta.badge"></span>
+          </div>
+          <div class="ts-file-stats">
+            <span class="ts-stat-chip" x-text="codeLinesCount + ' سطر'"></span>
+            <span class="ts-stat-chip" x-text="codeLengthBytes"></span>
+            <button type="button" class="ts-quick-copy-btn" @click="copyCode()" :title="codeCopied ? 'تم النسخ!' : 'نسخ سريع للحافظة'">
+              <svg x-show="!codeCopied" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+              <svg x-show="codeCopied" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span x-text="codeCopied ? 'تم النسخ' : 'نسخ سريع'"></span>
+            </button>
+          </div>
+        </div>
+        <pre class="ts-code-pre"><code x-text="generatedCode"></code></pre>
+      </div>
+
+      <!-- Modal Footer Actions -->
+      <div class="ts-modal-footer">
+        <div class="ts-footer-meta">
+          <span class="ts-integration-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            <span x-text="exportTarget === 'canonical' ? 'كود قياسي معتمد جاهز للتضمين المباشر في tokens/themes/' : 'كود مستقل جاهز للاستخدام المباشر في ملف CSS الخاص بمشروعك'"></span>
+          </span>
+        </div>
+
+        <div class="ts-footer-actions">
+          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" @click="exportModalOpen = false">إلغاء</button>
+          
+          <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--sm" @click="downloadCodeFile()" title="تحميل الملف إلى جهازك">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>تحميل الملف</span>
+          </button>
+
+          <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" @click="copyCode()" style="min-width: 125px;">
+            <svg x-show="!codeCopied" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            <svg x-show="codeCopied" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span x-text="codeCopied ? 'تم النسخ بنجاح!' : 'نسخ الكود'"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('cairoStudioApp', () => ({
+        currentMode: 'dark',
+        activeThemeId: 'zamalek',
+        activeTab: 'effects',
+        sidebarOpen: true,
+        viewportMode: 'desktop',
+
+        // Refined Luxury Export System State
+        exportModalOpen: false,
+        exportTarget: 'custom',
+        exportFormat: 'css',
+        exportFileName: 'qahera-custom-garden-city-dark.css',
+        customThemeName: 'جاردن سيتي - الجديد',
+        customThemeId: 'custom-garden-city',
+        customAuthor: 'فريق واجهات الوكالة',
+        codeCopied: false,
+        generatedCode: '',
+
+        get codeLengthBytes() {
+          const bytes = new Blob([this.generatedCode || '']).size;
+          if (bytes < 1024) return bytes + ' B';
+          return (bytes / 1024).toFixed(1) + ' KB';
+        },
+
+        get codeLinesCount() {
+          if (!this.generatedCode) return 0;
+          return this.generatedCode.split('\n').length;
+        },
+
+        get fileFormatMeta() {
+          switch(this.exportFormat) {
+            case 'css': return { badge: 'CSS 3.0', label: 'متغيرات CSS مخصصة (Custom Properties)' };
+            case 'yaml': return { badge: 'YAML 1.2', label: 'المواصفة المعمارية القياسية المعتمدة' };
+            case 'tailwind': return { badge: 'Tailwind v3/v4', label: 'إعدادات Tailwind Preset الممتدة' };
+            case 'json': return { badge: 'DTCG JSON', label: 'رموز W3C Design Tokens القياسية' };
+            default: return { badge: 'Code', label: 'ملف برمجي' };
+          }
+        },
+
+        async copyCode() {
+          if (!this.generatedCode) return;
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(this.generatedCode);
+            } else {
+              const ta = document.createElement('textarea');
+              ta.value = this.generatedCode;
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand('copy');
+              document.body.removeChild(ta);
+            }
+            this.codeCopied = true;
+            setTimeout(() => { this.codeCopied = false; }, 2400);
+          } catch(err) {
+            console.error('Failed to copy code to clipboard', err);
+          }
+        },
+
+        colors: {
+          bg: '#0B130E',
+          surface: '#121E17',
+          surfaceElevated: '#18271E',
+          text: '#F2F8F4',
+          textSecondary: '#9BB8A7',
+          border: 'rgba(255, 255, 255, 0.12)',
+          primary: '#2E7D5B',
+          primaryFg: '#FFFFFF',
+          secondary: '#18271E',
+          accent: '#F2C94C',
+        },
+
+        radius: {
+          boxes: '12px',
+          fields: '6px',
+          selectors: '9999px',
+        },
+
+        borderWidthRaw: 1,
+        borderWidth: '1px',
+        density: 'default',
+        elevationLevel: 'elevated',
+
+        // 7 Production Visual Effects with Granular Parameter Controls
+        effects: {
+          glow: true,
+          glowIntensity: 18,
+          glowOpacity: 45,
+
+          hardShadow: false,
+          shadowOffset: 5,
+
+          glass: true,
+          glassBlur: 18,
+          glassOpacity: 45,
+
+          scanlines: false,
+          scanlinesOpacity: 75,
+
+          grain: false,
+          grainOpacity: 14,
+
+          ambientMesh: true,
+          meshIntensity: 22,
+
+          accentBorders: false,
+          accentBorderWidth: 3
+        },
+
+        // The 12 Canonical Design System Themes
+        themes: [
+                      {
+        id: 'garden-city', name: 'جاردن سيتي',
+        rBoxes: '12px', rFields: '4px', rSel: '9999px', bw: 1,
+        effects: { glass: true, glassBlur: 20, glassOpacity: 50, ambientMesh: true, meshIntensity: 24, accentBorders: true, accentBorderWidth: 2 },
+        nightPrimary: '#72a1df', dayPrimary: '#2563EB',
+        night: { bg: '#081310', surface: '#0F1F1A', surfaceElevated: '#172C25', text: '#F0F9F5', border: '#8069f2', primary: '#72a1df', accent: '#ebc50a' },
+        day: { bg: '#F4F7FB', surface: '#FFFFFF', surfaceElevated: '#EBF1F9', text: '#09182B', border: '#C4D1EB', primary: '#2563EB', accent: '#D97706' }
+      },
+      {
+        id: 'zamalek',
+            name: 'الزمالك',
+            school: 'Diplomatic Mansions & Champagne Pearl Obsidian',
+            rBoxes: '12px', rFields: '6px', rSel: '9999px', bw: 1,
+            density: 'spacious', elevation: 'floating',
+            effects: { glass: true, glassBlur: 16, glassOpacity: 72, accentBorders: true, accentBorderWidth: 2, ambientMesh: true, meshIntensity: 22, glow: false, hardShadow: false, scanlines: false, grain: false },
+            night: { bg: '#09090B', surface: '#121216', surfaceElevated: '#1C1C24', text: '#F6F4EE', textSecondary: '#A39E93', border: 'rgba(229, 195, 120, 0.22)', primary: '#E5C378', primaryFg: '#09090B', secondary: '#1C1C24', accent: '#E2C37A' },
+            day: { bg: '#FBF9F5', surface: '#FFFFFF', surfaceElevated: '#F3EFE6', text: '#18181B', textSecondary: '#57534E', border: '#E7DFD3', primary: '#18181B', primaryFg: '#FFFFFF', secondary: '#F3EFE6', accent: '#B88A3B' }
+          },
+          {
+            id: 'downtown',
+            name: 'وسط البلد',
+            school: 'Khedivial Belle Époque & Parisian Heritage Patina',
+            rBoxes: '4px', rFields: '4px', rSel: '4px', bw: 1,
+            density: 'default', elevation: 'subtle',
+            effects: { grain: true, grainOpacity: 20, accentBorders: true, accentBorderWidth: 1, glass: false, glow: false, hardShadow: false, scanlines: false, ambientMesh: false },
+            night: { bg: '#161311', surface: '#211D19', surfaceElevated: '#2C2722', text: '#FAF6F0', textSecondary: '#C5B9AC', border: 'rgba(255, 255, 255, 0.12)', primary: '#C29B38', primaryFg: '#161311', secondary: '#2C2722', accent: '#9B3133' },
+            day: { bg: '#F6F3EC', surface: '#FFFFFF', surfaceElevated: '#ECE6DC', text: '#1C1917', textSecondary: '#574E45', border: '#DED6C7', primary: '#9E7728', primaryFg: '#FFFFFF', secondary: '#ECE6DC', accent: '#832729' }
+          },
+          {
+            id: 'heliopolis',
+            name: 'هليوبوليس',
+            school: 'Moorish Sandstone & Neo-Pharaonic Art Deco',
+            rBoxes: '8px', rFields: '6px', rSel: '6px', bw: 1,
+            density: 'default', elevation: 'elevated',
+            effects: { accentBorders: true, accentBorderWidth: 3, grain: true, grainOpacity: 12, glass: false, glow: false, hardShadow: false, scanlines: false, ambientMesh: false },
+            night: { bg: '#181411', surface: '#241D19', surfaceElevated: '#302621', text: '#FDF7F2', textSecondary: '#C9B5A5', border: 'rgba(255, 255, 255, 0.12)', primary: '#E0A96D', primaryFg: '#181411', secondary: '#302621', accent: '#C86D51' },
+            day: { bg: '#FAF6F0', surface: '#FFFFFF', surfaceElevated: '#F0E7DC', text: '#1F1813', textSecondary: '#5C4A3C', border: '#E2D3C1', primary: '#B45309', primaryFg: '#FFFFFF', secondary: '#F0E7DC', accent: '#9A3412' }
+          },
+          {
+            id: 'maadi',
+            name: 'المعادي',
+            school: 'Garden Suburb & Bio-Organic Serene Glass',
+            rBoxes: '16px', rFields: '8px', rSel: '9999px', bw: 1,
+            density: 'spacious', elevation: 'elevated',
+            effects: { glass: true, glassBlur: 14, glassOpacity: 65, ambientMesh: true, meshIntensity: 20, accentBorders: false, hardShadow: false, glow: false, scanlines: false, grain: false },
+            night: { bg: '#0E1512', surface: '#17221E', surfaceElevated: '#202E29', text: '#F0F5F2', textSecondary: '#9EB8AC', border: 'rgba(255, 255, 255, 0.12)', primary: '#52796F', primaryFg: '#FFFFFF', secondary: '#202E29', accent: '#84A98C' },
+            day: { bg: '#F4F8F6', surface: '#FFFFFF', surfaceElevated: '#E4ECE8', text: '#111D18', textSecondary: '#365347', border: '#C9D8D1', primary: '#0D9488', primaryFg: '#FFFFFF', secondary: '#E4ECE8', accent: '#059669' }
+          },
+          {
+            id: 'roxy',
+            name: 'روكسي',
+            school: 'Egyptian Cinema Nostalgia & Mid-Century Neon Retro',
+            rBoxes: '8px', rFields: '4px', rSel: '9999px', bw: 2,
+            density: 'default', elevation: 'flat',
+            effects: { glow: true, glowIntensity: 18, glowOpacity: 55, scanlines: true, scanlinesOpacity: 35, accentBorders: true, accentBorderWidth: 2, glass: false, hardShadow: false, grain: false, ambientMesh: false },
+            night: { bg: '#090B14', surface: '#121626', surfaceElevated: '#1A2035', text: '#FFFFFF', textSecondary: '#A5B4FC', border: 'rgba(0, 240, 255, 0.25)', primary: '#00F0FF', primaryFg: '#090B14', secondary: '#1A2035', accent: '#FF2A85' },
+            day: { bg: '#F8F9FD', surface: '#FFFFFF', surfaceElevated: '#EEF2FF', text: '#0F172A', textSecondary: '#3730A3', border: '#C7D2FE', primary: '#2563EB', primaryFg: '#FFFFFF', secondary: '#EEF2FF', accent: '#EC4899' }
+          },
+          {
+            id: 'sakakini',
+            name: 'السكاكيني',
+            school: 'Baroque Rococo & Dramatic Gothic Mystery',
+            rBoxes: '4px', rFields: '2px', rSel: '4px', bw: 1,
+            density: 'default', elevation: 'floating',
+            effects: { hardShadow: true, shadowOffset: 5, accentBorders: true, accentBorderWidth: 2, glass: false, glow: false, scanlines: false, grain: false, ambientMesh: false },
+            night: { bg: '#100D14', surface: '#1A1622', surfaceElevated: '#241F2E', text: '#F8F4FB', textSecondary: '#C2B6D4', border: 'rgba(255, 255, 255, 0.12)', primary: '#9B51E0', primaryFg: '#FFFFFF', secondary: '#241F2E', accent: '#D97706' },
+            day: { bg: '#FAF7FC', surface: '#FFFFFF', surfaceElevated: '#F0EAF7', text: '#181124', textSecondary: '#4F3E69', border: '#DFD3ED', primary: '#7C3AED', primaryFg: '#FFFFFF', secondary: '#F0EAF7', accent: '#B45309' }
+          },
+          {
+            id: 'hussein',
+            name: 'الحسين',
+            school: 'Historic Islamic Cairo & Gilded Damascene Manuscripts',
+            rBoxes: '4px', rFields: '4px', rSel: '4px', bw: 1,
+            density: 'default', elevation: 'subtle',
+            effects: { grain: true, grainOpacity: 25, accentBorders: true, accentBorderWidth: 2, glass: false, hardShadow: false, glow: false, scanlines: false, ambientMesh: false },
+            night: { bg: '#14100C', surface: '#1E1812', surfaceElevated: '#292019', text: '#FBF7F0', textSecondary: '#C9BBAA', border: 'rgba(255, 255, 255, 0.12)', primary: '#D4AF37', primaryFg: '#14100C', secondary: '#292019', accent: '#3B82F6' },
+            day: { bg: '#F9F5EC', surface: '#FFFFFF', surfaceElevated: '#EFE7D8', text: '#1C160F', textSecondary: '#5A4C3A', border: '#DFD2BE', primary: '#A16207', primaryFg: '#FFFFFF', secondary: '#EFE7D8', accent: '#1D4ED8' }
+          },
+          {
+            id: 'shubra',
+            name: 'شبرا',
+            school: 'Vibrant Neo-Brutalist & Raw Urban Pop',
+            rBoxes: '0px', rFields: '0px', rSel: '0px', bw: 2,
+            density: 'compact', elevation: 'flat',
+            effects: { hardShadow: true, shadowOffset: 6, glass: false, glow: false, scanlines: false, grain: false, ambientMesh: false, accentBorders: false },
+            night: { bg: '#0F0F12', surface: '#18181E', surfaceElevated: '#22222A', text: '#FFFFFF', textSecondary: '#E2E8F0', border: '#FFFFFF', primary: '#E11D48', primaryFg: '#FFFFFF', secondary: '#22222A', accent: '#D97706' },
+            day: { bg: '#FAF9F6', surface: '#FFFFFF', surfaceElevated: '#F1F0EA', text: '#000000', textSecondary: '#1E293B', border: '#000000', primary: '#E11D48', primaryFg: '#FFFFFF', secondary: '#F1F0EA', accent: '#D97706' }
+          },
+          {
+            id: 'zeitoun',
+            name: 'الزيتون',
+            school: 'Suburban Aristocratic Villas & Classic Heritage',
+            rBoxes: '8px', rFields: '6px', rSel: '8px', bw: 1,
+            density: 'default', elevation: 'subtle',
+            effects: { glass: false, hardShadow: false, glow: false, scanlines: false, grain: false, ambientMesh: false, accentBorders: false },
+            night: { bg: '#0B0F19', surface: '#131B2E', surfaceElevated: '#1E293B', text: '#F1F5F9', textSecondary: '#94A3B8', border: 'rgba(255, 255, 255, 0.12)', primary: '#3B82F6', primaryFg: '#FFFFFF', secondary: '#1E293B', accent: '#F59E0B' },
+            day: { bg: '#F8FAFC', surface: '#FFFFFF', surfaceElevated: '#F1F5F9', text: '#0F172A', textSecondary: '#334155', border: '#CBD5E1', primary: '#1D4ED8', primaryFg: '#FFFFFF', secondary: '#F1F5F9', accent: '#D97706' }
+          },
+          {
+            id: 'marg',
+            name: 'المرج',
+            school: 'Khedivial Royal Meadows & Dynasty Estates',
+            rBoxes: '14px', rFields: '8px', rSel: '9999px', bw: 1,
+            density: 'spacious', elevation: 'floating',
+            effects: { accentBorders: true, accentBorderWidth: 2, ambientMesh: true, meshIntensity: 18, glass: false, hardShadow: false, glow: false, scanlines: false, grain: false },
+            night: { bg: '#06130B', surface: '#0E2216', surfaceElevated: '#152F20', text: '#F2F8F4', textSecondary: '#9BB8A7', border: 'rgba(212, 175, 55, 0.28)', primary: '#158052', primaryFg: '#FFFFFF', secondary: '#152F20', accent: '#E5B83B' },
+            day: { bg: '#F2F7F4', surface: '#FFFFFF', surfaceElevated: '#E4ECE7', text: '#0A1E12', textSecondary: '#244833', border: '#D2E0D8', primary: '#0E5E3A', primaryFg: '#FFFFFF', secondary: '#E4ECE7', accent: '#D4AF37' }
+          },
+          {
+            id: 'new-cairo',
+            name: 'القاهرة الجديدة',
+            school: 'High-Tech Minimalist & Cyan Cyber Glass',
+            rBoxes: '16px', rFields: '8px', rSel: '9999px', bw: 1,
+            density: 'spacious', elevation: 'floating',
+            effects: { glass: true, glassBlur: 22, glassOpacity: 58, ambientMesh: true, meshIntensity: 35, glow: true, glowIntensity: 14, glowOpacity: 30, accentBorders: true, accentBorderWidth: 1, hardShadow: false, scanlines: false, grain: false },
+            night: { bg: '#07090E', surface: '#0D121D', surfaceElevated: '#141B2B', text: '#F0F4FC', textSecondary: '#94A3B8', border: 'rgba(56, 189, 248, 0.2)', primary: '#0284C7', primaryFg: '#FFFFFF', secondary: '#141B2B', accent: '#38BDF8' },
+            day: { bg: '#F0F5FA', surface: '#FFFFFF', surfaceElevated: '#E2ECF6', text: '#0B1320', textSecondary: '#334155', border: '#CBD9E7', primary: '#0284C7', primaryFg: '#FFFFFF', secondary: '#E2ECF6', accent: '#0EA5E9' }
+          }
+        ],
+
+        // Export Architecture State (Canonical vs Custom Developer Preset)
+        exportTarget: 'canonical', // 'canonical' | 'custom'
+        customThemeName: 'هوية الزمالك الفاخرة',
+        customThemeId: 'custom-zamalek',
+        customAuthor: 'فريق واجهات الوكالة',
+
+        get currentTheme() {
+          return this.themes.find(t => t.id === this.activeThemeId) || this.themes[0];
+        },
+
+        get codeLengthBytes() {
+          return this.generatedCode ? '~' + (new TextEncoder().encode(this.generatedCode).length / 1024).toFixed(1) + ' KB' : '0 KB';
+        },
+
+        init() {
+          this.syncPaletteForTheme(this.currentTheme);
+          this.updateStyles();
+        },
+
+        selectTheme(id) {
+          this.activeThemeId = id;
+          const t = this.currentTheme;
+          this.radius.boxes = t.rBoxes;
+          this.radius.fields = t.rFields;
+          this.radius.selectors = t.rSel;
+          this.borderWidthRaw = t.bw;
+          this.borderWidth = t.bw + 'px';
+          this.density = t.density || 'default';
+          this.elevationLevel = t.elevation || 'elevated';
+
+          // Apply Theme Signature Effects
+          if (t.effects) {
+            this.effects.glow = !!t.effects.glow;
+            if (t.effects.glowIntensity !== undefined) this.effects.glowIntensity = t.effects.glowIntensity;
+            if (t.effects.glowOpacity !== undefined) this.effects.glowOpacity = t.effects.glowOpacity;
+
+            this.effects.hardShadow = !!t.effects.hardShadow;
+            if (t.effects.shadowOffset !== undefined) this.effects.shadowOffset = t.effects.shadowOffset;
+
+            this.effects.glass = !!t.effects.glass;
+            if (t.effects.glassBlur !== undefined) this.effects.glassBlur = t.effects.glassBlur;
+            if (t.effects.glassOpacity !== undefined) this.effects.glassOpacity = t.effects.glassOpacity;
+
+            this.effects.scanlines = !!t.effects.scanlines;
+            if (t.effects.scanlinesOpacity !== undefined) this.effects.scanlinesOpacity = t.effects.scanlinesOpacity;
+
+            this.effects.grain = !!t.effects.grain;
+            if (t.effects.grainOpacity !== undefined) this.effects.grainOpacity = t.effects.grainOpacity;
+
+            this.effects.ambientMesh = !!t.effects.ambientMesh;
+            if (t.effects.meshIntensity !== undefined) this.effects.meshIntensity = t.effects.meshIntensity;
+
+            this.effects.accentBorders = !!t.effects.accentBorders;
+            if (t.effects.accentBorderWidth !== undefined) this.effects.accentBorderWidth = t.effects.accentBorderWidth;
+          }
+
+          // Update default custom preset labels
+          this.customThemeName = t.name + ' - مخصص';
+          this.customThemeId = 'custom-' + t.id;
+
+          this.syncPaletteForTheme(t);
+          this.updateStyles();
+        },
+
+        syncPaletteForTheme(t) {
+          const p = this.currentMode === 'dark' ? t.night : t.day;
+          this.colors.bg = p.bg;
+          this.colors.surface = p.surface;
+          this.colors.surfaceElevated = p.surfaceElevated;
+          this.colors.text = p.text;
+          this.colors.textSecondary = p.textSecondary;
+          this.colors.border = p.border;
+          this.colors.primary = p.primary;
+          this.colors.primaryFg = p.primaryFg;
+          this.colors.secondary = p.secondary;
+          this.colors.accent = p.accent;
+        },
+
+        setMode(m) {
+          this.currentMode = m;
+          document.documentElement.setAttribute('data-mode', m);
+          this.syncPaletteForTheme(this.currentTheme);
+          this.updateStyles();
+        },
+
+        resetToCurrentTheme() {
+          this.selectTheme(this.activeThemeId);
+        },
+
+        updateStyles() {
+          document.documentElement.setAttribute('data-theme', this.activeThemeId);
+          document.documentElement.setAttribute('data-mode', this.currentMode);
+
+          const styleEl = document.getElementById('themeStudioLiveStyles');
+          if (!styleEl) return;
+
+          // 1. Shadows & Elevation Computation
+          const elevationMap = {
+            flat: 'none',
+            subtle: this.currentMode === 'dark' ? '0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.24)' : '0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)',
+            elevated: this.currentMode === 'dark' ? '0 10px 30px -5px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0,0,0,0.3)' : '0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04)',
+            floating: this.currentMode === 'dark' ? '0 25px 50px -12px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.4)' : '0 25px 50px -12px rgba(0,0,0,0.15), 0 0 15px rgba(0,0,0,0.05)'
+          };
+
+          let shadow = elevationMap[this.elevationLevel] || elevationMap.elevated;
+          if (this.effects.hardShadow) {
+            const off = this.effects.shadowOffset;
+            shadow = this.currentMode === 'dark' 
+              ? `${off}px ${off}px 0px rgba(0, 0, 0, 0.95)` 
+              : `${off}px ${off}px 0px rgba(15, 23, 42, 0.9)`;
+          }
+
+          // 2. Neon Glow Integration with Dynamic Intensity & Opacity
+          if (this.effects.glow) {
+            const rad = this.effects.glowIntensity;
+            const op1 = this.effects.glowOpacity;
+            const op2 = Math.round(op1 * 0.4);
+            const glowAura = `0 0 ${rad}px color-mix(in srgb, ${this.colors.primary} ${op1}%, transparent), 0 0 ${rad * 2}px color-mix(in srgb, ${this.colors.primary} ${op2}%, transparent)`;
+            shadow = shadow && shadow !== 'none' ? `${shadow}, ${glowAura}` : glowAura;
+          }
+
+          // 3. Glassmorphism Surface, Specular Highlights & Blur Computation
+          let cardBg = this.colors.surface;
+          let cardBackdrop = 'none';
+          let cardBorder = this.colors.border;
+          let cardInnerShine = '';
+
+          if (this.effects.glass) {
+            const blurPx = this.effects.glassBlur;
+            const fillPct = this.effects.glassOpacity;
+            cardBackdrop = `blur(${blurPx}px) saturate(190%) contrast(92%)`;
+
+            if (this.currentMode === 'dark') {
+              cardBg = `color-mix(in srgb, ${this.colors.surface} ${fillPct}%, rgba(255, 255, 255, 0.04))`;
+              cardBorder = 'rgba(255, 255, 255, 0.18)';
+              cardInnerShine = 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.25), inset 0 0 0 1px rgba(255, 255, 255, 0.06)';
+            } else {
+              cardBg = `color-mix(in srgb, #ffffff ${fillPct}%, transparent)`;
+              cardBorder = 'rgba(255, 255, 255, 0.85)';
+              cardInnerShine = 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), inset 0 0 0 1px rgba(255, 255, 255, 0.5)';
+            }
+          } else if (this.effects.glow) {
+            cardBorder = `color-mix(in srgb, ${this.colors.primary} 70%, ${this.colors.border})`;
+          }
+
+          // Combine Specular Shine with Shadow
+          let finalCardShadow = shadow;
+          if (cardInnerShine) {
+            finalCardShadow = finalCardShadow && finalCardShadow !== 'none' ? `${cardInnerShine}, ${finalCardShadow}` : cardInnerShine;
+          }
+
+          // 4. Accent / Metallic Borders with Dynamic Width
+          const accentTopBorder = this.effects.accentBorders 
+            ? `border-block-start: ${this.effects.accentBorderWidth}px solid ${this.colors.accent} !important;` 
+            : '';
+
+          // 5. Stage Background with Ambient Mesh Intensity
+          let stageBackgroundRules = `background-color: ${this.colors.bg} !important; background-image: none !important;`;
+          if (this.effects.ambientMesh) {
+            const meshInt = this.effects.meshIntensity;
+            const meshInt2 = Math.round(meshInt * 0.8);
+            stageBackgroundRules = `
+              background-color: ${this.colors.bg} !important;
+              background-image: 
+                radial-gradient(circle at 12% 15%, color-mix(in srgb, ${this.colors.primary} ${meshInt}%, transparent) 0%, transparent 45%),
+                radial-gradient(circle at 88% 85%, color-mix(in srgb, ${this.colors.accent} ${meshInt2}%, transparent) 0%, transparent 50%) !important;
+            `;
+          }
+
+          // 6. Padding & Component Density Presets (Direct user control!)
+          const paddingMap = {
+            compact: {
+              card: '14px 16px',
+              btn: '6px 14px',
+              btnSm: '4px 10px',
+              btnLg: '8px 18px',
+              input: '6px 12px',
+              badge: '2px 7px',
+              table: '8px 12px'
+            },
+            default: {
+              card: '20px 24px',
+              btn: '10px 18px',
+              btnSm: '6px 12px',
+              btnLg: '12px 22px',
+              input: '10px 14px',
+              badge: '3px 9px',
+              table: '12px 16px'
+            },
+            spacious: {
+              card: '28px 32px',
+              btn: '14px 24px',
+              btnSm: '8px 16px',
+              btnLg: '16px 28px',
+              input: '14px 18px',
+              badge: '5px 12px',
+              table: '16px 20px'
+            },
+            luxury: {
+              card: '36px 40px',
+              btn: '18px 30px',
+              btnSm: '10px 20px',
+              btnLg: '20px 36px',
+              input: '18px 22px',
+              badge: '7px 15px',
+              table: '20px 26px'
+            }
+          };
+          const pad = paddingMap[this.density] || paddingMap.default;
+
+          const isBoxSharp = this.radius.boxes === '0px';
+          const isFieldSharp = this.radius.fields === '0px';
+          const isSelSharp = this.radius.selectors === '0px';
+
+          const cssCode = `
+            [data-theme="${this.activeThemeId}"] {
+              --qhr-surface-base: ${this.colors.bg} !important;
+              --qhr-surface-elevated: ${this.colors.surface} !important;
+              --qhr-surface-card: ${this.colors.surface} !important;
+              --qhr-surface-page: ${this.colors.bg} !important;
+              --qhr-surface-muted: ${this.colors.surfaceElevated} !important;
+              --qhr-color-bg: ${this.colors.bg} !important;
+              --qhr-color-surface: ${this.colors.surface} !important;
+              --qhr-color-surface-elevated: ${this.colors.surfaceElevated} !important;
+
+              --qhr-content-primary: ${this.colors.text} !important;
+              --qhr-content-secondary: ${this.colors.textSecondary} !important;
+              --qhr-text-primary: ${this.colors.text} !important;
+              --qhr-text-secondary: ${this.colors.textSecondary} !important;
+              --qhr-color-text-primary: ${this.colors.text} !important;
+              --qhr-color-text-secondary: ${this.colors.textSecondary} !important;
+
+              --qhr-border-subtle: ${cardBorder} !important;
+              --qhr-border-strong: ${cardBorder} !important;
+              --qhr-color-border: ${cardBorder} !important;
+
+              --qhr-color-primary: ${this.colors.primary} !important;
+              --qhr-color-primary-bg: ${this.colors.primary} !important;
+              --qhr-button-primary-background: ${this.colors.primary} !important;
+              --qhr-button-primary-foreground: ${this.colors.primaryFg} !important;
+              --qhr-color-primary-border: ${this.colors.primary} !important;
+              --qhr-color-primary-hover: color-mix(in srgb, ${this.colors.primary} 85%, black) !important;
+              --qhr-color-primary-fg: ${this.colors.primaryFg} !important;
+
+              --qhr-color-accent: ${this.colors.accent} !important;
+              --qhr-color-accent-fg: ${this.currentMode === 'dark' ? '#0B130E' : '#FFFFFF'} !important;
+              --qhr-ring-focus: color-mix(in srgb, ${this.colors.accent} 35%, transparent) !important;
+              --qhr-border-focus_ring: color-mix(in srgb, ${this.colors.accent} 35%, transparent) !important;
+
+              /* Core Canonical Radius Tokens (100% Component Alignment) */
+              --qhr-radius-box: ${this.radius.boxes} !important;
+              --qhr-radius-lg: ${this.radius.boxes} !important;
+              --qhr-radius-xl: ${this.radius.boxes} !important;
+
+              --qhr-radius-field: ${this.radius.fields} !important;
+              --qhr-radius-md: ${this.radius.fields} !important;
+              --qhr-radius-sm: ${this.radius.selectors} !important;
+              --qhr-radius-xs: ${isSelSharp ? '0px' : '4px'} !important;
+              --qhr-radius-selector: ${this.radius.selectors} !important;
+
+              --qhr-border-width: ${this.borderWidth} !important;
+              --qhr-shadow-box: ${finalCardShadow} !important;
+            }
+            .studio-stage {
+              ${stageBackgroundRules}
+              color: ${this.colors.text} !important;
+            }
+
+            /* 1. All Boxes, Cards & Containers (Strict Radius, Border-width & Padding) */
+            .qhr-card, .qhr-box, .qhr-card-group, .qhr-box-group,
+            .qhr-table, .qhr-table-container, .qhr-modal-card {
+              background: ${cardBg} !important;
+              backdrop-filter: ${cardBackdrop} !important;
+              -webkit-backdrop-filter: ${cardBackdrop} !important;
+              color: ${this.colors.text} !important;
+              border-color: ${cardBorder} !important;
+              border-radius: ${this.radius.boxes} !important;
+              border-width: ${this.borderWidth} !important;
+              padding: ${pad.card} !important;
+              box-shadow: ${finalCardShadow} !important;
+              box-sizing: border-box !important;
+              ${accentTopBorder}
+            }
+            .qhr-progress, .qhr-progress__bar {
+              border-radius: ${isBoxSharp ? '0px' : 'var(--qhr-radius-pill, 9999px)'} !important;
+            }
+
+            /* 2. All Controls, Buttons & Inputs (Strict Radius, Border-width & Padding) */
+            .qhr-btn {
+              border-radius: ${this.radius.fields} !important;
+              border-width: ${this.borderWidth} !important;
+              padding: ${pad.btn} !important;
+              box-sizing: border-box !important;
+            }
+            .qhr-btn--sm {
+              padding: ${pad.btnSm} !important;
+              border-radius: ${isFieldSharp ? '0px' : 'calc(' + this.radius.fields + ' * 0.75)'} !important;
+            }
+            .qhr-btn--lg {
+              padding: ${pad.btnLg} !important;
+              border-radius: ${isFieldSharp ? '0px' : this.radius.fields} !important;
+            }
+            ${isFieldSharp ? '.qhr-btn--pill { border-radius: 0px !important; }' : ''}
+
+            .qhr-input, .qhr-select, .qhr-textarea {
+              background-color: ${this.effects.glass ? (this.currentMode === 'dark' ? 'rgba(0, 0, 0, 0.28)' : 'rgba(255, 255, 255, 0.55)') : this.colors.surface} !important;
+              backdrop-filter: ${this.effects.glass ? 'blur(12px)' : 'none'} !important;
+              -webkit-backdrop-filter: ${this.effects.glass ? 'blur(12px)' : 'none'} !important;
+              color: ${this.colors.text} !important;
+              border-color: ${this.colors.border} !important;
+              border-radius: ${this.radius.fields} !important;
+              border-width: ${this.borderWidth} !important;
+              padding: ${pad.input} !important;
+              box-sizing: border-box !important;
+            }
+            .qhr-input:focus, .qhr-select:focus, .qhr-textarea:focus {
+              border-color: ${this.colors.accent} !important;
+              box-shadow: 0 0 0 3px color-mix(in srgb, ${this.colors.accent} 30%, transparent) !important;
+            }
+
+            /* 3. All Selectors, Badges, Chips & Checkboxes (Strict Radius & Padding) */
+            .qhr-badge {
+              border-radius: ${this.radius.selectors} !important;
+              border-width: ${this.borderWidth} !important;
+              padding: ${pad.badge} !important;
+              box-sizing: border-box !important;
+            }
+            .qhr-checkbox__box {
+              border-radius: ${isSelSharp ? '0px' : this.radius.selectors} !important;
+              border-width: ${this.borderWidth} !important;
+            }
+            ${isSelSharp ? `
+              .qhr-badge--pill, .qhr-chip--pill { border-radius: 0px !important; }
+              .qhr-switch__track, .qhr-switch__thumb, .qhr-switch__track::after { border-radius: 0px !important; }
+            ` : ''}
+
+            /* Table Padding & Border Width */
+            .qhr-table th, .qhr-table td {
+              padding: ${pad.table} !important;
+            }
+            .qhr-table {
+              border-width: ${this.borderWidth} !important;
+            }
+
+            .qhr-btn--primary {
+              background-color: ${this.colors.primary} !important;
+              color: ${this.colors.primaryFg} !important;
+              border-color: ${this.colors.primary} !important;
+            }
+            .qhr-btn--primary:hover {
+              background-color: color-mix(in srgb, ${this.colors.primary} 85%, black) !important;
+              border-color: color-mix(in srgb, ${this.colors.primary} 85%, black) !important;
+            }
+            .qhr-btn--outline {
+              border-color: ${this.colors.primary} !important;
+              color: ${this.colors.primary} !important;
+            }
+            .qhr-btn--ghost {
+              color: ${this.colors.primary} !important;
+            }
+            .qhr-badge--primary {
+              background-color: ${this.colors.primary} !important;
+              color: ${this.colors.primaryFg} !important;
+            }
+            .qhr-badge--accent {
+              background-color: ${this.colors.accent} !important;
+              color: ${this.currentMode === 'dark' ? '#0B130E' : '#FFFFFF'} !important;
+            }
+            .qhr-progress__bar {
+              background-color: ${this.colors.primary} !important;
+            }
+            .qhr-pagination__btn {
+              border-radius: ${this.radius.fields} !important;
+              border-width: ${this.borderWidth} !important;
+            }
+            .qhr-pagination__btn.is-active {
+              background-color: ${this.colors.primary} !important;
+              color: ${this.colors.primaryFg} !important;
+              border-color: ${this.colors.primary} !important;
+            }
+            .qhr-switch input:checked + .qhr-switch__track {
+              background-color: ${this.colors.primary} !important;
+            }
+            .qhr-checkbox input:checked + .qhr-checkbox__box {
+              background-color: ${this.colors.primary} !important;
+              border-color: ${this.colors.primary} !important;
+            }
+            .qhr-radio input:checked + .qhr-radio__dot {
+              border-color: ${this.colors.accent} !important;
+            }
+            .qhr-radio input:checked + .qhr-radio__dot::after {
+              background-color: ${this.colors.accent} !important;
+            }
+            ${this.effects.glow ? `
+            .qhr-btn--primary {
+              box-shadow: 0 0 ${Math.round(this.effects.glowIntensity * 0.8)}px color-mix(in srgb, ${this.colors.primary} ${this.effects.glowOpacity}%, transparent) !important;
+            }
+            .qhr-badge--primary {
+              box-shadow: 0 0 8px color-mix(in srgb, ${this.colors.primary} ${Math.round(this.effects.glowOpacity * 0.7)}%, transparent) !important;
+            }
+            ` : ''}
+            ${this.effects.hardShadow ? `
+            .qhr-btn:not(.qhr-btn--ghost):not(.qhr-btn--link) {
+              box-shadow: ${Math.round(this.effects.shadowOffset * 0.6)}px ${Math.round(this.effects.shadowOffset * 0.6)}px 0px rgba(0,0,0,0.85) !important;
+            }
+            ` : ''}
+            .qhr-table th {
+              background-color: ${cardBg} !important;
+              backdrop-filter: ${cardBackdrop} !important;
+              -webkit-backdrop-filter: ${cardBackdrop} !important;
+              color: ${this.colors.text} !important;
+              border-color: ${this.colors.border} !important;
+            }
+            .qhr-table td {
+              border-color: ${this.colors.border} !important;
+              color: ${this.colors.text} !important;
+            }
+          `;
+
+          styleEl.textContent = cssCode;
+
+          // Synchronize export code if modal is open
+          if (this.exportModalOpen) {
+            this.generateExportCode();
+          }
+        },
+
+        // Refined Handoff Export Engine
+        openExportModal(fmt = 'css') {
+          this.setExportFormat(fmt);
+          this.exportModalOpen = true;
+        },
+
+        setExportFormat(fmt) {
+          this.exportFormat = fmt;
+          this.codeCopied = false;
+          this.generateExportCode();
+        },
+
+        setExportTarget(target) {
+          this.exportTarget = target;
+          this.codeCopied = false;
+          this.generateExportCode();
+        },
+
+        generateExportCode() {
+          const t = this.currentTheme;
+          const m = this.currentMode;
+          const isCanonical = this.exportTarget === 'canonical';
+          
+          const themeId = isCanonical ? t.id : (this.customThemeId.trim() || 'custom-theme');
+          const themeTitle = isCanonical ? t.name : (this.customThemeName.trim() || 'Custom Theme');
+          const author = isCanonical ? 'Alwkala Studios / Qahera UI Kit Core' : (this.customAuthor.trim() || 'Frontend Team');
+          const baseReference = isCanonical ? 'Official Canonical Package' : ('Derived from Qahera ' + t.name + ' (' + t.id + ')');
+
+          if (this.exportFormat === 'css') {
+            this.exportFileName = isCanonical ? `qahera-theme-${themeId}-${m}.css` : `qahera-${themeId}-${m}.css`;
+            this.generatedCode = `/**
+ * Qahera UI Kit — ${isCanonical ? 'Authoritative Canonical Theme Specification' : 'Custom Developer Theme Preset'}
+ * Theme Name: ${themeTitle} (${themeId})
+ * School/Base: ${t.school}
+ * Provenance: ${baseReference}
+ * Author: ${author}
+ * Mode: ${m === 'dark' ? 'Dark Mode (الوضع الليلي)' : 'Day Mode (الوضع النهاري)'}
+ * Density: ${this.density} · Elevation: ${this.elevationLevel}
+ * Generated via Cairo Studio v1.1
+ */
+
+[data-theme="${themeId}"][data-mode="${m}"] {
+  /* Surfaces & Backgrounds */
+  --qhr-surface-base: ${this.colors.bg};
+  --qhr-surface-elevated: ${this.colors.surface};
+  --qhr-surface-card: ${this.colors.surface};
+  --qhr-surface-page: ${this.colors.bg};
+  --qhr-surface-muted: ${this.colors.surfaceElevated};
+
+  /* Content & Typography Tones */
+  --qhr-content-primary: ${this.colors.text};
+  --qhr-content-secondary: ${this.colors.textSecondary};
+  --qhr-text-primary: ${this.colors.text};
+  --qhr-text-secondary: ${this.colors.textSecondary};
+
+  /* Borders & Dividers */
+  --qhr-border-subtle: ${this.colors.border};
+  --qhr-border-strong: ${this.colors.border};
+  --qhr-color-border: ${this.colors.border};
+  --qhr-border-width: ${this.borderWidth};
+
+  /* Brand Colors & Actions */
+  --qhr-color-primary: ${this.colors.primary};
+  --qhr-color-primary-bg: ${this.colors.primary};
+  --qhr-color-primary-fg: ${this.colors.primaryFg};
+  --qhr-button-primary-background: ${this.colors.primary};
+  --qhr-button-primary-foreground: ${this.colors.primaryFg};
+  --qhr-color-secondary: ${this.colors.secondary};
+  --qhr-color-accent: ${this.colors.accent};
+  --qhr-color-accent-fg: ${m === 'dark' ? '#0B130E' : '#FFFFFF'};
+
+  /* Architectural Radii Matrix */
+  --qhr-radius-box: ${this.radius.boxes};
+  --qhr-radius-field: ${this.radius.fields};
+  --qhr-radius-selector: ${this.radius.selectors};
+  --qhr-radius-xl: ${this.radius.boxes};
+  --qhr-radius-lg: ${this.radius.boxes};
+  --qhr-radius-md: ${this.radius.fields};
+  --qhr-radius-sm: ${this.radius.selectors};
+
+  /* Density & Elevation */
+  --qhr-density: ${this.density};
+  --qhr-elevation-level: ${this.elevationLevel};
+
+  /* Signature Visual Effects */
+  --qhr-effect-glow: ${this.effects.glow};
+  --qhr-effect-glow-radius: ${this.effects.glowIntensity}px;
+  --qhr-effect-glow-opacity: ${this.effects.glowOpacity}%;
+  --qhr-effect-hard-shadow: ${this.effects.hardShadow};
+  --qhr-effect-shadow-offset: ${this.effects.shadowOffset}px;
+  --qhr-effect-glass: ${this.effects.glass};
+  --qhr-effect-glass-blur: ${this.effects.glassBlur}px;
+  --qhr-effect-glass-opacity: ${this.effects.glassOpacity}%;
+  --qhr-effect-scanlines: ${this.effects.scanlines};
+  --qhr-effect-scanlines-opacity: ${this.effects.scanlinesOpacity}%;
+  --qhr-effect-grain: ${this.effects.grain};
+  --qhr-effect-grain-opacity: ${this.effects.grainOpacity}%;
+  --qhr-effect-ambient-mesh: ${this.effects.ambientMesh};
+  --qhr-effect-mesh-intensity: ${this.effects.meshIntensity}%;
+  --qhr-effect-accent-borders: ${this.effects.accentBorders};
+  --qhr-effect-accent-border-width: ${this.effects.accentBorderWidth}px;
+}
+`;
+          } else if (this.exportFormat === 'yaml') {
+            this.exportFileName = isCanonical ? `qahera-theme-${themeId}.yaml` : `${themeId}.yaml`;
+            this.generatedCode = `# ─────────────────────────────────────────────────────────────
+# Qahera UI Kit — ${isCanonical ? 'Canonical Theme Specification (YAML 1.2 Authoritative)' : 'Custom Developer Theme Preset'}
+# ─────────────────────────────────────────────────────────────
+name: "${themeTitle}"
+id: "${themeId}"
+type: "${isCanonical ? 'canonical' : 'custom_preset'}"
+provenance: "${baseReference}"
+author: "${author}"
+school: "${t.school}"
+version: "1.0.0"
+mode_parity: true
+rtl_native: true
+
+metrics:
+  density: "${this.density}"
+  elevation: "${this.elevationLevel}"
+  border_width: "${this.borderWidth}"
+
+radii:
+  box: "${this.radius.boxes}"
+  field: "${this.radius.fields}"
+  selector: "${this.radius.selectors}"
+
+modes:
+  night:
+    surface:
+      base: "${this.colors.bg}"
+      elevated: "${this.colors.surface}"
+      card: "${this.colors.surface}"
+    content:
+      primary: "${this.colors.text}"
+      secondary: "${this.colors.textSecondary}"
+    brand:
+      primary: "${this.colors.primary}"
+      primary_fg: "${this.colors.primaryFg}"
+      accent: "${this.colors.accent}"
+      border: "${this.colors.border}"
+
+effects:
+  neon_glow:
+    enabled: ${this.effects.glow}
+    intensity: "${this.effects.glowIntensity}px"
+    opacity: ${this.effects.glowOpacity}%
+  hard_shadow:
+    enabled: ${this.effects.hardShadow}
+    offset: "${this.effects.shadowOffset}px"
+  glassmorphism:
+    enabled: ${this.effects.glass}
+    blur: "${this.effects.glassBlur}px"
+    fill: ${this.effects.glassOpacity}%
+  scanlines:
+    enabled: ${this.effects.scanlines}
+    opacity: ${this.effects.scanlinesOpacity}%
+  tactile_grain:
+    enabled: ${this.effects.grain}
+    opacity: ${this.effects.grainOpacity}%
+  ambient_mesh:
+    enabled: ${this.effects.ambientMesh}
+    intensity: ${this.effects.meshIntensity}%
+  accent_borders:
+    enabled: ${this.effects.accentBorders}
+    width: "${this.effects.accentBorderWidth}px"
+`;
+          } else if (this.exportFormat === 'tailwind') {
+            this.exportFileName = 'tailwind.config.js';
+            this.generatedCode = `/** @type {import('tailwindcss').Config} */
+// Qahera UI Kit — ${isCanonical ? 'Canonical Theme Integration' : 'Custom Developer Theme Integration'}
+// Target: ${themeTitle} (${themeId})
+
+module.exports = {
+  darkMode: ['class', '[data-mode="dark"]'],
+  theme: {
+    extend: {
+      colors: {
+        '${themeId}': {
+          bg: '${this.colors.bg}',
+          surface: '${this.colors.surface}',
+          'surface-elevated': '${this.colors.surfaceElevated}',
+          primary: '${this.colors.primary}',
+          'primary-fg': '${this.colors.primaryFg}',
+          secondary: '${this.colors.secondary}',
+          accent: '${this.colors.accent}',
+          border: '${this.colors.border}',
+          text: '${this.colors.text}',
+          'text-secondary': '${this.colors.textSecondary}'
+        }
+      },
+      borderRadius: {
+        '${themeId}-box': '${this.radius.boxes}',
+        '${themeId}-field': '${this.radius.fields}',
+        '${themeId}-selector': '${this.radius.selectors}'
+      },
+      borderWidth: {
+        '${themeId}': '${this.borderWidth}'
+      }
+    }
+  },
+  plugins: []
+};
+`;
+          } else if (this.exportFormat === 'json') {
+            this.exportFileName = isCanonical ? `qahera-theme-${themeId}.json` : `${themeId}-tokens.json`;
+            this.generatedCode = JSON.stringify({
+              "$schema": "https://qahera.alwkala.com/schemas/tokens.schema.json",
+              "name": themeTitle,
+              "id": themeId,
+              "type": isCanonical ? "canonical" : "custom_preset",
+              "provenance": baseReference,
+              "author": author,
+              "density": this.density,
+              "elevation": this.elevationLevel,
+              "borderWidth": this.borderWidth,
+              "color": {
+                "background": { "$value": this.colors.bg, "$type": "color" },
+                "surface": { "$value": this.colors.surface, "$type": "color" },
+                "primary": { "$value": this.colors.primary, "$type": "color" },
+                "primaryForeground": { "$value": this.colors.primaryFg, "$type": "color" },
+                "accent": { "$value": this.colors.accent, "$type": "color" },
+                "border": { "$value": this.colors.border, "$type": "color" },
+                "textPrimary": { "$value": this.colors.text, "$type": "color" },
+                "textSecondary": { "$value": this.colors.textSecondary, "$type": "color" }
+              },
+              "borderRadius": {
+                "box": { "$value": this.radius.boxes, "$type": "dimension" },
+                "field": { "$value": this.radius.fields, "$type": "dimension" },
+                "selector": { "$value": this.radius.selectors, "$type": "dimension" }
+              },
+              "effects": {
+                "glow": { "$value": this.effects.glow, "intensity": this.effects.glowIntensity, "opacity": this.effects.glowOpacity },
+                "hardShadow": { "$value": this.effects.hardShadow, "offset": this.effects.shadowOffset },
+                "glass": { "$value": this.effects.glass, "blur": this.effects.glassBlur, "opacity": this.effects.glassOpacity },
+                "scanlines": { "$value": this.effects.scanlines, "opacity": this.effects.scanlinesOpacity },
+                "grain": { "$value": this.effects.grain, "opacity": this.effects.grainOpacity },
+                "ambientMesh": { "$value": this.effects.ambientMesh, "intensity": this.effects.meshIntensity },
+                "accentBorders": { "$value": this.effects.accentBorders, "width": this.effects.accentBorderWidth }
+              }
+            }, null, 2);
+          }
+        },
+
+        downloadCodeFile() {
+          const blob = new Blob([this.generatedCode], { type: 'text/plain;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = this.exportFileName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }
+      }));
+    });
+  </script>
+</body>
+</html>

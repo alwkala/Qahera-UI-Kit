@@ -1,0 +1,73 @@
+component: Dock
+name: dock
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Bottom-anchored mobile navigation bar offering thumb-accessible primary destinations and action shortcuts"
+  visual_role: "Handheld mobile and tablet bottom navigation dock"
+  density: "compact"
+  preferred_when:
+    - "Primary mobile app and PWA bottom bar navigation"
+    - "Responsive viewport adaptations for 3 to 5 core destinations"
+    - "Floating action capsules at screen bottom"
+  avoid_when:
+    - "Desktop sidebars with many deep links"
+    - "Complex nested category trees"
+
+base:
+  display: flex
+  align-items: center
+  justify-content: space-around
+  position: fixed
+  inset-inline: 0
+  inset-block-end: 0
+  min-height: "3.75rem"
+  background-color: "{color.surface.elevated}"
+  border-block-start: "1px solid {color.border.subtle}"
+  padding-inline: "{space.4}"
+  padding-block-end: "env(safe-area-inset-bottom, 8px)"
+  z-index: 100
+
+variants:
+  default:
+    width: 100%
+  fixed:
+    position: fixed
+    inset-inline: 0
+    inset-block-end: 0
+  floating:
+    position: fixed
+    inset-inline-start: 50%;
+    transform: "translateX(-50%)"
+    inset-block-end: "{space.4}"
+    width: "min(92vw, 480px)"
+    border-radius: "{radius.full}"
+    box-shadow: "{shadow.xl}"
+  rounded:
+    border-radius: "{radius.xl} {radius.xl} 0 0"
+  pills:
+    gap: "{space.2}"
+  glass:
+    background-color: "{color.surface.glass}"
+    backdrop-filter: "blur(20px)"
+  center-fab:
+    position: relative
+  luxury-gold:
+    border-block-start: "2px solid {color.gold.500}"
+
+sizes:
+  sm:
+    min-height: "3.25rem"
+  md:
+    min-height: "3.75rem"
+  lg:
+    min-height: "4.25rem"
+
+tokens:
+  - --qhr-surface-base
+  - --qhr-surface-elevated
+  - --qhr-content-primary
+  - --qhr-content-secondary
+  - --qhr-border-subtle
+  - --qhr-color-primary-500

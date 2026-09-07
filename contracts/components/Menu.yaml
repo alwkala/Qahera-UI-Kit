@@ -1,0 +1,82 @@
+name: Menu
+category: navigation
+purpose: >
+  Displays a vertical or horizontal structured list of navigational links, supporting nested submenus, section headers, badges, icons, and keyboard navigation.
+
+anatomy:
+  - root
+  - item
+  - link
+  - icon
+  - label
+  - badge
+  - title
+  - submenu
+  - submenu-toggle
+  - divider
+
+variants:
+  - default
+  - vertical
+  - horizontal
+  - compact
+  - bordered
+  - pills
+  - rounded
+  - khedivial
+  - brutalist
+
+sizes:
+  - sm
+  - md
+  - lg
+
+states:
+  - default
+  - active
+  - hover
+  - focus
+  - disabled
+
+tone:
+  - default
+  - primary
+  - dark
+  - gold
+  - surface
+
+slots:
+  - default
+  - icon
+  - badge
+  - submenu
+
+accessibility:
+  role: menu
+  keyboard:
+    ArrowDown: "Navigates to next menu item"
+    ArrowUp: "Navigates to previous menu item"
+    ArrowRight: "Opens active submenu (in LTR) or closes it (in RTL)"
+    ArrowLeft: "Closes active submenu (in LTR) or opens it (in RTL)"
+    Enter: "Activates link or toggles submenu"
+    Space: "Activates link or toggles submenu"
+  focus: "Visible focus ring on active and focused menu links"
+  aria:
+    - aria-label: "Navigation Menu"
+    - aria-expanded: "Indicates whether a nested submenu is open"
+    - aria-current: "Identifies current active page or route"
+
+behavior:
+  collapsible: true
+  keyboard_nav: true
+
+ai:
+  description: "Vertical or horizontal list of links for sidebars, cards, drawers, or embedded navigation surfaces"
+  use_when:
+    - "Sidebar navigation in dashboards and administrative consoles"
+    - "Nested link hierarchies with collapsible submenus and section headers"
+    - "Compact horizontal action strips or breadcrumb-adjacent menus"
+  avoid_when:
+    - "Primary top-level site header with branding and search (use Navbar instead)"
+    - "Wide multi-column dropdowns with promotional cards (use Megamenu instead)"
+    - "Bottom-screen thumb navigation on mobile devices (use Dock instead)"

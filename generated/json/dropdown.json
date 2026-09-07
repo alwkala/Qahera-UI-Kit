@@ -1,0 +1,112 @@
+{
+  "id": "dropdown",
+  "name": "Dropdown",
+  "component": "Dropdown",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "trigger-button",
+      "menu-container",
+      "menu-header",
+      "menu-divider",
+      "menu-item",
+      "item-icon",
+      "item-label",
+      "item-badge",
+      "separator"
+    ],
+    "variants": [
+      "default"
+    ],
+    "sizes": [
+      "sm",
+      "md"
+    ],
+    "states": [
+      "closed",
+      "open"
+    ],
+    "slots": [
+      "start",
+      "default"
+    ],
+    "accessibility": {
+      "role": "menu",
+      "keyboard": {
+        "ArrowDown": "Focuses next menu item",
+        "ArrowUp": "Focuses previous menu item",
+        "Home": "Focuses first menu item",
+        "End": "Focuses last menu item",
+        "Escape": "Closes menu and returns focus to trigger",
+        "Enter": "Activates selected menu item"
+      },
+      "focus": "Trigger has focus; active item highlighted on open",
+      "aria": [
+        {
+          "aria-haspopup": "menu"
+        },
+        {
+          "aria-expanded": "when open"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/dropdown.yaml",
+    "base": {
+      "display": "flex",
+      "flex-direction": "column",
+      "position": "absolute",
+      "z-index": 50,
+      "min-width": "180px",
+      "background-color": "{color.surface.elevated}",
+      "border": "1px solid {color.border.subtle}",
+      "border-radius": "{radius.md}",
+      "box-shadow": "{shadow.lg}",
+      "padding": "{space.1}"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.elevated}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "min-width": "140px",
+        "font-size": "{text.xs}"
+      },
+      "md": {
+        "min-width": "180px",
+        "font-size": "{text.sm}"
+      }
+    },
+    "states": {
+      "closed": {
+        "display": "none"
+      },
+      "open": {
+        "display": "flex"
+      }
+    }
+  },
+  "behavior": {
+    "file": "behavior/dropdown.js",
+    "moduleName": "dropdown"
+  },
+  "ai": {
+    "purpose": "Displays a contextual floating menu revealing secondary actions or navigation links.",
+    "whenToUse": [
+      "User profile menu in headers",
+      "Table row actions (kebab menu ...)"
+    ],
+    "avoid": [
+      "Form field value selection (use Select)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Dropdown.yaml"
+  }
+}

@@ -1,0 +1,14 @@
+<!-- Qahera UI Kit — HTMX Progress Bar Fragment (Static / Mock) -->
+<div 
+  class="qhr-progress qhr-progress--md" 
+  role="progressbar" 
+  aria-valuenow="45" 
+  aria-valuemin="0" 
+  aria-valuemax="100"
+  hx-get="/api/task/progress"
+  hx-trigger="every 1.5s"
+  hx-target="this"
+  hx-swap="outerHTML"
+>
+  <div class="qhr-progress-bar" style="width: 45%;"></div>
+</div>

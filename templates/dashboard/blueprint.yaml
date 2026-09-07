@@ -1,0 +1,30 @@
+id: template-dashboard
+name: Executive & Operational Dashboard
+category: dashboard
+purpose: >
+  Provides birds-eye telemetry, primary KPI metrics, recent activity records, and rapid navigation shortcuts.
+
+patterns:
+  - dashboard-stat
+  - data-table-toolbar
+  - pagination
+
+components:
+  - card
+  - badge
+  - table
+  - button
+  - select
+  - input
+
+sections:
+  - metric_strip: "Grid of 4 dashboard-stat cards (Revenue, Active Users, Conversions, Server Load)"
+  - main_content: "Primary analytics view and recent operations data table"
+  - quick_actions: "Shortcuts for standard administrative workflows"
+
+ai:
+  purpose: "Central dashboard screen for executive summaries and operational health"
+  use_when:
+    - "Logged-in administrative home screens"
+  avoid:
+    - "Public unauthenticated landing pages"

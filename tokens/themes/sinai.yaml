@@ -1,0 +1,40 @@
+version: 1.0.0
+name: sinai-mineral
+description: "Sinai Theme — Desert Mineral & Raw Materiality (Inspired by Granite Peaks, Midnight Skies & St. Catherine)"
+school: "Desert Mineral / Raw Materiality"
+region: "Sinai Peninsula"
+
+overrides:
+  surface:
+    base: "#0B0E14"
+    elevated: "#141924"
+    muted: "#1E2536"
+    overlay: "rgba(11, 14, 20, 0.88)"
+  content:
+    primary: "#F8FAFC"
+    secondary: "#CBD5E1"
+    gold: "#F59E0B"
+    granite: "#F43F5E"
+    muted: "#64748B"
+  border:
+    subtle: "rgba(245, 158, 11, 0.18)"
+    strong: "rgba(245, 158, 11, 0.40)"
+  color:
+    primary:
+      bg: "#D97706"
+      fg: "#0B0E14"
+      border: "#D97706"
+      hover: "#F59E0B"
+    secondary:
+      bg: "#141924"
+      fg: "#F8FAFC"
+      border: "rgba(244, 63, 94, 0.25)"
+      hover: "#1E2536"
+    accent:
+      bg: "#BE185D"
+      fg: "#FFFFFF"
+  radius:
+    box: "8px"
+    field: "6px"
+    selector: "8px"
+  border_width: "1px"

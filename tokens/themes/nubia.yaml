@@ -1,0 +1,41 @@
+version: 1.0.0
+name: nubian-vernacular
+description: "Nubia Theme — Vernacular Claymorphism & Organic Mudbrick (Inspired by West Suhail & Nile Adobe Domes)"
+school: "Vernacular Claymorphism / Folkloric Organic"
+region: "Nubia / Aswan"
+
+overrides:
+  surface:
+    base: "#120E0A"
+    elevated: "#1D1610"
+    muted: "#2A2017"
+    overlay: "rgba(18, 14, 10, 0.88)"
+  content:
+    primary: "#FFFDF7"
+    secondary: "#E8D8C3"
+    accent: "#EAB308"
+    cobalt: "#3B82F6"
+    terracotta: "#EA580C"
+    muted: "#A38F78"
+  border:
+    subtle: "rgba(234, 88, 12, 0.20)"
+    strong: "rgba(234, 88, 12, 0.45)"
+  color:
+    primary:
+      bg: "#EA580C"
+      fg: "#FFFFFF"
+      border: "#EA580C"
+      hover: "#F97316"
+    secondary:
+      bg: "#1D1610"
+      fg: "#FFFDF7"
+      border: "rgba(59, 130, 246, 0.35)"
+      hover: "#2A2017"
+    accent:
+      bg: "#2563EB"
+      fg: "#FFFFFF"
+  radius:
+    box: "20px"
+    field: "14px"
+    selector: "9999px"
+  border_width: "1px"

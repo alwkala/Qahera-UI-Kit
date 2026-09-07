@@ -1,0 +1,198 @@
+{
+  "id": "navbar",
+  "name": "Navbar",
+  "component": "Navbar",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "container",
+      "brand-logo",
+      "brand-title",
+      "navigation-list",
+      "nav-item",
+      "nav-link",
+      "dropdown-menu",
+      "submenu-item",
+      "search-capsule",
+      "indicator-badge",
+      "actions-group",
+      "hamburger-toggle",
+      "mobile-drawer",
+      "backdrop"
+    ],
+    "variants": [
+      "default",
+      "transparent",
+      "glass",
+      "title-only",
+      "title-icon",
+      "dual-icons",
+      "with-submenus",
+      "with-search",
+      "with-indicator",
+      "center-logo",
+      "responsive-center",
+      "drawer-collapse",
+      "school-art-deco",
+      "school-masthead",
+      "school-brutalist",
+      "school-floating-pill",
+      "school-cyber-terminal",
+      "school-heritage"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "states": [
+      "default",
+      "mobile-open",
+      "dropdown-open"
+    ],
+    "slots": [
+      "start",
+      "default",
+      "end",
+      "drawer"
+    ],
+    "accessibility": {
+      "role": "navigation",
+      "keyboard": {
+        "Escape": "Closes active submenus and mobile navigation drawer",
+        "Tab": "Cycles through header links and controls",
+        "ArrowDown": "Opens and navigates submenu links"
+      },
+      "focus": "Visible outline ring around active links and interactive buttons",
+      "aria": [
+        {
+          "aria-label": "Main Navigation"
+        },
+        {
+          "aria-expanded": "Reflects open/closed state of submenus and mobile drawer"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/navbar.yaml",
+    "base": {
+      "display": "flex",
+      "width": "100%",
+      "align-items": "center",
+      "justify-content": "space-between",
+      "background-color": "{color.surface.base}",
+      "border-bottom": "1px solid {color.border.subtle}",
+      "z-index": 40,
+      "transition-duration": "{duration.fast}",
+      "transition-timing-function": "{ease.standard}"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.base}"
+      },
+      "transparent": {
+        "background-color": "transparent",
+        "border-bottom": "none"
+      },
+      "glass": {
+        "background-color": "{color.surface.glass}",
+        "backdrop-filter": "blur(16px)"
+      },
+      "title-only": {
+        "justify-content": "center"
+      },
+      "title-icon": {
+        "gap": "{space.4}"
+      },
+      "dual-icons": {
+        "justify-content": "space-between"
+      },
+      "with-submenus": {
+        "position": "relative"
+      },
+      "with-search": {
+        "gap": "{space.4}"
+      },
+      "with-indicator": {
+        "position": "relative"
+      },
+      "center-logo": {
+        "justify-content": "space-between"
+      },
+      "responsive-center": {
+        "justify-content": "space-between"
+      },
+      "drawer-collapse": {
+        "position": "sticky"
+      },
+      "school-art-deco": {
+        "border-bottom": "2px solid {color.gold.500}"
+      },
+      "school-masthead": {
+        "flex-direction": "column",
+        "border-bottom": "2px solid {color.border.strong}"
+      },
+      "school-brutalist": {
+        "border-bottom": "3px solid {color.content.primary}",
+        "box-shadow": "0 4px 0 {color.content.primary}"
+      },
+      "school-floating-pill": {
+        "border-radius": "9999px",
+        "margin-inline": "auto"
+      },
+      "school-cyber-terminal": {
+        "font-family": "{font.mono}",
+        "border-bottom": "1px solid {color.cyan.500}"
+      },
+      "school-heritage": {
+        "border-bottom": "1px solid {color.amber.600}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": "{space.12}",
+        "padding-inline": "{space.4}"
+      },
+      "md": {
+        "height": "{space.16}",
+        "padding-inline": "{space.6}"
+      },
+      "lg": {
+        "height": "{space.20}",
+        "padding-inline": "{space.8}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      },
+      "mobile-open": {
+        "overflow": "hidden"
+      },
+      "dropdown-open": {
+        "z-index": 50
+      }
+    }
+  },
+  "behavior": {
+    "file": "behavior/navbar.js",
+    "moduleName": "navbar"
+  },
+  "ai": {
+    "purpose": "Displays the primary application and page header hosting branding, navigation links, submenus, search, indicators, and actions across diverse architectural archetypes.",
+    "whenToUse": [
+      "Top-level layout header for web applications, editorial portals, or marketing websites",
+      "Mobile app bar with dual icons or search capsule"
+    ],
+    "avoid": [
+      "Isolated single-screen landing pages without external links"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Navbar.yaml"
+  }
+}

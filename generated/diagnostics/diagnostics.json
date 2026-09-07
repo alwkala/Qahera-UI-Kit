@@ -1,0 +1,10 @@
+{
+  "schema": "qahera.diagnostics/v1",
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "info": 0,
+    "total": 0
+  },
+  "items": []
+}

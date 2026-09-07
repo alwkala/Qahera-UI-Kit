@@ -1,0 +1,1212 @@
+<!-- Qahera UI Kit — Authoritative Dropdown Showcase & Gallery -->
+<div style="display: flex; flex-direction: column; gap: var(--qhr-space-10, 40px); padding: var(--qhr-space-6, 24px);">
+
+  <!-- 1. Dropdown Basic Card -->
+  <section style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); padding: var(--qhr-space-8, 32px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);">
+    <div style="margin-block-end: 28px;">
+      <h3 style="font-family: var(--qhr-font-heading); font-size: 1.25rem; font-weight: 700; margin: 0 0 6px 0; color: var(--qhr-content-primary, #0f172a);">Dropdown Basic</h3>
+      <p style="margin: 0; font-size: 0.875rem; color: var(--qhr-text-muted, #64748b);">Dropdowns are toggleable, contextual overlays for displaying lists of links and more.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px 24px;">
+      
+      <!-- 1.1 Default -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">Default</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">A basic example</div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">إجراء أول (Action)</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">إجراء ثانٍ (Another action)</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">خيار إضافي (Something else)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.2 Alignment (dropdown-menu-end) -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">Alignment</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.dropdown-menu-end</code> applies to <code style="font-size: 0.78rem;">.dropdown-menu</code>
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--md" style="background-color: #0f172a; color: #ffffff;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu qhr-dropdown-menu--end" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">محاذاة نهائية (End Aligned)</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">خيار الحساب (Profile)</a>
+              <div class="qhr-dropdown-divider"></div>
+              <a href="#" class="qhr-dropdown-item qhr-dropdown-item--destructive" role="menuitem">تسجيل الخروج</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.3 Dropup -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">Dropup</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.dropup</code> replaces with <code style="font-size: 0.78rem;">.dropdown</code>
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown dropup" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--success qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropup</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">قائمة منبثقة لأعلى</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">خيار ثانٍ</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">خيار ثالث</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.4 Dropup alignment -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">Dropup alignment</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.dropdown-menu-end</code> applies to <code style="font-size: 0.78rem;">.dropdown-menu</code>
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown dropup" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--md" style="background-color: var(--qhr-color-purple-600, #7c3aed); color: #ffffff;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropup</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu qhr-dropdown-menu--end" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">منبثقة لأعلى بمحاذاة نهاية</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">خيار الإعدادات</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">خيار إضافي</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.5 No caret -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">No caret</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.no-caret</code> applies to <code style="font-size: 0.78rem;">.dropdown-toggle</code>
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--warning qhr-btn--md no-caret" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">بدون مؤشر سهم</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">إجراء ثانٍ</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">إجراء ثالث</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.6 With icon -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">With icon</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.icon</code> applies to <code style="font-size: 0.78rem;">.dropdown-toggle</code>
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--danger qhr-btn--md" aria-label="قائمة منسدلة مع أيقونة الإعدادات" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">إعدادات عامة</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">إعدادات الخصوصية</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">المظهر والسمات</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. Dropdown Menu Variations Card -->
+  <section style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); padding: var(--qhr-space-8, 32px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);">
+    <div style="margin-block-end: 28px;">
+      <h3 style="font-family: var(--qhr-font-heading); font-size: 1.25rem; font-weight: 700; margin: 0 0 6px 0; color: var(--qhr-content-primary, #0f172a);">Dropdown menu</h3>
+      <p style="margin: 0; font-size: 0.875rem; color: var(--qhr-text-muted, #64748b);">Dropdowns are toggleable, contextual overlays for displaying lists of links and more.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px 24px;">
+      
+      <!-- 2.1 Header -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">Header</div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--primary qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <div class="qhr-dropdown-header">قائمة الحساب والتخصيص</div>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">الملف الشخصي</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">تفضيلات النظام</a>
+              <div class="qhr-dropdown-header">إدارة البيانات</div>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">تصدير التقارير</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.2 Divider -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">Divider</div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--success qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">عرض المشروعات</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">إضافة عضو جديد</a>
+              <div class="qhr-dropdown-divider"></div>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">إعدادات متقدمة</a>
+              <div class="qhr-dropdown-divider"></div>
+              <a href="#" class="qhr-dropdown-item qhr-dropdown-item--destructive" role="menuitem">أرشفة المشروع</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.3 With icon -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">With icon</div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--secondary qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span class="qhr-dropdown-item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </span>
+                <span>الملف الشخصي</span>
+              </a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span class="qhr-dropdown-item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </span>
+                <span>الإعدادات</span>
+              </a>
+              <div class="qhr-dropdown-divider"></div>
+              <a href="#" class="qhr-dropdown-item qhr-dropdown-item--destructive" role="menuitem">
+                <span class="qhr-dropdown-item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                </span>
+                <span>تسجيل الخروج</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.4 With badge -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">With badge</div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--md" style="color: var(--qhr-color-purple-600, #7c3aed); border-color: var(--qhr-color-purple-600, #7c3aed);" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span>الرسائل الواردة</span>
+                <span class="qhr-dropdown-item-badge">
+                  <span class="qhr-badge qhr-badge--primary qhr-badge--pill qhr-badge--sm">7</span>
+                </span>
+              </a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span>التنبيهات</span>
+                <span class="qhr-dropdown-item-badge">
+                  <span class="qhr-badge qhr-badge--success qhr-badge--sm">جديد</span>
+                </span>
+              </a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span>المهام المعلقة</span>
+                <span class="qhr-dropdown-item-badge">
+                  <span class="qhr-badge qhr-badge--warning qhr-badge--pill qhr-badge--sm">3</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.5 Disabled item -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">Disabled item</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.disabled</code> applies to <code style="font-size: 0.78rem;">.dropdown-item</code>
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--warning qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">عنصر مفعل (Active link)</a>
+              <a href="#" class="qhr-dropdown-item disabled" role="menuitem" aria-disabled="true">عنصر معطل (Disabled item)</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">عنصر متاح آخر</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.6 Active item -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">Active item</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.active</code> applies to <code style="font-size: 0.78rem;">.dropdown-item</code>
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--primary qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">عنصر قياسي</a>
+              <a href="#" class="qhr-dropdown-item active" role="menuitem">العنصر النشط حالياً (Active)</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">عنصر تالٍ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Advanced Patterns & Submenus Card (Shadcn-Grade Architectural Patterns) -->
+  <section style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); padding: var(--qhr-space-8, 32px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);">
+    <div style="margin-block-end: 28px;">
+      <h3 style="font-family: var(--qhr-font-heading); font-size: 1.25rem; font-weight: 700; margin: 0 0 6px 0; color: var(--qhr-content-primary, #0f172a);">أنماط متقدمة وقوائم متداخلة (Advanced Patterns &amp; Submenus)</h3>
+      <p style="margin: 0; font-size: 0.875rem; color: var(--qhr-text-muted, #64748b);">دعم متكامل لاختصارات لوحة المفاتيح، القوائم الفرعية، مربعات الاختيار، وخيارات الراديو الحصرية بمحاذاة منطقية كاملة.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px 24px;">
+
+      <!-- 3.1 With Keyboard Shortcuts -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">اختصارات لوحة المفاتيح</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(11, 107, 203, 0.08); color: var(--qhr-color-primary-bg, #0b6bcb); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.qhr-dropdown-shortcut</code> للأوامر السريعة
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>أوامر سريعة</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu" style="min-width: 230px;">
+              <div class="qhr-dropdown-header">المستندات</div>
+              <button type="button" class="qhr-dropdown-item" role="menuitem">
+                <span>تبويب جديد</span>
+                <span class="qhr-dropdown-shortcut">⌘T</span>
+              </button>
+              <button type="button" class="qhr-dropdown-item" role="menuitem">
+                <span>نافذة جديدة</span>
+                <span class="qhr-dropdown-shortcut">⌘N</span>
+              </button>
+              <button type="button" class="qhr-dropdown-item" role="menuitem">
+                <span>حفظ التعديلات</span>
+                <span class="qhr-dropdown-shortcut">⌘S</span>
+              </button>
+              <div class="qhr-dropdown-divider"></div>
+              <button type="button" class="qhr-dropdown-item qhr-dropdown-item--destructive" role="menuitem">
+                <span>إغلاق المستند</span>
+                <span class="qhr-dropdown-shortcut">⌘W</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.2 Nested Submenu -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">قوائم فرعية متداخلة (Submenus)</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(11, 107, 203, 0.08); color: var(--qhr-color-primary-bg, #0b6bcb); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.qhr-dropdown-sub</code> للتفريعات متعددة المستويات
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>إدارة المحتوى</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu" style="min-width: 220px;">
+              <button type="button" class="qhr-dropdown-item" role="menuitem">تحرير الصفحة</button>
+              <div class="qhr-dropdown-sub" x-data="{ subOpen: false }" @mouseleave="subOpen = false">
+                <button type="button" class="qhr-dropdown-item" @mouseenter="subOpen = true" @click="subOpen = !subOpen" aria-haspopup="menu" :aria-expanded="subOpen">
+                  <span>مشاركة عبر</span>
+                  <span class="qhr-dropdown-sub-caret">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </span>
+                </button>
+                <div class="qhr-dropdown-menu qhr-dropdown-sub-menu" x-show="subOpen" x-cloak role="menu" style="min-width: 180px;">
+                  <button type="button" class="qhr-dropdown-item" role="menuitem">البريد الإلكتروني</button>
+                  <button type="button" class="qhr-dropdown-item" role="menuitem">نسخ الرابط</button>
+                  <button type="button" class="qhr-dropdown-item" role="menuitem">تصدير PDF</button>
+                </div>
+              </div>
+              <div class="qhr-dropdown-divider"></div>
+              <button type="button" class="qhr-dropdown-item" role="menuitem">أرشيف المحتوى</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.3 Checkbox Items -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">خيارات التأشير (Checkbox Items)</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(11, 107, 203, 0.08); color: var(--qhr-color-primary-bg, #0b6bcb); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">role="menuitemcheckbox"</code> خيارات تفاعلية
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="{ ...qhrDropdown(), showStatus: true, showActivity: false, showPanel: true }" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--primary qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>طريقة العرض</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu" style="min-width: 210px;">
+              <div class="qhr-dropdown-header">أشرطة الواجهة</div>
+              <button type="button" class="qhr-dropdown-item qhr-dropdown-item--checkbox" role="menuitemcheckbox" :aria-checked="showStatus" @click="showStatus = !showStatus">
+                <span class="qhr-dropdown-item-indicator" x-show="showStatus">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>شريط الحالة</span>
+              </button>
+              <button type="button" class="qhr-dropdown-item qhr-dropdown-item--checkbox" role="menuitemcheckbox" :aria-checked="showActivity" @click="showActivity = !showActivity">
+                <span class="qhr-dropdown-item-indicator" x-show="showActivity">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>شريط الأنشطة</span>
+              </button>
+              <button type="button" class="qhr-dropdown-item qhr-dropdown-item--checkbox" role="menuitemcheckbox" :aria-checked="showPanel" @click="showPanel = !showPanel">
+                <span class="qhr-dropdown-item-indicator" x-show="showPanel">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </span>
+                <span>اللوحة السفلية</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3.4 Radio Group Items -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">مجموعات الراديو الحصرية (Radio Group)</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">
+            <code style="background: rgba(11, 107, 203, 0.08); color: var(--qhr-color-primary-bg, #0b6bcb); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">role="menuitemradio"</code> اختيار أحادي حصري
+          </div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="{ ...qhrDropdown(), theme: 'system' }" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--secondary qhr-btn--md" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>السمة الافتراضية</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu" style="min-width: 210px;">
+              <div class="qhr-dropdown-header">مظهر التطبيق</div>
+              <button type="button" class="qhr-dropdown-item qhr-dropdown-item--radio" role="menuitemradio" :aria-checked="theme === 'light'" @click="theme = 'light'">
+                <span class="qhr-dropdown-item-indicator" x-show="theme === 'light'">
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="12"></circle></svg>
+                </span>
+                <span>الوضع النهاري (Light)</span>
+              </button>
+              <button type="button" class="qhr-dropdown-item qhr-dropdown-item--radio" role="menuitemradio" :aria-checked="theme === 'dark'" @click="theme = 'dark'">
+                <span class="qhr-dropdown-item-indicator" x-show="theme === 'dark'">
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="12"></circle></svg>
+                </span>
+                <span>الوضع الداكن (Dark)</span>
+              </button>
+              <button type="button" class="qhr-dropdown-item qhr-dropdown-item--radio" role="menuitemradio" :aria-checked="theme === 'system'" @click="theme = 'system'">
+                <span class="qhr-dropdown-item-indicator" x-show="theme === 'system'">
+                  <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="12"></circle></svg>
+                </span>
+                <span>تلقائي حسب النظام</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Advanced Dropdown Patterns -->
+  <section style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); padding: var(--qhr-space-8, 32px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);">
+    <div style="margin-block-end: 28px;">
+      <h3 style="font-family: var(--qhr-font-heading); font-size: 1.25rem; font-weight: 700; margin: 0 0 6px 0; color: var(--qhr-content-primary, #0f172a);">4. أنماط متقدمة (Advanced Dropdown Patterns)</h3>
+      <p style="margin: 0; font-size: 0.875rem; color: var(--qhr-text-muted, #64748b);">الأزرار المنقسمة، بطاقات الملف التعريفي، والنمط الذهبي الفاخر</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px 24px;">
+
+      <!-- 4.1 Split Button Dropdown -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">زر مجزأ (Split Button Dropdown)</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">إجراء رئيسي مباشر مع قائمة خيارات إضافية</div>
+        </div>
+        <div>
+          <div class="qhr-dropdown qhr-dropdown--split" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" style="border-start-end-radius: 0; border-end-end-radius: 0;">
+              <span>حفظ وتثبيت</span>
+            </button>
+            <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md qhr-dropdown-toggle" style="border-start-start-radius: 0; border-end-start-radius: 0; border-inline-start: 1px solid rgba(255, 255, 255, 0.25); padding-inline: 10px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open" aria-label="خيارات إضافية">
+              <svg class="qhr-dropdown-caret" style="margin: 0;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu" x-ref="menu" x-show="open" x-cloak role="menu">
+              <a href="#" class="qhr-dropdown-item" role="menuitem">حفظ كمسودة</a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">حفظ ونشر فوري</a>
+              <div class="qhr-dropdown-divider"></div>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">تصدير إلى ملف PDF</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.2 User Profile Menu -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">قائمة المستخدم (User Profile Menu)</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">بطاقة رأسية مع الاسم والبريد وتفاصيل الحساب</div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--md" style="display: flex; align-items: center; gap: 8px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span class="qhr-avatar qhr-avatar--xs" style="width: 24px; height: 24px; border-radius: 50%; background: #0b6bcb; color: #fff; font-size: 11px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700;">أع</span>
+              <span>حسابي</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu qhr-dropdown-menu--end" x-ref="menu" x-show="open" x-cloak role="menu" style="min-width: 250px;">
+              <div class="qhr-dropdown-user-header">
+                <span class="qhr-avatar qhr-avatar--sm" style="width: 36px; height: 36px; border-radius: 50%; background: #0b6bcb; color: #fff; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700;">أع</span>
+                <div class="qhr-dropdown-user-meta">
+                  <span class="qhr-dropdown-user-name">أحمد عبد الوهاب</span>
+                  <span class="qhr-dropdown-user-email">ahmed@alwkala.com</span>
+                </div>
+              </div>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span class="qhr-dropdown-item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </span>
+                <span>الملف الشخصي</span>
+              </a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span class="qhr-dropdown-item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </span>
+                <span>إعدادات المنظومة</span>
+              </a>
+              <div class="qhr-dropdown-divider"></div>
+              <a href="#" class="qhr-dropdown-item qhr-dropdown-item--destructive" role="menuitem">
+                <span class="qhr-dropdown-item-icon">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                </span>
+                <span>تسجيل الخروج</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.3 Luxury Gold Dropdown -->
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary, #0f172a);">النمط الذهبي الفاخر (Luxury Gold Dropdown)</div>
+          <div style="font-size: 0.82rem; color: var(--qhr-text-muted, #64748b); margin-block-start: 2px;">خلفية داكنة مع تدرجات ذهبية حصرية</div>
+        </div>
+        <div>
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--md" style="background: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%); color: #07090e; font-weight: 700;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>خيارات النخبة</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu qhr-dropdown-menu--luxury" x-ref="menu" x-show="open" x-cloak role="menu" style="min-width: 230px;">
+              <div class="qhr-dropdown-header" style="color: #d4af37;">باقات كبار الشخصيات</div>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span>ترقية المستوى الملكي</span>
+                <span class="qhr-badge qhr-dropdown-item-badge" style="background: rgba(212, 175, 55, 0.2); color: #f5d77f; border: 1px solid rgba(212, 175, 55, 0.3);">VIP</span>
+              </a>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span>تخصيص الهوية الفريدة</span>
+              </a>
+              <div class="qhr-dropdown-divider" style="background: rgba(212, 175, 55, 0.15);"></div>
+              <a href="#" class="qhr-dropdown-item" role="menuitem">
+                <span>تواصل مع مستشار الوكالة</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Dropdown Grid Showcase Section -->
+  <section style="display: flex; flex-direction: column; gap: 20px;">
+    
+    <!-- Header with breadcrumb matching screenshot -->
+    <div>
+      <h3 style="font-family: var(--qhr-font-heading); font-size: 1.5rem; font-weight: 700; margin: 0 0 6px 0; color: var(--qhr-content-primary, #0f172a);">Dropdown Grid</h3>
+      <nav aria-label="breadcrumb" style="display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--qhr-text-muted, #64748b);">
+        <a href="#" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center;" aria-label="الرئيسية">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </a>
+        <span>-</span>
+        <span>UI</span>
+        <span>-</span>
+        <span style="color: var(--qhr-content-primary, #0f172a); font-weight: 600;">Dropdown Grid</span>
+      </nav>
+    </div>
+
+    <!-- Cards Grid Container -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+
+      <!-- 5.1 Icons -->
+      <div style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); overflow: visible; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column;">
+        <div style="padding: 16px 24px; border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);">
+          <h4 style="font-family: var(--qhr-font-heading); font-size: 1.05rem; font-weight: 600; margin: 0; color: var(--qhr-content-primary, #0f172a);">Icons</h4>
+        </div>
+        <div style="padding: 28px 24px; min-height: 120px;">
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" style="border-radius: 9999px; padding-inline: 22px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu dropdown-grid" x-ref="menu" x-show="open" x-cloak role="menu">
+              <!-- Camera -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Camera">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+                </span>
+              </a>
+              <!-- Gallery -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Gallery">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 2v10l-4-4-3 3-5-5-2 2V5h14zM8.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>
+                </span>
+              </a>
+              <!-- Files -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Files">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                </span>
+              </a>
+              <!-- Video -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Video">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 19 12 6 20 6 4"/></svg>
+                </span>
+              </a>
+              <!-- Music -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Music">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                </span>
+              </a>
+              <!-- News -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="News">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h14v12zm-3-8H8v2h8v-2zm0 4H8v2h8v-2z"/></svg>
+                </span>
+              </a>
+              <!-- Contacts -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Contacts">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 2H6c-1.2 0-2 .8-2 2v16c0 1.2.8 2 2 2h13c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h2v16H6V4zm8 5c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm5 9H9v-.5c0-2 3.33-3 5-3s5 1 5 3v.5z"/></svg>
+                </span>
+              </a>
+              <!-- Download -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Download">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 3v7H7.5l4.5 5 4.5-5H13V3h-2zm-8 13v4c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-4h-2v3H5v-3H3z"/></svg>
+                </span>
+              </a>
+              <!-- Settings -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Settings">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5.2 Icons and title -->
+      <div style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); overflow: visible; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column;">
+        <div style="padding: 16px 24px; border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);">
+          <h4 style="font-family: var(--qhr-font-heading); font-size: 1.05rem; font-weight: 600; margin: 0; color: var(--qhr-content-primary, #0f172a);">Icons and title</h4>
+        </div>
+        <div style="padding: 28px 24px; min-height: 120px;">
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--md" style="background-color: #64748b; color: #ffffff; border-radius: 9999px; padding-inline: 22px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu dropdown-grid" x-ref="menu" x-show="open" x-cloak role="menu">
+              <!-- Camera -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm8 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Camera</span>
+              </a>
+              <!-- Gallery -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 2v10l-4-4-3 3-5-5-2 2V5h14zM8.5 7a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3z"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Gallery</span>
+              </a>
+              <!-- Files -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Files</span>
+              </a>
+              <!-- Video -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 19 12 6 20 6 4"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Video</span>
+              </a>
+              <!-- Music -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Music</span>
+              </a>
+              <!-- News -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H5c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h14v12zm-3-8H8v2h8v-2zm0 4H8v2h8v-2z"/></svg>
+                </span>
+                <span class="dropdown-grid-title">News</span>
+              </a>
+              <!-- Contacts -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 2H6c-1.2 0-2 .8-2 2v16c0 1.2.8 2 2 2h13c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h2v16H6V4zm8 5c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm5 9H9v-.5c0-2 3.33-3 5-3s5 1 5 3v.5z"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Contacts</span>
+              </a>
+              <!-- Download -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 3v7H7.5l4.5 5 4.5-5H13V3h-2zm-8 13v4c0 .55.45 1 1 1h16c.55 0 1-.45 1-1v-4h-2v3H5v-3H3z"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Download</span>
+              </a>
+              <!-- Settings -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Settings</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5.3 Color icons -->
+      <div style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); overflow: visible; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column;">
+        <div style="padding: 16px 24px; border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);">
+          <h4 style="font-family: var(--qhr-font-heading); font-size: 1.05rem; font-weight: 600; margin: 0; color: var(--qhr-content-primary, #0f172a);">Color icons</h4>
+        </div>
+        <div style="padding: 28px 24px; min-height: 120px;">
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--success qhr-btn--md" style="border-radius: 9999px; padding-inline: 22px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu dropdown-grid" x-ref="menu" x-show="open" x-cloak role="menu">
+              <!-- Color Camera -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Camera">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="3" y="8" width="30" height="22" rx="4" fill="#546e7a"/><path d="M12 5h12l2 3H10z" fill="#455a64"/><circle cx="8" cy="12" r="1.5" fill="#cfd8dc"/><circle cx="18" cy="19" r="8" fill="#0288d1"/><circle cx="18" cy="19" r="5.5" fill="#29b6f6"/><circle cx="18" cy="19" r="3" fill="#e1f5fe"/><circle cx="16.5" cy="17.5" r="1" fill="#ffffff"/></svg>
+                </span>
+              </a>
+              <!-- Color Gallery -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Gallery">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="10" y="4" width="22" height="22" rx="3" transform="rotate(10 21 15)" fill="#42a5f5"/><rect x="6" y="5" width="22" height="22" rx="3" transform="rotate(-6 17 16)" fill="#64b5f6"/><rect x="4" y="6" width="23" height="23" rx="3" fill="#4caf50"/><rect x="6" y="8" width="19" height="19" rx="2" fill="#81c784"/><circle cx="15.5" cy="17.5" r="3.5" fill="#fbc02d"/><path d="M15.5 12.5v10m-5-5h10m-3.5-3.5l7 7m-7 0l7-7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/><circle cx="15.5" cy="17.5" r="2" fill="#ffffff"/></svg>
+                </span>
+              </a>
+              <!-- Color Files -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Files">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M4 9a3 3 0 0 1 3-3h7l3 3h12a3 3 0 0 1 3 3v2H4V9z" fill="#ffa000"/><rect x="4" y="12" width="28" height="17" rx="3" fill="#ffca28"/><path d="M4 15h28v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V15z" fill="#ffb300"/></svg>
+                </span>
+              </a>
+              <!-- Color Video -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Video">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="4" y="7" width="28" height="22" rx="6" fill="#e53935"/><polygon points="15,13 24,18 15,23" fill="#ffffff"/></svg>
+                </span>
+              </a>
+              <!-- Color Music -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Music">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M15 5v17.2a5.5 5.5 0 1 0 4 5.3V11h8V5H15z" fill="#e91e63"/><circle cx="13.5" cy="27.5" r="4.5" fill="#d81b60"/></svg>
+                </span>
+              </a>
+              <!-- Color News -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="News">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="5" y="7" width="26" height="22" rx="3" fill="#ffccbc"/><rect x="8" y="10" width="8" height="7" rx="1" fill="#ff7043"/><rect x="18" y="10" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="13" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="16" width="6" height="2" rx="1" fill="#f4511e"/><rect x="8" y="19" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="22" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="25" width="14" height="2" rx="1" fill="#f4511e"/></svg>
+                </span>
+              </a>
+              <!-- Color Contacts -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Contacts">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="7" y="4" width="22" height="28" rx="4" fill="#ef6c00"/><rect x="5" y="4" width="5" height="28" rx="2" fill="#d84315"/><circle cx="19" cy="14" r="4" fill="#ffffff"/><path d="M12 25c0-3.5 3.5-5 7-5s7 1.5 7 5z" fill="#ffffff"/></svg>
+                </span>
+              </a>
+              <!-- Color Download -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Download">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M18 4v16m-7-7l7 7 7-7" stroke="#1976d2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="5" y="27" width="26" height="5" rx="2.5" fill="#1565c0"/></svg>
+                </span>
+              </a>
+              <!-- Color Settings -->
+              <a href="#" class="dropdown-item" role="menuitem" aria-label="Settings">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><circle cx="18" cy="18" r="5" fill="#455a64"/><path d="M29 16.5l-2.4-.4a9.6 9.6 0 0 0-1.3-3.1l1.4-2a1.8 1.8 0 0 0-.3-2.4l-2.4-2.4a1.8 1.8 0 0 0-2.4-.3l-2 1.4a9.6 9.6 0 0 0-3.1-1.3L19.5 6a1.8 1.8 0 0 0-1.8-1.5h-3.4a1.8 1.8 0 0 0-1.8 1.5l-.4 2.4a9.6 9.6 0 0 0-3.1 1.3l-2-1.4a1.8 1.8 0 0 0-2.4.3L2.2 11a1.8 1.8 0 0 0-.3 2.4l1.4 2a9.6 9.6 0 0 0-1.3 3.1L-.4 19.5A1.8 1.8 0 0 0-1.9 21.3v3.4a1.8 1.8 0 0 0 1.5 1.8l2.4.4a9.6 9.6 0 0 0 1.3 3.1l-1.4 2a1.8 1.8 0 0 0 .3 2.4l2.4 2.4a1.8 1.8 0 0 0 2.4.3l2-1.4a9.6 9.6 0 0 0 3.1 1.3l.4 2.4a1.8 1.8 0 0 0 1.8 1.5h3.4a1.8 1.8 0 0 0 1.8-1.5l.4-2.4a9.6 9.6 0 0 0 3.1-1.3l2 1.4a1.8 1.8 0 0 0 2.4-.3l2.4-2.4a1.8 1.8 0 0 0 .3-2.4l-1.4-2a9.6 9.6 0 0 0 1.3-3.1l2.4-.4a1.8 1.8 0 0 0 1.5-1.8v-3.4a1.8 1.8 0 0 0-1.5-1.8z" fill="#607d8b"/><circle cx="18" cy="18" r="3" fill="#ffffff"/></svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5.4 Color icons and title -->
+      <div style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); overflow: visible; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column;">
+        <div style="padding: 16px 24px; border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);">
+          <h4 style="font-family: var(--qhr-font-heading); font-size: 1.05rem; font-weight: 600; margin: 0; color: var(--qhr-content-primary, #0f172a);">Color icons and title</h4>
+        </div>
+        <div style="padding: 28px 24px; min-height: 120px;">
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--md" style="background-color: var(--qhr-color-purple-600, #7c3aed); color: #ffffff; border-radius: 9999px; padding-inline: 22px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu dropdown-grid" x-ref="menu" x-show="open" x-cloak role="menu">
+              <!-- Camera -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="3" y="8" width="30" height="22" rx="4" fill="#546e7a"/><path d="M12 5h12l2 3H10z" fill="#455a64"/><circle cx="8" cy="12" r="1.5" fill="#cfd8dc"/><circle cx="18" cy="19" r="8" fill="#0288d1"/><circle cx="18" cy="19" r="5.5" fill="#29b6f6"/><circle cx="18" cy="19" r="3" fill="#e1f5fe"/><circle cx="16.5" cy="17.5" r="1" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Camera</span>
+              </a>
+              <!-- Gallery -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="10" y="4" width="22" height="22" rx="3" transform="rotate(10 21 15)" fill="#42a5f5"/><rect x="6" y="5" width="22" height="22" rx="3" transform="rotate(-6 17 16)" fill="#64b5f6"/><rect x="4" y="6" width="23" height="23" rx="3" fill="#4caf50"/><rect x="6" y="8" width="19" height="19" rx="2" fill="#81c784"/><circle cx="15.5" cy="17.5" r="3.5" fill="#fbc02d"/><path d="M15.5 12.5v10m-5-5h10m-3.5-3.5l7 7m-7 0l7-7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/><circle cx="15.5" cy="17.5" r="2" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Gallery</span>
+              </a>
+              <!-- Files -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M4 9a3 3 0 0 1 3-3h7l3 3h12a3 3 0 0 1 3 3v2H4V9z" fill="#ffa000"/><rect x="4" y="12" width="28" height="17" rx="3" fill="#ffca28"/><path d="M4 15h28v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V15z" fill="#ffb300"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Files</span>
+              </a>
+              <!-- Video -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="4" y="7" width="28" height="22" rx="6" fill="#e53935"/><polygon points="15,13 24,18 15,23" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Video</span>
+              </a>
+              <!-- Music -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M15 5v17.2a5.5 5.5 0 1 0 4 5.3V11h8V5H15z" fill="#e91e63"/><circle cx="13.5" cy="27.5" r="4.5" fill="#d81b60"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Music</span>
+              </a>
+              <!-- News -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="5" y="7" width="26" height="22" rx="3" fill="#ffccbc"/><rect x="8" y="10" width="8" height="7" rx="1" fill="#ff7043"/><rect x="18" y="10" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="13" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="16" width="6" height="2" rx="1" fill="#f4511e"/><rect x="8" y="19" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="22" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="25" width="14" height="2" rx="1" fill="#f4511e"/></svg>
+                </span>
+                <span class="dropdown-grid-title">News</span>
+              </a>
+              <!-- Contacts -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="7" y="4" width="22" height="28" rx="4" fill="#ef6c00"/><rect x="5" y="4" width="5" height="28" rx="2" fill="#d84315"/><circle cx="19" cy="14" r="4" fill="#ffffff"/><path d="M12 25c0-3.5 3.5-5 7-5s7 1.5 7 5z" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Contacts</span>
+              </a>
+              <!-- Download -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M18 4v16m-7-7l7 7 7-7" stroke="#1976d2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="5" y="27" width="26" height="5" rx="2.5" fill="#1565c0"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Download</span>
+              </a>
+              <!-- Settings -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><circle cx="18" cy="18" r="5" fill="#455a64"/><path d="M29 16.5l-2.4-.4a9.6 9.6 0 0 0-1.3-3.1l1.4-2a1.8 1.8 0 0 0-.3-2.4l-2.4-2.4a1.8 1.8 0 0 0-2.4-.3l-2 1.4a9.6 9.6 0 0 0-3.1-1.3L19.5 6a1.8 1.8 0 0 0-1.8-1.5h-3.4a1.8 1.8 0 0 0-1.8 1.5l-.4 2.4a9.6 9.6 0 0 0-3.1 1.3l-2-1.4a1.8 1.8 0 0 0-2.4.3L2.2 11a1.8 1.8 0 0 0-.3 2.4l1.4 2a9.6 9.6 0 0 0-1.3 3.1L-.4 19.5A1.8 1.8 0 0 0-1.9 21.3v3.4a1.8 1.8 0 0 0 1.5 1.8l2.4.4a9.6 9.6 0 0 0 1.3 3.1l-1.4 2a1.8 1.8 0 0 0 .3 2.4l2.4 2.4a1.8 1.8 0 0 0 2.4.3l2-1.4a9.6 9.6 0 0 0 3.1 1.3l.4 2.4a1.8 1.8 0 0 0 1.8 1.5h3.4a1.8 1.8 0 0 0 1.8-1.5l.4-2.4a9.6 9.6 0 0 0 3.1-1.3l2 1.4a1.8 1.8 0 0 0 2.4-.3l2.4-2.4a1.8 1.8 0 0 0 .3-2.4l-1.4-2a9.6 9.6 0 0 0 1.3-3.1l2.4-.4a1.8 1.8 0 0 0 1.5-1.8v-3.4a1.8 1.8 0 0 0-1.5-1.8z" fill="#607d8b"/><circle cx="18" cy="18" r="3" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Settings</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5.5 2 cols -->
+      <div style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); overflow: visible; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column;">
+        <div style="padding: 16px 24px; border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);">
+          <h4 style="font-family: var(--qhr-font-heading); font-size: 1.05rem; font-weight: 600; margin: 0 0 6px 0; color: var(--qhr-content-primary, #0f172a);">2 cols</h4>
+          <div style="font-size: 0.8125rem; color: var(--qhr-text-muted, #64748b);">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.cols-2</code> applies to <code style="font-size: 0.78rem;">.dropdown-grid</code>
+          </div>
+        </div>
+        <div style="padding: 28px 24px; min-height: 120px;">
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--warning qhr-btn--md" style="border-radius: 9999px; padding-inline: 22px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu dropdown-grid cols-2" x-ref="menu" x-show="open" x-cloak role="menu">
+              <!-- Camera -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="3" y="8" width="30" height="22" rx="4" fill="#546e7a"/><path d="M12 5h12l2 3H10z" fill="#455a64"/><circle cx="8" cy="12" r="1.5" fill="#cfd8dc"/><circle cx="18" cy="19" r="8" fill="#0288d1"/><circle cx="18" cy="19" r="5.5" fill="#29b6f6"/><circle cx="18" cy="19" r="3" fill="#e1f5fe"/><circle cx="16.5" cy="17.5" r="1" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Camera</span>
+              </a>
+              <!-- Gallery -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="10" y="4" width="22" height="22" rx="3" transform="rotate(10 21 15)" fill="#42a5f5"/><rect x="6" y="5" width="22" height="22" rx="3" transform="rotate(-6 17 16)" fill="#64b5f6"/><rect x="4" y="6" width="23" height="23" rx="3" fill="#4caf50"/><rect x="6" y="8" width="19" height="19" rx="2" fill="#81c784"/><circle cx="15.5" cy="17.5" r="3.5" fill="#fbc02d"/><path d="M15.5 12.5v10m-5-5h10m-3.5-3.5l7 7m-7 0l7-7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/><circle cx="15.5" cy="17.5" r="2" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Gallery</span>
+              </a>
+              <!-- Files -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M4 9a3 3 0 0 1 3-3h7l3 3h12a3 3 0 0 1 3 3v2H4V9z" fill="#ffa000"/><rect x="4" y="12" width="28" height="17" rx="3" fill="#ffca28"/><path d="M4 15h28v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V15z" fill="#ffb300"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Files</span>
+              </a>
+              <!-- Video -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="4" y="7" width="28" height="22" rx="6" fill="#e53935"/><polygon points="15,13 24,18 15,23" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Video</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5.6 4 cols -->
+      <div style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); overflow: visible; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column;">
+        <div style="padding: 16px 24px; border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);">
+          <h4 style="font-family: var(--qhr-font-heading); font-size: 1.05rem; font-weight: 600; margin: 0 0 6px 0; color: var(--qhr-content-primary, #0f172a);">4 cols</h4>
+          <div style="font-size: 0.8125rem; color: var(--qhr-text-muted, #64748b);">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.cols-4</code> applies to <code style="font-size: 0.78rem;">.dropdown-grid</code>
+          </div>
+        </div>
+        <div style="padding: 28px 24px; min-height: 120px;">
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--danger qhr-btn--md" style="border-radius: 9999px; padding-inline: 22px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu dropdown-grid cols-4" x-ref="menu" x-show="open" x-cloak role="menu">
+              <!-- Camera -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="3" y="8" width="30" height="22" rx="4" fill="#546e7a"/><path d="M12 5h12l2 3H10z" fill="#455a64"/><circle cx="8" cy="12" r="1.5" fill="#cfd8dc"/><circle cx="18" cy="19" r="8" fill="#0288d1"/><circle cx="18" cy="19" r="5.5" fill="#29b6f6"/><circle cx="18" cy="19" r="3" fill="#e1f5fe"/><circle cx="16.5" cy="17.5" r="1" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Camera</span>
+              </a>
+              <!-- Gallery -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="10" y="4" width="22" height="22" rx="3" transform="rotate(10 21 15)" fill="#42a5f5"/><rect x="6" y="5" width="22" height="22" rx="3" transform="rotate(-6 17 16)" fill="#64b5f6"/><rect x="4" y="6" width="23" height="23" rx="3" fill="#4caf50"/><rect x="6" y="8" width="19" height="19" rx="2" fill="#81c784"/><circle cx="15.5" cy="17.5" r="3.5" fill="#fbc02d"/><path d="M15.5 12.5v10m-5-5h10m-3.5-3.5l7 7m-7 0l7-7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/><circle cx="15.5" cy="17.5" r="2" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Gallery</span>
+              </a>
+              <!-- Files -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M4 9a3 3 0 0 1 3-3h7l3 3h12a3 3 0 0 1 3 3v2H4V9z" fill="#ffa000"/><rect x="4" y="12" width="28" height="17" rx="3" fill="#ffca28"/><path d="M4 15h28v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V15z" fill="#ffb300"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Files</span>
+              </a>
+              <!-- Video -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="4" y="7" width="28" height="22" rx="6" fill="#e53935"/><polygon points="15,13 24,18 15,23" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Video</span>
+              </a>
+              <!-- Music -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M15 5v17.2a5.5 5.5 0 1 0 4 5.3V11h8V5H15z" fill="#e91e63"/><circle cx="13.5" cy="27.5" r="4.5" fill="#d81b60"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Music</span>
+              </a>
+              <!-- News -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="5" y="7" width="26" height="22" rx="3" fill="#ffccbc"/><rect x="8" y="10" width="8" height="7" rx="1" fill="#ff7043"/><rect x="18" y="10" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="13" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="16" width="6" height="2" rx="1" fill="#f4511e"/><rect x="8" y="19" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="22" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="25" width="14" height="2" rx="1" fill="#f4511e"/></svg>
+                </span>
+                <span class="dropdown-grid-title">News</span>
+              </a>
+              <!-- Contacts -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="7" y="4" width="22" height="28" rx="4" fill="#ef6c00"/><rect x="5" y="4" width="5" height="28" rx="2" fill="#d84315"/><circle cx="19" cy="14" r="4" fill="#ffffff"/><path d="M12 25c0-3.5 3.5-5 7-5s7 1.5 7 5z" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Contacts</span>
+              </a>
+              <!-- Download -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M18 4v16m-7-7l7 7 7-7" stroke="#1976d2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="5" y="27" width="26" height="5" rx="2.5" fill="#1565c0"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Download</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5.7 Disabled item -->
+      <div style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); overflow: visible; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column;">
+        <div style="padding: 16px 24px; border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);">
+          <h4 style="font-family: var(--qhr-font-heading); font-size: 1.05rem; font-weight: 600; margin: 0 0 6px 0; color: var(--qhr-content-primary, #0f172a);">Disabled item</h4>
+          <div style="font-size: 0.8125rem; color: var(--qhr-text-muted, #64748b);">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.disabled</code> applies to <code style="font-size: 0.78rem;">.dropdown-item</code>
+          </div>
+        </div>
+        <div style="padding: 28px 24px; min-height: 120px;">
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--md" style="background-color: #0f172a; color: #ffffff; border-radius: 9999px; padding-inline: 22px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu dropdown-grid" x-ref="menu" x-show="open" x-cloak role="menu">
+              <!-- Camera -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="3" y="8" width="30" height="22" rx="4" fill="#546e7a"/><path d="M12 5h12l2 3H10z" fill="#455a64"/><circle cx="8" cy="12" r="1.5" fill="#cfd8dc"/><circle cx="18" cy="19" r="8" fill="#0288d1"/><circle cx="18" cy="19" r="5.5" fill="#29b6f6"/><circle cx="18" cy="19" r="3" fill="#e1f5fe"/><circle cx="16.5" cy="17.5" r="1" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Camera</span>
+              </a>
+              <!-- Gallery -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="10" y="4" width="22" height="22" rx="3" transform="rotate(10 21 15)" fill="#42a5f5"/><rect x="6" y="5" width="22" height="22" rx="3" transform="rotate(-6 17 16)" fill="#64b5f6"/><rect x="4" y="6" width="23" height="23" rx="3" fill="#4caf50"/><rect x="6" y="8" width="19" height="19" rx="2" fill="#81c784"/><circle cx="15.5" cy="17.5" r="3.5" fill="#fbc02d"/><path d="M15.5 12.5v10m-5-5h10m-3.5-3.5l7 7m-7 0l7-7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/><circle cx="15.5" cy="17.5" r="2" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Gallery</span>
+              </a>
+              <!-- Files (Disabled) -->
+              <a href="#" class="dropdown-item disabled" role="menuitem" aria-disabled="true">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M4 9a3 3 0 0 1 3-3h7l3 3h12a3 3 0 0 1 3 3v2H4V9z" fill="#ffa000"/><rect x="4" y="12" width="28" height="17" rx="3" fill="#ffca28"/><path d="M4 15h28v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V15z" fill="#ffb300"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Files</span>
+              </a>
+              <!-- Video -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="4" y="7" width="28" height="22" rx="6" fill="#e53935"/><polygon points="15,13 24,18 15,23" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Video</span>
+              </a>
+              <!-- Music -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M15 5v17.2a5.5 5.5 0 1 0 4 5.3V11h8V5H15z" fill="#e91e63"/><circle cx="13.5" cy="27.5" r="4.5" fill="#d81b60"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Music</span>
+              </a>
+              <!-- News (Disabled) -->
+              <a href="#" class="dropdown-item disabled" role="menuitem" aria-disabled="true">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="5" y="7" width="26" height="22" rx="3" fill="#ffccbc"/><rect x="8" y="10" width="8" height="7" rx="1" fill="#ff7043"/><rect x="18" y="10" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="13" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="16" width="6" height="2" rx="1" fill="#f4511e"/><rect x="8" y="19" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="22" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="25" width="14" height="2" rx="1" fill="#f4511e"/></svg>
+                </span>
+                <span class="dropdown-grid-title">News</span>
+              </a>
+              <!-- Contacts -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="7" y="4" width="22" height="28" rx="4" fill="#ef6c00"/><rect x="5" y="4" width="5" height="28" rx="2" fill="#d84315"/><circle cx="19" cy="14" r="4" fill="#ffffff"/><path d="M12 25c0-3.5 3.5-5 7-5s7 1.5 7 5z" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Contacts</span>
+              </a>
+              <!-- Download -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M18 4v16m-7-7l7 7 7-7" stroke="#1976d2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="5" y="27" width="26" height="5" rx="2.5" fill="#1565c0"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Download</span>
+              </a>
+              <!-- Settings -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><circle cx="18" cy="18" r="5" fill="#455a64"/><path d="M29 16.5l-2.4-.4a9.6 9.6 0 0 0-1.3-3.1l1.4-2a1.8 1.8 0 0 0-.3-2.4l-2.4-2.4a1.8 1.8 0 0 0-2.4-.3l-2 1.4a9.6 9.6 0 0 0-3.1-1.3L19.5 6a1.8 1.8 0 0 0-1.8-1.5h-3.4a1.8 1.8 0 0 0-1.8 1.5l-.4 2.4a9.6 9.6 0 0 0-3.1 1.3l-2-1.4a1.8 1.8 0 0 0-2.4.3L2.2 11a1.8 1.8 0 0 0-.3 2.4l1.4 2a9.6 9.6 0 0 0-1.3 3.1L-.4 19.5A1.8 1.8 0 0 0-1.9 21.3v3.4a1.8 1.8 0 0 0 1.5 1.8l2.4.4a9.6 9.6 0 0 0 1.3 3.1l-1.4 2a1.8 1.8 0 0 0 .3 2.4l2.4 2.4a1.8 1.8 0 0 0 2.4.3l2-1.4a9.6 9.6 0 0 0 3.1 1.3l.4 2.4a1.8 1.8 0 0 0 1.8 1.5h3.4a1.8 1.8 0 0 0 1.8-1.5l.4-2.4a9.6 9.6 0 0 0 3.1-1.3l2 1.4a1.8 1.8 0 0 0 2.4-.3l2.4-2.4a1.8 1.8 0 0 0 .3-2.4l-1.4-2a9.6 9.6 0 0 0 1.3-3.1l2.4-.4a1.8 1.8 0 0 0 1.5-1.8v-3.4a1.8 1.8 0 0 0-1.5-1.8z" fill="#607d8b"/><circle cx="18" cy="18" r="3" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Settings</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5.8 Active item -->
+      <div style="background: var(--qhr-surface-base, #ffffff); border: 1px solid var(--qhr-border-subtle, #e2e8f0); border-radius: var(--qhr-radius-xl, 16px); overflow: visible; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); display: flex; flex-direction: column;">
+        <div style="padding: 16px 24px; border-block-end: 1px solid var(--qhr-border-subtle, #e2e8f0);">
+          <h4 style="font-family: var(--qhr-font-heading); font-size: 1.05rem; font-weight: 600; margin: 0 0 6px 0; color: var(--qhr-content-primary, #0f172a);">Active item</h4>
+          <div style="font-size: 0.8125rem; color: var(--qhr-text-muted, #64748b);">
+            <code style="background: rgba(225, 29, 72, 0.08); color: var(--qhr-color-danger-bg, #e11d48); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem;">.active</code> applies to <code style="font-size: 0.78rem;">.dropdown-item</code>
+          </div>
+        </div>
+        <div style="padding: 28px 24px; min-height: 120px;">
+          <div class="qhr-dropdown" x-data="qhrDropdown()" @click.outside="close()" @keydown.escape="close()">
+            <button type="button" class="qhr-btn qhr-btn--danger qhr-btn--md" style="border-radius: 9999px; padding-inline: 22px;" x-ref="trigger" @click="toggle()" aria-haspopup="true" :aria-expanded="open">
+              <span>Dropdown</span>
+              <svg class="qhr-dropdown-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+            <div class="qhr-dropdown-menu dropdown-grid" x-ref="menu" x-show="open" x-cloak role="menu">
+              <!-- Camera -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="3" y="8" width="30" height="22" rx="4" fill="#546e7a"/><path d="M12 5h12l2 3H10z" fill="#455a64"/><circle cx="8" cy="12" r="1.5" fill="#cfd8dc"/><circle cx="18" cy="19" r="8" fill="#0288d1"/><circle cx="18" cy="19" r="5.5" fill="#29b6f6"/><circle cx="18" cy="19" r="3" fill="#e1f5fe"/><circle cx="16.5" cy="17.5" r="1" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Camera</span>
+              </a>
+              <!-- Gallery -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="10" y="4" width="22" height="22" rx="3" transform="rotate(10 21 15)" fill="#42a5f5"/><rect x="6" y="5" width="22" height="22" rx="3" transform="rotate(-6 17 16)" fill="#64b5f6"/><rect x="4" y="6" width="23" height="23" rx="3" fill="#4caf50"/><rect x="6" y="8" width="19" height="19" rx="2" fill="#81c784"/><circle cx="15.5" cy="17.5" r="3.5" fill="#fbc02d"/><path d="M15.5 12.5v10m-5-5h10m-3.5-3.5l7 7m-7 0l7-7" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/><circle cx="15.5" cy="17.5" r="2" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Gallery</span>
+              </a>
+              <!-- Files -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M4 9a3 3 0 0 1 3-3h7l3 3h12a3 3 0 0 1 3 3v2H4V9z" fill="#ffa000"/><rect x="4" y="12" width="28" height="17" rx="3" fill="#ffca28"/><path d="M4 15h28v14a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V15z" fill="#ffb300"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Files</span>
+              </a>
+              <!-- Video -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="4" y="7" width="28" height="22" rx="6" fill="#e53935"/><polygon points="15,13 24,18 15,23" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Video</span>
+              </a>
+              <!-- Music (Active - matching screenshot 4) -->
+              <a href="#" class="dropdown-item active" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M15 5v17.2a5.5 5.5 0 1 0 4 5.3V11h8V5H15z" fill="#e91e63"/><circle cx="13.5" cy="27.5" r="4.5" fill="#d81b60"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Music</span>
+              </a>
+              <!-- News -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="5" y="7" width="26" height="22" rx="3" fill="#ffccbc"/><rect x="8" y="10" width="8" height="7" rx="1" fill="#ff7043"/><rect x="18" y="10" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="13" width="10" height="2" rx="1" fill="#f4511e"/><rect x="18" y="16" width="6" height="2" rx="1" fill="#f4511e"/><rect x="8" y="19" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="22" width="20" height="2" rx="1" fill="#f4511e"/><rect x="8" y="25" width="14" height="2" rx="1" fill="#f4511e"/></svg>
+                </span>
+                <span class="dropdown-grid-title">News</span>
+              </a>
+              <!-- Contacts -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><rect x="7" y="4" width="22" height="28" rx="4" fill="#ef6c00"/><rect x="5" y="4" width="5" height="28" rx="2" fill="#d84315"/><circle cx="19" cy="14" r="4" fill="#ffffff"/><path d="M12 25c0-3.5 3.5-5 7-5s7 1.5 7 5z" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Contacts</span>
+              </a>
+              <!-- Download -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><path d="M18 4v16m-7-7l7 7 7-7" stroke="#1976d2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><rect x="5" y="27" width="26" height="5" rx="2.5" fill="#1565c0"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Download</span>
+              </a>
+              <!-- Settings -->
+              <a href="#" class="dropdown-item" role="menuitem">
+                <span class="dropdown-grid-icon">
+                  <svg width="32" height="32" viewBox="0 0 36 36"><circle cx="18" cy="18" r="5" fill="#455a64"/><path d="M29 16.5l-2.4-.4a9.6 9.6 0 0 0-1.3-3.1l1.4-2a1.8 1.8 0 0 0-.3-2.4l-2.4-2.4a1.8 1.8 0 0 0-2.4-.3l-2 1.4a9.6 9.6 0 0 0-3.1-1.3L19.5 6a1.8 1.8 0 0 0-1.8-1.5h-3.4a1.8 1.8 0 0 0-1.8 1.5l-.4 2.4a9.6 9.6 0 0 0-3.1 1.3l-2-1.4a1.8 1.8 0 0 0-2.4.3L2.2 11a1.8 1.8 0 0 0-.3 2.4l1.4 2a9.6 9.6 0 0 0-1.3 3.1L-.4 19.5A1.8 1.8 0 0 0-1.9 21.3v3.4a1.8 1.8 0 0 0 1.5 1.8l2.4.4a9.6 9.6 0 0 0 1.3 3.1l-1.4 2a1.8 1.8 0 0 0 .3 2.4l2.4 2.4a1.8 1.8 0 0 0 2.4.3l2-1.4a9.6 9.6 0 0 0 3.1 1.3l.4 2.4a1.8 1.8 0 0 0 1.8 1.5h3.4a1.8 1.8 0 0 0 1.8-1.5l.4-2.4a9.6 9.6 0 0 0 3.1-1.3l2 1.4a1.8 1.8 0 0 0 2.4-.3l2.4-2.4a1.8 1.8 0 0 0 .3-2.4l-1.4-2a9.6 9.6 0 0 0 1.3-3.1l2.4-.4a1.8 1.8 0 0 0 1.5-1.8v-3.4a1.8 1.8 0 0 0-1.5-1.8z" fill="#607d8b"/><circle cx="18" cy="18" r="3" fill="#ffffff"/></svg>
+                </span>
+                <span class="dropdown-grid-title">Settings</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>

@@ -1,0 +1,46 @@
+name: Tooltip
+category: overlay
+purpose: >
+  Displays brief contextual assistance or explanation upon hover or keyboard focus.
+
+anatomy:
+  - root
+  - trigger
+  - tooltip-box
+  - arrow-tip
+  - text-content
+
+variants:
+  - dark
+  - light
+
+sizes:
+  - sm
+  - md
+
+states:
+  - hidden
+  - visible
+
+slots:
+  - default
+
+accessibility:
+  role: tooltip
+  keyboard:
+    Escape: "Dismisses tooltip while trigger retains focus"
+  focus: "Trigger receives focus; tooltip displays"
+  aria:
+    - aria-describedby: matching tooltip id
+
+behavior:
+  hover_delay: 200
+  dismiss_on_scroll: true
+
+ai:
+  description: "Micro-feedback popup clarifying icon controls or terms"
+  use_when:
+    - "Clarifying icon-only buttons (Save, Delete, Edit)"
+    - "Explaining abbreviations or dense UI concepts"
+  avoid_when:
+    - "Crucial content required for basic interaction on mobile touch screens"

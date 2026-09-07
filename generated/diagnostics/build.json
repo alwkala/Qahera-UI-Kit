@@ -1,0 +1,16 @@
+{
+  "compiler": "1.0.0",
+  "status": "success",
+  "timestamp": "2026-09-07T20:10:45.494Z",
+  "durationMs": 279,
+  "sourceHash": "362986bbdc2ae6719830e2b765c2ca178f63658932eaca9ef3c03ea2e8d3f2a9",
+  "counts": {
+    "contracts": 42,
+    "recipes": 42,
+    "icons": 41,
+    "generated": 42,
+    "errors": 0,
+    "warnings": 0,
+    "info": 0
+  }
+}

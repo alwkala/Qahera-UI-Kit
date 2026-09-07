@@ -1,0 +1,298 @@
+<!-- Qahera UI Kit - Master Card Showcase -->
+<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
+
+  <!-- 1. الأساسيات والمتغيرات الهيكلية (Standard Variants) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. المتغيرات البنائية (Standard Variants)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      
+      <!-- Outline Card -->
+      <div class="qhr-card qhr-card--outline">
+        <div class="qhr-card-header">
+          <div class="qhr-card-header-main">
+            <h4 class="qhr-card-title">بطاقة خطية (Outline)</h4>
+            <p class="qhr-card-subtitle">إطار محدد بدون ظلال خلفية</p>
+          </div>
+          <span class="qhr-badge qhr-badge--neutral qhr-badge--sm">افتراضي</span>
+        </div>
+        <div class="qhr-card-body">
+          <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--q-text-secondary);">
+            توفر هذه البطاقة فاصلاً بصرياً خفيفاً مع حدود دقيقة تناسب لوحات المعلومات المليئة بالبيانات.
+          </p>
+        </div>
+        <div class="qhr-card-footer">
+          <span style="font-size: 0.8rem; color: var(--q-text-muted);">آخر تحديث: منذ ساعتين</span>
+          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm">تعديل</button>
+        </div>
+      </div>
+
+      <!-- Elevated Card -->
+      <div class="qhr-card qhr-card--elevated">
+        <div class="qhr-card-header">
+          <div class="qhr-card-header-main">
+            <h4 class="qhr-card-title">بطاقة بارزة (Elevated)</h4>
+            <p class="qhr-card-subtitle">تأثير ظل عائم ومحدد</p>
+          </div>
+          <span class="qhr-badge qhr-badge--primary qhr-badge--sm">شائع</span>
+        </div>
+        <div class="qhr-card-body">
+          <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--q-text-secondary);">
+            تمنح البطاقة البارزة عمقاً بصرياً طبيعياً مع ظلال ناعمة تجذب انتباه المستخدم للعناصر الهامة.
+          </p>
+        </div>
+        <div class="qhr-card-footer">
+          <span style="font-size: 0.8rem; color: var(--q-text-muted);">الحالة: نشط</span>
+          <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm">استعراض</button>
+        </div>
+      </div>
+
+      <!-- Flat / Soft Card -->
+      <div class="qhr-card qhr-card--flat">
+        <div class="qhr-card-header">
+          <div class="qhr-card-header-main">
+            <h4 class="qhr-card-title">بطاقة هادئة (Flat / Soft)</h4>
+            <p class="qhr-card-subtitle">خلفية معتمة ناعمة بدون حدود قوية</p>
+          </div>
+          <span class="qhr-badge qhr-badge--success qhr-badge--sm">هادئ</span>
+        </div>
+        <div class="qhr-card-body">
+          <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--q-text-secondary);">
+            خلفية سطح هادئة مدمجة لتنظيم المعلومات الثانوية أو القوائم المجمعة بسلاسة بصرية.
+          </p>
+        </div>
+        <div class="qhr-card-footer">
+          <span style="font-size: 0.8rem; color: var(--q-text-muted);">التصنيف: وثائق</span>
+          <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--sm">تحميل</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2. بطاقات لوحات القيادة والمؤشرات (Dashboard KPI Cards) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">2. بطاقات المؤشرات والإحصائيات (Dashboard KPI Cards)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+      
+      <div class="qhr-card qhr-card--accent-top qhr-card--color-primary">
+        <div class="qhr-card-body">
+          <span style="font-size: 0.82rem; font-weight: 600; color: var(--q-text-secondary);">إجمالي الإيرادات الشهرية</span>
+          <div class="qhr-card-metric">
+            <span class="qhr-card-metric-value">428,900</span>
+            <span style="font-size: 0.9rem; color: var(--q-text-muted);">ر.س</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-block-start: 8px;">
+            <span class="qhr-card-metric-trend qhr-card-metric-trend--up">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+              +14.2% مقارنة بالماضي
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qhr-card qhr-card--accent-top qhr-card--color-success">
+        <div class="qhr-card-body">
+          <span style="font-size: 0.82rem; font-weight: 600; color: var(--q-text-secondary);">المستخدمين النشطين</span>
+          <div class="qhr-card-metric">
+            <span class="qhr-card-metric-value">12,840</span>
+            <span style="font-size: 0.9rem; color: var(--q-text-muted);">عضو</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-block-start: 8px;">
+            <span class="qhr-card-metric-trend qhr-card-metric-trend--up">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+              +8.7% نمو أسبوعي
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qhr-card qhr-card--accent-top qhr-card--color-warning">
+        <div class="qhr-card-body">
+          <span style="font-size: 0.82rem; font-weight: 600; color: var(--q-text-secondary);">طلبات قيد المراجعة</span>
+          <div class="qhr-card-metric">
+            <span class="qhr-card-metric-value">34</span>
+            <span style="font-size: 0.9rem; color: var(--q-text-muted);">طلب</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-block-start: 8px;">
+            <span class="qhr-card-metric-trend" style="color: var(--qhr-color-warning-600, #f59e0b);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              مستقر حالياً
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qhr-card qhr-card--accent-top qhr-card--color-danger">
+        <div class="qhr-card-body">
+          <span style="font-size: 0.82rem; font-weight: 600; color: var(--q-text-secondary);">معدل الارتداد</span>
+          <div class="qhr-card-metric">
+            <span class="qhr-card-metric-value">2.1%</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-block-start: 8px;">
+            <span class="qhr-card-metric-trend qhr-card-metric-trend--down">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              -0.4% تحسن إيجابي
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 3. البطاقات الفاخرة والتراثية (Luxury & Heritage Cards) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">3. البطاقات الفاخرة والزجاجية والتراثية (Luxury, Glass & Heritage)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+      
+      <!-- Luxury Card -->
+      <div class="qhr-card qhr-card--luxury qhr-card--interactive">
+        <div class="qhr-card-header">
+          <div class="qhr-card-header-main">
+            <h4 class="qhr-card-title">عضوية النخبة القاهرية</h4>
+            <p class="qhr-card-subtitle">الوصول الكامل للمنظومة المعمارية</p>
+          </div>
+          <span class="qhr-badge qhr-badge--luxury qhr-badge--sm">حصري</span>
+        </div>
+        <div class="qhr-card-body">
+          <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--q-text-secondary);">
+            تصميم مميز بلمسات الذهب والسبج الأسود (Obsidian Gold) مع إشعاع هادئ يعكس فخامة الهوية الإقليمية.
+          </p>
+        </div>
+        <div class="qhr-card-footer">
+          <span style="font-size: 0.8rem; color: var(--q-gold);">صالحة حتى ديسمبر 2027</span>
+          <button type="button" class="qhr-btn qhr-btn--luxury qhr-btn--sm">ترقية</button>
+        </div>
+      </div>
+
+      <!-- Glassmorphic Card with Pattern -->
+      <div class="qhr-card qhr-card--glass bg-mashrabiya-dark qhr-card--interactive" style="border: 1px solid rgba(212, 175, 55, 0.2);">
+        <div class="qhr-card-header">
+          <div class="qhr-card-header-main">
+            <h4 class="qhr-card-title" style="color: #ffffff;">زخرفة المشربية الزجاجية</h4>
+            <p class="qhr-card-subtitle" style="color: rgba(255, 255, 255, 0.7);">خلفية تراثية مدمجة مع زجاج ضبابي</p>
+          </div>
+          <span class="qhr-badge qhr-badge--sm" style="background: rgba(255, 255, 255, 0.15); color: #fff;">Heritage</span>
+        </div>
+        <div class="qhr-card-body">
+          <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: rgba(255, 255, 255, 0.85);">
+            تكامل مباشر بين منظومة الأنماط الهندسية وخاصية Glassmorphism لإنتاج واجهات بطاقات فائقة الجاذبية.
+          </p>
+        </div>
+        <div class="qhr-card-footer" style="background: rgba(0, 0, 0, 0.2); border-color: rgba(255, 255, 255, 0.1);">
+          <span style="font-size: 0.8rem; color: rgba(255, 255, 255, 0.65);">SVG مدمج 100%</span>
+          <button type="button" class="qhr-btn qhr-btn--sm" style="background: rgba(255, 255, 255, 0.2); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3);">تخصيص</button>
+        </div>
+      </div>
+
+      <!-- Card with Folded Ribbon Integration -->
+      <div class="qhr-card qhr-card--ribbon qhr-card--interactive" style="position: relative; overflow: visible;">
+        <div class="qhr-ribbon qhr-ribbon--folded-start qhr-ribbon--primary" role="status">مميز جداً</div>
+        <div class="qhr-card-header" style="margin-block-start: 8px;">
+          <div class="qhr-card-header-main">
+            <h4 class="qhr-card-title">تكامل الأشرطة التفاعلية</h4>
+            <p class="qhr-card-subtitle">توافق كامل مع مكون Ribbon</p>
+          </div>
+        </div>
+        <div class="qhr-card-body">
+          <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--q-text-secondary);">
+            تدعم بطاقات قاهرة دمج أشرطة التنبيه والزوايا والأطراف المطوية Ribbon بكل سلاسة مع تناسق كامل للحواف.
+          </p>
+        </div>
+        <div class="qhr-card-footer">
+          <span style="font-size: 0.8rem; color: var(--q-text-muted);">عروض الصيف</span>
+          <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm">احجز الآن</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. بطاقات الوسائط والمقالات الأفقية (Media & Horizontal Cards) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">4. بطاقات الوسائط والأفقية (Media & Horizontal Cards)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+      
+      <!-- Horizontal Article Card -->
+      <div class="qhr-card qhr-card--horizontal qhr-card--interactive">
+        <div class="qhr-card-media bg-gradient-ocean" style="display: flex; align-items: center; justify-content: center; min-height: 140px;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: #ffffff;"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <div class="qhr-card-content">
+          <div class="qhr-card-body" style="padding: 16px;">
+            <span class="qhr-badge qhr-badge--info qhr-badge--xs" style="margin-block-end: 8px;">تصميم معماري</span>
+            <h4 class="qhr-card-title" style="font-size: 0.95rem; margin-block-end: 6px;">بناء منظومات التصميم AI-Native</h4>
+            <p style="margin: 0; font-size: 0.82rem; color: var(--q-text-secondary); line-height: 1.5;">
+              كيف تدعم منظومة قاهرة مهندسي البرمجيات في بناء منتجات متسقة تلائم السياق العربي والعالمي.
+            </p>
+          </div>
+          <div class="qhr-card-footer" style="padding: 8px 16px;">
+            <span style="font-size: 0.75rem; color: var(--q-text-muted);">قراءة 4 دقائق</span>
+            <button type="button" class="qhr-btn qhr-btn--link qhr-btn--sm">المزيد</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Media Overlay Card -->
+      <div class="qhr-card qhr-card--interactive" style="min-height: 220px; position: relative;">
+        <div class="qhr-card-media bg-gradient-purple" style="height: 100%; min-height: 220px; position: relative;">
+          <div class="qhr-card-media-overlay">
+            <span class="qhr-badge qhr-badge--warning qhr-badge--xs" style="align-self: flex-start; margin-block-end: 8px;">جديد</span>
+            <h4 style="font-size: 1.15rem; font-weight: 800; margin: 0 0 6px 0; color: #ffffff;">القاهرة في عيون المصممين</h4>
+            <p style="margin: 0; font-size: 0.82rem; color: rgba(255, 255, 255, 0.8); line-height: 1.5;">
+              استلهام الألوان التراثية وتطبيقها بأرقى المعايير العالمية المعاصرة.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 5. البطاقات المجمعة (Card Group / Split Container) -->
+  <div>
+    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">5. الحاويات المجمعة المتصلة (Connected Card Group)</h3>
+    <div class="qhr-card-group">
+      <div class="qhr-card">
+        <div class="qhr-card-header">
+          <h4 class="qhr-card-title">الخطة الأساسية</h4>
+        </div>
+        <div class="qhr-card-body">
+          <div style="font-size: 1.5rem; font-weight: 800; color: var(--q-text-primary); margin-block-end: 8px;">مجانياً</div>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--q-text-secondary); line-height: 1.6;">مناسبة للمشاريع الفردية والاستكشاف السريع مع كافة المكونات الأساسية.</p>
+        </div>
+        <div class="qhr-card-footer">
+          <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--sm" style="width: 100%;">ابدأ مجاناً</button>
+        </div>
+      </div>
+
+      <div class="qhr-card" style="background: rgba(201, 168, 76, 0.04);">
+        <div class="qhr-card-header">
+          <h4 class="qhr-card-title" style="color: var(--q-gold);">الخطة الاحترافية</h4>
+          <span class="qhr-badge qhr-badge--luxury qhr-badge--xs">الأكثر طلباً</span>
+        </div>
+        <div class="qhr-card-body">
+          <div style="font-size: 1.5rem; font-weight: 800; color: var(--q-gold); margin-block-end: 8px;">149 ر.س <span style="font-size: 0.8rem; font-weight: 400; color: var(--q-text-muted);">/ شهر</span></div>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--q-text-secondary); line-height: 1.6;">للشركات الناشئة وفرق العمل مع قوالب جاهزة وميزات الذكاء الاصطناعي الكاملة.</p>
+        </div>
+        <div class="qhr-card-footer">
+          <button type="button" class="qhr-btn qhr-btn--luxury qhr-btn--sm" style="width: 100%;">اشترك الآن</button>
+        </div>
+      </div>
+
+      <div class="qhr-card">
+        <div class="qhr-card-header">
+          <h4 class="qhr-card-title">المؤسسات الكبرى</h4>
+        </div>
+        <div class="qhr-card-body">
+          <div style="font-size: 1.5rem; font-weight: 800; color: var(--q-text-primary); margin-block-end: 8px;">تخصيص كامل</div>
+          <p style="margin: 0; font-size: 0.85rem; color: var(--q-text-secondary); line-height: 1.6;">بنية تحتية مخصصة، دعم فني متقدم، وترخيص غير محدود لكافة المشاريع.</p>
+        </div>
+        <div class="qhr-card-footer">
+          <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--sm" style="width: 100%;">تواصل معنا</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,103 @@
+{
+  "id": "divider",
+  "name": "Divider",
+  "component": "Divider",
+  "category": "data-display",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "line-before",
+      "label",
+      "line-after"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-subtle-divider"
+      },
+      "dashed": {
+        "intent": "dashed-editorial-divider"
+      },
+      "strong": {
+        "intent": "high-contrast-divider"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "thickness": 1
+      },
+      "md": {
+        "thickness": 2
+      },
+      "lg": {
+        "thickness": 4
+      }
+    },
+    "states": [
+      "default"
+    ],
+    "slots": {
+      "default": "optional"
+    },
+    "accessibility": {
+      "role": "separator",
+      "aria": {
+        "0": {
+          "\"aria-orientation\"": "horizontal"
+        }
+      }
+    }
+  },
+  "recipe": {
+    "file": "recipes/divider.yaml",
+    "base": {
+      "display": "flex",
+      "align-items": "center",
+      "width": "100%",
+      "color": "{color.border.subtle}"
+    },
+    "variants": {
+      "default": {
+        "border-style": "solid"
+      },
+      "dashed": {
+        "border-style": "dashed"
+      },
+      "strong": {
+        "border-color": "{color.border.strong}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "border-width": "1px"
+      },
+      "md": {
+        "border-width": "2px"
+      },
+      "lg": {
+        "border-width": "4px"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Visual separator delineating content blocks horizontally or vertically, with optional embedded center label.",
+    "whenToUse": [
+      "Separating sections of a form or list",
+      "Inline social login divider (e.g. 'أو' / 'Or')",
+      "Vertical divider between toolbar button groups"
+    ],
+    "avoid": [
+      "Purely decorative border hacks"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Divider.yaml"
+  }
+}

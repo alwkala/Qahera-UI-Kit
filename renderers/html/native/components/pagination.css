@@ -1,0 +1,369 @@
+/* ── Pagination Component (.qhr-pagination) ─────────────────────────── */
+.qhr-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--qhr-space-4, 16px);
+  padding-block: var(--qhr-space-3, 12px);
+  padding-inline: var(--qhr-space-4, 16px);
+  background: var(--qhr-surface-elevated, #131b2e);
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  border-radius: var(--qhr-radius-lg, 14px);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  transition: all var(--qhr-motion-duration-fast, 150ms) ease;
+}
+
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* 1. Summary Block */
+.qhr-pagination__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-2, 6px);
+  font-size: var(--qhr-text-sm, 13px);
+  color: var(--qhr-content-secondary, #94a3b8);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.qhr-pagination__summary strong {
+  color: var(--qhr-content-primary, #f8fafc);
+  font-weight: 700;
+}
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__summary strong {
+  color: #0f172a;
+}
+.qhr-pagination__summary-accent {
+  color: var(--qhr-color-primary, #d4af37);
+  font-weight: 800;
+}
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__summary-accent {
+  color: #b45309;
+}
+
+/* 2. Controls Navigation / Content */
+.qhr-pagination__content,
+.qhr-pagination__controls {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qhr-space-1, 4px);
+  justify-content: center;
+}
+
+/* Base Button / Link */
+.qhr-pagination__btn,
+.qhr-pagination__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--qhr-space-2, 6px);
+  height: 36px;
+  padding-inline: var(--qhr-space-3, 12px);
+  border-radius: var(--qhr-radius-md, 8px);
+  font-family: inherit;
+  font-size: var(--qhr-text-sm, 13px);
+  font-weight: 600;
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.1));
+  background: var(--qhr-surface-base, var(--qhr-surface-card, #0d121f));
+  color: var(--qhr-content-primary, #f8fafc);
+  cursor: pointer;
+  transition: all var(--qhr-motion-duration-fast, 150ms) ease;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__btn,
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__link {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.qhr-pagination__btn:hover:not(:disabled),
+.qhr-pagination__link:hover:not(:disabled):not(.is-active) {
+  border-color: var(--qhr-color-primary, #d4af37);
+  color: var(--qhr-color-primary, #d4af37);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.qhr-pagination__btn:disabled,
+.qhr-pagination__link:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__btn:disabled,
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__link:disabled {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #94a3b8;
+  opacity: 0.7;
+}
+
+
+/* Directional Icon Rotations (RTL Parity) */
+.qhr-pagination__icon-prev,
+.qhr-pagination__icon-next,
+.qhr-pagination__icon-first,
+.qhr-pagination__icon-last {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform var(--qhr-motion-duration-fast, 150ms) ease;
+}
+
+[dir="rtl"] .qhr-pagination__icon-prev,
+[dir="rtl"] .qhr-pagination__icon-next,
+[dir="rtl"] .qhr-pagination__icon-first,
+[dir="rtl"] .qhr-pagination__icon-last {
+  transform: rotate(180deg);
+}
+
+/* 3. Numbered Pages & Ellipsis */
+.qhr-pagination__pages {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.qhr-pagination__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 36px;
+  height: 36px;
+  padding-inline: 6px;
+  border-radius: var(--qhr-radius-md, 8px);
+  font-family: var(--qhr-font-mono, monospace);
+  font-size: var(--qhr-text-sm, 13px);
+  font-weight: 700;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--qhr-content-secondary, #94a3b8);
+  cursor: pointer;
+  transition: all 150ms ease;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.qhr-pagination__page:hover:not(.is-active):not(:disabled) {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--qhr-content-primary, #f8fafc);
+}
+
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__page:hover:not(.is-active):not(:disabled) {
+  background: rgba(0, 0, 0, 0.05);
+  color: #0f172a;
+}
+
+.qhr-pagination__page.is-active,
+.qhr-pagination__page[aria-current="page"] {
+  background: var(--qhr-color-primary, #d4af37);
+  color: #07090e;
+  border-color: var(--qhr-color-primary, #d4af37);
+  font-weight: 800;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+}
+
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__page.is-active,
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__page[aria-current="page"] {
+  background: #b45309;
+  color: #ffffff;
+  border-color: #b45309;
+  box-shadow: 0 1px 4px rgba(180, 83, 9, 0.3);
+}
+
+.qhr-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 30px;
+  height: 36px;
+  color: var(--qhr-text-muted, #64748b);
+  user-select: none;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* 4. Page Size Picker */
+.qhr-pagination__size {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qhr-space-2, 8px);
+  font-size: var(--qhr-text-sm, 13px);
+  color: var(--qhr-content-secondary, #94a3b8);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.qhr-pagination__select {
+  height: 36px;
+  padding-block: 0;
+  padding-inline: var(--qhr-space-3, 10px);
+  border-radius: var(--qhr-radius-md, 8px);
+  font-family: inherit;
+  font-size: var(--qhr-text-sm, 13px);
+  font-weight: 600;
+  background: var(--qhr-surface-base, var(--qhr-surface-card, #0d121f));
+  color: var(--qhr-content-primary, #f8fafc);
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.1));
+  outline: none;
+  cursor: pointer;
+  transition: border-color 150ms ease;
+}
+
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination__select {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.qhr-pagination__select:focus {
+  border-color: var(--qhr-color-primary, #d4af37);
+}
+
+/* ── 5. Styled Variations (shadcn inspired) ────────────────────────── */
+
+/* A. Outline Variant (Distinct bordered card style) */
+.qhr-pagination--outline {
+  border: 1px solid var(--qhr-border-strong, rgba(255, 255, 255, 0.18));
+  background: var(--qhr-surface-base, var(--qhr-surface-card, #0d121f));
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination--outline {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* B. Ghost / Minimal Variant (Borderless, seamless integration in tables) */
+.qhr-pagination--ghost {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding-inline: 0;
+}
+.qhr-pagination--ghost .qhr-pagination__btn {
+  background: transparent;
+  border-color: transparent;
+}
+.qhr-pagination--ghost .qhr-pagination__btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.06);
+}
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination--ghost .qhr-pagination__btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* C. Pills Variant (Rounded capsules with circular indicators) */
+.qhr-pagination--pills {
+  border-radius: 9999px;
+  padding-inline: var(--qhr-space-5, 20px);
+}
+.qhr-pagination--pills .qhr-pagination__btn {
+  border-radius: 9999px;
+  padding-inline: 14px;
+}
+.qhr-pagination--pills .qhr-pagination__page {
+  border-radius: 50%;
+  min-inline-size: 36px;
+  height: 36px;
+}
+.qhr-pagination--pills .qhr-pagination__select {
+  border-radius: 9999px;
+  padding-inline: 14px;
+}
+
+/* D. Segmented Variant (Joined button group strip) */
+.qhr-pagination--segmented .qhr-pagination__controls {
+  gap: 0;
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.12));
+  border-radius: var(--qhr-radius-md, 8px);
+  overflow: hidden;
+  background: var(--qhr-surface-base, var(--qhr-surface-card, #0d121f));
+}
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination--segmented .qhr-pagination__controls {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+.qhr-pagination--segmented .qhr-pagination__btn,
+.qhr-pagination--segmented .qhr-pagination__page {
+  border-radius: 0;
+  border: none;
+  border-inline-end: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.1));
+}
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination--segmented .qhr-pagination__btn,
+:is([data-theme="light"], [data-mode="light"], [data-theme$="-light"]) .qhr-pagination--segmented .qhr-pagination__page {
+  border-inline-end-color: #e2e8f0;
+}
+.qhr-pagination--segmented .qhr-pagination__btn:last-child {
+  border-inline-end: none;
+}
+
+/* E. Compact Variant (Centered, space-saving) */
+.qhr-pagination--compact {
+  justify-content: center;
+  gap: var(--qhr-space-3, 12px);
+}
+
+/* F. Icons-Only Variant (Icon triggers without labels for dense data tables) */
+.qhr-pagination--icons-only .qhr-pagination__btn {
+  padding-inline: 8px;
+  min-inline-size: 36px;
+}
+
+/* ── 6. Size Scales ───────────────────────────────────────────────── */
+.qhr-pagination--sm {
+  padding-block: var(--qhr-space-2, 8px);
+  padding-inline: var(--qhr-space-3, 12px);
+  font-size: var(--qhr-text-xs, 12px);
+}
+.qhr-pagination--sm .qhr-pagination__btn,
+.qhr-pagination--sm .qhr-pagination__page,
+.qhr-pagination--sm .qhr-pagination__select,
+.qhr-pagination--sm .qhr-pagination__ellipsis {
+  height: 30px;
+  min-inline-size: 30px;
+  font-size: var(--qhr-text-xs, 12px);
+}
+
+.qhr-pagination--lg {
+  padding-block: var(--qhr-space-4, 16px);
+  padding-inline: var(--qhr-space-5, 20px);
+  font-size: var(--qhr-text-base, 15px);
+}
+.qhr-pagination--lg .qhr-pagination__btn,
+.qhr-pagination--lg .qhr-pagination__page,
+.qhr-pagination--lg .qhr-pagination__select,
+.qhr-pagination--lg .qhr-pagination__ellipsis {
+  height: 42px;
+  min-inline-size: 42px;
+  font-size: var(--qhr-text-base, 15px);
+}
+
+/* ── 7. Responsive Breakpoints ────────────────────────────────────── */
+@media (max-width: 900px) {
+  .qhr-pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--qhr-space-3, 12px);
+  }
+  .qhr-pagination__summary {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+  }
+  .qhr-pagination__content,
+  .qhr-pagination__controls {
+    order: 2;
+  }
+  .qhr-pagination__size {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+}

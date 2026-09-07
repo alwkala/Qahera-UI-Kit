@@ -1,0 +1,35 @@
+id: template-landing
+name: Cinematic Luxury Landing Page
+category: landing
+purpose: >
+  High-conversion cinematic marketing landing page with luxury obsidian & gold typography, interactive preloader, canvas sparks, video hero, editorial storytelling, and VIP membership.
+
+patterns:
+  - editorial-story
+  - vip-membership
+  - form-actions
+
+components:
+  - preloader
+  - canvas-sparks
+  - back-to-top
+  - navbar
+  - button
+  - card
+  - badge
+  - accordion
+
+sections:
+  - preloader: "Atmospheric digital percentage loading screen"
+  - navigation: "Sticky luxury navbar with gold brand mark and language/theme triggers"
+  - hero: "Cinematic hero container with canvas sparks, display typography, and CTA triggers"
+  - story: "Editorial craftsmanship narrative showcasing heritage and materials"
+  - features: "Bespoke feature cards highlighting steel 316L, anti-tarnish, and royal packaging"
+  - faq: "Expandable Accordion addressing client inquiries"
+  - membership: "Exclusive VIP club and private drops subscription"
+  - back-to-top: "Floating scroll-to-top circular trigger"
+
+ai:
+  purpose: "Cinematic luxury brand and product launch landing page"
+  use_when:
+    - "Luxury e-commerce brands, high-end studios, flagship jewelry product drops"

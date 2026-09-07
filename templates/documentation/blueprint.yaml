@@ -1,0 +1,21 @@
+id: template-documentation
+name: Technical Documentation Site
+category: documentation
+purpose: >
+  Structured technical documentation with hierarchical sidebar, instantaneous search toolbar, code blocks, and page pagination.
+
+patterns:
+  - search-toolbar
+  - pagination
+
+components:
+  - nav
+  - input
+  - button
+  - badge
+  - card
+
+ai:
+  purpose: "Knowledge base and technical API reference documentation"
+  use_when:
+    - "Developer documentation, design system references, SDK manuals"

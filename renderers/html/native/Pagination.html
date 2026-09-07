@@ -1,0 +1,147 @@
+<!-- Qahera UI Kit - Native HTML Pagination Variations (Inspired by shadcn/ui & Elevated for MENA) -->
+
+<!-- 1. Default Luxury Variant -->
+<nav class="qhr-pagination" role="navigation" aria-label="ترقيم الصفحات الافتراضي">
+  <div class="qhr-pagination__summary">
+    <span>عرض</span>
+    <strong>1 إلى 10</strong>
+    <span>من أصل</span>
+    <strong class="qhr-pagination__summary-accent">94</strong>
+    <span>عنصراً</span>
+  </div>
+
+  <div class="qhr-pagination__controls">
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة السابقة" disabled>
+      <svg class="qhr-pagination__icon-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>السابق</span>
+    </button>
+
+    <div class="qhr-pagination__pages">
+      <button type="button" class="qhr-pagination__page is-active" aria-current="page">1</button>
+      <button type="button" class="qhr-pagination__page">2</button>
+      <button type="button" class="qhr-pagination__page">3</button>
+      <span class="qhr-pagination__ellipsis" aria-hidden="true">&hellip;</span>
+      <button type="button" class="qhr-pagination__page">10</button>
+    </div>
+
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة التالية">
+      <span>التالي</span>
+      <svg class="qhr-pagination__icon-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <div class="qhr-pagination__size">
+    <label for="p1Size">عناصر الصفحة:</label>
+    <select id="p1Size" class="qhr-pagination__select">
+      <option value="10">10 عناصر</option>
+      <option value="25">25 عنصر</option>
+      <option value="50">50 عنصر</option>
+    </select>
+  </div>
+</nav>
+
+<!-- 2. Outline High-Contrast Variant -->
+<nav class="qhr-pagination qhr-pagination--outline" role="navigation" aria-label="ترقيم الصفحات بإطار بارز">
+  <div class="qhr-pagination__summary">
+    <span>صفحة <strong>2</strong> من <strong>8</strong></span>
+  </div>
+
+  <div class="qhr-pagination__controls">
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة السابقة">
+      <svg class="qhr-pagination__icon-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>السابق</span>
+    </button>
+
+    <div class="qhr-pagination__pages">
+      <button type="button" class="qhr-pagination__page">1</button>
+      <button type="button" class="qhr-pagination__page is-active" aria-current="page">2</button>
+      <button type="button" class="qhr-pagination__page">3</button>
+      <button type="button" class="qhr-pagination__page">4</button>
+    </div>
+
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة التالية">
+      <span>التالي</span>
+      <svg class="qhr-pagination__icon-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- 3. Pills Capsule Variant -->
+<nav class="qhr-pagination qhr-pagination--pills" role="navigation" aria-label="ترقيم الصفحات الكبسولي">
+  <div class="qhr-pagination__controls">
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة السابقة">
+      <svg class="qhr-pagination__icon-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>السابق</span>
+    </button>
+
+    <div class="qhr-pagination__pages">
+      <button type="button" class="qhr-pagination__page is-active" aria-current="page">1</button>
+      <button type="button" class="qhr-pagination__page">2</button>
+      <button type="button" class="qhr-pagination__page">3</button>
+      <button type="button" class="qhr-pagination__page">4</button>
+      <button type="button" class="qhr-pagination__page">5</button>
+    </div>
+
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة التالية">
+      <span>التالي</span>
+      <svg class="qhr-pagination__icon-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- 4. Segmented Group Variant -->
+<nav class="qhr-pagination qhr-pagination--segmented" role="navigation" aria-label="ترقيم الصفحات المجزأ">
+  <div class="qhr-pagination__controls">
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة السابقة">
+      <svg class="qhr-pagination__icon-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+    </button>
+    <button type="button" class="qhr-pagination__page">1</button>
+    <button type="button" class="qhr-pagination__page is-active" aria-current="page">2</button>
+    <button type="button" class="qhr-pagination__page">3</button>
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة التالية">
+      <svg class="qhr-pagination__icon-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- 5. Ghost Minimal Variant for Tables -->
+<nav class="qhr-pagination qhr-pagination--ghost" role="navigation" aria-label="ترقيم الجداول البسيط">
+  <div class="qhr-pagination__summary">
+    <span>عرض 1 - 25 من 1,420 سجل</span>
+  </div>
+  <div class="qhr-pagination__controls">
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة السابقة">
+      <svg class="qhr-pagination__icon-prev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>السابق</span>
+    </button>
+    <div class="qhr-pagination__pages">
+      <button type="button" class="qhr-pagination__page is-active" aria-current="page">1</button>
+      <button type="button" class="qhr-pagination__page">2</button>
+      <button type="button" class="qhr-pagination__page">3</button>
+    </div>
+    <button type="button" class="qhr-pagination__btn" aria-label="الصفحة التالية">
+      <span>التالي</span>
+      <svg class="qhr-pagination__icon-next" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+  </div>
+</nav>

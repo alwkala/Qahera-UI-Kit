@@ -1,0 +1,53 @@
+version: 1.0.0
+namespace: qhr
+description: Keyboard Interaction & Focus Contract per WAI-ARIA APG Standards
+
+interactions:
+  button:
+    keys:
+      Enter: "Activates button action"
+      Space: "Activates button action"
+    focus_visible: "Must display high-contrast ring (--qhr-ring-focus)"
+
+  dialog_modal:
+    keys:
+      Escape: "Closes the modal and returns focus to opener trigger"
+      Tab: "Cycles focus strictly within dialog focusable elements (Focus Trap)"
+      Shift+Tab: "Cycles reverse focus strictly within dialog"
+    focus_on_open: "First interactive element or dialog container"
+    scroll_lock: "Body overflow hidden while open"
+
+  dropdown_menu:
+    keys:
+      ArrowDown: "Focuses next menu item (loops to first)"
+      ArrowUp: "Focuses previous menu item (loops to last)"
+      Home: "Jumps focus to first menu item"
+      End: "Jumps focus to last menu item"
+      Escape: "Closes menu and restores focus to trigger button"
+      Enter: "Executes active menu item action"
+
+  tabs:
+    orientation: horizontal
+    keys:
+      ArrowRight: "In LTR: moves focus to next tab. In RTL: moves focus to previous tab"
+      ArrowLeft: "In LTR: moves focus to previous tab. In RTL: moves focus to next tab"
+      Home: "Focuses first tab"
+      End: "Focuses last tab"
+      Space: "Activates focused tab (if manual selection mode)"
+      Enter: "Activates focused tab (if manual selection mode)"
+
+  accordion:
+    keys:
+      Enter: "Toggles expanded/collapsed state of focused accordion header"
+      Space: "Toggles expanded/collapsed state of focused accordion header"
+      ArrowDown: "Moves focus to next accordion header"
+      ArrowUp: "Moves focus to previous accordion header"
+      Home: "Moves focus to first accordion header"
+      End: "Moves focus to last accordion header"
+
+  combobox_select:
+    keys:
+      ArrowDown: "Opens dropdown or moves to next option"
+      ArrowUp: "Moves to previous option"
+      Enter: "Selects active option and closes dropdown"
+      Escape: "Closes dropdown without changing value"

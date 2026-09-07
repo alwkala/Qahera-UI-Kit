@@ -1,0 +1,75 @@
+version: 1.0.0
+namespace: qhr
+category: components
+description: Component-specific token bindings referencing semantic and primitive tokens
+
+button:
+  primary:
+    background: "{color.primary.bg}"
+    foreground: "{color.primary.fg}"
+    hover: "{color.primary.hover}"
+    border: "transparent"
+  secondary:
+    background: "{color.secondary.bg}"
+    foreground: "{color.secondary.fg}"
+    hover: "{color.secondary.hover}"
+    border: "{color.secondary.border}"
+  outline:
+    background: "transparent"
+    foreground: "{color.primary.bg}"
+    hover: "{color.primary.subtle}"
+    border: "{color.primary.border}"
+  ghost:
+    background: "transparent"
+    foreground: "{color.primary.bg}"
+    hover: "{color.primary.subtle}"
+    border: "transparent"
+  destructive:
+    background: "{color.danger.bg}"
+    foreground: "{color.danger.fg}"
+    hover: "{color.danger.hover}"
+    border: "transparent"
+
+input:
+  background: "{surface.base}"
+  foreground: "{content.primary}"
+  border: "{border.strong}"
+  focus_border: "{color.primary.bg}"
+  focus_ring: "{border.focus_ring}"
+  disabled_bg: "{surface.muted}"
+
+card:
+  background: "{surface.elevated}"
+  border: "{border.subtle}"
+  shadow: "{shadow.sm}"
+  hover_shadow: "{shadow.md}"
+
+modal:
+  backdrop: "{surface.overlay}"
+  dialog_bg: "{surface.elevated}"
+  border: "{border.subtle}"
+  shadow: "{shadow.xl}"
+
+badge:
+  primary_bg: "{color.primary.subtle}"
+  primary_fg: "{color.primary.bg}"
+  success_bg: "{color.success.subtle}"
+  success_fg: "{color.success.bg}"
+  warning_bg: "{color.warning.subtle}"
+  warning_fg: "{color.warning.bg}"
+  danger_bg: "{color.danger.subtle}"
+  danger_fg: "{color.danger.bg}"
+
+alert:
+  info_bg: "{color.info.subtle}"
+  info_border: "{color.blue.200}"
+  info_fg: "{color.blue.900}"
+  success_bg: "{color.success.subtle}"
+  success_border: "{color.emerald.200}"
+  success_fg: "{color.emerald.900}"
+  warning_bg: "{color.warning.subtle}"
+  warning_border: "{color.amber.200}"
+  warning_fg: "{color.amber.900}"
+  danger_bg: "{color.danger.subtle}"
+  danger_border: "{color.rose.200}"
+  danger_fg: "{color.rose.900}"

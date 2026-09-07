@@ -1,0 +1,61 @@
+id: switch
+name: Switch
+component: Switch
+category: selection
+purpose: >
+  Enables users to toggle instantly between two mutually exclusive binary states (active / inactive, on / off).
+
+anatomy:
+  - root
+  - track
+  - thumb
+  - label
+  - description
+
+variants:
+  default:
+    intent: standard-binary-toggle
+  gold:
+    intent: luxury-gold-accent-toggle
+
+sizes:
+  sm:
+    width: 36
+    height: 20
+    thumb_size: 16
+  md:
+    width: 44
+    height: 24
+    thumb_size: 20
+  lg:
+    width: 52
+    height: 28
+    thumb_size: 24
+
+states:
+  - default
+  - checked
+  - hover
+  - focus
+  - disabled
+
+slots:
+  label: optional
+  description: optional
+
+accessibility:
+  role: switch
+  aria:
+    - "aria-checked"
+  keyboard: true
+  focusVisible: true
+
+ai:
+  purpose: "Instant binary setting or preference toggle"
+  whenToUse:
+    - "Application settings and notifications switches"
+    - "Dark/Light mode or language switching"
+    - "Feature flags and privacy toggles"
+  avoid:
+    - "Form fields requiring delayed form submission button (use Checkbox)"
+    - "Multiple selectable options from a set (use Radio or Select)"

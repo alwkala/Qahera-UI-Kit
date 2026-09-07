@@ -1,0 +1,179 @@
+{
+  "id": "progress",
+  "name": "Progress",
+  "component": "Progress",
+  "category": "feedback",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "track",
+      "bar",
+      "label",
+      "value",
+      "helper",
+      "segment",
+      "milestone",
+      "circle"
+    ],
+    "variants": {
+      "default": {
+        "intent": "solid-fill-progress"
+      },
+      "striped": {
+        "intent": "diagonal-accent-stripes"
+      },
+      "animated": {
+        "intent": "flowing-diagonal-animation-stripes"
+      },
+      "gradient": {
+        "intent": "luxury-gold-gradient-fill"
+      },
+      "indeterminate": {
+        "intent": "continuous-traveling-pulse-stream"
+      },
+      "segmented": {
+        "intent": "multi-partitioned-metric-track"
+      },
+      "vertical": {
+        "intent": "bottom-to-top-vertical-progress"
+      }
+    },
+    "sizes": {
+      "xxs": {
+        "height": 2
+      },
+      "xs": {
+        "height": 4
+      },
+      "sm": {
+        "height": 6
+      },
+      "md": {
+        "height": 10
+      },
+      "lg": {
+        "height": 16
+      },
+      "xl": {
+        "height": 24
+      }
+    },
+    "states": [
+      "default",
+      "indeterminate",
+      "complete",
+      "paused",
+      "error"
+    ],
+    "slots": {
+      "label": "optional",
+      "value": "optional",
+      "helper": "optional",
+      "segments": "optional",
+      "milestones": "optional"
+    },
+    "accessibility": {
+      "role": "progressbar",
+      "aria": [
+        "aria-valuenow",
+        "aria-valuemin=0",
+        "aria-valuemax=100",
+        "aria-label"
+      ],
+      "keyboard": false,
+      "focusVisible": false
+    }
+  },
+  "recipe": {
+    "file": "recipes/progress.yaml",
+    "base": {
+      "position": "relative",
+      "width": "100%",
+      "overflow": "hidden",
+      "border-radius": "{radius.pill}",
+      "background-color": "{color.surface.subtle}"
+    },
+    "variants": {
+      "default": {
+        "background-color": "{color.surface.subtle}"
+      },
+      "striped": {
+        "background-image": "linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent)"
+      },
+      "animated": {
+        "animation": "qhr-progress-stripes 1s linear infinite"
+      },
+      "gradient": {
+        "background-image": "linear-gradient(90deg, {color.primary.bg}, {color.neutral.300})"
+      },
+      "indeterminate": {
+        "animation": "qhr-progress-indeterminate 1.5s infinite ease-in-out"
+      },
+      "segmented": {
+        "display": "flex"
+      },
+      "vertical": {
+        "display": "inline-flex",
+        "flex-direction": "column",
+        "justify-content": "flex-end"
+      }
+    },
+    "sizes": {
+      "xxs": {
+        "height": "2px"
+      },
+      "xs": {
+        "height": "4px"
+      },
+      "sm": {
+        "height": "6px"
+      },
+      "md": {
+        "height": "10px"
+      },
+      "lg": {
+        "height": "16px"
+      },
+      "xl": {
+        "height": "24px"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      },
+      "indeterminate": {
+        "animation": "qhr-progress-indeterminate 1.5s infinite ease-in-out"
+      },
+      "complete": {
+        "opacity": 1
+      },
+      "paused": {
+        "opacity": 0.6
+      },
+      "error": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Visualizes the deterministic or indeterminate completion status of an operation, task, or metric indicator.",
+    "whenToUse": [
+      "Horizontal and vertical metric indicators and level meters",
+      "File upload and asset synchronization status",
+      "KPI goal completion bars in dashboards",
+      "Multi-step form completion indicators",
+      "Disk, memory, and equalizer column monitors"
+    ],
+    "avoid": [
+      "Discrete stepped wizard navigation (use Stepper)",
+      "Standalone loading spinners without progress context (use Spinner or Preloader)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Progress.yaml"
+  }
+}

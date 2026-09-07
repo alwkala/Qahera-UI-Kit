@@ -1,0 +1,222 @@
+/**
+ * Qahera UI Kit — Dock Component (Native CSS)
+ * 
+ * Bottom navigation bar and mobile application dock offering thumb-friendly
+ * destinations, badges, active indicators, and safe-area support.
+ * 
+ * @spec 01-CORE-SPEC §3.2
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   1. Root Dock Surface
+   ========================================================================== */
+
+.qhr-dock {
+  --_dock-bg: var(--qhr-surface-elevated, #111a27);
+  --_dock-fg: var(--qhr-content-secondary, #94a3b8);
+  --_dock-fg-active: var(--qhr-color-primary-500, #c7a35a);
+  --_dock-border: var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  --_dock-active-bg: color-mix(in srgb, var(--_dock-fg-active) 12%, transparent);
+  --_dock-min-height: 3.75rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  min-block-size: var(--_dock-min-height);
+  background-color: var(--_dock-bg);
+  border-block-start: 1px solid var(--_dock-border);
+  padding-inline: var(--qhr-space-2, 8px);
+  padding-block-start: var(--qhr-space-1, 4px);
+  padding-block-end: max(var(--qhr-space-1, 4px), env(safe-area-inset-bottom, 8px));
+  z-index: 1000;
+  box-sizing: border-box;
+  font-family: var(--qhr-font-family-primary, 'Cairo', sans-serif);
+}
+
+/* ==========================================================================
+   2. Dock Navigation Items
+   ========================================================================== */
+
+.qhr-dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  flex: 1;
+  max-inline-size: 5rem;
+  padding-block: var(--qhr-space-1, 4px);
+  padding-inline: var(--qhr-space-1, 4px);
+  border-radius: var(--qhr-radius-sm, 6px);
+  color: var(--_dock-fg);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--qhr-duration-fast, 150ms) ease,
+              transform var(--qhr-duration-fast, 150ms) ease;
+}
+
+.qhr-dock-item:hover {
+  color: var(--qhr-content-primary, #ffffff);
+}
+
+.qhr-dock-item.is-active,
+.qhr-dock-item[aria-current="page"] {
+  color: var(--_dock-fg-active);
+  font-weight: 600;
+}
+
+.qhr-dock-icon-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
+.qhr-dock-icon {
+  inline-size: 1.35rem;
+  block-size: 1.35rem;
+  stroke-width: 2;
+  transition: transform var(--qhr-duration-fast, 150ms) ease;
+}
+
+.qhr-dock-item.is-active .qhr-dock-icon {
+  transform: scale(1.1);
+}
+
+.qhr-dock-label {
+  font-size: var(--qhr-text-xs, 0.72rem);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* Dock Item Badge */
+.qhr-dock-badge {
+  position: absolute;
+  inset-block-start: -4px;
+  inset-inline-end: -8px;
+  min-inline-size: 1rem;
+  block-size: 1rem;
+  padding-inline: 3px;
+  border-radius: 9999px;
+  background-color: var(--qhr-color-danger-500, #ef4444);
+  color: #ffffff;
+  font-size: 0.625rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 2px var(--_dock-bg);
+}
+
+/* ==========================================================================
+   3. Active Pill & Glow Indicator
+   ========================================================================== */
+
+.qhr-dock--indicator .qhr-dock-item.is-active::after {
+  content: '';
+  position: absolute;
+  inset-block-start: -1px;
+  inline-size: 24px;
+  block-size: 3px;
+  border-radius: 9999px;
+  background-color: var(--_dock-fg-active);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--_dock-fg-active) 60%, transparent);
+}
+
+/* ==========================================================================
+   4. Floating Dock Capsule Pattern
+   ========================================================================== */
+
+.qhr-dock--floating {
+  inset-inline: auto;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  inset-block-end: var(--qhr-space-4, 16px);
+  inline-size: min(92vw, 440px);
+  border-radius: var(--qhr-radius-full, 9999px);
+  border: 1px solid var(--_dock-border);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+  padding-block-end: var(--qhr-space-1, 4px);
+}
+
+[dir="rtl"] .qhr-dock--floating {
+  transform: translateX(50%);
+}
+
+/* ==========================================================================
+   5. Glassmorphic Surface
+   ========================================================================== */
+
+.qhr-dock--glass {
+  background-color: color-mix(in srgb, var(--_dock-bg) 75%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ==========================================================================
+   6. Center Action Button (FAB in Dock)
+   ========================================================================== */
+
+.qhr-dock-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 3.25rem;
+  block-size: 3.25rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--qhr-color-primary-400, #e6ca85), var(--qhr-color-primary-600, #a8853b));
+  color: #0d1520;
+  border: none;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--_dock-fg-active) 40%, transparent);
+  cursor: pointer;
+  margin-block-start: -1rem;
+  flex-shrink: 0;
+  transition: transform var(--qhr-duration-fast, 150ms) ease;
+}
+
+.qhr-dock-fab:hover {
+  transform: scale(1.08) translateY(-2px);
+}
+
+/* ==========================================================================
+   7. Luxury Gold Variant
+   ========================================================================== */
+
+.qhr-dock--luxury-gold {
+  border-block-start: 2px solid var(--qhr-color-primary-500, #c7a35a);
+}
+
+/* ==========================================================================
+   8. Sizes
+   ========================================================================== */
+
+.qhr-dock--sm {
+  --_dock-min-height: 3.25rem;
+}
+.qhr-dock--sm .qhr-dock-icon {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+}
+.qhr-dock--sm .qhr-dock-label {
+  font-size: 0.65rem;
+}
+
+.qhr-dock--lg {
+  --_dock-min-height: 4.25rem;
+}
+.qhr-dock--lg .qhr-dock-icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+.qhr-dock--lg .qhr-dock-label {
+  font-size: 0.8rem;
+}

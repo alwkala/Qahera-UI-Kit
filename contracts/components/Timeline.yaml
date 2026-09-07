@@ -1,0 +1,78 @@
+id: timeline
+name: Timeline
+component: Timeline
+category: data-display
+purpose: >
+  Presents a chronological sequence of events, operational milestones, or user activity logs connected by a vertical or horizontal axis.
+
+anatomy:
+  - root
+  - list
+  - item
+  - axis-line
+  - marker-dot
+  - marker-icon
+  - header
+  - title
+  - timestamp
+  - content
+  - actions
+
+variants:
+  vertical:
+    intent: standard-vertical-feed
+  horizontal:
+    intent: milestone-progression
+  activity:
+    intent: rich-user-avatar-activity-log
+
+sizes:
+  sm:
+    marker_size: 24
+    font_size: "var(--qhr-text-xs)"
+    gap: 16
+  md:
+    marker_size: 32
+    font_size: "var(--qhr-text-sm)"
+    gap: 24
+  lg:
+    marker_size: 40
+    font_size: "var(--qhr-text-base)"
+    gap: 32
+
+states:
+  - default
+  - active
+  - completed
+  - pending
+
+tone:
+  - neutral
+  - info
+  - success
+  - warning
+  - danger
+
+slots:
+  items: required
+  marker: optional
+  header: optional
+  content: optional
+  actions: optional
+
+accessibility:
+  role: list
+  aria:
+    - "aria-label=timeline"
+  keyboard: false
+  focusVisible: false
+
+ai:
+  purpose: "Chronological event logs, activity streams, and project milestone roadmaps"
+  whenToUse:
+    - "Audit logs, order delivery history, and user activity streams"
+    - "Organizational milestones, historical company chronologies"
+    - "Task completion histories in project management dashboards"
+  avoid:
+    - "Linear multi-step forms where user input is required per step (use Stepper)"
+    - "Unordered entity lists (use Table or Card)"

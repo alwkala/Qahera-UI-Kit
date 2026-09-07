@@ -1,0 +1,64 @@
+id: treeview
+name: Treeview
+component: Treeview
+category: navigation
+purpose: >
+  Hierarchical list representation for displaying nested folders, categories, and deep tree structures with expand/collapse control.
+
+anatomy:
+  - root
+  - tree-group
+  - tree-item
+  - expand-icon
+  - item-icon
+  - item-label
+  - badge
+
+variants:
+  default:
+    intent: standard-file-tree
+  clean:
+    intent: borderless-minimal-tree
+
+sizes:
+  sm:
+    item_height: 28
+    font_size: "var(--qhr-text-xs)"
+  md:
+    item_height: 36
+    font_size: "var(--qhr-text-sm)"
+  lg:
+    item_height: 44
+    font_size: "var(--qhr-text-base)"
+
+states:
+  - default
+  - expanded
+  - collapsed
+  - selected
+  - disabled
+
+slots:
+  icon: optional
+  default: required
+  trailing: optional
+
+accessibility:
+  role: tree
+  keyboard: true
+  focusVisible: true
+  keyboard_keys:
+    ArrowDown: "Moves focus to next tree item"
+    ArrowUp: "Moves focus to previous tree item"
+    ArrowRight: "Expands current item or moves to first child"
+    ArrowLeft: "Collapses current item or moves to parent"
+    Enter: "Selects current tree item"
+
+ai:
+  purpose: "Hierarchical list representation for displaying nested folders, categories, and deep tree structures with expand/collapse control."
+  whenToUse:
+    - "Cloud storage file and folder directories"
+    - "Deep multi-level taxonomy classification in admin panels"
+    - "Codebase or documentation table of contents"
+  avoid:
+    - "Flat single-level lists (use Nav or List)"

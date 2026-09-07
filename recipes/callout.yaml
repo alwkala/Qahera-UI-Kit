@@ -1,0 +1,54 @@
+component: Callout
+name: callout
+category: feedback
+version: 1.0.0
+
+ai:
+  intent: "Highlighted editorial insight or architectural tip"
+  visual_role: "Elevated framed container with prominent border"
+  density: "comfortable"
+  preferred_when:
+    - "Documentation tips and architectural warnings"
+    - "Editorial quotes and highlighted insights"
+  avoid_when:
+    - "Modal dialogs or system error banners"
+
+base:
+  position: relative
+  display: flex
+  gap: "{space.4}"
+  border-radius: "{radius.lg}"
+  padding: "{space.4}"
+  font-family: "{font.family.body}"
+  background-color: "{color.surface.card}"
+  border-inline-start: "4px solid {color.primary.bg}"
+  border-block: "1px solid {color.border.subtle}"
+  border-inline-end: "1px solid {color.border.subtle}"
+
+variants:
+  subtle:
+    background-color: "{color.surface.subtle}"
+  outline:
+    background-color: transparent
+  luxury:
+    border-inline-start-color: "{color.primary.bg}"
+    background-color: "{color.surface.card}"
+
+sizes:
+  sm:
+    padding: "{space.3}"
+    font-size: "{text.xs}"
+  md:
+    padding: "{space.4}"
+    font-size: "{text.sm}"
+  lg:
+    padding: "{space.6}"
+    font-size: "{text.base}"
+
+states:
+  default:
+    opacity: 1
+
+structure:
+  base:
+    native_class: qhr-callout

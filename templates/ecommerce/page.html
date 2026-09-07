@@ -1,0 +1,2353 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" x-data="ecommerceApp()" x-init="init()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>كتالوج المقتنيات الملكية — Qahera Luxury E-Commerce</title>
+  <meta name="description" content="كتالوج المقتنيات والمجوهرات الفاخرة — مصاغة من فولاذ 316L ومطلية بالذهب عيار 18 المقاوم للصدأ والتلاشي مدى الحياة.">
+
+  <!-- Tokens & Components CSS -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <!-- Google Fonts: Cairo & El Messiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=El+Messiri:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       Qahera E-Commerce — Page-Level Token Bridge & Component Refinements
+       Strict adherence to AGENTS.md:
+       - Zero hardcoded hex values in HTML elements.
+       - 100% Logical CSS properties.
+       - Dual Theme (Dark / Light) with high contrast.
+       - Full Arabic typography discipline (Cairo & El Messiri, no Amiri).
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* ── Light Theme Bridge Tokens ────────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --eco-bg:                #FAF8F5;
+      --eco-surface:           #FFFFFF;
+      --eco-surface-card:      #FFFFFF;
+      --eco-surface-elevated:  #F5F2EB;
+      --eco-surface-subtle:    #F0ECE4;
+      --eco-surface-overlay:   rgba(250, 248, 245, 0.88);
+      --eco-text-primary:      #1C1917;
+      --eco-text-secondary:    #44403C;
+      --eco-text-muted:        #78716C;
+      --eco-accent:            #B45309;
+      --eco-accent-hover:      #92400E;
+      --eco-accent-fg:         #FFFFFF;
+      --eco-accent-subtle:     rgba(180, 83, 9, 0.08);
+      --eco-accent-border:     rgba(180, 83, 9, 0.25);
+      --eco-border:            #E7E5E4;
+      --eco-border-strong:     #D6D3D1;
+      --eco-nav-bg:            rgba(255, 255, 255, 0.90);
+      --eco-nav-border:        #E7E5E4;
+      --eco-card-shadow:       0 8px 24px rgba(28, 25, 23, 0.06), 0 1px 3px rgba(28, 25, 23, 0.04);
+      --eco-card-shadow-hover: 0 16px 36px rgba(180, 83, 9, 0.12), 0 4px 12px rgba(28, 25, 23, 0.06);
+      --eco-vip-gradient:      linear-gradient(135deg, #FFFFFF 0%, #F5F2EB 50%, #FAF8F5 100%);
+      --eco-hero-gradient:     radial-gradient(ellipse at 50% 0%, rgba(180, 83, 9, 0.06) 0%, transparent 70%);
+      --eco-font-display:      'El Messiri', serif;
+      --eco-font-body:         'Cairo', sans-serif;
+    }
+
+    /* ── Dark Theme Bridge Tokens (Obsidian & Imperial Gold) ───────────── */
+    [data-theme="dark"], [data-theme="luxury-gold"] {
+      --eco-bg:                #0A0806;
+      --eco-surface:           #14100C;
+      --eco-surface-card:      #17120F;
+      --eco-surface-elevated:  #221A15;
+      --eco-surface-subtle:    #1E1712;
+      --eco-surface-overlay:   rgba(10, 8, 6, 0.90);
+      --eco-text-primary:      #FBF8F3;
+      --eco-text-secondary:    #D4C9BC;
+      --eco-text-muted:        #9E9081;
+      --eco-accent:            #D4AF37;
+      --eco-accent-hover:      #F2C94C;
+      --eco-accent-fg:         #0A0806;
+      --eco-accent-subtle:     rgba(212, 175, 55, 0.10);
+      --eco-accent-border:     rgba(212, 175, 55, 0.28);
+      --eco-border:            rgba(212, 175, 55, 0.18);
+      --eco-border-strong:     rgba(212, 175, 55, 0.38);
+      --eco-nav-bg:            rgba(15, 11, 9, 0.88);
+      --eco-nav-border:        rgba(212, 175, 55, 0.16);
+      --eco-card-shadow:       0 12px 36px rgba(0, 0, 0, 0.6);
+      --eco-card-shadow-hover: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(212, 175, 55, 0.18);
+      --eco-vip-gradient:      linear-gradient(135deg, #17120F 0%, #221A15 50%, #0F0B09 100%);
+      --eco-hero-gradient:     radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.14) 0%, transparent 70%);
+      --eco-font-display:      'El Messiri', serif;
+      --eco-font-body:         'Cairo', sans-serif;
+    }
+
+    /* ── Base Reset & Typography ───────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--eco-bg);
+      color: var(--eco-text-primary);
+      font-family: var(--eco-font-body);
+      overflow-x: hidden;
+      line-height: 1.6;
+      transition: background-color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard),
+                  color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard);
+    }
+
+    /* ── Announcement Top Bar ──────────────────────────────────────────── */
+    .eco-topbar {
+      background-color: var(--eco-surface-subtle);
+      border-block-end: 1px solid var(--eco-border);
+      padding-block: var(--qhr-space-2, 8px);
+      font-size: var(--qhr-text-xs, 12px);
+      color: var(--eco-text-secondary);
+      text-align: center;
+      position: relative;
+      z-index: 1010;
+    }
+
+    .eco-topbar-inner {
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: var(--qhr-space-4, 16px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-4, 16px);
+      flex-wrap: wrap;
+    }
+
+    /* ── Sticky Navbar ─────────────────────────────────────────────────── */
+    .eco-navbar {
+      position: sticky;
+      inset-block-start: 0;
+      inset-inline: 0;
+      z-index: 1000;
+      background: var(--eco-nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-block-end: 1px solid var(--eco-nav-border);
+      transition: background var(--qhr-motion-duration-normal, 250ms),
+                  border-color var(--qhr-motion-duration-normal, 250ms);
+    }
+
+    .eco-navbar-inner {
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-block: var(--qhr-space-3, 12px);
+      padding-inline: var(--qhr-space-6, 24px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-4, 16px);
+    }
+
+    .eco-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-3, 12px);
+      text-decoration: none;
+      color: var(--eco-text-primary);
+    }
+
+    .eco-brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--eco-accent);
+      color: var(--eco-accent-fg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      font-family: var(--eco-font-display);
+      box-shadow: 0 4px 12px var(--eco-accent-subtle);
+    }
+
+    .eco-brand-title {
+      font-family: var(--eco-font-display);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .eco-brand-sub {
+      font-size: 11px;
+      color: var(--eco-text-muted);
+      display: block;
+      line-height: 1.2;
+    }
+
+    .eco-nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-6, 24px);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .eco-nav-link {
+      text-decoration: none;
+      color: var(--eco-text-secondary);
+      font-size: var(--qhr-text-sm, 14px);
+      font-weight: 600;
+      padding-block: var(--qhr-space-1, 4px);
+      border-block-end: 2px solid transparent;
+      transition: color var(--qhr-motion-duration-fast, 150ms),
+                  border-color var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eco-nav-link:hover, .eco-nav-link.is-active {
+      color: var(--eco-accent);
+      border-block-end-color: var(--eco-accent);
+    }
+
+    .eco-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-3, 12px);
+    }
+
+    .eco-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--eco-surface-subtle);
+      border: 1px solid var(--eco-border);
+      color: var(--eco-text-primary);
+      cursor: pointer;
+      position: relative;
+      transition: background var(--qhr-motion-duration-fast, 150ms),
+                  border-color var(--qhr-motion-duration-fast, 150ms),
+                  transform var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eco-action-btn:hover {
+      background: var(--eco-accent-subtle);
+      border-color: var(--eco-accent-border);
+      color: var(--eco-accent);
+      transform: translateY(-1px);
+    }
+
+    .eco-cart-badge {
+      position: absolute;
+      inset-block-start: -4px;
+      inset-inline-end: -4px;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 9999px;
+      background: var(--eco-accent);
+      color: var(--eco-accent-fg);
+      font-size: 10px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline: 4px;
+    }
+
+    /* ── Hero / Intro Section ──────────────────────────────────────────── */
+    .eco-hero {
+      position: relative;
+      padding-block: var(--qhr-space-12, 48px) var(--qhr-space-8, 32px);
+      background-image: var(--eco-hero-gradient);
+      border-block-end: 1px solid var(--eco-border);
+      overflow: hidden;
+    }
+
+    .eco-container {
+      max-width: 1280px;
+      margin-inline: auto;
+      padding-inline: var(--qhr-space-6, 24px);
+    }
+
+    .eco-hero-header {
+      max-width: 840px;
+    }
+
+    .eco-hero-title {
+      font-family: var(--eco-font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-block-start: 0;
+      margin-block-end: var(--qhr-space-3, 12px);
+      color: var(--eco-text-primary);
+    }
+
+    .eco-hero-desc {
+      font-size: clamp(15px, 1.8vw, 17px);
+      color: var(--eco-text-secondary);
+      line-height: 1.8;
+      margin-block-end: var(--qhr-space-6, 24px);
+    }
+
+    .eco-trust-row {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-6, 24px);
+      flex-wrap: wrap;
+      margin-block-start: var(--qhr-space-4, 16px);
+    }
+
+    .eco-trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+      font-size: var(--qhr-text-sm, 13px);
+      color: var(--eco-text-muted);
+    }
+
+    .eco-trust-item svg {
+      color: var(--eco-accent);
+      flex-shrink: 0;
+    }
+
+    /* ── Faceted Search & Filter Toolbar ──────────────────────────────── */
+    .eco-toolbar {
+      background: var(--eco-surface);
+      border: 1px solid var(--eco-border);
+      border-radius: var(--qhr-radius-lg, 16px);
+      padding: var(--qhr-space-4, 16px);
+      margin-block-start: var(--qhr-space-8, 32px);
+      margin-block-end: var(--qhr-space-6, 24px);
+      box-shadow: var(--eco-card-shadow);
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-4, 16px);
+    }
+
+    .eco-toolbar-main {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-3, 12px);
+      flex-wrap: wrap;
+    }
+
+    .eco-search-box {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .eco-search-box svg {
+      position: absolute;
+      inset-inline-start: var(--qhr-space-3, 12px);
+      color: var(--eco-text-muted);
+      pointer-events: none;
+    }
+
+    .eco-search-input {
+      width: 100%;
+      background: var(--eco-surface-subtle);
+      border: 1px solid var(--eco-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: var(--qhr-space-2-5, 10px);
+      padding-inline-start: var(--qhr-space-10, 40px);
+      padding-inline-end: var(--qhr-space-8, 32px);
+      color: var(--eco-text-primary);
+      font-family: var(--eco-font-body);
+      font-size: var(--qhr-text-sm, 14px);
+      transition: border-color var(--qhr-motion-duration-fast, 150ms),
+                  background var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eco-search-input:focus {
+      outline: none;
+      border-color: var(--eco-accent);
+      background: var(--eco-surface);
+    }
+
+    .eco-search-clear {
+      position: absolute;
+      inset-inline-end: var(--qhr-space-2, 8px);
+      background: transparent;
+      border: none;
+      color: var(--eco-text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--qhr-space-1, 4px);
+    }
+
+    .eco-select {
+      background: var(--eco-surface-subtle);
+      border: 1px solid var(--eco-border);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: var(--qhr-space-2-5, 10px);
+      padding-inline: var(--qhr-space-3, 12px);
+      color: var(--eco-text-primary);
+      font-family: var(--eco-font-body);
+      font-size: var(--qhr-text-sm, 14px);
+      min-width: 160px;
+      cursor: pointer;
+    }
+
+    .eco-select:focus {
+      outline: none;
+      border-color: var(--eco-accent);
+    }
+
+    /* Category Chips / Filter Bar */
+    .eco-filter-chips {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+      flex-wrap: wrap;
+      border-block-start: 1px solid var(--eco-border);
+      padding-block-start: var(--qhr-space-3, 12px);
+    }
+
+    .eco-chip-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--qhr-space-1-5, 6px);
+      padding-block: var(--qhr-space-1-5, 6px);
+      padding-inline: var(--qhr-space-3, 12px);
+      border-radius: 9999px;
+      font-size: var(--qhr-text-xs, 13px);
+      font-weight: 600;
+      border: 1px solid var(--eco-border);
+      background: var(--eco-surface-subtle);
+      color: var(--eco-text-secondary);
+      cursor: pointer;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eco-chip-btn:hover {
+      border-color: var(--eco-accent-border);
+      color: var(--eco-text-primary);
+    }
+
+    .eco-chip-btn.is-active {
+      background: var(--eco-accent);
+      border-color: var(--eco-accent);
+      color: var(--eco-accent-fg);
+    }
+
+    .eco-chip-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding-inline: 6px;
+      height: 18px;
+      border-radius: 9999px;
+      font-size: 11px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    [data-theme="light"] .eco-chip-btn.is-active .eco-chip-count {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* ── Product Cards Grid ────────────────────────────────────────────── */
+    .eco-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: var(--qhr-space-6, 24px);
+      margin-block-end: var(--qhr-space-12, 48px);
+    }
+
+    .eco-card {
+      background: var(--eco-surface-card);
+      border: 1px solid var(--eco-border);
+      border-radius: var(--qhr-radius-lg, 16px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--eco-card-shadow);
+      transition: transform var(--qhr-motion-duration-normal, 250ms) var(--qhr-motion-ease-standard),
+                  box-shadow var(--qhr-motion-duration-normal, 250ms) var(--qhr-motion-ease-standard),
+                  border-color var(--qhr-motion-duration-normal, 250ms);
+      position: relative;
+    }
+
+    .eco-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--eco-card-shadow-hover);
+      border-color: var(--eco-accent-border);
+    }
+
+    .eco-card-preview {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      background: var(--eco-surface-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-block-end: 1px solid var(--eco-border);
+    }
+
+    .eco-card-art {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px dashed var(--eco-accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--eco-accent);
+      background: var(--eco-accent-subtle);
+      transition: transform var(--qhr-motion-duration-normal, 250ms);
+    }
+
+    .eco-card:hover .eco-card-art {
+      transform: scale(1.08) rotate(5deg);
+    }
+
+    .eco-card-badges {
+      position: absolute;
+      inset-block-start: var(--qhr-space-3, 12px);
+      inset-inline: var(--qhr-space-3, 12px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .eco-badge-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding-block: 4px;
+      padding-inline: 8px;
+      border-radius: 6px;
+      background: var(--eco-surface-overlay);
+      border: 1px solid var(--eco-border);
+      color: var(--eco-accent);
+      backdrop-filter: blur(8px);
+    }
+
+    .eco-card-body {
+      padding: var(--qhr-space-5, 20px);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .eco-card-collection {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--eco-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-block-end: var(--qhr-space-1, 4px);
+    }
+
+    .eco-card-title {
+      font-family: var(--eco-font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--eco-text-primary);
+      margin-block-start: 0;
+      margin-block-end: var(--qhr-space-2, 8px);
+      line-height: 1.35;
+    }
+
+    .eco-card-specs {
+      font-size: 12px;
+      color: var(--eco-text-secondary);
+      margin-block-end: var(--qhr-space-4, 16px);
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+    }
+
+    .eco-card-specs-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--eco-accent);
+    }
+
+    .eco-card-footer {
+      margin-block-start: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-3, 12px);
+      padding-block-start: var(--qhr-space-3, 12px);
+      border-block-start: 1px solid var(--eco-border);
+    }
+
+    .eco-price-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .eco-price-current {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--eco-accent);
+      font-family: var(--eco-font-display);
+    }
+
+    .eco-price-original {
+      font-size: 12px;
+      color: var(--eco-text-muted);
+      text-decoration: line-through;
+    }
+
+    .eco-card-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+    }
+
+    .eco-btn-add {
+      background: var(--eco-accent);
+      color: var(--eco-accent-fg);
+      border: none;
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: var(--qhr-space-2, 8px);
+      padding-inline: var(--qhr-space-3, 12px);
+      font-size: 13px;
+      font-weight: 700;
+      font-family: var(--eco-font-body);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--qhr-space-1-5, 6px);
+      cursor: pointer;
+      transition: background var(--qhr-motion-duration-fast, 150ms),
+                  transform var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eco-btn-add:hover {
+      background: var(--eco-accent-hover);
+      transform: scale(1.02);
+    }
+
+    .eco-btn-quick {
+      background: var(--eco-surface-subtle);
+      border: 1px solid var(--eco-border);
+      color: var(--eco-text-secondary);
+      border-radius: var(--qhr-radius-md, 10px);
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eco-btn-quick:hover {
+      border-color: var(--eco-accent-border);
+      color: var(--eco-accent);
+    }
+
+    /* ── Empty State Pattern ───────────────────────────────────────────── */
+    .eco-empty-state {
+      text-align: center;
+      padding-block: var(--qhr-space-16, 64px);
+      background: var(--eco-surface);
+      border: 1px dashed var(--eco-border-strong);
+      border-radius: var(--qhr-radius-lg, 16px);
+      margin-block-end: var(--qhr-space-12, 48px);
+    }
+
+    .eco-empty-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--eco-accent-subtle);
+      color: var(--eco-accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-block-end: var(--qhr-space-4, 16px);
+    }
+
+    .eco-empty-title {
+      font-family: var(--eco-font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--eco-text-primary);
+      margin-block-end: var(--qhr-space-2, 8px);
+    }
+
+    .eco-empty-desc {
+      color: var(--eco-text-secondary);
+      font-size: 14px;
+      max-width: 440px;
+      margin-inline: auto;
+      margin-block-end: var(--qhr-space-6, 24px);
+    }
+
+    /* ── Pagination Pattern ────────────────────────────────────────────── */
+    .eco-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--qhr-space-2, 8px);
+      margin-block-end: var(--qhr-space-16, 64px);
+    }
+
+    .eco-page-btn {
+      min-width: 40px;
+      height: 40px;
+      border-radius: var(--qhr-radius-md, 10px);
+      border: 1px solid var(--eco-border);
+      background: var(--eco-surface);
+      color: var(--eco-text-primary);
+      font-weight: 600;
+      font-family: var(--eco-font-body);
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eco-page-btn:hover:not(:disabled) {
+      border-color: var(--eco-accent-border);
+      color: var(--eco-accent);
+    }
+
+    .eco-page-btn.is-active {
+      background: var(--eco-accent);
+      border-color: var(--eco-accent);
+      color: var(--eco-accent-fg);
+    }
+
+    .eco-page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    /* ── Store Locator Section ─────────────────────────────────────────── */
+    .eco-stores-section {
+      padding-block: var(--qhr-space-16, 64px);
+      border-block-start: 1px solid var(--eco-border);
+    }
+
+    .eco-section-header {
+      text-align: center;
+      max-width: 600px;
+      margin-inline: auto;
+      margin-block-end: var(--qhr-space-10, 40px);
+    }
+
+    .eco-section-title {
+      font-family: var(--eco-font-display);
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      color: var(--eco-text-primary);
+      margin-block-start: 0;
+      margin-block-end: var(--qhr-space-2, 8px);
+    }
+
+    .eco-section-subtitle {
+      color: var(--eco-text-secondary);
+      font-size: var(--qhr-text-sm, 14px);
+    }
+
+    .eco-stores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--qhr-space-6, 24px);
+    }
+
+    .eco-store-card {
+      background: var(--eco-surface-card);
+      border: 1px solid var(--eco-border);
+      border-radius: var(--qhr-radius-lg, 16px);
+      padding: var(--qhr-space-6, 24px);
+      box-shadow: var(--eco-card-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color var(--qhr-motion-duration-normal, 250ms);
+    }
+
+    .eco-store-card:hover {
+      border-color: var(--eco-accent-border);
+    }
+
+    .eco-store-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-end: var(--qhr-space-3, 12px);
+    }
+
+    .eco-store-city {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--eco-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .eco-store-name {
+      font-family: var(--eco-font-display);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--eco-text-primary);
+      margin-block-start: 0;
+      margin-block-end: var(--qhr-space-2, 8px);
+    }
+
+    .eco-store-address {
+      font-size: 13px;
+      color: var(--eco-text-secondary);
+      margin-block-end: var(--qhr-space-4, 16px);
+      line-height: 1.6;
+    }
+
+    .eco-store-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-1-5, 6px);
+      font-size: 12px;
+      color: var(--eco-text-muted);
+      margin-block-end: var(--qhr-space-5, 20px);
+    }
+
+    /* ── VIP Membership Section ────────────────────────────────────────── */
+    .eco-vip-section {
+      padding-block: var(--qhr-space-16, 64px);
+    }
+
+    .eco-vip-box {
+      background: var(--eco-vip-gradient);
+      border: 1px solid var(--eco-border-strong);
+      border-radius: var(--qhr-radius-xl, 24px);
+      padding: clamp(32px, 5vw, 56px);
+      max-width: 900px;
+      margin-inline: auto;
+      text-align: center;
+      box-shadow: var(--eco-card-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eco-vip-box::before {
+      content: '';
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--eco-accent), transparent);
+    }
+
+    .eco-vip-title {
+      font-family: var(--eco-font-display);
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 800;
+      color: var(--eco-text-primary);
+      margin-block-start: var(--qhr-space-3, 12px);
+      margin-block-end: var(--qhr-space-3, 12px);
+    }
+
+    .eco-vip-desc {
+      color: var(--eco-text-secondary);
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 640px;
+      margin-inline: auto;
+      margin-block-end: var(--qhr-space-6, 24px);
+    }
+
+    .eco-vip-perks {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--qhr-space-6, 24px);
+      flex-wrap: wrap;
+      margin-block-end: var(--qhr-space-8, 32px);
+      font-size: 13px;
+      color: var(--eco-text-secondary);
+    }
+
+    .eco-vip-perk-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+    }
+
+    .eco-vip-perk-item svg {
+      color: var(--eco-accent);
+    }
+
+    .eco-vip-form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--qhr-space-3, 12px);
+      flex-wrap: wrap;
+      max-width: 500px;
+      margin-inline: auto;
+    }
+
+    .eco-vip-input {
+      flex: 1;
+      min-width: 260px;
+      background: var(--eco-surface);
+      border: 1px solid var(--eco-border-strong);
+      border-radius: var(--qhr-radius-md, 10px);
+      padding-block: var(--qhr-space-3, 12px);
+      padding-inline: var(--qhr-space-4, 16px);
+      color: var(--eco-text-primary);
+      font-family: var(--eco-font-body);
+      font-size: var(--qhr-text-sm, 14px);
+    }
+
+    .eco-vip-input:focus {
+      outline: none;
+      border-color: var(--eco-accent);
+    }
+
+    /* ── Flyout Cart Slide-Over Drawer ─────────────────────────────────── */
+    .eco-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      transition: opacity var(--qhr-motion-duration-normal, 250ms);
+    }
+
+    .eco-drawer-panel {
+      position: fixed;
+      inset-block: 0;
+      inset-inline-end: 0;
+      width: 100%;
+      max-width: 440px;
+      background: var(--eco-surface);
+      border-inline-start: 1px solid var(--eco-border-strong);
+      z-index: 2010;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+      transition: transform var(--qhr-motion-duration-normal, 250ms) cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .eco-drawer-header {
+      padding: var(--qhr-space-5, 20px);
+      border-block-end: 1px solid var(--eco-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .eco-drawer-title {
+      font-family: var(--eco-font-display);
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+    }
+
+    .eco-drawer-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--qhr-space-5, 20px);
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-4, 16px);
+    }
+
+    .eco-cart-item {
+      display: flex;
+      gap: var(--qhr-space-3, 12px);
+      padding-block-end: var(--qhr-space-4, 16px);
+      border-block-end: 1px solid var(--eco-border);
+    }
+
+    .eco-cart-thumb {
+      width: 68px;
+      height: 68px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--eco-surface-subtle);
+      border: 1px solid var(--eco-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--eco-accent);
+      flex-shrink: 0;
+    }
+
+    .eco-cart-item-info {
+      flex: 1;
+    }
+
+    .eco-cart-item-title {
+      font-family: var(--eco-font-display);
+      font-size: 14px;
+      font-weight: 700;
+      margin-block-start: 0;
+      margin-block-end: 4px;
+      color: var(--eco-text-primary);
+    }
+
+    .eco-cart-item-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--eco-accent);
+      font-family: var(--eco-font-display);
+    }
+
+    .eco-cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-2, 8px);
+      margin-block-start: var(--qhr-space-2, 8px);
+    }
+
+    .eco-qty-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid var(--eco-border);
+      background: var(--eco-surface-subtle);
+      color: var(--eco-text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .eco-qty-value {
+      font-size: 13px;
+      font-weight: 600;
+      padding-inline: 4px;
+    }
+
+    .eco-item-remove {
+      margin-inline-start: auto;
+      background: transparent;
+      border: none;
+      color: var(--eco-text-muted);
+      cursor: pointer;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .eco-item-remove:hover {
+      color: var(--qhr-color-danger-500, #ef4444);
+    }
+
+    .eco-drawer-footer {
+      padding: var(--qhr-space-5, 20px);
+      border-block-start: 1px solid var(--eco-border);
+      background: var(--eco-surface-subtle);
+    }
+
+    .eco-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-block-end: var(--qhr-space-2, 8px);
+      font-size: 14px;
+      color: var(--eco-text-secondary);
+    }
+
+    .eco-total-grand {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--eco-text-primary);
+      font-family: var(--eco-font-display);
+    }
+
+    /* ── Quick View Modal ──────────────────────────────────────────────── */
+    .eco-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 2100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--qhr-space-4, 16px);
+    }
+
+    .eco-modal-card {
+      background: var(--eco-surface);
+      border: 1px solid var(--eco-border-strong);
+      border-radius: var(--qhr-radius-xl, 20px);
+      max-width: 640px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      position: relative;
+    }
+
+    .eco-modal-body {
+      padding: var(--qhr-space-6, 24px);
+    }
+
+    /* ── Toast Notification ────────────────────────────────────────────── */
+    .eco-toast {
+      position: fixed;
+      inset-block-end: var(--qhr-space-6, 24px);
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      background: var(--eco-surface-card);
+      border: 1px solid var(--eco-accent-border);
+      color: var(--eco-text-primary);
+      padding-block: var(--qhr-space-3, 12px);
+      padding-inline: var(--qhr-space-5, 20px);
+      border-radius: var(--qhr-radius-lg, 16px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-3, 12px);
+      font-size: var(--qhr-text-sm, 14px);
+      font-weight: 600;
+    }
+
+    .eco-toast-icon {
+      color: var(--eco-accent);
+    }
+
+    /* ── Footer ────────────────────────────────────────────────────────── */
+    .eco-footer {
+      background: var(--eco-surface);
+      border-block-start: 1px solid var(--eco-border);
+      padding-block: var(--qhr-space-16, 64px) var(--qhr-space-8, 32px);
+      color: var(--eco-text-secondary);
+      font-size: var(--qhr-text-sm, 14px);
+    }
+
+    .eco-footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--qhr-space-8, 32px);
+      margin-block-end: var(--qhr-space-12, 48px);
+    }
+
+    .eco-footer-title {
+      font-family: var(--eco-font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--eco-text-primary);
+      margin-block-start: 0;
+      margin-block-end: var(--qhr-space-4, 16px);
+    }
+
+    .eco-footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-2-5, 10px);
+    }
+
+    .eco-footer-link {
+      color: var(--eco-text-muted);
+      text-decoration: none;
+      transition: color var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eco-footer-link:hover {
+      color: var(--eco-accent);
+    }
+
+    .eco-footer-bottom {
+      border-block-start: 1px solid var(--eco-border);
+      padding-block-start: var(--qhr-space-6, 24px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--qhr-space-4, 16px);
+      font-size: 12px;
+      color: var(--eco-text-muted);
+    }
+
+    /* ── Floating Back-to-Top Button ───────────────────────────────────── */
+    .eco-back-to-top {
+      position: fixed;
+      inset-inline-end: var(--qhr-space-6, 24px);
+      inset-block-end: var(--qhr-space-6, 24px);
+      z-index: 950;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--eco-surface);
+      border: 1px solid var(--eco-accent-border);
+      color: var(--eco-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--eco-card-shadow);
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .eco-back-to-top:hover {
+      transform: translateY(-3px);
+      background: var(--eco-accent);
+      color: var(--eco-accent-fg);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .eco-nav-links {
+        display: none;
+      }
+      .eco-topbar-inner {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Top Announcement Bar -->
+  <div class="eco-topbar">
+    <div class="eco-topbar-inner">
+      <span>توصيل مصفح ومؤمّن لكافة المحافظات والخليج العربي · شحن مجاني للطلبات فوق 2,000 ر.س</span>
+      <div style="display: flex; align-items: center; gap: var(--qhr-space-4, 16px);">
+        <span>صياغة فولاذ 316L · ضمان استبدال 10 سنوات</span>
+        <span style="color: var(--eco-accent); font-weight: 700;">+20 2 2736 0000</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Sticky Navbar -->
+  <header class="eco-navbar">
+    <div class="eco-navbar-inner">
+      <a href="#catalog" class="eco-brand">
+        <span class="eco-brand-badge">ق</span>
+        <div>
+          <span class="eco-brand-title">قاهرة للمقتنيات الفاخرة</span>
+          <span class="eco-brand-sub">دار المجوهرات والفولاذ الملكي</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav aria-label="التنقل الرئيسي">
+        <ul class="eco-nav-links">
+          <li><a href="#catalog" class="eco-nav-link is-active">كافة المقتنيات</a></li>
+          <li><a href="#stores" class="eco-nav-link">صالات العرض</a></li>
+          <li><a href="#craft" class="eco-nav-link">معايير الصياغة 316L</a></li>
+          <li><a href="#vip" class="eco-nav-link">نادي الصفوة VIP</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="eco-nav-actions">
+        <!-- Direction & Language Toggle Button -->
+        <button
+          type="button"
+          class="eco-action-btn"
+          @click="toggleDir()"
+          :aria-label="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+          :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+        >
+          <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </button>
+
+        <!-- Theme Toggle Button -->
+        <button
+          type="button"
+          class="eco-action-btn"
+          @click="toggleTheme()"
+          :aria-label="theme === 'dark' ? 'التحويل إلى النمط النهاري' : 'التحويل إلى النمط الداكن'"
+          :title="theme === 'dark' ? 'التحويل إلى النمط النهاري' : 'التحويل إلى النمط الداكن'"
+        >
+          <!-- Sun Icon (in dark mode) -->
+          <template x-if="theme === 'dark'">
+            <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+            </svg>
+          </template>
+          <!-- Moon Icon (in light mode) -->
+          <template x-if="theme === 'light'">
+            <svg class="qhr-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </template>
+        </button>
+
+        <!-- Cart Flyout Trigger Button -->
+        <button
+          type="button"
+          class="eco-action-btn"
+          @click="cartOpen = true"
+          aria-label="عرض سلة المقتنيات"
+          title="سلة المقتنيات"
+        >
+          <svg class="qhr-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span class="eco-cart-badge" x-text="cartTotalCount" x-show="cartTotalCount > 0"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3. Main Content Container -->
+  <main id="catalog">
+
+    <!-- Hero Introduction -->
+    <section class="eco-hero">
+      <div class="eco-container">
+        <div class="eco-hero-header">
+          <span class="eco-badge-tag" style="display: inline-block; margin-block-end: var(--qhr-space-3, 12px);">تشكيلة خريف 2026 الحصرية</span>
+          <h1 class="eco-hero-title">كتالوج المقتنيات والمجوهرات الملكية</h1>
+          <p class="eco-hero-desc">
+            إبداعات حصرية مصاغة بأعلى درجات الدقة الهندسية. نجمع بين صلابة فولاذ 316L الجراحي المقاوم للعطور والماء، وبهاء الذهب عيار 18 المطلي بتقنية PVD الفراغية لضمان ثبات اللون للأجيال.
+          </p>
+
+          <!-- Trust Badges Row -->
+          <div class="eco-trust-row">
+            <div class="eco-trust-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              <span>فولاذ بحري 316L فائق الصلابة</span>
+            </div>
+            <div class="eco-trust-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+              <span>ذهب أصفر عيار 18 PVD</span>
+            </div>
+            <div class="eco-trust-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+              <span>مقاوم تام للماء والعطور</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Faceted Search & Filter Toolbar Pattern -->
+        <div class="eco-toolbar">
+          <!-- Search Row -->
+          <div class="eco-toolbar-main">
+            <div class="eco-search-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
+              <input
+                type="search"
+                class="eco-search-input"
+                placeholder="ابحث بالاسم، نوع القطعة، أو خامة الصياغة..."
+                x-model="searchQuery"
+                @input="currentPage = 1"
+              >
+              <button
+                type="button"
+                class="eco-search-clear"
+                x-show="searchQuery.length > 0"
+                @click="searchQuery = ''; currentPage = 1"
+                aria-label="مسح البحث"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Material Filter Select -->
+            <select class="eco-select" x-model="selectedMaterial" @change="currentPage = 1">
+              <option value="all">كافة الخامات</option>
+              <option value="steel-316l">فولاذ ستيل 316L</option>
+              <option value="gold-18k">مطلي ذهب 18K</option>
+              <option value="obsidian">حجر أوبسيديان أسود</option>
+            </select>
+
+            <!-- Sorting Select -->
+            <select class="eco-select" x-model="sortBy">
+              <option value="featured">الموصى به (الأكثر تميزاً)</option>
+              <option value="price-asc">السعر: من الأقل إلى الأعلى</option>
+              <option value="price-desc">السعر: من الأعلى إلى الأقل</option>
+              <option value="title">الاسم الأبجدي</option>
+            </select>
+          </div>
+
+          <!-- Category Filter Bar Pattern -->
+          <div class="eco-filter-chips">
+            <span style="font-size: 13px; font-weight: 700; color: var(--eco-text-primary); margin-inline-end: 4px;">التصنيف:</span>
+
+            <button
+              type="button"
+              class="eco-chip-btn"
+              :class="{ 'is-active': selectedCategory === 'all' }"
+              @click="selectedCategory = 'all'; currentPage = 1"
+            >
+              <span>كافة المقتنيات</span>
+              <span class="eco-chip-count" x-text="allProducts.length"></span>
+            </button>
+
+            <button
+              type="button"
+              class="eco-chip-btn"
+              :class="{ 'is-active': selectedCategory === 'rings' }"
+              @click="selectedCategory = 'rings'; currentPage = 1"
+            >
+              <span>الخواتم الملكية</span>
+              <span class="eco-chip-count" x-text="countCategory('rings')"></span>
+            </button>
+
+            <button
+              type="button"
+              class="eco-chip-btn"
+              :class="{ 'is-active': selectedCategory === 'bracelets' }"
+              @click="selectedCategory = 'bracelets'; currentPage = 1"
+            >
+              <span>الأساور المصمتة</span>
+              <span class="eco-chip-count" x-text="countCategory('bracelets')"></span>
+            </button>
+
+            <button
+              type="button"
+              class="eco-chip-btn"
+              :class="{ 'is-active': selectedCategory === 'necklaces' }"
+              @click="selectedCategory = 'necklaces'; currentPage = 1"
+            >
+              <span>القلائد التراثية</span>
+              <span class="eco-chip-count" x-text="countCategory('necklaces')"></span>
+            </button>
+
+            <button
+              type="button"
+              class="eco-chip-btn"
+              :class="{ 'is-active': selectedCategory === 'earrings' }"
+              @click="selectedCategory = 'earrings'; currentPage = 1"
+            >
+              <span>الأقراط الملكية</span>
+              <span class="eco-chip-count" x-text="countCategory('earrings')"></span>
+            </button>
+
+            <!-- Reset Filters button -->
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--ghost qhr-btn--sm"
+              style="margin-inline-start: auto;"
+              x-show="hasActiveFilters"
+              @click="resetFilters()"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 4v6h6M23 20v-6h-6" />
+                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15" />
+              </svg>
+              <span>إعادة ضبط الفلاتر</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. Products Catalog Grid Section -->
+    <section style="padding-block-start: var(--qhr-space-8, 32px);">
+      <div class="eco-container">
+
+        <!-- Results Counter -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-block-end: var(--qhr-space-5, 20px);">
+          <span style="font-size: 14px; color: var(--eco-text-secondary);">
+            عرض <strong style="color: var(--eco-text-primary);" x-text="paginatedProducts.length"></strong> من أصل <strong style="color: var(--eco-text-primary);" x-text="filteredProducts.length"></strong> مقتنى فاخر
+          </span>
+          <span style="font-size: 13px; color: var(--eco-text-muted);">
+            شهادة فحص وضمان معتمد مع كل شحنة
+          </span>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="eco-grid" x-show="filteredProducts.length > 0">
+          <template x-for="prod in paginatedProducts" :key="prod.id">
+            <article class="eco-card">
+              <!-- Visual Card Preview -->
+              <div class="eco-card-preview">
+                <div class="eco-card-art">
+                  <!-- Semantic Category SVG Graphic -->
+                  <template x-if="prod.category === 'rings'">
+                    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="14" r="7" />
+                      <path d="M12 2l3 5H9l3-5z" />
+                    </svg>
+                  </template>
+                  <template x-if="prod.category === 'bracelets'">
+                    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="2" y="6" width="20" height="12" rx="6" />
+                      <circle cx="12" cy="12" r="2" />
+                    </svg>
+                  </template>
+                  <template x-if="prod.category === 'necklaces'">
+                    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M6 3c0 8 6 14 6 14s6-6 6-14" />
+                      <polygon points="12 18 10 22 14 22 12 18" />
+                    </svg>
+                  </template>
+                  <template x-if="prod.category === 'earrings'">
+                    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="6" r="3" />
+                      <path d="M12 9v7m-3 3a3 3 0 0 0 6 0" />
+                    </svg>
+                  </template>
+                </div>
+
+                <!-- Card Badges Overlay -->
+                <div class="eco-card-badges">
+                  <span class="eco-badge-tag" x-text="prod.badgeText"></span>
+                  <span class="eco-badge-tag" style="color: var(--eco-text-secondary);" x-text="prod.edition"></span>
+                </div>
+              </div>
+
+              <!-- Card Content Body -->
+              <div class="eco-card-body">
+                <span class="eco-card-collection" x-text="prod.collection"></span>
+                <h3 class="eco-card-title" x-text="prod.title"></h3>
+
+                <div class="eco-card-specs">
+                  <span x-text="prod.material"></span>
+                  <span class="eco-card-specs-dot"></span>
+                  <span x-text="prod.durability"></span>
+                </div>
+
+                <!-- Footer with Pricing & Add to Cart -->
+                <div class="eco-card-footer">
+                  <div class="eco-price-wrap">
+                    <span class="eco-price-current" x-text="prod.priceFormatted"></span>
+                    <template x-if="prod.originalPrice">
+                      <span class="eco-price-original" x-text="prod.originalPrice"></span>
+                    </template>
+                  </div>
+
+                  <div class="eco-card-actions">
+                    <!-- Quick View Button -->
+                    <button
+                      type="button"
+                      class="eco-btn-quick"
+                      @click="openQuickView(prod)"
+                      aria-label="معاينة تفاصيل المقتنى"
+                      title="معاينة سريعة"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                      </svg>
+                    </button>
+
+                    <!-- Add to Cart CTA -->
+                    <button
+                      type="button"
+                      class="eco-btn-add"
+                      @click="addToCart(prod)"
+                    >
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="9" cy="21" r="1" />
+                        <circle cx="20" cy="21" r="1" />
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+                      </svg>
+                      <span>طلب مقتنى</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </template>
+        </div>
+
+        <!-- 6. Empty State Pattern -->
+        <div class="eco-empty-state" x-show="filteredProducts.length === 0">
+          <div class="eco-empty-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              <line x1="8" y1="11" x2="14" y2="11" />
+            </svg>
+          </div>
+          <h3 class="eco-empty-title">لم يتم العثور على مقتنيات مطابقة</h3>
+          <p class="eco-empty-desc">
+            لم نتمكن من مطابقة خيارات البحث الحالية. جرّب استخدام كلمات بحث عامة، أو إعادة ضبط الفلاتر لاستعراض الكتالوج كاملاً.
+          </p>
+          <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md" @click="resetFilters()">
+            <span>إعادة ضبط كافة الفلاتر</span>
+          </button>
+        </div>
+
+        <!-- 7. Pagination Pattern -->
+        <div class="eco-pagination" x-show="totalPages > 1">
+          <!-- Previous Button -->
+          <button
+            type="button"
+            class="eco-page-btn"
+            :disabled="currentPage === 1"
+            @click="currentPage--; scrollToCatalog()"
+            aria-label="الصفحة السابقة"
+          >
+            <!-- In RTL, chevron-right goes backward -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+
+          <!-- Page Numbers -->
+          <template x-for="p in totalPages" :key="p">
+            <button
+              type="button"
+              class="eco-page-btn"
+              :class="{ 'is-active': currentPage === p }"
+              @click="currentPage = p; scrollToCatalog()"
+              x-text="p"
+            ></button>
+          </template>
+
+          <!-- Next Button -->
+          <button
+            type="button"
+            class="eco-page-btn"
+            :disabled="currentPage === totalPages"
+            @click="currentPage++; scrollToCatalog()"
+            aria-label="الصفحة التالية"
+          >
+            <!-- In RTL, chevron-left goes forward -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. Showrooms & Store Locator Pattern -->
+    <section id="stores" class="eco-stores-section">
+      <div class="eco-container">
+        <div class="eco-section-header">
+          <span class="eco-badge-tag" style="margin-block-end: var(--qhr-space-2, 8px); display: inline-block;">المعاينة المباشرة</span>
+          <h2 class="eco-section-title">صالات العرض والبوتيكات الملكية</h2>
+          <p class="eco-section-subtitle">تفضل بزيارة صالاتنا الخاصة في القاهرة والإسكندرية لاختيار مقتنياتك وتجربة الملاءمة الهندسية يدوياً.</p>
+        </div>
+
+        <div class="eco-stores-grid">
+          <!-- Store 1: Zamalek Flagship -->
+          <div class="eco-store-card">
+            <div>
+              <div class="eco-store-header">
+                <span class="eco-store-city">القاهرة</span>
+                <span class="qhr-badge qhr-badge--outline qhr-badge--xs" style="color: var(--qhr-color-success-500, #10b981); border-color: var(--qhr-color-success-500, #10b981);">
+                  مفتوح الآن
+                </span>
+              </div>
+              <h3 class="eco-store-name">صالة العرض الرئيسية — الزمالك</h3>
+              <p class="eco-store-address">شارع حسن صبري، الزمالك، القاهرة الكبرى</p>
+              <div class="eco-store-meta">
+                <div>ساعات العمل: يومياً من 10:00 ص حتى 10:30 م</div>
+                <div>الهاتف المباشر: +20 2 2736 0000</div>
+              </div>
+            </div>
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--sm" @click="bookShowroom('صالة الزمالك')">
+              <span>حجز موعد معاينة خاصة VIP</span>
+            </button>
+          </div>
+
+          <!-- Store 2: New Cairo Boutique -->
+          <div class="eco-store-card">
+            <div>
+              <div class="eco-store-header">
+                <span class="eco-store-city">القاهرة الجديدة</span>
+                <span class="qhr-badge qhr-badge--outline qhr-badge--xs" style="color: var(--qhr-color-success-500, #10b981); border-color: var(--qhr-color-success-500, #10b981);">
+                  مفتوح الآن
+                </span>
+              </div>
+              <h3 class="eco-store-name">بوتيك التجمع الخامس — 5A</h3>
+              <p class="eco-store-address">مجمع 5A الفاخر، الطريق الدائري، القاهرة الجديدة</p>
+              <div class="eco-store-meta">
+                <div>ساعات العمل: يومياً من 11:00 ص حتى 11:00 م</div>
+                <div>الهاتف المباشر: +20 2 2811 5500</div>
+              </div>
+            </div>
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--sm" @click="bookShowroom('بوتيك التجمع الخامس')">
+              <span>حجز موعد معاينة خاصة VIP</span>
+            </button>
+          </div>
+
+          <!-- Store 3: Alexandria Boutique -->
+          <div class="eco-store-card">
+            <div>
+              <div class="eco-store-header">
+                <span class="eco-store-city">الإسكندرية</span>
+                <span class="qhr-badge qhr-badge--outline qhr-badge--xs" style="color: var(--eco-text-muted); border-color: var(--eco-border);">
+                  يفتح 12:00 م
+                </span>
+              </div>
+              <h3 class="eco-store-name">بوتيك الإسكندرية — كفر عبده</h3>
+              <p class="eco-store-address">شارع خليل خياط، كفر عبده، الإسكندرية</p>
+              <div class="eco-store-meta">
+                <div>ساعات العمل: يومياً من 12:00 م حتى 10:00 م</div>
+                <div>الهاتف المباشر: +20 3 545 0000</div>
+              </div>
+            </div>
+            <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--sm" @click="bookShowroom('بوتيك الإسكندرية')">
+              <span>حجز موعد معاينة خاصة VIP</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. VIP Membership Pattern -->
+    <section id="vip" class="eco-vip-section">
+      <div class="eco-container">
+        <div class="eco-vip-box">
+          <span class="eco-badge-tag" style="border-color: var(--eco-accent-border);">GOLD TIER VIP MEMBERSHIP</span>
+          <h2 class="eco-vip-title">نادي الصفوة والمقتنيات الخاصة</h2>
+          <p class="eco-vip-desc">
+            انضم إلى دائرة النخبة لتصلك الإصدارات المحدودة والمرقّمة قبل طرحها العام، مع تغليف إمبراطوري فاخر من خشب الجوز ودعوات حصرية لافتتاح معارض القاهرة السنوية.
+          </p>
+
+          <div class="eco-vip-perks">
+            <div class="eco-vip-perk-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>أولوية الحجز في الإصدارات المحدودة</span>
+            </div>
+            <div class="eco-vip-perk-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>صندوق تقديم ملكي مخصص مع كل طلب</span>
+            </div>
+            <div class="eco-vip-perk-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>خدمة المساعد الشخصي للمجوهرات 24/7</span>
+            </div>
+          </div>
+
+          <form class="eco-vip-form" @submit.prevent="subscribeVip()">
+            <input
+              type="email"
+              class="eco-vip-input"
+              placeholder="أدخل بريدك الإلكتروني للانضمام..."
+              required
+              x-model="vipEmail"
+            >
+            <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--md">
+              <span>طلب الانضمام للصفوة</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 10. Interactive Slide-over Cart Drawer -->
+  <div
+    class="eco-drawer-backdrop"
+    x-show="cartOpen"
+    x-transition:enter="transition ease-out duration-200"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-150"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @click="cartOpen = false"
+    style="display: none;"
+  ></div>
+
+  <aside
+    class="eco-drawer-panel"
+    x-show="cartOpen"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="translate-x-full"
+    x-transition:enter-end="translate-x-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="translate-x-full"
+    role="dialog"
+    aria-label="سلة المقتنيات الملكية"
+    style="display: none;"
+  >
+    <!-- Drawer Header -->
+    <div class="eco-drawer-header">
+      <h3 class="eco-drawer-title">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </svg>
+        <span>سلة المقتنيات الملكية</span>
+        <span style="font-size: 13px; color: var(--eco-text-muted);" x-text="'(' + cartTotalCount + ' قطعة)'"></span>
+      </h3>
+      <button
+        type="button"
+        class="eco-action-btn"
+        @click="cartOpen = false"
+        aria-label="إغلاق السلة"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Drawer Items List -->
+    <div class="eco-drawer-items">
+      <template x-if="cart.length === 0">
+        <div style="text-align: center; padding-block: 48px; color: var(--eco-text-muted);">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-inline: auto; margin-block-end: 12px; color: var(--eco-border-strong);">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <p style="font-size: 15px; font-weight: 600; color: var(--eco-text-primary); margin-block-end: 4px;">السلة فارغة حالياً</p>
+          <p style="font-size: 13px;">تصفح الكتالوج لاختيار مقتنياتك المميزة</p>
+        </div>
+      </template>
+
+      <template x-for="item in cart" :key="item.id">
+        <div class="eco-cart-item">
+          <div class="eco-cart-thumb">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+          </div>
+          <div class="eco-cart-item-info">
+            <h4 class="eco-cart-item-title" x-text="item.title"></h4>
+            <div class="eco-cart-item-price" x-text="item.priceFormatted"></div>
+
+            <div class="eco-cart-item-actions">
+              <button type="button" class="eco-qty-btn" @click="decrementCart(item.id)">-</button>
+              <span class="eco-qty-value" x-text="item.quantity"></span>
+              <button type="button" class="eco-qty-btn" @click="incrementCart(item.id)">+</button>
+
+              <button type="button" class="eco-item-remove" @click="removeFromCart(item.id)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="3 6 5 6 21 6" />
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                </svg>
+                <span>حذف</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="eco-drawer-footer" x-show="cart.length > 0">
+      <div class="eco-total-row">
+        <span>المجموع الجزئي:</span>
+        <span x-text="cartSubtotalFormatted"></span>
+      </div>
+      <div class="eco-total-row">
+        <span>الشحن المؤمن الملكي:</span>
+        <span style="color: var(--qhr-color-success-500, #10b981); font-weight: 700;">مجاني</span>
+      </div>
+      <div class="eco-total-row" style="margin-block-start: var(--qhr-space-3, 12px); border-block-start: 1px solid var(--eco-border); padding-block-start: var(--qhr-space-3, 12px);">
+        <span style="font-weight: 700; color: var(--eco-text-primary);">المجموع الكلي:</span>
+        <span class="eco-total-grand" x-text="cartSubtotalFormatted"></span>
+      </div>
+
+      <button
+        type="button"
+        class="qhr-btn qhr-btn--primary qhr-btn--lg"
+        style="width: 100%; margin-block-start: var(--qhr-space-4, 16px);"
+        @click="checkout()"
+      >
+        <span>متابعة إتمام الطلب الفاخر</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 11. Quick View Modal Dialog -->
+  <template x-if="quickViewProduct">
+    <div
+      class="eco-modal-backdrop"
+      @click.self="quickViewProduct = null"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="eco-modal-card">
+        <div class="eco-modal-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-block-end: var(--qhr-space-4, 16px);">
+            <div>
+              <span class="eco-badge-tag" x-text="quickViewProduct.collection"></span>
+              <h2 class="eco-card-title" style="font-size: 24px; margin-block-start: 8px;" x-text="quickViewProduct.title"></h2>
+            </div>
+            <button
+              type="button"
+              class="eco-action-btn"
+              @click="quickViewProduct = null"
+              aria-label="إغلاق المعاينة"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+          </div>
+
+          <p style="color: var(--eco-text-secondary); font-size: 14px; line-height: 1.8; margin-block-end: var(--qhr-space-5, 20px);">
+            مقتنى مصمم بعناية فائقة يجمع بين نقاء الفولاذ المقاوم للصدأ بدرجة 316L وطلاء الذهب عيار 18. مختوم برقم الإصدار الملكي ومرفق بشهادة ضمان رسمي ضد التآكل وتغير اللون لمدة 10 سنوات.
+          </p>
+
+          <!-- Specifications List -->
+          <div style="background: var(--eco-surface-subtle); border: 1px solid var(--eco-border); border-radius: var(--qhr-radius-md, 10px); padding: 16px; margin-block-end: var(--qhr-space-6, 24px); display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--eco-text-muted);">مادة الصياغة الأساسية:</span>
+              <strong style="color: var(--eco-text-primary);" x-text="quickViewProduct.material"></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--eco-text-muted);">درجة الصلابة ومقاومة الماء:</span>
+              <strong style="color: var(--eco-text-primary);" x-text="quickViewProduct.durability"></strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--eco-text-muted);">رقم الإصدار والتوثيق:</span>
+              <strong style="color: var(--eco-accent);" x-text="quickViewProduct.edition"></strong>
+            </div>
+          </div>
+
+          <!-- Price & Action -->
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="eco-price-current" style="font-size: 24px;" x-text="quickViewProduct.priceFormatted"></div>
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--primary qhr-btn--md"
+              @click="addToCart(quickViewProduct); quickViewProduct = null"
+            >
+              <span>إضافة هذا المقتنى إلى السلة</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- 12. Floating Toast Notification -->
+  <div
+    class="eco-toast"
+    x-show="toastVisible"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0 translate-y-4"
+    x-transition:enter-end="opacity-100 translate-y-0"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100 translate-y-0"
+    x-transition:leave-end="opacity-0 translate-y-4"
+    style="display: none;"
+  >
+    <svg class="eco-toast-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+      <polyline points="22 4 12 14.01 9 11.01" />
+    </svg>
+    <span x-text="toastMessage"></span>
+  </div>
+
+  <!-- 13. Floating Back to Top Button -->
+  <button
+    type="button"
+    class="eco-back-to-top"
+    x-show="showBackToTop"
+    @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    aria-label="العودة لأعلى الصفحة"
+    style="display: none;"
+  >
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <!-- 14. Footer -->
+  <footer class="eco-footer">
+    <div class="eco-container">
+      <div class="eco-footer-grid">
+        <!-- Brand Col -->
+        <div>
+          <div class="eco-brand" style="margin-block-end: var(--qhr-space-3, 12px);">
+            <span class="eco-brand-badge">ق</span>
+            <span class="eco-brand-title">قاهرة للمقتنيات الفاخرة</span>
+          </div>
+          <p style="color: var(--eco-text-muted); font-size: 13px; line-height: 1.7;">
+            علامة مصرية رائدة في صياغة الفولاذ الجراحي والمجوهرات المطلية بالذهب. صُنعت لتخلّد هيبة التراث المصري بمعايير عالمية لا تقبل المساومة.
+          </p>
+        </div>
+
+        <!-- Links Col 1 -->
+        <div>
+          <h4 class="eco-footer-title">المجموعات الملكية</h4>
+          <ul class="eco-footer-links">
+            <li><a href="#catalog" class="eco-footer-link" @click="selectedCategory = 'rings'">مجموعة الخواتم الإمبراطورية</a></li>
+            <li><a href="#catalog" class="eco-footer-link" @click="selectedCategory = 'bracelets'">أساور النيل والفولاذ 316L</a></li>
+            <li><a href="#catalog" class="eco-footer-link" @click="selectedCategory = 'necklaces'">قلائد المشربية والتراث</a></li>
+            <li><a href="#catalog" class="eco-footer-link" @click="selectedCategory = 'earrings'">أقراط زهرة اللوتس</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 2 -->
+        <div>
+          <h4 class="eco-footer-title">صالات العرض والخدمات</h4>
+          <ul class="eco-footer-links">
+            <li><a href="#stores" class="eco-footer-link">صالة الزمالك الرئيسية</a></li>
+            <li><a href="#stores" class="eco-footer-link">بوتيك التجمع الخامس</a></li>
+            <li><a href="#stores" class="eco-footer-link">بوتيك الإسكندرية</a></li>
+            <li><a href="#vip" class="eco-footer-link">نادي العضوية VIP</a></li>
+          </ul>
+        </div>
+
+        <!-- Links Col 3 -->
+        <div>
+          <h4 class="eco-footer-title">الضمان والرعاية</h4>
+          <ul class="eco-footer-links">
+            <li><a href="#" class="eco-footer-link">شهادة أصالة فولاذ 316L</a></li>
+            <li><a href="#" class="eco-footer-link">سياسة الاستبدال والضمان 10 سنوات</a></li>
+            <li><a href="#" class="eco-footer-link">دليل العناية بالطلاء الذهبي PVD</a></li>
+            <li><a href="#" class="eco-footer-link">الشحن المصفح والاستلام الآمن</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="eco-footer-bottom">
+        <div>© 2026 قاهرة للمقتنيات الفاخرة — Alwkala Technology Studio. جميع الحقوق محفوظة.</div>
+        <div style="display: flex; gap: var(--qhr-space-4, 16px);">
+          <a href="#" class="eco-footer-link">الشروط والأحكام</a>
+          <span>·</span>
+          <a href="#" class="eco-footer-link">سياسة الخصوصية</a>
+          <span>·</span>
+          <a href="#" class="eco-footer-link">سجل التوثيق التجاري</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Alpine.js Core -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <!-- Template Logic & State -->
+  <script>
+    function ecommerceApp() {
+      return {
+        theme: localStorage.getItem('qhr-theme') || 'dark',
+        dir: localStorage.getItem('qhr-dir') || 'rtl',
+        lang: (localStorage.getItem('qhr-dir') || 'rtl') === 'rtl' ? 'ar' : 'en',
+        searchQuery: '',
+        selectedCategory: 'all',
+        selectedMaterial: 'all',
+        sortBy: 'featured',
+        currentPage: 1,
+        itemsPerPage: 6,
+        cartOpen: false,
+        quickViewProduct: null,
+        vipEmail: '',
+        toastVisible: false,
+        toastMessage: '',
+        showBackToTop: false,
+
+        cart: [
+          {
+            id: 'prod-1',
+            title: 'خاتم الأفق الذهبي عيار 18',
+            price: 1850,
+            priceFormatted: '1,850 ر.س',
+            quantity: 1,
+            material: 'Steel 316L · مطلي ذهب PVD'
+          }
+        ],
+
+        allProducts: [
+          {
+            id: 'prod-1',
+            title: 'خاتم الأفق الذهبي عيار 18',
+            category: 'rings',
+            collection: 'مجموعة القاهرة الحصرية',
+            material: 'Steel 316L · مطلي ذهب PVD',
+            materialType: 'gold-18k',
+            durability: 'مقاوم للماء والعطور تماماً',
+            price: 1850,
+            originalPrice: '2,200 ر.س',
+            priceFormatted: '1,850 ر.س',
+            badgeText: 'ستيل 316L',
+            edition: 'إصدار رقم #104'
+          },
+          {
+            id: 'prod-2',
+            title: 'سوار النيل الملكي المنقوش',
+            category: 'bracelets',
+            collection: 'مجموعة التراث الخالد',
+            material: 'Steel 316L · صقل مصمت غير لامع',
+            materialType: 'steel-316l',
+            durability: 'مقاومة بحرية للصدأ مدى الحياة',
+            price: 1450,
+            originalPrice: null,
+            priceFormatted: '1,450 ر.س',
+            badgeText: 'مقاوم للماء',
+            edition: 'إصدار محدود'
+          },
+          {
+            id: 'prod-3',
+            title: 'قلادة المشربية الفاطمية',
+            category: 'necklaces',
+            collection: 'تراث القاهرة المعاصر',
+            material: 'Steel 316L · طلاء ذهب عيار 18',
+            materialType: 'gold-18k',
+            durability: 'حفر ليزري ميكروني دقيق',
+            price: 2100,
+            originalPrice: '2,500 ر.س',
+            priceFormatted: '2,100 ر.س',
+            badgeText: 'صناعة يدوية',
+            edition: 'إصدار مرقّم'
+          },
+          {
+            id: 'prod-4',
+            title: 'سوار الهيبة الأوبسيدياني الأسود',
+            category: 'bracelets',
+            collection: 'المجموعة الملكية للرجال',
+            material: 'Obsidian Stone & Steel 316L',
+            materialType: 'obsidian',
+            durability: 'أوبسيديان بركاني صلب',
+            price: 1250,
+            originalPrice: null,
+            priceFormatted: '1,250 ر.س',
+            badgeText: 'أوبسيديان نادر',
+            edition: 'دفعة حصرية'
+          },
+          {
+            id: 'prod-5',
+            title: 'خاتم حورس التاجي المنحوت',
+            category: 'rings',
+            collection: 'مجموعة الملوك والرموز',
+            material: 'Steel 316L · مطلي ذهب عيار 18',
+            materialType: 'gold-18k',
+            durability: 'مقاومة للخدش والصدمات',
+            price: 1680,
+            originalPrice: '1,950 ر.س',
+            priceFormatted: '1,680 ر.س',
+            badgeText: 'إصدار ملكي',
+            edition: 'إصدار #042'
+          },
+          {
+            id: 'prod-6',
+            title: 'قرط زهرة اللوتس الفاطمية',
+            category: 'earrings',
+            collection: 'مجموعة الزهور المقدسة',
+            material: 'Steel 316L · وزن فائق الخفة',
+            materialType: 'steel-316l',
+            durability: 'آمن تماماً على البشرة الحساسة',
+            price: 980,
+            originalPrice: null,
+            priceFormatted: '980 ر.س',
+            badgeText: 'طبي لا يتحسس',
+            edition: 'تشكيلة صيفية'
+          },
+          {
+            id: 'prod-7',
+            title: 'قلادة قرص شمس رع الذهبية',
+            category: 'necklaces',
+            collection: 'مجموعة الشمس الساطعة',
+            material: 'Steel 316L & Gold 18K PVD',
+            materialType: 'gold-18k',
+            durability: 'سلسلة مصفحة غير قابلة للانقطاع',
+            price: 2450,
+            originalPrice: '2,900 ر.س',
+            priceFormatted: '2,450 ر.س',
+            badgeText: 'قطعة نادرة',
+            edition: 'إصدار 50 قطعة'
+          },
+          {
+            id: 'prod-8',
+            title: 'سوار الأقصر الجلدي المصفح',
+            category: 'bracelets',
+            collection: 'مجموعة الصحراء الملكية',
+            material: 'Leather & Steel 316L Clasp',
+            materialType: 'steel-316l',
+            durability: 'جلد عجل طبيعي وقفل ستيل مغناطيسي',
+            price: 1120,
+            originalPrice: null,
+            priceFormatted: '1,120 ر.س',
+            badgeText: 'قفل مغناطيسي',
+            edition: 'إصدار شتوي'
+          }
+        ],
+
+        init() {
+          document.documentElement.setAttribute('data-theme', this.theme);
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.lang);
+
+          window.addEventListener('scroll', () => {
+            this.showBackToTop = window.scrollY > 400;
+          });
+        },
+
+        toggleTheme() {
+          this.theme = this.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', this.theme);
+          localStorage.setItem('qhr-theme', this.theme);
+        },
+
+        countCategory(cat) {
+          return this.allProducts.filter(p => p.category === cat).length;
+        },
+
+        get hasActiveFilters() {
+          return this.searchQuery !== '' || this.selectedCategory !== 'all' || this.selectedMaterial !== 'all';
+        },
+
+        resetFilters() {
+          this.searchQuery = '';
+          this.selectedCategory = 'all';
+          this.selectedMaterial = 'all';
+          this.currentPage = 1;
+        },
+
+        get filteredProducts() {
+          let list = [...this.allProducts];
+
+          // 1. Search filter
+          if (this.searchQuery.trim() !== '') {
+            const q = this.searchQuery.toLowerCase();
+            list = list.filter(p =>
+              p.title.toLowerCase().includes(q) ||
+              p.collection.toLowerCase().includes(q) ||
+              p.material.toLowerCase().includes(q)
+            );
+          }
+
+          // 2. Category filter
+          if (this.selectedCategory !== 'all') {
+            list = list.filter(p => p.category === this.selectedCategory);
+          }
+
+          // 3. Material filter
+          if (this.selectedMaterial !== 'all') {
+            list = list.filter(p => p.materialType === this.selectedMaterial);
+          }
+
+          // 4. Sorting
+          if (this.sortBy === 'price-asc') {
+            list.sort((a, b) => a.price - b.price);
+          } else if (this.sortBy === 'price-desc') {
+            list.sort((a, b) => b.price - a.price);
+          } else if (this.sortBy === 'title') {
+            list.sort((a, b) => a.title.localeCompare(b.title, 'ar'));
+          }
+
+          return list;
+        },
+
+        get totalPages() {
+          return Math.ceil(this.filteredProducts.length / this.itemsPerPage) || 1;
+        },
+
+        get paginatedProducts() {
+          const start = (this.currentPage - 1) * this.itemsPerPage;
+          return this.filteredProducts.slice(start, start + this.itemsPerPage);
+        },
+
+        scrollToCatalog() {
+          const el = document.getElementById('catalog');
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        },
+
+        /* ── Cart Methods ─────────────────────────────────────────────── */
+        get cartTotalCount() {
+          return this.cart.reduce((sum, item) => sum + item.quantity, 0);
+        },
+
+        get cartSubtotal() {
+          return this.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        },
+
+        get cartSubtotalFormatted() {
+          return this.cartSubtotal.toLocaleString('ar-EG') + ' ر.س';
+        },
+
+        addToCart(product) {
+          const existing = this.cart.find(item => item.id === product.id);
+          if (existing) {
+            existing.quantity++;
+          } else {
+            this.cart.push({
+              id: product.id,
+              title: product.title,
+              price: product.price,
+              priceFormatted: product.priceFormatted,
+              quantity: 1,
+              material: product.material
+            });
+          }
+          this.triggerToast(`تمت إضافة "${product.title}" إلى سلة المقتنيات بنجاح`);
+        },
+
+        incrementCart(id) {
+          const item = this.cart.find(i => i.id === id);
+          if (item) item.quantity++;
+        },
+
+        decrementCart(id) {
+          const item = this.cart.find(i => i.id === id);
+          if (item) {
+            if (item.quantity > 1) {
+              item.quantity--;
+            } else {
+              this.removeFromCart(id);
+            }
+          }
+        },
+
+        removeFromCart(id) {
+          this.cart = this.cart.filter(i => i.id !== id);
+          this.triggerToast('تم حذف المقتنى من السلة');
+        },
+
+        checkout() {
+          this.triggerToast('جاري توجيهك إلى بوابة الدفع المشفرة والآمنة...');
+        },
+
+        openQuickView(product) {
+          this.quickViewProduct = product;
+        },
+
+        bookShowroom(storeName) {
+          this.triggerToast(`تم تسجيل رغبتك في حجز موعد لدى ${storeName}، سيتواصل معك المساعد الشخصي.`);
+        },
+
+        subscribeVip() {
+          if (this.vipEmail.trim()) {
+            this.triggerToast('أهلاً بك في نادي الصفوة VIP! تم تسجيل عضويتك بنجاح.');
+            this.vipEmail = '';
+          }
+        },
+
+        triggerToast(msg) {
+          this.toastMessage = msg;
+          this.toastVisible = true;
+          setTimeout(() => {
+            this.toastVisible = false;
+          }, 3500);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+component: Spinner
+name: spinner
+category: feedback
+version: 1.0.0
+
+ai:
+  intent: "Indeterminate circular progress loader"
+  visual_role: "Rotating SVG ring spinner"
+  density: "compact"
+  preferred_when:
+    - "Buttons in loading state"
+    - "Component content fetching"
+  avoid_when:
+    - "Full-screen initial page loads (use Preloader)"
+
+base:
+  display: inline-block
+  vertical-align: middle
+  animation: "qhr-spin 0.8s linear infinite"
+  color: "{color.primary.bg}"
+
+variants:
+  default:
+    color: "{color.primary.bg}"
+  gold:
+    color: "{color.primary.bg}"
+  track:
+    color: "currentColor"
+
+sizes:
+  xs:
+    width: "16px"
+    height: "16px"
+  sm:
+    width: "20px"
+    height: "20px"
+  md:
+    width: "28px"
+    height: "28px"
+  lg:
+    width: "40px"
+    height: "40px"
+  xl:
+    width: "56px"
+    height: "56px"
+
+states:
+  active:
+    opacity: 1
+  paused:
+    animation-play-state: paused
+
+structure:
+  base:
+    native_class: qhr-spinner

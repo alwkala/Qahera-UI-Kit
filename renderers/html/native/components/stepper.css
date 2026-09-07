@@ -1,0 +1,60 @@
+/* ── 6. Stepper (.qhr-stepper) ────────────────────────────────────── */
+.qhr-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.qhr-step-item {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-3, 12px);
+  position: relative;
+  flex: 1;
+}
+.qhr-step-item:last-child {
+  flex: none;
+}
+.qhr-step-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--qhr-surface-subtle, rgba(255,255,255,0.08));
+  border: 2px solid var(--qhr-border-subtle, rgba(255,255,255,0.2));
+  color: var(--qhr-text-muted, #94a3b8);
+  font-weight: 700;
+  font-size: var(--qhr-text-xs, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--qhr-motion-duration-fast, 150ms);
+}
+.qhr-step-item.is-current .qhr-step-indicator {
+  background: var(--qhr-color-primary-base, #c7a35a);
+  border-color: var(--qhr-color-primary-base, #c7a35a);
+  color: #0a0806;
+}
+.qhr-step-item.is-completed .qhr-step-indicator {
+  background: var(--qhr-color-success-500, #10b981);
+  border-color: var(--qhr-color-success-500, #10b981);
+  color: #ffffff;
+}
+.qhr-step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--qhr-border-subtle, rgba(255,255,255,0.15));
+  margin-inline: var(--qhr-space-3, 12px);
+}
+.qhr-step-item.is-completed .qhr-step-line {
+  background: var(--qhr-color-success-500, #10b981);
+}
+.qhr-step-label {
+  font-size: var(--qhr-text-sm, 13px);
+  font-weight: 600;
+  color: var(--qhr-text-primary, #fbf8f3);
+}

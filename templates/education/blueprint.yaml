@@ -1,0 +1,44 @@
+id: template-education
+name: Education & Digital Academy Hub
+category: education
+purpose: >
+  Dual-mode comprehensive digital academy and learning portal. Integrates a high-converting digital skills marathon landing (4 specialized tracks, 12-week roadmap, early-bird tuition plans, instructor spotlight, and track orientation questionnaire) with an enrolled student LMS dashboard (course progression, interactive syllabus modal, and telemetry metrics).
+
+patterns:
+  - dashboard-stat
+  - filter-bar
+  - questionnaire
+  - search-toolbar
+  - empty-state
+
+components:
+  - card
+  - badge
+  - button
+  - input
+  - progress
+  - tabs
+  - accordion
+  - avatar
+  - modal
+
+sections:
+  - navbar: "Brand identity, dual-mode switcher (Academy vs Student LMS), and theme switcher"
+  - hero_marathon: "High-impact academy display hero, live telemetry stats strip, and 12-week marathon feature card"
+  - track_catalog: "4 core tracks (Digital Arts, AI Agents, Tech Business, Growth Marketing) with pricing, skills chips, and syllabus previews"
+  - marathon_roadmap: "12-week phased curriculum timeline detailing weekly milestone outputs and graduation hackathon"
+  - orientation_questionnaire: "Interactive 3-step questionnaire assessment providing instant personalized track recommendations"
+  - tuition_pricing: "Early-bird incentive banner and 3-tier membership packages with monthly/annual comparison"
+  - instructor_spotlight: "Lead mentor profile with verified credentials (MCP, Gemini Educator), bio, and telemetry stats"
+  - faq_accordion: "APG-compliant collapsible Q&A powered by qhrAccordion behavior module"
+  - student_lms_portal: "Authenticated student dashboard for active course progress, lesson syllabus modal, and telemetry KPIs"
+  - quick_enroll_modal: "Direct enrollment form modal with instant submission confirmation toast"
+
+ai:
+  purpose: "Full-lifecycle digital education platform covering student acquisition, track selection, interactive syllabus navigation, and progress tracking"
+  use_when:
+    - "Digital academies, coding bootcamps, and intensive career marathon programs"
+    - "LMS platforms, corporate training hubs, and hybrid educational institutions"
+    - "Course catalogs with interactive level assessments and enrollment workflows"
+  avoid:
+    - "Simple static text-only single article blogs"

@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" x-data="chartsSuite()" x-init="init()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منظومة التحليلات والرسوم البيانية — Qahera Charts & Visualization Suite</title>
+  <meta name="description" content="مكتبة الرسوم البيانية المتكاملة لنظام قاهرة: Chart.js Canvas، رسوم Morris المنحنية، بث Flot الحي، الرسوم المدمجة Inline Sparklines، والمصغرات Peity.">
+
+  <!-- Tokens & Components CSS -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <!-- Google Fonts: Cairo & El Messiri -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=El+Messiri:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Chart.js 4.4 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       Qahera Charts Suite — Page-Level Token Bridge
+       Strict adherence to AGENTS.md:
+       - 100% Logical CSS properties.
+       - Zero hardcoded colors in HTML elements.
+       - High contrast Light & Dark Themes.
+       - Pure Arabic typography (Cairo for body, El Messiri for display).
+       - Zero emoji / Unicode icons (SVG only, 24x24 viewBox).
+       ═══════════════════════════════════════════════════════════════════ */
+
+    /* ── Light Theme Tokens ────────────────────────────────────────────── */
+    :root, [data-theme="light"] {
+      --ch-bg:               #FAF8F5;
+      --ch-surface:          #FFFFFF;
+      --ch-surface-card:     #FFFFFF;
+      --ch-surface-subtle:   #F5F2EB;
+      --ch-surface-overlay:  rgba(250, 248, 245, 0.94);
+      --ch-text-primary:     #1C1917;
+      --ch-text-secondary:   #44403C;
+      --ch-text-muted:       #78716C;
+      --ch-accent:           #B45309;
+      --ch-accent-hover:     #92400E;
+      --ch-accent-fg:        #FFFFFF;
+      --ch-accent-subtle:    rgba(180, 83, 9, 0.08);
+      --ch-accent-border:    rgba(180, 83, 9, 0.25);
+      --ch-border:           #E7E5E4;
+      --ch-border-strong:    #D6D3D1;
+      --ch-card-shadow:      0 8px 24px rgba(28, 25, 23, 0.06), 0 1px 3px rgba(28, 25, 23, 0.04);
+      --ch-grid-line:        rgba(0, 0, 0, 0.06);
+      --ch-font-display:     'El Messiri', serif;
+      --ch-font-body:        'Cairo', sans-serif;
+    }
+
+    /* ── Dark Theme Tokens (Obsidian & Gold) ───────────────────────────── */
+    [data-theme="dark"], [data-theme="luxury-gold"] {
+      --ch-bg:               #0A0806;
+      --ch-surface:          #14100C;
+      --ch-surface-card:     #17120F;
+      --ch-surface-subtle:   #1E1712;
+      --ch-surface-overlay:  rgba(10, 8, 6, 0.94);
+      --ch-text-primary:     #FBF8F3;
+      --ch-text-secondary:   #D4C9BC;
+      --ch-text-muted:       #9E9081;
+      --ch-accent:           #D4AF37;
+      --ch-accent-hover:     #F2C94C;
+      --ch-accent-fg:        #0A0806;
+      --ch-accent-subtle:    rgba(212, 175, 55, 0.10);
+      --ch-accent-border:    rgba(212, 175, 55, 0.28);
+      --ch-border:           rgba(212, 175, 55, 0.18);
+      --ch-border-strong:    rgba(212, 175, 55, 0.38);
+      --ch-card-shadow:      0 16px 40px rgba(0, 0, 0, 0.7);
+      --ch-grid-line:        rgba(255, 255, 255, 0.08);
+      --ch-font-display:     'El Messiri', serif;
+      --ch-font-body:        'Cairo', sans-serif;
+    }
+
+    /* ── Base Setup ────────────────────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--ch-bg);
+      color: var(--ch-text-primary);
+      font-family: var(--ch-font-body);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard),
+                  color var(--qhr-motion-duration-slow, 350ms) var(--qhr-motion-ease-standard);
+    }
+
+    /* ── Navigation Header ─────────────────────────────────────────────── */
+    .ch-navbar {
+      position: sticky;
+      inset-block-start: 0;
+      inset-inline: 0;
+      z-index: 1000;
+      background: var(--ch-surface-overlay);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-block-end: 1px solid var(--ch-border);
+    }
+
+    .ch-navbar-inner {
+      max-width: 1440px;
+      margin-inline: auto;
+      padding-block: var(--qhr-space-3, 12px);
+      padding-inline: var(--qhr-space-6, 24px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-4, 16px);
+      flex-wrap: wrap;
+    }
+
+    .ch-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ch-text-primary);
+    }
+
+    .ch-brand-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--qhr-radius-md, 10px);
+      background: var(--ch-accent);
+      color: var(--ch-accent-fg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      font-family: var(--ch-font-display);
+    }
+
+    .ch-nav-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+    }
+
+    .ch-nav-link {
+      padding-block: 6px;
+      padding-inline: 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ch-text-secondary);
+      text-decoration: none;
+      transition: all var(--qhr-motion-duration-fast, 150ms);
+    }
+
+    .ch-nav-link:hover {
+      color: var(--ch-accent);
+      background: var(--ch-surface-subtle);
+    }
+
+    /* ── Main Container ────────────────────────────────────────────────── */
+    .ch-container {
+      max-width: 1440px;
+      margin-inline: auto;
+      padding-inline: var(--qhr-space-6, 24px);
+      padding-block: var(--qhr-space-8, 32px);
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-12, 48px);
+    }
+
+    /* Section Header */
+    .ch-section-header {
+      margin-block-end: var(--qhr-space-6, 24px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--qhr-space-4, 16px);
+      flex-wrap: wrap;
+      border-block-end: 1px solid var(--ch-border);
+      padding-block-end: var(--qhr-space-3, 12px);
+    }
+
+    .ch-section-title {
+      font-family: var(--ch-font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ch-text-primary);
+      margin: 0 0 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ch-section-desc {
+      font-size: 14px;
+      color: var(--ch-text-secondary);
+      margin: 0;
+    }
+
+    /* Chart Cards Grid */
+    .ch-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+      gap: var(--qhr-space-6, 24px);
+    }
+
+    .ch-card {
+      background: var(--ch-surface-card);
+      border: 1px solid var(--ch-border);
+      border-radius: var(--qhr-radius-xl, 20px);
+      padding: var(--qhr-space-6, 24px);
+      box-shadow: var(--ch-card-shadow);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .ch-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-end: var(--qhr-space-5, 20px);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ch-card-title {
+      font-family: var(--ch-font-display);
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0;
+      color: var(--ch-text-primary);
+    }
+
+    .ch-canvas-wrap {
+      position: relative;
+      width: 100%;
+      height: 320px;
+    }
+
+    /* ── KPI Stat Tiles with Integrated Sparklines ─────────────────────── */
+    .ch-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--qhr-space-5, 20px);
+    }
+
+    .ch-kpi-card {
+      background: var(--ch-surface-card);
+      border: 1px solid var(--ch-border);
+      border-radius: var(--qhr-radius-lg, 16px);
+      padding: var(--qhr-space-5, 20px);
+      box-shadow: var(--ch-card-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .ch-kpi-num {
+      font-family: var(--ch-font-display);
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--ch-text-primary);
+      margin-block: 4px;
+    }
+
+    .ch-sparkline-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-start: 12px;
+      padding-block-start: 10px;
+      border-block-start: 1px solid var(--ch-border);
+    }
+
+    /* ── Flot Live Telemetry Specifics ─────────────────────────────────── */
+    .ch-telemetry-banner {
+      background: var(--ch-surface-subtle);
+      border: 1px solid var(--ch-border);
+      border-radius: var(--qhr-radius-lg, 14px);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-block-end: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .ch-pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--qhr-color-success-500, #10b981);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+      animation: chPulse 2s infinite;
+    }
+
+    @keyframes chPulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* ── Data Table with Inline Sparklines ─────────────────────────────── */
+    .ch-table-wrap {
+      background: var(--ch-surface-card);
+      border: 1px solid var(--ch-border);
+      border-radius: var(--qhr-radius-xl, 20px);
+      overflow-x: auto;
+      box-shadow: var(--ch-card-shadow);
+    }
+
+    .ch-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: start;
+      font-size: 14px;
+    }
+
+    .ch-table th {
+      background: var(--ch-surface-subtle);
+      color: var(--ch-text-secondary);
+      font-weight: 700;
+      padding: 14px 20px;
+      border-block-end: 1px solid var(--ch-border);
+      white-space: nowrap;
+    }
+
+    .ch-table td {
+      padding: 14px 20px;
+      border-block-end: 1px solid var(--ch-border);
+      color: var(--ch-text-primary);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .ch-table tr:last-child td {
+      border-block-end: none;
+    }
+
+    /* ── Peity Micro Charts Grid ───────────────────────────────────────── */
+    .ch-peity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--qhr-space-4, 16px);
+    }
+
+    .ch-peity-tile {
+      background: var(--ch-surface-card);
+      border: 1px solid var(--ch-border);
+      border-radius: var(--qhr-radius-md, 12px);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Toast */
+    .ch-toast {
+      position: fixed;
+      inset-block-end: var(--qhr-space-6, 24px);
+      inset-inline-start: 50%;
+      transform: translateX(50%);
+      background: var(--ch-surface-card);
+      border: 1px solid var(--ch-accent-border);
+      color: var(--ch-text-primary);
+      padding: 12px 20px;
+      border-radius: var(--qhr-radius-lg, 16px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .ch-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Top Navbar -->
+  <header class="ch-navbar">
+    <div class="ch-navbar-inner">
+      <a href="#" class="ch-brand">
+        <div class="ch-brand-badge">ق</div>
+        <div>
+          <strong style="font-family: var(--ch-font-display); font-size: 17px;">قاهرة للتحليلات البيانية</strong>
+          <span style="font-size: 11px; color: var(--ch-text-muted); display: block;">Data Visualization & Telemetry Suite</span>
+        </div>
+      </a>
+
+      <!-- Quick Anchor Pills -->
+      <nav aria-label="أقسام الرسوم البيانية">
+        <ul class="ch-nav-pills">
+          <li><a href="#chartjs" class="ch-nav-link">Chart.js</a></li>
+          <li><a href="#morris" class="ch-nav-link">Morris Style</a></li>
+          <li><a href="#flot" class="ch-nav-link">Flot Telemetry</a></li>
+          <li><a href="#inline" class="ch-nav-link">Inline Sparklines</a></li>
+          <li><a href="#peity" class="ch-nav-link">Peity Micro-charts</a></li>
+        </ul>
+      </nav>
+
+      <!-- Direction & Language Switcher -->
+      <button
+        type="button"
+        class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+        @click="toggleDir()"
+        :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+        aria-label="تبديل اتجاه الصفحة واللغة"
+        style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+      >
+        <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+      </button>
+
+      <!-- Theme Switcher (Icon only without text) -->
+      <button
+        type="button"
+        class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+        @click="toggleTheme()"
+        aria-label="تبديل المظهر اللوني"
+        :title="theme === 'dark' ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'"
+        style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+      >
+        <span x-show="theme === 'dark'" style="display: inline-flex; align-items: center; justify-content: center;"><svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+        <span x-show="theme === 'light'" style="display: inline-flex; align-items: center; justify-content: center;"><svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 2. Main Analytics Canvas -->
+  <main class="ch-container">
+
+    <!-- ── SECTION 1: CHART.JS INTERACTIVE CANVAS ─────────────────────── -->
+    <section id="chartjs">
+      <div class="ch-section-header">
+        <div>
+          <h2 class="ch-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ch-accent);"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <span>حزمة رسوم Chart.js التفاعلية (HTML5 Canvas)</span>
+          </h2>
+          <p class="ch-section-desc">رسوم تفاعلية مرسومة عبر Canvas تستجيب تلقائياً للنمط الداكن/النهاري مع تدرجات لونية ذهبية وأوبسيديانية.</p>
+        </div>
+      </div>
+
+      <div class="ch-grid-2">
+        <!-- 1. Revenue Line & Area Chart -->
+        <div class="ch-card">
+          <div class="ch-card-header">
+            <div>
+              <h3 class="ch-card-title">منحنى الإيرادات والمبيعات التراكمية</h3>
+              <span style="font-size: 12px; color: var(--ch-text-muted);">مقارنة الأداء الفعلي مقابل المستهدف ربع السنوي</span>
+            </div>
+            <div style="display: flex; gap: 6px;">
+              <span class="qhr-badge qhr-badge--primary qhr-badge--xs">نمو +١٨.٤٪</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap">
+            <canvas id="chartjsLineCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- 2. Quarterly Bar Chart -->
+        <div class="ch-card">
+          <div class="ch-card-header">
+            <div>
+              <h3 class="ch-card-title">توزيع المبيعات حسب دور الصياغة</h3>
+              <span style="font-size: 12px; color: var(--ch-text-muted);">مقارنة الربعين الثالث والرابع عبر 5 دور إنتاج</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap">
+            <canvas id="chartjsBarCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- 3. Radar Assessment Chart -->
+        <div class="ch-card">
+          <div class="ch-card-header">
+            <div>
+              <h3 class="ch-card-title">مصفوفة الجاهزية والصلابة المعمارية</h3>
+              <span style="font-size: 12px; color: var(--ch-text-muted);">تقييم محاور الأداء الستة وفق معايير قاهرة</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap">
+            <canvas id="chartjsRadarCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- 4. Category Doughnut Chart -->
+        <div class="ch-card">
+          <div class="ch-card-header">
+            <div>
+              <h3 class="ch-card-title">الحصص السوقية لتصنيفات المقتنيات</h3>
+              <span style="font-size: 12px; color: var(--ch-text-muted);">النسبة المئوية لحجم الطلبات في الكتالوج</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap">
+            <canvas id="chartjsDonutCanvas"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 2: MORRIS STYLE SMOOTH CURVES ──────────────────────── -->
+    <section id="morris">
+      <div class="ch-section-header">
+        <div>
+          <h2 class="ch-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ch-accent);"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-3 3"/></svg>
+            <span>رسوم Morris المنحنية (Smooth Area & Center Donuts)</span>
+          </h2>
+          <p class="ch-section-desc">منحنيات بيزيه (Bézier Splines) ناعمة بدون تعقيد، مع دوائر إحصائية تعتمد على مؤشر وسطي واضح.</p>
+        </div>
+      </div>
+
+      <div class="ch-grid-2">
+        <!-- Morris Smooth Area -->
+        <div class="ch-card">
+          <div class="ch-card-header">
+            <div>
+              <h3 class="ch-card-title">منحنى التدفق المالي الأسبوعي (Morris Area)</h3>
+              <span style="font-size: 12px; color: var(--ch-text-muted);">انحناءات بيزيه فائقة النعومة مع تدرج ذهبي ملكي</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap" style="display: flex; align-items: center; justify-content: center;">
+            <!-- Scalable Pure SVG Morris Area -->
+            <svg width="100%" height="280" viewBox="0 0 500 240" preserveAspectRatio="none" style="overflow: visible;">
+              <defs>
+                <linearGradient id="morrisGradGold" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--ch-accent)" stop-opacity="0.35" />
+                  <stop offset="100%" stop-color="var(--ch-accent)" stop-opacity="0.0" />
+                </linearGradient>
+              </defs>
+              <!-- Grid Lines -->
+              <line x1="0" y1="40" x2="500" y2="40" stroke="var(--ch-grid-line)" stroke-width="1" />
+              <line x1="0" y1="100" x2="500" y2="100" stroke="var(--ch-grid-line)" stroke-width="1" />
+              <line x1="0" y1="160" x2="500" y2="160" stroke="var(--ch-grid-line)" stroke-width="1" />
+              <line x1="0" y1="220" x2="500" y2="220" stroke="var(--ch-grid-line)" stroke-width="1" />
+
+              <!-- Area Fill -->
+              <path d="M0,180 C80,140 140,80 220,110 C300,140 360,50 440,70 C470,75 500,60 500,60 L500,220 L0,220 Z" fill="url(#morrisGradGold)" />
+              
+              <!-- Smooth Stroke -->
+              <path d="M0,180 C80,140 140,80 220,110 C300,140 360,50 440,70 C470,75 500,60 500,60" fill="none" stroke="var(--ch-accent)" stroke-width="3" stroke-linecap="round" />
+
+              <!-- Data Points -->
+              <circle cx="80" cy="140" r="4" fill="var(--ch-surface)" stroke="var(--ch-accent)" stroke-width="2" />
+              <circle cx="220" cy="110" r="4" fill="var(--ch-surface)" stroke="var(--ch-accent)" stroke-width="2" />
+              <circle cx="360" cy="50" r="4" fill="var(--ch-surface)" stroke="var(--ch-accent)" stroke-width="2" />
+              <circle cx="440" cy="70" r="4" fill="var(--ch-surface)" stroke="var(--ch-accent)" stroke-width="2" />
+            </svg>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--ch-text-muted); padding-block-start: 8px;">
+            <span>السبت</span><span>الأحد</span><span>الإثنين</span><span>الثلاثاء</span><span>الأربعاء</span><span>الخميس</span><span>الجمعة</span>
+          </div>
+        </div>
+
+        <!-- Morris Donut with Center Stat -->
+        <div class="ch-card">
+          <div class="ch-card-header">
+            <div>
+              <h3 class="ch-card-title">المؤشر الدائري الوسطي (Morris Donut)</h3>
+              <span style="font-size: 12px; color: var(--ch-text-muted);">نسبة الإنجاز السنوي لأهداف التوسع المؤسسي</span>
+            </div>
+          </div>
+          <div class="ch-canvas-wrap" style="display: flex; align-items: center; justify-content: center; position: relative;">
+            <!-- SVG Donut -->
+            <svg width="240" height="240" viewBox="0 0 100 100" style="transform: rotate(-90deg);">
+              <!-- Background ring -->
+              <circle cx="50" cy="50" r="40" fill="transparent" stroke="var(--ch-surface-subtle)" stroke-width="12" />
+              <!-- Segments -->
+              <circle cx="50" cy="50" r="40" fill="transparent" stroke="var(--ch-accent)" stroke-width="12" stroke-dasharray="210 251.2" stroke-dashoffset="0" stroke-linecap="round" />
+              <circle cx="50" cy="50" r="40" fill="transparent" stroke="#10B981" stroke-width="12" stroke-dasharray="40 251.2" stroke-dashoffset="-210" />
+            </svg>
+            <!-- Center Text -->
+            <div style="position: absolute; text-align: center;">
+              <span style="font-family: var(--ch-font-display); font-size: 32px; font-weight: 800; color: var(--ch-accent); display: block; line-height: 1;">٨٨.٤٪</span>
+              <span style="font-size: 12px; color: var(--ch-text-muted);">اكتمال الأهداف</span>
+            </div>
+          </div>
+          <div style="display: flex; justify-content: center; gap: 24px; font-size: 13px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--ch-accent);"></span>
+              <span>المبيعات المحققة (٨٤٪)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #10B981;"></span>
+              <span>عقود التوريد الجديدة (١٦٪)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 3: FLOT STYLE REAL-TIME TELEMETRY ──────────────────── -->
+    <section id="flot">
+      <div class="ch-section-header">
+        <div>
+          <h2 class="ch-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ch-accent);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>بث الرصد الحي (Flot Real-Time Telemetry)</span>
+          </h2>
+          <p class="ch-section-desc">مراقبة حية فورية لنبض الخوادم واستجابة البنية التحتية مع تحديث تلقائي كل ثانية وتنبيهات تجاوز الحدود.</p>
+        </div>
+      </div>
+
+      <div class="ch-card">
+        <!-- Telemetry Status Bar -->
+        <div class="ch-telemetry-banner">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="ch-pulse-dot"></div>
+            <div>
+              <strong style="font-size: 14px;">مراقبة استهلاك الموارد المباشرة (Live Feed)</strong>
+              <span style="font-size: 12px; color: var(--ch-text-muted); display: block;">الخادم: eg-cairo-edge-01 · زمن التأخير: 28ms</span>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="font-size: 13px;">الحمل الحالي: <strong style="color: var(--ch-accent);" x-text="currentLoad + '%'"></strong></span>
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+              @click="toggleStreaming()"
+              x-text="isStreaming ? 'إيقاف مؤقت' : 'استئناف البث'"
+            ></button>
+            <button
+              type="button"
+              class="qhr-btn qhr-btn--outline qhr-btn--sm"
+              @click="injectSpike()"
+            >
+              اختبار ضغط لحظي
+            </button>
+          </div>
+        </div>
+
+        <!-- Real-Time Canvas -->
+        <div class="ch-canvas-wrap" style="height: 300px;">
+          <canvas id="flotCanvas"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: INLINE CHARTS & SPARKLINES ───────────────────────── -->
+    <section id="inline">
+      <div class="ch-section-header">
+        <div>
+          <h2 class="ch-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ch-accent);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <span>الرسوم المضمنة ومؤشرات النبض (Inline Charts & Sparklines)</span>
+          </h2>
+          <p class="ch-section-desc">مخططات مصغرة مدمجة داخل بطاقات الأداء وجداول البيانات لعرض الاتجاه اللحظي بدون تشويش بصري.</p>
+        </div>
+      </div>
+
+      <!-- KPI Tiles with Sparklines -->
+      <div class="ch-kpi-grid" style="margin-block-end: var(--qhr-space-6, 24px);">
+        <!-- Tile 1 -->
+        <div class="ch-kpi-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--ch-text-muted); font-weight: 600;">إجمالي الدخل</span>
+            <span class="qhr-badge qhr-badge--primary qhr-badge--xs">+١٤.٢٪</span>
+          </div>
+          <div class="ch-kpi-num">١٨٤,٢٠٠ ر.س</div>
+          <div class="ch-sparkline-row">
+            <span style="font-size: 11px; color: var(--ch-text-muted);">مسار الـ ٧ أيام:</span>
+            <!-- Inline SVG Sparkline (Upward) -->
+            <svg width="100" height="24" viewBox="0 0 100 24">
+              <path d="M0,20 L16,16 L32,18 L48,10 L64,12 L80,4 L100,2" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Tile 2 -->
+        <div class="ch-kpi-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--ch-text-muted); font-weight: 600;">الطلبات المكتملة</span>
+            <span class="qhr-badge qhr-badge--primary qhr-badge--xs">+٩.٦٪</span>
+          </div>
+          <div class="ch-kpi-num">١,٤٢٨ طلب</div>
+          <div class="ch-sparkline-row">
+            <span style="font-size: 11px; color: var(--ch-text-muted);">توزيع الحجم:</span>
+            <!-- Inline Mini Bars -->
+            <svg width="100" height="24" viewBox="0 0 100 24">
+              <rect x="0" y="10" width="8" height="14" rx="2" fill="var(--ch-accent)" />
+              <rect x="15" y="6" width="8" height="18" rx="2" fill="var(--ch-accent)" />
+              <rect x="30" y="12" width="8" height="12" rx="2" fill="var(--ch-accent)" />
+              <rect x="45" y="4" width="8" height="20" rx="2" fill="var(--ch-accent)" />
+              <rect x="60" y="8" width="8" height="16" rx="2" fill="var(--ch-accent)" />
+              <rect x="75" y="2" width="8" height="22" rx="2" fill="var(--ch-accent)" />
+              <rect x="90" y="5" width="8" height="19" rx="2" fill="var(--ch-accent)" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Tile 3 -->
+        <div class="ch-kpi-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--ch-text-muted); font-weight: 600;">معدل الارتداد</span>
+            <span class="qhr-badge qhr-badge--secondary qhr-badge--xs">-٣.١٪</span>
+          </div>
+          <div class="ch-kpi-num">٢١.٤٪</div>
+          <div class="ch-sparkline-row">
+            <span style="font-size: 11px; color: var(--ch-text-muted);">انخفاض إيجابي:</span>
+            <!-- Inline SVG Sparkline (Downward) -->
+            <svg width="100" height="24" viewBox="0 0 100 24">
+              <path d="M0,4 L20,6 L40,12 L60,10 L80,18 L100,20" fill="none" stroke="var(--ch-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Tile 4 -->
+        <div class="ch-kpi-card">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 12px; color: var(--ch-text-muted); font-weight: 600;">سرعة الاستجابة</span>
+            <span class="qhr-badge qhr-badge--primary qhr-badge--xs">ممتاز</span>
+          </div>
+          <div class="ch-kpi-num">١٨ ms</div>
+          <div class="ch-sparkline-row">
+            <span style="font-size: 11px; color: var(--ch-text-muted);">استقرار تام:</span>
+            <svg width="100" height="24" viewBox="0 0 100 24">
+              <path d="M0,12 L20,12 L35,6 L50,18 L65,10 L80,12 L100,12" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Table with Inline Sparklines -->
+      <div class="ch-table-wrap">
+        <table class="ch-table">
+          <thead>
+            <tr>
+              <th>المقتنى / المجموعة</th>
+              <th>التصنيف</th>
+              <th>إجمالي المبيعات</th>
+              <th>مخطط النبض (Sparkline)</th>
+              <th>نسبة التغيير</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>خاتم الأفق الذهبي عيار 18</strong></td>
+              <td>خواتم ملكية</td>
+              <td>٧٤,٢٠٠ ر.س</td>
+              <td>
+                <svg width="110" height="26" viewBox="0 0 110 26">
+                  <path d="M0,22 L18,18 L36,20 L54,12 L72,14 L90,6 L110,2" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </td>
+              <td><span style="color: #10B981; font-weight: 700;">+٢٢.٤٪</span></td>
+              <td><span class="qhr-badge qhr-badge--primary qhr-badge--xs">الأعلى طلباً</span></td>
+            </tr>
+            <tr>
+              <td><strong>سوار النيل الملكي المنقوش</strong></td>
+              <td>أساور مصمتة</td>
+              <td>٥٨,١٠٠ ر.س</td>
+              <td>
+                <svg width="110" height="26" viewBox="0 0 110 26">
+                  <path d="M0,14 L20,10 L40,16 L60,8 L80,12 L100,6 L110,8" fill="none" stroke="var(--ch-accent)" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </td>
+              <td><span style="color: var(--ch-accent); font-weight: 700;">+١١.٨٪</span></td>
+              <td><span class="qhr-badge qhr-badge--outline qhr-badge--xs">شحن فوري</span></td>
+            </tr>
+            <tr>
+              <td><strong>قلادة المشربية الفاطمية</strong></td>
+              <td>سلاسل وتراث</td>
+              <td>٨٩,٤٥٠ ر.س</td>
+              <td>
+                <svg width="110" height="26" viewBox="0 0 110 26">
+                  <path d="M0,18 L18,14 L36,16 L54,8 L72,10 L90,4 L110,2" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </td>
+              <td><span style="color: #10B981; font-weight: 700;">+١٩.٥٪</span></td>
+              <td><span class="qhr-badge qhr-badge--primary qhr-badge--xs">إصدار مرقّم</span></td>
+            </tr>
+            <tr>
+              <td><strong>سوار الهيبة الأوبسيدياني</strong></td>
+              <td>أحجار بركانية</td>
+              <td>٣١,٢٠٠ ر.س</td>
+              <td>
+                <svg width="110" height="26" viewBox="0 0 110 26">
+                  <path d="M0,6 L20,10 L40,8 L60,18 L80,14 L100,20 L110,22" fill="none" stroke="var(--qhr-color-danger-500, #ef4444)" stroke-width="2" stroke-linecap="round" />
+                </svg>
+              </td>
+              <td><span style="color: var(--qhr-color-danger-500, #ef4444); font-weight: 700;">-٤.٢٪</span></td>
+              <td><span class="qhr-badge qhr-badge--secondary qhr-badge--xs">مخزون محدود</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── SECTION 5: PEITY MICRO VISUALIZERS ─────────────────────────── -->
+    <section id="peity">
+      <div class="ch-section-header">
+        <div>
+          <h2 class="ch-section-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ch-accent);"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10h-10z"/></svg>
+            <span>المصغرات الرشيقة (Peity Micro-Charts)</span>
+          </h2>
+          <p class="ch-section-desc">مخططات دقيقة خفيفة الوزن للغاية تعمل بدون أي مكتبات ثقيلة لتضمين النسب والحصص في النصوص والشارات.</p>
+        </div>
+      </div>
+
+      <div class="ch-peity-grid">
+        <!-- Peity Pie 1/4 -->
+        <div class="ch-peity-tile">
+          <div>
+            <div style="font-weight: 700; font-size: 13px;">حصّة الربع الأول</div>
+            <span style="font-size: 11px; color: var(--ch-text-muted);">Peity Pie 1/4</span>
+          </div>
+          <svg width="28" height="28" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="14" fill="var(--ch-surface-subtle)" stroke="var(--ch-border)" stroke-width="1.5" />
+            <path d="M16,16 L16,2 A14,14 0 0,1 30,16 Z" fill="var(--ch-accent)" />
+          </svg>
+        </div>
+
+        <!-- Peity Pie 2/4 -->
+        <div class="ch-peity-tile">
+          <div>
+            <div style="font-weight: 700; font-size: 13px;">اكتمال النصف</div>
+            <span style="font-size: 11px; color: var(--ch-text-muted);">Peity Pie 2/4</span>
+          </div>
+          <svg width="28" height="28" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="14" fill="var(--ch-surface-subtle)" stroke="var(--ch-border)" stroke-width="1.5" />
+            <path d="M16,16 L16,2 A14,14 0 0,1 16,30 Z" fill="#10B981" />
+          </svg>
+        </div>
+
+        <!-- Peity Pie 3/4 -->
+        <div class="ch-peity-tile">
+          <div>
+            <div style="font-weight: 700; font-size: 13px;">اكتمال الربع الثالث</div>
+            <span style="font-size: 11px; color: var(--ch-text-muted);">Peity Pie 3/4</span>
+          </div>
+          <svg width="28" height="28" viewBox="0 0 32 32">
+            <circle cx="16" cy="16" r="14" fill="var(--ch-surface-subtle)" stroke="var(--ch-border)" stroke-width="1.5" />
+            <path d="M16,16 L16,2 A14,14 0 1,1 2,16 Z" fill="var(--ch-accent)" />
+          </svg>
+        </div>
+
+        <!-- Peity Donut 85% -->
+        <div class="ch-peity-tile">
+          <div>
+            <div style="font-weight: 700; font-size: 13px;">جاهزية النظام (٨٥٪)</div>
+            <span style="font-size: 11px; color: var(--ch-text-muted);">Peity Donut</span>
+          </div>
+          <svg width="28" height="28" viewBox="0 0 32 32" style="transform: rotate(-90deg);">
+            <circle cx="16" cy="16" r="12" fill="transparent" stroke="var(--ch-surface-subtle)" stroke-width="5" />
+            <circle cx="16" cy="16" r="12" fill="transparent" stroke="#3B82F6" stroke-width="5" stroke-dasharray="64 75.4" />
+          </svg>
+        </div>
+
+        <!-- Peity Micro Bars -->
+        <div class="ch-peity-tile">
+          <div>
+            <div style="font-weight: 700; font-size: 13px;">تذبذب المعاملات</div>
+            <span style="font-size: 11px; color: var(--ch-text-muted);">Peity Mini Bars</span>
+          </div>
+          <svg width="40" height="22" viewBox="0 0 40 22">
+            <rect x="0" y="8" width="5" height="14" rx="1" fill="var(--ch-accent)" />
+            <rect x="7" y="4" width="5" height="18" rx="1" fill="var(--ch-accent)" />
+            <rect x="14" y="10" width="5" height="12" rx="1" fill="var(--ch-accent)" />
+            <rect x="21" y="2" width="5" height="20" rx="1" fill="var(--ch-accent)" />
+            <rect x="28" y="6" width="5" height="16" rx="1" fill="var(--ch-accent)" />
+            <rect x="35" y="1" width="5" height="21" rx="1" fill="var(--ch-accent)" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 3. Toast Feedback -->
+  <div class="ch-toast" x-show="toastVisible" style="display: none;">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ch-accent);"><polyline points="20 6 9 17 4 12"/></svg>
+    <span x-text="toastMessage"></span>
+  </div>
+
+  <!-- Alpine Core & Chart Engine Script -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  <script>
+    let lineChartInst = null;
+    let barChartInst = null;
+    let radarChartInst = null;
+    let donutChartInst = null;
+    let flotChartInst = null;
+
+    function chartsSuite() {
+      return {
+        theme: localStorage.getItem('qhr-theme') || 'dark',
+        dir: localStorage.getItem('qhr-dir') || 'rtl',
+        lang: (localStorage.getItem('qhr-dir') || 'rtl') === 'rtl' ? 'ar' : 'en',
+        isStreaming: true,
+        currentLoad: 42,
+        flotInterval: null,
+        toastVisible: false,
+        toastMessage: '',
+
+        init() {
+          document.documentElement.setAttribute('data-theme', this.theme);
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.lang);
+          this.$nextTick(() => {
+            this.initCharts();
+            this.startFlotStreaming();
+          });
+        },
+
+        toggleTheme() {
+          this.theme = this.theme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', this.theme);
+          localStorage.setItem('qhr-theme', this.theme);
+          this.updateChartsTheme();
+        },
+
+        initCharts() {
+          const isDark = this.theme === 'dark';
+          const textColor = isDark ? '#FBF8F3' : '#1C1917';
+          const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)';
+          const accentColor = isDark ? '#D4AF37' : '#B45309';
+
+          // 1. Line & Area Chart
+          const ctxLine = document.getElementById('chartjsLineCanvas');
+          if (ctxLine) {
+            lineChartInst = new Chart(ctxLine, {
+              type: 'line',
+              data: {
+                labels: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس'],
+                datasets: [
+                  {
+                    label: 'الإيرادات الفعلية (ر.س)',
+                    data: [65000, 78000, 92000, 88000, 115000, 134000, 156000, 184200],
+                    borderColor: accentColor,
+                    backgroundColor: isDark ? 'rgba(212, 175, 55, 0.15)' : 'rgba(180, 83, 9, 0.12)',
+                    fill: true,
+                    tension: 0.35,
+                    borderWidth: 3,
+                    pointRadius: 4,
+                  },
+                  {
+                    label: 'المستهدف التقديري',
+                    data: [60000, 70000, 85000, 95000, 110000, 125000, 140000, 160000],
+                    borderColor: '#3B82F6',
+                    borderDash: [5, 5],
+                    fill: false,
+                    tension: 0.35,
+                    borderWidth: 2,
+                    pointRadius: 0,
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { labels: { color: textColor, font: { family: 'Cairo' } } }
+                },
+                scales: {
+                  x: { grid: { color: gridColor }, ticks: { color: textColor, font: { family: 'Cairo' } } },
+                  y: { grid: { color: gridColor }, ticks: { color: textColor, font: { family: 'Cairo' } } }
+                }
+              }
+            });
+          }
+
+          // 2. Bar Chart
+          const ctxBar = document.getElementById('chartjsBarCanvas');
+          if (ctxBar) {
+            barChartInst = new Chart(ctxBar, {
+              type: 'bar',
+              data: {
+                labels: ['دار قاهرة', 'الحولي', 'الصاغة', 'النيل', 'الفراعنة'],
+                datasets: [
+                  {
+                    label: 'الربع الثالث',
+                    data: [120, 95, 84, 60, 48],
+                    backgroundColor: isDark ? 'rgba(212, 175, 55, 0.6)' : 'rgba(180, 83, 9, 0.6)',
+                    borderRadius: 6,
+                  },
+                  {
+                    label: 'الربع الرابع',
+                    data: [154, 112, 105, 78, 62],
+                    backgroundColor: '#10B981',
+                    borderRadius: 6,
+                  }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { labels: { color: textColor, font: { family: 'Cairo' } } }
+                },
+                scales: {
+                  x: { grid: { color: gridColor }, ticks: { color: textColor, font: { family: 'Cairo' } } },
+                  y: { grid: { color: gridColor }, ticks: { color: textColor, font: { family: 'Cairo' } } }
+                }
+              }
+            });
+          }
+
+          // 3. Radar Chart
+          const ctxRadar = document.getElementById('chartjsRadarCanvas');
+          if (ctxRadar) {
+            radarChartInst = new Chart(ctxRadar, {
+              type: 'radar',
+              data: {
+                labels: ['سرعة الاستجابة', 'الأمان والتشفير', 'سهولة الوصول AAA', 'التوافقية RTL', 'جودة الكود', 'التوثيق'],
+                datasets: [{
+                  label: 'مؤشر الجاهزية',
+                  data: [95, 98, 92, 100, 94, 96],
+                  backgroundColor: isDark ? 'rgba(212, 175, 55, 0.25)' : 'rgba(180, 83, 9, 0.2)',
+                  borderColor: accentColor,
+                  borderWidth: 2,
+                  pointBackgroundColor: accentColor
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { labels: { color: textColor, font: { family: 'Cairo' } } }
+                },
+                scales: {
+                  r: {
+                    angleLines: { color: gridColor },
+                    grid: { color: gridColor },
+                    pointLabels: { color: textColor, font: { family: 'Cairo', size: 12 } },
+                    ticks: { display: false }
+                  }
+                }
+              }
+            });
+          }
+
+          // 4. Donut Chart
+          const ctxDonut = document.getElementById('chartjsDonutCanvas');
+          if (ctxDonut) {
+            donutChartInst = new Chart(ctxDonut, {
+              type: 'doughnut',
+              data: {
+                labels: ['الخواتم الملكية', 'الأساور المصمتة', 'السلاسل والقلائد', 'الساعات والتحف', 'الأقراط'],
+                datasets: [{
+                  data: [35, 25, 20, 15, 5],
+                  backgroundColor: [accentColor, '#10B981', '#3B82F6', '#F59E0B', '#A87C4F'],
+                  borderWidth: 2,
+                  borderColor: isDark ? '#17120F' : '#FFFFFF'
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                  legend: { position: 'bottom', labels: { color: textColor, font: { family: 'Cairo' } } }
+                }
+              }
+            });
+          }
+
+          // 5. Flot Real-Time Chart
+          const ctxFlot = document.getElementById('flotCanvas');
+          if (ctxFlot) {
+            const initialLabels = Array.from({ length: 20 }, (_, i) => `${i}s`);
+            const initialData = Array.from({ length: 20 }, () => Math.floor(Math.random() * 25) + 30);
+            
+            flotChartInst = new Chart(ctxFlot, {
+              type: 'line',
+              data: {
+                labels: initialLabels,
+                datasets: [{
+                  label: 'الحمل المباشر (%)',
+                  data: initialData,
+                  borderColor: accentColor,
+                  backgroundColor: isDark ? 'rgba(212, 175, 55, 0.1)' : 'rgba(180, 83, 9, 0.1)',
+                  fill: true,
+                  stepped: false,
+                  tension: 0.2,
+                  borderWidth: 2,
+                  pointRadius: 2
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: false,
+                plugins: {
+                  legend: { labels: { color: textColor, font: { family: 'Cairo' } } }
+                },
+                scales: {
+                  x: { grid: { color: gridColor }, ticks: { color: textColor, font: { family: 'Cairo' } } },
+                  y: { min: 0, max: 100, grid: { color: gridColor }, ticks: { color: textColor, font: { family: 'Cairo' } } }
+                }
+              }
+            });
+          }
+        },
+
+        startFlotStreaming() {
+          this.flotInterval = setInterval(() => {
+            if (!this.isStreaming || !flotChartInst) return;
+
+            // Generate next tick value
+            let delta = (Math.random() - 0.5) * 8;
+            this.currentLoad = Math.min(95, Math.max(20, Math.round(this.currentLoad + delta)));
+
+            // Shift data
+            flotChartInst.data.datasets[0].data.shift();
+            flotChartInst.data.datasets[0].data.push(this.currentLoad);
+            flotChartInst.update();
+          }, 1200);
+        },
+
+        toggleStreaming() {
+          this.isStreaming = !this.isStreaming;
+          this.triggerToast(this.isStreaming ? 'تم استئناف بث بيانات الخادم الحية.' : 'تم إيقاف البث مؤقتاً.');
+        },
+
+        injectSpike() {
+          this.currentLoad = 89;
+          if (flotChartInst) {
+            flotChartInst.data.datasets[0].data[flotChartInst.data.datasets[0].data.length - 1] = 89;
+            flotChartInst.update();
+          }
+          this.triggerToast('تم توليد ذروة حمل اختباري (89% Load Spike)!');
+        },
+
+        updateChartsTheme() {
+          const isDark = this.theme === 'dark';
+          const textColor = isDark ? '#FBF8F3' : '#1C1917';
+          const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)';
+          const accentColor = isDark ? '#D4AF37' : '#B45309';
+
+          [lineChartInst, barChartInst, radarChartInst, donutChartInst, flotChartInst].forEach(chart => {
+            if (!chart) return;
+            if (chart.options.plugins?.legend?.labels) {
+              chart.options.plugins.legend.labels.color = textColor;
+            }
+            if (chart.options.scales?.x) {
+              chart.options.scales.x.grid.color = gridColor;
+              chart.options.scales.x.ticks.color = textColor;
+            }
+            if (chart.options.scales?.y) {
+              chart.options.scales.y.grid.color = gridColor;
+              chart.options.scales.y.ticks.color = textColor;
+            }
+            chart.update();
+          });
+        },
+
+        triggerToast(msg) {
+          this.toastMessage = msg;
+          this.toastVisible = true;
+          setTimeout(() => {
+            this.toastVisible = false;
+          }, 3500);
+        }
+      };
+    }
+  </script>
+</body>
+</html>

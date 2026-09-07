@@ -1,0 +1,59 @@
+/* ==========================================================================
+   File Upload / Dropzone (.qhr-file-upload)
+   ========================================================================== */
+.qhr-file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 2px dashed var(--qhr-border-strong, #cbd5e1);
+  border-radius: var(--qhr-radius-xl, 18px);
+  background-color: var(--qhr-surface-muted, #f8fafc);
+  padding: var(--qhr-space-8, 32px) var(--qhr-space-6, 24px);
+  cursor: pointer;
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+  transition: border-color var(--qhr-duration-fast, 150ms) ease,
+              background-color var(--qhr-duration-fast, 150ms) ease;
+}
+
+[data-theme="dark"] .qhr-file-upload {
+  background-color: var(--qhr-surface-elevated, #131b2e);
+  border-color: var(--qhr-border-subtle, #1e293b);
+}
+
+.qhr-file-upload:hover,
+.qhr-file-upload--dragover {
+  border-color: var(--qhr-color-primary-500, #c7a35a);
+  background-color: rgba(199, 163, 90, 0.05);
+}
+
+.qhr-file-upload-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--qhr-color-primary-500, #c7a35a);
+  margin-block-end: var(--qhr-space-3, 12px);
+}
+
+.qhr-file-upload-label {
+  font-family: var(--qhr-font-heading, 'Alexandria', 'Cairo', sans-serif);
+  font-size: var(--qhr-text-base, 1rem);
+  font-weight: 700;
+  color: var(--qhr-content-primary, #0f172a);
+  margin-block-end: var(--qhr-space-1, 4px);
+}
+[data-theme="dark"] .qhr-file-upload-label {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+
+.qhr-file-upload-hint {
+  font-size: var(--qhr-text-xs, 0.75rem);
+  color: var(--qhr-content-secondary, #64748b);
+}
+[data-theme="dark"] .qhr-file-upload-hint {
+  color: var(--qhr-content-secondary, #94a3b8);
+}
+
+.qhr-file-upload-input {
+  display: none;
+}

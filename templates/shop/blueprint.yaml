@@ -1,0 +1,42 @@
+id: template-shop
+name: Luxury Boutique Shop & Comprehensive Sidebar Filters
+category: ecommerce
+purpose: >
+  Production-grade e-commerce shop page with multi-faceted, intuitive sidebar filter navigation (Category tree, dynamic Price range, Color swatches, Size chips, and Brand checkboxes), dual view modes (Grid / List), live search, active filter tags, responsive mobile filter drawer, slide-over cart, and dual theme support.
+
+patterns:
+  - sidebar-filters
+  - search-toolbar
+  - active-filter-chips
+  - luxury-product-card
+  - empty-state
+  - pagination
+
+components:
+  - navbar
+  - accordion
+  - checkbox
+  - radio
+  - input
+  - select
+  - badge
+  - button
+  - card
+  - back-to-top
+
+features:
+  - sidebar_filter_engine: "Faceted sidebar with category tree, dual-bound price range, color swatches with checkmarks, size chips, and brand checkboxes"
+  - view_mode_switcher: "Toggle between 3-column responsive grid and detailed horizontal list view"
+  - active_filters_strip: "Interactive dismissible chips displaying currently applied filters with clear-all action"
+  - responsive_mobile_drawer: "Slide-over filter drawer on mobile viewports with applied filter badge counter"
+  - live_cart_drawer: "Flyout shopping bag with instant subtotal calculation, quantity modifiers, and item removal"
+  - dual_theme_parity: "Flawless dark (Obsidian & Gold) and light (Ivory & Champagne) themes with zero hardcoded colors"
+
+ai:
+  purpose: "E-commerce catalog, luxury boutique shop, multi-brand retail marketplace"
+  use_when:
+    - "Complex retail catalog requiring granular multi-attribute sidebar filtering"
+    - "Fashion, jewelry, accessories, and luxury physical products"
+  avoid_when:
+    - "Single-product landing pages (use template-landing)"
+    - "Simple un-faceted catalogs without attribute filters (use template-ecommerce)"

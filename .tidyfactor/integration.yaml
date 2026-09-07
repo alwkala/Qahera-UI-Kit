@@ -1,0 +1,42 @@
+name: qahera-ui-kit
+version: 1.0.0
+ecosystem: tidyfactor-compatible
+vendor: alwkala
+type: design-system-kit
+description: "AI-Native Design System & Multi-Target Component Architecture"
+statement: "Qahera gives AI a structured visual vocabulary for building consistent interfaces."
+
+specs:
+  token_spec: "v1.0 (docs/01-TOKEN-SPEC.md)"
+  component_spec: "v1.0 (docs/02-COMPONENT-SPEC.md)"
+  recipe_spec: "v1.0 (docs/03-RECIPE-SPEC.md)"
+
+integration_points:
+  tidyfactor-design:
+    role: component-provider
+    foundations_supported:
+      - native
+      - tailwind
+    token_source: tokens/tokens.css
+    brand_source: tokens/brand.json
+    recipes_dir: recipes/
+    contracts_dir: contracts/components/
+  
+  tidyfactor-html:
+    role: static-renderer
+    components_dir: renderers/html/native/
+    behavior_dir: behavior/
+  
+  tidyfactor-php:
+    role: plates-partials
+    components_dir: renderers/php/plates/
+    behavior_dir: behavior/
+
+  tidyfactor-htmx:
+    role: hypermedia-fragments
+    components_dir: renderers/htmx/
+    behavior_dir: behavior/
+
+  tidyfactor-next:
+    role: react-components
+    components_dir: renderers/react/

@@ -1,0 +1,57 @@
+version: 0.1.0-draft
+behavior_contracts:
+  overlay:
+    focus_trap: true
+    escape_close: true
+    click_outside_close: true
+    body_scroll_lock: true
+    return_focus_on_close: true
+
+  disclosure:
+    aria_expanded_sync: true
+    keyboard_toggle: [Enter, Space]
+    animation: transition-all
+
+  menu:
+    arrow_navigation: true
+    home_end_navigation: true
+    typeahead: true
+    escape_close: true
+
+  tabs:
+    orientation: horizontal
+    arrow_left_right: true
+    home_end: true
+    aria_selected_sync: true
+
+  drawer:
+    sliding_transition: true
+    focus_trap: true
+    escape_close: true
+    click_outside_close: true
+    body_scroll_lock: true
+
+  carousel:
+    autoplay_pause_on_hover: true
+    touch_swipe: true
+    keyboard_arrow_navigation: true
+
+  treeview:
+    keyboard_expand_collapse: [ArrowRight, ArrowLeft]
+    keyboard_vertical_navigation: [ArrowDown, ArrowUp]
+    home_end_navigation: true
+
+  rating:
+    keyboard_selection: [ArrowRight, ArrowLeft, ArrowUp, ArrowDown]
+    half_star_support: false
+    hover_preview: true
+
+  stepper:
+    linear_navigation: true
+    non_linear_clicking_completed_steps: true
+
+  file_upload:
+    drag_and_drop: true
+    paste_upload: true
+    progress_feedback: true
+

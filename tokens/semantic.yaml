@@ -1,0 +1,100 @@
+version: 1.0.0
+namespace: qhr
+category: semantic
+description: Intent-based design tokens mapping primitive values to UI roles
+
+color:
+  primary:
+    bg: "{color.blue.600}"
+    fg: "#ffffff"
+    border: "{color.blue.600}"
+    hover: "{color.blue.700}"
+    subtle: "{color.blue.50}"
+    meta:
+      description: "Primary brand action and focal point"
+      intent: "Main calls to action, active navigation tabs, selected states"
+      avoid_when:
+        - "Destructive or deletion actions"
+        - "Passive informational badges"
+
+  secondary:
+    bg: "{color.slate.100}"
+    fg: "{color.slate.900}"
+    border: "{color.slate.200}"
+    hover: "{color.slate.200}"
+    subtle: "{color.slate.50}"
+    meta:
+      description: "Supporting secondary control"
+      intent: "Cancel buttons, secondary options, alternative workflows"
+      avoid_when:
+        - "Primary page action"
+
+  neutral:
+    bg: "{color.slate.50}"
+    fg: "{color.slate.900}"
+    border: "{color.slate.200}"
+    hover: "{color.slate.100}"
+    muted: "{color.slate.400}"
+    subtle: "{color.slate.100}"
+    meta:
+      description: "Neutral grayscale tones for layout balance"
+      intent: "Cards, borders, backgrounds, dividers"
+
+  success:
+    bg: "{color.emerald.600}"
+    fg: "#ffffff"
+    border: "{color.emerald.600}"
+    hover: "{color.emerald.700}"
+    subtle: "{color.emerald.50}"
+    meta:
+      description: "Positive confirmation and completion status"
+      intent: "Success banners, completed badges, verified statuses"
+
+  warning:
+    bg: "{color.amber.600}"
+    fg: "#ffffff"
+    border: "{color.amber.600}"
+    hover: "{color.amber.700}"
+    subtle: "{color.amber.50}"
+    meta:
+      description: "Cautionary guidance and intermediate states"
+      intent: "Expiring licenses, pending approvals, cautionary warnings"
+
+  danger:
+    bg: "{color.rose.600}"
+    fg: "#ffffff"
+    border: "{color.rose.600}"
+    hover: "{color.rose.700}"
+    subtle: "{color.rose.50}"
+    meta:
+      description: "High-risk, error, or permanent deletion status"
+      intent: "Destructive buttons, critical error banners, delete confirmation"
+      avoid_when:
+        - "Positive or neutral navigation"
+
+  info:
+    bg: "{color.blue.600}"
+    fg: "#ffffff"
+    border: "{color.blue.600}"
+    hover: "{color.blue.700}"
+    subtle: "{color.blue.50}"
+    meta:
+      description: "Informational updates and contextual guidance"
+      intent: "System announcements, tips, informational alerts"
+
+surface:
+  base: "#ffffff"
+  elevated: "#ffffff"
+  muted: "{color.slate.50}"
+  overlay: "rgba(15, 23, 42, 0.5)"
+
+content:
+  primary: "{color.slate.900}"
+  secondary: "{color.slate.600}"
+  muted: "{color.slate.400}"
+  inverse: "#ffffff"
+
+border:
+  subtle: "{color.slate.200}"
+  strong: "{color.slate.300}"
+  focus_ring: "rgba(11, 107, 203, 0.35)"

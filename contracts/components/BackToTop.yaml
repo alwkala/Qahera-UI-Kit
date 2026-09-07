@@ -1,0 +1,47 @@
+id: back-to-top
+name: BackToTop
+component: BackToTop
+category: navigation
+purpose: >
+  Displays a floating action button that monitors scroll depth and smoothly scrolls the viewport back to the top of the page.
+
+anatomy:
+  - root
+  - icon
+
+variants:
+  default:
+    intent: floating-circular-button
+  luxury:
+    intent: gold-bordered-dark-surface
+
+sizes:
+  md:
+    width: 48
+    height: 48
+
+states:
+  - hidden
+  - visible
+  - active
+
+slots:
+  icon: optional
+
+accessibility:
+  role: button
+  aria:
+    - aria-label: "العودة لأعلى الصفحة"
+
+behavior:
+  scroll_threshold: 400
+  smooth_scroll: true
+
+ai:
+  purpose: "Provide an accessible floating quick-scroll mechanism when users traverse long or dense page layouts."
+  whenToUse:
+    - "Documentation pages, deep articles, or extensive product listings with high scroll depth"
+  avoid_when:
+    - "Fixed height viewports, modal dialogs, or short dashboard screens"
+  composition_notes: "Pair with an upward Chevron icon from the canonical icon registry (e.g. icon: 'chevron-up')."
+

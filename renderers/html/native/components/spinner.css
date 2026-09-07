@@ -1,0 +1,52 @@
+/* ==========================================================================
+   Spinner (.qhr-spinner)
+   ========================================================================== */
+.qhr-spinner {
+  display: inline-block;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-block-start-color: transparent;
+  border-radius: 50%;
+  animation: qhr-spin 0.75s linear infinite;
+}
+
+@keyframes qhr-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Sizes */
+.qhr-spinner--xs { width: 14px; height: 14px; border-width: 1.5px; }
+.qhr-spinner--sm { width: 18px; height: 18px; border-width: 2px; }
+.qhr-spinner--md { width: 24px; height: 24px; border-width: 2.5px; }
+.qhr-spinner--lg { width: 36px; height: 36px; border-width: 3px; }
+.qhr-spinner--xl { width: 48px; height: 48px; border-width: 4px; }
+
+/* Tones */
+.qhr-spinner--primary { color: var(--qhr-color-primary-500, #c7a35a); }
+.qhr-spinner--success { color: var(--qhr-color-success-500, #10b981); }
+.qhr-spinner--danger  { color: var(--qhr-color-danger-500, #ef4444); }
+.qhr-spinner--warning { color: var(--qhr-color-warning-500, #f59e0b); }
+.qhr-spinner--info    { color: var(--qhr-color-info-500, #3b82f6); }
+.qhr-spinner--luxury  { color: var(--qhr-color-luxury-gold, #c9a84c); }
+
+/* Dot Pulse Spinner Variant */
+.qhr-spinner-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.qhr-spinner-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: qhr-dot-pulse 1.2s infinite ease-in-out both;
+}
+.qhr-spinner-dots span:nth-child(1) { animation-delay: -0.32s; }
+.qhr-spinner-dots span:nth-child(2) { animation-delay: -0.16s; }
+@keyframes qhr-dot-pulse {
+  0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+  40% { transform: scale(1); opacity: 1; }
+}

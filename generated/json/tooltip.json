@@ -1,0 +1,106 @@
+{
+  "id": "tooltip",
+  "name": "Tooltip",
+  "component": "Tooltip",
+  "category": "overlay",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "trigger",
+      "tooltip-box",
+      "arrow-tip",
+      "text-content"
+    ],
+    "variants": [
+      "dark",
+      "light"
+    ],
+    "sizes": [
+      "sm",
+      "md"
+    ],
+    "states": [
+      "hidden",
+      "visible"
+    ],
+    "slots": [
+      "default"
+    ],
+    "accessibility": {
+      "role": "tooltip",
+      "keyboard": {
+        "Escape": "Dismisses tooltip while trigger retains focus"
+      },
+      "focus": "Trigger receives focus; tooltip displays",
+      "aria": [
+        {
+          "aria-describedby": "matching tooltip id"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/tooltip.yaml",
+    "base": {
+      "display": "flex",
+      "position": "absolute",
+      "z-index": 50,
+      "font-size": "{text.xs}",
+      "font-weight": 500,
+      "padding-inline": "{space.2-5}",
+      "padding-block": "{space.1}",
+      "border-radius": "{radius.sm}",
+      "box-shadow": "{shadow.md}",
+      "pointer-events": "none",
+      "white-space": "nowrap"
+    },
+    "variants": {
+      "dark": {
+        "background-color": "{color.slate.900}",
+        "color": "{color.surface.base}"
+      },
+      "light": {
+        "background-color": "{color.surface.elevated}",
+        "color": "{color.neutral.900}",
+        "border": "1px solid {color.border.subtle}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "{text.xs}"
+      },
+      "md": {
+        "font-size": "{text.sm}"
+      }
+    },
+    "states": {
+      "hidden": {
+        "opacity": 0,
+        "visibility": "hidden"
+      },
+      "visible": {
+        "opacity": 1,
+        "visibility": "visible"
+      }
+    }
+  },
+  "behavior": {
+    "file": "behavior/tooltip.js",
+    "moduleName": "tooltip"
+  },
+  "ai": {
+    "purpose": "Displays brief contextual assistance or explanation upon hover or keyboard focus.",
+    "whenToUse": [
+      "Clarifying icon-only buttons (Save, Delete, Edit)",
+      "Explaining abbreviations or dense UI concepts"
+    ],
+    "avoid": [
+      "Crucial content required for basic interaction on mobile touch screens"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Tooltip.yaml"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "ribbon",
+  "name": "Ribbon",
+  "component": "Ribbon",
+  "category": "data-display",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "label",
+      "fold-shadow"
+    ],
+    "variants": {
+      "folded": {
+        "intent": "3d-folded-edge-ribbon"
+      },
+      "corner": {
+        "intent": "diagonal-corner-ribbon"
+      },
+      "bookmark": {
+        "intent": "vertical-hanging-ribbon"
+      },
+      "flat": {
+        "intent": "horizontal-edge-ribbon"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": 20,
+        "font_size": "var(--qhr-text-xs)"
+      },
+      "md": {
+        "height": 26,
+        "font_size": "var(--qhr-text-xs)"
+      },
+      "lg": {
+        "height": 32,
+        "font_size": "var(--qhr-text-sm)"
+      }
+    },
+    "states": [
+      "default"
+    ],
+    "slots": {
+      "label": "required",
+      "icon": "optional"
+    },
+    "accessibility": {
+      "role": "status",
+      "aria": [
+        "aria-label"
+      ],
+      "keyboard": false,
+      "focusVisible": false
+    }
+  },
+  "recipe": {
+    "file": "recipes/ribbon.yaml",
+    "base": {
+      "position": "absolute",
+      "z-index": 10,
+      "font-family": "{font.family.body}",
+      "font-weight": 700,
+      "text-align": "center",
+      "user-select": "none",
+      "white-space": "nowrap"
+    },
+    "variants": {
+      "folded": {
+        "inset-block-start": "14px",
+        "inset-inline-start": "-8px",
+        "padding-inline": "{space.4}",
+        "padding-block": "{space.2}"
+      },
+      "corner": {
+        "inset-block-start": "18px",
+        "inset-inline-start": "-38px",
+        "transform": "rotate(-45deg)",
+        "padding-inline": "{space.6}"
+      },
+      "bookmark": {
+        "inset-block-start": "0",
+        "inset-inline-end": "16px",
+        "border-radius": "0 0 6px 6px",
+        "padding-block": "{space.2}",
+        "padding-inline": "{space.3}"
+      },
+      "flat": {
+        "inset-block-start": "12px",
+        "inset-inline-start": "0",
+        "border-radius": "0 {radius.md} {radius.md} 0",
+        "padding-inline": "{space.3}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "font-size": "{text.xs}",
+        "height": "20px",
+        "line-height": "20px"
+      },
+      "md": {
+        "font-size": "{text.xs}",
+        "height": "26px",
+        "line-height": "26px"
+      },
+      "lg": {
+        "font-size": "{text.sm}",
+        "height": "32px",
+        "line-height": "32px"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays an angular or folded corner banner across cards, boxes, and product displays to indicate status, exclusivity, discounts, or new arrivals.",
+    "whenToUse": [
+      "Luxury e-commerce cards (e.g. 'Royal Gold', 'Best Seller', 'New')",
+      "Discount percentages and limited-edition badges on product cards",
+      "Subscription tier markers on pricing tables"
+    ],
+    "avoid": [
+      "Interactive buttons or clickable tags (use Badge or Button)",
+      "Overcrowding multiple ribbons on a single container"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Ribbon.yaml"
+  }
+}

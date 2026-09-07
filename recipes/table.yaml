@@ -1,0 +1,82 @@
+component: Table
+name: table
+category: data-display
+version: 1.0.0
+
+ai:
+  intent: "Tabular display for structured data records"
+  visual_role: "Data comparison grid"
+  density: "comfortable"
+  preferred_when:
+    - "User lists, order histories, billing statements"
+  avoid_when:
+    - "Highly mobile/card-first layouts (use cards on mobile)"
+
+base:
+  display: table
+  width: 100%
+  border-collapse: collapse
+  font-family: inherit
+  font-size: "{text.sm}"
+  text-align: start
+
+variants:
+  default:
+    border-bottom: "1px solid {color.border.subtle}"
+  striped:
+    background-color: "{color.surface.base}"
+  bordered:
+    border: "1px solid {color.border.subtle}"
+
+sizes:
+  sm:
+    padding-inline: "{space.2-5}"
+    padding-block: "{space.1-5}"
+    font-size: "{text.xs}"
+  md:
+    padding-inline: "{space.4}"
+    padding-block: "{space.2-5}"
+    font-size: "{text.sm}"
+  lg:
+    padding-inline: "{space.6}"
+    padding-block: "{space.3-5}"
+    font-size: "{text.base}"
+
+states:
+  hover:
+    background-color: "{color.neutral.50}"
+
+contract:
+  anatomy:
+    - root
+    - table-element
+    - thead
+    - header-row
+    - header-cell
+    - tbody
+    - body-row
+    - body-cell
+    - tfoot
+  props:
+    variant:
+      default: default
+      values: [default, striped, bordered]
+    size:
+      default: md
+      values: [sm, md, lg]
+  slots:
+    - start
+    - default
+    - end
+
+structure:
+  base:
+    native_class: qhr-table
+    tailwind: "w-full text-start border-collapse text-sm font-sans"
+
+accessibility:
+  role: table
+
+rtl:
+  supported: true
+  directional_mirroring: false

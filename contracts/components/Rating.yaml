@@ -1,0 +1,58 @@
+id: rating
+name: Rating
+component: Rating
+category: feedback
+purpose: >
+  Displays quantitative star rating evaluation and user feedback capture.
+
+anatomy:
+  - root
+  - stars-group
+  - star-item
+  - star-icon
+  - value-label
+
+variants:
+  default:
+    intent: standard-gold-stars
+  accent:
+    intent: brand-primary-stars
+
+sizes:
+  sm:
+    star_size: 16
+    gap: 4
+  md:
+    star_size: 20
+    gap: 6
+  lg:
+    star_size: 28
+    gap: 8
+
+states:
+  - readonly
+  - interactive
+  - disabled
+
+slots:
+  label: optional
+
+accessibility:
+  role: slider
+  keyboard: true
+  focusVisible: true
+  keyboard_keys:
+    ArrowRight: "Increments rating"
+    ArrowLeft: "Decrements rating"
+  aria:
+    0: {"aria-valuemin":"1"}
+    1: {"aria-valuemax":"5"}
+    2: {"aria-valuenow":"current-rating"}
+
+ai:
+  purpose: "Displays quantitative star rating evaluation and user feedback capture."
+  whenToUse:
+    - "Product reviews and customer evaluations in e-commerce"
+    - "Feedback submission forms"
+  avoid:
+    - "Binary yes/no toggles (use Switch or Radio)"

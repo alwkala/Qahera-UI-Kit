@@ -1,0 +1,65 @@
+id: callout
+name: Callout
+component: Callout
+category: feedback
+purpose: >
+  Highlights critical editorial quotes, architectural insights, tips, or contextual notices with an elevated visual prominence.
+
+anatomy:
+  - root
+  - leading-indicator
+  - icon
+  - body
+  - title
+  - content
+
+variants:
+  subtle:
+    intent: soft-tinted-panel
+  outline:
+    intent: bordered-emphasis-callout
+  luxury:
+    intent: gold-trimmed-editorial-quote
+
+sizes:
+  sm:
+    padding: 12
+    font_size: "var(--qhr-text-xs)"
+  md:
+    padding: 16
+    font_size: "var(--qhr-text-sm)"
+  lg:
+    padding: 24
+    font_size: "var(--qhr-text-base)"
+
+states:
+  - default
+
+tone:
+  - neutral
+  - info
+  - success
+  - warning
+  - danger
+
+slots:
+  icon: optional
+  title: optional
+  content: required
+
+accessibility:
+  role: note
+  aria:
+    - "aria-label"
+  keyboard: false
+  focusVisible: false
+
+ai:
+  purpose: "Prominent editorial note, tip, or highlighted blockquote"
+  whenToUse:
+    - "Documentation guidelines, code tips, and architectural callouts"
+    - "Editorial quotes and highlighted insights in blog widgets"
+    - "Security reminders in billing and profile settings"
+  avoid:
+    - "Critical dismissible alerts interrupting application flows (use Alert)"
+    - "Transient ephemeral messages (use Toast)"

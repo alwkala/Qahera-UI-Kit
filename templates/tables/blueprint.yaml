@@ -1,0 +1,33 @@
+id: template-tables
+name: Comprehensive Tables & Data Grid Suite
+category: data-display
+purpose: >
+  Enterprise data table platform showcasing Basic Tables (default, striped, bordered, density variants), Interactive Data Tables (sorting, filtering, multi-select, pagination), and Editable Tables (inline cell editing, row edit mode, and dynamic insertion).
+
+patterns:
+  - data-table-toolbar
+  - pagination
+  - filter-bar
+
+components:
+  - table
+  - card
+  - button
+  - badge
+  - input
+  - select
+  - checkbox
+  - dropdown
+
+features:
+  - basic_tables: "Clean standard, striped, bordered, and variable density (compact/comfortable) tables with contextual row highlights"
+  - data_tables: "Interactive client-side data grid featuring instant search, multi-column sorting, row selection checkboxes, bulk operations, and pagination"
+  - editable_tables: "Spreadsheet-like inline cell editing, row modification mode with save/cancel workflows, dynamic row creation, and undo deletion"
+
+ai:
+  purpose: "Data grids and tabular interfaces for administration consoles, ERP systems, financial ledgers, and CRM records"
+  use_when:
+    - "Designing interfaces displaying multi-field records for comparison, filtering, and manipulation"
+    - "Building data-heavy backoffice and administrative tables"
+  avoid_when:
+    - "Mobile-only single entity screens (prefer cards on narrow viewports)"

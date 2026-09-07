@@ -1,0 +1,64 @@
+name: Dropdown
+category: navigation
+purpose: >
+  Displays a contextual floating menu revealing secondary actions or navigation links.
+
+anatomy:
+  - root
+  - trigger-button
+  - menu-container
+  - menu-header
+  - menu-divider
+  - menu-item
+  - item-icon
+  - item-label
+  - item-badge
+  - separator
+
+placements:
+  - bottom-start
+  - bottom-end
+  - top-start
+  - top-end
+
+variants:
+  - default
+
+sizes:
+  - sm
+  - md
+
+states:
+  - closed
+  - open
+
+slots:
+  - start
+  - default
+
+accessibility:
+  role: menu
+  keyboard:
+    ArrowDown: "Focuses next menu item"
+    ArrowUp: "Focuses previous menu item"
+    Home: "Focuses first menu item"
+    End: "Focuses last menu item"
+    Escape: "Closes menu and returns focus to trigger"
+    Enter: "Activates selected menu item"
+  focus: "Trigger has focus; active item highlighted on open"
+  aria:
+    - aria-haspopup: "menu"
+    - aria-expanded: when open
+
+behavior:
+  click_outside_close: true
+  escape_close: true
+  arrow_navigation: true
+
+ai:
+  description: "Contextual floating menu grouping secondary actions"
+  use_when:
+    - "User profile menu in headers"
+    - "Table row actions (kebab menu ...)"
+  avoid_when:
+    - "Form field value selection (use Select)"

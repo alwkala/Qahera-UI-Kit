@@ -1,0 +1,89 @@
+component: Alert
+name: alert
+category: feedback
+version: 1.0.0
+
+ai:
+  intent: "Prominent contextual feedback banner"
+  visual_role: "Notification banner"
+  density: "comfortable"
+  preferred_when:
+    - "Persistent error messages on form submission"
+    - "System maintenance announcements"
+    - "Verification reminders"
+  avoid_when:
+    - "Temporary auto-dismiss feedback (use toast)"
+
+base:
+  display: flex
+  width: 100%
+  align-items: flex-start
+  gap: "{space.3}"
+  padding: "{space.4}"
+  border-radius: "{radius.md}"
+  border: "1px solid {color.border.subtle}"
+  font-family: inherit
+  font-size: "{text.sm}"
+
+variants:
+  subtle:
+    background-color: "{color.neutral.100}"
+    border-color: "{color.border.subtle}"
+  solid:
+    background-color: "{color.primary.bg}"
+    color: "{color.primary.fg}"
+  outline:
+    background-color: transparent
+    border-color: "{color.primary.bg}"
+
+sizes:
+  sm:
+    padding: "{space.3}"
+    font-size: "{text.xs}"
+  md:
+    padding: "{space.4}"
+    font-size: "{text.sm}"
+  lg:
+    padding: "{space.5}"
+    font-size: "{text.base}"
+
+states:
+  default:
+    opacity: 1
+
+contract:
+  anatomy:
+    - root
+    - status-icon
+    - content-group
+    - title
+    - description
+    - close-button
+    - action
+  props:
+    tone:
+      default: info
+      values: [neutral, info, success, warning, danger]
+    variant:
+      default: subtle
+      values: [subtle, solid, outline]
+    size:
+      default: md
+      values: [sm, md, lg]
+  slots:
+    - start
+    - default
+    - end
+
+structure:
+  base:
+    native_class: qhr-alert
+    tailwind: "w-full flex items-start gap-[var(--qhr-space-3)] p-[var(--qhr-space-4)] rounded-[var(--qhr-radius-md)] border font-sans text-sm"
+
+accessibility:
+  role: alert
+  aria_live: polite
+
+rtl:
+  supported: true
+  directional_mirroring: false

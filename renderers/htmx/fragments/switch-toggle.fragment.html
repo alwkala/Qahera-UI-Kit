@@ -1,0 +1,18 @@
+<!-- Qahera UI Kit — HTMX Switch Toggle Fragment (Static / Mock) -->
+<label class="qhr-switch">
+  <input
+    type="checkbox"
+    role="switch"
+    name="feature_enabled"
+    class="qhr-switch-input"
+    checked
+    hx-post="/api/settings/toggle"
+    hx-trigger="change"
+    hx-target="closest .qhr-switch"
+    hx-swap="outerHTML"
+  >
+  <span class="qhr-switch-track" aria-hidden="true">
+    <span class="qhr-switch-thumb"></span>
+  </span>
+  <span style="font-size: 14px; font-weight: 600;">تفعيل التنبيهات الفورية</span>
+</label>

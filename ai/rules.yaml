@@ -1,0 +1,15 @@
+version: 1.0.0
+agent_rules:
+  prohibited_actions:
+    - inventing_props: "Never use props other than variant, size, tone, state unless declared in contract"
+    - hardcoded_styles: "Never emit hex colors (#...) or raw px spacings directly in components"
+    - physical_spacing: "Never use margin-left or padding-right; use logical properties"
+    - duplicate_rtl_components: "Never emit separate LTR and RTL components"
+    - unsupported_fonts: "Never use Amiri for UI typography"
+  
+  preferred_workflow:
+    - check_manifest: "Inspect ai/components.yaml first"
+    - review_contract: "Read contracts/components/<Component>.yaml before generating code"
+    - review_recipe: "Read recipes/<component>.yaml for styling decisions and AI metadata"
+    - bind_tokens: "Always reference --qhr-* CSS custom properties"
+    - test_bidirectional: "Ensure rendering works in both dir='ltr' and dir='rtl'"

@@ -1,0 +1,53 @@
+id: preloader
+name: Preloader
+component: Preloader
+category: feedback
+purpose: >
+  Displays an atmospheric initial loading overlay with logo, animated progress bar, and digital percentage before revealing cinematic or rich page content.
+
+anatomy:
+  - root
+  - content
+  - logo
+  - progress-track
+  - progress-bar
+  - percentage
+
+variants:
+  default:
+    intent: standard-page-preloader
+  luxury:
+    intent: luxury-obsidian-gold-cinematic
+
+sizes:
+  md:
+    max_width: 280
+    padding: 0
+
+states:
+  - active
+  - completing
+  - dismissed
+
+slots:
+  logo: optional
+  percentage: optional
+
+accessibility:
+  role: status
+  aria:
+    - aria-live: "polite"
+    - aria-atomic: "true"
+
+behavior:
+  auto_dismiss: true
+  min_duration_ms: 1200
+
+ai:
+  purpose: "Display a branded cinematic loading progression to prevent FOUC (flash of unstyled content) and establish brand luxury."
+  whenToUse:
+    - "First-time application loads, heavy cinematic presentations, or portfolio landing pages"
+  avoid_when:
+    - "Internal page-to-page SPA transitions or individual component async data fetching"
+  composition_notes: "Dismisses with a smooth opacity fade-out and unblocks document scrolling upon completion."
+

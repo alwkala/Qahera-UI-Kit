@@ -1,0 +1,56 @@
+id: pagination
+name: Pagination Control
+category: navigation
+purpose: >
+  Provides structured multi-page navigation, page jump buttons, and items-per-page selector.
+
+components:
+  - button
+  - select
+
+anatomy:
+  - root
+  - page-status
+  - prev-trigger
+  - page-list
+  - page-item
+  - page-item-active
+  - next-trigger
+  - page-size-selector
+
+slots:
+  - summary
+  - controls
+  - size-picker
+
+layout:
+  display: flex
+  direction: responsive
+  gap: var(--qhr-space-3)
+  alignment: center
+  responsive:
+    sm: "flex-direction: column; justify-content: center; gap: var(--qhr-space-2);"
+    md: "flex-direction: row; justify-content: space-between;"
+
+accessibility:
+  role: navigation
+  landmark: navigation
+  keyboard_flow: >
+    Tab navigates sequentially between previous, page numbers, next, and page size selector.
+    Enter or Space triggers page selection.
+    Current page item has aria-current="page".
+  aria_live: polite
+
+ai:
+  purpose: "Data collection pagination and record boundary navigation"
+  use_when:
+    - "Result sets exceed a single viewport (typically > 20 records)"
+    - "Server-paginated data tables and catalogs"
+  avoid_when:
+    - "Infinite scroll feeds (social media, media streams)"
+    - "Short lists (< 10 items) where full display is clearer"
+  composed_of:
+    - button
+    - select
+  related_patterns:
+    - data-table-toolbar

@@ -1,0 +1,88 @@
+component: Drawer
+name: drawer
+category: overlay
+version: 1.0.0
+
+ai:
+  intent: "Contextual offcanvas drawer panel"
+  visual_role: "Sliding overlay container"
+  density: "comfortable"
+  preferred_when:
+    - "Complex search filters on mobile and responsive screens"
+    - "Side detail views for records and preview items"
+  avoid_when:
+    - "Immediate small dialog confirmations"
+
+base:
+  display: flex
+  flex-direction: column
+  position: fixed
+  top: 0
+  bottom: 0
+  background-color: "{color.surface.elevated}"
+  box-shadow: "{shadow.xl}"
+  z-index: 50
+
+variants:
+  default:
+    background-color: "{color.surface.elevated}"
+  elevated:
+    background-color: "{color.surface.base}"
+
+sizes:
+  sm:
+    width: "320px"
+  md:
+    width: "420px"
+  lg:
+    width: "560px"
+  xl:
+    width: "720px"
+
+states:
+  closed:
+    visibility: hidden
+  open:
+    visibility: visible
+
+contract:
+  anatomy:
+    - root
+    - backdrop
+    - panel
+    - header
+    - title
+    - close-button
+    - body
+    - footer
+  props:
+    size:
+      default: md
+      values: [sm, md, lg, xl]
+    state:
+      default: closed
+      values: [closed, open]
+  slots:
+    - header
+    - body
+    - footer
+
+structure:
+  base:
+    native_class: qhr-drawer
+    tailwind: "fixed inset-y-0 z-50 flex flex-col bg-[var(--qhr-surface-elevated)] shadow-2xl transition-transform duration-300"
+  sizes:
+    sm: "w-80"
+    md: "w-[420px]"
+    lg: "w-[560px]"
+    xl: "w-[720px]"
+
+accessibility:
+  role: dialog
+  keyboard: "Escape closes drawer, Tab trapped inside panel"
+  aria_required:
+    - aria-modal: "true"
+
+rtl:
+  supported: true
+  directional_mirroring: true

@@ -1,0 +1,216 @@
+{
+  "id": "button",
+  "name": "Button",
+  "component": "Button",
+  "category": "actions",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "label",
+      "icon-start",
+      "icon-end",
+      "spinner"
+    ],
+    "variants": {
+      "primary": {
+        "intent": "primary-action"
+      },
+      "secondary": {
+        "intent": "secondary-action"
+      },
+      "outline": {
+        "intent": "subtle-alternative"
+      },
+      "ghost": {
+        "intent": "low-emphasis-action"
+      },
+      "link": {
+        "intent": "inline-navigation"
+      },
+      "destructive": {
+        "intent": "destructive-action"
+      }
+    },
+    "sizes": {
+      "xs": {
+        "height": 24,
+        "padding_inline": 8,
+        "font_size": "var(--qhr-text-xs)"
+      },
+      "sm": {
+        "height": 32,
+        "padding_inline": 12,
+        "font_size": "var(--qhr-text-sm)"
+      },
+      "md": {
+        "height": 40,
+        "padding_inline": 16,
+        "font_size": "var(--qhr-text-base)"
+      },
+      "lg": {
+        "height": 48,
+        "padding_inline": 20,
+        "font_size": "var(--qhr-text-lg)"
+      },
+      "xl": {
+        "height": 56,
+        "padding_inline": 32,
+        "font_size": "var(--qhr-text-xl)"
+      }
+    },
+    "states": [
+      "default",
+      "hover",
+      "active",
+      "focus",
+      "disabled",
+      "loading"
+    ],
+    "slots": {
+      "leadingIcon": "optional",
+      "default": "required",
+      "trailingIcon": "optional"
+    },
+    "accessibility": {
+      "role": "button",
+      "keyboard": true,
+      "focusVisible": true,
+      "keyboard_keys": {
+        "Enter": "Activates button action",
+        "Space": "Activates button action"
+      },
+      "aria": [
+        {
+          "aria-disabled": "when state=disabled"
+        },
+        {
+          "aria-busy": "when state=loading"
+        }
+      ]
+    }
+  },
+  "recipe": {
+    "file": "recipes/button.yaml",
+    "base": {
+      "display": "inline-flex",
+      "align-items": "center",
+      "justify-content": "center",
+      "font-weight": 500,
+      "border-radius": "{radius.md}",
+      "transition-duration": "{duration.fast}",
+      "transition-timing-function": "{ease.standard}",
+      "cursor": "pointer",
+      "user-select": "none"
+    },
+    "variants": {
+      "primary": {
+        "background": "{color.primary.bg}",
+        "color": "{color.primary.fg}",
+        "hover": {
+          "background": "{color.primary.hover}"
+        }
+      },
+      "secondary": {
+        "background": "{color.neutral.100}",
+        "color": "{color.neutral.900}",
+        "hover": {
+          "background": "{color.neutral.200}"
+        }
+      },
+      "outline": {
+        "background": "transparent",
+        "color": "{color.primary.bg}",
+        "border": "1px solid {color.primary.bg}"
+      },
+      "ghost": {
+        "background": "transparent",
+        "color": "{color.primary.bg}",
+        "hover": {
+          "background": "{color.primary.subtle}"
+        }
+      },
+      "link": {
+        "background": "transparent",
+        "color": "{color.primary.bg}",
+        "text-decoration": "underline"
+      },
+      "destructive": {
+        "background": "{color.danger.bg}",
+        "color": "{color.danger.fg}",
+        "hover": {
+          "background": "{color.danger.hover}"
+        }
+      }
+    },
+    "sizes": {
+      "xs": {
+        "font-size": "{text.xs}",
+        "padding-inline": "{space.2}",
+        "padding-block": "{space.1}"
+      },
+      "sm": {
+        "font-size": "{text.sm}",
+        "padding-inline": "{space.3}",
+        "padding-block": "{space.1-5}"
+      },
+      "md": {
+        "font-size": "{text.base}",
+        "padding-inline": "{space.4}",
+        "padding-block": "{space.2}"
+      },
+      "lg": {
+        "font-size": "{text.lg}",
+        "padding-inline": "{space.6}",
+        "padding-block": "{space.3}"
+      },
+      "xl": {
+        "font-size": "{text.xl}",
+        "padding-inline": "{space.8}",
+        "padding-block": "{space.4}"
+      }
+    },
+    "states": {
+      "hover": {
+        "filter": "brightness(0.95)"
+      },
+      "focus": {
+        "outline": "2px solid {color.primary.bg}",
+        "outline-offset": "2px"
+      },
+      "disabled": {
+        "opacity": 0.5,
+        "cursor": "not-allowed",
+        "pointer-events": "none"
+      },
+      "loading": {
+        "opacity": 0.8,
+        "cursor": "wait",
+        "pointer-events": "none"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Triggers an explicit user action, form submission, or state change.",
+    "whenToUse": [
+      "Main page action",
+      "Form submission (primary)",
+      "Dismissal or cancellation (secondary)",
+      "Dangerous or irreversible operations (destructive)"
+    ],
+    "avoid": [
+      "Using multiple primary actions in the same visual container",
+      "Using as a hyperlink without action (use standard anchor)",
+      "Displaying static badge status (use Badge instead)"
+    ],
+    "related": [
+      "form-actions",
+      "search-toolbar",
+      "confirmation"
+    ]
+  },
+  "source": {
+    "file": "contracts/components/Button.yaml"
+  }
+}

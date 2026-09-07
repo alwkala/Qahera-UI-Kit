@@ -1,0 +1,102 @@
+{
+  "id": "table",
+  "name": "Table",
+  "component": "Table",
+  "category": "data-display",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "table-element",
+      "thead",
+      "header-row",
+      "header-cell",
+      "tbody",
+      "body-row",
+      "body-cell",
+      "tfoot"
+    ],
+    "variants": [
+      "default",
+      "striped",
+      "bordered"
+    ],
+    "sizes": [
+      "sm",
+      "md",
+      "lg"
+    ],
+    "states": [
+      "default",
+      "hover"
+    ],
+    "slots": [
+      "start",
+      "default",
+      "end"
+    ],
+    "accessibility": {
+      "role": "table",
+      "keyboard": {},
+      "focus": "Table cells can receive focus if interactive"
+    }
+  },
+  "recipe": {
+    "file": "recipes/table.yaml",
+    "base": {
+      "display": "table",
+      "width": "100%",
+      "border-collapse": "collapse",
+      "font-family": "inherit",
+      "font-size": "{text.sm}",
+      "text-align": "start"
+    },
+    "variants": {
+      "default": {
+        "border-bottom": "1px solid {color.border.subtle}"
+      },
+      "striped": {
+        "background-color": "{color.surface.base}"
+      },
+      "bordered": {
+        "border": "1px solid {color.border.subtle}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "padding-inline": "{space.2-5}",
+        "padding-block": "{space.1-5}",
+        "font-size": "{text.xs}"
+      },
+      "md": {
+        "padding-inline": "{space.4}",
+        "padding-block": "{space.2-5}",
+        "font-size": "{text.sm}"
+      },
+      "lg": {
+        "padding-inline": "{space.6}",
+        "padding-block": "{space.3-5}",
+        "font-size": "{text.base}"
+      }
+    },
+    "states": {
+      "hover": {
+        "background-color": "{color.neutral.50}"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Displays structured datasets organized in columns and rows for comparison.",
+    "whenToUse": [
+      "Comparing uniform records (users, orders, invoices, transactions)"
+    ],
+    "avoid": [
+      "Mobile-first single-entity workflows (use Cards on small viewports)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Table.yaml"
+  }
+}

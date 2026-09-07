@@ -1,0 +1,86 @@
+component: Chip
+name: chip
+category: data-display
+version: 1.0.0
+
+ai:
+  intent: "Interactive filter tag or compact entity"
+  visual_role: "Compact capsule token"
+  density: "compact"
+  preferred_when:
+    - "Multi-select filter tags"
+    - "Input tokenization"
+  avoid_when:
+    - "Main primary action button"
+
+base:
+  display: inline-flex
+  align-items: center
+  border-radius: "{radius.full}"
+  border: "1px solid {color.border.subtle}"
+  background-color: "{color.surface.elevated}"
+  transition: "all 0.15s ease"
+
+variants:
+  default:
+    background-color: "{color.surface.elevated}"
+    color: "{color.text.base}"
+  primary:
+    background-color: "{color.brand.subtle}"
+    color: "{color.brand.primary}"
+    border-color: "{color.brand.primary}"
+  outline:
+    background-color: "transparent"
+    border-color: "{color.border.subtle}"
+
+sizes:
+  sm:
+    height: "24px"
+    padding: "0 var(--qhr-space-2)"
+  md:
+    height: "32px"
+    padding: "0 var(--qhr-space-3)"
+  lg:
+    height: "40px"
+    padding: "0 var(--qhr-space-4)"
+
+states:
+  default:
+    opacity: 1
+  selected:
+    background-color: "{color.brand.subtle}"
+  disabled:
+    opacity: 0.5
+    pointer-events: none
+
+contract:
+  anatomy:
+    - root
+    - avatar
+    - icon-start
+    - label
+    - remove-button
+  props:
+    size:
+      default: md
+      values: [sm, md, lg]
+    variant:
+      default: default
+      values: [default, primary, outline]
+  slots:
+    - leadingIcon
+    - avatar
+    - default
+    - trailingIcon
+
+structure:
+  base:
+    native_class: qhr-chip
+    tailwind: "inline-flex items-center gap-1.5 rounded-full border border-[var(--qhr-border-subtle)] bg-[var(--qhr-surface-elevated)] text-[var(--qhr-text-base)] text-sm font-medium transition-colors"
+
+accessibility:
+  role: button
+  keyboard: "Enter toggles, Backspace removes"
+
+rtl:
+  supported: true

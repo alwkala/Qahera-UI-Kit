@@ -1,0 +1,316 @@
+/**
+ * Qahera UI Kit — Color & Background Utilities (.bg-*, .text-*, .border-*, .hover-*)
+ * Canonical, 100% Logical CSS, WCAG 2.1 AA compliant
+ */
+
+/* 1. Background Colors (Solid) */
+.bg-primary { background-color: var(--qhr-color-primary, #0b6bcb) !important; color: #fff !important; }
+.bg-secondary { background-color: var(--qhr-color-slate-600, #475569) !important; color: #fff !important; }
+.bg-success { background-color: var(--qhr-color-emerald-600, #10b981) !important; color: #fff !important; }
+.bg-info { background-color: #6366f1 !important; color: #fff !important; }
+.bg-warning { background-color: #f59e0b !important; color: #fff !important; }
+.bg-danger { background-color: #f43f5e !important; color: #fff !important; }
+.bg-dark { background-color: var(--qhr-color-slate-900, #0f172a) !important; color: #fff !important; }
+.bg-luxury { background: linear-gradient(135deg, #f5d77f 0%, #d4af37 50%, #aa771c 100%) !important; color: #0a0806 !important; }
+.bg-purple { background-color: var(--qhr-color-purple-600, #7c3aed) !important; color: #fff !important; }
+.bg-teal { background-color: var(--qhr-color-teal-600, #0d9488) !important; color: #fff !important; }
+
+/* 2. Light & Subtle Background Colors */
+.bg-primary-light { background-color: #eff6ff !important; color: #073b6d !important; }
+.bg-secondary-light { background-color: #f1f5f9 !important; color: #1e293b !important; }
+.bg-success-light { background-color: #ecfdf5 !important; color: #064e3b !important; }
+.bg-info-light { background-color: #eef2ff !important; color: #3730a3 !important; }
+.bg-warning-light { background-color: #fffbeb !important; color: #78350f !important; }
+.bg-danger-light { background-color: #fff1f2 !important; color: #881337 !important; }
+.bg-dark-light { background-color: #e2e8f0 !important; color: #0f172a !important; }
+.bg-purple-light { background-color: #faf5ff !important; color: #581c87 !important; }
+.bg-teal-light { background-color: #f0fdfa !important; color: #115e59 !important; }
+.bg-luxury-light { background-color: #fffdf5 !important; color: #854d0e !important; }
+
+[data-theme="dark"] .bg-primary-light { background-color: rgba(59, 130, 246, 0.16) !important; color: #93c5fd !important; }
+[data-theme="dark"] .bg-secondary-light { background-color: rgba(148, 163, 184, 0.14) !important; color: #cbd5e1 !important; }
+[data-theme="dark"] .bg-success-light { background-color: rgba(16, 185, 129, 0.16) !important; color: #6ee7b7 !important; }
+[data-theme="dark"] .bg-info-light { background-color: rgba(99, 102, 241, 0.18) !important; color: #a5b4fc !important; }
+[data-theme="dark"] .bg-warning-light { background-color: rgba(245, 158, 11, 0.16) !important; color: #fde68a !important; }
+[data-theme="dark"] .bg-danger-light { background-color: rgba(244, 63, 94, 0.16) !important; color: #fda4af !important; }
+[data-theme="dark"] .bg-dark-light { background-color: rgba(255, 255, 255, 0.08) !important; color: #f8fafc !important; }
+[data-theme="dark"] .bg-purple-light { background-color: rgba(147, 51, 234, 0.16) !important; color: #d8b4fe !important; }
+[data-theme="dark"] .bg-teal-light { background-color: rgba(13, 148, 136, 0.16) !important; color: #5eead4 !important; }
+[data-theme="dark"] .bg-luxury-light { background-color: rgba(212, 175, 55, 0.14) !important; color: #fde68a !important; }
+
+/* 3. Other Surface Backgrounds */
+.bg-white { background-color: #ffffff !important; color: #0f172a !important; }
+.bg-transparent { background-color: transparent !important; }
+.bg-light { background-color: #f1f5f9 !important; color: #0f172a !important; }
+.bg-lighter { background-color: #f8fafc !important; color: #1e293b !important; }
+.bg-lightest { background-color: rgba(255, 255, 255, 0.7) !important; color: #1e293b !important; }
+
+[data-theme="dark"] .bg-white { background-color: #ffffff !important; color: #0f172a !important; }
+[data-theme="dark"] .bg-light { background-color: #1e293b !important; color: #f8fafc !important; }
+[data-theme="dark"] .bg-lighter { background-color: #0f172a !important; color: #f1f5f9 !important; }
+[data-theme="dark"] .bg-lightest { background-color: rgba(255, 255, 255, 0.05) !important; color: #cbd5e1 !important; }
+
+/* 4. Gradient Backgrounds (Standard) */
+.bg-gradient-primary { background: linear-gradient(135deg, #0b6bcb 0%, #3b82f6 100%) !important; color: #fff !important; }
+.bg-gradient-secondary { background: linear-gradient(135deg, #475569 0%, #64748b 100%) !important; color: #fff !important; }
+.bg-gradient-info { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important; color: #fff !important; }
+.bg-gradient-success { background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important; color: #fff !important; }
+.bg-gradient-danger { background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%) !important; color: #fff !important; }
+.bg-gradient-warning { background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%) !important; color: #fff !important; }
+.bg-gradient-purple { background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important; color: #fff !important; }
+.bg-gradient-teal { background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%) !important; color: #fff !important; }
+.bg-gradient-sunset { background: linear-gradient(135deg, #f43f5e 0%, #fb923c 100%) !important; color: #fff !important; }
+.bg-gradient-ocean { background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%) !important; color: #fff !important; }
+
+/* 5. Gradient Backgrounds in Dark Theme */
+.bg-gradient-primary-dark { background: linear-gradient(135deg, #0284c7 0%, #0f172a 100%) !important; color: #fff !important; }
+.bg-gradient-secondary-dark { background: linear-gradient(135deg, #475569 0%, #1e1b4b 100%) !important; color: #fff !important; }
+.bg-gradient-info-dark { background: linear-gradient(135deg, #4338ca 0%, #1e1b4b 100%) !important; color: #fff !important; }
+.bg-gradient-success-dark { background: linear-gradient(135deg, #065f46 0%, #022c22 100%) !important; color: #fff !important; }
+.bg-gradient-danger-dark { background: linear-gradient(135deg, #be123c 0%, #4c0519 100%) !important; color: #fff !important; }
+.bg-gradient-warning-dark { background: linear-gradient(135deg, #b45309 0%, #451a03 100%) !important; color: #fff !important; }
+.bg-gradient-purple-dark { background: linear-gradient(135deg, #581c87 0%, #1e1b4b 100%) !important; color: #fff !important; }
+.bg-gradient-teal-dark { background: linear-gradient(135deg, #134e4a 0%, #042f2e 100%) !important; color: #fff !important; }
+.bg-gradient-sunset-dark { background: linear-gradient(135deg, #881337 0%, #431407 100%) !important; color: #fff !important; }
+.bg-gradient-ocean-dark { background: linear-gradient(135deg, #075985 0%, #082f49 100%) !important; color: #fff !important; }
+
+/* ==========================================================================
+   6. SVG Pattern Image Backgrounds (Repeat declaration for all patterns)
+   ========================================================================== */
+[class*="bg-temple-"], [class*="bg-food-"], [class*="bg-brick-"], [class*="bg-bubbles-"],
+[class*="bg-mashrabiya-"], [class*="bg-arabesque-"], [class*="bg-lotus-"], [class*="bg-pyramids-"],
+[class*="bg-nile-"], [class*="bg-muqarnas-"], [class*="bg-grid-"], [class*="bg-dots-"],
+[class*="bg-hex-"], [class*="bg-diagonal-"], [class*="bg-circuit-"] {
+  background-repeat: repeat !important;
+}
+
+/* 6.1 Basic Pattern Backgrounds (Dark Base) */
+.bg-temple-dark {
+  background-color: #0284c7 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' fill='none' stroke='%23fff' stroke-width='1.2' stroke-opacity='.22'%3E%3Cpath d='M0 0h25v25H0zm12 12h25v25H12zm13 13h25v25H25z'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-food-dark {
+  background-color: #8b5cf6 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' fill='none' stroke='%23fff' stroke-width='1.2' stroke-opacity='.22'%3E%3Cpath d='M8 16h20a4 4 0 0 1 4 4v2H4v-2a4 4 0 0 1 4-4zm-4 8h28v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-2zm36-8h16l-2 18H42l-2-18zm8-6v6'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-brick-dark {
+  background-color: #f59e0b !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='25' fill='none' stroke='%23fff' stroke-width='1.2' stroke-opacity='.22'%3E%3Cpath d='M0 12h50M25 0v12M12 12v13M37 12v13'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-bubbles-dark {
+  background-color: #f43f5e !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='15' cy='15' r='6' fill='%23fff' fill-opacity='.22'/%3E%3Ccircle cx='45' cy='35' r='8' fill='%23fff' fill-opacity='.18'/%3E%3Ccircle cx='30' cy='50' r='3' fill='%23fff' fill-opacity='.22'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+
+/* 6.2 Heritage Motifs: Arab, Islamic, Cairo & Egyptian (Dark Base) */
+.bg-mashrabiya-dark {
+  background-color: #0f172a !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke='%23fff' stroke-width='1' stroke-opacity='.24'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z M20 8L32 20L20 32L8 20Z M0 0h10v10H0z M30 0h10v10H30z M0 30h10v10H0z M30 30h10v10H30z'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-arabesque-dark {
+  background-color: #064e3b !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke='%23d4af37' stroke-width='1' stroke-opacity='.3'%3E%3Cpath d='M20 0l5 15 15-5-5 15 15 5-15 5 5 15-15-5-5 15-5-15-15 5 5-15-15-5 15-5-5-15 15 5z'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-lotus-dark {
+  background-color: #0e7490 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke='%23fff' stroke-width='1.2' stroke-opacity='.24'%3E%3Cpath d='M20 36c-8-6-14-16-14-24 0-4 3-7 7-7 4 0 7 3 7 7 0-4 3-7 7-7 4 0 7 3 7 7 0 8-6 18-14 24z M20 12v24'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-pyramids-dark {
+  background-color: #9a3412 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' fill='none' stroke='%23fff' stroke-width='1.2' stroke-opacity='.24'%3E%3Cpath d='M0 20L20 0l20 20M20 0v20'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-nile-dark {
+  background-color: #0369a1 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' fill='none' stroke='%23fff' stroke-width='1.2' stroke-opacity='.24'%3E%3Cpath d='M0 10q10-10 20 0t20 0M0 20q10-10 20 0t20 0'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-muqarnas-dark {
+  background-color: #1c1917 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='none' stroke='%23fff' stroke-width='1' stroke-opacity='.24'%3E%3Cpath d='M0 30V15a15 15 0 0 1 30 0v15M15 0v15'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+
+/* 6.3 Multipurpose Master Geometric Patterns (Dark Base) */
+.bg-grid-dark {
+  background-color: #0b0f19 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='none' stroke='%23fff' stroke-width='0.8' stroke-opacity='.18'%3E%3Cpath d='M30 0H0v30'/%3E%3Ccircle cx='0' cy='0' r='1.2' fill='%23fff' fill-opacity='.35'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-dots-dark {
+  background-color: #0f172a !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%23fff' fill-opacity='.22'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-hex-dark {
+  background-color: #080d1a !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48' fill='none' stroke='%23fff' stroke-width='1' stroke-opacity='.18'%3E%3Cpath d='M14 0l14 8v16l-14 8L0 24V8z M14 48l14-8V24 M0 24v16l14 8'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-diagonal-dark {
+  background-color: #111827 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%23fff' stroke-width='1' stroke-opacity='.18'%3E%3Cpath d='M0 24L24 0M0 0l24 24'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+.bg-circuit-dark {
+  background-color: #030712 !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke='%23fff' stroke-width='1' stroke-opacity='.2'%3E%3Cpath d='M0 20h15l5-5h20M20 40V25l5-5v-20'/%3E%3Ccircle cx='20' cy='20' r='2.5' fill='%23fff' fill-opacity='.35'/%3E%3C/svg%3E") !important;
+  color: #fff !important;
+}
+
+/* ==========================================================================
+   7. SVG Pattern Image Backgrounds (Transparent / White Base)
+   ========================================================================== */
+
+/* 7.1 Basic Patterns (White Base) */
+.bg-temple-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' fill='none' stroke='%230f172a' stroke-width='1.2' stroke-opacity='.08'%3E%3Cpath d='M0 0h25v25H0zm12 12h25v25H12zm13 13h25v25H25z'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-food-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' fill='none' stroke='%230f172a' stroke-width='1.2' stroke-opacity='.08'%3E%3Cpath d='M8 16h20a4 4 0 0 1 4 4v2H4v-2a4 4 0 0 1 4-4zm-4 8h28v2a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-2zm36-8h16l-2 18H42l-2-18zm8-6v6'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-brick-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='25' fill='none' stroke='%230f172a' stroke-width='1.2' stroke-opacity='.08'%3E%3Cpath d='M0 12h50M25 0v12M12 12v13M37 12v13'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-bubbles-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='15' cy='15' r='6' fill='%230f172a' fill-opacity='.06'/%3E%3Ccircle cx='45' cy='35' r='8' fill='%230f172a' fill-opacity='.05'/%3E%3Ccircle cx='30' cy='50' r='3' fill='%230f172a' fill-opacity='.06'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+
+/* 7.2 Heritage Motifs: Arab, Islamic, Cairo & Egyptian (White Base) */
+.bg-mashrabiya-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke='%230f172a' stroke-width='1' stroke-opacity='.08'%3E%3Cpath d='M20 0L40 20L20 40L0 20Z M20 8L32 20L20 32L8 20Z M0 0h10v10H0z M30 0h10v10H30z M0 30h10v10H0z M30 30h10v10H30z'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-arabesque-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke='%23b8860b' stroke-width='1' stroke-opacity='.12'%3E%3Cpath d='M20 0l5 15 15-5-5 15 15 5-15 5 5 15-15-5-5 15-5-15-15 5 5-15-15-5 15-5-5-15 15 5z'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-lotus-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke='%230f172a' stroke-width='1.2' stroke-opacity='.08'%3E%3Cpath d='M20 36c-8-6-14-16-14-24 0-4 3-7 7-7 4 0 7 3 7 7 0-4 3-7 7-7 4 0 7 3 7 7 0 8-6 18-14 24z M20 12v24'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-pyramids-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' fill='none' stroke='%230f172a' stroke-width='1.2' stroke-opacity='.08'%3E%3Cpath d='M0 20L20 0l20 20M20 0v20'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-nile-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' fill='none' stroke='%230f172a' stroke-width='1.2' stroke-opacity='.08'%3E%3Cpath d='M0 10q10-10 20 0t20 0M0 20q10-10 20 0t20 0'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-muqarnas-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='none' stroke='%230f172a' stroke-width='1' stroke-opacity='.08'%3E%3Cpath d='M0 30V15a15 15 0 0 1 30 0v15M15 0v15'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+
+/* 7.3 Multipurpose Master Geometric Patterns (White Base) */
+.bg-grid-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='none' stroke='%230f172a' stroke-width='0.8' stroke-opacity='.07'%3E%3Cpath d='M30 0H0v30'/%3E%3Ccircle cx='0' cy='0' r='1.2' fill='%230f172a' fill-opacity='.12'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-dots-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='2' cy='2' r='1.2' fill='%230f172a' fill-opacity='.08'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-hex-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='48' fill='none' stroke='%230f172a' stroke-width='1' stroke-opacity='.07'%3E%3Cpath d='M14 0l14 8v16l-14 8L0 24V8z M14 48l14-8V24 M0 24v16l14 8'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-diagonal-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%230f172a' stroke-width='1' stroke-opacity='.07'%3E%3Cpath d='M0 24L24 0M0 0l24 24'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+.bg-circuit-white {
+  background-color: #ffffff !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' fill='none' stroke='%230f172a' stroke-width='1' stroke-opacity='.08'%3E%3Cpath d='M0 20h15l5-5h20M20 40V25l5-5v-20'/%3E%3Ccircle cx='20' cy='20' r='2.5' fill='%230f172a' fill-opacity='.15'/%3E%3C/svg%3E") !important;
+  color: #0f172a !important;
+}
+
+/* ==========================================================================
+   8. Border Colors (.border-*)
+   ========================================================================== */
+.border-primary { border-color: var(--qhr-color-primary, #0b6bcb) !important; }
+.border-secondary { border-color: var(--qhr-color-slate-600, #475569) !important; }
+.border-success { border-color: var(--qhr-color-emerald-600, #10b981) !important; }
+.border-info { border-color: #6366f1 !important; }
+.border-warning { border-color: #f59e0b !important; }
+.border-danger { border-color: #f43f5e !important; }
+.border-dark { border-color: var(--qhr-color-slate-900, #0f172a) !important; }
+.border-white { border-color: #ffffff !important; }
+.border-light { border-color: #e2e8f0 !important; }
+.border-transparent { border-color: transparent !important; }
+.border-luxury { border-color: #d4af37 !important; }
+.border-purple { border-color: #7c3aed !important; }
+.border-teal { border-color: #0d9488 !important; }
+
+[data-theme="dark"] .border-light { border-color: rgba(255, 255, 255, 0.12) !important; }
+
+/* ==========================================================================
+   9. Text Colors (.text-*)
+   ========================================================================== */
+.text-primary { color: var(--qhr-color-primary, #0b6bcb) !important; }
+.text-secondary { color: var(--qhr-color-slate-500, #64748b) !important; }
+.text-success { color: var(--qhr-color-emerald-600, #10b981) !important; }
+.text-info { color: #6366f1 !important; }
+.text-warning { color: #f59e0b !important; }
+.text-danger { color: #f43f5e !important; }
+.text-dark { color: #0f172a !important; }
+.text-mute, .text-muted { color: #94a3b8 !important; }
+.text-light { color: #cbd5e1 !important; }
+.text-lighter { color: #f1f5f9 !important; }
+.text-fade { opacity: 0.65; }
+.text-white { color: #ffffff !important; }
+.text-luxury { color: #d4af37 !important; }
+.text-purple { color: #7c3aed !important; }
+.text-teal { color: #0d9488 !important; }
+
+[data-theme="dark"] .text-dark { color: #f8fafc !important; }
+[data-theme="dark"] .text-secondary { color: #94a3b8 !important; }
+[data-theme="dark"] .text-mute, [data-theme="dark"] .text-muted { color: #64748b !important; }
+[data-theme="dark"] .text-purple { color: #c084fc !important; }
+[data-theme="dark"] .text-teal { color: #2dd4bf !important; }
+
+/* ==========================================================================
+   10. Hover Color Utilities (.hover-*)
+   ========================================================================== */
+.hover-primary:hover { color: var(--qhr-color-blue-700, #0958a5) !important; }
+.hover-secondary:hover { color: var(--qhr-color-slate-800, #1e293b) !important; }
+.hover-success:hover { color: #047857 !important; }
+.hover-info:hover { color: #4338ca !important; }
+.hover-warning:hover { color: #b45309 !important; }
+.hover-danger:hover { color: #be123c !important; }
+.hover-dark:hover { color: #020617 !important; }
+.hover-white:hover { color: #ffffff !important; opacity: 0.85; }
+.hover-light:hover { color: #f8fafc !important; }
+.hover-purple:hover { color: #6d28d9 !important; }
+.hover-teal:hover { color: #0f766e !important; }
+
+[data-theme="dark"] .hover-primary:hover { color: #93c5fd !important; }
+[data-theme="dark"] .hover-secondary:hover { color: #e2e8f0 !important; }
+[data-theme="dark"] .hover-dark:hover { color: #ffffff !important; }
+[data-theme="dark"] .hover-purple:hover { color: #e9d5ff !important; }
+[data-theme="dark"] .hover-teal:hover { color: #99f6e4 !important; }

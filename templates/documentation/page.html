@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark" x-data="{
+  theme: localStorage.getItem('qhr-theme') || 'dark',
+  dir: localStorage.getItem('qhr-dir') || 'rtl',
+  lang: (localStorage.getItem('qhr-dir') || 'rtl') === 'rtl' ? 'ar' : 'en',
+  init() {
+    document.documentElement.setAttribute('data-theme', this.theme);
+    document.documentElement.setAttribute('dir', this.dir);
+    document.documentElement.setAttribute('lang', this.lang);
+  },
+  toggleTheme() {
+    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', this.theme);
+    localStorage.setItem('qhr-theme', this.theme);
+  },
+  toggleDir() {
+    this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl';
+    this.lang = this.dir === 'rtl' ? 'ar' : 'en';
+    document.documentElement.setAttribute('dir', this.dir);
+    document.documentElement.setAttribute('lang', this.lang);
+    localStorage.setItem('qhr-dir', this.dir);
+  }
+}" x-init="init()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التوثيق التقني والمعماري — Qahera Documentation Portal</title>
+
+  <!-- Tokens & Components CSS -->
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+
+  <!-- Alpine Behavior Modules -->
+  <script defer src="../../behavior/back-to-top.js"></script>
+  <script defer src="../../behavior/navbar.js"></script>
+
+  <!-- Alpine Core -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+</head>
+<body style="background-color: var(--qhr-surface-page, #0A0A0A); color: var(--qhr-text-primary, #FFFFFF); margin: 0; font-family: var(--qhr-font-family-primary, 'Cairo', sans-serif); min-height: 100vh;">
+
+  <!-- 1. Navbar -->
+  <header class="qhr-navbar" x-data="qhrNavbar()" style="background: rgba(18, 18, 18, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--qhr-border-subtle, rgba(255,255,255,0.08));">
+    <div class="qhr-navbar-container">
+      <a href="#" class="qhr-navbar-brand" style="text-decoration: none; display: flex; align-items: center; gap: var(--qhr-space-3, 0.75rem);">
+        <span class="qhr-avatar qhr-avatar--rounded qhr-avatar--sm" style="background: linear-gradient(135deg, var(--qhr-color-primary-500, #C7A35A), var(--qhr-color-primary-700, #8A6D3B)); color: #FFFFFF; font-weight: 800;">ق</span>
+        <span style="font-size: 1.125rem; font-weight: 800; color: var(--qhr-text-primary, #FFFFFF);">توثيق قاهرة المعماري</span>
+        <span class="qhr-badge qhr-badge--success" style="margin-inline-start: 8px;">v1.0.0 · معتمد</span>
+      </a>
+
+      <ul class="qhr-navbar-links">
+        <li><a href="#docs" class="qhr-navbar-link is-active">المعايير والتوثيق</a></li>
+        <li><a href="#recipes" class="qhr-navbar-link">الوصفات (Recipes)</a></li>
+        <li><a href="#patterns" class="qhr-navbar-link">الأنماط المركبة</a></li>
+        <li><a href="#blueprints" class="qhr-navbar-link">القوالب الجاهزة</a></li>
+      </ul>
+
+      <div class="qhr-navbar-actions" style="display: flex; align-items: center; gap: 8px;">
+        <!-- Direction & Language Toggle -->
+        <button
+          type="button"
+          class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+          @click="toggleDir()"
+          :title="dir === 'rtl' ? 'Switch to English (LTR)' : 'التحويل إلى العربية (RTL)'"
+          aria-label="تبديل اتجاه الصفحة واللغة"
+          style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+        >
+          <svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </button>
+
+        <!-- Theme Toggle (Icon only without text) -->
+        <button
+          type="button"
+          class="qhr-btn qhr-btn--secondary qhr-btn--sm"
+          @click="toggleTheme()"
+          aria-label="تبديل مظهر الواجهة"
+          :title="theme === 'dark' ? 'تفعيل الوضع الفاتح' : 'تفعيل الوضع الداكن'"
+          style="width: 38px; height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
+        >
+          <span x-show="theme === 'dark'" style="display: inline-flex; align-items: center; justify-content: center;"><svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></span>
+          <span x-show="theme === 'light'" style="display: inline-flex; align-items: center; justify-content: center;"><svg class="qhr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
+        </button>
+
+        
+        <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm">
+          <span>بدء التثبيت</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Documentation Shell -->
+  <div style="max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 260px 1fr 220px; gap: var(--qhr-space-8, 2rem); padding: var(--qhr-space-6, 1.5rem);">
+    
+    <!-- Sidebar Navigation -->
+    <aside style="border-inline-end: 1px solid var(--qhr-border-subtle, rgba(255,255,255,0.08)); padding-inline-end: var(--qhr-space-4, 1rem); height: calc(100vh - 100px); position: sticky; top: 80px; overflow-y: auto;">
+      <div style="margin-bottom: var(--qhr-space-4, 1rem);">
+        <div class="qhr-input-wrapper">
+          <input type="search" class="qhr-input" placeholder="بحث في المعايير..." style="width: 100%;">
+        </div>
+      </div>
+
+      <nav style="display: flex; flex-direction: column; gap: var(--qhr-space-6, 1.5rem);">
+        <div>
+          <h4 style="font-size: 0.8125rem; font-weight: 700; color: var(--qhr-text-muted, #9E9E9E); margin: 0 0 var(--qhr-space-2, 0.5rem);">
+            الرموز التصميمية (Tokens)
+          </h4>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px;">
+            <li>
+              <a href="#" style="display: block; padding: 6px 12px; border-radius: 6px; background: rgba(212, 175, 55, 0.12); color: var(--qhr-color-primary-400, #D4AF37); text-decoration: none; font-weight: 700; font-size: 0.875rem;">
+                المعمارية والهيكلة
+              </a>
+            </li>
+            <li>
+              <a href="#" style="display: block; padding: 6px 12px; border-radius: 6px; color: var(--qhr-text-secondary, #BDBDBD); text-decoration: none; font-size: 0.875rem;">
+                لوحة الألوان والخامات
+              </a>
+            </li>
+            <li>
+              <a href="#" style="display: block; padding: 6px 12px; border-radius: 6px; color: var(--qhr-text-secondary, #BDBDBD); text-decoration: none; font-size: 0.875rem;">
+                الخطوط والطباعة العربية
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main style="min-width: 0; padding-inline: var(--qhr-space-4, 1rem);">
+      <div style="display: flex; gap: var(--qhr-space-2, 0.5rem); font-size: 0.875rem; color: var(--qhr-text-muted, #9E9E9E); margin-bottom: var(--qhr-space-4, 1rem);">
+        <span>التوثيق</span>
+        <span>/</span>
+        <span>الرموز التصميمية</span>
+        <span>/</span>
+        <span style="color: var(--qhr-color-primary-400, #D4AF37);">المعمارية والهيكلة</span>
+      </div>
+
+      <h1 style="font-size: 2.25rem; font-weight: 800; margin: 0 0 var(--qhr-space-3, 0.75rem); color: var(--qhr-text-primary, #FFFFFF);">
+        معمارية الرموز التصميمية (Design Tokens Architecture)
+      </h1>
+
+      <p style="font-size: 1.0625rem; line-height: 1.7; color: var(--qhr-text-secondary, #BDBDBD); margin: 0 0 var(--qhr-space-6, 1.5rem);">
+        تعد الرموز التصميمية (Tokens) في نظام قاهرة مصدر الحقيقة الأوحد لكافة المتغيرات البصرية. 
+        تُصاغ الرموز بصيغة YAML وتُترجم تلقائياً إلى متغيرات CSS رسمية بالبادئة <code>--qhr-*</code> مع ضمان التوافق الكامل بين اليمين واليسار (RTL/LTR).
+      </p>
+
+      <div class="qhr-alert qhr-alert--info" style="margin-bottom: var(--qhr-space-6, 1.5rem); background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.25); border-radius: 8px; padding: 14px 18px;">
+        <strong style="color: #60A5FA;">القاعدة المعمارية الثالثة:</strong>
+        <span style="color: #E2E8F0; margin-inline-start: 6px;">الرموز تسبق التنسيق — يُحظر نهائياً استخدام قيم الألوان أو الأبعاد الصلبة بدون الرجوع لسجل متغيرات <code>--qhr-*</code>.</span>
+      </div>
+
+      <!-- Specification Table -->
+      <div class="qhr-card" style="margin-top: var(--qhr-space-8, 2rem); overflow: hidden; background: var(--qhr-surface-card, #141414); border: 1px solid var(--qhr-border-subtle, rgba(255,255,255,0.08)); border-radius: 12px;">
+        <table style="width: 100%; border-collapse: collapse; text-align: start; font-size: 0.875rem;">
+          <thead>
+            <tr style="background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.08);">
+              <th style="padding: 12px 16px; text-align: start;">المتغير (CSS Custom Property)</th>
+              <th style="padding: 12px 16px; text-align: start;">القيمة المرجعية</th>
+              <th style="padding: 12px 16px; text-align: start;">الاستخدام</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+              <td style="padding: 12px 16px; font-family: monospace; direction: ltr; color: var(--qhr-color-primary-400, #D4AF37);">--qhr-surface-page</td>
+              <td style="padding: 12px 16px; font-family: monospace; direction: ltr;">#0A0A0A</td>
+              <td style="padding: 12px 16px; color: var(--qhr-text-secondary, #BDBDBD);">الخلفية العميقة لصفحات النظام</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 16px; font-family: monospace; direction: ltr; color: var(--qhr-color-primary-400, #D4AF37);">--qhr-color-primary-500</td>
+              <td style="padding: 12px 16px; font-family: monospace; direction: ltr;">#C7A35A</td>
+              <td style="padding: 12px 16px; color: var(--qhr-text-secondary, #BDBDBD);">لون الهوية الأساسي (الذهب الإمبراطوري)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination -->
+      <div style="margin-top: var(--qhr-space-10, 2.5rem); padding-top: var(--qhr-space-6, 1.5rem); border-top: 1px solid var(--qhr-border-subtle, rgba(255,255,255,0.08)); display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span style="font-size: 0.75rem; color: var(--qhr-text-muted, #9E9E9E);">الصفحة السابقة</span>
+          <p style="margin: 2px 0 0; font-weight: 700; color: var(--qhr-text-primary, #FFFFFF);">أداة سطر الأوامر CLI</p>
+        </div>
+        <div style="text-align: end;">
+          <span style="font-size: 0.75rem; color: var(--qhr-text-muted, #9E9E9E);">الصفحة التالية</span>
+          <p style="margin: 2px 0 0; font-weight: 700; color: var(--qhr-color-primary-400, #D4AF37);">لوحة الألوان والخامات</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- TOC -->
+    <aside style="border-inline-start: 1px solid var(--qhr-border-subtle, rgba(255,255,255,0.08)); padding-inline-start: var(--qhr-space-4, 1rem); height: calc(100vh - 100px); position: sticky; top: 80px;">
+      <h4 style="font-size: 0.8125rem; font-weight: 700; color: var(--qhr-text-muted, #9E9E9E); margin: 0 0 var(--qhr-space-3, 0.75rem);">
+        في هذه الصفحة
+      </h4>
+      <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--qhr-space-2, 0.5rem); font-size: 0.8125rem; color: var(--qhr-text-secondary, #BDBDBD);">
+        <li style="color: var(--qhr-color-primary-400, #D4AF37); font-weight: 600;">نظرة عامة</li>
+        <li>القاعدة المعمارية الثالثة</li>
+        <li>جدول الرموز المعتمدة</li>
+        <li>بيئات التشغيل المتوافقة</li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- 3. BackToTop Button -->
+  <button
+    id="qhr-back-to-top"
+    type="button"
+    class="qhr-back-to-top"
+    aria-label="العودة إلى أعلى الصفحة"
+    x-data="qhrBackToTop()"
+    x-show="visible"
+    x-transition.opacity.duration.200ms
+    @click="scrollToTop()"
+    style="display: none; position: fixed; bottom: 24px; inset-inline-end: 24px; z-index: 99;"
+  >
+    <svg class="qhr-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+</body>
+</html>

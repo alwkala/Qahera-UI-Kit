@@ -1,0 +1,43 @@
+name: Textarea
+category: forms
+purpose: >
+  Captures multi-line freeform textual data from the user.
+
+anatomy:
+  - root
+  - control
+  - resize-handle
+
+variants:
+  - default
+  - filled
+
+sizes:
+  - sm
+  - md
+  - lg
+
+states:
+  - default
+  - hover
+  - focus
+  - disabled
+  - invalid
+
+slots:
+  - default
+
+accessibility:
+  role: textbox
+  keyboard:
+    Standard: "Native multi-line textarea editing keys"
+  focus: "Border color changes to primary with ring focus"
+  aria:
+    - aria-invalid: when state=invalid
+
+ai:
+  description: "Multi-line text area for paragraphs and extended feedback"
+  use_when:
+    - "Extended descriptions, reviews, notes, support messages"
+  avoid_when:
+    - "Short single-line fields (use Input)"

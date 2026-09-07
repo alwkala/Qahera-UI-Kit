@@ -1,0 +1,58 @@
+/* ==========================================================================
+   Rating (.qhr-rating)
+   ========================================================================== */
+.qhr-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--qhr-space-1, 4px);
+  font-family: var(--qhr-font-body, 'Cairo', sans-serif);
+}
+
+.qhr-rating-star {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--qhr-border-strong, #cbd5e1);
+  transition: color var(--qhr-duration-fast, 150ms) ease, transform 100ms ease;
+  display: inline-flex;
+}
+[data-theme="dark"] .qhr-rating-star {
+  color: var(--qhr-border-subtle, #334155);
+}
+
+.qhr-rating-star:hover {
+  transform: scale(1.18);
+}
+
+.qhr-rating-star svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.qhr-rating-star--filled {
+  color: var(--qhr-color-luxury-gold, #c9a84c) !important;
+}
+
+.qhr-rating--readonly .qhr-rating-star {
+  cursor: default;
+  pointer-events: none;
+}
+
+.qhr-rating-label {
+  font-size: var(--qhr-text-sm, 0.875rem);
+  font-weight: 700;
+  color: var(--qhr-content-primary, #0f172a);
+  margin-inline-start: var(--qhr-space-2, 8px);
+}
+[data-theme="dark"] .qhr-rating-label {
+  color: var(--qhr-content-primary, #f8fafc);
+}
+
+/* Sizes */
+.qhr-rating--sm .qhr-rating-star svg { width: 16px; height: 16px; }
+.qhr-rating--sm .qhr-rating-label { font-size: var(--qhr-text-xs, 0.75rem); }
+
+.qhr-rating--lg .qhr-rating-star svg { width: 28px; height: 28px; }
+.qhr-rating--lg .qhr-rating-label { font-size: var(--qhr-text-base, 1rem); }

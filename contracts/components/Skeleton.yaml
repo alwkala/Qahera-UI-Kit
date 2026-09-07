@@ -1,0 +1,44 @@
+id: skeleton
+name: Skeleton
+component: Skeleton
+category: feedback
+purpose: >
+  Displays animated shimmer placeholders simulating layout geometry while asynchronous data loads.
+
+anatomy:
+  - root
+
+variants:
+  default:
+    intent: neutral-shimmer
+  wave:
+    intent: high-contrast-pulse
+
+sizes:
+  sm:
+    height: 16
+  md:
+    height: 24
+  lg:
+    height: 48
+
+states:
+  - active
+
+slots:
+  default: optional
+
+accessibility:
+  role: status
+  aria:
+    0: {"aria-busy":"true"}
+    1: {"aria-label":"Loading content placeholder"}
+
+ai:
+  purpose: "Displays animated shimmer placeholders simulating layout geometry while asynchronous data loads."
+  whenToUse:
+    - "Card loading state"
+    - "Avatar and profile header loading"
+    - "Table rows during pagination or initial fetch"
+  avoid:
+    - "Long-term blocking operations where progress percentage is known (use Progress)"

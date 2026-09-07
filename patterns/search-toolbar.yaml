@@ -1,0 +1,56 @@
+id: search-toolbar
+name: Search Toolbar
+category: navigation
+purpose: >
+  Provides a cohesive, accessible search and filter bar for finding items within a collection or view.
+
+components:
+  - input
+  - button
+  - badge
+
+anatomy:
+  - root
+  - search-field
+  - clear-trigger
+  - submit-trigger
+  - filter-trigger
+  - active-badge
+
+slots:
+  - query-input
+  - quick-filters
+  - actions
+
+layout:
+  display: flex
+  direction: responsive
+  gap: var(--qhr-space-3)
+  alignment: center
+  responsive:
+    sm: "flex-direction: column; align-items: stretch;"
+    md: "flex-direction: row; align-items: center;"
+
+accessibility:
+  role: search
+  landmark: search
+  keyboard_flow: >
+    Tab navigates sequentially from search input -> clear button (if visible) -> quick filter trigger -> submit button.
+    Escape clears the search input when focused.
+  aria_live: polite
+
+ai:
+  purpose: "Unified search and quick filtering header"
+  use_when:
+    - "Users need to filter or query a list, table, or catalog"
+    - "Top of data tables, directory listings, and documentation search"
+  avoid_when:
+    - "Global header-level command palette (use a command modal dialog instead)"
+    - "Single-field forms without filtering needs"
+  composed_of:
+    - input
+    - button
+    - badge
+  related_patterns:
+    - filter-bar
+    - data-table-toolbar

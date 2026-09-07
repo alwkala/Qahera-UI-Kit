@@ -1,0 +1,51 @@
+id: form-actions
+name: Form Actions Bar
+category: forms
+purpose: >
+  Provides standard, accessible container for form submission, cancellation, and draft-saving controls.
+
+components:
+  - button
+
+anatomy:
+  - root
+  - primary-action
+  - secondary-action
+  - tertiary-action
+  - status-message
+
+slots:
+  - primary
+  - secondary
+  - extra
+
+layout:
+  display: flex
+  direction: responsive
+  gap: var(--qhr-space-3)
+  alignment: center
+  responsive:
+    sm: "flex-direction: column-reverse; align-items: stretch; gap: var(--qhr-space-2);"
+    md: "flex-direction: row; justify-content: flex-end;"
+
+accessibility:
+  role: group
+  landmark: region
+  keyboard_flow: >
+    Tab moves logically between secondary (cancel) and primary (submit).
+    Enter submits the parent form.
+    Disabled actions announce aria-disabled="true" while preserving focusability.
+  aria_live: assertive
+
+ai:
+  purpose: "Consistent footer for form submission and cancel actions"
+  use_when:
+    - "At the bottom of modal dialogues, settings forms, or editor views"
+    - "Ensuring primary submit button is paired with secondary cancel button"
+  avoid_when:
+    - "Single search inputs (use search-toolbar instead)"
+    - "Placing more than one primary action in the same action bar"
+  composed_of:
+    - button
+  related_patterns:
+    - confirmation

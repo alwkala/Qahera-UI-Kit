@@ -1,0 +1,113 @@
+component: Select
+name: select
+category: forms
+version: 1.0.0
+
+ai:
+  intent: "Single-choice selection dropdown menu"
+  visual_role: "Predefined choice selection"
+  density: "comfortable"
+  preferred_when:
+    - "Country, city, or language selection"
+    - "Filter options with more than 4 items"
+  avoid_when:
+    - "2-3 binary choices (use radio or toggle)"
+    - "Freeform text entry (use input)"
+
+base:
+  display: flex
+  width: 100%
+  align-items: center
+  justify-content: space-between
+  font-family: inherit
+  background-color: "{color.surface.base}"
+  color: "{color.neutral.900}"
+  border: "1px solid {color.border.subtle}"
+  border-radius: "{radius.md}"
+  cursor: pointer
+  user-select: none
+  transition-duration: "{duration.fast}"
+  transition-timing-function: "{ease.standard}"
+
+variants:
+  default:
+    background-color: "{color.surface.base}"
+    border-color: "{color.border.subtle}"
+  outline:
+    background-color: transparent
+    border-color: "{color.primary.bg}"
+
+sizes:
+  sm:
+    font-size: "{text.sm}"
+    padding-inline: "{space.3}"
+    padding-block: "{space.1-5}"
+  md:
+    font-size: "{text.base}"
+    padding-inline: "{space.3-5}"
+    padding-block: "{space.2}"
+  lg:
+    font-size: "{text.lg}"
+    padding-inline: "{space.4}"
+    padding-block: "{space.3}"
+
+states:
+  hover:
+    border-color: "{color.primary.bg}"
+  focus:
+    border-color: "{color.primary.bg}"
+    outline: "2px solid {color.primary.subtle}"
+  open:
+    border-color: "{color.primary.bg}"
+    box-shadow: "{shadow.md}"
+  disabled:
+    background-color: "{color.neutral.100}"
+    opacity: 0.6
+    cursor: not-allowed
+
+contract:
+  anatomy:
+    - root
+    - trigger
+    - value-label
+    - chevron-indicator
+    - popover
+    - options-list
+    - option-item
+  props:
+    variant:
+      default: default
+      values: [default, outline]
+    size:
+      default: md
+      values: [sm, md, lg]
+    state:
+      default: default
+      values: [default, hover, focus, open, disabled]
+  slots:
+    - start
+    - default
+    - end
+
+structure:
+  base:
+    native_class: qhr-select
+    tailwind: "w-full bg-[var(--qhr-surface-base)] text-[var(--qhr-content-primary)] border border-[var(--qhr-border-strong)] transition-colors outline-none font-sans cursor-pointer appearance-none"
+  sizes:
+    sm:
+      native_modifier: qhr-select--sm
+      tailwind: "text-sm px-[var(--qhr-space-3)] py-[var(--qhr-space-1-5)] rounded-[var(--qhr-radius-sm)]"
+    md:
+      native_modifier: qhr-select--md
+      tailwind: "text-base px-[var(--qhr-space-3-5)] py-[var(--qhr-space-2)] rounded-[var(--qhr-radius-md)]"
+    lg:
+      native_modifier: qhr-select--lg
+      tailwind: "text-lg px-[var(--qhr-space-4)] py-[var(--qhr-space-3)] rounded-[var(--qhr-radius-lg)]"
+
+accessibility:
+  role: combobox
+  keyboard: "Up/Down arrows navigate options, Enter selects, Escape closes"
+
+rtl:
+  supported: true
+  directional_mirroring: true
