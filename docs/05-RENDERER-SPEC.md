@@ -38,17 +38,17 @@ A renderer MUST NOT alter:
 ## 3. Modular CSS Architecture (`renderers/html/native/components/`)
 
 To prevent stylesheet bloat and ensure infinite horizontal scalability:
-1. **Atomic Component Stylesheets:** Every component owns an independent stylesheet in `renderers/html/native/components/<component>.css` (38 files).
+1. **Atomic Component Stylesheets:** Every component owns an independent stylesheet in `renderers/html/native/components/<component>.css` (42 component files + base/layout).
 2. **Base & Layout Foundations:** Common variables, reset, and container layout are isolated in `base.css` and `layout.css`.
-3. **Local Dev Import Manifest:** `renderers/html/native/components.css` acts as a clean 46-line `@import` manifest for zero-build previewing.
-4. **Production Bundle:** `dist/qahera.css` (91.15 KB raw, 13.04 KB gzip) is automatically compiled via `cli/build-css.js`.
+3. **Local Dev Import Manifest:** `renderers/html/native/components.css` acts as a clean `@import` manifest for zero-build previewing.
+4. **Production Bundle:** `dist/qahera.css` (211.83 KB raw, 28.32 KB gzip) is automatically compiled via `cli/build-css.js`.
 
 ---
 
 ## 4. React Server Components (RSC) & 0kb Boundary Strategy
 
 React renderers adhere to modern Next.js 15+ / React 19 architecture:
-- **24 Pure Server Components (0kb Client JS):** Static and container components (`Button`, `Card`, `Badge`, `Alert`, `Avatar`, `Breadcrumb`, `Callout`, `Chip`, `Divider`, `Input`, `Kbd`, `Navbar`, `Progress`, `Radio`, `Ribbon`, `Skeleton`, `Spinner`, `Stepper`, `Switch`, `Table`, `Textarea`, `Timeline`) contain zero client runtime.
+- **29 Pure Server Components (0kb Client JS):** Static and container components (`Button`, `Card`, `Badge`, `Alert`, `Avatar`, `Breadcrumb`, `Callout`, `Chip`, `Divider`, `Dock`, `Input`, `Kbd`, `Megamenu`, `Menu`, `Navbar`, `Pagination`, `Progress`, `Radio`, `Ribbon`, `Skeleton`, `Spinner`, `Stepper`, `Switch`, `Table`, `Textarea`, `Timeline`) contain zero client runtime.
 - **15 Authorized Leaf Client Components:** Interactive components (`Accordion`, `BackToTop`, `CanvasSparks`, `Carousel`, `Drawer`, `Dropdown`, `FileUpload`, `Modal`, `Preloader`, `Rating`, `Select`, `Tabs`, `Toast`, `Tooltip`, `Treeview`) declare `'use client'` strictly at the terminal leaf level.
 
 ---
@@ -56,7 +56,7 @@ React renderers adhere to modern Next.js 15+ / React 19 architecture:
 ## 5. Vanilla Web Components (`renderers/js/`)
 
 Web components provide framework-free reactive components via standard W3C Custom Elements:
-- All 38 components are registered under the `qhr-*` prefix (e.g. `<qhr-button>`, `<qhr-modal>`, `<qhr-rating>`).
+- All 42 components are registered under the `qhr-*` prefix (e.g. `<qhr-button>`, `<qhr-modal>`, `<qhr-rating>`).
 - Auto-discovered and registered through `renderers/js/index.js`.
 - Pure Vanilla JavaScript with zero runtime dependencies.
 

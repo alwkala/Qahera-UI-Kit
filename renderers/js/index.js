@@ -1,7 +1,7 @@
 /**
  * Qahera UI Kit — Vanilla JS Web Components: Auto-Registration Bundle
  *
- * Import this single file to register all 38 Qahera Custom Elements.
+ * Import this single file to register all 42 Qahera Custom Elements.
  * Each component self-registers via customElements.define() on import.
  *
  * Usage:
@@ -11,7 +11,7 @@
  *   import 'renderers/js/components/qhr-button.js';
  *
  * @module renderers/js/index
- * @version 1.0.0
+ * @version 1.5.0
  */
 
 // ─── Core Base ───────────────────────────────────────────────────────

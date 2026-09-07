@@ -102,6 +102,13 @@ components:
     interactive: false
     contract: contracts/components/Divider.yaml
     recipe: recipes/divider.yaml
+  - name: Dock
+    canonical: Dock
+    category: navigation
+    purpose: "Bottom-anchored mobile navigation bar offering thumb-accessible primary destinations and action shortcuts."
+    interactive: false
+    contract: contracts/components/Dock.yaml
+    recipe: recipes/dock.yaml
   - name: Drawer
     canonical: Drawer
     category: overlay
@@ -138,6 +145,20 @@ components:
     interactive: false
     contract: contracts/components/Kbd.yaml
     recipe: recipes/kbd.yaml
+  - name: Megamenu
+    canonical: Megamenu
+    category: navigation
+    purpose: "Expansive multi-column navigation surface displaying rich categorized link grids, media previews, and promotional banners."
+    interactive: false
+    contract: contracts/components/Megamenu.yaml
+    recipe: recipes/megamenu.yaml
+  - name: Menu
+    canonical: Menu
+    category: navigation
+    purpose: "Structured list of navigation links with support for nested submenus, badges, icons, and headers."
+    interactive: false
+    contract: contracts/components/Menu.yaml
+    recipe: recipes/menu.yaml
   - name: Modal
     canonical: Modal
     category: overlay
@@ -154,6 +175,13 @@ components:
     behavior: behavior/navbar.js
     contract: contracts/components/Navbar.yaml
     recipe: recipes/navbar.yaml
+  - name: Pagination
+    canonical: Pagination
+    category: navigation
+    purpose: "Structured multi-page navigation and record boundary control with numeric links and page size picker."
+    interactive: false
+    contract: contracts/components/Pagination.yaml
+    recipe: recipes/pagination.yaml
   - name: Preloader
     canonical: Preloader
     category: feedback

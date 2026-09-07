@@ -85,7 +85,7 @@ Qahera strictly enforces standard component properties across all renderers:
 
 ---
 
-## The 38 Canonical Components (v1.0 Scope)
+## The 42 Canonical Components (v1.5 Scope)
 
 1. **Accordion** (`contracts/components/Accordion.yaml` · Disclosure)
 2. **Alert** (`contracts/components/Alert.yaml` · Feedback)
@@ -101,30 +101,34 @@ Qahera strictly enforces standard component properties across all renderers:
 12. **Checkbox** (`contracts/components/Checkbox.yaml` · Selection)
 13. **Chip** (`contracts/components/Chip.yaml` · Selection & Filter Tags)
 14. **Divider** (`contracts/components/Divider.yaml` · Layout Separator)
-15. **Drawer** (`contracts/components/Drawer.yaml` · Sliding Edge Panel)
-16. **Dropdown** (`contracts/components/Dropdown.yaml` · Navigation & Action Menus)
-17. **FileUpload** (`contracts/components/FileUpload.yaml` · Forms / File Ingestion)
-18. **Input** (`contracts/components/Input.yaml` · Forms)
-19. **Kbd** (`contracts/components/Kbd.yaml` · Data Display / Key Shortcut)
-20. **Modal** (`contracts/components/Modal.yaml` · Dialog Overlay)
-21. **Navbar** (`contracts/components/Navbar.yaml` · Site Header & Navigation)
-22. **Preloader** (`contracts/components/Preloader.yaml` · Application Boot Loader)
-23. **Progress** (`contracts/components/Progress.yaml` · Metric Status Bar)
-24. **Radio** (`contracts/components/Radio.yaml` · Selection)
-25. **Rating** (`contracts/components/Rating.yaml` · Feedback / Reviews)
-26. **Ribbon** (`contracts/components/Ribbon.yaml` · Corner Status Badge)
-27. **Select** (`contracts/components/Select.yaml` · Forms / Dropdown)
-28. **Skeleton** (`contracts/components/Skeleton.yaml` · Feedback / Loading Silhouette)
-29. **Spinner** (`contracts/components/Spinner.yaml` · Indeterminate Micro-Loader)
-30. **Stepper** (`contracts/components/Stepper.yaml` · Multi-Step Process)
-31. **Switch** (`contracts/components/Switch.yaml` · Accessible Binary Toggle)
-32. **Table** (`contracts/components/Table.yaml` · Data Display)
-33. **Tabs** (`contracts/components/Tabs.yaml` · Content Navigation)
-34. **Textarea** (`contracts/components/Textarea.yaml` · Forms)
-35. **Timeline** (`contracts/components/Timeline.yaml` · Chronological Event Stream)
-36. **Toast** (`contracts/components/Toast.yaml` · Notification Overlay)
-37. **Tooltip** (`contracts/components/Tooltip.yaml` · Micro-feedback)
-38. **Treeview** (`contracts/components/Treeview.yaml` · Navigation / Hierarchical Explorer)
+15. **Dock** (`contracts/components/Dock.yaml` · Quick Access Application Dock)
+16. **Drawer** (`contracts/components/Drawer.yaml` · Sliding Edge Panel)
+17. **Dropdown** (`contracts/components/Dropdown.yaml` · Navigation & Action Menus)
+18. **FileUpload** (`contracts/components/FileUpload.yaml` · Forms / File Ingestion)
+19. **Input** (`contracts/components/Input.yaml` · Forms)
+20. **Kbd** (`contracts/components/Kbd.yaml` · Data Display / Key Shortcut)
+21. **Megamenu** (`contracts/components/Megamenu.yaml` · Rich Multi-Column Navigation)
+22. **Menu** (`contracts/components/Menu.yaml` · Contextual & Action List)
+23. **Modal** (`contracts/components/Modal.yaml` · Dialog Overlay)
+24. **Navbar** (`contracts/components/Navbar.yaml` · Site Header & Navigation)
+25. **Pagination** (`contracts/components/Pagination.yaml` · Multi-Page Data Navigation)
+26. **Preloader** (`contracts/components/Preloader.yaml` · Application Boot Loader)
+27. **Progress** (`contracts/components/Progress.yaml` · Metric Status Bar)
+28. **Radio** (`contracts/components/Radio.yaml` · Selection)
+29. **Rating** (`contracts/components/Rating.yaml` · Feedback / Reviews)
+30. **Ribbon** (`contracts/components/Ribbon.yaml` · Corner Status Badge)
+31. **Select** (`contracts/components/Select.yaml` · Forms / Dropdown)
+32. **Skeleton** (`contracts/components/Skeleton.yaml` · Feedback / Loading Silhouette)
+33. **Spinner** (`contracts/components/Spinner.yaml` · Indeterminate Micro-Loader)
+34. **Stepper** (`contracts/components/Stepper.yaml` · Multi-Step Process)
+35. **Switch** (`contracts/components/Switch.yaml` · Accessible Binary Toggle)
+36. **Table** (`contracts/components/Table.yaml` · Data Display)
+37. **Tabs** (`contracts/components/Tabs.yaml` · Content Navigation)
+38. **Textarea** (`contracts/components/Textarea.yaml` · Forms)
+39. **Timeline** (`contracts/components/Timeline.yaml` · Chronological Event Stream)
+40. **Toast** (`contracts/components/Toast.yaml` · Notification Overlay)
+41. **Tooltip** (`contracts/components/Tooltip.yaml` · Micro-feedback)
+42. **Treeview** (`contracts/components/Treeview.yaml` · Navigation / Hierarchical Explorer)
 
 ---
 
@@ -172,10 +176,10 @@ qahera-ui-kit/
 ├── AGENTS.md                # AI Agent Instructions & Governance Rules
 ├── docs/                    # Subordinate Specifications (01-12) & Archive
 ├── contracts/               # Component & Prop Contracts (YAML)
-│   └── components/          # 38 Canonical PascalCase Component Contracts
+│   └── components/          # 42 Canonical PascalCase Component Contracts
 ├── tokens/                  # Design Tokens (YAML + tokens.css + brand.json)
-├── recipes/                 # 38 Component Recipes (YAML)
-├── patterns/                # 19 Compositional UX Patterns (YAML)
+├── recipes/                 # 42 Component Recipes (YAML)
+├── patterns/                # 20 Compositional UX Patterns (YAML)
 ├── templates/               # 18 Production Templates & Advanced Dashboards
 ├── behavior/                # Framework-Free Alpine.js Interactive Modules
 ├── renderers/               # Framework Implementations (HTML, PHP, HTMX, React)

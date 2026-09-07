@@ -18,7 +18,7 @@ const BUNDLE_OUT = path.join(ROOT_DIR, 'renderers', 'html', 'native', 'component
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
 const DIST_OUT = path.join(DIST_DIR, 'qahera.css');
 
-// Order of concatenation to ensure correct cascade resolution (all 40 files: 38 components + 2 base/layout)
+// Order of concatenation to ensure correct cascade resolution (42 components + base/layout)
 const CANONICAL_ORDER = [
   'base.css',
   'layout.css',
@@ -138,7 +138,7 @@ function buildCss(options = { quiet: false }) {
   if (!options.quiet) {
     console.log(`\n📦 QAHERA CSS BUNDLER`);
     console.log(`──────────────────────────────────────────────────────`);
-    console.log(`  ✓ Aggregated ${existingFiles.length} modular component files (38 components + 2 base/layout)`);
+    console.log(`  ✓ Aggregated ${existingFiles.length} modular component files (42 components + base/layout)`);
     console.log(`  ✓ Emitted: renderers/html/native/components.css (@import manifest, ${importLines.length} lines)`);
     console.log(`  ✓ Emitted: dist/qahera.css (Production bundle: ${rawKB} KB, gzip: ${gzipKB} KB)`);
     console.log(`  ✓ Emitted: dist/qahera-themes.css (Thematic Topography bundle: ${themesRawKB} KB, gzip: ${themesGzipKB} KB)`);

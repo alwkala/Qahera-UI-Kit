@@ -103,8 +103,8 @@ qahera-ui-kit/
 ├── contracts/               # Semantic vocabulary & component interfaces
 ├── tokens/                  # YAML tokens, tokens.css, brand.json, presets
 ├── icons/                   # Canonical Icon Registry (41 semantic SVGs & aliases)
-├── recipes/                 # 38 YAML component recipes
-├── patterns/                # 19 Compositional UX patterns
+├── recipes/                 # 42 YAML component recipes
+├── patterns/                # 20 Compositional UX patterns
 ├── behavior/                # 11 Alpine.js interactive modules
 ├── renderers/               # Framework renderers (HTML Native/Tailwind, PHP, HTMX, React, JS)
 ├── schemas/                 # YAML schemas for validation
