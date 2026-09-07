@@ -1,0 +1,52 @@
+# /* Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 */
+name: CI Quality & Invariant Verification
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Invariant sec-02: Enforce minimal top-level permissions baseline
+permissions:
+  contents: read
+
+# Invariant ci-01: Cancel redundant in-progress builds for the same PR/ref
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit-and-build:
+    name: Verify Quality, Types & Invariants
+    runs-on: ubuntu-latest
+    timeout-minutes: 10 # Invariant ci-02: Prevent runaway runner execution
+
+    steps:
+      # Invariant sec-01: Pin action to immutable full commit SHA
+      - name: Check out repository source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 1
+
+      # Invariant sec-01 & ci-03: Pin action and utilize native dependency caching
+      - name: Set up Node.js 20.x environment
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies cleanly
+        run: npm ci
+
+      - name: Run strict TypeScript typecheck
+        run: npm run typecheck
+
+      - name: Build canonical CSS bundles & registry manifests
+        run: node bin/qahera.js build
+
+      - name: Generate interactive preview playgrounds & showcase hub
+        run: npm run preview
+
+      - name: Run full 4-stage Quality & Invariant CI audit suite
+        run: node bin/qahera.js test

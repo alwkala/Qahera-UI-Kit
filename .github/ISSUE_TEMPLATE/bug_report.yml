@@ -1,0 +1,82 @@
+# /* Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 */
+name: "تقرير خلل برمجـي · Bug Report"
+description: "الإبلاغ عن خلل بصري، وظيفي، أو تراجع في تكافؤ RTL/LTR داخل منظومة قاهرة."
+title: "fix(component): [وصف موجز للمشكلة]"
+labels: ["type:bug", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        شكراً لمساهمتك في تدقيق وتطوير **Qahera UI Kit**. يرجى تقديم التفاصيل بدقة لضمان معالجة المشكلة وفق قواعد الحوكمة المعمارية.
+
+  - type: dropdown
+    id: component_scope
+    attributes:
+      label: المكون أو المسار المعني · Affected Component / Area
+      description: حدد المكون أو النمط أو الأداة التي حدث فيها الخلل.
+      options:
+        - "Button / الأزرار"
+        - "Modal & Dialogs / الحوارات والنوافذ المنبثقة"
+        - "Dropdown & Select / القوائم والاختيار"
+        - "Input, Textarea & Forms / حقول الإدخال والنماذج"
+        - "Accordion & Collapse / الأكورديون"
+        - "Table & DataTable / الجداول"
+        - "Toast & Alerts / الإشعارات والتنبيهات"
+        - "Navbar & Navigation / أشرطة التصفح"
+        - "Theme Engine & Cairo Atlas / محرك الثيمات"
+        - "CLI Tool (bin/qahera.js) / أداة سطر الأوامر"
+        - "Compiler & Pipeline / المترجم والسجلات"
+        - "Other Component / مكون آخر"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target_renderer
+    attributes:
+      label: بيئة العرض المستخدمة · Target Renderer
+      options:
+        - "React / Next.js (renderers/react/)"
+        - "PHP Plates (renderers/php/plates/)"
+        - "Native HTML & CSS (renderers/html/native/)"
+        - "HTMX Partial Fragments (renderers/htmx/)"
+        - "Web Components (renderers/js/)"
+        - "Preview Playgrounds (examples/previews/)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: وصف الخلل · Description of the Bug
+      description: اشرح بوضوح السلوك غير المتوقع الذي واجهته.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps_to_reproduce
+    attributes:
+      label: خطوات إعادة تكرار الخلل · Steps to Reproduce
+      description: اذكر الخطوات الدقيقة التي تؤدي لظهور المشكلة.
+      placeholder: |
+        1. استيراد المكون...
+        2. تمرير الخاصية...
+        3. ملاحظة حدوث...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: السلوك المتوقع · Expected Behavior
+      description: كيف كان ينبغي للمكون أو الأداة أن تعمل وفق مواصفات قاهرة وميثاق RTL؟
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: بيئة التشغيل · Environment & Browser
+      description: نظام التشغيل وإصدار المتصفح أو بيئة Node.js.
+      placeholder: "مثال: Chrome 128 / Windows 11 / Node 20.15"
+    validations:
+      required: false

@@ -1,0 +1,82 @@
+# /* Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 */
+name: "مقترح مكون معماري جديد · New Component Proposal"
+description: "اقتراح إضافة مكون أو نمط تفاعلي جديد إلى سجل قاهرة المعياري."
+title: "feat(component): [اسم المكون المقترح]"
+labels: ["type:feature", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        يخضع كل مكون جديد في منظومة **Qahera UI Kit** لمحددات الميثاق الصارم الـ 15 (انظر `AGENTS.md` و `SPEC.md`):
+        العقد في `contracts/` يسبق الوصفة في `recipes/` وتسبق مسارات العرض الستة.
+
+  - type: input
+    id: component_name_ar
+    attributes:
+      label: الاسم الدلالي العربي · Arabic Display Name
+      placeholder: "مثال: منتقي التاريخ والوقت المعماري"
+    validations:
+      required: true
+
+  - type: input
+    id: component_id_en
+    attributes:
+      label: المعرّف التقني بالإنجليزية (kebab-case) · Technical Canonical ID
+      placeholder: "مثال: datetime-picker"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: component_category
+    attributes:
+      label: التصنيف الوظيفي للمكون · Functional Category
+      options:
+        - "actions (أزرار وإجراءات تفاعلية)"
+        - "forms (حقول ونماذج وإدخال بيانات)"
+        - "navigation (أشرطة تصفح وتبويبات وقوائم)"
+        - "feedback (تنبيهات، إشعارات، ومؤشرات تحميل)"
+        - "overlay (حوارات، أدراج، ونوافذ منبثقة)"
+        - "data-display (جداول، بطاقات، وأشجار بيانات)"
+        - "ux-pattern (نمط تركيبي مركب)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: architectural_purpose
+    attributes:
+      label: الغرض المعماري ومتى يُستخدم (WHAT & WHEN) · Purpose & Use Cases
+      description: ما هي المشكلة التصميمية التي يعالجها؟ ومتى يجب على نماذج الذكاء الاصطناعي والمطورين استخدامه؟
+    validations:
+      required: true
+
+  - type: textarea
+    id: anti_patterns
+    attributes:
+      label: متى يُحظر استخدامه وبدائله المتاحة (WHY NOT) · Anti-Patterns & Alternatives
+      description: اذكر الحالات التي لا ينبغي فيها استخدام هذا المكون وما هي المكونات الحالية البديلة.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_props_variants
+    attributes:
+      label: الخصائص والمتغيرات المقترحة (Props, Variants & States)
+      description: يجب الالتزام بالمفردات المعيارية المحكومة (variant, size, tone, state) دون اختراع مسميات اعتباطية.
+      placeholder: |
+        - variants: primary, secondary, outline, ghost
+        - sizes: sm, md, lg
+        - tones: neutral, info, success, warning, danger
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: commitments
+    attributes:
+      label: التعهد بالمعايير المعمارية الحاكمة · Architectural Invariants Checklist
+      options:
+        - label: "أقر بالالتزام بقاعدة صفر إيموجي (QAHERA-VISUAL-001) واستخدام أيقونات SVG معيارية فقط."
+          required: true
+        - label: "أقر بالاعتماد الحصري على المتغيرات الدلالية (--qhr-*) والخصائص المنطقية (Logical CSS) لضمان تكافؤ RTL/LTR."
+          required: true
+        - label: "أقر بضرورة توفير مسارات العرض المتكاملة (React, PHP, HTML) وبصمة 0kb RSC."
+          required: true

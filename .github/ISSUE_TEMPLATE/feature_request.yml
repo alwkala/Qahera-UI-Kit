@@ -1,0 +1,34 @@
+# /* Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 */
+name: "طلب تحسين أو ميزة جديدة · Feature Request"
+description: "اقتراح تحسين لأدوات الـ CLI أو المحول البرمجي أو محرك الثيمات والتصدير."
+title: "feat(core): [عنوان المقترح]"
+labels: ["type:feature", "status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        نرحب بجميع الأفكار والمقترحات لتطوير أدوات وسير عمل منظومة **Qahera UI Kit**.
+
+  - type: textarea
+    id: problem_statement
+    attributes:
+      label: المشكلة أو الحاجة الحالية · Problem Statement
+      description: هل ترتبط هذه الميزة بمشكلة أو عائق في تجربة الاستخدام الحالية؟
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: الحل المقترح وسيناريو الاستخدام · Proposed Solution
+      description: صف بدقة كيف تتخيل عمل هذه الميزة وواجهتها.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives_considered
+    attributes:
+      label: البدائل والحلول الالتفافية التي تم التفكير فيها · Alternatives Considered
+      description: ما هي الطرق البديلة لحل هذه المشكلة إن وجدت؟
+    validations:
+      required: false

@@ -1,0 +1,29 @@
+# /* Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 */
+# Qahera UI Kit — Authoritative Code Ownership Matrix
+# Owner: Alwkala Studio (@alwkala)
+
+# Global fallback maintainer
+*                           @alwkala
+
+# Security Policies, Workflows & Governance
+/.github/workflows/         @alwkala
+/.github/dependabot.yml     @alwkala
+/SECURITY.md                @alwkala
+/AGENTS.md                  @alwkala
+/SPEC.md                    @alwkala
+
+# Core Architecture, Compiler & Registry Engine
+/compiler/                  @alwkala
+/contracts/                 @alwkala
+/recipes/                   @alwkala
+/patterns/                  @alwkala
+/tokens/                    @alwkala
+/schemas/                   @alwkala
+/cli/                       @alwkala
+/bin/                       @alwkala
+/ci/                        @alwkala
+
+# Multi-Target Renderers
+/renderers/                 @alwkala
+/behavior/                  @alwkala
+/templates/                 @alwkala

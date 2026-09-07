@@ -1,0 +1,9 @@
+# /* Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 */
+blank_issues_enabled: false
+contact_links:
+  - name: Alwkala Technical Support
+    url: mailto:alwkala@outlook.com
+    about: Direct technical support and commercial inquiries for Alwkala UI Kits.
+  - name: Qahera UI Kit Documentation & Showcases
+    url: https://github.com/alwkala/Qahera-UI-Kit/blob/main/README.md
+    about: Read canonical specifications, component catalogs, and architectural guidelines.
