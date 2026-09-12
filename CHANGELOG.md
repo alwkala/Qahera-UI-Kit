@@ -238,7 +238,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
-## [0.1.0-draft] - 2026-09-06
+## [0.1.0] - 2026-09-06
 
 ### Added
 - Canonical specification (`SPEC.md`) and AI Agent governance rules (`AGENTS.md`).
