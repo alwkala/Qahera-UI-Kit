@@ -15,20 +15,20 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Studio: Alwkala](https://img.shields.io/badge/Studio-Alwkala-D4AF37.svg?style=for-the-badge)](https://github.com/alwkala)
 [![Ecosystem](https://img.shields.io/badge/Ecosystem-TidyFactor%20Compatible-7C3AED.svg?style=for-the-badge)](https://github.com/TidyFactor)
-[![Maturity: Level 5 OSS](https://img.shields.io/badge/Maturity-Level%205%20OSS%20(95%2F100)-success.svg?style=for-the-badge)](#-system-health--quality-scorecard)
+[![Maturity: Level 5 OSS](https://img.shields.io/badge/Maturity-Level%205%20OSS%20(95%2F100)-success.svg?style=for-the-badge)](#system-health-quality-scorecard)
 
 <!-- Technical & Architecture Badges -->
 [![React 19 & Next.js](https://img.shields.io/badge/React-19%20%26%20Next.js%20(0kb%20RSC)-61DAFB.svg?style=for-the-badge&logo=react)](renderers/react/)
 [![PHP 8.x Plates](https://img.shields.io/badge/PHP-8.x%20Plates%20(20%20Templates)-777BB4.svg?style=for-the-badge&logo=php)](renderers/php/plates/)
 [![TypeScript Strict](https://img.shields.io/badge/TypeScript-Strict%20Zero--Error-3178C6.svg?style=for-the-badge&logo=typescript)](tsconfig.json)
-[![WCAG 2.1 AA Certified](https://img.shields.io/badge/A11y-WCAG%202.1%20AA%20(100%25)-10B981.svg?style=for-the-badge)](#-system-health--quality-scorecard)
-[![RTL 100% Logical](https://img.shields.io/badge/RTL-100%25%20Logical%20CSS-059669.svg?style=for-the-badge)](#-system-health--quality-scorecard)
-[![Zero Emoji](https://img.shields.io/badge/Visual-Zero%20Emoji%20(QAHERA--VISUAL--001)-DC2626.svg?style=for-the-badge)](#-the-17-non-negotiable-architectural-invariants)
-[![Cairo Atlas Themes](https://img.shields.io/badge/Themes-12%20Cairo%20Neighborhoods-F59E0B.svg?style=for-the-badge)](#%EF%B8%8F-the-12-cairo-atlas-neighborhood-themes)
+[![WCAG 2.1 AA Certified](https://img.shields.io/badge/A11y-WCAG%202.1%20AA%20(100%25)-10B981.svg?style=for-the-badge)](#system-health-quality-scorecard)
+[![RTL 100% Logical](https://img.shields.io/badge/RTL-100%25%20Logical%20CSS-059669.svg?style=for-the-badge)](#system-health-quality-scorecard)
+[![Zero Emoji](https://img.shields.io/badge/Visual-Zero%20Emoji%20(QAHERA--VISUAL--001)-DC2626.svg?style=for-the-badge)](#the-17-non-negotiable-architectural-invariants)
+[![Cairo Atlas Themes](https://img.shields.io/badge/Themes-12%20Cairo%20Neighborhoods-F59E0B.svg?style=for-the-badge)](#the-12-cairo-atlas-neighborhood-themes)
 
 <br/>
 
-**[ 🌐 Living Showcase Hub ](examples/previews/index.html) • [ 🏛️ The 42 Components ](#-the-42-canonical-components-v15-scope) • [ 🧩 20 UX Patterns ](#-the-20-compositional-ux-patterns) • [ 🏙️ Cairo Atlas (12 Themes) ](#%EF%B8%8F-the-12-cairo-atlas-neighborhood-themes) • [ 🚀 Quick Start ](#-quick-start) • [ 🗺️ Roadmap ](#%EF%B8%8F-roadmap) • [ 📄 بالعربية ](#-نظرة-عامة-باللغة-العربية)**
+**[ 🌐 Living Showcase Hub ](examples/previews/index.html) • [ 🏛️ The 42 Components ](#the-42-canonical-components-v15-scope) • [ 🧩 20 UX Patterns ](#the-20-compositional-ux-patterns) • [ 🏙️ Cairo Atlas (12 Themes) ](#the-12-cairo-atlas-neighborhood-themes) • [ 🚀 Quick Start ](#quick-start-distribution-channels) • [ 🗺️ Roadmap ](#roadmap) • [ 📄 بالعربية ](#نظرة-عامة-وميثاق-المنظومة-باللغة-العربية)**
 
 </div>
 
@@ -36,25 +36,25 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 
 ## 📚 Table of Contents
 
-- [🎯 Why Qahera UI Kit?](#-why-qahera-ui-kit)
-- [📊 System Health & Quality Scorecard](#-system-health--quality-scorecard)
-- [🖼️ Visual Showcase & Architectural Paradigm](#%EF%B8%8F-visual-showcase--architectural-paradigm)
-- [🏛️ The 42 Canonical Components (v1.5 Scope)](#%EF%B8%8F-the-42-canonical-components-v15-scope)
-- [🧩 The 20 Compositional UX Patterns](#-the-20-compositional-ux-patterns)
-- [🏙️ The 12 Cairo Atlas Neighborhood Themes](#%EF%B8%8F-the-12-cairo-atlas-neighborhood-themes)
-- [🚀 Quick Start](#-quick-start)
-  - [1. CLI Scaffolder (shadcn-style)](#1-cli-scaffolder-shadcn-style)
-  - [2. Native HTML & CSS Custom Properties](#2-native-html--css-custom-properties)
+- [🎯 Why Qahera UI Kit?](#why-qahera-ui-kit)
+- [📊 System Health & Quality Scorecard](#system-health-quality-scorecard)
+- [🖼️ Visual Showcase & Architectural Paradigm](#visual-showcase-architectural-paradigm)
+- [🏛️ The 42 Canonical Components (v1.5 Scope)](#the-42-canonical-components-v15-scope)
+- [🧩 The 20 Compositional UX Patterns](#the-20-compositional-ux-patterns)
+- [🏙️ The 12 Cairo Atlas Neighborhood Themes](#the-12-cairo-atlas-neighborhood-themes)
+- [🚀 Quick Start & Distribution Channels](#quick-start-distribution-channels)
+  - [1. Zero-Install CLI Scaffolder via `npx` (shadcn-style)](#1-zero-install-cli-scaffolder-via-npx-shadcn-style)
+  - [2. Native HTML & CSS Custom Properties](#2-native-html-css-custom-properties)
   - [3. PHP 8.x Plates Engine](#3-php-8x-plates-engine)
-  - [4. React 19 & Next.js Server Components (RSC)](#4-react-19--nextjs-server-components-rsc)
+  - [4. React 19 & Next.js Server Components (RSC)](#4-react-19-nextjs-server-components-rsc)
   - [5. Vanilla Web Components](#5-vanilla-web-components)
-- [📖 Authoritative Specifications & Documentation Links](#-authoritative-specifications--documentation-links)
-- [🛡️ The 17 Non-Negotiable Architectural Invariants](#%EF%B8%8F-the-17-non-negotiable-architectural-invariants)
-- [🗺️ Roadmap](#%EF%B8%8F-roadmap)
-- [🇸🇦 نظرة عامة وميثاق المنظومة باللغة العربية](#-نظرة-عامة-وميثاق-المنظومة-باللغة-العربية)
-- [🤝 Contributing & Community Health](#-contributing--community-health)
-- [📞 Contact & Official Links](#-contact--official-links)
-- [📜 License](#-license)
+- [📖 Authoritative Specifications & Documentation Links](#authoritative-specifications-documentation-links)
+- [🛡️ The 17 Non-Negotiable Architectural Invariants](#the-17-non-negotiable-architectural-invariants)
+- [🗺️ Roadmap](#roadmap)
+- [🇸🇦 نظرة عامة وميثاق المنظومة باللغة العربية](#نظرة-عامة-وميثاق-المنظومة-باللغة-العربية)
+- [🤝 Contributing & Community Health](#contributing-community-health)
+- [📞 Contact & Official Links](#contact-official-links)
+- [📜 License](#license)
 
 ---
 
@@ -62,7 +62,7 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 
 > [!IMPORTANT]
 > **The Core Architectural Equation:**  
-> $$\mathbf{\text{Qahera UI Kit v1.5.0}} = \mathbf{\text{Design System}} + \mathbf{\text{Registry}} + \mathbf{\text{AI Decision Layer}}$$
+> $$\mathbf{\text{Qahera UI Kit v1.5.1}} = \mathbf{\text{Design System}} + \mathbf{\text{Registry}} + \mathbf{\text{AI Decision Layer}}$$
 > 
 > Qahera is **NOT** just another component library or compiler. It is an **AI-Native UI Kit** combining a systematic design language, an authoritative canonical registry, and an explicit AI decision layer that tells coding agents **WHAT** to use, **WHEN** to use it, and **WHY NOT** to invent ad-hoc styles.
 
@@ -80,7 +80,7 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 ## 📊 System Health & Quality Scorecard
 
 ```text
-🏛️ QAHERA QUALITY ASSURANCE AUDIT (v1.5.0 Certified)
+🏛️ QAHERA QUALITY ASSURANCE AUDIT (v1.5.1 Certified)
 ══════════════════════════════════════════════════════════════════════════════════════
   ✓ Schema & Invariants Validation : 100% Passed (42 Contracts · 42 Recipes · 20 Patterns)
   ✓ TypeScript Strict Typecheck    : 100% Passed (0 Errors across all React & Template files)
