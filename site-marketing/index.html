@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<!-- Qahera — Executable Design Language for the Human + AI Web -->
-<!-- Strict Dogfooding · 100% Token-Driven · Zero Text Gradients · Pure Typography -->
-<html lang="ar" dir="rtl" data-theme="zamalek" data-mode="dark">
+<!-- Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 -->
+<!-- Qahera UI Kit — Sovereign Landing Page -->
+<!-- Inspired by Cairo. Built for what's next. -->
+<html lang="en" dir="ltr" data-mode="light" x-data="qaheraLanding()">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>قاهرة — لغة تصميم تنفيذية مشتركة بين الإنسان والذكاء الاصطناعي والمتصفح | Qahera</title>
-  <meta name="description" content="قاهرة ليست مجرد مكتبة مكونات؛ إنها لغة تصميم تنفيذية تمنح المطورين ووكلاء الذكاء الاصطناعي والمتصفحات معجماً وقواعد مشتركة لمنع عشوائية التصميم وتثبيت الاتساق المعماري عبر 6 مسارات تشغيل.">
+  <title>Qahera UI Kit — A design language for humans, AI agents, and the web</title>
+  <meta name="description" content="Build consistent, beautiful interfaces with a modern design system inspired by the spirit of Cairo — crafted for developers, AI agents, and the next generation of web experiences.">
 
-  <!-- الخطوط الرسمية المعتمدة: Alexandria للعناوين والهوية، و Cairo للنصوص والواجهات -->
+  <!-- Official Fonts: Alexandria (headings & brand), Cairo (body & UI), JetBrains Mono (code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800;900&family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800;900&family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 
-  <!-- أصول المنظومة المعمارية الحتمية -->
+  <!-- Canonical Qahera Assets -->
   <link rel="stylesheet" href="dist/qahera-tokens.css">
   <link rel="stylesheet" href="dist/qahera.css">
   <link rel="stylesheet" href="dist/qahera-themes.css">
@@ -21,44 +22,45 @@
 
   <script src="assets/js/alpine.min.js" defer></script>
 </head>
-<body x-data="qaheraWorkbench()">
+<body>
 
   <!-- 1. Header & Navigation -->
-  <header class="site-header">
+  <header class="qhr-site-header">
     <div class="site-container">
-      <div class="header-inner">
+      <div class="qhr-header-inner">
         
-        <!-- Brand Identity -->
-        <div style="display: flex; align-items: center; gap: 12px;">
-          <span style="font-family: var(--q-font-heading); font-weight: 900; font-size: 1.25rem; color: var(--qhr-content-primary);">
-            قاهرة
-          </span>
-          <span class="brand-badge">v1.5.1</span>
-          <span style="font-family: var(--q-font-mono); font-size: 0.72rem; color: var(--qhr-content-muted); display: none;" class="desktop-indicator">
-            / EXECUTABLE DESIGN LANGUAGE
-          </span>
-        </div>
+        <!-- Brand Monogram & Title -->
+        <a href="#" class="qhr-brand" aria-label="Qahera UI Kit Home">
+          <svg class="qhr-brand-logo" viewBox="0 0 32 36" fill="currentColor">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C7.716 2 1 8.716 1 17v15a2 2 0 002 2h26a2 2 0 002-2V17c0-8.284-6.716-15-15-15zm-9 15c0-4.97 4.03-9 9-9s9 4.03 9 9v13H7V17zm9-5a5 5 0 00-5 5v3h10v-3a5 5 0 00-5-5z" />
+          </svg>
+          <span class="qhr-brand-title">Qahera</span>
+          <span class="qhr-brand-sub">UI Kit</span>
+        </a>
 
-        <!-- Center Anchors -->
-        <nav style="display: flex; align-items: center; gap: 20px;">
-          <a href="#the-problem" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">المعضلة</a>
-          <a href="#workbench" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">منصة القواعد الحية</a>
-          <a href="#architecture" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">المعمارية الثلاثية</a>
-          <a href="#agent-skill" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">الوكيل البرمجي</a>
-          <a href="https://github.com/alwkala/Qahera-UI-Kit" target="_blank" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">GitHub</a>
+        <!-- Center Navigation -->
+        <nav class="qhr-nav-links">
+          <a href="#home" class="qhr-nav-link is-active" x-text="t('nav.home')">Home</a>
+          <a href="#components" class="qhr-nav-link" x-text="t('nav.components')">Components</a>
+          <a href="#patterns" class="qhr-nav-link" x-text="t('nav.patterns')">Patterns</a>
+          <a href="#themes" class="qhr-nav-link" x-text="t('nav.themes')">Themes</a>
+          <a href="#docs" class="qhr-nav-link" x-text="t('nav.docs')">Docs</a>
         </nav>
 
-        <!-- Controls -->
-        <div style="display: flex; align-items: center; gap: 10px;">
+        <!-- Right Header Actions -->
+        <div class="qhr-header-actions">
           
-          <!-- RTL / LTR -->
-          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" @click="toggleDir()" title="تبديل الاتجاه">
-            <span x-text="dir === 'rtl' ? 'LTR' : 'RTL'" style="font-family: var(--q-font-mono); font-weight: 700;"></span>
+          <!-- Search Button -->
+          <button type="button" class="qhr-icon-btn" aria-label="Search">
+            <svg style="width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
           </button>
 
-          <!-- Day / Night Mode -->
-          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" @click="toggleMode()" title="تبديل النمط النهاري والليلي">
-            <svg style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" x-show="mode === 'dark'">
+          <!-- Day / Night Mode Toggle -->
+          <button type="button" class="qhr-icon-btn" @click="toggleMode()" :title="mode === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+            <svg style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" x-show="mode === 'dark'">
               <circle cx="12" cy="12" r="5"></circle>
               <line x1="12" y1="1" x2="12" y2="3"></line>
               <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -69,144 +71,491 @@
               <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
               <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
             </svg>
-            <svg style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" x-show="mode === 'light'">
+            <svg style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" x-show="mode === 'light'">
               <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
             </svg>
           </button>
 
-          <!-- Quick Link -->
-          <a href="https://www.npmjs.com/package/qahera-ui" target="_blank" class="qhr-btn qhr-btn--primary qhr-btn--sm" style="text-decoration: none;">
-            <span>حزمة NPM</span>
+          <!-- Language / Direction Toggle -->
+          <button type="button" class="qhr-icon-btn" @click="toggleLang()" style="font-family: var(--q-font-mono); font-size: 0.8rem; font-weight: 700;">
+            <span x-text="lang === 'en' ? 'عربي' : 'EN'"></span>
+          </button>
+
+          <!-- Primary Pill CTA -->
+          <a href="#components" class="qhr-btn-pill-dark">
+            <span x-text="t('cta.getStarted')">Get Started</span>
+            <svg style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </a>
+
         </div>
 
       </div>
     </div>
   </header>
 
-  <!-- 2. Hero Section: Direct & Architectural -->
-  <section class="hero-section">
+  <!-- 2. Hero Section -->
+  <section id="home" class="qhr-hero-section">
+    <div class="site-container">
+      <div class="qhr-hero-grid">
+        
+        <!-- Left Hero Content -->
+        <div class="qhr-hero-content">
+          <span class="qhr-hero-meta" x-text="t('hero.meta')">DESIGN SYSTEM / UI COMPONENTS / AI READY</span>
+          <h1 class="qhr-hero-title">Qahera UI Kit</h1>
+          <div class="qhr-hero-statement" x-text="t('hero.statement')">
+            A design language for humans, AI agents, and the web.
+          </div>
+          <p class="qhr-hero-body" x-text="t('hero.body')">
+            Build consistent, beautiful interfaces with a modern design system inspired by the spirit of Cairo — crafted for developers, AI agents, and the next generation of web experiences.
+          </p>
+
+          <div class="qhr-hero-actions">
+            <a href="#components" class="qhr-btn-pill-dark">
+              <span x-text="t('cta.getStarted')">Get Started</span>
+              <svg style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+
+            <a href="https://github.com/alwkala/Qahera-UI-Kit" target="_blank" rel="noopener" class="qhr-btn-pill-outline">
+              <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span x-text="t('cta.viewGithub')">View on GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Hero Visual: Authentic Panoramic Skyline -->
+        <div class="qhr-hero-visual">
+          <img src="assets/images/v-banner1.png" alt="Cairo Architectural Skyline" class="qhr-hero-skyline">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Section: "WHY QAHERA?" -->
+  <section class="qhr-section">
     <div class="site-container">
       
-      <!-- Meta Definition -->
-      <div class="hero-meta-strip">
-        <span style="color: var(--qhr-color-primary); font-weight: 700;">SPECIFICATION &bull; REGISTRY &bull; COMPILER</span>
-        <span>&bull;</span>
-        <span>ZERO RUNTIME LOCK-IN</span>
-      </div>
-
-      <!-- Main Heading (Clean Typography, Zero Slop Gradients) -->
-      <h1 class="hero-headline">
-        لغة تصميم وقواعد معمارية مشتركة تجمع الإنسان والذكاء الاصطناعي والمتصفح
-      </h1>
-
-      <!-- Precise Subtitle -->
-      <p class="hero-statement">
-        الذكاء الاصطناعي يستطيع توليد واجهات بسرعة غير مسبوقة، لكنه يعيد اختراع عناصر التصميم عند كل طلب جديد.<br/>
-        <strong>قاهرة</strong> تمنح وكيلك الذكي معجماً معمارياً حتمياً (<span style="font-family: var(--q-font-mono); color: var(--qhr-color-primary);">Canonical Vocabulary</span>) وقواعد تركيب تفصل المعنى الدلالي عن تقنيات العرض.
+      <div class="qhr-section-tagline" x-text="t('why.tag')">WHY QAHERA?</div>
+      <h2 class="qhr-section-heading" x-text="t('why.title')">A complete design system for modern development.</h2>
+      <p class="qhr-section-subhead" x-text="t('why.sub')">
+        More than just components — Qahera gives you a unified design language with tokens, patterns, and machine-readable context to keep your interfaces consistent across any stack.
       </p>
 
-      <!-- Action Bar -->
-      <div class="hero-action-bar">
-        <div class="cli-pill">
-          <span style="color: var(--qhr-color-primary); font-weight: 700;">$</span>
-          <span>npx qahera-ui init --target=react</span>
-          <button type="button" 
-                  class="qhr-btn qhr-btn--ghost qhr-btn--xs" 
-                  style="padding: 2px 8px;" 
-                  @click="copyCommand('npx qahera-ui init --target=react')">
-            <span x-text="copied ? 'تم النسخ' : 'نسخ'"></span>
-          </button>
+      <!-- 4 Core Pillars Grid -->
+      <div class="qhr-features-grid">
+        
+        <!-- Pillar 1: Components -->
+        <div class="qhr-feature-card">
+          <div class="qhr-feature-icon-box">
+            <svg style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h3 class="qhr-feature-title" x-text="t('pillars.components.title')">Components</h3>
+          <p class="qhr-feature-desc" x-text="t('pillars.components.desc')">
+            42+ ready-to-use components with consistent design and accessibility built-in.
+          </p>
         </div>
-        <a href="#workbench" class="qhr-btn qhr-btn--secondary qhr-btn--md" style="text-decoration: none;">
-          <span>استعراض منصة القواعد الحية</span>
+
+        <!-- Pillar 2: Patterns -->
+        <div class="qhr-feature-card">
+          <div class="qhr-feature-icon-box">
+            <svg style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </div>
+          <h3 class="qhr-feature-title" x-text="t('pillars.patterns.title')">Patterns</h3>
+          <p class="qhr-feature-desc" x-text="t('pillars.patterns.desc')">
+            20+ higher-order patterns to help you build real-world interfaces faster.
+          </p>
+        </div>
+
+        <!-- Pillar 3: Themes -->
+        <div class="qhr-feature-card">
+          <div class="qhr-feature-icon-box">
+            <svg style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+          </div>
+          <h3 class="qhr-feature-title" x-text="t('pillars.themes.title')">Themes</h3>
+          <p class="qhr-feature-desc" x-text="t('pillars.themes.desc')">
+            12+ Cairo-inspired themes that bring local identity to your applications.
+          </p>
+        </div>
+
+        <!-- Pillar 4: Multi-Target -->
+        <div class="qhr-feature-card">
+          <div class="qhr-feature-icon-box">
+            <svg style="width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3 class="qhr-feature-title" x-text="t('pillars.multiTarget.title')">Multi-Target</h3>
+          <p class="qhr-feature-desc" x-text="t('pillars.multiTarget.desc')">
+            Works with React, PHP, HTML, Web Components and more — no lock-in.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Section: "COMPONENTS SHOWCASE" -->
+  <section id="components" class="qhr-section" style="background-color: var(--q-surface-subtle);">
+    <div class="site-container">
+      
+      <div class="qhr-split-showcase">
+        
+        <!-- Left Side: Copy & Trigger -->
+        <div>
+          <div class="qhr-section-tagline" x-text="t('showcase.tag')">COMPONENTS</div>
+          <h2 class="qhr-section-heading" x-text="t('showcase.title')">Beautiful. Accessible. Ready.</h2>
+          <p class="qhr-section-subhead" style="margin-bottom: 32px;" x-text="t('showcase.desc')">
+            From buttons and forms to data tables and navigation, Qahera includes everything you need to build modern, responsive interfaces — out of the box.
+          </p>
+
+          <a href="#docs" class="qhr-btn-pill-dark">
+            <span x-text="t('cta.exploreComponents')">Explore All Components</span>
+            <svg style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Right Side: Interactive Live Showcase Panel -->
+        <div class="qhr-showcase-panel">
+          
+          <!-- Mini App Dashboard Mockup -->
+          <div class="qhr-mini-dash">
+            
+            <div class="qhr-mini-dash-head">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <svg style="width: 20px; height: 22px; color: var(--q-terracotta);" viewBox="0 0 32 36" fill="currentColor">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C7.716 2 1 8.716 1 17v15a2 2 0 002 2h26a2 2 0 002-2V17c0-8.284-6.716-15-15-15zm-9 15c0-4.97 4.03-9 9-9s9 4.03 9 9v13H7V17z" />
+                </svg>
+                <span style="font-family: var(--q-font-heading); font-weight: 700; font-size: 0.95rem;">Qahera</span>
+              </div>
+              <div style="font-size: 0.78rem; color: var(--q-text-muted);" x-text="t('dash.search')">Search components...</div>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <div style="font-weight: 700; font-size: 0.95rem; color: var(--q-text-primary);" x-text="t('dash.welcome')">Welcome back, Developer</div>
+              <div style="font-size: 0.78rem; color: var(--q-text-muted);" x-text="t('dash.sub')">Build something beautiful, together.</div>
+            </div>
+
+            <!-- Mini KPIs -->
+            <div class="qhr-mini-kpis">
+              <div class="qhr-kpi-card">
+                <span class="qhr-kpi-label">Components</span>
+                <span class="qhr-kpi-val">42+</span>
+              </div>
+              <div class="qhr-kpi-card">
+                <span class="qhr-kpi-label">Patterns</span>
+                <span class="qhr-kpi-val">20+</span>
+              </div>
+              <div class="qhr-kpi-card">
+                <span class="qhr-kpi-label">Themes</span>
+                <span class="qhr-kpi-val">12+</span>
+              </div>
+            </div>
+
+            <!-- Elegant Curve Line Graph -->
+            <div style="padding-top: 10px;">
+              <svg viewBox="0 0 300 80" style="width: 100%; height: auto; overflow: visible;">
+                <defs>
+                  <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#D95338" stop-opacity="0.25"/>
+                    <stop offset="100%" stop-color="#D95338" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0 60 C 40 40, 70 65, 110 45 C 150 25, 190 70, 230 40 C 260 20, 280 25, 300 35 L 300 80 L 0 80 Z" fill="url(#chartGrad)"/>
+                <path d="M0 60 C 40 40, 70 65, 110 45 C 150 25, 190 70, 230 40 C 260 20, 280 25, 300 35" fill="none" stroke="#D95338" stroke-width="2.5"/>
+                <circle cx="230" cy="40" r="4.5" fill="#D95338" stroke="#FFFFFF" stroke-width="2"/>
+              </svg>
+            </div>
+
+          </div>
+
+          <!-- Floating Interactive Components Side -->
+          <div class="qhr-mini-controls">
+            
+            <!-- Buttons Row -->
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--sm" style="border-radius: var(--q-radius-pill);">
+                Primary Button &rarr;
+              </button>
+              <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--sm" style="border-radius: var(--q-radius-pill);">
+                Secondary Button
+              </button>
+            </div>
+
+            <!-- Switch & Dropdown -->
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <label class="qhr-switch" style="display: inline-flex; align-items: center; cursor: pointer;">
+                <input type="checkbox" checked style="accent-color: var(--q-terracotta); width: 22px; height: 22px;">
+              </label>
+              <select class="qhr-select" style="font-size: 0.82rem; padding: 6px 12px; border-radius: 8px; flex: 1;">
+                <option>Dropdown</option>
+                <option>Cairo Modern</option>
+                <option>Heliopolis Deco</option>
+              </select>
+            </div>
+
+            <!-- Form Input -->
+            <div class="qhr-form-group">
+              <label class="qhr-label" style="font-size: 0.78rem; font-weight: 600; margin-bottom: 4px; display: block;">Input label</label>
+              <input type="text" class="qhr-input" value="Type something..." style="font-size: 0.85rem; padding: 8px 12px; border-radius: 8px; width: 100%;">
+            </div>
+
+            <!-- Alerts -->
+            <div class="qhr-alert qhr-alert--success" style="padding: 10px 14px; border-radius: 8px; font-size: 0.82rem; display: flex; align-items: center; gap: 8px;">
+              <svg style="width: 16px; height: 16px; color: #059669; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <div>
+                <strong>Success!</strong> Your action was completed.
+              </div>
+            </div>
+
+            <div class="qhr-alert qhr-alert--info" style="padding: 10px 14px; border-radius: 8px; font-size: 0.82rem; display: flex; align-items: center; gap: 8px;">
+              <svg style="width: 16px; height: 16px; color: #0284C7; flex-shrink: 0;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <div>
+                <strong>Info:</strong> This is an informational message.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Section: "DESIGN TOKENS & THEMES" -->
+  <section id="themes" class="qhr-section">
+    <div class="site-container">
+      
+      <div class="qhr-tokens-grid">
+        
+        <!-- Left: Dark Terminal Code Block -->
+        <div class="qhr-terminal-card">
+          <div class="qhr-terminal-head">
+            <div class="qhr-terminal-tabs">
+              <svg style="width: 16px; height: 16px; color: #D95338;" viewBox="0 0 32 36" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C7.716 2 1 8.716 1 17v15a2 2 0 002 2h26a2 2 0 002-2V17c0-8.284-6.716-15-15-15zm-9 15c0-4.97 4.03-9 9-9s9 4.03 9 9v13H7V17z" />
+              </svg>
+              <button type="button" class="qhr-terminal-tab" :class="{ 'is-active': activeTab === 'react' }" @click="activeTab = 'react'">React</button>
+              <button type="button" class="qhr-terminal-tab" :class="{ 'is-active': activeTab === 'html' }" @click="activeTab = 'html'">HTML</button>
+              <button type="button" class="qhr-terminal-tab" :class="{ 'is-active': activeTab === 'php' }" @click="activeTab = 'php'">PHP</button>
+            </div>
+            <button type="button" class="qhr-terminal-tab" @click="copyCode()">
+              <span x-text="copied ? 'Copied!' : 'Copy'"></span>
+            </button>
+          </div>
+
+          <!-- Code Body with Line Numbers -->
+          <pre class="qhr-code-body"><code><span class="qhr-code-line"><span class="qhr-line-num">1</span><span style="color: #F472B6;">import</span> { <span style="color: #60A5FA;">Button</span>, <span style="color: #60A5FA;">Card</span> } <span style="color: #F472B6;">from</span> <span style="color: #FBBF24;">'qahera-ui'</span>;</span>
+<span class="qhr-code-line"><span class="qhr-line-num">2</span></span>
+<span class="qhr-code-line"><span class="qhr-line-num">3</span><span style="color: #F472B6;">export function</span> <span style="color: #60A5FA;">Example</span>() {</span>
+<span class="qhr-code-line"><span class="qhr-line-num">4</span>  <span style="color: #F472B6;">return</span> (</span>
+<span class="qhr-code-line"><span class="qhr-line-num">5</span>    <span style="color: #E2E8F0;">&lt;</span><span style="color: #60A5FA;">Card</span><span style="color: #E2E8F0;">&gt;</span></span>
+<span class="qhr-code-line"><span class="qhr-line-num">6</span>      <span style="color: #E2E8F0;">&lt;</span><span style="color: #38BDF8;">h2</span><span style="color: #E2E8F0;">&gt;</span>Qahera UI Kit<span style="color: #E2E8F0;">&lt;/</span><span style="color: #38BDF8;">h2</span><span style="color: #E2E8F0;">&gt;</span></span>
+<span class="qhr-code-line"><span class="qhr-line-num">7</span>      <span style="color: #E2E8F0;">&lt;</span><span style="color: #38BDF8;">p</span><span style="color: #E2E8F0;">&gt;</span>A design language for humans, AI agents, and the web.<span style="color: #E2E8F0;">&lt;/</span><span style="color: #38BDF8;">p</span><span style="color: #E2E8F0;">&gt;</span></span>
+<span class="qhr-code-line"><span class="qhr-line-num">8</span>      <span style="color: #E2E8F0;">&lt;</span><span style="color: #60A5FA;">Button</span> <span style="color: #A78BFA;">variant</span><span style="color: #E2E8F0;">=</span><span style="color: #FBBF24;">"primary"</span><span style="color: #E2E8F0;">&gt;</span></span>
+<span class="qhr-code-line"><span class="qhr-line-num">9</span>        Get Started</span>
+<span class="qhr-code-line"><span class="qhr-line-num">10</span>      <span style="color: #E2E8F0;">&lt;/</span><span style="color: #60A5FA;">Button</span><span style="color: #E2E8F0;">&gt;</span></span>
+<span class="qhr-code-line"><span class="qhr-line-num">11</span>    <span style="color: #E2E8F0;">&lt;/</span><span style="color: #60A5FA;">Card</span><span style="color: #E2E8F0;">&gt;</span></span>
+<span class="qhr-code-line"><span class="qhr-line-num">12</span>  );</span>
+<span class="qhr-code-line"><span class="qhr-line-num">13</span>}</span></code></pre>
+        </div>
+
+        <!-- Right: Design Tokens Explanation & 3 Theme Cards -->
+        <div>
+          <div class="qhr-section-tagline" x-text="t('tokens.tag')">DESIGN TOKENS & THEMES</div>
+          <h2 class="qhr-section-heading" x-text="t('tokens.title')">Built for consistency. Powered by tokens.</h2>
+          <p class="qhr-section-subhead" style="margin-bottom: 32px;" x-text="t('tokens.desc')">
+            Qahera uses a flexible token system for colors, spacing, typography and more — making it easy to customize, scale and maintain your design system.
+          </p>
+
+          <a href="#themes" class="qhr-btn-pill-dark" style="margin-bottom: 32px;">
+            <span x-text="t('cta.exploreTokens')">Explore Design Tokens</span>
+            <svg style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+          <!-- 3 Theme Swatches Cards Stack -->
+          <div class="qhr-theme-swatches-stack">
+            
+            <!-- Cairo Light -->
+            <div class="qhr-theme-card qhr-theme-card--light" @click="setThemePreview('light')">
+              <div style="font-weight: 700; font-size: 1.05rem;">Cairo Light</div>
+              <div style="font-size: 0.82rem; color: #64748B;">Clean & modern</div>
+              <div class="qhr-swatches-row">
+                <span class="qhr-swatch-dot" style="background-color: #FAF8F5;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #D95338;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #0F172A;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #0D5C75;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #E2E8F0;"></span>
+              </div>
+            </div>
+
+            <!-- Cairo Dark -->
+            <div class="qhr-theme-card qhr-theme-card--dark" @click="setThemePreview('dark')">
+              <div style="font-weight: 700; font-size: 1.05rem;">Cairo Dark</div>
+              <div style="font-size: 0.82rem; color: #94A3B8;">Bold & cinematic</div>
+              <div class="qhr-swatches-row">
+                <span class="qhr-swatch-dot" style="background-color: #090D16;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #E05D44;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #F8FAFC;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #38BDF8;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #1E293B;"></span>
+              </div>
+            </div>
+
+            <!-- Cairo Desert -->
+            <div class="qhr-theme-card qhr-theme-card--desert" @click="setThemePreview('desert')">
+              <div style="font-weight: 700; font-size: 1.05rem;">Cairo Desert</div>
+              <div style="font-size: 0.82rem; color: rgba(255, 255, 255, 0.85);">Warm & expressive</div>
+              <div class="qhr-swatches-row">
+                <span class="qhr-swatch-dot" style="background-color: #FFFFFF;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #FCD34D;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #F59E0B;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #16202A;"></span>
+                <span class="qhr-swatch-dot" style="background-color: #FDE8E3;"></span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. Section: Metrics / Proof Strip -->
+  <section class="qhr-metrics-strip">
+    <div class="site-container">
+      <div class="qhr-metrics-grid">
+        
+        <div>
+          <div class="qhr-metric-num">+200</div>
+          <div class="qhr-metric-label" x-text="t('metrics.components')">UI Components</div>
+        </div>
+
+        <div>
+          <div class="qhr-metric-num">12</div>
+          <div class="qhr-metric-label" x-text="t('metrics.themes')">Beautiful Themes</div>
+        </div>
+
+        <div>
+          <div class="qhr-metric-num">2.5k+</div>
+          <div class="qhr-metric-label" x-text="t('metrics.devs')">Developers</div>
+        </div>
+
+        <div>
+          <div class="qhr-metric-num">100%</div>
+          <div class="qhr-metric-label" x-text="t('metrics.oss')">Open Source</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Section: "LOVED BY DEVELOPERS" (Testimonials) -->
+  <section class="qhr-section">
+    <div class="site-container">
+      
+      <div class="qhr-section-tagline" x-text="t('testimonials.tag')">LOVED BY DEVELOPERS</div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; margin-bottom: 48px;">
+        <div>
+          <h2 class="qhr-section-heading" x-text="t('testimonials.title')">Trusted by teams around the world.</h2>
+          <p class="qhr-section-subhead" style="margin-bottom: 0;" x-text="t('testimonials.sub')">
+            From indie developers to large organizations, Qahera helps teams build better, faster.
+          </p>
+        </div>
+        <a href="#docs" class="qhr-btn-pill-dark">
+          <span x-text="t('cta.readTestimonials')">Read Testimonials</span>
+          <svg style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </a>
       </div>
 
-    </div>
-  </section>
-
-  <!-- 3. Interactive Workbench: Living Dogfooding Proof -->
-  <section id="workbench" class="section-block">
-    <div class="site-container">
-      
-      <span class="section-label">01 &bull; LIVING WORKBENCH</span>
-      <h2 class="section-heading">منصة القواعد التنفيذية: كيف تتفاعل مكونات القاهرة مع المتغيرات اللحظية؟</h2>
-      <p class="section-desc">
-        اختر أياً من أحياء أطلس القاهرة المعماري، ولاحظ كيف تتكيف أنصاف الأقطار، وتباينات الألوان، وظلال البطاقات، وحالات الأزرار لحظياً دون إعادة كتابة سطر كود واحد.
-      </p>
-
-      <!-- Theme Selector Tabs -->
-      <div class="theme-selector-strip">
-        <template x-for="t in themes" :key="t.id">
-          <button type="button" 
-                  class="theme-tab" 
-                  :class="{ 'is-active': activeTheme === t.id }"
-                  @click="setTheme(t.id)">
-            <span class="theme-dot" :style="{ backgroundColor: t.dot }"></span>
-            <span x-text="t.name"></span>
-          </button>
-        </template>
-      </div>
-
-      <!-- Live Workbench Card Constructed Exclusively from Canonical Components -->
-      <div class="workbench-panel">
+      <!-- 3 Testimonial Cards -->
+      <div class="qhr-testimonials-grid">
         
-        <div class="workbench-meta">
+        <!-- Testimonial 1 -->
+        <div class="qhr-testimonial-card">
           <div>
-            <span>الحي النشط: </span>
-            <strong style="color: var(--qhr-content-primary);" x-text="currentThemeObj.name"></strong>
-            <span> &bull; الحركة المعمارية: </span>
-            <span style="color: var(--qhr-color-primary);" x-text="currentThemeObj.movement"></span>
+            <div class="qhr-quote-mark">&ldquo;&ldquo;</div>
+            <p class="qhr-quote-text" x-text="t('reviews.one.quote')">
+              "Qahera UI Kit is a game-changer. The design system is beautiful, well-structured, and a joy to work with."
+            </p>
           </div>
+          <div class="qhr-author-row">
+            <div class="qhr-author-avatar" style="display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--q-terracotta);">AE</div>
+            <div>
+              <div class="qhr-author-name">Ahmed El-Sayed</div>
+              <div class="qhr-author-role">Frontend Developer</div>
+              <div class="qhr-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="qhr-testimonial-card">
           <div>
-            <span>أنصاف الأقطار: </span>
-            <code style="color: var(--qhr-content-primary);" x-text="currentThemeObj.radius"></code>
+            <div class="qhr-quote-mark">&ldquo;&ldquo;</div>
+            <p class="qhr-quote-text" x-text="t('reviews.two.quote')">
+              "The theme system and tokens make it incredibly easy to maintain our design consistency across micro-frontends."
+            </p>
+          </div>
+          <div class="qhr-author-row">
+            <div class="qhr-author-avatar" style="display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--q-terracotta);">MH</div>
+            <div>
+              <div class="qhr-author-name">Mona Hassan</div>
+              <div class="qhr-author-role">Product Designer</div>
+              <div class="qhr-stars">★★★★★</div>
+            </div>
           </div>
         </div>
 
-        <!-- Sample Production Component Layout -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: start;">
-          
-          <!-- Column 1: Action Controls & Badges -->
-          <div style="display: flex; flex-direction: column; gap: 16px;">
-            <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary);">عناصر الإجراءات والحالات (Actions & Badges)</div>
-            
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md">زر إجراء رئيسي</button>
-              <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md">زر ثانوي</button>
-              <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--md">زر حدودي</button>
-            </div>
-
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-              <span class="qhr-badge qhr-badge--primary qhr-badge--sm">عقد دلالي موثق</span>
-              <span class="qhr-badge qhr-badge--success qhr-badge--sm">WCAG 2.1 AA</span>
-              <span class="qhr-badge qhr-badge--neutral qhr-badge--sm">0kb RSC</span>
-            </div>
-
-            <!-- Canonical Alert -->
-            <div class="qhr-alert qhr-alert--info" style="margin-top: 8px;">
-              <div class="qhr-alert__content">
-                <strong>انضباط بصري حتمي:</strong> الألوان والتباينات تتطابق آلياً مع معايير الوصولية في كل من الوضعين النهاري والليلي.
-              </div>
+        <!-- Testimonial 3 -->
+        <div class="qhr-testimonial-card">
+          <div>
+            <div class="qhr-quote-mark">&ldquo;&ldquo;</div>
+            <p class="qhr-quote-text" x-text="t('reviews.three.quote')">
+              "Finally a UI kit that understands both modern web and local cultural identity. Highly recommended!"
+            </p>
+          </div>
+          <div class="qhr-author-row">
+            <div class="qhr-author-avatar" style="display: flex; align-items: center; justify-content: center; font-weight: 800; color: var(--q-terracotta);">OK</div>
+            <div>
+              <div class="qhr-author-name">Omar Khaled</div>
+              <div class="qhr-author-role">Full Stack Developer</div>
+              <div class="qhr-stars">★★★★★</div>
             </div>
           </div>
-
-          <!-- Column 2: Data & Form Primitives -->
-          <div style="display: flex; flex-direction: column; gap: 16px;">
-            <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary);">مدخلات النماذج والأيقونات المعمارية</div>
-            
-            <div class="qhr-form-group">
-              <label class="qhr-label" style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.88rem;">اسم مفردة التصميم</label>
-              <input type="text" class="qhr-input" value="DataTableToolbar" readonly style="width: 100%;">
-            </div>
-
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--qhr-surface-muted, #1c1c24); border-radius: var(--qhr-radius-field, 6px);">
-              <span style="font-size: 0.88rem; color: var(--qhr-content-secondary);">التوافق ثنائي الاتجاه (RTL/LTR Parity)</span>
-              <span style="font-family: var(--q-font-mono); font-size: 0.8rem; font-weight: 700; color: var(--qhr-color-primary);">100% LOGICAL</span>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -214,190 +563,244 @@
     </div>
   </section>
 
-  <!-- 4. The Core Problem: Design Entropy -->
-  <section id="the-problem" class="section-block">
-    <div class="site-container">
-      
-      <span class="section-label">02 &bull; THE REAL PROBLEM</span>
-      <h2 class="section-heading">الذكاء الاصطناعي يختصر وقت البرمجة، لكنه يضاعف عشوائية التصميم</h2>
-      <p class="section-desc">
-        توليد الأزرار والبطاقات بالـ Prompt أمر سهل للغاية. لكن المعضلة الهندسية الحقيقية: كيف تمنع الوكيل البرمجي من إعادة اختراع نظامك البصري عند كل محادثة؟
-      </p>
+  <!-- 8. Bottom CTA Banner -->
+  <section class="qhr-cta-banner-section">
+    <!-- Illuminated Cairo Skyline Silhouette Watermark -->
+    <img src="assets/images/v-banner1.png" alt="" class="qhr-cta-skyline-bg">
 
-      <div class="grid-two-column">
+    <div class="site-container">
+      <div class="qhr-cta-inner">
         
-        <!-- Box 1: Raw AI Slop -->
-        <div class="contrast-box contrast-box--slop">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <h3 style="font-size: 1.15rem; color: var(--qhr-color-danger, #e11d48);">التوليد الإحصائي العشوائي (Raw AI Prompts)</h3>
-            <span class="qhr-badge qhr-badge--danger qhr-badge--xs">Design Entropy</span>
+        <!-- Left Banner Content -->
+        <div>
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+            <svg style="width: 24px; height: 26px; color: var(--q-terracotta);" viewBox="0 0 32 36" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C7.716 2 1 8.716 1 17v15a2 2 0 002 2h26a2 2 0 002-2V17c0-8.284-6.716-15-15-15zm-9 15c0-4.97 4.03-9 9-9s9 4.03 9 9v13H7V17z" />
+            </svg>
+            <span style="font-family: var(--q-font-heading); font-weight: 800; font-size: 1.15rem; color: #FFFFFF;">Qahera</span>
+            <span style="color: #64748B; font-size: 0.85rem;">UI Kit</span>
           </div>
-          <p style="font-size: 0.92rem; line-height: 1.65;">
-            يعيد الوكيل اختراع فئات الألوان والمسافات في كل طلب، ويكسر اتجاه القراءة بخصائص فيزيائية محظورة (<code style="color: #f87171;">ml-4</code>)، ويقحم رموز الإيموجي العشوائية كبديل رخيص للأيقونات المؤسسية.
+
+          <h2 class="qhr-cta-title" x-text="t('banner.title')">Start building your next project today.</h2>
+          <p class="qhr-cta-sub" x-text="t('banner.sub')">
+            Get the Qahera UI Kit and bring the spirit of Cairo to your interfaces.
           </p>
-          <div class="code-slate">
-            &lt;!-- كود هش وغير متسق ينهار في الـ RTL --&gt;<br/>
-            &lt;button class="bg-blue-600 ml-4 py-2 px-4 rounded text-white"&gt;<br/>
-            &nbsp;&nbsp;&lt;span&gt;حذف السجل&lt;/span&gt;<br/>
-            &nbsp;&nbsp;&lt;span&gt;🗑️&lt;/span&gt; &lt;!-- إيموجي عشوائي محظور --&gt;<br/>
-            &lt;/button&gt;
+
+          <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#home" class="qhr-btn-pill-terracotta">
+              <span x-text="t('cta.getStarted')">Get Started</span>
+              <svg style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+
+            <a href="https://github.com/alwkala/Qahera-UI-Kit" target="_blank" rel="noopener" class="qhr-btn-pill-outline" style="background-color: transparent; border-color: rgba(255, 255, 255, 0.2); color: #FFFFFF !important;">
+              <svg style="width: 18px; height: 18px; fill: currentColor;" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span x-text="t('cta.viewGithub')">View on GitHub</span>
+            </a>
           </div>
         </div>
 
-        <!-- Box 2: Qahera Canonical Language -->
-        <div class="contrast-box contrast-box--canonical">
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
-            <h3 style="font-size: 1.15rem; color: var(--qhr-color-primary, #e5c378);">لغة قاهرة المعمارية المنضبطة (Canonical Grammar)</h3>
-            <span class="qhr-badge qhr-badge--success qhr-badge--xs">Constrained Grammar</span>
+        <!-- Right Banner Meta & Social Icons -->
+        <div class="qhr-cta-meta">
+          <div class="qhr-cta-tags">
+            <span>Open Source</span>
+            <span>&bull;</span>
+            <span>Modern</span>
+            <span>&bull;</span>
+            <span>AI Ready</span>
           </div>
-          <p style="font-size: 0.92rem; line-height: 1.65;">
-            يعمل الوكيل داخل معجم موثق. المكون محكوم بعقد YAML صريح، وبخصائص منطقية أصلية، وأيقونة SVG معيارية من السجل الرسمي الـ 41 دون أي تشوه دلالي عبر React أو PHP أو HTML.
-          </p>
-          <div class="code-slate">
-            &lt;!-- كود موثق بالعقد ومحكوم بمتغيرات المنظومة --&gt;<br/>
-            &lt;button class="qhr-btn qhr-btn--danger qhr-btn--md" type="button"&gt;<br/>
-            &nbsp;&nbsp;&lt;span class="qhr-btn__label"&gt;حذف السجل&lt;/span&gt;<br/>
-            &nbsp;&nbsp;&lt;svg class="qhr-icon qhr-icon--delete" viewBox="0 0 24 24"&gt;...&lt;/svg&gt;<br/>
-            &lt;/button&gt;
+
+          <div class="qhr-social-icons">
+            <a href="https://github.com/alwkala/Qahera-UI-Kit" target="_blank" class="qhr-social-icon" aria-label="GitHub">
+              <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com" target="_blank" class="qhr-social-icon" aria-label="X">
+              <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="qhr-social-icon" aria-label="LinkedIn">
+              <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
           </div>
         </div>
 
       </div>
-
     </div>
   </section>
 
-  <!-- 5. Triad Architecture -->
-  <section id="architecture" class="section-block">
+  <!-- 9. Footer -->
+  <footer class="qhr-site-footer">
     <div class="site-container">
-      
-      <span class="section-label">03 &bull; ARCHITECTURAL SEPARATION</span>
-      <h2 class="section-heading">فصل الهوية الدلالية عن تقنية العرض (Semantic Parity)</h2>
-      <p class="section-desc">
-        الزر هو زر. ليس "React Button" أو "PHP Button" أو "Tailwind Button"؛ هذه مجرد استراتيجيات عرض. قاهرة تفصل القصد التصميمي وتترجمه دون أي انزلاق في المفردات.
-      </p>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-        
-        <div class="contrast-box">
-          <div style="font-family: var(--q-font-mono); font-size: 0.8rem; color: var(--qhr-color-primary); margin-bottom: 8px;">LAYER 01</div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 10px;">الإنسان (Human)</h3>
-          <p style="font-size: 0.92rem;">يفكر بالقصد الدلالي والغرض الوظيفي: "أريد لوحة عمليات وجداول بيانات مجمعة".</p>
+      <div class="qhr-footer-inner">
+        <div>&copy; 2026 Qahera UI Kit. Inspired by Cairo. Built for what's next.</div>
+        <div class="qhr-footer-links">
+          <a href="#home" class="qhr-footer-link">Home</a>
+          <a href="#components" class="qhr-footer-link">Components</a>
+          <a href="#patterns" class="qhr-footer-link">Patterns</a>
+          <a href="#themes" class="qhr-footer-link">Themes</a>
+          <a href="#docs" class="qhr-footer-link">Docs</a>
         </div>
-
-        <div class="contrast-box">
-          <div style="font-family: var(--q-font-mono); font-size: 0.8rem; color: var(--qhr-color-primary); margin-bottom: 8px;">LAYER 02</div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 10px;">الذكاء الاصطناعي (AI)</h3>
-          <p style="font-size: 0.92rem;">يمتلك قواعد التركيب والمعجم المقيد: Dashboard &rarr; DataTableToolbar &rarr; Table &rarr; Pagination.</p>
-        </div>
-
-        <div class="contrast-box">
-          <div style="font-family: var(--q-font-mono); font-size: 0.8rem; color: var(--qhr-color-primary); margin-bottom: 8px;">LAYER 03</div>
-          <h3 style="font-size: 1.2rem; margin-bottom: 10px;">المتصفح (Browser)</h3>
-          <p style="font-size: 0.92rem;">يتلقى تنفيذاً حتمياً: كود HTML دلالي + 0kb RSC + خصائص CSS منطقية ووصولية معتمدة.</p>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 6. AI Agent Skill Workflow -->
-  <section id="agent-skill" class="section-block">
-    <div class="site-container">
-      
-      <span class="section-label">04 &bull; AGENT ERGONOMICS</span>
-      <h2 class="section-heading">المهارة البرمجية أهم من الـ Prompt</h2>
-      <p class="section-desc">
-        تشغيل أمر <code style="color: var(--qhr-color-primary);">$ npx qahera-ui init</code> يزرع مهارة قاهرة (.agents/skills/qahera-ui) مباشرة داخل مساحة عملك، ليتحول وكيل الذكاء الاصطناعي في محررك المفضل فورياً إلى خبير معماري.
-      </p>
-
-      <div class="code-slate" style="padding: 20px;">
-        <span style="color: var(--qhr-content-muted);"># 1. تهيئة المنظومة وتضمين مهارة الذكاء الاصطناعي في مشروعك</span><br/>
-        <span style="color: var(--qhr-color-primary); font-weight: 700;">$ npx qahera-ui init --target=react</span><br/>
-        <span style="color: var(--qhr-color-success-600, #10b981);">&check; Emitted qahera.json &bull; Copied tokens.css &bull; Embedded .agents/skills/qahera-ui</span><br/><br/>
-
-        <span style="color: var(--qhr-content-muted);"># 2. استدعاء الوكيل البرمجي في Cursor أو Antigravity أو Claude Code</span><br/>
-        <span style="color: var(--qhr-content-primary); font-weight: 700;">/qahera-ui compose admin-operations-dashboard --theme=downtown</span><br/>
-        <span style="color: var(--qhr-content-secondary);">[AI Execution]: Loading contracts &rarr; Verifying 100% Logical CSS &rarr; Emitting 0kb RSC Production Layout.</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 7. Footer -->
-  <footer style="padding-block: 40px; border-top: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));">
-    <div class="site-container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 16px;">
-      <div>
-        <span style="font-weight: 800; color: var(--qhr-content-primary);">قاهرة لتصميم الواجهات</span>
-        <span style="color: var(--qhr-content-muted);"> &bull; </span>
-        <span style="color: var(--qhr-content-secondary); font-size: 0.9rem;">استوديو الوكالة (Alwkala Studio)</span>
-      </div>
-      <div style="font-size: 0.85rem; color: var(--qhr-content-muted);">
-        100% Source Ownership &bull; MIT License &bull; 2026
       </div>
     </div>
   </footer>
 
-  <!-- Alpine Application Data -->
+  <!-- Alpine Reactive Controller -->
   <script>
-    function qaheraWorkbench() {
-      return {
-        mode: localStorage.getItem('qhr-mode') || 'dark',
-        dir: localStorage.getItem('qhr-dir') || 'rtl',
-        activeTheme: localStorage.getItem('qhr-theme') || 'zamalek',
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('qaheraLanding', () => ({
+        mode: 'light',
+        lang: 'en',
+        activeTab: 'react',
         copied: false,
 
-        themes: [
-          { id: 'zamalek', name: 'الزمالك', movement: 'Neo-Classical & Island Opulence', radius: '12px', dot: '#E5C378' },
-          { id: 'downtown', name: 'وسط البلد', movement: 'Khedivial Art Deco & Haussmann', radius: '4px', dot: '#C29B38' },
-          { id: 'heliopolis', name: 'هليوبوليس', movement: 'Heliopolis Style (Baron Empain)', radius: '10px', dot: '#E0A96D' },
-          { id: 'garden-city', name: 'جاردن سيتي', movement: 'Classical Belle Époque', radius: '12px', dot: '#72A1DF' },
-          { id: 'maadi', name: 'المعادي', movement: 'Garden Suburb & Biophilic', radius: '18px', dot: '#52796F' },
-          { id: 'shubra', name: 'شبرا', movement: 'Egyptian Neo-Brutalism', radius: '0px', dot: '#E11D48' },
-          { id: 'new-cairo', name: 'القاهرة الجديدة', movement: 'Hyper-Modernist Glassmorphism', radius: '22px', dot: '#0284C7' }
-        ],
-
-        get currentThemeObj() {
-          return this.themes.find(t => t.id === this.activeTheme) || this.themes[0];
+        translations: {
+          en: {
+            'nav.home': 'Home',
+            'nav.components': 'Components',
+            'nav.patterns': 'Patterns',
+            'nav.themes': 'Themes',
+            'nav.docs': 'Docs',
+            'cta.getStarted': 'Get Started',
+            'cta.viewGithub': 'View on GitHub',
+            'cta.exploreComponents': 'Explore All Components',
+            'cta.exploreTokens': 'Explore Design Tokens',
+            'cta.readTestimonials': 'Read Testimonials',
+            'hero.meta': 'DESIGN SYSTEM / UI COMPONENTS / AI READY',
+            'hero.statement': 'A design language for humans, AI agents, and the web.',
+            'hero.body': 'Build consistent, beautiful interfaces with a modern design system inspired by the spirit of Cairo — crafted for developers, AI agents, and the next generation of web experiences.',
+            'why.tag': 'WHY QAHERA?',
+            'why.title': 'A complete design system for modern development.',
+            'why.sub': 'More than just components — Qahera gives you a unified design language with tokens, patterns, and machine-readable context to keep your interfaces consistent across any stack.',
+            'pillars.components.title': 'Components',
+            'pillars.components.desc': '42+ ready-to-use components with consistent design and accessibility built-in.',
+            'pillars.patterns.title': 'Patterns',
+            'pillars.patterns.desc': '20+ higher-order patterns to help you build real-world interfaces faster.',
+            'pillars.themes.title': 'Themes',
+            'pillars.themes.desc': '12+ Cairo-inspired themes that bring local identity to your applications.',
+            'pillars.multiTarget.title': 'Multi-Target',
+            'pillars.multiTarget.desc': 'Works with React, PHP, HTML, Web Components and more — no lock-in.',
+            'showcase.tag': 'COMPONENTS',
+            'showcase.title': 'Beautiful. Accessible. Ready.',
+            'showcase.desc': 'From buttons and forms to data tables and navigation, Qahera includes everything you need to build modern, responsive interfaces — out of the box.',
+            'dash.search': 'Search components...',
+            'dash.welcome': 'Welcome back, Developer',
+            'dash.sub': 'Build something beautiful, together.',
+            'tokens.tag': 'DESIGN TOKENS & THEMES',
+            'tokens.title': 'Built for consistency. Powered by tokens.',
+            'tokens.desc': 'Qahera uses a flexible token system for colors, spacing, typography and more — making it easy to customize, scale and maintain your design system.',
+            'metrics.components': 'UI Components',
+            'metrics.themes': 'Beautiful Themes',
+            'metrics.devs': 'Developers',
+            'metrics.oss': 'Open Source',
+            'testimonials.tag': 'LOVED BY DEVELOPERS',
+            'testimonials.title': 'Trusted by teams around the world.',
+            'testimonials.sub': 'From indie developers to large organizations, Qahera helps teams build better, faster.',
+            'reviews.one.quote': '"Qahera UI Kit is a game-changer. The design system is beautiful, well-structured, and a joy to work with."',
+            'reviews.two.quote': '"The theme system and tokens make it incredibly easy to maintain our design consistency."',
+            'reviews.three.quote': '"Finally a UI kit that understands both modern web and local identity. Highly recommended!"',
+            'banner.title': 'Start building your next project today.',
+            'banner.sub': 'Get the Qahera UI Kit and bring the spirit of Cairo to your interfaces.'
+          },
+          ar: {
+            'nav.home': 'الرئيسية',
+            'nav.components': 'المكونات',
+            'nav.patterns': 'الأنماط',
+            'nav.themes': 'السمات',
+            'nav.docs': 'التوثيق',
+            'cta.getStarted': 'ابدأ الآن',
+            'cta.viewGithub': 'معاينة على GitHub',
+            'cta.exploreComponents': 'استكشف كافة المكونات',
+            'cta.exploreTokens': 'استكشف رموز التصميم',
+            'cta.readTestimonials': 'قراءة آراء المطورين',
+            'hero.meta': 'نظام تصميم / مكونات واجهة / جاهز للذكاء الاصطناعي',
+            'hero.statement': 'لغة تصميم تجمع الإنسان، والوكيل الذكي، والمتصفح معاً.',
+            'hero.body': 'ابنِ واجهات متسقة وساحرة مع نظام تصميم عصري مستوحى من روح القاهرة — صُمم للمطورين، ووكلاء الذكاء الاصطناعي، والجيل القادم من تجارب الويب.',
+            'why.tag': 'لماذا قاهرة؟',
+            'why.title': 'نظام تصميم متكامل للتطوير البرمجي العصري.',
+            'why.sub': 'أكثر من مجرد مكونات — قاهرة تمنحك لغة تصميم موحدة مع الرموز والأنماط والسياق البرمجي الآلي لضمان اتساق واجهاتك عبر أي بيئة عمل.',
+            'pillars.components.title': 'المكونات',
+            'pillars.components.desc': '42+ مكوناً معمارياً موثقاً ومبنياً بأعلى معايير الوصولية العالمية.',
+            'pillars.patterns.title': 'الأنماط',
+            'pillars.patterns.desc': '20+ نمطاً سلوكياً مركباً لمساعدتك في بناء واجهات حقيقية بسرعة فائقة.',
+            'pillars.themes.title': 'السمات',
+            'pillars.themes.desc': '12+ سمة مستوحاة من أحياء القاهرة التاريخية تمنح هويتك المحلية حضوراً عصرياً.',
+            'pillars.multiTarget.title': 'متعدد المسارات',
+            'pillars.multiTarget.desc': 'يعمل مع React و PHP و HTML و Web Components وأكثر دون أي انغلاق تنفيذي.',
+            'showcase.tag': 'المكونات المعمارية',
+            'showcase.title': 'جميلة. موثوقة الوصولية. جاهزة للإنتاج.',
+            'showcase.desc': 'من الأزرار والنماذج إلى جداول البيانات والتنقل، قاهرة تمنحك كل ما تحتاجه لبناء واجهات عصرية متجاوبة.',
+            'dash.search': 'ابحث في المكونات...',
+            'dash.welcome': 'مرحباً بك مجدداً أيها المطور',
+            'dash.sub': 'ابنِ شيئاً استثنائياً اليوم.',
+            'tokens.tag': 'رموز التصميم والسمات',
+            'tokens.title': 'مبني للاتساق الحتمي. مُدار برموز التصميم.',
+            'tokens.desc': 'تعتمد قاهرة نظام رموز دلالي مرن للألوان والمساحات والخطوط — مما يسهل تخصيص وتوسيع وصيانة نظام تصميمك.',
+            'metrics.components': 'مكوناً ورمزاً دلالياً',
+            'metrics.themes': 'سمة معمارية أصيلة',
+            'metrics.devs': 'مطور حول العالم',
+            'metrics.oss': 'مفتوح المصدر بالكامل',
+            'testimonials.tag': 'موثوق من المطورين',
+            'testimonials.title': 'تثق به فِرق العمل حول العالم.',
+            'testimonials.sub': 'من المطورين المستقلين إلى كبرى المؤسسات، تساعد قاهرة الفرق على البناء بشكل أسرع وأكثر جودة.',
+            'reviews.one.quote': '"قاهرة غيرت قواعد اللعبة؛ نظام التصميم استثنائي ومتقن والعمل به متعة حقيقية."',
+            'reviews.two.quote': '"نظام السمات والرموز سهل علينا بشكل مذهل الحفاظ على اتساق واجهاتنا البرمجية."',
+            'reviews.three.quote': '"أخيراً مكتبة واجهات تفهم كلاً من هندسة الويب الحديثة والهوية الثقافية المحلية. موصى بها بشدة!"',
+            'banner.title': 'ابدأ بناء مشروعك القادم اليوم.',
+            'banner.sub': 'احصل على مكتبة قاهرة وامنح واجهاتك روح وأصالة عاصمة المعمار.'
+          }
         },
 
         init() {
-          this.applyToDOM();
+          const savedMode = localStorage.getItem('qhr-mode') || 'light';
+          this.setMode(savedMode);
         },
 
-        setTheme(id) {
-          this.activeTheme = id;
-          localStorage.setItem('qhr-theme', id);
-          this.applyToDOM();
+        t(key) {
+          return this.translations[this.lang][key] || key;
         },
 
         toggleMode() {
-          this.mode = this.mode === 'dark' ? 'light' : 'dark';
-          localStorage.setItem('qhr-mode', this.mode);
-          this.applyToDOM();
+          this.setMode(this.mode === 'dark' ? 'light' : 'dark');
         },
 
-        toggleDir() {
-          this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl';
-          localStorage.setItem('qhr-dir', this.dir);
-          this.applyToDOM();
+        setMode(newMode) {
+          this.mode = newMode;
+          document.documentElement.setAttribute('data-mode', newMode);
+          localStorage.setItem('qhr-mode', newMode);
         },
 
-        applyToDOM() {
-          document.documentElement.setAttribute('data-theme', this.activeTheme);
-          document.documentElement.setAttribute('data-mode', this.mode);
-          document.documentElement.setAttribute('dir', this.dir);
-          document.documentElement.setAttribute('lang', this.dir === 'rtl' ? 'ar' : 'en');
+        toggleLang() {
+          this.lang = this.lang === 'en' ? 'ar' : 'en';
+          const dir = this.lang === 'ar' ? 'rtl' : 'ltr';
+          document.documentElement.setAttribute('dir', dir);
+          document.documentElement.setAttribute('lang', this.lang);
         },
 
-        copyCommand(text) {
-          navigator.clipboard.writeText(text);
-          this.copied = true;
-          setTimeout(() => { this.copied = false; }, 2000);
+        setThemePreview(theme) {
+          if (theme === 'dark') {
+            this.setMode('dark');
+          } else if (theme === 'light') {
+            this.setMode('light');
+          }
+        },
+
+        copyCode() {
+          const codeSnippet = `import { Button, Card } from 'qahera-ui';\n\nexport function Example() {\n  return (\n    <Card>\n      <h2>Qahera UI Kit</h2>\n      <p>A design language for humans, AI agents, and the web.</p>\n      <Button variant="primary">\n        Get Started\n      </Button>\n    </Card>\n  );\n}`;
+          navigator.clipboard.writeText(codeSnippet).then(() => {
+            this.copied = true;
+            setTimeout(() => { this.copied = false; }, 2000);
+          });
         }
-      };
-    }
+      }));
+    });
   </script>
 
 </body>
