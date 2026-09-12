@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ Qahera UI Kit `v1.5.0`
+# 🏛️ Qahera UI Kit `v1.5.1`
 ### The AI-Native, Contract-Driven Design System & Multi-Target Component Architecture
 **The Authoritative Visual Vocabulary, Living Component Registry & Multi-Stack Foundation by Alwkala**
 
@@ -11,7 +11,7 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 <!-- Community Badges -->
 [![npm version](https://img.shields.io/npm/v/qahera-ui.svg?style=for-the-badge&logo=npm&color=0284C7)](https://www.npmjs.com/package/qahera-ui)
 [![npm downloads](https://img.shields.io/npm/dm/qahera-ui.svg?style=for-the-badge&color=22C55E)](https://www.npmjs.com/package/qahera-ui)
-[![GitHub Stars](https://img.shields.io/badge/Stars-Alwkala%20OSS-EAB308.svg?style=for-the-badge&logo=github)](https://github.com/alwkala/Qahera-UI-Kit)
+[![GitHub Stars](https://img.shields.io/github/stars/alwkala/Qahera-UI-Kit?style=for-the-badge&logo=github&color=EAB308)](https://github.com/alwkala/Qahera-UI-Kit/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Studio: Alwkala](https://img.shields.io/badge/Studio-Alwkala-D4AF37.svg?style=for-the-badge)](https://github.com/alwkala)
 [![Ecosystem](https://img.shields.io/badge/Ecosystem-TidyFactor%20Compatible-7C3AED.svg?style=for-the-badge)](https://github.com/TidyFactor)
@@ -288,6 +288,16 @@ npx qahera-ui list
 > [!TIP]
 > **Automatic AI Skill Embedding**: Running `npx qahera-ui init` embeds `.agents/skills/qahera-ui` directly into your workspace. Coding agents in **Google Antigravity, Cursor, or Claude Code** immediately become experts at composing Qahera screens using `/qahera-ui`.
 
+#### AI Coding Agent Commands (`/qahera-ui`)
+
+| Slash Command / Prompt | Engine Workflow | Description & Output |
+|---|---|---|
+| `/qahera-ui compose [screen]` | `compose-screen.md` | Composes complete production screens using exclusively canonical primitives and patterns. |
+| `/qahera-ui pattern [name]` | `patterns-catalog.md` | Scaffolds any of the 20 higher-order UX patterns (e.g. `DataTableToolbar`, `ChatStream`). |
+| `/qahera-ui theme [neighborhood]` | `tokens/themes/*.yaml` | Switches or previews any of the 12 Cairo Atlas themes (e.g. `zamalek`, `downtown`). |
+| `/qahera-ui audit` | `audit-kit.md` | Strictly audits markup and styles against all 17 Non-Negotiable Invariants. |
+| `/qahera-ui scaffold [name]` | `author-component.md` | Scaffolds new components through the contract-first pipeline across all 6 targets. |
+
 
 ### 2. Native HTML & CSS Custom Properties
 
@@ -429,7 +439,8 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 |---|---|---|---|---|
 | **v1.0.0** | Core Foundation & Contracts | 38 Contracts, 41 Icons, 3-Tier Tokens, Compiler Engine | **Completed** | 2026-08 |
 | **v1.4.0** | Sovereign Cairo Studio | 12 Cairo Atlas Themes, Viewport Simulator, Radius Matrix | **Completed** | 2026-09 |
-| **v1.5.0** | Universal Living Showcase v3.0 | 42 Components, 20 Patterns, 78-Item Hub, Level 5 OSS CI | **Completed** | **2026-09-07** |
+| **v1.5.0** | Universal Living Showcase v3.0 | 42 Components, 20 Patterns, 78-Item Hub, Level 5 OSS CI | **Completed** | 2026-09-07 |
+| **v1.5.1** | Zero-Install CLI & AI Skill Engine | `npx qahera-ui`, NPM Launch, Dual-Bin Engine, Sovereign Skill | **Completed** | **2026-09-12** |
 | **v1.6.0** | Tokens Studio & Figma Sync | Bidirectional Figma Tokens sync, automated token pull | *Planned* | Q4 2026 |
 | **v2.0.0** | Autonomous AI Agent Engine | MCP native server, headless prompt-to-production compiler | *Roadmap* | Q1 2027 |
 

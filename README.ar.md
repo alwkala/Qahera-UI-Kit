@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ قاهرة لتصميم الواجهات `v1.5.0` (Qahera UI Kit)
+# 🏛️ قاهرة لتصميم الواجهات `v1.5.1` (Qahera UI Kit)
 ### نظام التصميم العربي البرمجـي والهندسة المعمارية متعددة المسارات لعصر الذكاء الاصطناعي
 **المعجم البصري المعياري، وسجل المكونات الحي، والأساس متعدد البيئات من تطوير استوديو الوكالة**
 
@@ -11,7 +11,7 @@
 <!-- أوسمة المجتمع -->
 [![npm version](https://img.shields.io/npm/v/qahera-ui.svg?style=for-the-badge&logo=npm&color=0284C7)](https://www.npmjs.com/package/qahera-ui)
 [![npm downloads](https://img.shields.io/npm/dm/qahera-ui.svg?style=for-the-badge&color=22C55E)](https://www.npmjs.com/package/qahera-ui)
-[![GitHub Stars](https://img.shields.io/badge/Stars-Alwkala%20OSS-EAB308.svg?style=for-the-badge&logo=github)](https://github.com/alwkala/Qahera-UI-Kit)
+[![GitHub Stars](https://img.shields.io/github/stars/alwkala/Qahera-UI-Kit?style=for-the-badge&logo=github&color=EAB308)](https://github.com/alwkala/Qahera-UI-Kit/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Studio: Alwkala](https://img.shields.io/badge/Studio-Alwkala-D4AF37.svg?style=for-the-badge)](https://github.com/alwkala)
 [![Ecosystem](https://img.shields.io/badge/Ecosystem-TidyFactor%20Compatible-7C3AED.svg?style=for-the-badge)](https://github.com/TidyFactor)
@@ -257,6 +257,16 @@ npx qahera-ui list
 > [!TIP]
 > **التضمين التلقائي لمهارة الذكاء الاصطناعي**: تشغيل أمر `npx qahera-ui init` يقوم تلقائياً بنسخ مجلد `.agents/skills/qahera-ui` داخل مشروعك، ليصبح وكيل الذكاء الاصطناعي في محررك (**Google Antigravity أو Cursor أو Claude Code**) خبيراً فورياً في كتابة وتركيب مكونات القاهرة عبر الأمر `/qahera-ui`.
 
+#### أوامر وكيل الذكاء الاصطناعي البرمجي (`/qahera-ui`)
+
+| الأمر / المدخل | مسار العمل في المهارة | الوصف والمخرجات |
+|---|---|---|
+| `/qahera-ui compose [screen]` | `compose-screen.md` | توليد شاشات إنتاجية متكاملة اعتماداً حصرياً على المكونات والأنماط المعيارية. |
+| `/qahera-ui pattern [name]` | `patterns-catalog.md` | بناء وتركيب أي نمط من الأنماط الـ 20 التركيبية (مثل `DataTableToolbar`, `ChatStream`). |
+| `/qahera-ui theme [neighborhood]` | `tokens/themes/*.yaml` | تفعيل ومعاينة أي ثيم من ثيمات أطلس القاهرة الـ 12 (مثل `zamalek`, `downtown`). |
+| `/qahera-ui audit` | `audit-kit.md` | فحص الالتزام المعماري الصارم بالمحددات الـ 17 غير القابلة للتفاوض. |
+| `/qahera-ui scaffold [name]` | `author-component.md` | إنشاء وتوليد مكون جديد عبر دورة العقود الصارمة لكافة المسارات الستة. |
+
 
 ### 2. كود HTML الأصيل ومتغيرات CSS
 
@@ -390,7 +400,8 @@ export default function DashboardPage() {
 |---|---|---|---|---|
 | **v1.0.0** | النواة التأسيسية والعقود | 38 عقداً، 41 أيقونة، متغيرات التصميم الثلاثية، والمحول | **مكتمل** | أغسطس 2026 |
 | **v1.4.0** | استوديو أحياء القاهرة السيادي | 12 ثيماً مصرياً، محاكي الشاشات، ومصفوفة أنصاف الأقطار | **مكتمل** | سبتمبر 2026 |
-| **v1.5.0** | مولد المعاينات الشامل v3.0 | 42 مكوناً، 20 نمطاً، مركز الاستعراض بـ 78 عنصراً، وحوكمة المستوى 5 | **مكتمل** | **7 سبتمبر 2026** |
+| **v1.5.0** | مولد المعاينات الشامل v3.0 | 42 مكوناً، 20 نمطاً، مركز الاستعراض بـ 78 عنصراً، وحوكمة المستوى 5 | **مكتمل** | 7 سبتمبر 2026 |
+| **v1.5.1** | محرك الـ CLI وتثبيت المهارة | إطلاق `npx qahera-ui` على NPM، ومحرك الثنائي، ومهارة الذكاء الاصطناعي السيادية | **مكتمل** | **12 سبتمبر 2026** |
 | **v1.6.0** | مزامنة Figma و Tokens Studio | ربط فكتور ثنائي الاتجاه، وجلب المتغيرات التلقائي | *مخطط* | الربع الرابع 2026 |
 | **v2.0.0** | محرك التوليد الذكي للوكلاء | خادم MCP أصيل، وتوليد البرمجيات من المطالبات الفورية | *رؤية مستقبلية* | الربع الأول 2027 |
 

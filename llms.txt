@@ -1,0 +1,43 @@
+# Qahera UI Kit
+
+> The AI-Native, Contract-Driven Design System & Multi-Target Component Architecture by Alwkala.
+
+Qahera UI Kit is a deterministic design system engine built for AI pair-programming agents (Google Antigravity, Cursor, Claude Code, OpenAI Codex, Windsurf) and human engineers. It enforces 100% source ownership (shadcn-style) with zero runtime dependencies.
+
+- Canonical Registry: 42 Components, 20 Compositional Patterns, 18 Application Templates, 12 Cairo Neighborhood Themes.
+- Supported Targets: React 19 (0kb RSC), PHP 8.x Plates, Native HTML/CSS, Web Components, HTMX, Tailwind CSS.
+- Zero Emoji (`QAHERA-VISUAL-001`): 41 Registered Semantic SVG Icons.
+- Bidirectional Infrastructure: 100% Logical CSS properties (`margin-inline-start`, etc.) with canonical Alexandria & Cairo typography.
+
+## Quick Links
+
+- [NPM Package](https://www.npmjs.com/package/qahera-ui): `npm i -g qahera-ui` or `npx qahera-ui`
+- [GitHub Repository](https://github.com/alwkala/Qahera-UI-Kit): Source code, contracts, and issue tracker
+- [Full Specification](SPEC.md): Normative architecture, 17 invariants, and compiler stages
+- [Agent Governance](AGENTS.md): Strict contract rules for AI coding assistants
+
+## Usage with AI Coding Agents
+
+Install and embed the Qahera skill directly into your workspace:
+
+```bash
+npx qahera-ui init --target=react
+```
+
+This places `.agents/skills/qahera-ui` into your repository. Your AI assistant will automatically use:
+- `/qahera-ui compose <screen>`: Generate complete production layouts with canonical components.
+- `/qahera-ui pattern <name>`: Scaffold 20 enterprise UX patterns.
+- `/qahera-ui theme <neighborhood>`: Switch between the 12 Cairo Atlas themes.
+- `/qahera-ui audit`: Verify compliance with the 17 architectural invariants.
+
+## Canonical Components (42)
+
+Accordion, Alert, AspectRatio, Avatar, Badge, Breadcrumb, Button, ButtonGroup, Calendar, Card, Checkbox, CodeBlock, ColorPicker, DataTable, DatePicker, Dialog, Divider, Drawer, Dropdown, EmptyState, FileUpload, Form, Input, Kbd, Menu, Modal, Navbar, Pagination, Popover, ProgressBar, RadioGroup, Select, Skeleton, Slider, Spinner, Switch, Tabs, Textarea, Timeline, Toast, Tooltip, Treeview.
+
+## Compositional Patterns (20)
+
+ConfirmationDialog, DataTableToolbar, FilterBar, SearchToolbar, DashboardStat, ChatStream, EmptyState, FormActions, KanbanBoard, LuxuryProductCard, MetricComparisonGrid, DatePaginator, EditorialStory, FileManagerGrid, Questionnaire, SortableList, StoreLocator, UserCard, VipMembership, PaginationPattern.
+
+## Cairo Atlas Themes (12)
+
+Garden City, Zamalek, Downtown, Heliopolis, Maadi, Roxy, Sakakini, El Hussein, Shubra, El Zaytoun, El Marg, New Cairo.
