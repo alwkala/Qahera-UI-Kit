@@ -1,0 +1,46 @@
+{
+  "folders": [
+    {
+      "name": "🏛️ Qahera UI Kit (Core Design System & Registry)",
+      "path": "."
+    },
+    {
+      "name": "🌐 Qahera Marketing Web (Downstream Showcase Site)",
+      "path": "../../../Qahera"
+    }
+  ],
+  "settings": {
+    "workbench.colorCustomizations": {
+      "activityBar.badgeBackground": "#D95338",
+      "statusBar.background": "#0F172A",
+      "statusBar.foreground": "#F8FAFC",
+      "statusBarItem.remoteBackground": "#D95338"
+    },
+    "files.associations": {
+      "*.yaml": "yaml",
+      "*.yml": "yaml",
+      "*.css": "css"
+    },
+    "files.exclude": {
+      "**/.git": true,
+      "**/.DS_Store": true,
+      "**/node_modules": true,
+      "**/Thumbs.db": true
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": false,
+      "**/generated": false
+    },
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": false
+  },
+  "extensions": {
+    "recommendations": [
+      "redhat.vscode-yaml",
+      "esbenp.prettier-vscode",
+      "stylelint.vscode-stylelint"
+    ]
+  }
+}
