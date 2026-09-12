@@ -82,7 +82,7 @@
 }
 
 .qhr-btn--secondary {
-  background-color: var(--qhr-button-secondary-background, var(--qhr-color-secondary-bg, #f1f5f9));
+  background-color: var(--qhr-button-secondary-background, var(--qhr-color-secondary, var(--qhr-color-secondary-bg, #f1f5f9)));
   color: var(--qhr-button-secondary-foreground, var(--qhr-color-secondary-fg, #0f172a));
   border-color: var(--qhr-button-secondary-border, var(--qhr-color-secondary-border, #cbd5e1));
 }

@@ -6,62 +6,63 @@
 /* ==========================================================================
    Dark Theme Specific Adjustments
    ========================================================================== */
-[data-theme="dark"] .qhr-btn--secondary {
-  background-color: var(--qhr-color-slate-800, #1e293b);
-  color: var(--qhr-color-slate-50, #f8fafc);
-  border-color: var(--qhr-color-slate-700, #334155);
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-btn--secondary {
+  background-color: var(--qhr-button-secondary-background, var(--qhr-color-secondary, var(--qhr-color-secondary-bg, #1e293b)));
+  color: var(--qhr-button-secondary-foreground, var(--qhr-color-secondary-fg, #f8fafc));
+  border-color: var(--qhr-button-secondary-border, var(--qhr-color-secondary-border, #334155));
 }
-[data-theme="dark"] .qhr-btn--secondary:hover {
-  background-color: var(--qhr-color-slate-700, #334155);
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-btn--secondary:hover {
+  background-color: var(--qhr-button-secondary-hover, var(--qhr-color-secondary-hover, #334155));
+  border-color: var(--qhr-border-strong, #475569);
 }
 
-[data-theme="dark"] .qhr-btn--outline:hover,
-[data-theme="dark"] .qhr-btn--ghost:hover {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-btn--outline:hover,
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-btn--ghost:hover {
   background-color: rgba(59, 130, 246, 0.15);
 }
 
-[data-theme="dark"] .qhr-badge--primary {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-badge--primary {
   background-color: rgba(59, 130, 246, 0.2);
   color: #93c5fd;
   border-color: rgba(59, 130, 246, 0.4);
 }
-[data-theme="dark"] .qhr-badge--success {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-badge--success {
   background-color: rgba(16, 185, 129, 0.2);
   color: #6ee7b7;
   border-color: rgba(16, 185, 129, 0.4);
 }
-[data-theme="dark"] .qhr-badge--warning {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-badge--warning {
   background-color: rgba(245, 158, 11, 0.2);
   color: #fde68a;
   border-color: rgba(245, 158, 11, 0.4);
 }
-[data-theme="dark"] .qhr-badge--danger {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-badge--danger {
   background-color: rgba(244, 63, 94, 0.2);
   color: #fda4af;
   border-color: rgba(244, 63, 94, 0.4);
 }
 
-[data-theme="dark"] .qhr-alert--info {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-alert--info {
   background-color: rgba(30, 58, 138, 0.4);
   border-color: #1e40af;
   color: #dbeafe;
 }
-[data-theme="dark"] .qhr-alert--success {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-alert--success {
   background-color: rgba(6, 78, 59, 0.4);
   border-color: #065f46;
   color: #d1fae5;
 }
-[data-theme="dark"] .qhr-alert--warning {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-alert--warning {
   background-color: rgba(120, 53, 15, 0.4);
   border-color: #92400e;
   color: #fef3c7;
 }
-[data-theme="dark"] .qhr-alert--danger {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-alert--danger {
   background-color: rgba(136, 19, 55, 0.4);
   border-color: #9f1239;
   color: #ffe4e6;
 }
 
-[data-theme="dark"] .qhr-modal-footer {
+:is([data-theme="dark"], [data-mode="dark"], [data-theme$="-dark"]) .qhr-modal-footer {
   background-color: var(--qhr-surface-base, #020617);
 }

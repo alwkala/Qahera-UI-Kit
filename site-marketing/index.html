@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<!-- Qahera — Executable Design Language for the Human + AI Web -->
+<!-- Strict Dogfooding · 100% Token-Driven · Zero Text Gradients · Pure Typography -->
+<html lang="ar" dir="rtl" data-theme="zamalek" data-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قاهرة — لغة تصميم تنفيذية مشتركة بين الإنسان والذكاء الاصطناعي والمتصفح | Qahera</title>
+  <meta name="description" content="قاهرة ليست مجرد مكتبة مكونات؛ إنها لغة تصميم تنفيذية تمنح المطورين ووكلاء الذكاء الاصطناعي والمتصفحات معجماً وقواعد مشتركة لمنع عشوائية التصميم وتثبيت الاتساق المعماري عبر 6 مسارات تشغيل.">
+
+  <!-- الخطوط الرسمية المعتمدة: Alexandria للعناوين والهوية، و Cairo للنصوص والواجهات -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800;900&family=Cairo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- أصول المنظومة المعمارية الحتمية -->
+  <link rel="stylesheet" href="dist/qahera-tokens.css">
+  <link rel="stylesheet" href="dist/qahera.css">
+  <link rel="stylesheet" href="dist/qahera-themes.css">
+  <link rel="stylesheet" href="assets/css/marketing.css">
+
+  <script src="assets/js/alpine.min.js" defer></script>
+</head>
+<body x-data="qaheraWorkbench()">
+
+  <!-- 1. Header & Navigation -->
+  <header class="site-header">
+    <div class="site-container">
+      <div class="header-inner">
+        
+        <!-- Brand Identity -->
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <span style="font-family: var(--q-font-heading); font-weight: 900; font-size: 1.25rem; color: var(--qhr-content-primary);">
+            قاهرة
+          </span>
+          <span class="brand-badge">v1.5.1</span>
+          <span style="font-family: var(--q-font-mono); font-size: 0.72rem; color: var(--qhr-content-muted); display: none;" class="desktop-indicator">
+            / EXECUTABLE DESIGN LANGUAGE
+          </span>
+        </div>
+
+        <!-- Center Anchors -->
+        <nav style="display: flex; align-items: center; gap: 20px;">
+          <a href="#the-problem" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">المعضلة</a>
+          <a href="#workbench" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">منصة القواعد الحية</a>
+          <a href="#architecture" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">المعمارية الثلاثية</a>
+          <a href="#agent-skill" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">الوكيل البرمجي</a>
+          <a href="https://github.com/alwkala/Qahera-UI-Kit" target="_blank" style="color: var(--qhr-content-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 600;">GitHub</a>
+        </nav>
+
+        <!-- Controls -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          
+          <!-- RTL / LTR -->
+          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" @click="toggleDir()" title="تبديل الاتجاه">
+            <span x-text="dir === 'rtl' ? 'LTR' : 'RTL'" style="font-family: var(--q-font-mono); font-weight: 700;"></span>
+          </button>
+
+          <!-- Day / Night Mode -->
+          <button type="button" class="qhr-btn qhr-btn--ghost qhr-btn--sm" @click="toggleMode()" title="تبديل النمط النهاري والليلي">
+            <svg style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" x-show="mode === 'dark'">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" x-show="mode === 'light'">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Quick Link -->
+          <a href="https://www.npmjs.com/package/qahera-ui" target="_blank" class="qhr-btn qhr-btn--primary qhr-btn--sm" style="text-decoration: none;">
+            <span>حزمة NPM</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Hero Section: Direct & Architectural -->
+  <section class="hero-section">
+    <div class="site-container">
+      
+      <!-- Meta Definition -->
+      <div class="hero-meta-strip">
+        <span style="color: var(--qhr-color-primary); font-weight: 700;">SPECIFICATION &bull; REGISTRY &bull; COMPILER</span>
+        <span>&bull;</span>
+        <span>ZERO RUNTIME LOCK-IN</span>
+      </div>
+
+      <!-- Main Heading (Clean Typography, Zero Slop Gradients) -->
+      <h1 class="hero-headline">
+        لغة تصميم وقواعد معمارية مشتركة تجمع الإنسان والذكاء الاصطناعي والمتصفح
+      </h1>
+
+      <!-- Precise Subtitle -->
+      <p class="hero-statement">
+        الذكاء الاصطناعي يستطيع توليد واجهات بسرعة غير مسبوقة، لكنه يعيد اختراع عناصر التصميم عند كل طلب جديد.<br/>
+        <strong>قاهرة</strong> تمنح وكيلك الذكي معجماً معمارياً حتمياً (<span style="font-family: var(--q-font-mono); color: var(--qhr-color-primary);">Canonical Vocabulary</span>) وقواعد تركيب تفصل المعنى الدلالي عن تقنيات العرض.
+      </p>
+
+      <!-- Action Bar -->
+      <div class="hero-action-bar">
+        <div class="cli-pill">
+          <span style="color: var(--qhr-color-primary); font-weight: 700;">$</span>
+          <span>npx qahera-ui init --target=react</span>
+          <button type="button" 
+                  class="qhr-btn qhr-btn--ghost qhr-btn--xs" 
+                  style="padding: 2px 8px;" 
+                  @click="copyCommand('npx qahera-ui init --target=react')">
+            <span x-text="copied ? 'تم النسخ' : 'نسخ'"></span>
+          </button>
+        </div>
+        <a href="#workbench" class="qhr-btn qhr-btn--secondary qhr-btn--md" style="text-decoration: none;">
+          <span>استعراض منصة القواعد الحية</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Interactive Workbench: Living Dogfooding Proof -->
+  <section id="workbench" class="section-block">
+    <div class="site-container">
+      
+      <span class="section-label">01 &bull; LIVING WORKBENCH</span>
+      <h2 class="section-heading">منصة القواعد التنفيذية: كيف تتفاعل مكونات القاهرة مع المتغيرات اللحظية؟</h2>
+      <p class="section-desc">
+        اختر أياً من أحياء أطلس القاهرة المعماري، ولاحظ كيف تتكيف أنصاف الأقطار، وتباينات الألوان، وظلال البطاقات، وحالات الأزرار لحظياً دون إعادة كتابة سطر كود واحد.
+      </p>
+
+      <!-- Theme Selector Tabs -->
+      <div class="theme-selector-strip">
+        <template x-for="t in themes" :key="t.id">
+          <button type="button" 
+                  class="theme-tab" 
+                  :class="{ 'is-active': activeTheme === t.id }"
+                  @click="setTheme(t.id)">
+            <span class="theme-dot" :style="{ backgroundColor: t.dot }"></span>
+            <span x-text="t.name"></span>
+          </button>
+        </template>
+      </div>
+
+      <!-- Live Workbench Card Constructed Exclusively from Canonical Components -->
+      <div class="workbench-panel">
+        
+        <div class="workbench-meta">
+          <div>
+            <span>الحي النشط: </span>
+            <strong style="color: var(--qhr-content-primary);" x-text="currentThemeObj.name"></strong>
+            <span> &bull; الحركة المعمارية: </span>
+            <span style="color: var(--qhr-color-primary);" x-text="currentThemeObj.movement"></span>
+          </div>
+          <div>
+            <span>أنصاف الأقطار: </span>
+            <code style="color: var(--qhr-content-primary);" x-text="currentThemeObj.radius"></code>
+          </div>
+        </div>
+
+        <!-- Sample Production Component Layout -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: start;">
+          
+          <!-- Column 1: Action Controls & Badges -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary);">عناصر الإجراءات والحالات (Actions & Badges)</div>
+            
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button type="button" class="qhr-btn qhr-btn--primary qhr-btn--md">زر إجراء رئيسي</button>
+              <button type="button" class="qhr-btn qhr-btn--secondary qhr-btn--md">زر ثانوي</button>
+              <button type="button" class="qhr-btn qhr-btn--outline qhr-btn--md">زر حدودي</button>
+            </div>
+
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="qhr-badge qhr-badge--primary qhr-badge--sm">عقد دلالي موثق</span>
+              <span class="qhr-badge qhr-badge--success qhr-badge--sm">WCAG 2.1 AA</span>
+              <span class="qhr-badge qhr-badge--neutral qhr-badge--sm">0kb RSC</span>
+            </div>
+
+            <!-- Canonical Alert -->
+            <div class="qhr-alert qhr-alert--info" style="margin-top: 8px;">
+              <div class="qhr-alert__content">
+                <strong>انضباط بصري حتمي:</strong> الألوان والتباينات تتطابق آلياً مع معايير الوصولية في كل من الوضعين النهاري والليلي.
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2: Data & Form Primitives -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <div style="font-weight: 700; font-size: 0.95rem; color: var(--qhr-content-primary);">مدخلات النماذج والأيقونات المعمارية</div>
+            
+            <div class="qhr-form-group">
+              <label class="qhr-label" style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 0.88rem;">اسم مفردة التصميم</label>
+              <input type="text" class="qhr-input" value="DataTableToolbar" readonly style="width: 100%;">
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: var(--qhr-surface-muted, #1c1c24); border-radius: var(--qhr-radius-field, 6px);">
+              <span style="font-size: 0.88rem; color: var(--qhr-content-secondary);">التوافق ثنائي الاتجاه (RTL/LTR Parity)</span>
+              <span style="font-family: var(--q-font-mono); font-size: 0.8rem; font-weight: 700; color: var(--qhr-color-primary);">100% LOGICAL</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. The Core Problem: Design Entropy -->
+  <section id="the-problem" class="section-block">
+    <div class="site-container">
+      
+      <span class="section-label">02 &bull; THE REAL PROBLEM</span>
+      <h2 class="section-heading">الذكاء الاصطناعي يختصر وقت البرمجة، لكنه يضاعف عشوائية التصميم</h2>
+      <p class="section-desc">
+        توليد الأزرار والبطاقات بالـ Prompt أمر سهل للغاية. لكن المعضلة الهندسية الحقيقية: كيف تمنع الوكيل البرمجي من إعادة اختراع نظامك البصري عند كل محادثة؟
+      </p>
+
+      <div class="grid-two-column">
+        
+        <!-- Box 1: Raw AI Slop -->
+        <div class="contrast-box contrast-box--slop">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <h3 style="font-size: 1.15rem; color: var(--qhr-color-danger, #e11d48);">التوليد الإحصائي العشوائي (Raw AI Prompts)</h3>
+            <span class="qhr-badge qhr-badge--danger qhr-badge--xs">Design Entropy</span>
+          </div>
+          <p style="font-size: 0.92rem; line-height: 1.65;">
+            يعيد الوكيل اختراع فئات الألوان والمسافات في كل طلب، ويكسر اتجاه القراءة بخصائص فيزيائية محظورة (<code style="color: #f87171;">ml-4</code>)، ويقحم رموز الإيموجي العشوائية كبديل رخيص للأيقونات المؤسسية.
+          </p>
+          <div class="code-slate">
+            &lt;!-- كود هش وغير متسق ينهار في الـ RTL --&gt;<br/>
+            &lt;button class="bg-blue-600 ml-4 py-2 px-4 rounded text-white"&gt;<br/>
+            &nbsp;&nbsp;&lt;span&gt;حذف السجل&lt;/span&gt;<br/>
+            &nbsp;&nbsp;&lt;span&gt;🗑️&lt;/span&gt; &lt;!-- إيموجي عشوائي محظور --&gt;<br/>
+            &lt;/button&gt;
+          </div>
+        </div>
+
+        <!-- Box 2: Qahera Canonical Language -->
+        <div class="contrast-box contrast-box--canonical">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <h3 style="font-size: 1.15rem; color: var(--qhr-color-primary, #e5c378);">لغة قاهرة المعمارية المنضبطة (Canonical Grammar)</h3>
+            <span class="qhr-badge qhr-badge--success qhr-badge--xs">Constrained Grammar</span>
+          </div>
+          <p style="font-size: 0.92rem; line-height: 1.65;">
+            يعمل الوكيل داخل معجم موثق. المكون محكوم بعقد YAML صريح، وبخصائص منطقية أصلية، وأيقونة SVG معيارية من السجل الرسمي الـ 41 دون أي تشوه دلالي عبر React أو PHP أو HTML.
+          </p>
+          <div class="code-slate">
+            &lt;!-- كود موثق بالعقد ومحكوم بمتغيرات المنظومة --&gt;<br/>
+            &lt;button class="qhr-btn qhr-btn--danger qhr-btn--md" type="button"&gt;<br/>
+            &nbsp;&nbsp;&lt;span class="qhr-btn__label"&gt;حذف السجل&lt;/span&gt;<br/>
+            &nbsp;&nbsp;&lt;svg class="qhr-icon qhr-icon--delete" viewBox="0 0 24 24"&gt;...&lt;/svg&gt;<br/>
+            &lt;/button&gt;
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Triad Architecture -->
+  <section id="architecture" class="section-block">
+    <div class="site-container">
+      
+      <span class="section-label">03 &bull; ARCHITECTURAL SEPARATION</span>
+      <h2 class="section-heading">فصل الهوية الدلالية عن تقنية العرض (Semantic Parity)</h2>
+      <p class="section-desc">
+        الزر هو زر. ليس "React Button" أو "PHP Button" أو "Tailwind Button"؛ هذه مجرد استراتيجيات عرض. قاهرة تفصل القصد التصميمي وتترجمه دون أي انزلاق في المفردات.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        
+        <div class="contrast-box">
+          <div style="font-family: var(--q-font-mono); font-size: 0.8rem; color: var(--qhr-color-primary); margin-bottom: 8px;">LAYER 01</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 10px;">الإنسان (Human)</h3>
+          <p style="font-size: 0.92rem;">يفكر بالقصد الدلالي والغرض الوظيفي: "أريد لوحة عمليات وجداول بيانات مجمعة".</p>
+        </div>
+
+        <div class="contrast-box">
+          <div style="font-family: var(--q-font-mono); font-size: 0.8rem; color: var(--qhr-color-primary); margin-bottom: 8px;">LAYER 02</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 10px;">الذكاء الاصطناعي (AI)</h3>
+          <p style="font-size: 0.92rem;">يمتلك قواعد التركيب والمعجم المقيد: Dashboard &rarr; DataTableToolbar &rarr; Table &rarr; Pagination.</p>
+        </div>
+
+        <div class="contrast-box">
+          <div style="font-family: var(--q-font-mono); font-size: 0.8rem; color: var(--qhr-color-primary); margin-bottom: 8px;">LAYER 03</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: 10px;">المتصفح (Browser)</h3>
+          <p style="font-size: 0.92rem;">يتلقى تنفيذاً حتمياً: كود HTML دلالي + 0kb RSC + خصائص CSS منطقية ووصولية معتمدة.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. AI Agent Skill Workflow -->
+  <section id="agent-skill" class="section-block">
+    <div class="site-container">
+      
+      <span class="section-label">04 &bull; AGENT ERGONOMICS</span>
+      <h2 class="section-heading">المهارة البرمجية أهم من الـ Prompt</h2>
+      <p class="section-desc">
+        تشغيل أمر <code style="color: var(--qhr-color-primary);">$ npx qahera-ui init</code> يزرع مهارة قاهرة (.agents/skills/qahera-ui) مباشرة داخل مساحة عملك، ليتحول وكيل الذكاء الاصطناعي في محررك المفضل فورياً إلى خبير معماري.
+      </p>
+
+      <div class="code-slate" style="padding: 20px;">
+        <span style="color: var(--qhr-content-muted);"># 1. تهيئة المنظومة وتضمين مهارة الذكاء الاصطناعي في مشروعك</span><br/>
+        <span style="color: var(--qhr-color-primary); font-weight: 700;">$ npx qahera-ui init --target=react</span><br/>
+        <span style="color: var(--qhr-color-success-600, #10b981);">&check; Emitted qahera.json &bull; Copied tokens.css &bull; Embedded .agents/skills/qahera-ui</span><br/><br/>
+
+        <span style="color: var(--qhr-content-muted);"># 2. استدعاء الوكيل البرمجي في Cursor أو Antigravity أو Claude Code</span><br/>
+        <span style="color: var(--qhr-content-primary); font-weight: 700;">/qahera-ui compose admin-operations-dashboard --theme=downtown</span><br/>
+        <span style="color: var(--qhr-content-secondary);">[AI Execution]: Loading contracts &rarr; Verifying 100% Logical CSS &rarr; Emitting 0kb RSC Production Layout.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. Footer -->
+  <footer style="padding-block: 40px; border-top: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));">
+    <div class="site-container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 16px;">
+      <div>
+        <span style="font-weight: 800; color: var(--qhr-content-primary);">قاهرة لتصميم الواجهات</span>
+        <span style="color: var(--qhr-content-muted);"> &bull; </span>
+        <span style="color: var(--qhr-content-secondary); font-size: 0.9rem;">استوديو الوكالة (Alwkala Studio)</span>
+      </div>
+      <div style="font-size: 0.85rem; color: var(--qhr-content-muted);">
+        100% Source Ownership &bull; MIT License &bull; 2026
+      </div>
+    </div>
+  </footer>
+
+  <!-- Alpine Application Data -->
+  <script>
+    function qaheraWorkbench() {
+      return {
+        mode: localStorage.getItem('qhr-mode') || 'dark',
+        dir: localStorage.getItem('qhr-dir') || 'rtl',
+        activeTheme: localStorage.getItem('qhr-theme') || 'zamalek',
+        copied: false,
+
+        themes: [
+          { id: 'zamalek', name: 'الزمالك', movement: 'Neo-Classical & Island Opulence', radius: '12px', dot: '#E5C378' },
+          { id: 'downtown', name: 'وسط البلد', movement: 'Khedivial Art Deco & Haussmann', radius: '4px', dot: '#C29B38' },
+          { id: 'heliopolis', name: 'هليوبوليس', movement: 'Heliopolis Style (Baron Empain)', radius: '10px', dot: '#E0A96D' },
+          { id: 'garden-city', name: 'جاردن سيتي', movement: 'Classical Belle Époque', radius: '12px', dot: '#72A1DF' },
+          { id: 'maadi', name: 'المعادي', movement: 'Garden Suburb & Biophilic', radius: '18px', dot: '#52796F' },
+          { id: 'shubra', name: 'شبرا', movement: 'Egyptian Neo-Brutalism', radius: '0px', dot: '#E11D48' },
+          { id: 'new-cairo', name: 'القاهرة الجديدة', movement: 'Hyper-Modernist Glassmorphism', radius: '22px', dot: '#0284C7' }
+        ],
+
+        get currentThemeObj() {
+          return this.themes.find(t => t.id === this.activeTheme) || this.themes[0];
+        },
+
+        init() {
+          this.applyToDOM();
+        },
+
+        setTheme(id) {
+          this.activeTheme = id;
+          localStorage.setItem('qhr-theme', id);
+          this.applyToDOM();
+        },
+
+        toggleMode() {
+          this.mode = this.mode === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('qhr-mode', this.mode);
+          this.applyToDOM();
+        },
+
+        toggleDir() {
+          this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl';
+          localStorage.setItem('qhr-dir', this.dir);
+          this.applyToDOM();
+        },
+
+        applyToDOM() {
+          document.documentElement.setAttribute('data-theme', this.activeTheme);
+          document.documentElement.setAttribute('data-mode', this.mode);
+          document.documentElement.setAttribute('dir', this.dir);
+          document.documentElement.setAttribute('lang', this.dir === 'rtl' ? 'ar' : 'en');
+        },
+
+        copyCommand(text) {
+          navigator.clipboard.writeText(text);
+          this.copied = true;
+          setTimeout(() => { this.copied = false; }, 2000);
+        }
+      };
+    }
+  </script>
+
+</body>
+</html>

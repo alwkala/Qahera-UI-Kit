@@ -1,0 +1,258 @@
+/* Qahera — Architectural Marketing Stylesheet */
+/* Strict Dogfooding · 100% Token-Driven · Zero Ad-Hoc Gradients */
+
+:root {
+  --q-font-heading: 'Alexandria', 'Cairo', system-ui, sans-serif;
+  --q-font-body: 'Cairo', 'Alexandria', system-ui, sans-serif;
+  --q-font-mono: 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--q-font-body);
+  background-color: var(--qhr-surface-page, #09090b);
+  color: var(--qhr-content-primary, #f6f4ee);
+  line-height: 1.6;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--q-font-heading);
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  color: var(--qhr-content-primary, #f6f4ee);
+  margin: 0;
+}
+
+p {
+  color: var(--qhr-content-secondary, #a39e93);
+  margin: 0;
+}
+
+code, pre {
+  font-family: var(--q-font-mono);
+}
+
+.site-container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* 1. Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--qhr-surface-page, #09090b);
+  border-bottom: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.brand-badge {
+  font-family: var(--q-font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--qhr-color-primary, #e5c378);
+  padding: 2px 8px;
+  border-radius: var(--qhr-radius-field, 4px);
+  background: var(--qhr-border-subtle, rgba(255, 255, 255, 0.06));
+}
+
+/* 2. Hero Section */
+.hero-section {
+  padding-block: 72px 56px;
+  border-bottom: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+}
+
+.hero-meta-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--q-font-mono);
+  font-size: 0.8rem;
+  color: var(--qhr-content-muted, #6e685e);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.hero-headline {
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  line-height: 1.18;
+  font-weight: 900;
+  max-width: 960px;
+  margin-bottom: 24px;
+  color: var(--qhr-content-primary, #f6f4ee);
+}
+
+.hero-statement {
+  font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+  color: var(--qhr-content-secondary, #a39e93);
+  max-width: 780px;
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+
+.hero-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cli-pill {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--qhr-surface-card, #121216);
+  border: 1px solid var(--qhr-border-strong, rgba(255, 255, 255, 0.16));
+  border-radius: var(--qhr-radius-field, 6px);
+  padding: 8px 16px;
+  font-family: var(--q-font-mono);
+  font-size: 0.9rem;
+  color: var(--qhr-content-primary, #f6f4ee);
+  gap: 16px;
+}
+
+/* 3. Workbench Section */
+.workbench-panel {
+  background-color: var(--qhr-surface-card, #121216);
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  border-radius: var(--qhr-radius-box, 12px);
+  padding: 28px;
+  box-shadow: var(--qhr-shadow-box, none);
+  transition: all 0.25s ease;
+}
+
+.workbench-meta {
+  font-family: var(--q-font-mono);
+  font-size: 0.78rem;
+  color: var(--qhr-content-muted, #6e685e);
+  border-bottom: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 4. Comparison Architecture */
+.section-block {
+  padding-block: 72px;
+  border-bottom: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+}
+
+.section-label {
+  font-family: var(--q-font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--qhr-color-primary, #e5c378);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.section-heading {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--qhr-content-secondary, #a39e93);
+  max-width: 720px;
+  margin-bottom: 40px;
+}
+
+.grid-two-column {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.contrast-box {
+  background-color: var(--qhr-surface-card, #121216);
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  border-radius: var(--qhr-radius-box, 10px);
+  padding: 24px;
+  transition: all 0.25s ease;
+}
+
+.contrast-box--slop {
+  border-top: 3px solid var(--qhr-color-danger, #e11d48);
+}
+
+.contrast-box--canonical {
+  border-top: 3px solid var(--qhr-color-primary, #e5c378);
+}
+
+/* 5. Terminal Code Display */
+.code-slate {
+  background-color: var(--qhr-surface-muted, #1c1c24);
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  border-radius: var(--qhr-radius-field, 6px);
+  padding: 16px;
+  font-family: var(--q-font-mono);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  margin-top: 16px;
+  color: var(--qhr-content-secondary, #a39e93);
+}
+
+/* 6. Theme Selector Strips */
+.theme-selector-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.theme-tab {
+  padding: 8px 14px;
+  border-radius: var(--qhr-radius-field, 6px);
+  background-color: var(--qhr-surface-card, #121216);
+  border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.08));
+  color: var(--qhr-content-secondary, #a39e93);
+  font-family: var(--q-font-body);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-tab:hover {
+  color: var(--qhr-content-primary, #f6f4ee);
+  border-color: var(--qhr-border-strong, rgba(255, 255, 255, 0.2));
+}
+
+.theme-tab.is-active {
+  background-color: var(--qhr-color-primary, #e5c378);
+  color: var(--qhr-button-primary-foreground, #09090b);
+  border-color: var(--qhr-color-primary, #e5c378);
+  font-weight: 700;
+}
+
+.theme-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}

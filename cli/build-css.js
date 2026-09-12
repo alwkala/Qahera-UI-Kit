@@ -132,6 +132,14 @@ function buildCss(options = { quiet: false }) {
     themesGzipKB = (zlib.gzipSync(themesContent).length / 1024).toFixed(2);
   }
 
+  // 4. Write production tokens bundle to dist/qahera-tokens.css
+  const TOKENS_SRC = path.join(ROOT_DIR, 'tokens', 'tokens.css');
+  const TOKENS_DIST = path.join(DIST_DIR, 'qahera-tokens.css');
+  if (fs.existsSync(TOKENS_SRC)) {
+    const tokensContent = fs.readFileSync(TOKENS_SRC, 'utf8');
+    fs.writeFileSync(TOKENS_DIST, tokensContent, 'utf8');
+  }
+
   const rawKB = (Buffer.byteLength(bundledCss, 'utf8') / 1024).toFixed(2);
   const gzipKB = (zlib.gzipSync(bundledCss).length / 1024).toFixed(2);
 
