@@ -1,28 +1,57 @@
 {
-  "name": "qahera-ui-kit",
-  "version": "1.5.0",
-  "description": "AI-Native, Contract-Driven Design System & Multi-Target Component Architecture",
+  "name": "qahera-ui",
+  "version": "1.5.1",
+  "description": "AI-Native, Contract-Driven Design System & Multi-Target Component Architecture by Alwkala",
   "main": "bin/qahera.js",
   "bin": {
+    "qahera-ui": "bin/qahera.js",
     "qahera": "bin/qahera.js"
   },
   "scripts": {
     "build": "node bin/qahera.js",
+    "build:css": "node bin/qahera.js build:css",
     "preview": "node bin/qahera.js preview",
     "test": "node ci/audit-all.js",
     "typecheck": "tsc --noEmit"
   },
+  "files": [
+    "bin",
+    "cli",
+    "compiler",
+    "contracts",
+    "recipes",
+    "patterns",
+    "templates",
+    "renderers",
+    "tokens",
+    "icons",
+    "schemas",
+    "ai",
+    "dist",
+    ".agents",
+    "VERSION"
+  ],
   "keywords": [
+    "qahera-ui",
+    "qahera",
     "design-system",
     "ai-native",
-    "qahera",
-    "tidyfactor",
+    "shadcn",
     "components",
     "arabic-ui",
-    "rtl"
+    "rtl",
+    "alwkala"
   ],
   "author": "Alwkala",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alwkala/Qahera-UI-Kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alwkala/Qahera-UI-Kit/issues"
+  },
+  "homepage": "https://github.com/alwkala/Qahera-UI-Kit#readme",
   "devDependencies": {
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",

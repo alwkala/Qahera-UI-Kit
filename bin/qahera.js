@@ -87,34 +87,42 @@ function printHelp() {
 🏛️  قاهرة · Qahera UI Kit CLI v${pkg.version}
 
 Usage:
+  npx qahera-ui [command] [options]
   qahera [command] [options]
 
 Commands:
-  add <component...>       Add component source files directly into your project
+  init                     Scaffold tokens.css, components.css, and embed AI agent skill
                            Options:
-                             --target, -t <react|php|html|htmx>  (default: react)
-                             --dest, -d <path>                   (destination folder)
-                             --overwrite, -y                     (overwrite existing files)
-                             --all, -a                           (add all canonical components)
-
-  init                     Scaffold tokens.css and components.css in your project
-                           Options:
-                             --target, -t <react|php|html|htmx>
+                             --target, -t <react|php|html|htmx|js>  (default: react)
                              --dest, -d <path>
                              --overwrite, -y
 
-  list                     List all canonical components and metadata
+  add <component...>       Add component, pattern, or template source files (shadcn-style)
+                           Options:
+                             --target, -t <react|php|html|htmx|js>  (default: react)
+                             --dest, -d <path>                      (destination folder)
+                             --overwrite, -y                        (overwrite existing files)
+                             --all, -a                              (add all canonical components)
+
+  list (or ls)             List all 42 components, 20 patterns, and 18 templates
 
   build                    Run the 8-stage compiler and emit registry artifacts
 
+  build:css                Compile atomic component CSS into dist/qahera.css
+
   validate                 Validate schema, tokens, and contracts without emitting
+
+  test (or audit)          Run 4-stage QA audit (A11y, RTL, RSC 0kb, Tokens)
 
   version                  Print compiler version
 
 Examples:
-  node bin/qahera.js add button modal --target=react
-  node bin/qahera.js add button alert card --target=php --dest=./views/qahera
-  node bin/qahera.js add --all --target=react
-  node bin/qahera.js list
+  npx qahera-ui init --target=react
+  npx qahera-ui add button modal card --target=react
+  npx qahera-ui add button alert navbar --target=php --dest=./views/qahera
+  npx qahera-ui add pattern:dashboard-stat --target=react
+  npx qahera-ui add template:admin --target=react
+  npx qahera-ui add --all --target=react
+  npx qahera-ui list
 `);
 }

@@ -19,48 +19,90 @@ const CANONICAL_COMPONENTS = [
   'accordion',
   'alert',
   'avatar',
+  'back-to-top',
   'badge',
+  'breadcrumb',
   'button',
+  'callout',
+  'canvas-sparks',
   'card',
+  'carousel',
   'checkbox',
+  'chip',
+  'divider',
+  'dock',
+  'drawer',
   'dropdown',
+  'file-upload',
   'input',
+  'kbd',
+  'megamenu',
+  'menu',
   'modal',
   'navbar',
+  'pagination',
+  'preloader',
+  'progress',
   'radio',
+  'rating',
+  'ribbon',
   'select',
+  'skeleton',
+  'spinner',
+  'stepper',
+  'switch',
   'table',
   'tabs',
   'textarea',
+  'timeline',
   'toast',
   'tooltip',
-  'preloader',
-  'back-to-top',
-  'canvas-sparks',
+  'treeview',
 ];
 
 const COMPONENT_METADATA = {
   accordion:       { category: 'disclosure', interactive: true,  usesIcon: true  },
   alert:           { category: 'feedback',   interactive: false, usesIcon: true  },
   avatar:          { category: 'data-display', interactive: false, usesIcon: false },
+  'back-to-top':   { category: 'navigation', interactive: true,  usesIcon: true  },
   badge:           { category: 'data-display', interactive: false, usesIcon: false },
+  breadcrumb:      { category: 'navigation', interactive: false, usesIcon: true  },
   button:          { category: 'actions',    interactive: false, usesIcon: true  },
+  callout:         { category: 'feedback',   interactive: false, usesIcon: true  },
+  'canvas-sparks': { category: 'feedback',   interactive: true,  usesIcon: false },
   card:            { category: 'layout',     interactive: false, usesIcon: false },
+  carousel:        { category: 'media',      interactive: true,  usesIcon: true  },
   checkbox:        { category: 'forms',      interactive: false, usesIcon: false },
+  chip:            { category: 'forms',      interactive: false, usesIcon: true  },
+  divider:         { category: 'layout',     interactive: false, usesIcon: false },
+  dock:            { category: 'navigation', interactive: true,  usesIcon: true  },
+  drawer:          { category: 'overlay',    interactive: true,  usesIcon: true  },
   dropdown:        { category: 'navigation', interactive: true,  usesIcon: true  },
+  'file-upload':   { category: 'forms',      interactive: true,  usesIcon: true  },
   input:           { category: 'forms',      interactive: false, usesIcon: true  },
+  kbd:             { category: 'data-display', interactive: false, usesIcon: false },
+  megamenu:        { category: 'navigation', interactive: true,  usesIcon: true  },
+  menu:            { category: 'navigation', interactive: true,  usesIcon: true  },
   modal:           { category: 'overlay',    interactive: true,  usesIcon: true  },
   navbar:          { category: 'navigation', interactive: true,  usesIcon: true  },
+  pagination:      { category: 'navigation', interactive: true,  usesIcon: true  },
+  preloader:       { category: 'feedback',   interactive: true,  usesIcon: false },
+  progress:        { category: 'feedback',   interactive: false, usesIcon: false },
   radio:           { category: 'forms',      interactive: false, usesIcon: false },
+  rating:          { category: 'feedback',   interactive: true,  usesIcon: true  },
+  ribbon:          { category: 'data-display', interactive: false, usesIcon: false },
   select:          { category: 'forms',      interactive: true,  usesIcon: true  },
+  skeleton:        { category: 'feedback',   interactive: false, usesIcon: false },
+  spinner:         { category: 'feedback',   interactive: false, usesIcon: false },
+  stepper:         { category: 'navigation', interactive: true,  usesIcon: true  },
+  switch:          { category: 'forms',      interactive: true,  usesIcon: false },
   table:           { category: 'data-display', interactive: false, usesIcon: false },
   tabs:            { category: 'navigation', interactive: true,  usesIcon: true  },
   textarea:        { category: 'forms',      interactive: false, usesIcon: false },
+  timeline:        { category: 'data-display', interactive: false, usesIcon: true  },
   toast:           { category: 'feedback',   interactive: true,  usesIcon: true  },
   tooltip:         { category: 'overlay',    interactive: true,  usesIcon: false },
-  preloader:       { category: 'feedback',   interactive: true,  usesIcon: false },
-  'back-to-top':   { category: 'navigation', interactive: true,  usesIcon: true  },
-  'canvas-sparks': { category: 'feedback',   interactive: true,  usesIcon: false },
+  treeview:        { category: 'navigation', interactive: true,  usesIcon: true  },
 };
 
 const CANONICAL_PATTERNS = [
@@ -76,6 +118,14 @@ const CANONICAL_PATTERNS = [
   'editorial-story',
   'store-locator',
   'vip-membership',
+  'chat-stream',
+  'date-paginator',
+  'file-manager-grid',
+  'kanban-board',
+  'metric-comparison-grid',
+  'questionnaire',
+  'sortable-list',
+  'user-card',
 ];
 
 const PATTERN_COMPONENTS = {
@@ -220,7 +270,7 @@ function listComponents() {
     const meta = COMPONENT_METADATA[name] || {};
     const cat = meta.category || 'general';
     const inter = meta.interactive ? 'Yes (Alpine)' : 'No';
-    const targets = 'React, PHP, HTML, HTMX';
+    const targets = 'React, PHP, HTML, HTMX, JS';
     console.log(
       name.padEnd(16) +
       cat.padEnd(16) +
@@ -230,18 +280,18 @@ function listComponents() {
   }
 
   console.log('\n' + '='.repeat(70));
-  console.log('Composite Patterns (8 Patterns)');
+  console.log(`Composite Patterns (${CANONICAL_PATTERNS.length} Patterns)`);
   console.log('-'.repeat(70));
   for (const pat of CANONICAL_PATTERNS) {
     const deps = (PATTERN_COMPONENTS[pat] || []).join(', ');
     console.log(
       `pattern:${pat}`.padEnd(24) +
-      `Requires: [${deps}]`
+      (deps ? `Requires: [${deps}]` : 'Composite Pattern')
     );
   }
 
   console.log('\n' + '='.repeat(70));
-  console.log('Template Blueprints (7 Blueprints)');
+  console.log(`Template Blueprints (${CANONICAL_TEMPLATES.length} Blueprints)`);
   console.log('-'.repeat(70));
   for (const tpl of CANONICAL_TEMPLATES) {
     const pats = (TEMPLATE_PATTERNS[tpl] || []).join(', ');
@@ -252,8 +302,8 @@ function listComponents() {
   }
 
   console.log('='.repeat(70));
-  console.log('\nTotal: 18 components · 8 patterns · 7 templates · 41 canonical icons.');
-  console.log('Run `node bin/qahera.js add <component|pattern:...|template:...> --target=<react|php|html|htmx>`\n');
+  console.log(`\nTotal: ${CANONICAL_COMPONENTS.length} components · ${CANONICAL_PATTERNS.length} patterns · ${CANONICAL_TEMPLATES.length} templates · 41 canonical icons.`);
+  console.log('Run `node bin/qahera.js add <component|pattern:...|template:...> --target=<react|php|html|htmx|js>`\n');
 }
 
 /**
@@ -286,8 +336,41 @@ function initProject(rawArgs) {
   const cRes = copyFile(componentsCssSrc, path.join(stylesDestDir, 'components.css'), options.overwrite);
   console.log(`  ${cRes.status === 'copied' ? '✔' : '⚠'} components.css -> ${path.relative(cwd, path.join(stylesDestDir, 'components.css'))} (${cRes.status})`);
 
+  // Generate qahera.json in project root
+  const configPath = path.join(cwd, 'qahera.json');
+  if (!fs.existsSync(configPath) || options.overwrite) {
+    const configContent = {
+      "$schema": "https://qahera.alwkala.com/schema.json",
+      "version": "1.5.0",
+      "style": "default",
+      "theme": "default",
+      "target": target,
+      "aliases": {
+        "components": target === 'react' ? "@/components/ui/qahera" : "./views/qahera",
+        "styles": path.relative(cwd, stylesDestDir).replace(/\\/g, '/') || "./styles"
+      }
+    };
+    fs.writeFileSync(configPath, JSON.stringify(configContent, null, 2) + '\n', 'utf8');
+    console.log(`  ✔ qahera.json -> created project configuration`);
+  }
+
+  // Embed AI Agent Skill into consumer project (.agents/skills/qahera-ui)
+  const skillSrcDir = path.join(ROOT_DIR, '.agents', 'skills', 'qahera-ui');
+  if (fs.existsSync(skillSrcDir)) {
+    const skillDestDir = path.join(cwd, '.agents', 'skills', 'qahera-ui');
+    try {
+      if (typeof fs.cpSync === 'function') {
+        fs.cpSync(skillSrcDir, skillDestDir, { recursive: true, force: options.overwrite });
+        console.log(`  ✔ .agents/skills/qahera-ui -> embedded AI agent decision layer`);
+      }
+    } catch (e) {
+      // Non-fatal if permission restricted
+    }
+  }
+
   console.log(`\n✨ Initialization complete! Import tokens.css and components.css in your app entry.`);
-  console.log(`Now add components with: node bin/qahera.js add <component> --target=${target}\n`);
+  console.log(`🤖 AI Skill ready: Use /qahera-ui with Antigravity, Cursor, or Claude Code.`);
+  console.log(`🚀 Add components: npx qahera-ui add <component> --target=${target}\n`);
 }
 
 /**
@@ -298,7 +381,7 @@ function addComponents(rawArgs) {
   const target = options.target || 'react';
   const cwd = process.cwd();
 
-  const validTargets = ['react', 'php', 'html', 'htmx'];
+  const validTargets = ['react', 'php', 'html', 'htmx', 'js', 'web-components'];
   if (!validTargets.includes(target)) {
     console.error(`❌ Invalid target "${target}". Supported targets: ${validTargets.join(', ')}`);
     process.exit(1);
@@ -556,6 +639,46 @@ function addComponents(rawArgs) {
         addedFiles.push({ file: 'css/tokens.css', ...res, isDep: true });
       }
     }
+
+  } else if (target === 'js' || target === 'web-components') {
+    // 1. Copy core base classes and icon component as dependencies
+    dependencies.add('qhr-core.js');
+    dependencies.add('components/qhr-icon.js');
+
+    for (const dep of dependencies) {
+      const src = path.join(ROOT_DIR, 'renderers', 'js', dep);
+      const dest = path.join(destDir, dep);
+      const res = copyFile(src, dest, options.overwrite);
+      addedFiles.push({ file: dep, ...res, isDep: true });
+    }
+
+    // 2. Copy Web Component files
+    for (const comp of reqComponents) {
+      if (comp === 'icon') continue;
+      const fileName = `components/qhr-${comp}.js`;
+      const src = path.join(ROOT_DIR, 'renderers', 'js', fileName);
+      if (fs.existsSync(src)) {
+        const dest = path.join(destDir, fileName);
+        const res = copyFile(src, dest, options.overwrite);
+        addedFiles.push({ file: fileName, ...res, isDep: false });
+      }
+    }
+
+    // 3. If --with-styles, copy tokens and css
+    if (options.withStyles) {
+      const cssSrc = path.join(ROOT_DIR, 'renderers', 'html', 'native', 'components.css');
+      if (fs.existsSync(cssSrc)) {
+        const cssDest = path.join(destDir, 'css', 'components.css');
+        const res = copyFile(cssSrc, cssDest, options.overwrite);
+        addedFiles.push({ file: 'css/components.css', ...res, isDep: true });
+      }
+      const tokSrc = path.join(ROOT_DIR, 'tokens', 'tokens.css');
+      if (fs.existsSync(tokSrc)) {
+        const tokDest = path.join(destDir, 'css', 'tokens.css');
+        const res = copyFile(tokSrc, tokDest, options.overwrite);
+        addedFiles.push({ file: 'css/tokens.css', ...res, isDep: true });
+      }
+    }
   }
 
   // Print results
@@ -586,6 +709,9 @@ function getDefaultDest(target, cwd) {
   }
   if (target === 'htmx') {
     return path.join(cwd, 'htmx');
+  }
+  if (target === 'js' || target === 'web-components') {
+    return path.join(cwd, 'components', 'qahera-js');
   }
   return path.join(cwd, 'qahera');
 }

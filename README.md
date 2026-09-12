@@ -258,25 +258,35 @@ Qahera UI Kit features **Thematic Topography (`QAHERA-THEME-001`)**: every theme
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start & Distribution Channels
 
-### 1. CLI Scaffolder (shadcn-style)
+Qahera UI Kit provides 3 seamless distribution channels giving you 100% source ownership with zero runtime lock-in:
 
-Consuming projects copy and own their component source code without runtime lock-in:
+### 1. Zero-Install CLI Scaffolder via `npx` (shadcn-style)
+
+Initialize tokens, CSS, and automatically embed the AI Agent Skill into your project:
 
 ```bash
-# Add components directly to your React project
-node bin/qahera.js add button modal card --target=react --dest=./components/qahera
+# 1. Initialize project (creates qahera.json, tokens.css, and .agents/skills/qahera-ui)
+npx qahera-ui init --target=react
 
-# Add components to a PHP Plates project
-node bin/qahera.js add button alert navbar --target=php --dest=./views/qahera
+# 2. Add individual components directly to your project source tree
+npx qahera-ui add button modal card --target=react
 
-# Initialize design tokens and core stylesheets
-node bin/qahera.js init --target=react
+# 3. Add to PHP Plates / Monolith projects
+npx qahera-ui add button alert navbar --target=php --dest=./views/qahera
 
-# List all available components and target status
-node bin/qahera.js list
+# 4. Add composite patterns or full templates
+npx qahera-ui add pattern:dashboard-stat --target=react
+npx qahera-ui add template:admin --target=react
+
+# 5. List all 42 components, 20 patterns, and 18 templates
+npx qahera-ui list
 ```
+
+> [!TIP]
+> **Automatic AI Skill Embedding**: Running `npx qahera-ui init` embeds `.agents/skills/qahera-ui` directly into your workspace. Coding agents in **Google Antigravity, Cursor, or Claude Code** immediately become experts at composing Qahera screens using `/qahera-ui`.
+
 
 ### 2. Native HTML & CSS Custom Properties
 

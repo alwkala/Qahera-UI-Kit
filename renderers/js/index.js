@@ -42,10 +42,14 @@ export { QhrToast }        from './components/qhr-toast.js';
 export { QhrTooltip }      from './components/qhr-tooltip.js';
 export { QhrPreloader }    from './components/qhr-preloader.js';
 
-// ─── Tier 4: Layout ─────────────────────────────────────────────────
+// ─── Tier 4: Layout & Navigation ────────────────────────────────────
 export { QhrCard }         from './components/qhr-card.js';
 export { QhrTable }        from './components/qhr-table.js';
 export { QhrNavbar }       from './components/qhr-navbar.js';
+export { QhrDock }         from './components/qhr-dock.js';
+export { QhrMenu }         from './components/qhr-menu.js';
+export { QhrMegamenu }     from './components/qhr-megamenu.js';
+export { QhrPagination }   from './components/qhr-pagination.js';
 
 // ─── Tier 5: Interactive ─────────────────────────────────────────────
 export { QhrModal }        from './components/qhr-modal.js';
@@ -75,7 +79,7 @@ const QHR_COMPONENTS = [
   'qhr-icon', 'qhr-btn', 'qhr-badge', 'qhr-avatar', 'qhr-chip', 'qhr-divider', 'qhr-kbd', 'qhr-skeleton',
   'qhr-input', 'qhr-select', 'qhr-textarea', 'qhr-checkbox', 'qhr-radio', 'qhr-file-upload', 'qhr-rating',
   'qhr-alert', 'qhr-toast', 'qhr-tooltip', 'qhr-preloader',
-  'qhr-card', 'qhr-table', 'qhr-navbar',
+  'qhr-card', 'qhr-table', 'qhr-navbar', 'qhr-dock', 'qhr-menu', 'qhr-megamenu', 'qhr-pagination',
   'qhr-modal', 'qhr-drawer', 'qhr-dropdown', 'qhr-tabs', 'qhr-accordion', 'qhr-carousel', 'qhr-treeview',
   'qhr-breadcrumb', 'qhr-progress', 'qhr-spinner', 'qhr-switch', 'qhr-timeline', 'qhr-callout', 'qhr-ribbon', 'qhr-stepper',
   'qhr-back-to-top', 'qhr-canvas-sparks',

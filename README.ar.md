@@ -227,25 +227,35 @@
 
 ---
 
-## 🚀 دليل البدء السريع
+## 🚀 دليل البدء السريع وقنوات التوزيع
 
-### 1. أداة الـ CLI بنمط shadcn
+توفر منظومة القاهرة 3 قنوات توزيع متكاملة تمنحك الملكية الكاملة للكود المصدري دون أي ارتباط تشغيلي:
 
-تمتلك المشاريع الشفرة المصدرية لمكوناتها بالكامل دون أي حزم تشغيل إضافية:
+### 1. أداة سطر الأوامر عبر `npx` (بنمط shadcn المعاصر)
+
+تهيئة ملفات الـ Tokens والـ CSS وتضمين مهارة الذكاء الاصطناعي تلقائياً في مشروعك:
 
 ```bash
-# إضافة المكونات مباشرة إلى مشروع React
-node bin/qahera.js add button modal card --target=react --dest=./components/qahera
+# 1. تهيئة المشروع (إنشاء qahera.json و tokens.css ودمج مهارة .agents/skills/qahera-ui)
+npx qahera-ui init --target=react
 
-# إضافة المكونات إلى مشروع PHP Plates
-node bin/qahera.js add button alert navbar --target=php --dest=./views/qahera
+# 2. إضافة المكونات مباشرة إلى شجرة كود مشروعك
+npx qahera-ui add button modal card --target=react
 
-# تهيئة ملفات المتغيرات وقواعد الـ CSS
-node bin/qahera.js init --target=react
+# 3. إضافة المكونات إلى مشاريع PHP Plates / Monolith
+npx qahera-ui add button alert navbar --target=php --dest=./views/qahera
 
-# استعراض كافة المكونات وحالة البيئات المدعومة
-node bin/qahera.js list
+# 4. إضافة الأنماط التركيبية أو القوالب الجاهزة
+npx qahera-ui add pattern:dashboard-stat --target=react
+npx qahera-ui add template:admin --target=react
+
+# 5. استعراض قائمة الـ 42 مكوناً و 20 نمطاً و 18 قالباً
+npx qahera-ui list
 ```
+
+> [!TIP]
+> **التضمين التلقائي لمهارة الذكاء الاصطناعي**: تشغيل أمر `npx qahera-ui init` يقوم تلقائياً بنسخ مجلد `.agents/skills/qahera-ui` داخل مشروعك، ليصبح وكيل الذكاء الاصطناعي في محررك (**Google Antigravity أو Cursor أو Claude Code**) خبيراً فورياً في كتابة وتركيب مكونات القاهرة عبر الأمر `/qahera-ui`.
+
 
 ### 2. كود HTML الأصيل ومتغيرات CSS
 

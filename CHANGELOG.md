@@ -3,6 +3,28 @@
 All notable changes to **Qahera UI Kit** will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.1] - 2026-09-12
+
+### Sovereign AI Decision Layer (`qahera-ui`), Zero-Install NPX CLI Scaffolding & Multi-Channel Distribution
+> *"Qahera UI Kit v1.5.1 delivers the sovereign AI Agent Skill `qahera-ui` (15/15 compliance), full operational parity across 42 components, 20 patterns, and 18 templates, zero-install CLI distribution via `npx qahera-ui`, and automated AI decision layer embedding on project initialization."*
+
+### Added
+- **Sovereign AI Decision Layer (`.agents/skills/qahera-ui/`):**
+  - High-performance, low-token AI agent skill conforming to all 15 structural rules of `tidyfactor-skill-architect`.
+  - 5 operational commands: `/qahera-ui compose` (Dogfooding layout assembly), `/qahera-ui pattern` (UX pattern composition), `/qahera-ui scaffold` (DoD component authoring), `/qahera-ui audit` (15 Invariants verification), and `/qahera-ui theme` (Egyptian cultural topography).
+  - 7-Axis Pre-Emit Critique stamp (`/* Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 */`).
+  - Categorized Anti-Slop Matrix covering 9 technical domains (Alexandria & Cairo typography, 100% Logical CSS, Zero Emoji `QAHERA-VISUAL-001`).
+  - Strict Alpine.js Hydration Protocol (`QAHERA-ALPINE-001`) preventing DOM stalls.
+  - Operational memory catalogs: `patterns-catalog.md` (20 canonical patterns), `templates-catalog.md` (18 template tracks), and `cli-tools.md` (7 CLI commands).
+  - Two-tier documentation: Canonical English [`README.md`](.agents/skills/qahera-ui/README.md) and native Arabic [`README.ar.md`](.agents/skills/qahera-ui/README.ar.md).
+- **Zero-Install CLI Scaffolding (`npx qahera-ui`):**
+  - Dual bin aliases configured in `package.json` (`qahera-ui` and `qahera`).
+  - `npx qahera-ui init`: Automatically emits `tokens.css`, `components.css`, `qahera.json` project configuration, and embeds `.agents/skills/qahera-ui` directly into the consumer workspace.
+  - `npx qahera-ui add`: Supports adding individual components, composite patterns (`pattern:dashboard-stat`), and full application templates (`template:admin`).
+  - Complete NPM files whitelist declared in `package.json` for lightweight distribution.
+
+---
+
 ## [1.5.0] - 2026-09-07
 
 ### Universal Living Showcase Generator v3.0, Grand Interactive Registry Hub & Zero-Defect Preview Engine
