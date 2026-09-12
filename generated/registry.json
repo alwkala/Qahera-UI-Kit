@@ -1,7 +1,7 @@
 {
   "schema": "qahera.canonical-registry/v1",
   "system": "Qahera UI Kit",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "equation": "Qahera UI Kit v1.0 = Design System + Registry + AI Decision Layer",
   "sourceHash": "362986bbdc2ae6719830e2b765c2ca178f63658932eaca9ef3c03ea2e8d3f2a9",
   "ai_guidance": {

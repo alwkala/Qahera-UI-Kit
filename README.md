@@ -9,7 +9,8 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 <br/>
 
 <!-- Community Badges -->
-[![npm version](https://img.shields.io/badge/npm-v1.5.0-0284C7.svg?style=for-the-badge&logo=npm)](package.json)
+[![npm version](https://img.shields.io/npm/v/qahera-ui.svg?style=for-the-badge&logo=npm&color=0284C7)](https://www.npmjs.com/package/qahera-ui)
+[![npm downloads](https://img.shields.io/npm/dm/qahera-ui.svg?style=for-the-badge&color=22C55E)](https://www.npmjs.com/package/qahera-ui)
 [![GitHub Stars](https://img.shields.io/badge/Stars-Alwkala%20OSS-EAB308.svg?style=for-the-badge&logo=github)](https://github.com/alwkala/Qahera-UI-Kit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Studio: Alwkala](https://img.shields.io/badge/Studio-Alwkala-D4AF37.svg?style=for-the-badge)](https://github.com/alwkala)
