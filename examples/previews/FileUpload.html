@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- أوراق الأنماط الأساسية للمنظومة -->
-  <link rel="stylesheet" href="../../tokens/tokens.css">
-  <link rel="stylesheet" href="../../tokens/themes/themes.css">
-  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+  <link rel="stylesheet" href="../../dist/qahera-tokens.css">
+  <link rel="stylesheet" href="../../dist/qahera-themes.css">
+  <link rel="stylesheet" href="../../dist/qahera.css">
 
-  <!-- حزم السلوك التفاعلي الـ 11 كاملة لضمان صفر أخطاء كونسول -->
+  <!-- حزم السلوك التفاعلي الـ 14 كاملة لضمان صفر أخطاء كونسول -->
   <script defer src="../../behavior/modal.js"></script>
   <script defer src="../../behavior/dropdown.js"></script>
   <script defer src="../../behavior/tabs.js"></script>
@@ -27,6 +27,9 @@
   <script defer src="../../behavior/back-to-top.js"></script>
   <script defer src="../../behavior/navbar.js"></script>
   <script defer src="../../behavior/preloader.js"></script>
+  <script defer src="../../behavior/spotlight.js"></script>
+  <script defer src="../../behavior/counter.js"></script>
+  <script defer src="../../behavior/scrollspy.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
   <style>
@@ -73,6 +76,25 @@
     }
 
     * { box-sizing: border-box; }
+
+    /* Defensive vector sizing to guarantee proper dimensions */
+    svg {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .qhr-frieze__motif svg {
+      width: 20px !important;
+      height: 20px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      fill: currentColor;
+    }
+    .qhr-seal__emblem svg {
+      width: 24px !important;
+      height: 24px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+    }
 
     body {
       background-color: var(--q-bg);
@@ -422,6 +444,7 @@
           <option value="canvas-sparks.html">شرارات الكانفاس الحركية (CanvasSparks)</option>
           <option value="card.html">البطاقات البنائية (Card)</option>
           <option value="carousel.html">عارض الشرائح الدوار (Carousel)</option>
+          <option value="cartouche.html">الخرطوشة الملكية التذكارية (cartouche)</option>
           <option value="checkbox.html">صناديق الاختيار الثنائية (Checkbox)</option>
           <option value="chip.html">شرائح التصنيف والفلترة (Chip)</option>
           <option value="divider.html">الفواصل الأفقية والرأسية (Divider)</option>
@@ -429,6 +452,7 @@
           <option value="drawer.html">الدرج الجانبي المنبثق (Drawer)</option>
           <option value="dropdown.html">القائمة المنسدلة التفاعلية (Dropdown)</option>
           <option value="file-upload.html" selected>رافع الملفات والمستندات (FileUpload)</option>
+          <option value="frieze.html">الإفريز المعماري المنقوش (frieze)</option>
           <option value="input.html">حقول الإدخال النصية (Input)</option>
           <option value="kbd.html">أزرار لوحة المفاتيح والاختصارات (Kbd)</option>
           <option value="megamenu.html">القائمة الضخمة متعددة الأعمدة (Megamenu)</option>
@@ -441,6 +465,7 @@
           <option value="radio.html">أزرار الاختيار الأحادي (Radio)</option>
           <option value="rating.html">تقييم النجوم التفاعلي (Rating)</option>
           <option value="ribbon.html">الشريط الزخرفي والوسام (Ribbon)</option>
+          <option value="seal.html">الختم الملكي المؤسسي المعتمد (seal)</option>
           <option value="select.html">حقل الاختيار المنسدل المخصص (Select)</option>
           <option value="skeleton.html">الهيكل الشبحي للتحميل (Skeleton)</option>
           <option value="spinner.html">مؤشر الانتظار الدائري (Spinner)</option>
@@ -481,7 +506,7 @@
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </div>
-        <span class="capsule-badge">62</span>
+        <span class="capsule-badge">65</span>
       </div>
 
       <div class="theme-selector-capsule" title="تبديل ثيم المنظومة">
@@ -534,9 +559,9 @@
         </svg>
       </button>
 
-      <a href="index.html" class="ctrl-action-btn" title="الانتقال إلى فهرس المنظومة (62 عنصراً)">
+      <a href="index.html" class="ctrl-action-btn" title="الانتقال إلى فهرس المنظومة (65 عنصراً)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        <span>الفهرس (62)</span>
+        <span>الفهرس (65)</span>
       </a>
     </div>
   </header>
@@ -678,10 +703,10 @@
         </div>
       </a>
 
-      <a href="input.html" class="pager-card" title="الانتقال للمكون التالي">
+      <a href="frieze.html" class="pager-card" title="الانتقال للمكون التالي">
         <div style="text-align: end;">
           <div class="pager-label">التالي</div>
-          <div class="pager-title">حقول الإدخال النصية (Input)</div>
+          <div class="pager-title">الإفريز المعماري المنقوش (frieze)</div>
         </div>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--q-gold);"><polyline points="15 18 9 12 15 6"/></svg>
       </a>

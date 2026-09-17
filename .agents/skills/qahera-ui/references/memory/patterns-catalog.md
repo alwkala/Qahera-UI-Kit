@@ -1,8 +1,8 @@
-# Operational Memory: Canonical Patterns Catalog (20 Patterns)
+# Operational Memory: Canonical Patterns Catalog (21 Patterns)
 
 <!-- last-verified: 2026-09-12 -->
 
-The authoritative reference catalog of the 20 canonical UX patterns in Qahera UI Kit (`patterns/*.yaml`). Patterns are pre-composed interactive units assembled exclusively from canonical components.
+The authoritative reference catalog of the 21 canonical UX patterns in Qahera UI Kit (`patterns/*.yaml`). Patterns are pre-composed interactive units assembled exclusively from canonical components.
 
 ---
 
@@ -30,3 +30,4 @@ The authoritative reference catalog of the 20 canonical UX patterns in Qahera UI
 | `sortable-list` | `patterns/sortable-list.yaml` | `Card`, `Button`, `Badge` | Reorderable row list with grab handles, priority tags, and inline controls. |
 | `date-paginator` | `patterns/date-paginator.yaml` | `Button`, `Dropdown` | Day/week/month navigation with date picker trigger and "today" shortcut. |
 | `pagination` | `patterns/pagination.yaml` | `Pagination`, `Select`, `Button` | Paginated index controls with page size selector and jumping input. |
+| `hero-skyline-panorama` | `patterns/hero-skyline-panorama.yaml` | `Button`, `Badge`, `Icon` | Full-bleed architectural brand hero with bottom-flush skyline, feathered gradient mask, zero typo overlap, and mirrored RTL symmetry. |

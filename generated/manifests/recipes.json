@@ -1,8 +1,8 @@
 {
   "schema": "qahera.recipe-manifest/v1",
-  "compiler": "1.5.1",
-  "sourceHash": "362986bbdc2ae6719830e2b765c2ca178f63658932eaca9ef3c03ea2e8d3f2a9",
-  "recipeCount": 42,
+  "compiler": "1.5.2",
+  "sourceHash": "8eca07854e278d3540e56d6be21516e6f9a397698f458f9d756b65c5bf7578a6",
+  "recipeCount": 45,
   "recipes": {
     "Accordion": {
       "id": "accordion",
@@ -759,6 +759,74 @@
         "related": []
       }
     },
+    "Cartouche": {
+      "id": "cartouche",
+      "component": "Cartouche",
+      "category": "containers",
+      "base": {
+        "display": "flex",
+        "flex-direction": "column",
+        "position": "relative",
+        "background-color": "{surface.card}",
+        "border": "1px solid {color.border.subtle}",
+        "border-radius": "{radius.xl}",
+        "overflow": "hidden",
+        "transition": "transform {motion.duration.normal} {motion.ease.standard}, box-shadow {motion.duration.normal} {motion.ease.standard}"
+      },
+      "variants": {
+        "outline": {
+          "background-color": "transparent",
+          "border": "2px solid {color.nebu.base}"
+        },
+        "elevated": {
+          "background-color": "{surface.elevated}",
+          "box-shadow": "{shadow.cartouche}",
+          "border": "1px solid {color.nebu.light}"
+        },
+        "solid": {
+          "background-color": "{color.papyrus.base}",
+          "border": "1px solid {color.papyrus.border}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "padding": "{space.3}",
+          "gap": "{space.2}"
+        },
+        "md": {
+          "padding": "{space.5}",
+          "gap": "{space.3}"
+        },
+        "lg": {
+          "padding": "{space.8}",
+          "gap": "{space.4}"
+        }
+      },
+      "states": {
+        "default": {
+          "transform": "none"
+        },
+        "hover": {
+          "transform": "translateY(-2px)"
+        },
+        "active": {
+          "transform": "none"
+        }
+      },
+      "ai": {
+        "purpose": "Architectural royal enclosure and prestige container with pilliform header caps, metallic borders, and tactile papyrus surface.",
+        "whenToUse": [
+          "Executive badges and verified author cards",
+          "Royal diplomas, certifications, and awards",
+          "Flagship feature callouts and hero badges"
+        ],
+        "avoid": [
+          "Standard high-density data tables",
+          "Generic low-prominence cards (use Card)"
+        ],
+        "related": []
+      }
+    },
     "Checkbox": {
       "id": "checkbox",
       "component": "Checkbox",
@@ -1181,6 +1249,66 @@
         "avoid": [
           "Simple text inputs",
           "Instant zero-file single click forms"
+        ],
+        "related": []
+      }
+    },
+    "Frieze": {
+      "id": "frieze",
+      "component": "Frieze",
+      "category": "data-display",
+      "base": {
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center",
+        "width": "100%",
+        "position": "relative",
+        "user-select": "none"
+      },
+      "variants": {
+        "subtle": {
+          "color": "{color.border.subtle}",
+          "border-block": "1px solid {color.border.subtle}"
+        },
+        "outline": {
+          "color": "{color.nebu.base}",
+          "border-block": "1px solid {color.nebu.base}"
+        },
+        "solid": {
+          "background-color": "{color.papyrus.base}",
+          "color": "{color.wadj.base}",
+          "border-block": "1px solid {color.wadj.light}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "height": "{space.4}",
+          "gap": "{space.2}"
+        },
+        "md": {
+          "height": "{space.6}",
+          "gap": "{space.3}"
+        },
+        "lg": {
+          "height": "{space.10}",
+          "gap": "{space.4}"
+        }
+      },
+      "states": {
+        "default": {
+          "opacity": 1
+        }
+      },
+      "ai": {
+        "purpose": "Continuous architectural relief border and rhythmic decorative band for structural section dividers and header framing.",
+        "whenToUse": [
+          "Section dividers with cultural or architectural flair",
+          "Header and footer boundary bands in academic/executive dossiers",
+          "Framing featured editorial showcases"
+        ],
+        "avoid": [
+          "Simple minimal data dividers (use Divider)",
+          "Clickable navigation bars (use Navbar)"
         ],
         "related": []
       }
@@ -2063,6 +2191,79 @@
         "avoid": [
           "Interactive buttons or clickable tags (use Badge or Button)",
           "Overcrowding multiple ribbons on a single container"
+        ],
+        "related": []
+      }
+    },
+    "Seal": {
+      "id": "seal",
+      "component": "Seal",
+      "category": "feedback",
+      "base": {
+        "display": "inline-flex",
+        "flex-direction": "column",
+        "align-items": "center",
+        "justify-content": "center",
+        "border-radius": "{radius.full}",
+        "text-align": "center",
+        "user-select": "none",
+        "transition": "transform {motion.duration.fast} {motion.ease.standard}"
+      },
+      "variants": {
+        "solid": {
+          "background-color": "{color.nebu.base}",
+          "color": "{color.nebu.foreground}",
+          "border": "2px double {color.nebu.light}"
+        },
+        "subtle": {
+          "background-color": "{color.nebu.surface}",
+          "color": "{color.nebu.hover}",
+          "border": "1px solid {color.nebu.light}"
+        },
+        "outline": {
+          "background-color": "transparent",
+          "color": "{color.nebu.base}",
+          "border": "2px dashed {color.nebu.base}"
+        }
+      },
+      "sizes": {
+        "sm": {
+          "width": "{space.10}",
+          "height": "{space.10}",
+          "font-size": "{text.xs}",
+          "padding": "{space.1}"
+        },
+        "md": {
+          "width": "{space.16}",
+          "height": "{space.16}",
+          "font-size": "{text.sm}",
+          "padding": "{space.2}"
+        },
+        "lg": {
+          "width": "{space.24}",
+          "height": "{space.24}",
+          "font-size": "{text.base}",
+          "padding": "{space.3}"
+        }
+      },
+      "states": {
+        "default": {
+          "transform": "none"
+        },
+        "hover": {
+          "transform": "scale(1.05) rotate(3deg)"
+        }
+      },
+      "ai": {
+        "purpose": "Official accreditation, institutional verification mark, and royal stamp emblem.",
+        "whenToUse": [
+          "Academic degree or course completion seals",
+          "Executive signature verification badges",
+          "Official institutional copyright or accreditation marks"
+        ],
+        "avoid": [
+          "Standard notification unread counts (use Badge)",
+          "User avatars (use Avatar)"
         ],
         "related": []
       }

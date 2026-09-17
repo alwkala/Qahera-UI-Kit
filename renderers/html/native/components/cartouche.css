@@ -1,0 +1,116 @@
+/**
+ * Qahera UI Kit — Cartouche Component (قاهرة · الخرطوشة الملكية)
+ * Architectural royal enclosure with tactile metallic border, pilliform caps, and knot-base
+ */
+
+.qhr-cartouche {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--qhr-surface-card);
+  border: 1px solid var(--qhr-border-subtle);
+  border-radius: var(--qhr-radius-xl);
+  overflow: hidden;
+  transition: transform var(--qhr-motion-duration-normal) var(--qhr-motion-ease-standard),
+              box-shadow var(--qhr-motion-duration-normal) var(--qhr-motion-ease-standard),
+              border-color var(--qhr-motion-duration-normal) var(--qhr-motion-ease-standard);
+}
+
+/* Iconic Pilliform Caps (Pharaonic Oval Framing) */
+.qhr-cartouche::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  height: var(--qhr-space-1);
+  background: linear-gradient(90deg, transparent 0%, var(--qhr-color-nebu, #C98818) 50%, transparent 100%);
+  opacity: 0.8;
+}
+
+/* Knot-Base (Shen knot horizontal anchor line) */
+.qhr-cartouche__knot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--qhr-space-2);
+  margin-block-start: auto;
+  border-block-start: 1px solid var(--qhr-border-subtle);
+  background: var(--qhr-surface-subtle);
+}
+
+.qhr-cartouche__knot-bar {
+  width: var(--qhr-space-12);
+  height: var(--qhr-space-0-5);
+  background-color: var(--qhr-color-nebu, #C98818);
+  border-radius: var(--qhr-radius-full);
+}
+
+/* Variants */
+.qhr-cartouche--elevated {
+  background-color: var(--qhr-surface-elevated);
+  box-shadow: var(--qhr-shadow-cartouche, 0 4px 14px -2px rgba(201, 136, 24, 0.25));
+  border-color: rgba(var(--qhr-color-nebu-rgb, 201, 136, 24), 0.35);
+}
+
+.qhr-cartouche--elevated:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--qhr-shadow-floating, 0 24px 48px -12px rgba(0, 0, 0, 0.18));
+}
+
+.qhr-cartouche--outline {
+  background-color: transparent;
+  border: 2px solid var(--qhr-color-nebu, #C98818);
+}
+
+.qhr-cartouche--solid {
+  background-color: var(--qhr-color-papyrus, #FAF8F2);
+  border: 1px solid var(--qhr-color-papyrus-border, #E2DAC8);
+  color: var(--qhr-color-papyrus-fg, #121F1B);
+}
+
+/* Sizes */
+.qhr-cartouche--sm {
+  padding: var(--qhr-space-3);
+  gap: var(--qhr-space-2);
+}
+
+.qhr-cartouche--md {
+  padding: var(--qhr-space-5);
+  gap: var(--qhr-space-3);
+}
+
+.qhr-cartouche--lg {
+  padding: var(--qhr-space-8);
+  gap: var(--qhr-space-4);
+}
+
+/* Cartouche Sections */
+.qhr-cartouche__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--qhr-space-3);
+}
+
+.qhr-cartouche__title {
+  font-family: var(--qhr-font-heading);
+  font-weight: 700;
+  color: var(--qhr-text-primary);
+  margin: 0;
+}
+
+.qhr-cartouche__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--qhr-space-2);
+  color: var(--qhr-text-secondary);
+  font-family: var(--qhr-font-body);
+}
+
+.qhr-cartouche__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--qhr-space-2);
+  margin-block-start: var(--qhr-space-2);
+}

@@ -39,6 +39,11 @@ Read only the command file that matches the request. Do not load all files simul
 10. **Thematic Topography (`QAHERA-THEME-001`)**: Authentic Egyptian contexts (Heliopolis, Khedivial Downtown, New Cairo, Maadi, Nubia, Historic Cairo) via `[data-theme="..."]`.
 11. **7-Axis Pre-Emit Critique**: All code emissions must be stamped with:
     `/* Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 */`
+12. **SVG Dimensional Discipline (`QAHERA-SVG-001`)**: All `<svg>` icons and motifs must define explicit `width`, `height`, and `viewBox` attributes, paired with defensive CSS scaling (`max-width: 100%`).
+13. **Popover Wrapper Clean Encapsulation (`QAHERA-POPOVER-001`)**: Dropdown and megamenu wrappers (`.qhr-*-wrapper`) must tightly encapsulate triggers with zero `padding-bottom`. Use explicit alignment modifiers (`--start`, `--center`, `--end`) and `max-inline-size: calc(100vw - 32px)`.
+14. **Navigation Purity & BiDi Flow (`QAHERA-NAV-001`)**: Zero hardcoded numbers/counts in navbar headers, single primary header CTA, externalized theme strips, and mandatory `<bdi dir="ltr">` isolation for Latin terms in Arabic copy.
+15. **Compiler Bundle & Asset Integrity (`QAHERA-BUILD-001`)**: All atomic component styles must be registered in `CANONICAL_ORDER` in `cli/build-css.js`, compiled to `dist/qahera.css`, and previews must exclusively link to production `dist/` assets.
+16. **Hero Skyline Panorama & Architectural Discipline (`QAHERA-HERO-001`)**: Hero section height MUST match the background illustration height (e.g. `height: clamp(500px, 62vh, 588px); max-height: 588px;`) to eliminate excessive empty top void. Symmetrical two-column isolation (`max-width: min(100%, 540px)`) with zero typo-visual overlap, flush bottom alignment (`align-items: flex-end`), feathered inward gradient masks, and mirrored RTL symmetry (`transform: scaleX(-1)`).
 
 ## Progressive AI Context Protocol
 

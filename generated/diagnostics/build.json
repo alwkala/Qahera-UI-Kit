@@ -1,14 +1,14 @@
 {
-  "compiler": "1.5.1",
+  "compiler": "1.5.2",
   "status": "success",
-  "timestamp": "2026-09-12T08:18:42.638Z",
-  "durationMs": 266,
-  "sourceHash": "362986bbdc2ae6719830e2b765c2ca178f63658932eaca9ef3c03ea2e8d3f2a9",
+  "timestamp": "2026-09-17T06:18:03.824Z",
+  "durationMs": 281,
+  "sourceHash": "8eca07854e278d3540e56d6be21516e6f9a397698f458f9d756b65c5bf7578a6",
   "counts": {
-    "contracts": 42,
-    "recipes": 42,
-    "icons": 41,
-    "generated": 42,
+    "contracts": 45,
+    "recipes": 45,
+    "icons": 46,
+    "generated": 45,
     "errors": 0,
     "warnings": 0,
     "info": 0

@@ -1,11 +1,11 @@
 {
   "schema": "qahera.component-manifest/v1",
-  "compiler": "1.5.1",
-  "sourceHash": "362986bbdc2ae6719830e2b765c2ca178f63658932eaca9ef3c03ea2e8d3f2a9",
+  "compiler": "1.5.2",
+  "sourceHash": "8eca07854e278d3540e56d6be21516e6f9a397698f458f9d756b65c5bf7578a6",
   "counts": {
-    "components": 42,
-    "recipes": 42,
-    "patterns": 20
+    "components": 45,
+    "recipes": 45,
+    "patterns": 21
   },
   "components": [
     {
@@ -108,6 +108,15 @@
       "behavior": null
     },
     {
+      "id": "cartouche",
+      "name": "Cartouche",
+      "component": "Cartouche",
+      "category": "containers",
+      "contract": "contracts/components/cartouche.yaml",
+      "recipe": "recipes/cartouche.yaml",
+      "behavior": null
+    },
+    {
       "id": "checkbox",
       "name": "Checkbox",
       "component": "Checkbox",
@@ -168,6 +177,15 @@
       "category": "forms",
       "contract": "contracts/components/FileUpload.yaml",
       "recipe": "recipes/file-upload.yaml",
+      "behavior": null
+    },
+    {
+      "id": "frieze",
+      "name": "Frieze",
+      "component": "Frieze",
+      "category": "data-display",
+      "contract": "contracts/components/frieze.yaml",
+      "recipe": "recipes/frieze.yaml",
       "behavior": null
     },
     {
@@ -276,6 +294,15 @@
       "category": "data-display",
       "contract": "contracts/components/Ribbon.yaml",
       "recipe": "recipes/ribbon.yaml",
+      "behavior": null
+    },
+    {
+      "id": "seal",
+      "name": "Seal",
+      "component": "Seal",
+      "category": "feedback",
+      "contract": "contracts/components/seal.yaml",
+      "recipe": "recipes/seal.yaml",
       "behavior": null
     },
     {

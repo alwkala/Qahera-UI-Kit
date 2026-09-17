@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>رافع الملفات والمستندات (FileUpload) — معاينة منظومة قاهرة Qahera UI Kit</title>
+  <title>الخرطوشة الملكية التذكارية (cartouche) — معاينة منظومة قاهرة Qahera UI Kit</title>
   
   <!-- الخطوط الأساسية الرسمية: Alexandria للعناوين والهوية، و Cairo للنصوص والواجهة -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- أوراق الأنماط الأساسية للمنظومة -->
-  <link rel="stylesheet" href="../../tokens/tokens.css">
-  <link rel="stylesheet" href="../../tokens/themes/themes.css">
-  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+  <link rel="stylesheet" href="../../dist/qahera-tokens.css">
+  <link rel="stylesheet" href="../../dist/qahera-themes.css">
+  <link rel="stylesheet" href="../../dist/qahera.css">
 
-  <!-- حزم السلوك التفاعلي الـ 11 كاملة لضمان صفر أخطاء كونسول -->
+  <!-- حزم السلوك التفاعلي الـ 14 كاملة لضمان صفر أخطاء كونسول -->
   <script defer src="../../behavior/modal.js"></script>
   <script defer src="../../behavior/dropdown.js"></script>
   <script defer src="../../behavior/tabs.js"></script>
@@ -27,6 +27,9 @@
   <script defer src="../../behavior/back-to-top.js"></script>
   <script defer src="../../behavior/navbar.js"></script>
   <script defer src="../../behavior/preloader.js"></script>
+  <script defer src="../../behavior/spotlight.js"></script>
+  <script defer src="../../behavior/counter.js"></script>
+  <script defer src="../../behavior/scrollspy.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
   <style>
@@ -73,6 +76,25 @@
     }
 
     * { box-sizing: border-box; }
+
+    /* Defensive vector sizing to guarantee proper dimensions */
+    svg {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .qhr-frieze__motif svg {
+      width: 20px !important;
+      height: 20px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      fill: currentColor;
+    }
+    .qhr-seal__emblem svg {
+      width: 24px !important;
+      height: 24px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+    }
 
     body {
       background-color: var(--q-bg);
@@ -422,13 +444,15 @@
           <option value="canvas-sparks.html">شرارات الكانفاس الحركية (CanvasSparks)</option>
           <option value="card.html">البطاقات البنائية (Card)</option>
           <option value="carousel.html">عارض الشرائح الدوار (Carousel)</option>
+          <option value="cartouche.html" selected>الخرطوشة الملكية التذكارية (cartouche)</option>
           <option value="checkbox.html">صناديق الاختيار الثنائية (Checkbox)</option>
           <option value="chip.html">شرائح التصنيف والفلترة (Chip)</option>
           <option value="divider.html">الفواصل الأفقية والرأسية (Divider)</option>
           <option value="dock.html">شريط التطبيقات السفلي (Dock)</option>
           <option value="drawer.html">الدرج الجانبي المنبثق (Drawer)</option>
           <option value="dropdown.html">القائمة المنسدلة التفاعلية (Dropdown)</option>
-          <option value="file-upload.html" selected>رافع الملفات والمستندات (FileUpload)</option>
+          <option value="file-upload.html">رافع الملفات والمستندات (FileUpload)</option>
+          <option value="frieze.html">الإفريز المعماري المنقوش (frieze)</option>
           <option value="input.html">حقول الإدخال النصية (Input)</option>
           <option value="kbd.html">أزرار لوحة المفاتيح والاختصارات (Kbd)</option>
           <option value="megamenu.html">القائمة الضخمة متعددة الأعمدة (Megamenu)</option>
@@ -441,6 +465,7 @@
           <option value="radio.html">أزرار الاختيار الأحادي (Radio)</option>
           <option value="rating.html">تقييم النجوم التفاعلي (Rating)</option>
           <option value="ribbon.html">الشريط الزخرفي والوسام (Ribbon)</option>
+          <option value="seal.html">الختم الملكي المؤسسي المعتمد (seal)</option>
           <option value="select.html">حقل الاختيار المنسدل المخصص (Select)</option>
           <option value="skeleton.html">الهيكل الشبحي للتحميل (Skeleton)</option>
           <option value="spinner.html">مؤشر الانتظار الدائري (Spinner)</option>
@@ -481,7 +506,7 @@
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </div>
-        <span class="capsule-badge">62</span>
+        <span class="capsule-badge">65</span>
       </div>
 
       <div class="theme-selector-capsule" title="تبديل ثيم المنظومة">
@@ -534,9 +559,9 @@
         </svg>
       </button>
 
-      <a href="index.html" class="ctrl-action-btn" title="الانتقال إلى فهرس المنظومة (62 عنصراً)">
+      <a href="index.html" class="ctrl-action-btn" title="الانتقال إلى فهرس المنظومة (65 عنصراً)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        <span>الفهرس (62)</span>
+        <span>الفهرس (65)</span>
       </a>
     </div>
   </header>
@@ -556,14 +581,14 @@
           <span class="badge-pill-subtle">100% Logical CSS</span>
         </div>
         <h1>
-          <span>رافع الملفات والمستندات</span>
-          <span class="tech-tag">FileUpload</span>
+          <span>الخرطوشة الملكية التذكارية</span>
+          <span class="tech-tag">cartouche</span>
         </h1>
-        <p class="comp-desc">Interactive drag-and-drop zone with file picker, validation status, and upload progression indicators.</p>
+        <p class="comp-desc">Prestige container providing pharaonic architectural framing for executive profiles, diplomas, and focal features</p>
       </div>
 
       <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
-        <kbd class="qhr-kbd qhr-kbd--sm">renderers/html/native/file-upload.html</kbd>
+        <kbd class="qhr-kbd qhr-kbd--sm">renderers/html/native/cartouche.html</kbd>
         <span style="font-size: 0.72rem; color: var(--q-text-muted);">المتغيرات: <code>default, primary, secondary</code></span>
       </div>
     </section>
@@ -597,21 +622,23 @@
     <div id="panel-stage" class="canvas-stage-outer">
       <div id="canvas-container" class="canvas-viewport-container">
         <div class="component-frame" id="component-viewport">
-          <!-- Qahera UI Kit - Master FileUpload Showcase -->
-<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
-
-  <div>
-    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. منطقة السحب والإفلات التفاعلية (Drag & Drop Zone)</h3>
-    <div class="qhr-file-upload">
-      <svg class="qhr-file-upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+          <!-- Qahera UI Kit - Native HTML Cartouche -->
+<div class="qhr-cartouche qhr-cartouche--elevated qhr-cartouche--md" role="region" aria-labelledby="cartouche-title-demo">
+  <div class="qhr-cartouche__header">
+    <div style="display: flex; align-items: center; gap: var(--qhr-space-2);">
+      <svg class="qhr-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--qhr-color-nebu, #C98818)" stroke-width="2" aria-hidden="true">
+        <path d="M7 4a5 5 0 0110 0v12a5 5 0 01-10 0V4zm-3 17h16v1H4v-1z"/>
       </svg>
-      <div class="qhr-file-upload-label">اسحب الملفات وأفلتها هنا، أو اضغط للتصفح</div>
-      <div class="qhr-file-upload-hint">يدعم صيغ PNG, JPG, SVG و PDF حتى 25 ميجابايت</div>
-      <input type="file" class="qhr-file-upload-input">
+      <h3 id="cartouche-title-demo" class="qhr-cartouche__title">مجلس الحكمة والاعتماد الأكاديمي</h3>
     </div>
+    <span class="qhr-badge qhr-badge--solid qhr-badge--sm" style="background: var(--qhr-color-nebu, #C98818); color: #181307;">معتمد</span>
   </div>
-
+  <div class="qhr-cartouche__body">
+    <p style="margin: 0;">وثيقة اعتماد استراتيجية صادرة تحت الرعاية الأكاديمية والتنفيذية لمركز دراسات القاهرة.</p>
+  </div>
+  <div class="qhr-cartouche__knot">
+    <div class="qhr-cartouche__knot-bar"></div>
+  </div>
 </div>
         </div>
       </div>
@@ -620,24 +647,26 @@
     <!-- 2. لوحة كود HTML -->
     <div id="panel-code" class="code-panel">
       <div class="code-panel-header">
-        <span>renderers/html/native/file-upload.html · HTML5 Strict Markup</span>
+        <span>renderers/html/native/cartouche.html · HTML5 Strict Markup</span>
         <button type="button" class="copy-btn" onclick="copyComponentHtml()">نسخ الكود الكامل</button>
       </div>
-      <pre class="code-pre"><code id="rawComponentSource">&lt;!-- Qahera UI Kit - Master FileUpload Showcase --&gt;
-&lt;div style=&quot;display: flex; flex-direction: column; gap: 32px; width: 100%;&quot;&gt;
-
-  &lt;div&gt;
-    &lt;h3 style=&quot;font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);&quot;&gt;1. منطقة السحب والإفلات التفاعلية (Drag &amp; Drop Zone)&lt;/h3&gt;
-    &lt;div class=&quot;qhr-file-upload&quot;&gt;
-      &lt;svg class=&quot;qhr-file-upload-icon&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot;&gt;
-        &lt;path d=&quot;M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4&quot;/&gt;&lt;polyline points=&quot;17 8 12 3 7 8&quot;/&gt;&lt;line x1=&quot;12&quot; y1=&quot;3&quot; x2=&quot;12&quot; y2=&quot;15&quot;/&gt;
+      <pre class="code-pre"><code id="rawComponentSource">&lt;!-- Qahera UI Kit - Native HTML Cartouche --&gt;
+&lt;div class=&quot;qhr-cartouche qhr-cartouche--elevated qhr-cartouche--md&quot; role=&quot;region&quot; aria-labelledby=&quot;cartouche-title-demo&quot;&gt;
+  &lt;div class=&quot;qhr-cartouche__header&quot;&gt;
+    &lt;div style=&quot;display: flex; align-items: center; gap: var(--qhr-space-2);&quot;&gt;
+      &lt;svg class=&quot;qhr-icon&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;var(--qhr-color-nebu, #C98818)&quot; stroke-width=&quot;2&quot; aria-hidden=&quot;true&quot;&gt;
+        &lt;path d=&quot;M7 4a5 5 0 0110 0v12a5 5 0 01-10 0V4zm-3 17h16v1H4v-1z&quot;/&gt;
       &lt;/svg&gt;
-      &lt;div class=&quot;qhr-file-upload-label&quot;&gt;اسحب الملفات وأفلتها هنا، أو اضغط للتصفح&lt;/div&gt;
-      &lt;div class=&quot;qhr-file-upload-hint&quot;&gt;يدعم صيغ PNG, JPG, SVG و PDF حتى 25 ميجابايت&lt;/div&gt;
-      &lt;input type=&quot;file&quot; class=&quot;qhr-file-upload-input&quot;&gt;
+      &lt;h3 id=&quot;cartouche-title-demo&quot; class=&quot;qhr-cartouche__title&quot;&gt;مجلس الحكمة والاعتماد الأكاديمي&lt;/h3&gt;
     &lt;/div&gt;
+    &lt;span class=&quot;qhr-badge qhr-badge--solid qhr-badge--sm&quot; style=&quot;background: var(--qhr-color-nebu, #C98818); color: #181307;&quot;&gt;معتمد&lt;/span&gt;
   &lt;/div&gt;
-
+  &lt;div class=&quot;qhr-cartouche__body&quot;&gt;
+    &lt;p style=&quot;margin: 0;&quot;&gt;وثيقة اعتماد استراتيجية صادرة تحت الرعاية الأكاديمية والتنفيذية لمركز دراسات القاهرة.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;qhr-cartouche__knot&quot;&gt;
+    &lt;div class=&quot;qhr-cartouche__knot-bar&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -648,7 +677,7 @@
         <div class="contract-item">
           <h4>التصنيف والهدف (Role &amp; Category)</h4>
           <p><strong>التصنيف:</strong> مكون معماري رسمي</p>
-          <p style="margin-block-start: 6px;"><strong>الغرض:</strong> Interactive drag-and-drop zone with file picker, validation status, and upload progression indicators.</p>
+          <p style="margin-block-start: 6px;"><strong>الغرض:</strong> Prestige container providing pharaonic architectural framing for executive profiles, diplomas, and focal features</p>
         </div>
         <div class="contract-item">
           <h4>المتغيرات المدعومة (Variants)</h4>
@@ -670,18 +699,18 @@
 
     <!-- شريط التنقل بين المكونات السابق والتالي -->
     <nav class="stage-pager">
-      <a href="dropdown.html" class="pager-card" title="الانتقال للمكون السابق">
+      <a href="carousel.html" class="pager-card" title="الانتقال للمكون السابق">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--q-gold);"><polyline points="9 18 15 12 9 6"/></svg>
         <div style="text-align: start;">
           <div class="pager-label">السابق</div>
-          <div class="pager-title">القائمة المنسدلة التفاعلية (Dropdown)</div>
+          <div class="pager-title">عارض الشرائح الدوار (Carousel)</div>
         </div>
       </a>
 
-      <a href="input.html" class="pager-card" title="الانتقال للمكون التالي">
+      <a href="checkbox.html" class="pager-card" title="الانتقال للمكون التالي">
         <div style="text-align: end;">
           <div class="pager-label">التالي</div>
-          <div class="pager-title">حقول الإدخال النصية (Input)</div>
+          <div class="pager-title">صناديق الاختيار الثنائية (Checkbox)</div>
         </div>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--q-gold);"><polyline points="15 18 9 12 15 6"/></svg>
       </a>
@@ -947,7 +976,7 @@
         var curPath = window.location.pathname.split('/').pop().toLowerCase();
         for (var i = 0; i < picker.options.length; i++) {
           var optVal = (picker.options[i].value || '').toLowerCase();
-          if (optVal === curPath || optVal === 'file-upload.html' || optVal === 'file-upload.html' || optVal === 'fileupload.html') {
+          if (optVal === curPath || optVal === 'cartouche.html' || optVal === 'cartouche.html' || optVal === 'cartouche.html') {
             picker.selectedIndex = i;
             break;
           }

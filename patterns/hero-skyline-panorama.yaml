@@ -1,0 +1,72 @@
+id: hero-skyline-panorama
+name: Hero Skyline Panorama
+category: marketing
+purpose: >
+  Full-bleed architectural brand hero layout pairing a clean, isolated typography column on one side with a bottom-anchored, full-height architectural skyline illustration on the other, blended seamlessly via feathered gradient masks and maintaining strict RTL/LTR symmetry with zero typography-visual collision.
+
+components:
+  - button
+  - badge
+  - icon
+
+anatomy:
+  - root
+  - background-layer
+  - ambient-halo
+  - background-image
+  - site-container
+  - hero-grid
+  - text-column
+  - headline
+  - statement
+  - body-paragraph
+  - action-buttons
+
+slots:
+  - kicker
+  - title
+  - statement
+  - body
+  - actions
+  - visual
+  - halo
+
+layout:
+  display: flex
+  align_items: center
+  height: "clamp(500px, 62vh, 588px)"
+  min_height: "500px"
+  max_height: "588px"
+  overflow: hidden
+  padding_block: 0
+  responsive:
+    desktop: "height: clamp(500px, 62vh, 588px); display: flex; align-items: center;"
+    tablet: "min-height: clamp(450px, 65vh, 560px);"
+    mobile: "height: auto; min-height: auto; max-height: none; flex-direction: column;"
+
+visual_rules:
+  height_parity: "Section height MUST strictly match the cropped background illustration height (e.g. 588px) to eliminate excessive top margin."
+  bottom_anchor: "Illustration is anchored directly to the bottom (inset-block-end: 0, object-position: bottom right in LTR, bottom left in RTL)."
+  feathered_mask: "Inner edge of illustration blends seamlessly into section background using linear-gradient mask without hard edges."
+  rtl_symmetry: "In RTL, illustration is mirrored horizontally (transform: scaleX(-1)) to anchor landmark tower to the outer margin and softly fade inwards toward text."
+  zero_overlap: "Text column is constrained (max-width: min(100%, 540px)) ensuring zero typographical collision with the architectural visual across all resolutions."
+
+accessibility:
+  role: banner
+  landmark: banner
+  keyboard_flow: "Tab traverses interactive action triggers within the text column"
+
+ai:
+  purpose: "Provide a high-impact, culturally rooted architectural hero section for flagship portals and brand landings."
+  use_when:
+    - "Flagship marketing landing pages"
+    - "Cultural and regional product launches"
+    - "Hero banners requiring seamless integration between architectural illustration and brand copy"
+  avoid_when:
+    - "Dense dashboard interfaces"
+    - "Transactional checkout flows"
+    - "Form-heavy administrative views"
+  composed_of:
+    - button
+    - badge
+    - icon

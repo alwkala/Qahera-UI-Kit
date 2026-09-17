@@ -1,0 +1,58 @@
+id: cartouche
+name: Cartouche
+component: Cartouche
+category: containers
+purpose: >
+  Architectural royal enclosure and prestige container with pilliform header caps, metallic borders, and tactile papyrus surface.
+
+anatomy:
+  - root
+  - cap
+  - body
+  - label
+  - knot-base
+
+variants:
+  outline:
+    intent: bordered-prestige-frame
+  elevated:
+    intent: floating-prestige-container
+  solid:
+    intent: tactile-filled-enclosure
+
+sizes:
+  sm:
+    padding: 12
+    border_radius: "var(--qhr-radius-md)"
+  md:
+    padding: 20
+    border_radius: "var(--qhr-radius-lg)"
+  lg:
+    padding: 32
+    border_radius: "var(--qhr-radius-xl)"
+
+states:
+  - default
+  - hover
+  - active
+
+slots:
+  header: optional
+  title: optional
+  body: required
+  footer: optional
+
+accessibility:
+  role: region
+  keyboard: false
+  focusVisible: true
+
+ai:
+  purpose: "Prestige container providing pharaonic architectural framing for executive profiles, diplomas, and focal features"
+  whenToUse:
+    - "Executive badges and verified author cards"
+    - "Royal diplomas, certifications, and awards"
+    - "Flagship feature callouts and hero badges"
+  avoid:
+    - "Standard high-density data tables"
+    - "Generic low-prominence cards (use Card)"

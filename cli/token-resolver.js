@@ -123,6 +123,19 @@ function run() {
   const motion = parseSimpleYaml(fs.readFileSync(path.join(TOKENS_DIR, 'motion.yaml'), 'utf8'));
   const darkTheme = parseSimpleYaml(fs.readFileSync(path.join(TOKENS_DIR, 'themes', 'dark.yaml'), 'utf8'));
 
+  let culturalMaterials = {};
+  if (fs.existsSync(path.join(TOKENS_DIR, 'cultural-materials.yaml'))) {
+    culturalMaterials = parseSimpleYaml(fs.readFileSync(path.join(TOKENS_DIR, 'cultural-materials.yaml'), 'utf8'));
+  }
+  let zIndexTokens = {};
+  if (fs.existsSync(path.join(TOKENS_DIR, 'z-index.yaml'))) {
+    zIndexTokens = parseSimpleYaml(fs.readFileSync(path.join(TOKENS_DIR, 'z-index.yaml'), 'utf8'));
+  }
+  let shadowTokens = {};
+  if (fs.existsSync(path.join(TOKENS_DIR, 'shadows.yaml'))) {
+    shadowTokens = parseSimpleYaml(fs.readFileSync(path.join(TOKENS_DIR, 'shadows.yaml'), 'utf8'));
+  }
+
   // Deep merge full token registry
   const fullRegistry = {};
   deepMerge(fullRegistry, primitives);
@@ -130,6 +143,15 @@ function run() {
   deepMerge(fullRegistry, { typography: typography.families || {} });
   deepMerge(fullRegistry, { motion: motion || {} });
   deepMerge(fullRegistry, { components: components });
+  if (culturalMaterials.materials) {
+    deepMerge(fullRegistry, { color: culturalMaterials.materials });
+  }
+  if (shadowTokens.scale) {
+    deepMerge(fullRegistry, { shadow: shadowTokens.scale });
+  }
+  if (zIndexTokens.scale) {
+    deepMerge(fullRegistry, { z: zIndexTokens.scale });
+  }
 
   // 2. Resolve all references
   const flatTokens = flattenDictionary(fullRegistry);
@@ -147,8 +169,12 @@ function run() {
   );
 
   // 4. Generate generated/tokens.css
+  let css = `/**
+ * Qahera UI Kit — Canonical Design Tokens v1.0
+ * Generated automatically from tokens/ YAML sources. DO NOT EDIT.
+ */\n\n`;
   css += `@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');\n\n`;
-  css += `:root, [data-theme="light"] {\n`;
+  css += `:root, [data-theme="light"], [data-mode="light"] {\n`;
 
   const metaKeys = ['version', 'namespace', 'category', 'description'];
   for (const [key, val] of Object.entries(resolvedFlat)) {
@@ -270,6 +296,7 @@ function run() {
 
   fs.writeFileSync(path.join(GENERATED_DIR, 'tokens.css'), css, 'utf8');
   fs.writeFileSync(path.join(TOKENS_DIR, 'tokens.css'), css, 'utf8');
+  fs.writeFileSync(path.join(ROOT_DIR, 'dist', 'qahera-tokens.css'), css, 'utf8');
 
   // 5. Generate generated/tailwind.preset.js
   let tw = `/**\n * Qahera UI Kit — Generated Tailwind Preset v1.0\n */\nmodule.exports = {\n  theme: {\n    extend: {\n      colors: {\n`;

@@ -1,0 +1,41 @@
+id: template-academic-executive
+name: Academic & Executive Showcase Hub
+category: executive
+purpose: >
+  Comprehensive luxury academic and executive showcase platform synthesizing cultural and physical tokens from Egyptian architectural heritage. Features pharaonic cartouche enclosures, book elevation shadows, cursor micro-physics, animated numerical counters, research tracks, publications archive, and interactive lecture dossiers.
+
+patterns:
+  - dashboard-stat
+  - filter-bar
+  - search-toolbar
+
+components:
+  - cartouche
+  - frieze
+  - seal
+  - card
+  - badge
+  - button
+  - accordion
+  - tabs
+  - modal
+  - back-to-top
+  - toast
+
+sections:
+  - navbar: "Unified sticky header with Cartouche brand mark, navigation links, theme switcher, and single primary CTA"
+  - hero_monograph: "Executive hero with spotlight bento card, verified accreditation seal, and keynote narrative"
+  - metrics_telemetry: "Numerical counter metrics strip with animated viewport triggers"
+  - architectural_frieze: "Rhythmic relief band section divider establishing structural rhythm"
+  - research_tracks: "Collapsible research streams with taxonomy tags and telemetry status"
+  - publications_archive: "Academic monographs and book cards rendered with authentic book elevation shadows"
+  - executive_dossier: "Verified author credentials, institutional chairs, and doctoral affiliations"
+
+ai:
+  purpose: "Flagship academic showcase and executive dossier for research chairs, university professors, and senior technology directors"
+  use_when:
+    - "Academic portfolios and scientific research showcases"
+    - "Executive dossiers, institutional keynotes, and monographs"
+    - "Prestige technology studio flagship sites"
+  avoid:
+    - "Generic high-volume e-commerce shops"

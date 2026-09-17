@@ -1,0 +1,44 @@
+id: template-flagship-portal
+name: Flagship Portal & Design System Hub
+category: foundation
+purpose: >
+  Flagship platform portal and design system showcase hub based on the authoritative Qahera front-page architecture. Features hero skyline panorama with architectural silhouette, Cairo Atlas neighborhood theme switcher, interactive multi-target code engine tabs, live telemetric counters, developer CLI banner, and comprehensive component bento showcase.
+
+patterns:
+  - dashboard-stat
+  - filter-bar
+  - search-toolbar
+  - form-actions
+
+components:
+  - navbar
+  - button
+  - card
+  - badge
+  - tabs
+  - accordion
+  - modal
+  - toast
+  - back-to-top
+  - cartouche
+  - seal
+  - frieze
+
+sections:
+  - navbar: "Unified sticky glass header with Cartouche brand mark, navigation links, theme switcher, and single primary CTA"
+  - hero_skyline: "Sovereign hero section with Cairo architectural skyline silhouette, Alexandria display typography, and CTA triggers"
+  - shift_bento: "Architectural shift bento grid showcasing AI discoverability and contracts-first design language"
+  - neighborhood_themes: "Interactive Cairo Atlas neighborhood theme switcher with live token updates"
+  - code_engine: "Multi-target framework switcher (HTML Native, React RSC, PHP, HTMX, Tailwind, Web Components)"
+  - telemetric_metrics: "Numerical counter strip showing components, patterns, templates, and themes"
+  - cli_banner: "Instant developer CLI scaffolding and copyable terminal command chips"
+  - platform_footer: "Architectural footer with institutional accreditation and logical navigation"
+
+ai:
+  purpose: "Flagship landing portal, developer platform hub, and AI-native design system showcase"
+  use_when:
+    - "Flagship technology product portals and SaaS platform hubs"
+    - "Design system documentation and showcase homepages"
+    - "Enterprise software launch sites and developer tools marketing"
+  avoid:
+    - "Simple single-column blogs or generic checkout forms"

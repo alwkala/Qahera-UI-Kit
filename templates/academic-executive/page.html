@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="zamalek" data-mode="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بوابة أكاديمية — قاهرة Qahera UI Kit</title>
+
+  <!-- Typography: Alexandria (Display & Brand) + Cairo (Body & UI) + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Core Qahera Styles -->
+  <link rel="stylesheet" href="../../dist/qahera-tokens.css">
+  <link rel="stylesheet" href="../../dist/qahera-themes.css">
+  <link rel="stylesheet" href="../../dist/qahera.css">
+
+  <!-- Canonical Behavior Modules -->
+  <script defer src="../../behavior/modal.js"></script>
+  <script defer src="../../behavior/dropdown.js"></script>
+  <script defer src="../../behavior/tabs.js"></script>
+  <script defer src="../../behavior/accordion.js"></script>
+  <script defer src="../../behavior/toast.js"></script>
+  <script defer src="../../behavior/tooltip.js"></script>
+  <script defer src="../../behavior/select.js"></script>
+  <script defer src="../../behavior/canvas-sparks.js"></script>
+  <script defer src="../../behavior/back-to-top.js"></script>
+  <script defer src="../../behavior/navbar.js"></script>
+  <script defer src="../../behavior/preloader.js"></script>
+  <script defer src="../../behavior/spotlight.js"></script>
+  <script defer src="../../behavior/counter.js"></script>
+  <script defer src="../../behavior/scrollspy.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <style>
+    :root {
+      --qhr-font-heading: 'Alexandria', 'Cairo', sans-serif;
+      --qhr-font-body: 'Cairo', 'Alexandria', system-ui, sans-serif;
+      --qhr-font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--qhr-font-body);
+      background-color: var(--qhr-surface-page, #020617);
+      color: var(--qhr-text-primary, #f8fafc);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+    }
+
+    /* Tactile Book Card Elevation */
+    .academic-book-card {
+      position: relative;
+      background: var(--qhr-surface-card, #0f172a);
+      border: 1px solid var(--qhr-border-subtle, #334155);
+      border-radius: var(--qhr-radius-lg, 16px);
+      box-shadow: var(--qhr-shadow-book);
+      padding: var(--qhr-space-6, 24px);
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-4, 16px);
+      transition: transform var(--qhr-motion-duration-normal) var(--qhr-motion-ease-standard),
+                  box-shadow var(--qhr-motion-duration-normal) var(--qhr-motion-ease-standard);
+    }
+
+    .academic-book-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--qhr-shadow-floating);
+      border-color: var(--qhr-color-nebu, #C98818);
+    }
+
+    /* Spotlight container */
+    .spotlight-surface {
+      position: relative;
+      overflow: hidden;
+    }
+    .spotlight-surface::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(400px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%), rgba(201, 136, 24, 0.12), transparent 80%);
+      opacity: var(--spotlight-opacity, 0);
+      transition: opacity var(--qhr-motion-duration-fast) ease;
+    }
+
+    /* Container constraints */
+    .academic-container {
+      width: 100%;
+      max-width: 1240px;
+      margin-inline: auto;
+      padding-inline: clamp(16px, 4vw, 32px);
+    }
+
+    /* Header Nav */
+    .academic-navbar {
+      position: sticky;
+      inset-block-start: 0;
+      z-index: var(--qhr-z-navbar, 1000);
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-block-end: 1px solid var(--qhr-border-subtle, #334155);
+      padding-block: var(--qhr-space-3, 12px);
+    }
+    [data-mode="light"] .academic-navbar {
+      background: rgba(255, 255, 255, 0.92);
+      border-block-end-color: var(--qhr-border-subtle, #e2e8f0);
+    }
+    .academic-nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--qhr-space-4, 16px);
+    }
+    .academic-nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--qhr-space-5, 20px);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .academic-nav-link {
+      text-decoration: none;
+      color: var(--qhr-text-secondary, #94a3b8);
+      font-weight: 600;
+      font-size: var(--qhr-text-sm, 14px);
+      transition: color var(--qhr-motion-duration-fast) ease;
+    }
+    .academic-nav-link:hover, .academic-nav-link.active {
+      color: var(--qhr-color-nebu, #C98818);
+    }
+
+    /* Hero section */
+    .academic-hero {
+      padding-block: clamp(40px, 8vw, 80px);
+      background: radial-gradient(circle at 50% 0%, rgba(19, 94, 78, 0.12) 0%, transparent 70%);
+    }
+
+    /* Metrics Strip */
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--qhr-space-4, 16px);
+      margin-block: clamp(32px, 5vw, 64px);
+    }
+    .metric-item {
+      background: var(--qhr-surface-card, #0f172a);
+      border: 1px solid var(--qhr-border-subtle, #334155);
+      border-radius: var(--qhr-radius-lg, 16px);
+      padding: var(--qhr-space-5, 20px);
+      display: flex;
+      flex-direction: column;
+      gap: var(--qhr-space-1, 4px);
+    }
+    .metric-value {
+      font-family: var(--qhr-font-heading);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      color: var(--qhr-color-nebu, #C98818);
+      line-height: 1.1;
+    }
+    .metric-label {
+      font-size: var(--qhr-text-sm, 14px);
+      color: var(--qhr-text-secondary, #94a3b8);
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body x-data="academicHub">
+
+  <!-- 1. Header (Unified Sticky Navbar, Cartouche Brand Mark, Single Primary CTA) -->
+  <header class="academic-navbar">
+    <div class="academic-container academic-nav-inner">
+      
+      <!-- Brand & Cartouche Mark -->
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <a href="../../index.html#templates" class="qhr-btn qhr-btn--secondary qhr-btn--sm" style="text-decoration: none; border-radius: var(--qhr-radius-pill, 9999px); display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          <span>الرئيسية</span>
+        </a>
+        <a href="../../index.html" class="brand-link" style="display: flex; align-items: center; gap: var(--qhr-space-3); text-decoration: none; color: inherit;">
+          <div style="width: 36px; height: 36px; border-radius: var(--qhr-radius-full); border: 2px solid var(--qhr-color-nebu); display: flex; align-items: center; justify-content: center; background: rgba(201, 136, 24, 0.1);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--qhr-color-nebu)" stroke-width="2" aria-hidden="true">
+              <path d="M7 4a5 5 0 0110 0v12a5 5 0 01-10 0V4zm-3 17h16v1H4v-1z"/>
+            </svg>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <span style="font-family: var(--qhr-font-heading); font-weight: 800; font-size: 1.05rem; line-height: 1.2;">بوابة أكاديمية</span>
+            <span style="font-size: 0.72rem; color: var(--qhr-text-muted); font-family: var(--qhr-font-mono);">Academic Portal</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Navigation Links (Zero numbers, clean semantic labels) -->
+      <nav aria-label="التنقل الرئيسي" style="display: flex; align-items: center; gap: var(--qhr-space-6);">
+        <ul class="academic-nav-links">
+          <li><a href="#hero" class="academic-nav-link" :class="{ 'active': activeSection === 'hero' }">الرئيسية</a></li>
+          <li><a href="#monographs" class="academic-nav-link" :class="{ 'active': activeSection === 'monographs' }">المؤلفات والدراسات</a></li>
+          <li><a href="#research" class="academic-nav-link" :class="{ 'active': activeSection === 'research' }">المسارات البحثية</a></li>
+          <li><a href="#dossier" class="academic-nav-link" :class="{ 'active': activeSection === 'dossier' }">الملف الأكاديمي</a></li>
+        </ul>
+      </nav>
+
+      <!-- Control Group: Theme, Dir, and Single CTA -->
+      <div style="display: flex; align-items: center; gap: var(--qhr-space-3);">
+        <!-- Mode Switcher -->
+        <button type="button" @click="toggleMode" class="qhr-btn qhr-btn--ghost qhr-btn--sm" :aria-label="mode === 'dark' ? 'تفعيل الوضع المضيء' : 'تفعيل الوضع المظلم'">
+          <svg x-show="mode === 'dark'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg x-show="mode === 'light'" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+        </button>
+
+        <!-- Language / Direction Switcher -->
+        <button type="button" @click="toggleDir" class="qhr-btn qhr-btn--ghost qhr-btn--sm" aria-label="تبديل اللغة والاتجاه">
+          <span x-text="dir === 'rtl' ? 'EN' : 'عربي'" style="font-family: var(--qhr-font-mono); font-weight: 700;"></span>
+        </button>
+
+        <!-- Single Header CTA Button -->
+        <button type="button" @click="openConsultationModal" class="qhr-btn qhr-btn--primary qhr-btn--sm">
+          <span>طلب استشارة أكاديمية</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 19l-7-7 7-7"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 2. Hero Section with Pharaonic Cartouche and Spotlight Bento -->
+  <section id="hero" class="academic-hero" data-scrollspy-section="hero">
+    <div class="academic-container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--qhr-space-8); align-items: center;">
+        
+        <!-- Hero Text Narrative -->
+        <div>
+          <div style="display: flex; align-items: center; gap: var(--qhr-space-2); margin-block-end: var(--qhr-space-3);">
+            <span class="qhr-badge qhr-badge--solid qhr-badge--sm" style="background: var(--qhr-color-wadj); color: #fff;">الأستاذية والريادة</span>
+            <span class="qhr-badge qhr-badge--outline qhr-badge--sm">توثيق معتمد</span>
+          </div>
+
+          <h1 style="font-family: var(--qhr-font-heading); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; line-height: 1.15; margin-block: 0 var(--qhr-space-4);">
+            المنهجية الاستراتيجية في هندسة النظم وتأصيل المعرفة
+          </h1>
+
+          <p style="font-size: var(--qhr-text-base); color: var(--qhr-text-secondary); line-height: 1.8; margin-block-end: var(--qhr-space-6);">
+            منصة بحثية وتنفيذية ترصد مسيرة الأبحاث العلمية، المؤلفات المحكمة، والاستشارات المؤسسية في مجالات الحوسبة المتقدمة ونظم القرار الذكية في العالم العربي.
+          </p>
+
+          <div style="display: flex; align-items: center; gap: var(--qhr-space-3); flex-wrap: wrap;">
+            <a href="#monographs" class="qhr-btn qhr-btn--primary qhr-btn--md" style="text-decoration: none;">
+              <span>استكشاف المؤلفات الأكاديمية</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 19l-7-7 7-7"/></svg>
+            </a>
+            <a href="#dossier" class="qhr-btn qhr-btn--outline qhr-btn--md" style="text-decoration: none;">
+              <span>تحميل السيرة الأكاديمية (Dossier)</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bento Card with Spotlight Micro-Physics & Seal Primitive -->
+        <div class="spotlight-surface" x-data="qhrSpotlight">
+          <div class="qhr-cartouche qhr-cartouche--elevated qhr-cartouche--lg">
+            <div class="qhr-cartouche__header">
+              <div style="display: flex; align-items: center; gap: var(--qhr-space-3);">
+                <div class="qhr-seal qhr-seal--solid qhr-seal--md" role="status">
+                  <div class="qhr-seal__ring">
+                    <div class="qhr-seal__emblem">
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a6 6 0 100 12 6 6 0 000-12zm-8 14h16M6 18v2m12-2v2"/></svg>
+                    </div>
+                    <span class="qhr-seal__label">معتمد</span>
+                    <span class="qhr-seal__subtext">ALWKALA</span>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="qhr-cartouche__title">الأستاذ الدكتور / ش. و. م</h3>
+                  <span style="font-size: var(--qhr-text-xs); color: var(--qhr-text-muted); font-family: var(--qhr-font-mono);">CHAIR PROFESSOR &amp; PRINCIPAL INVESTIGATOR</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="qhr-cartouche__body" style="margin-block: var(--qhr-space-4);">
+              <p style="margin: 0; font-size: var(--qhr-text-sm); line-height: 1.7;">
+                أستاذ علوم وهندسة النظم، عضو المجالس الاستشارية العليا لنظم الحوسبة العربية، وباحث رئيسي في مشاريع الذكاء الاصطناعي السيادي.
+              </p>
+              <div style="display: flex; gap: var(--qhr-space-2); flex-wrap: wrap; margin-block-start: var(--qhr-space-3);">
+                <span class="qhr-badge qhr-badge--solid qhr-badge--sm" style="background: var(--qhr-color-khesbed); color: #fff;">مجلس الحكمة</span>
+                <span class="qhr-badge qhr-badge--solid qhr-badge--sm" style="background: var(--qhr-color-tamy); color: #fff;">تحكيم دولي</span>
+                <span class="qhr-badge qhr-badge--solid qhr-badge--sm" style="background: var(--qhr-color-wadj); color: #fff;">زمالة فخرية</span>
+              </div>
+            </div>
+
+            <div class="qhr-cartouche__knot">
+              <div class="qhr-cartouche__knot-bar"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 3. Metrics Strip with Numerical Counter Animations -->
+      <div class="metrics-strip">
+        <div class="metric-item" x-data="qhrCounter({ target: 34, suffix: '+', duration: 1600 })">
+          <div class="metric-value" x-text="displayValue">0</div>
+          <div class="metric-label">بحثاً علمياً محكماً دولياً</div>
+        </div>
+
+        <div class="metric-item" x-data="qhrCounter({ target: 12, suffix: ' مجلد', duration: 1800 })">
+          <div class="metric-value" x-text="displayValue">0</div>
+          <div class="metric-label">مؤلفات ودراسات استراتيجية</div>
+        </div>
+
+        <div class="metric-item" x-data="qhrCounter({ target: 4800, suffix: '+', duration: 2000 })">
+          <div class="metric-value" x-text="displayValue">0</div>
+          <div class="metric-label">استشهاد مرجعي واستشارة أكاديمية</div>
+        </div>
+
+        <div class="metric-item" x-data="qhrCounter({ target: 28, suffix: ' عاماً', duration: 1500 })">
+          <div class="metric-value" x-text="displayValue">0</div>
+          <div class="metric-label">من الخبرة الأكاديمية والتنفيذية</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Architectural Frieze Separator Primitive -->
+  <div class="qhr-frieze qhr-frieze--outline qhr-frieze--md" role="separator" aria-label="فصل معماري">
+    <div class="qhr-frieze__track">
+      <span class="qhr-frieze__motif">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z"/></svg>
+      </span>
+      <span class="qhr-frieze__label">المؤلفات والدراسات المحكمة</span>
+      <span class="qhr-frieze__motif">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z"/></svg>
+      </span>
+    </div>
+  </div>
+
+  <!-- 5. Publications & Monographs Archive with Authentic Book Shadows -->
+  <section id="monographs" style="padding-block: clamp(48px, 6vw, 96px);" data-scrollspy-section="monographs">
+    <div class="academic-container">
+      
+      <div style="margin-block-end: var(--qhr-space-8); text-align: center;">
+        <span class="qhr-badge qhr-badge--solid qhr-badge--sm" style="background: var(--qhr-color-nebu); color: #181307;">الإنتاج العلمي الموثق</span>
+        <h2 style="font-family: var(--qhr-font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; margin-block: var(--qhr-space-2) 0;">
+          المؤلفات المرجعية والكتب الاستراتيجية
+        </h2>
+        <p style="color: var(--qhr-text-secondary); max-width: 680px; margin: var(--qhr-space-2) auto 0;">
+          مؤلفات أكاديمية مرجعية معتمدة في كبرى الجامعات والمعاهد العليا، صادرة عن دور نشر عربية وعالمية.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--qhr-space-6);">
+        
+        <!-- Book 1 -->
+        <div class="academic-book-card">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: var(--qhr-space-2);">
+            <span class="qhr-badge qhr-badge--solid qhr-badge--xs" style="background: var(--qhr-color-wadj); color: #fff;">الطبعة الثالثة</span>
+            <span style="font-family: var(--qhr-font-mono); font-size: var(--qhr-text-xs); color: var(--qhr-text-muted);">ISBN 978-977-08-1234-5</span>
+          </div>
+          <h3 style="font-family: var(--qhr-font-heading); font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--qhr-text-primary);">
+            أصول الحوسبة السيادية وتصميم البرمجيات المقاومة
+          </h3>
+          <p style="color: var(--qhr-text-secondary); font-size: var(--qhr-text-sm); line-height: 1.7; margin: 0;">
+            دراسة شاملة لبناء النظم المعرفية المستقلة في البيئات الإقليمية مع دراسة حالات ميدانية على البنى التحتية الحرجة.
+          </p>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-block-start: auto; padding-block-start: var(--qhr-space-3); border-block-start: 1px solid var(--qhr-border-subtle);">
+            <span style="font-size: var(--qhr-text-xs); color: var(--qhr-text-muted);">دار النشر الأكاديمية · 480 صفحة</span>
+            <button type="button" @click="showToast('تم فتح ملف فهرس الكتاب بنجاح')" class="qhr-btn qhr-btn--ghost qhr-btn--sm">
+              <span>الفهرس والملخص</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Book 2 -->
+        <div class="academic-book-card">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: var(--qhr-space-2);">
+            <span class="qhr-badge qhr-badge--solid qhr-badge--xs" style="background: var(--qhr-color-khesbed); color: #fff;">مرجع معتمد</span>
+            <span style="font-family: var(--qhr-font-mono); font-size: var(--qhr-text-xs); color: var(--qhr-text-muted);">ISBN 978-977-08-5678-9</span>
+          </div>
+          <h3 style="font-family: var(--qhr-font-heading); font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--qhr-text-primary);">
+            نظرية القرار المؤسسي في بيئات عدم التيقن
+          </h3>
+          <p style="color: var(--qhr-text-secondary); font-size: var(--qhr-text-sm); line-height: 1.7; margin: 0;">
+            تأصيل رياضي وإحصائي لخوارزميات التنبؤ ونماذج المحاكاة الموجهة للقيادات التنفيذية وصناع القرار.
+          </p>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-block-start: auto; padding-block-start: var(--qhr-space-3); border-block-start: 1px solid var(--qhr-border-subtle);">
+            <span style="font-size: var(--qhr-text-xs); color: var(--qhr-text-muted);">مركز دراسات الوكالة · 390 صفحة</span>
+            <button type="button" @click="showToast('تم فتح ملف فهرس الكتاب بنجاح')" class="qhr-btn qhr-btn--ghost qhr-btn--sm">
+              <span>الفهرس والملخص</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Book 3 -->
+        <div class="academic-book-card">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: var(--qhr-space-2);">
+            <span class="qhr-badge qhr-badge--solid qhr-badge--xs" style="background: var(--qhr-color-tamy); color: #fff;">إصدار حديث</span>
+            <span style="font-family: var(--qhr-font-mono); font-size: var(--qhr-text-xs); color: var(--qhr-text-muted);">ISBN 978-977-08-9012-3</span>
+          </div>
+          <h3 style="font-family: var(--qhr-font-heading); font-size: 1.25rem; font-weight: 700; margin: 0; color: var(--qhr-text-primary);">
+            فلسفة العمارة الرقمية في التراث المعرفي المصري
+          </h3>
+          <p style="color: var(--qhr-text-secondary); font-size: var(--qhr-text-sm); line-height: 1.7; margin: 0;">
+            قراءة معاصرة في نسب التصميم والأنماط الهيكلية المستوحاة من العمارة المصرية القديمة وتطبيقها برمجياً.
+          </p>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-block-start: auto; padding-block-start: var(--qhr-space-3); border-block-start: 1px solid var(--qhr-border-subtle);">
+            <span style="font-size: var(--qhr-text-xs); color: var(--qhr-text-muted);">منشورات جامعة القاهرة · 520 صفحة</span>
+            <button type="button" @click="showToast('تم فتح ملف فهرس الكتاب بنجاح')" class="qhr-btn qhr-btn--ghost qhr-btn--sm">
+              <span>الفهرس والملخص</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Architectural Frieze Separator -->
+  <div class="qhr-frieze qhr-frieze--solid qhr-frieze--md" role="separator" aria-label="فصل معماري">
+    <div class="qhr-frieze__track">
+      <span class="qhr-frieze__motif">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z"/></svg>
+      </span>
+      <span class="qhr-frieze__label">المسارات البحثية والاستشارية</span>
+      <span class="qhr-frieze__motif">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z"/></svg>
+      </span>
+    </div>
+  </div>
+
+  <!-- 7. Research Tracks with Collapsible Accordion -->
+  <section id="research" style="padding-block: clamp(48px, 6vw, 96px);" data-scrollspy-section="research">
+    <div class="academic-container">
+      
+      <div style="margin-block-end: var(--qhr-space-8); text-align: center;">
+        <span class="qhr-badge qhr-badge--solid qhr-badge--sm" style="background: var(--qhr-color-wadj); color: #fff;">المختبرات والتحكيم</span>
+        <h2 style="font-family: var(--qhr-font-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; margin-block: var(--qhr-space-2) 0;">
+          المسارات والمشاريع الاستراتيجية النشطة
+        </h2>
+      </div>
+
+      <div class="qhr-accordion qhr-accordion--separate" x-data="qhrAccordion({ multiple: false, defaultOpen: [0] })" style="max-width: 920px; margin-inline: auto;">
+        
+        <!-- Track 1 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(0) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(0)" :aria-expanded="isOpen(0)">
+            <div class="qhr-accordion-content-meta">
+              <span class="qhr-accordion-title">المسار الأول: نماذج اللغة السيادية والتوثيق المعرفي العربي</span>
+            </div>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(0)" x-collapse>
+            <div class="qhr-accordion-body">
+              <p style="margin: 0 0 var(--qhr-space-3); color: var(--qhr-text-secondary); line-height: 1.7;">
+                يركز هذا المسار على هندسة أطر استرجاع المعرفة المتقدمة (RAG) وبناء بنوك الذاكرة المتينة للوكلاء الأذكياء باللغة العربية، بما يضمن دقة الاقتباس والمطابقة العالية مع المرجعيات العلمية الموثقة.
+              </p>
+              <div style="display: flex; gap: var(--qhr-space-2); flex-wrap: wrap;">
+                <span class="qhr-badge qhr-badge--subtle qhr-badge--xs">معالجة اللغة الطبيعية</span>
+                <span class="qhr-badge qhr-badge--subtle qhr-badge--xs">الحوكمة المعرفية</span>
+                <span class="qhr-badge qhr-badge--subtle qhr-badge--xs">استرجاع دلالي</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track 2 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(1) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(1)" :aria-expanded="isOpen(1)">
+            <div class="qhr-accordion-content-meta">
+              <span class="qhr-accordion-title">المسار الثاني: أمن النظم الحرجة وهندسة البرمجيات المقاومة</span>
+            </div>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(1)" x-collapse>
+            <div class="qhr-accordion-body">
+              <p style="margin: 0 0 var(--qhr-space-3); color: var(--qhr-text-secondary); line-height: 1.7;">
+                تطوير أدوات القياس والتدقيق الآلي لسلامة الكود المصدري، والتأكد من توافق واجهات البرمجة مع المتطلبات الصارمة للمؤسسات الحكومية والمالية.
+              </p>
+              <div style="display: flex; gap: var(--qhr-space-2); flex-wrap: wrap;">
+                <span class="qhr-badge qhr-badge--subtle qhr-badge--xs">الأمن السيبراني</span>
+                <span class="qhr-badge qhr-badge--subtle qhr-badge--xs">التدقيق البرمجي</span>
+                <span class="qhr-badge qhr-badge--subtle qhr-badge--xs">معايير الاعتماد</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track 3 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(2) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(2)" :aria-expanded="isOpen(2)">
+            <div class="qhr-accordion-content-meta">
+              <span class="qhr-accordion-title">المسار الثالث: هندسة نظم التصميم متعددة الأهداف وعمارة الواجهات</span>
+            </div>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(2)" x-collapse>
+            <div class="qhr-accordion-body">
+              <p style="margin: 0 0 var(--qhr-space-3); color: var(--qhr-text-secondary); line-height: 1.7;">
+                بناء وتطوير منظومة قاهرة Qahera UI Kit كأول منظومة تصميم عربية تعتمد العقود الصارمة (Contracts-First)، وتدعم 6 مسارات تصديرية برمجية بأداء فائق وبدون هدر للموارد.
+              </p>
+              <div style="display: flex; gap: var(--qhr-space-2); flex-wrap: wrap;">
+                <span class="qhr-badge qhr-badge--subtle qhr-badge--xs">نظم التصميم</span>
+                <span class="qhr-badge qhr-badge--subtle qhr-badge--xs">الخصائص المنطقية</span>
+                <span class="qhr-badge qhr-badge--subtle qhr-badge--xs">إمكانية الوصول</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. Footer Section with Institution Accreditation -->
+  <footer id="dossier" style="background: var(--qhr-surface-card, #0f172a); border-block-start: 1px solid var(--qhr-border-subtle, #334155); padding-block: 48px 32px;" data-scrollspy-section="dossier">
+    <div class="academic-container">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-block-end: 32px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div class="qhr-seal qhr-seal--subtle qhr-seal--sm" role="status">
+            <div class="qhr-seal__ring">
+              <span class="qhr-seal__label">وثيقة</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-family: var(--qhr-font-heading); font-weight: 700;">المنصة الأكاديمية والتنفيذية المعيارية</div>
+            <div style="font-size: 0.8rem; color: var(--qhr-text-muted);">مبنية بالكامل بواسطة مكونات منظومة قاهرة (Qahera UI Kit v1.5.1)</div>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: var(--qhr-space-3);">
+          <button type="button" @click="showToast('تم نسخ رابط السيرة الذاتية للحافظة')" class="qhr-btn qhr-btn--outline qhr-btn--sm">
+            <span>مشاركة السيرة الأكاديمية</span>
+          </button>
+          <button type="button" @click="scrollToTop" class="qhr-btn qhr-btn--ghost qhr-btn--sm" aria-label="العودة للأعلى">
+            <span>العودة للأعلى</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div style="text-align: center; font-size: 0.78rem; color: var(--qhr-text-muted); border-block-start: 1px solid var(--qhr-border-subtle); padding-block-start: 24px;">
+        جميع الحقوق محفوظة © استوديو الوكالة للتصميم والتقنية Alwkala Studio · صفر إيموجي · خصائص منطقية 100%
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Primitive -->
+  <div class="qhr-toast-container" style="position: fixed; inset-block-end: var(--qhr-space-6); inset-inline-end: var(--qhr-space-6); z-index: var(--qhr-z-toast, 3000);" x-show="toastVisible" x-transition>
+    <div class="qhr-toast qhr-toast--success" role="status">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>
+      <span x-text="toastMessage" style="font-size: var(--qhr-text-sm); font-weight: 600;"></span>
+    </div>
+  </div>
+
+  <!-- Consultation Modal Dialog Primitive -->
+  <div class="qhr-modal" role="dialog" aria-modal="true" x-show="consultationModal" x-transition style="position: fixed; inset: 0; z-index: var(--qhr-z-modal, 2010); display: flex; align-items: center; justify-content: center; background: var(--qhr-modal-backdrop);">
+    <div class="qhr-modal__dialog" @click.away="consultationModal = false" style="background: var(--qhr-modal-dialog-bg); border: 1px solid var(--qhr-modal-border); border-radius: var(--qhr-radius-xl); padding: var(--qhr-space-6); width: 100%; max-width: 520px; box-shadow: var(--qhr-shadow-floating);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-block-end: var(--qhr-space-4);">
+        <h3 style="margin: 0; font-family: var(--qhr-font-heading); font-weight: 700;">طلب استشارة أكاديمية أو تحكيم</h3>
+        <button type="button" @click="consultationModal = false" class="qhr-btn qhr-btn--ghost qhr-btn--xs" aria-label="إغلاق">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <p style="color: var(--qhr-text-secondary); font-size: var(--qhr-text-sm); margin-block-end: var(--qhr-space-4);">
+        يرجى تحديد جهة الاستشارة وطبيعة المخطوطة أو المشروع المراد مراجعته وتحكيمه.
+      </p>
+
+      <form @submit.prevent="submitConsultation" style="display: flex; flex-direction: column; gap: var(--qhr-space-3);">
+        <div>
+          <label style="display: block; font-size: var(--qhr-text-xs); font-weight: 600; margin-block-end: var(--qhr-space-1);">الاسم والجهة الأكاديمية</label>
+          <input type="text" required class="qhr-input" style="width: 100%;" placeholder="د. الاسم الكامل - الجامعة / المؤسسة">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: var(--qhr-text-xs); font-weight: 600; margin-block-end: var(--qhr-space-1);">البريد الرسمي</label>
+          <input type="email" required class="qhr-input" style="width: 100%;" placeholder="official@university.edu">
+        </div>
+
+        <div>
+          <label style="display: block; font-size: var(--qhr-text-xs); font-weight: 600; margin-block-end: var(--qhr-space-1);">موضوع الاستشارة</label>
+          <textarea required class="qhr-textarea" rows="3" style="width: 100%;" placeholder="موجز عن المشروع أو البحث والموعد المقترح"></textarea>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: var(--qhr-space-2); margin-block-start: var(--qhr-space-3);">
+          <button type="button" @click="consultationModal = false" class="qhr-btn qhr-btn--ghost qhr-btn--sm">إلغاء</button>
+          <button type="submit" class="qhr-btn qhr-btn--primary qhr-btn--sm">إرسال الطلب</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- State & Behavior Controller -->
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('academicHub', () => ({
+        mode: 'dark',
+        dir: 'rtl',
+        activeSection: 'hero',
+        toastVisible: false,
+        toastMessage: '',
+        consultationModal: false,
+
+        init() {
+          const savedMode = localStorage.getItem('qhr-mode') || 'dark';
+          const savedDir = localStorage.getItem('qhr-dir') || 'rtl';
+          this.mode = savedMode;
+          this.dir = savedDir;
+          document.documentElement.setAttribute('data-mode', this.mode);
+          document.documentElement.setAttribute('dir', this.dir);
+        },
+
+        toggleMode() {
+          this.mode = this.mode === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('qhr-mode', this.mode);
+          document.documentElement.setAttribute('data-mode', this.mode);
+        },
+
+        toggleDir() {
+          this.dir = this.dir === 'rtl' ? 'ltr' : 'rtl';
+          localStorage.setItem('qhr-dir', this.dir);
+          document.documentElement.setAttribute('dir', this.dir);
+        },
+
+        showToast(msg) {
+          this.toastMessage = msg;
+          this.toastVisible = true;
+          setTimeout(() => { this.toastVisible = false; }, 3500);
+        },
+
+        openConsultationModal() {
+          this.consultationModal = true;
+        },
+
+        submitConsultation() {
+          this.consultationModal = false;
+          this.showToast('تم استلام طلب الاستشارة بنجاح، سيتم الرد عبر البريد الرسمي');
+        },
+
+        scrollToTop() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }));
+    });
+  </script>
+
+</body>
+</html>

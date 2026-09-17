@@ -26,9 +26,14 @@ const PATTERNS_DIR = path.join(ROOT_DIR, 'patterns');
 const REGISTRY_DATA_PATH = path.join(ROOT_DIR, 'generated', 'registry_data.json');
 const MANIFEST_PATH = path.join(ROOT_DIR, 'generated', 'manifests', 'components.json');
 const JSON_DIR = path.join(ROOT_DIR, 'generated', 'json');
+const DOWNSTREAM_DIR = path.resolve(ROOT_DIR, '../../..', 'Qahera');
+const DOWNSTREAM_PREVIEWS_DIR = path.join(DOWNSTREAM_DIR, 'previews');
 
 if (!fs.existsSync(PREVIEWS_DIR)) {
   fs.mkdirSync(PREVIEWS_DIR, { recursive: true });
+}
+if (!fs.existsSync(DOWNSTREAM_PREVIEWS_DIR)) {
+  fs.mkdirSync(DOWNSTREAM_PREVIEWS_DIR, { recursive: true });
 }
 
 // ─── Arabic & Metadata Dictionaries ──────────────────────────────────────────
@@ -45,6 +50,7 @@ const ARABIC_NAMES = {
   'canvas-sparks': 'شرارات الكانفاس الحركية',
   'card': 'البطاقات البنائية',
   'carousel': 'عارض الشرائح الدوار',
+  'cartouche': 'الخرطوشة الملكية التذكارية',
   'checkbox': 'صناديق الاختيار الثنائية',
   'chip': 'شرائح التصنيف والفلترة',
   'divider': 'الفواصل الأفقية والرأسية',
@@ -52,6 +58,8 @@ const ARABIC_NAMES = {
   'drawer': 'الدرج الجانبي المنبثق',
   'dropdown': 'القائمة المنسدلة التفاعلية',
   'file-upload': 'رافع الملفات والمستندات',
+  'frieze': 'الإفريز المعماري المنقوش',
+  'seal': 'الختم الملكي المؤسسي المعتمد',
   'input': 'حقول الإدخال النصية',
   'kbd': 'أزرار لوحة المفاتيح والاختصارات',
   'megamenu': 'القائمة الضخمة متعددة الأعمدة',
@@ -420,6 +428,22 @@ function generateAllPreivews() {
       fs.writeFileSync(path.join(PREVIEWS_DIR, comp.filename.toLowerCase()), previewHtml, 'utf8');
     }
 
+    // Write downstream preview files with relative path ../
+    if (fs.existsSync(DOWNSTREAM_PREVIEWS_DIR)) {
+      const downstreamHtml = buildPreviewPage({
+        comp, prevComp, nextComp, htmlContent, purpose,
+        variantsList, sizesList, typeLabel, typeBadge, sourcePath,
+        componentOptionsHtml, patternOptionsHtml, totalCount
+      }, '../');
+      fs.writeFileSync(path.join(DOWNSTREAM_PREVIEWS_DIR, comp.filename), downstreamHtml, 'utf8');
+      if (comp.pascalName && `${comp.pascalName}.html` !== comp.filename) {
+        fs.writeFileSync(path.join(DOWNSTREAM_PREVIEWS_DIR, `${comp.pascalName}.html`), downstreamHtml, 'utf8');
+      }
+      if (comp.filename.toLowerCase() !== comp.filename) {
+        fs.writeFileSync(path.join(DOWNSTREAM_PREVIEWS_DIR, comp.filename.toLowerCase()), downstreamHtml, 'utf8');
+      }
+    }
+
     generatedCount++;
   }
 
@@ -432,7 +456,7 @@ function generateAllPreivews() {
 
 // ─── Single Preview Page Builder ─────────────────────────────────────────────
 
-function buildPreviewPage(opts) {
+function buildPreviewPage(opts, assetPrefix = '../../') {
   const {
     comp, prevComp, nextComp, htmlContent, purpose,
     variantsList, sizesList, typeLabel, typeBadge, sourcePath,
@@ -454,22 +478,25 @@ function buildPreviewPage(opts) {
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- أوراق الأنماط الأساسية للمنظومة -->
-  <link rel="stylesheet" href="../../tokens/tokens.css">
-  <link rel="stylesheet" href="../../tokens/themes/themes.css">
-  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+  <link rel="stylesheet" href="${assetPrefix}dist/qahera-tokens.css">
+  <link rel="stylesheet" href="${assetPrefix}dist/qahera-themes.css">
+  <link rel="stylesheet" href="${assetPrefix}dist/qahera.css">
 
-  <!-- حزم السلوك التفاعلي الـ 11 كاملة لضمان صفر أخطاء كونسول -->
-  <script defer src="../../behavior/modal.js"></script>
-  <script defer src="../../behavior/dropdown.js"></script>
-  <script defer src="../../behavior/tabs.js"></script>
-  <script defer src="../../behavior/accordion.js"></script>
-  <script defer src="../../behavior/toast.js"></script>
-  <script defer src="../../behavior/tooltip.js"></script>
-  <script defer src="../../behavior/select.js"></script>
-  <script defer src="../../behavior/canvas-sparks.js"></script>
-  <script defer src="../../behavior/back-to-top.js"></script>
-  <script defer src="../../behavior/navbar.js"></script>
-  <script defer src="../../behavior/preloader.js"></script>
+  <!-- حزم السلوك التفاعلي الـ 14 كاملة لضمان صفر أخطاء كونسول -->
+  <script defer src="${assetPrefix}behavior/modal.js"></script>
+  <script defer src="${assetPrefix}behavior/dropdown.js"></script>
+  <script defer src="${assetPrefix}behavior/tabs.js"></script>
+  <script defer src="${assetPrefix}behavior/accordion.js"></script>
+  <script defer src="${assetPrefix}behavior/toast.js"></script>
+  <script defer src="${assetPrefix}behavior/tooltip.js"></script>
+  <script defer src="${assetPrefix}behavior/select.js"></script>
+  <script defer src="${assetPrefix}behavior/canvas-sparks.js"></script>
+  <script defer src="${assetPrefix}behavior/back-to-top.js"></script>
+  <script defer src="${assetPrefix}behavior/navbar.js"></script>
+  <script defer src="${assetPrefix}behavior/preloader.js"></script>
+  <script defer src="${assetPrefix}behavior/spotlight.js"></script>
+  <script defer src="${assetPrefix}behavior/counter.js"></script>
+  <script defer src="${assetPrefix}behavior/scrollspy.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
   <style>
@@ -516,6 +543,25 @@ function buildPreviewPage(opts) {
     }
 
     * { box-sizing: border-box; }
+
+    /* Defensive vector sizing to guarantee proper dimensions */
+    svg {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .qhr-frieze__motif svg {
+      width: 20px !important;
+      height: 20px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      fill: currentColor;
+    }
+    .qhr-seal__emblem svg {
+      width: 24px !important;
+      height: 24px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+    }
 
     body {
       background-color: var(--q-bg);
@@ -1455,6 +1501,9 @@ function generateIndexPage() {
     });
   </script>
 
+  <script defer src="../../behavior/spotlight.js"></script>
+  <script defer src="../../behavior/counter.js"></script>
+  <script defer src="../../behavior/scrollspy.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
   <style>

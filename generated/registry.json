@@ -1,9 +1,9 @@
 {
   "schema": "qahera.canonical-registry/v1",
   "system": "Qahera UI Kit",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "equation": "Qahera UI Kit v1.0 = Design System + Registry + AI Decision Layer",
-  "sourceHash": "362986bbdc2ae6719830e2b765c2ca178f63658932eaca9ef3c03ea2e8d3f2a9",
+  "sourceHash": "8eca07854e278d3540e56d6be21516e6f9a397698f458f9d756b65c5bf7578a6",
   "ai_guidance": {
     "core_thesis": "Qahera UI Kit v1.0 = Design System + Registry + AI Decision Layer (not merely Component Library + Compiler)",
     "philosophy": "A design system built for developers and AI agents.",
@@ -31,10 +31,10 @@
     }
   },
   "counts": {
-    "components": 42,
-    "recipes": 42,
-    "patterns": 20,
-    "icons": 41
+    "components": 45,
+    "recipes": 45,
+    "patterns": 21,
+    "icons": 46
   },
   "components": {
     "accordion": {
@@ -1446,6 +1446,133 @@
         "file": "contracts/components/Carousel.yaml"
       }
     },
+    "cartouche": {
+      "id": "cartouche",
+      "name": "Cartouche",
+      "component": "Cartouche",
+      "category": "containers",
+      "version": "1.0.0",
+      "contract": {
+        "anatomy": [
+          "root",
+          "cap",
+          "body",
+          "label",
+          "knot-base"
+        ],
+        "variants": {
+          "outline": {
+            "intent": "bordered-prestige-frame"
+          },
+          "elevated": {
+            "intent": "floating-prestige-container"
+          },
+          "solid": {
+            "intent": "tactile-filled-enclosure"
+          }
+        },
+        "sizes": {
+          "sm": {
+            "padding": 12,
+            "border_radius": "var(--qhr-radius-md)"
+          },
+          "md": {
+            "padding": 20,
+            "border_radius": "var(--qhr-radius-lg)"
+          },
+          "lg": {
+            "padding": 32,
+            "border_radius": "var(--qhr-radius-xl)"
+          }
+        },
+        "states": [
+          "default",
+          "hover",
+          "active"
+        ],
+        "slots": {
+          "header": "optional",
+          "title": "optional",
+          "body": "required",
+          "footer": "optional"
+        },
+        "accessibility": {
+          "role": "region",
+          "keyboard": false,
+          "focusVisible": true
+        }
+      },
+      "recipe": {
+        "file": "recipes/cartouche.yaml",
+        "base": {
+          "display": "flex",
+          "flex-direction": "column",
+          "position": "relative",
+          "background-color": "{surface.card}",
+          "border": "1px solid {color.border.subtle}",
+          "border-radius": "{radius.xl}",
+          "overflow": "hidden",
+          "transition": "transform {motion.duration.normal} {motion.ease.standard}, box-shadow {motion.duration.normal} {motion.ease.standard}"
+        },
+        "variants": {
+          "outline": {
+            "background-color": "transparent",
+            "border": "2px solid {color.nebu.base}"
+          },
+          "elevated": {
+            "background-color": "{surface.elevated}",
+            "box-shadow": "{shadow.cartouche}",
+            "border": "1px solid {color.nebu.light}"
+          },
+          "solid": {
+            "background-color": "{color.papyrus.base}",
+            "border": "1px solid {color.papyrus.border}"
+          }
+        },
+        "sizes": {
+          "sm": {
+            "padding": "{space.3}",
+            "gap": "{space.2}"
+          },
+          "md": {
+            "padding": "{space.5}",
+            "gap": "{space.3}"
+          },
+          "lg": {
+            "padding": "{space.8}",
+            "gap": "{space.4}"
+          }
+        },
+        "states": {
+          "default": {
+            "transform": "none"
+          },
+          "hover": {
+            "transform": "translateY(-2px)"
+          },
+          "active": {
+            "transform": "none"
+          }
+        }
+      },
+      "behavior": null,
+      "ai": {
+        "purpose": "Architectural royal enclosure and prestige container with pilliform header caps, metallic borders, and tactile papyrus surface.",
+        "whenToUse": [
+          "Executive badges and verified author cards",
+          "Royal diplomas, certifications, and awards",
+          "Flagship feature callouts and hero badges"
+        ],
+        "avoid": [
+          "Standard high-density data tables",
+          "Generic low-prominence cards (use Card)"
+        ],
+        "related": []
+      },
+      "source": {
+        "file": "contracts/components/cartouche.yaml"
+      }
+    },
     "checkbox": {
       "id": "checkbox",
       "name": "Checkbox",
@@ -2312,6 +2439,117 @@
       },
       "source": {
         "file": "contracts/components/FileUpload.yaml"
+      }
+    },
+    "frieze": {
+      "id": "frieze",
+      "name": "Frieze",
+      "component": "Frieze",
+      "category": "data-display",
+      "version": "1.0.0",
+      "contract": {
+        "anatomy": [
+          "root",
+          "track",
+          "motif",
+          "label"
+        ],
+        "variants": {
+          "outline": {
+            "intent": "bordered-architectural-band"
+          },
+          "subtle": {
+            "intent": "low-contrast-relief-divider"
+          },
+          "solid": {
+            "intent": "tactile-filled-frieze"
+          }
+        },
+        "sizes": {
+          "sm": {
+            "height": 16
+          },
+          "md": {
+            "height": 24
+          },
+          "lg": {
+            "height": 40
+          }
+        },
+        "states": [
+          "default"
+        ],
+        "slots": {
+          "default": "optional",
+          "label": "optional"
+        },
+        "accessibility": {
+          "role": "separator",
+          "keyboard": false,
+          "focusVisible": false
+        }
+      },
+      "recipe": {
+        "file": "recipes/frieze.yaml",
+        "base": {
+          "display": "flex",
+          "align-items": "center",
+          "justify-content": "center",
+          "width": "100%",
+          "position": "relative",
+          "user-select": "none"
+        },
+        "variants": {
+          "subtle": {
+            "color": "{color.border.subtle}",
+            "border-block": "1px solid {color.border.subtle}"
+          },
+          "outline": {
+            "color": "{color.nebu.base}",
+            "border-block": "1px solid {color.nebu.base}"
+          },
+          "solid": {
+            "background-color": "{color.papyrus.base}",
+            "color": "{color.wadj.base}",
+            "border-block": "1px solid {color.wadj.light}"
+          }
+        },
+        "sizes": {
+          "sm": {
+            "height": "{space.4}",
+            "gap": "{space.2}"
+          },
+          "md": {
+            "height": "{space.6}",
+            "gap": "{space.3}"
+          },
+          "lg": {
+            "height": "{space.10}",
+            "gap": "{space.4}"
+          }
+        },
+        "states": {
+          "default": {
+            "opacity": 1
+          }
+        }
+      },
+      "behavior": null,
+      "ai": {
+        "purpose": "Continuous architectural relief border and rhythmic decorative band for structural section dividers and header framing.",
+        "whenToUse": [
+          "Section dividers with cultural or architectural flair",
+          "Header and footer boundary bands in academic/executive dossiers",
+          "Framing featured editorial showcases"
+        ],
+        "avoid": [
+          "Simple minimal data dividers (use Divider)",
+          "Clickable navigation bars (use Navbar)"
+        ],
+        "related": []
+      },
+      "source": {
+        "file": "contracts/components/frieze.yaml"
       }
     },
     "input": {
@@ -4031,6 +4269,136 @@
       },
       "source": {
         "file": "contracts/components/Ribbon.yaml"
+      }
+    },
+    "seal": {
+      "id": "seal",
+      "name": "Seal",
+      "component": "Seal",
+      "category": "feedback",
+      "version": "1.0.0",
+      "contract": {
+        "anatomy": [
+          "root",
+          "ring",
+          "emblem",
+          "label",
+          "subtext"
+        ],
+        "variants": {
+          "solid": {
+            "intent": "authoritative-stamped-mark"
+          },
+          "subtle": {
+            "intent": "low-contrast-accreditation"
+          },
+          "outline": {
+            "intent": "engraved-perimeter-mark"
+          }
+        },
+        "sizes": {
+          "sm": {
+            "size": 40,
+            "font_size": "var(--qhr-text-xs)"
+          },
+          "md": {
+            "size": 64,
+            "font_size": "var(--qhr-text-sm)"
+          },
+          "lg": {
+            "size": 96,
+            "font_size": "var(--qhr-text-base)"
+          }
+        },
+        "states": [
+          "default",
+          "hover"
+        ],
+        "slots": {
+          "icon": "optional",
+          "label": "required",
+          "subtext": "optional"
+        },
+        "accessibility": {
+          "role": "status",
+          "keyboard": false,
+          "focusVisible": true
+        }
+      },
+      "recipe": {
+        "file": "recipes/seal.yaml",
+        "base": {
+          "display": "inline-flex",
+          "flex-direction": "column",
+          "align-items": "center",
+          "justify-content": "center",
+          "border-radius": "{radius.full}",
+          "text-align": "center",
+          "user-select": "none",
+          "transition": "transform {motion.duration.fast} {motion.ease.standard}"
+        },
+        "variants": {
+          "solid": {
+            "background-color": "{color.nebu.base}",
+            "color": "{color.nebu.foreground}",
+            "border": "2px double {color.nebu.light}"
+          },
+          "subtle": {
+            "background-color": "{color.nebu.surface}",
+            "color": "{color.nebu.hover}",
+            "border": "1px solid {color.nebu.light}"
+          },
+          "outline": {
+            "background-color": "transparent",
+            "color": "{color.nebu.base}",
+            "border": "2px dashed {color.nebu.base}"
+          }
+        },
+        "sizes": {
+          "sm": {
+            "width": "{space.10}",
+            "height": "{space.10}",
+            "font-size": "{text.xs}",
+            "padding": "{space.1}"
+          },
+          "md": {
+            "width": "{space.16}",
+            "height": "{space.16}",
+            "font-size": "{text.sm}",
+            "padding": "{space.2}"
+          },
+          "lg": {
+            "width": "{space.24}",
+            "height": "{space.24}",
+            "font-size": "{text.base}",
+            "padding": "{space.3}"
+          }
+        },
+        "states": {
+          "default": {
+            "transform": "none"
+          },
+          "hover": {
+            "transform": "scale(1.05) rotate(3deg)"
+          }
+        }
+      },
+      "behavior": null,
+      "ai": {
+        "purpose": "Official accreditation, institutional verification mark, and royal stamp emblem.",
+        "whenToUse": [
+          "Academic degree or course completion seals",
+          "Executive signature verification badges",
+          "Official institutional copyright or accreditation marks"
+        ],
+        "avoid": [
+          "Standard notification unread counts (use Badge)",
+          "User avatars (use Avatar)"
+        ],
+        "related": []
+      },
+      "source": {
+        "file": "contracts/components/seal.yaml"
       }
     },
     "select": {
@@ -6122,6 +6490,79 @@
         "file": "patterns/form-actions.yaml"
       }
     },
+    "hero-skyline-panorama": {
+      "id": "hero-skyline-panorama",
+      "name": "Hero Skyline Panorama",
+      "category": "marketing",
+      "purpose": "Full-bleed architectural brand hero layout pairing a clean, isolated typography column on one side with a bottom-anchored, full-height architectural skyline illustration on the other, blended seamlessly via feathered gradient masks and maintaining strict RTL/LTR symmetry with zero typography-visual collision.",
+      "components": [
+        "button",
+        "badge",
+        "icon"
+      ],
+      "anatomy": [
+        "root",
+        "background-layer",
+        "ambient-halo",
+        "background-image",
+        "site-container",
+        "hero-grid",
+        "text-column",
+        "headline",
+        "statement",
+        "body-paragraph",
+        "action-buttons"
+      ],
+      "slots": [
+        "kicker",
+        "title",
+        "statement",
+        "body",
+        "actions",
+        "visual",
+        "halo"
+      ],
+      "layout": {
+        "display": "flex",
+        "align_items": "center",
+        "height": "clamp(500px, 62vh, 588px)",
+        "min_height": "500px",
+        "max_height": "588px",
+        "overflow": "hidden",
+        "padding_block": 0,
+        "responsive": {
+          "desktop": "height: clamp(500px, 62vh, 588px); display: flex; align-items: center;",
+          "tablet": "min-height: clamp(450px, 65vh, 560px);",
+          "mobile": "height: auto; min-height: auto; max-height: none; flex-direction: column;"
+        }
+      },
+      "accessibility": {
+        "role": "banner",
+        "landmark": "banner",
+        "keyboard_flow": "Tab traverses interactive action triggers within the text column"
+      },
+      "ai": {
+        "purpose": "Provide a high-impact, culturally rooted architectural hero section for flagship portals and brand landings.",
+        "use_when": [
+          "Flagship marketing landing pages",
+          "Cultural and regional product launches",
+          "Hero banners requiring seamless integration between architectural illustration and brand copy"
+        ],
+        "avoid_when": [
+          "Dense dashboard interfaces",
+          "Transactional checkout flows",
+          "Form-heavy administrative views"
+        ],
+        "composed_of": [
+          "button",
+          "badge",
+          "icon"
+        ]
+      },
+      "source": {
+        "file": "patterns/hero-skyline-panorama.yaml"
+      }
+    },
     "kanban-board": {
       "id": "kanban-board",
       "name": "Kanban Board",
@@ -7147,6 +7588,82 @@
         "dark"
       ],
       "svg_path": "M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+    },
+    "cartouche": {
+      "category": "heritage",
+      "intent": "royal-enclosure",
+      "aliases": [
+        "cartouche-enclosure",
+        "pharaonic-seal",
+        "nameplate"
+      ],
+      "tags": [
+        "heritage",
+        "framing",
+        "badge",
+        "seal"
+      ],
+      "svg_path": "M7 4a5 5 0 0110 0v12a5 5 0 01-10 0V4zm-3 17h16v1H4v-1z"
+    },
+    "shen-ring": {
+      "category": "heritage",
+      "intent": "eternity-loop",
+      "aliases": [
+        "eternity",
+        "protection-knot",
+        "shen"
+      ],
+      "tags": [
+        "heritage",
+        "emblem",
+        "eternity"
+      ],
+      "svg_path": "M12 4a6 6 0 100 12 6 6 0 000-12zm-8 14h16M6 18v2m12-2v2"
+    },
+    "lotus": {
+      "category": "heritage",
+      "intent": "renewal-symbol",
+      "aliases": [
+        "water-lily",
+        "rebirth",
+        "egyptian-flower"
+      ],
+      "tags": [
+        "heritage",
+        "flora",
+        "decorative"
+      ],
+      "svg_path": "M12 3c-1.5 3-3 6-3 9 0 3.314 1.343 6 3 6s3-2.686 3-6c0-3-1.5-6-3-9zm-5 5c0 4 2 8 5 10-3 0-6-3-6-7 0-1.5.5-2.5 1-3zm10 0c.5.5 1 1.5 1 3 0 4-3 7-6 7 3-2 5-6 5-10z"
+    },
+    "obelisk": {
+      "category": "heritage",
+      "intent": "monument-pillar",
+      "aliases": [
+        "monument",
+        "spire",
+        "stele"
+      ],
+      "tags": [
+        "heritage",
+        "architecture",
+        "pillar"
+      ],
+      "svg_path": "M12 2l-2 3v15h4V5l-2-3zm-4 18h8v2H8v-2z"
+    },
+    "frieze": {
+      "category": "heritage",
+      "intent": "architectural-divider",
+      "aliases": [
+        "border-motif",
+        "cornice",
+        "relief-band"
+      ],
+      "tags": [
+        "heritage",
+        "architectural-divider",
+        "border"
+      ],
+      "svg_path": "M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z"
     }
   },
   "decision_matrix": {

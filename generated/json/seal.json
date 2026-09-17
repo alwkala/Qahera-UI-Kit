@@ -1,0 +1,130 @@
+{
+  "id": "seal",
+  "name": "Seal",
+  "component": "Seal",
+  "category": "feedback",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "ring",
+      "emblem",
+      "label",
+      "subtext"
+    ],
+    "variants": {
+      "solid": {
+        "intent": "authoritative-stamped-mark"
+      },
+      "subtle": {
+        "intent": "low-contrast-accreditation"
+      },
+      "outline": {
+        "intent": "engraved-perimeter-mark"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "size": 40,
+        "font_size": "var(--qhr-text-xs)"
+      },
+      "md": {
+        "size": 64,
+        "font_size": "var(--qhr-text-sm)"
+      },
+      "lg": {
+        "size": 96,
+        "font_size": "var(--qhr-text-base)"
+      }
+    },
+    "states": [
+      "default",
+      "hover"
+    ],
+    "slots": {
+      "icon": "optional",
+      "label": "required",
+      "subtext": "optional"
+    },
+    "accessibility": {
+      "role": "status",
+      "keyboard": false,
+      "focusVisible": true
+    }
+  },
+  "recipe": {
+    "file": "recipes/seal.yaml",
+    "base": {
+      "display": "inline-flex",
+      "flex-direction": "column",
+      "align-items": "center",
+      "justify-content": "center",
+      "border-radius": "{radius.full}",
+      "text-align": "center",
+      "user-select": "none",
+      "transition": "transform {motion.duration.fast} {motion.ease.standard}"
+    },
+    "variants": {
+      "solid": {
+        "background-color": "{color.nebu.base}",
+        "color": "{color.nebu.foreground}",
+        "border": "2px double {color.nebu.light}"
+      },
+      "subtle": {
+        "background-color": "{color.nebu.surface}",
+        "color": "{color.nebu.hover}",
+        "border": "1px solid {color.nebu.light}"
+      },
+      "outline": {
+        "background-color": "transparent",
+        "color": "{color.nebu.base}",
+        "border": "2px dashed {color.nebu.base}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "width": "{space.10}",
+        "height": "{space.10}",
+        "font-size": "{text.xs}",
+        "padding": "{space.1}"
+      },
+      "md": {
+        "width": "{space.16}",
+        "height": "{space.16}",
+        "font-size": "{text.sm}",
+        "padding": "{space.2}"
+      },
+      "lg": {
+        "width": "{space.24}",
+        "height": "{space.24}",
+        "font-size": "{text.base}",
+        "padding": "{space.3}"
+      }
+    },
+    "states": {
+      "default": {
+        "transform": "none"
+      },
+      "hover": {
+        "transform": "scale(1.05) rotate(3deg)"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Official accreditation, institutional verification mark, and royal stamp emblem.",
+    "whenToUse": [
+      "Academic degree or course completion seals",
+      "Executive signature verification badges",
+      "Official institutional copyright or accreditation marks"
+    ],
+    "avoid": [
+      "Standard notification unread counts (use Badge)",
+      "User avatars (use Avatar)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/seal.yaml"
+  }
+}

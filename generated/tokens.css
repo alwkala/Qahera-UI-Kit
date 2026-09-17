@@ -3,9 +3,9 @@
  * Generated automatically from tokens/ YAML sources. DO NOT EDIT.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
-:root, [data-theme="light"] {
+:root, [data-theme="light"], [data-mode="light"] {
   --qhr-color-blue-50: #eff6ff;
   --qhr-color-blue-100: #dbeafe;
   --qhr-color-blue-200: #bfdbfe;
@@ -97,6 +97,64 @@
   --qhr-color-info-border: #0b6bcb;
   --qhr-color-info-hover: #0958a5;
   --qhr-color-info-subtle: #eff6ff;
+  --qhr-color-wadj-name: Wadj;
+  --qhr-color-wadj-arabic: الوَدج;
+  --qhr-color-wadj-meaning: Sacred Egyptian Malachite Emerald of Growth, Wisdom, and Renewal;
+  --qhr-color-wadj-base: #135E4E;
+  --qhr-color-wadj-rgb: 19, 94, 78;
+  --qhr-color-wadj-hover: #0D463A;
+  --qhr-color-wadj-active: #08332A;
+  --qhr-color-wadj-surface: #E6F3EF;
+  --qhr-color-wadj-light: #C2E4DC;
+  --qhr-color-wadj-foreground: #FFFFFF;
+  --qhr-color-nebu-name: Nebu;
+  --qhr-color-nebu-arabic: النِبو;
+  --qhr-color-nebu-meaning: Sacred Sun Gold of Royalty, High Prestige, and Incorruptibility;
+  --qhr-color-nebu-base: #C98818;
+  --qhr-color-nebu-rgb: 201, 136, 24;
+  --qhr-color-nebu-hover: #A86F0F;
+  --qhr-color-nebu-active: #8A5A0A;
+  --qhr-color-nebu-surface: #FDF4E3;
+  --qhr-color-nebu-light: #F5D79E;
+  --qhr-color-nebu-foreground: #181307;
+  --qhr-color-khesbed-name: Khesbed;
+  --qhr-color-khesbed-arabic: الخِسبِد;
+  --qhr-color-khesbed-meaning: Royal Lapis Lazuli Cobalt of Deep Intellect, Truth, and Clarity;
+  --qhr-color-khesbed-base: #0E3C66;
+  --qhr-color-khesbed-rgb: 14, 60, 102;
+  --qhr-color-khesbed-hover: #092947;
+  --qhr-color-khesbed-active: #061C31;
+  --qhr-color-khesbed-surface: #E7F0F8;
+  --qhr-color-khesbed-light: #BAD4EB;
+  --qhr-color-khesbed-foreground: #FFFFFF;
+  --qhr-color-tamy-name: Tamy;
+  --qhr-color-tamy-arabic: الطمي;
+  --qhr-color-tamy-meaning: Nile Riverbed Clay, Red Jasper, and Terracotta Foundations;
+  --qhr-color-tamy-base: #B34A26;
+  --qhr-color-tamy-rgb: 179, 74, 38;
+  --qhr-color-tamy-hover: #8F381A;
+  --qhr-color-tamy-active: #6F2A12;
+  --qhr-color-tamy-surface: #FBECE7;
+  --qhr-color-tamy-light: #F3C5B5;
+  --qhr-color-tamy-foreground: #FFFFFF;
+  --qhr-color-papyrus-name: Papyrus;
+  --qhr-color-papyrus-arabic: البردي;
+  --qhr-color-papyrus-meaning: Archival Papyrus Sand and Parchment Editorial Surfaces;
+  --qhr-color-papyrus-base: #FAF8F2;
+  --qhr-color-papyrus-rgb: 250, 248, 242;
+  --qhr-color-papyrus-hover: #F2EDE0;
+  --qhr-color-papyrus-active: #E8E0CE;
+  --qhr-color-papyrus-surface: #FFFFFF;
+  --qhr-color-papyrus-border: #E2DAC8;
+  --qhr-color-papyrus-foreground: #121F1B;
+  --qhr-color-kohl-name: Kohl;
+  --qhr-color-kohl-arabic: الكحل;
+  --qhr-color-kohl-meaning: Deep Egyptian Mineral Black and Obsidian Contrast;
+  --qhr-color-kohl-base: #0D1412;
+  --qhr-color-kohl-rgb: 13, 20, 18;
+  --qhr-color-kohl-surface: #141D1A;
+  --qhr-color-kohl-border: #24322D;
+  --qhr-color-kohl-foreground: #F8FAF9;
   --qhr-space-0: 0px;
   --qhr-space-1: 4px;
   --qhr-space-2: 8px;
@@ -128,6 +186,9 @@
   --qhr-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   --qhr-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   --qhr-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --qhr-shadow-book: -8px 12px 28px -4px rgba(0, 0, 0, 0.22), -2px 4px 10px rgba(0, 0, 0, 0.08);
+  --qhr-shadow-floating: 0 24px 48px -12px rgba(0, 0, 0, 0.18), 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+  --qhr-shadow-cartouche: 0 4px 14px -2px rgba(201, 136, 24, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   --qhr-surface-base: #ffffff;
   --qhr-surface-elevated: #ffffff;
   --qhr-surface-muted: #f8fafc;
@@ -215,6 +276,20 @@
   --qhr-alert-danger_bg: #fff1f2;
   --qhr-alert-danger_border: #fecdd3;
   --qhr-alert-danger_fg: #881337;
+  --qhr-z-negative: -1;
+  --qhr-z-base: 0;
+  --qhr-z-elevated: 1;
+  --qhr-z-decor: 2;
+  --qhr-z-overlay: 10;
+  --qhr-z-dropdown: 100;
+  --qhr-z-sticky: 500;
+  --qhr-z-navbar: 1000;
+  --qhr-z-modal-backdrop: 2000;
+  --qhr-z-modal: 2010;
+  --qhr-z-popover: 2020;
+  --qhr-z-toast: 3000;
+  --qhr-z-tooltip: 3010;
+  --qhr-z-preloader: 10000;
 
   /* Semantic Color Aliases */
   --qhr-color-primary: var(--qhr-color-primary-bg);

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>زر العودة للأعلى (BackToTop) — معاينة منظومة قاهرة Qahera UI Kit</title>
+  <title>الختم الملكي المؤسسي المعتمد (seal) — معاينة منظومة قاهرة Qahera UI Kit</title>
   
   <!-- الخطوط الأساسية الرسمية: Alexandria للعناوين والهوية، و Cairo للنصوص والواجهة -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- أوراق الأنماط الأساسية للمنظومة -->
-  <link rel="stylesheet" href="../../tokens/tokens.css">
-  <link rel="stylesheet" href="../../tokens/themes/themes.css">
-  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+  <link rel="stylesheet" href="../../dist/qahera-tokens.css">
+  <link rel="stylesheet" href="../../dist/qahera-themes.css">
+  <link rel="stylesheet" href="../../dist/qahera.css">
 
-  <!-- حزم السلوك التفاعلي الـ 11 كاملة لضمان صفر أخطاء كونسول -->
+  <!-- حزم السلوك التفاعلي الـ 14 كاملة لضمان صفر أخطاء كونسول -->
   <script defer src="../../behavior/modal.js"></script>
   <script defer src="../../behavior/dropdown.js"></script>
   <script defer src="../../behavior/tabs.js"></script>
@@ -27,6 +27,9 @@
   <script defer src="../../behavior/back-to-top.js"></script>
   <script defer src="../../behavior/navbar.js"></script>
   <script defer src="../../behavior/preloader.js"></script>
+  <script defer src="../../behavior/spotlight.js"></script>
+  <script defer src="../../behavior/counter.js"></script>
+  <script defer src="../../behavior/scrollspy.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
   <style>
@@ -73,6 +76,25 @@
     }
 
     * { box-sizing: border-box; }
+
+    /* Defensive vector sizing to guarantee proper dimensions */
+    svg {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .qhr-frieze__motif svg {
+      width: 20px !important;
+      height: 20px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      fill: currentColor;
+    }
+    .qhr-seal__emblem svg {
+      width: 24px !important;
+      height: 24px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+    }
 
     body {
       background-color: var(--q-bg);
@@ -414,7 +436,7 @@
           <option value="accordion.html">الأكورديون القابل للطي (Accordion)</option>
           <option value="alert.html">التنبيهات الإشعارية (Alert)</option>
           <option value="avatar.html">الصورة الرمزية والوسائط (Avatar)</option>
-          <option value="back-to-top.html" selected>زر العودة للأعلى (BackToTop)</option>
+          <option value="back-to-top.html">زر العودة للأعلى (BackToTop)</option>
           <option value="badge.html">الشارات والوسوم الرقمية (Badge)</option>
           <option value="breadcrumb.html">مسار التنقل المتدرج (Breadcrumb)</option>
           <option value="button.html">الأزرار التفاعلية الشاملة (Button)</option>
@@ -422,6 +444,7 @@
           <option value="canvas-sparks.html">شرارات الكانفاس الحركية (CanvasSparks)</option>
           <option value="card.html">البطاقات البنائية (Card)</option>
           <option value="carousel.html">عارض الشرائح الدوار (Carousel)</option>
+          <option value="cartouche.html">الخرطوشة الملكية التذكارية (cartouche)</option>
           <option value="checkbox.html">صناديق الاختيار الثنائية (Checkbox)</option>
           <option value="chip.html">شرائح التصنيف والفلترة (Chip)</option>
           <option value="divider.html">الفواصل الأفقية والرأسية (Divider)</option>
@@ -429,6 +452,7 @@
           <option value="drawer.html">الدرج الجانبي المنبثق (Drawer)</option>
           <option value="dropdown.html">القائمة المنسدلة التفاعلية (Dropdown)</option>
           <option value="file-upload.html">رافع الملفات والمستندات (FileUpload)</option>
+          <option value="frieze.html">الإفريز المعماري المنقوش (frieze)</option>
           <option value="input.html">حقول الإدخال النصية (Input)</option>
           <option value="kbd.html">أزرار لوحة المفاتيح والاختصارات (Kbd)</option>
           <option value="megamenu.html">القائمة الضخمة متعددة الأعمدة (Megamenu)</option>
@@ -441,6 +465,7 @@
           <option value="radio.html">أزرار الاختيار الأحادي (Radio)</option>
           <option value="rating.html">تقييم النجوم التفاعلي (Rating)</option>
           <option value="ribbon.html">الشريط الزخرفي والوسام (Ribbon)</option>
+          <option value="seal.html" selected>الختم الملكي المؤسسي المعتمد (seal)</option>
           <option value="select.html">حقل الاختيار المنسدل المخصص (Select)</option>
           <option value="skeleton.html">الهيكل الشبحي للتحميل (Skeleton)</option>
           <option value="spinner.html">مؤشر الانتظار الدائري (Spinner)</option>
@@ -481,7 +506,7 @@
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </div>
-        <span class="capsule-badge">62</span>
+        <span class="capsule-badge">65</span>
       </div>
 
       <div class="theme-selector-capsule" title="تبديل ثيم المنظومة">
@@ -534,9 +559,9 @@
         </svg>
       </button>
 
-      <a href="index.html" class="ctrl-action-btn" title="الانتقال إلى فهرس المنظومة (62 عنصراً)">
+      <a href="index.html" class="ctrl-action-btn" title="الانتقال إلى فهرس المنظومة (65 عنصراً)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        <span>الفهرس (62)</span>
+        <span>الفهرس (65)</span>
       </a>
     </div>
   </header>
@@ -556,14 +581,14 @@
           <span class="badge-pill-subtle">100% Logical CSS</span>
         </div>
         <h1>
-          <span>زر العودة للأعلى</span>
-          <span class="tech-tag">BackToTop</span>
+          <span>الختم الملكي المؤسسي المعتمد</span>
+          <span class="tech-tag">seal</span>
         </h1>
-        <p class="comp-desc">Provide an accessible floating quick-scroll mechanism when users traverse long or dense page layouts.</p>
+        <p class="comp-desc">Prestige institutional seal communicating authenticity, verification, and accreditation</p>
       </div>
 
       <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
-        <kbd class="qhr-kbd qhr-kbd--sm">renderers/html/native/back-to-top.html</kbd>
+        <kbd class="qhr-kbd qhr-kbd--sm">renderers/html/native/seal.html</kbd>
         <span style="font-size: 0.72rem; color: var(--q-text-muted);">المتغيرات: <code>default, primary, secondary</code></span>
       </div>
     </section>
@@ -597,22 +622,15 @@
     <div id="panel-stage" class="canvas-stage-outer">
       <div id="canvas-container" class="canvas-viewport-container">
         <div class="component-frame" id="component-viewport">
-          <!-- Qahera UI Kit - Master BackToTop Showcase -->
-<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
-
-  <div>
-    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. زر الصعود لأعلى الصفحة (BackToTop Trigger Button)</h3>
-    <div style="background: var(--q-surface); padding: 24px; border-radius: 16px; border: 1px solid var(--q-border); display: flex; align-items: center; justify-content: space-between;">
-      <div>
-        <h4 style="margin: 0 0 6px 0; color: var(--q-text-primary);">زر عائم ذكي للصعود السلس</h4>
-        <p style="margin: 0; color: var(--q-text-secondary); font-size: 0.85rem;">يظهر تلقائياً عند تجاوز التمرير لمسافة محددة في الصفحة.</p>
-      </div>
-      <button type="button" class="qhr-back-to-top" style="position: static;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="صعود للأعلى">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
-      </button>
+          <!-- Qahera UI Kit - Native HTML Seal -->
+<div class="qhr-seal qhr-seal--solid qhr-seal--md" role="status" aria-label="ختم الاعتماد الرسمي">
+  <div class="qhr-seal__ring">
+    <div class="qhr-seal__emblem">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="10" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="17" x2="12" y2="21"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="15.78" x2="19.78" y2="17.2"></line><line x1="1" y1="10" x2="3" y2="10"></line><line x1="21" y1="10" x2="23" y2="10"></line><line x1="4.22" y1="15.78" x2="5.64" y2="14.36"></line><line x1="18.36" y1="4.22" x2="19.78" y2="5.64"></line></svg>
     </div>
+    <span class="qhr-seal__label">معتمد</span>
+    <span class="qhr-seal__subtext">ALWKALA</span>
   </div>
-
 </div>
         </div>
       </div>
@@ -621,25 +639,18 @@
     <!-- 2. لوحة كود HTML -->
     <div id="panel-code" class="code-panel">
       <div class="code-panel-header">
-        <span>renderers/html/native/back-to-top.html · HTML5 Strict Markup</span>
+        <span>renderers/html/native/seal.html · HTML5 Strict Markup</span>
         <button type="button" class="copy-btn" onclick="copyComponentHtml()">نسخ الكود الكامل</button>
       </div>
-      <pre class="code-pre"><code id="rawComponentSource">&lt;!-- Qahera UI Kit - Master BackToTop Showcase --&gt;
-&lt;div style=&quot;display: flex; flex-direction: column; gap: 32px; width: 100%;&quot;&gt;
-
-  &lt;div&gt;
-    &lt;h3 style=&quot;font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);&quot;&gt;1. زر الصعود لأعلى الصفحة (BackToTop Trigger Button)&lt;/h3&gt;
-    &lt;div style=&quot;background: var(--q-surface); padding: 24px; border-radius: 16px; border: 1px solid var(--q-border); display: flex; align-items: center; justify-content: space-between;&quot;&gt;
-      &lt;div&gt;
-        &lt;h4 style=&quot;margin: 0 0 6px 0; color: var(--q-text-primary);&quot;&gt;زر عائم ذكي للصعود السلس&lt;/h4&gt;
-        &lt;p style=&quot;margin: 0; color: var(--q-text-secondary); font-size: 0.85rem;&quot;&gt;يظهر تلقائياً عند تجاوز التمرير لمسافة محددة في الصفحة.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;button type=&quot;button&quot; class=&quot;qhr-back-to-top&quot; style=&quot;position: static;&quot; onclick=&quot;window.scrollTo({top: 0, behavior: &#039;smooth&#039;})&quot; title=&quot;صعود للأعلى&quot;&gt;
-        &lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2.5&quot;&gt;&lt;polyline points=&quot;18 15 12 9 6 15&quot;/&gt;&lt;/svg&gt;
-      &lt;/button&gt;
+      <pre class="code-pre"><code id="rawComponentSource">&lt;!-- Qahera UI Kit - Native HTML Seal --&gt;
+&lt;div class=&quot;qhr-seal qhr-seal--solid qhr-seal--md&quot; role=&quot;status&quot; aria-label=&quot;ختم الاعتماد الرسمي&quot;&gt;
+  &lt;div class=&quot;qhr-seal__ring&quot;&gt;
+    &lt;div class=&quot;qhr-seal__emblem&quot;&gt;
+      &lt;svg width=&quot;24&quot; height=&quot;24&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;10&quot; r=&quot;5&quot;&gt;&lt;/circle&gt;&lt;line x1=&quot;12&quot; y1=&quot;1&quot; x2=&quot;12&quot; y2=&quot;3&quot;&gt;&lt;/line&gt;&lt;line x1=&quot;12&quot; y1=&quot;17&quot; x2=&quot;12&quot; y2=&quot;21&quot;&gt;&lt;/line&gt;&lt;line x1=&quot;4.22&quot; y1=&quot;4.22&quot; x2=&quot;5.64&quot; y2=&quot;5.64&quot;&gt;&lt;/line&gt;&lt;line x1=&quot;18.36&quot; y1=&quot;15.78&quot; x2=&quot;19.78&quot; y2=&quot;17.2&quot;&gt;&lt;/line&gt;&lt;line x1=&quot;1&quot; y1=&quot;10&quot; x2=&quot;3&quot; y2=&quot;10&quot;&gt;&lt;/line&gt;&lt;line x1=&quot;21&quot; y1=&quot;10&quot; x2=&quot;23&quot; y2=&quot;10&quot;&gt;&lt;/line&gt;&lt;line x1=&quot;4.22&quot; y1=&quot;15.78&quot; x2=&quot;5.64&quot; y2=&quot;14.36&quot;&gt;&lt;/line&gt;&lt;line x1=&quot;18.36&quot; y1=&quot;4.22&quot; x2=&quot;19.78&quot; y2=&quot;5.64&quot;&gt;&lt;/line&gt;&lt;/svg&gt;
     &lt;/div&gt;
+    &lt;span class=&quot;qhr-seal__label&quot;&gt;معتمد&lt;/span&gt;
+    &lt;span class=&quot;qhr-seal__subtext&quot;&gt;ALWKALA&lt;/span&gt;
   &lt;/div&gt;
-
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -650,7 +661,7 @@
         <div class="contract-item">
           <h4>التصنيف والهدف (Role &amp; Category)</h4>
           <p><strong>التصنيف:</strong> مكون معماري رسمي</p>
-          <p style="margin-block-start: 6px;"><strong>الغرض:</strong> Provide an accessible floating quick-scroll mechanism when users traverse long or dense page layouts.</p>
+          <p style="margin-block-start: 6px;"><strong>الغرض:</strong> Prestige institutional seal communicating authenticity, verification, and accreditation</p>
         </div>
         <div class="contract-item">
           <h4>المتغيرات المدعومة (Variants)</h4>
@@ -672,18 +683,18 @@
 
     <!-- شريط التنقل بين المكونات السابق والتالي -->
     <nav class="stage-pager">
-      <a href="avatar.html" class="pager-card" title="الانتقال للمكون السابق">
+      <a href="ribbon.html" class="pager-card" title="الانتقال للمكون السابق">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--q-gold);"><polyline points="9 18 15 12 9 6"/></svg>
         <div style="text-align: start;">
           <div class="pager-label">السابق</div>
-          <div class="pager-title">الصورة الرمزية والوسائط (Avatar)</div>
+          <div class="pager-title">الشريط الزخرفي والوسام (Ribbon)</div>
         </div>
       </a>
 
-      <a href="badge.html" class="pager-card" title="الانتقال للمكون التالي">
+      <a href="select.html" class="pager-card" title="الانتقال للمكون التالي">
         <div style="text-align: end;">
           <div class="pager-label">التالي</div>
-          <div class="pager-title">الشارات والوسوم الرقمية (Badge)</div>
+          <div class="pager-title">حقل الاختيار المنسدل المخصص (Select)</div>
         </div>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--q-gold);"><polyline points="15 18 9 12 15 6"/></svg>
       </a>
@@ -949,7 +960,7 @@
         var curPath = window.location.pathname.split('/').pop().toLowerCase();
         for (var i = 0; i < picker.options.length; i++) {
           var optVal = (picker.options[i].value || '').toLowerCase();
-          if (optVal === curPath || optVal === 'back-to-top.html' || optVal === 'back-to-top.html' || optVal === 'backtotop.html') {
+          if (optVal === curPath || optVal === 'seal.html' || optVal === 'seal.html' || optVal === 'seal.html') {
             picker.selectedIndex = i;
             break;
           }

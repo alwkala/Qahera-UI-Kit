@@ -3,7 +3,7 @@
  * Generated automatically from tokens/ YAML sources. DO NOT EDIT.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800&family=El+Messiri:wght@400;500;600;700&family=Tajawal:wght@300;400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root, [data-theme="light"], [data-mode="light"] {
   --qhr-color-blue-50: #eff6ff;
@@ -60,15 +60,12 @@
   --qhr-color-rose-700: #be123c;
   --qhr-color-rose-800: #9f1239;
   --qhr-color-rose-900: #881337;
-  --qhr-color-primary: #0b6bcb;
+  --qhr-color-rose-950: #4c0519;
   --qhr-color-primary-bg: #0b6bcb;
   --qhr-color-primary-fg: #ffffff;
   --qhr-color-primary-border: #0b6bcb;
   --qhr-color-primary-hover: #0958a5;
   --qhr-color-primary-subtle: #eff6ff;
-  --qhr-color-accent: #d4af37;
-  --qhr-color-accent-fg: #0f172a;
-  --qhr-color-accent-hover: #b45309;
   --qhr-color-secondary-bg: #f1f5f9;
   --qhr-color-secondary-fg: #0f172a;
   --qhr-color-secondary-border: #e2e8f0;
@@ -100,6 +97,64 @@
   --qhr-color-info-border: #0b6bcb;
   --qhr-color-info-hover: #0958a5;
   --qhr-color-info-subtle: #eff6ff;
+  --qhr-color-wadj-name: Wadj;
+  --qhr-color-wadj-arabic: الوَدج;
+  --qhr-color-wadj-meaning: Sacred Egyptian Malachite Emerald of Growth, Wisdom, and Renewal;
+  --qhr-color-wadj-base: #135E4E;
+  --qhr-color-wadj-rgb: 19, 94, 78;
+  --qhr-color-wadj-hover: #0D463A;
+  --qhr-color-wadj-active: #08332A;
+  --qhr-color-wadj-surface: #E6F3EF;
+  --qhr-color-wadj-light: #C2E4DC;
+  --qhr-color-wadj-foreground: #FFFFFF;
+  --qhr-color-nebu-name: Nebu;
+  --qhr-color-nebu-arabic: النِبو;
+  --qhr-color-nebu-meaning: Sacred Sun Gold of Royalty, High Prestige, and Incorruptibility;
+  --qhr-color-nebu-base: #C98818;
+  --qhr-color-nebu-rgb: 201, 136, 24;
+  --qhr-color-nebu-hover: #A86F0F;
+  --qhr-color-nebu-active: #8A5A0A;
+  --qhr-color-nebu-surface: #FDF4E3;
+  --qhr-color-nebu-light: #F5D79E;
+  --qhr-color-nebu-foreground: #181307;
+  --qhr-color-khesbed-name: Khesbed;
+  --qhr-color-khesbed-arabic: الخِسبِد;
+  --qhr-color-khesbed-meaning: Royal Lapis Lazuli Cobalt of Deep Intellect, Truth, and Clarity;
+  --qhr-color-khesbed-base: #0E3C66;
+  --qhr-color-khesbed-rgb: 14, 60, 102;
+  --qhr-color-khesbed-hover: #092947;
+  --qhr-color-khesbed-active: #061C31;
+  --qhr-color-khesbed-surface: #E7F0F8;
+  --qhr-color-khesbed-light: #BAD4EB;
+  --qhr-color-khesbed-foreground: #FFFFFF;
+  --qhr-color-tamy-name: Tamy;
+  --qhr-color-tamy-arabic: الطمي;
+  --qhr-color-tamy-meaning: Nile Riverbed Clay, Red Jasper, and Terracotta Foundations;
+  --qhr-color-tamy-base: #B34A26;
+  --qhr-color-tamy-rgb: 179, 74, 38;
+  --qhr-color-tamy-hover: #8F381A;
+  --qhr-color-tamy-active: #6F2A12;
+  --qhr-color-tamy-surface: #FBECE7;
+  --qhr-color-tamy-light: #F3C5B5;
+  --qhr-color-tamy-foreground: #FFFFFF;
+  --qhr-color-papyrus-name: Papyrus;
+  --qhr-color-papyrus-arabic: البردي;
+  --qhr-color-papyrus-meaning: Archival Papyrus Sand and Parchment Editorial Surfaces;
+  --qhr-color-papyrus-base: #FAF8F2;
+  --qhr-color-papyrus-rgb: 250, 248, 242;
+  --qhr-color-papyrus-hover: #F2EDE0;
+  --qhr-color-papyrus-active: #E8E0CE;
+  --qhr-color-papyrus-surface: #FFFFFF;
+  --qhr-color-papyrus-border: #E2DAC8;
+  --qhr-color-papyrus-foreground: #121F1B;
+  --qhr-color-kohl-name: Kohl;
+  --qhr-color-kohl-arabic: الكحل;
+  --qhr-color-kohl-meaning: Deep Egyptian Mineral Black and Obsidian Contrast;
+  --qhr-color-kohl-base: #0D1412;
+  --qhr-color-kohl-rgb: 13, 20, 18;
+  --qhr-color-kohl-surface: #141D1A;
+  --qhr-color-kohl-border: #24322D;
+  --qhr-color-kohl-foreground: #F8FAF9;
   --qhr-space-0: 0px;
   --qhr-space-1: 4px;
   --qhr-space-2: 8px;
@@ -131,6 +186,9 @@
   --qhr-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
   --qhr-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
   --qhr-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --qhr-shadow-book: -8px 12px 28px -4px rgba(0, 0, 0, 0.22), -2px 4px 10px rgba(0, 0, 0, 0.08);
+  --qhr-shadow-floating: 0 24px 48px -12px rgba(0, 0, 0, 0.18), 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+  --qhr-shadow-cartouche: 0 4px 14px -2px rgba(201, 136, 24, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.6);
   --qhr-surface-base: #ffffff;
   --qhr-surface-elevated: #ffffff;
   --qhr-surface-muted: #f8fafc;
@@ -168,10 +226,10 @@
   --qhr-button-primary-foreground: #ffffff;
   --qhr-button-primary-hover: #0958a5;
   --qhr-button-primary-border: transparent;
-  --qhr-button-secondary-background: var(--qhr-color-secondary, var(--qhr-color-secondary-bg, #f1f5f9));
-  --qhr-button-secondary-foreground: var(--qhr-color-secondary-fg, #0f172a);
-  --qhr-button-secondary-hover: var(--qhr-color-secondary-hover, #e2e8f0);
-  --qhr-button-secondary-border: var(--qhr-color-secondary-border, #e2e8f0);
+  --qhr-button-secondary-background: #f1f5f9;
+  --qhr-button-secondary-foreground: #0f172a;
+  --qhr-button-secondary-hover: #e2e8f0;
+  --qhr-button-secondary-border: #e2e8f0;
   --qhr-button-outline-background: transparent;
   --qhr-button-outline-foreground: #0b6bcb;
   --qhr-button-outline-hover: #eff6ff;
@@ -218,6 +276,20 @@
   --qhr-alert-danger_bg: #fff1f2;
   --qhr-alert-danger_border: #fecdd3;
   --qhr-alert-danger_fg: #881337;
+  --qhr-z-negative: -1;
+  --qhr-z-base: 0;
+  --qhr-z-elevated: 1;
+  --qhr-z-decor: 2;
+  --qhr-z-overlay: 10;
+  --qhr-z-dropdown: 100;
+  --qhr-z-sticky: 500;
+  --qhr-z-navbar: 1000;
+  --qhr-z-modal-backdrop: 2000;
+  --qhr-z-modal: 2010;
+  --qhr-z-popover: 2020;
+  --qhr-z-toast: 3000;
+  --qhr-z-tooltip: 3010;
+  --qhr-z-preloader: 10000;
 
   /* Semantic Color Aliases */
   --qhr-color-primary: var(--qhr-color-primary-bg);
@@ -260,7 +332,7 @@
   --qhr-text-muted: #64748b;
 }
 
-[data-theme="dark"], [data-mode="dark"] {
+[data-theme="dark"] {
   --qhr-surface-base: #020617;
   --qhr-surface-elevated: #0f172a;
   --qhr-surface-muted: #1e293b;
@@ -270,24 +342,14 @@
   --qhr-content-muted: #94a3b8;
   --qhr-border-subtle: #1e293b;
   --qhr-border-strong: #334155;
-  --qhr-color-secondary: var(--qhr-color-secondary-bg, #1e293b);
   --qhr-color-secondary-bg: #1e293b;
   --qhr-color-secondary-fg: #f8fafc;
   --qhr-color-secondary-border: #334155;
   --qhr-color-secondary-hover: #334155;
-  --qhr-button-secondary-background: var(--qhr-color-secondary, var(--qhr-color-secondary-bg, #1e293b));
-  --qhr-button-secondary-foreground: var(--qhr-color-secondary-fg, #f8fafc);
-  --qhr-button-secondary-border: var(--qhr-color-secondary-border, #334155);
-  --qhr-button-secondary-hover: var(--qhr-color-secondary-hover, #334155);
   --qhr-ring-focus: rgba(96, 165, 250, 0.45);
   --qhr-color-primary: var(--qhr-color-blue-500, #3b82f6);
-  --qhr-color-primary-bg: var(--qhr-color-blue-500, #3b82f6);
-  --qhr-color-primary-fg: #ffffff;
-  --qhr-color-primary-border: var(--qhr-color-blue-500, #3b82f6);
-  --qhr-color-primary-hover: var(--qhr-color-blue-400, #60a5fa);
-  --qhr-color-accent: #fcd34d;
-  --qhr-color-accent-fg: #020617;
-  --qhr-color-accent-hover: #fbbf24;
+  --qhr-color-primary-600: var(--qhr-color-blue-500, #3b82f6);
+  --qhr-color-primary-700: var(--qhr-color-blue-600, #0b6bcb);
   --qhr-color-neutral-100: var(--qhr-color-slate-800, #1e293b);
   --qhr-color-neutral-200: var(--qhr-color-slate-700, #334155);
   --qhr-color-neutral-900: var(--qhr-color-slate-50, #f8fafc);

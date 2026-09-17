@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!-- Pre-emit critique: P5 H5 E5 S5 R5 V5 D5 -->
+<!-- Qahera UI Kit — Flagship Portal & Platform Showcase Template -->
+<!-- Inspired by Cairo. Built for what's next. -->
+<html lang="ar" dir="rtl" data-theme="zamalek" data-mode="light" x-data="flagshipPortal()">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بوابة المنظومة والمنتج الرقمي — قاهرة Qahera UI Kit</title>
+  <meta name="description" content="قالب البوابة الرئيسية لمنظومة التصميم والمنصات السحابية المعززة بالذكاء الاصطناعي — مبني بالكامل بمكونات قاهرة الأصلية ومستوحى من تصميم الواجهة الرسمية.">
+
+  <!-- Typography: Alexandria (Display) + Cairo (Body) + JetBrains Mono (Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="../../assets/images/hero-image.webp" type="image/webp" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Canonical Qahera Stylesheets -->
+  <link rel="stylesheet" href="../../dist/qahera-tokens.css">
+  <link rel="stylesheet" href="../../dist/qahera.css">
+  <link rel="stylesheet" href="../../dist/qahera-themes.css">
+  <link rel="stylesheet" href="../../assets/css/marketing.css">
+
+  <!-- Canonical Behavior & Micro-Physics Modules -->
+  <script defer src="../../behavior/spotlight.js"></script>
+  <script defer src="../../behavior/counter.js"></script>
+  <script defer src="../../behavior/scrollspy.js"></script>
+  <script defer src="../../behavior/accordion.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  <style>
+    /* Hero image relative path fix for template subdirectory */
+    .qhr-hero-bg-img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
+</head>
+<body :dir="dir">
+
+  <!-- 1. Header & Navigation (Faithful to Front Page Architecture) -->
+  <header class="qhr-site-header">
+    <div class="site-container">
+      <div class="qhr-header-inner">
+        
+        <!-- Brand Monogram & Title -->
+        <a href="../../index.html" class="qhr-brand" aria-label="Qahera UI Kit Home">
+          <svg class="qhr-brand-logo" viewBox="0 0 32 36" fill="currentColor">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C7.716 2 1 8.716 1 17v15a2 2 0 002 2h26a2 2 0 002-2V17c0-8.284-6.716-15-15-15zm-9 15c0-4.97 4.03-9 9-9s9 4.03 9 9v13H7V17zm9-5a5 5 0 00-5 5v3h10v-3a5 5 0 00-5-5z" />
+          </svg>
+          <span class="qhr-brand-title">بوابة قاهرة</span>
+          <span class="qhr-brand-sub">Flagship Portal</span>
+        </a>
+
+        <!-- Center Navigation -->
+        <nav class="qhr-nav-links">
+          <a href="#hero" class="qhr-nav-link is-active" x-text="lang === 'ar' ? 'الرئيسية' : 'Home'">الرئيسية</a>
+          <a href="#shift" class="qhr-nav-link" x-text="lang === 'ar' ? 'التحول' : 'The Shift'">التحول</a>
+          <a href="#ideas" class="qhr-nav-link" x-text="lang === 'ar' ? 'الأفكار الأربع' : 'Core Ideas'">الأفكار الأربع</a>
+          <a href="#matrix" class="qhr-nav-link" x-text="lang === 'ar' ? 'الذكاء الاصطناعي' : 'AI Layer'">الذكاء الاصطناعي</a>
+          <a href="#faq" class="qhr-nav-link" x-text="lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ'">الأسئلة الشائعة</a>
+        </nav>
+
+        <!-- Right Header Actions -->
+        <div class="qhr-header-actions">
+          
+          <!-- Light / Dark Mode Toggle -->
+          <button type="button" class="qhr-header-circle-btn" @click="toggleMode()" :title="mode === 'dark' ? 'التحويل للوضع الفاتح' : 'التحويل للوضع الداكن'" aria-label="Toggle dark/light mode">
+            <!-- Moon for Light Mode -->
+            <svg style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24" x-show="mode === 'light'">
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+            </svg>
+            <!-- Sun for Dark Mode -->
+            <svg style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; display: none;" viewBox="0 0 24 24" x-show="mode === 'dark'">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+
+          <!-- Language Selector -->
+          <button type="button" class="qhr-header-circle-btn" @click="toggleLang()" :title="lang === 'ar' ? 'Switch to English' : 'التحويل للعربية'" aria-label="Toggle Language">
+            <span style="font-size: 13px; font-weight: 800;" x-text="lang === 'ar' ? 'EN' : 'عربي'">EN</span>
+          </button>
+
+          <!-- Primary Pill CTA Button -->
+          <a href="../../showcase/index.html" class="qhr-btn-pill-dark qhr-desktop-cta">
+            <span x-text="lang === 'ar' ? 'المعرض الحي' : 'Explore Showcase'">المعرض الحي</span>
+            <svg style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="qhr-header-circle-btn qhr-mobile-menu-toggle" @click="mobileMenuOpen = !mobileMenuOpen" :aria-expanded="mobileMenuOpen" aria-label="Toggle navigation menu">
+            <svg x-show="!mobileMenuOpen" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <svg x-show="mobileMenuOpen" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; display: none;" viewBox="0 0 24 24">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="qhr-mobile-drawer" x-show="mobileMenuOpen" x-transition style="display: none;" @click.outside="mobileMenuOpen = false">
+      <div class="site-container">
+        <nav class="qhr-mobile-nav-list">
+          <a href="#hero" class="qhr-mobile-nav-link" @click="mobileMenuOpen = false" x-text="lang === 'ar' ? 'الرئيسية' : 'Home'">الرئيسية</a>
+          <a href="#shift" class="qhr-mobile-nav-link" @click="mobileMenuOpen = false" x-text="lang === 'ar' ? 'التحول المعماري' : 'The Shift'">التحول المعماري</a>
+          <a href="#ideas" class="qhr-mobile-nav-link" @click="mobileMenuOpen = false" x-text="lang === 'ar' ? 'الأفكار الأربع' : 'Core Ideas'">الأفكار الأربع</a>
+          <a href="#matrix" class="qhr-mobile-nav-link" @click="mobileMenuOpen = false" x-text="lang === 'ar' ? 'الذكاء الاصطناعي' : 'AI Layer'">الذكاء الاصطناعي</a>
+          <a href="#faq" class="qhr-mobile-nav-link" @click="mobileMenuOpen = false" x-text="lang === 'ar' ? 'الأسئلة الشائعة' : 'FAQ'">الأسئلة الشائعة</a>
+          <a href="../../showcase/index.html" class="qhr-mobile-nav-link" @click="mobileMenuOpen = false" x-text="lang === 'ar' ? 'المعرض الحي (86 عنصراً)' : 'Showcase (86 Items)'">المعرض الحي</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Hero Section (Exact Front Page Skyline Canvas & Overlays) -->
+  <section id="hero" class="qhr-hero-section">
+    <div class="qhr-hero-bg" aria-hidden="true">
+      <div class="qhr-hero-halo"></div>
+      
+      <!-- Base Cairo Architectural Skyline Canvas -->
+      <picture>
+        <source srcset="../../assets/images/hero-image.webp" type="image/webp">
+        <img src="../../assets/images/hero-image.png" alt="Qahera Skyline Architecture" class="qhr-hero-bg-img" width="1280" height="720" fetchpriority="high">
+      </picture>
+
+      <!-- Dynamic Layer 1: Floating Clouds -->
+      <div class="qhr-hero-layer qhr-hero-cloud qhr-hero-cloud--1">
+        <picture>
+          <source srcset="../../assets/images/cloud1.webp" type="image/webp">
+          <img src="../../assets/images/cloud1.png" alt="" class="qhr-layer-img" width="320" height="140" loading="lazy">
+        </picture>
+      </div>
+      <div class="qhr-hero-layer qhr-hero-cloud qhr-hero-cloud--2">
+        <picture>
+          <source srcset="../../assets/images/cloude2.webp" type="image/webp">
+          <img src="../../assets/images/cloude2.png" alt="" class="qhr-layer-img" width="360" height="160" loading="lazy">
+        </picture>
+      </div>
+
+      <!-- Dynamic Layer 2: Flying Birds -->
+      <div class="qhr-hero-layer qhr-hero-birds">
+        <picture>
+          <source srcset="../../assets/images/birds.webp" type="image/webp">
+          <img src="../../assets/images/birds.png" alt="" class="qhr-layer-img" width="160" height="90" loading="lazy">
+        </picture>
+      </div>
+
+      <!-- Dynamic Layer 3: Nile River Felucca Boat -->
+      <div class="qhr-hero-layer qhr-hero-boat">
+        <picture>
+          <source srcset="../../assets/images/boat.webp" type="image/webp">
+          <img src="../../assets/images/boat.png" alt="" class="qhr-layer-img" width="100" height="110" loading="lazy">
+        </picture>
+      </div>
+    </div>
+
+    <div class="site-container">
+      <div class="qhr-hero-grid">
+        
+        <!-- Hero Content -->
+        <div class="qhr-hero-content">
+          <!-- Live Telemetry Badges -->
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px;">
+            <span class="qhr-badge qhr-badge--primary qhr-badge--sm" x-text="lang === 'ar' ? '15 معياراً صارماً' : '15 Invariants'">15 معياراً صارماً</span>
+            <span class="qhr-badge qhr-badge--neutral qhr-badge--sm" x-text="lang === 'ar' ? '86 عنصراً قياسياً' : '86 Canonical Items'">86 عنصراً قياسياً</span>
+            <span class="qhr-badge qhr-badge--success qhr-badge--sm" x-text="lang === 'ar' ? '12 ثيماً معمارياً' : '12 Themes'">12 ثيماً معمارياً</span>
+          </div>
+
+          <h1 class="qhr-hero-title" x-text="lang === 'ar' ? 'صمّم اللغة.. ودع الذكاء الاصطناعي يتحدث بها' : 'Design the language. Let AI speak it.'">
+            صمّم اللغة.. ودع الذكاء الاصطناعي يتحدث بها
+          </h1>
+          <div class="qhr-hero-statement" x-text="lang === 'ar' ? 'لغة تصميم قابلة للتنفيذ للمطورين والوكلاء الأذكياء' : 'Executable design language for humans, AI agents, and browsers.'">
+            لغة تصميم قابلة للتنفيذ للمطورين والوكلاء الأذكياء
+          </div>
+          <p class="qhr-hero-body" x-text="lang === 'ar' ? 'قاهرة هي منظومة تصميم سيادية تمنح المطورين والمصممين ووكلاء الذكاء الاصطناعي مفردات وقواعد موحدة لبناء واجهات برمجية متناسقة وخالية من التباين عبر كافة الأطر البرمجية.' : 'Qahera is an executable design language that gives humans, AI agents, and browsers a shared vocabulary for building consistent interfaces with zero runtime drift.'">
+            قاهرة هي منظومة تصميم سيادية تمنح المطورين والمصممين ووكلاء الذكاء الاصطناعي مفردات وقواعد موحدة لبناء واجهات برمجية متناسقة وخالية من التباين عبر كافة الأطر البرمجية.
+          </p>
+
+          <div class="qhr-hero-actions">
+            <a href="../../showcase/index.html" class="qhr-btn-pill-dark">
+              <span x-text="lang === 'ar' ? 'استكشف المعرض الحي (86 عنصراً)' : 'Explore Live Showcase (86 Items)'">استكشف المعرض الحي (86 عنصراً)</span>
+              <svg style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.2;" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+
+            <a href="../../studio/index.html" class="qhr-btn-pill-outline">
+              <svg style="width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2;" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                <path d="M2 12h20"></path>
+              </svg>
+              <span x-text="lang === 'ar' ? 'استوديو الثيمات' : 'Theme Studio'">استوديو الثيمات</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Section: The Shift (Entropy vs Language) -->
+  <section id="shift" class="qhr-narrative-section qhr-narrative-section--surface">
+    <div class="site-container">
+      <div class="qhr-section-tagline" x-text="lang === 'ar' ? 'التحول المعماري' : 'THE ARCHITECTURAL SHIFT'">التحول المعماري</div>
+      <h2 class="qhr-section-heading" x-text="lang === 'ar' ? 'توليد الواجهات أصبح سهلاً.. التحدي هو التناسق' : 'Generating interfaces is cheap. Consistency is hard.'">
+        توليد الواجهات أصبح سهلاً.. التحدي هو التناسق
+      </h2>
+      <p class="qhr-lead-text" x-text="lang === 'ar' ? 'الذكاء الاصطناعي قادر على بناء تطبيق كامل في ثوانٍ، لكن دون لغة تصميم دقيقة تتحول كل شاشة إلى اجتهاد بصري جديد يفتت هوية المنتج.' : 'AI can generate an entire application in seconds. But without an authoritative design grammar, every screen drifts into visual entropy.'">
+        الذكاء الاصطناعي قادر على بناء تطبيق كامل في ثوانٍ، لكن دون لغة تصميم دقيقة تتحول كل شاشة إلى اجتهاد بصري جديد يفتت هوية المنتج.
+      </p>
+
+      <div class="qhr-shift-grid">
+        <!-- The Problem -->
+        <div class="qhr-shift-card-entropy spotlight-surface" x-data="qhrSpotlight()">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span class="qhr-badge qhr-badge--danger qhr-badge--sm" x-text="lang === 'ar' ? 'فوضى التوليد العشوائي' : 'DESIGN ENTROPY'">فوضى التوليد العشوائي</span>
+          </div>
+          <h3 style="font-family: var(--q-font-heading); font-size: 1.35rem; font-weight: 800; margin: 0 0 12px 0; color: var(--q-text-primary);" x-text="lang === 'ar' ? 'بدون عقود برمجية صارمة:' : 'Without strict component contracts:'">
+            بدون عقود برمجية صارمة:
+          </h3>
+          <ul class="qhr-entropy-list">
+            <li class="qhr-entropy-item">
+              <svg class="qhr-entropy-icon-cross" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              <span x-text="lang === 'ar' ? 'تشتت مقاييس المسافات والهوامش في كل شاشة.' : 'Inconsistent spacing and arbitrary pixel padding.'">تشتت مقاييس المسافات والهوامش في كل شاشة.</span>
+            </li>
+            <li class="qhr-entropy-item">
+              <svg class="qhr-entropy-icon-cross" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              <span x-text="lang === 'ar' ? 'ابتكار فئات CSS عشوائية وألوان غير معتمدة.' : 'Inventing ad-hoc CSS classes and hardcoded colors.'">ابتكار فئات CSS عشوائية وألوان غير معتمدة.</span>
+            </li>
+            <li class="qhr-entropy-item">
+              <svg class="qhr-entropy-icon-cross" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              <span x-text="lang === 'ar' ? 'انهيار التماثل الكامل بين العربية والإنجليزية.' : 'Breaking RTL/LTR parity and bidirectional flow.'">انهيار التماثل الكامل بين العربية والإنجليزية.</span>
+            </li>
+            <li class="qhr-entropy-item">
+              <svg class="qhr-entropy-icon-cross" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              <span x-text="lang === 'ar' ? 'غياب التوثيق الموجه للوكلاء الأذكياء.' : 'Lack of AI-native metadata for autonomous decision making.'">غياب التوثيق الموجه للوكلاء الأذكياء.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- The Solution -->
+        <div class="qhr-shift-solution-box spotlight-surface" x-data="qhrSpotlight()">
+          <span class="qhr-badge qhr-badge--primary qhr-badge--sm" x-text="lang === 'ar' ? 'حل منظومة قاهرة' : 'THE QAHERA SOLUTION'">حل منظومة قاهرة</span>
+          <p style="margin: 20px 0 8px 0; font-size: 1.15rem; color: var(--q-text-secondary);" x-text="lang === 'ar' ? 'قاهرة تمنح الذكاء الاصطناعي ما هو أفضل من مجرد موجه نصي:' : 'Qahera gives AI something far better than a prompt:'">
+            قاهرة تمنح الذكاء الاصطناعي ما هو أفضل من مجرد موجه نصي:
+          </p>
+          <div class="qhr-shift-solution-word" x-text="lang === 'ar' ? 'لغة تصميم حية' : 'An Executable Language.'">لغة تصميم حية</div>
+          <p style="color: var(--q-text-secondary); font-size: 0.95rem; line-height: 1.6; max-width: 380px; margin: 0 auto;" x-text="lang === 'ar' ? 'قواعد برمجية قابلة للتحقق آلياً تبقي كل شاشة مولدة داخل نفس العالم البصري والوظيفي المتماسك.' : 'An authoritative, machine-readable grammar keeping every generated screen strictly within the same design universe.'">
+            قواعد برمجية قابلة للتحقق آلياً تبقي كل شاشة مولدة داخل نفس العالم البصري والوظيفي المتماسك.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Section: The Four Core Ideas -->
+  <section id="ideas" class="qhr-narrative-section qhr-narrative-section--subtle">
+    <div class="site-container">
+      <div class="qhr-section-tagline" x-text="lang === 'ar' ? 'الهندسة البنيوية' : 'CORE PILLARS'">الهندسة البنيوية</div>
+      <h2 class="qhr-section-heading" x-text="lang === 'ar' ? 'أربع ركائز.. منظومة تصميم واحدة' : 'Four ideas. One design language.'">
+        أربع ركائز.. منظومة تصميم واحدة
+      </h2>
+
+      <div class="qhr-four-ideas-grid">
+        <!-- Idea 01 -->
+        <div class="qhr-idea-card spotlight-surface" x-data="qhrSpotlight()">
+          <div>
+            <div class="qhr-idea-num">01</div>
+            <h3 class="qhr-idea-title" x-text="lang === 'ar' ? 'قواعد التصميم الثقافي' : 'Cultural Design Grammar'">قواعد التصميم الثقافي</h3>
+          </div>
+          <p class="qhr-idea-desc" x-text="lang === 'ar' ? 'معالجة الثقافة والسياق الحضاري كمفردة تصميم أساسية عبر 12 ثيماً معمارياً مستوحى من أحياء القاهرة.' : 'Culture treated as a design-system primitive across 12 Cairo neighborhood themes.'">
+            معالجة الثقافة والسياق الحضاري كمفردة تصميم أساسية عبر 12 ثيماً معمارياً مستوحى من أحياء القاهرة.
+          </p>
+        </div>
+
+        <!-- Idea 02 -->
+        <div class="qhr-idea-card spotlight-surface" x-data="qhrSpotlight()">
+          <div>
+            <div class="qhr-idea-num">02</div>
+            <h3 class="qhr-idea-title" x-text="lang === 'ar' ? 'قابلية الاكتشاف للذكاء الاصطناعي' : 'AI Discoverability'">قابلية الاكتشاف للذكاء الاصطناعي</h3>
+          </div>
+          <p class="qhr-idea-desc" x-text="lang === 'ar' ? 'توثيق معماري بصيغ YAML وllms.txt يمكن الوكلاء البرمجيين من استيعاب متى وكيف يتم استخدام كل مكون.' : 'Machine-readable manifests allowing autonomous agents to discover and compose components without guessing.'">
+            توثيق معماري بصيغ YAML وllms.txt يمكن الوكلاء البرمجيين من استيعاب متى وكيف يتم استخدام كل مكون.
+          </p>
+        </div>
+
+        <!-- Idea 03 -->
+        <div class="qhr-idea-card spotlight-surface" x-data="qhrSpotlight()">
+          <div>
+            <div class="qhr-idea-num">03</div>
+            <h3 class="qhr-idea-title" x-text="lang === 'ar' ? 'عقود برمجية قابلة للتنفيذ' : 'Executable Contracts'">عقود برمجية قابلة للتنفيذ</h3>
+          </div>
+          <p class="qhr-idea-desc" x-text="lang === 'ar' ? 'المكونات هي المفردات، والأنماط هي القواعد النحوية، مع 15 معياراً صارماً تمنع أي هدر أو تباين.' : 'Components are vocabulary, patterns are grammar. Enforced by 15 normative invariants.'">
+            المكونات هي المفردات، والأنماط هي القواعد النحوية، مع 15 معياراً صارماً تمنع أي هدر أو تباين.
+          </p>
+        </div>
+
+        <!-- Idea 04 -->
+        <div class="qhr-idea-card spotlight-surface" x-data="qhrSpotlight()">
+          <div>
+            <div class="qhr-idea-num">04</div>
+            <h3 class="qhr-idea-title" x-text="lang === 'ar' ? 'تصدير متعدد للأطر البرمجية' : 'Multi-Target Architecture'">تصدير متعدد للأطر البرمجية</h3>
+          </div>
+          <p class="qhr-idea-desc" x-text="lang === 'ar' ? 'عقد واحد يولد كوداً أصلياً لـ React Server Components وHTML Native وPHP وHTMX ومكونات الويب W3C.' : 'One contract powering React, HTML, PHP, HTMX, and W3C Web Components with zero vocabulary drift.'">
+            عقد واحد يولد كوداً أصلياً لـ React Server Components وHTML Native وPHP وHTMX ومكونات الويب W3C.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Section: AI Decision Matrix -->
+  <section id="matrix" class="qhr-narrative-section qhr-narrative-section--surface">
+    <div class="site-container">
+      <div class="qhr-section-tagline" x-text="lang === 'ar' ? 'طبقة اتخاذ القرار للذكاء الاصطناعي' : 'AI DECISION LAYER'">طبقة اتخاذ القرار للذكاء الاصطناعي</div>
+      <h2 class="qhr-section-heading" x-text="lang === 'ar' ? 'لا تجعل الذكاء الاصطناعي يخمن قرارات التصميم' : 'Do not make AI guess your design decisions'">
+        لا تجعل الذكاء الاصطناعي يخمن قرارات التصميم
+      </h2>
+      <p class="qhr-lead-text" x-text="lang === 'ar' ? 'توفر كل وصفة برمجية في قاهرة إجابات قطعية عن الأسئلة الأربعة الحاسمة التي يحتاجها أي نموذج ذكاء اصطناعي لبناء الواجهات بنجاح:' : 'Every component recipe in Qahera answers the four critical architectural questions for autonomous agents:'">
+        توفر كل وصفة برمجية في قاهرة إجابات قطعية عن الأسئلة الأربعة الحاسمة التي يحتاجها أي نموذج ذكاء اصطناعي لبناء الواجهات بنجاح:
+      </p>
+
+      <div class="qhr-decision-matrix">
+        <div class="qhr-decision-card spotlight-surface" x-data="qhrSpotlight()">
+          <div class="qhr-decision-q">QUESTION 01</div>
+          <h4 class="qhr-decision-lead" x-text="lang === 'ar' ? 'متى يجب استخدام المكون؟' : 'When should I use it?'">متى يجب استخدام المكون؟</h4>
+          <p class="qhr-decision-sub" x-text="lang === 'ar' ? 'سياق الاستخدام الدقيق والغرض الوظيفي لكل عنصر.' : 'Precise semantic trigger conditions and use cases.'">سياق الاستخدام الدقيق والغرض الوظيفي لكل عنصر.</p>
+        </div>
+        <div class="qhr-decision-card spotlight-surface" x-data="qhrSpotlight()">
+          <div class="qhr-decision-q">QUESTION 02</div>
+          <h4 class="qhr-decision-lead" x-text="lang === 'ar' ? 'كيف يتم تركيبه وتنسيقه؟' : 'How should I compose it?'">كيف يتم تركيبه وتنسيقه؟</h4>
+          <p class="qhr-decision-sub" x-text="lang === 'ar' ? 'هندسة الفتحات (Slots) والعلاقات بين الأب والابن.' : 'Parent-child slot relationships and layout constraints.'">هندسة الفتحات (Slots) والعلاقات بين الأب والابن.</p>
+        </div>
+        <div class="qhr-decision-card spotlight-surface" x-data="qhrSpotlight()">
+          <div class="qhr-decision-q">QUESTION 03</div>
+          <h4 class="qhr-decision-lead" x-text="lang === 'ar' ? 'ما البديل الأفضل في الحالات الأخرى؟' : 'What should I use instead?'">ما البديل الأفضل في الحالات الأخرى؟</h4>
+          <p class="qhr-decision-sub" x-text="lang === 'ar' ? 'توصيات واضحة بالمكونات والأنماط البديلة.' : 'Explicit peer recommendations for adjacent scenarios.'">توصيات واضحة بالمكونات والأنماط البديلة.</p>
+        </div>
+        <div class="qhr-decision-card spotlight-surface" x-data="qhrSpotlight()">
+          <div class="qhr-decision-q">QUESTION 04</div>
+          <h4 class="qhr-decision-lead" x-text="lang === 'ar' ? 'متى يمنع استخدام المكون نهائياً؟' : 'When should I NOT use it?'">متى يمنع استخدام المكون نهائياً؟</h4>
+          <p class="qhr-decision-sub" x-text="lang === 'ar' ? 'قواعد المنع الصارمة (Anti-patterns) لمنع الهلوسة البصرية.' : 'Strict anti-patterns preventing UI hallucination.'">قواعد المنع الصارمة (Anti-patterns) لمنع الهلوسة البصرية.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Section: FAQ Accordion (Canonical Qahera Accordion Component) -->
+  <section id="faq" class="qhr-narrative-section qhr-narrative-section--subtle">
+    <div class="site-container">
+      <div class="qhr-section-tagline" x-text="lang === 'ar' ? 'الأسئلة الشائعة' : 'FREQUENTLY ASKED QUESTIONS'">الأسئلة الشائعة</div>
+      <h2 class="qhr-section-heading" x-text="lang === 'ar' ? 'كل ما تود معرفته عن منظومة قاهرة' : 'Everything you need to know about Qahera'">
+        كل ما تود معرفته عن منظومة قاهرة
+      </h2>
+      <p class="qhr-lead-text" x-text="lang === 'ar' ? 'إجابات واضحة حول الفلسفة المعمارية، وتكامل الذكاء الاصطناعي، ودعم اللغات المتعددة.' : 'Clear answers regarding architecture, AI integration, and universal parity.'">
+        إجابات واضحة حول الفلسفة المعمارية، وتكامل الذكاء الاصطناعي، ودعم اللغات المتعددة.
+      </p>
+
+      <!-- Canonical Accordion Component (.qhr-accordion .qhr-accordion--separate) -->
+      <div class="qhr-accordion qhr-accordion--separate" x-data="qhrAccordion({ multiple: false, defaultOpen: [0] })" style="max-width: 860px; margin-inline: auto; margin-block-start: 32px;">
+        
+        <!-- FAQ 1 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(0) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(0)" :aria-expanded="isOpen(0)">
+            <div class="qhr-accordion-content-meta">
+              <span class="qhr-accordion-title" x-text="lang === 'ar' ? 'ما الفرق بين قاهرة ومكتبات المكونات التقليدية مثل shadcn وTailwind UI؟' : 'How does Qahera differ from shadcn or Tailwind UI?'">
+                ما الفرق بين قاهرة ومكتبات المكونات التقليدية مثل shadcn وTailwind UI؟
+              </span>
+            </div>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(0)" x-collapse>
+            <div class="qhr-accordion-body" x-text="lang === 'ar' ? 'المكتبات التقليدية بنيت كأكواد جاهزة للمطورين البشريين فقط، بينما صممت قاهرة كـ «لغة تصميم قابلة للتنفيذ» تمتلك عقوداً برمجية ومخططات معمارية يفهمها كل من المطور والذكاء الاصطناعي مع دعم أصلي كامل لـ 6 أطر برمجية بدون هدر في الموارد.' : 'Traditional libraries are built for human copy-pasting. Qahera is an executable design language featuring strict contracts, AI-native manifests, and zero-drift multi-target rendering across React, HTML, PHP, and Web Components.'">
+              المكتبات التقليدية بنيت كأكواد جاهزة للمطورين البشريين فقط، بينما صممت قاهرة كـ «لغة تصميم قابلة للتنفيذ» تمتلك عقوداً برمجية ومخططات معمارية يفهمها كل من المطور والذكاء الاصطناعي مع دعم أصلي كامل لـ 6 أطر برمجية بدون هدر في الموارد.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(1) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(1)" :aria-expanded="isOpen(1)">
+            <div class="qhr-accordion-content-meta">
+              <span class="qhr-accordion-title" x-text="lang === 'ar' ? 'كيف تضمن قاهرة التماثل التام بين واجهات العربية والإنجليزية؟' : 'How does Qahera guarantee perfect RTL / LTR parity?'">
+                كيف تضمن قاهرة التماثل التام بين واجهات العربية والإنجليزية؟
+              </span>
+            </div>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(1)" x-collapse>
+            <div class="qhr-accordion-body" x-text="lang === 'ar' ? 'تعتمد قاهرة بنية تحتية قائمة بنسبة 100% على الخصائص المنطقية في CSS (Logical Properties مثل margin-inline وpadding-inline)، مما يمنع استخدام left وright نهائياً ويجعل التبديل بين اللغات آنياً وفورياً بدون أي ملفات CSS إضافية.' : 'Qahera is built 100% on CSS Logical Properties (margin-inline, padding-inline, inset-inline-start). Directional switching is instantaneous without duplicate RTL stylesheets or physical property overrides.'">
+              تعتمد قاهرة بنية تحتية قائمة بنسبة 100% على الخصائص المنطقية في CSS (Logical Properties مثل margin-inline وpadding-inline)، مما يمنع استخدام left وright نهائياً ويجعل التبديل بين اللغات آنياً وفورياً بدون أي ملفات CSS إضافية.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="qhr-accordion-item" :class="{ 'is-open': isOpen(2) }">
+          <button type="button" class="qhr-accordion-trigger" @click="toggle(2)" :aria-expanded="isOpen(2)">
+            <div class="qhr-accordion-content-meta">
+              <span class="qhr-accordion-title" x-text="lang === 'ar' ? 'هل تفرض المنظومة أي مكتبات تشغيل خارجية إجبارية؟' : 'Does Qahera impose any heavy runtime dependencies?'">
+                هل تفرض المنظومة أي مكتبات تشغيل خارجية إجبارية؟
+              </span>
+            </div>
+            <svg class="qhr-icon qhr-accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="qhr-accordion-content" x-show="isOpen(2)" x-collapse>
+            <div class="qhr-accordion-body" x-text="lang === 'ar' ? 'إطلاقاً. تتبع قاهرة مبدأ الملكية الكاملة للكود المصدري (Source Ownership) مع صفر قيد تشغيلي (0kb Client Boundary). يمكنك نسخ المكونات مباشرة أو استخدام حزمة CSS المجمعة الخفيفة مع أو بدون Alpine.js.' : 'Zero runtime lock-in. Consuming projects own their component source code. React components maintain a 0kb server-first footprint, while vanilla HTML tracks use minimal, optional Alpine.js micro-behaviors.'">
+              إطلاقاً. تتبع قاهرة مبدأ الملكية الكاملة للكود المصدري (Source Ownership) مع صفر قيد تشغيلي (0kb Client Boundary). يمكنك نسخ المكونات مباشرة أو استخدام حزمة CSS المجمعة الخفيفة مع أو بدون Alpine.js.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Footer -->
+  <footer style="border-block-start: 1px solid var(--q-border); padding-block: 40px; background-color: var(--q-surface); text-align: center; margin-block-start: 60px;">
+    <div class="site-container">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <svg style="width: 24px; height: 27px; color: var(--q-terracotta);" viewBox="0 0 32 36" fill="currentColor">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2C7.716 2 1 8.716 1 17v15a2 2 0 002 2h26a2 2 0 002-2V17c0-8.284-6.716-15-15-15zm-9 15c0-4.97 4.03-9 9-9s9 4.03 9 9v13H7V17zm9-5a5 5 0 00-5 5v3h10v-3a5 5 0 00-5-5z" />
+          </svg>
+          <span style="font-family: var(--q-font-heading); font-weight: 800; font-size: 1.1rem; color: var(--q-text-primary);">قالب بوابة قاهرة</span>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--q-text-muted); margin: 0;">
+          منظومة قاهرة لتصميم الواجهات — استوديو الوكالة Alwkala © 2026
+        </p>
+        <div style="display: flex; gap: 16px;">
+          <a href="../../showcase/index.html" style="color: var(--q-text-secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">المعرض الحي</a>
+          <a href="../../studio/index.html" style="color: var(--q-text-secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">استوديو الثيمات</a>
+          <a href="../../docs/index.html" style="color: var(--q-text-secondary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">التوثيق المعماري</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Alpine Store Initialization -->
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('flagshipPortal', () => ({
+        mode: localStorage.getItem('qhr-mode') || 'light',
+        theme: localStorage.getItem('qhr-theme') || 'zamalek',
+        lang: localStorage.getItem('qhr-lang') || 'ar',
+        dir: (localStorage.getItem('qhr-lang') || 'ar') === 'ar' ? 'rtl' : 'ltr',
+        mobileMenuOpen: false,
+
+        init() {
+          document.documentElement.setAttribute('data-mode', this.mode);
+          document.documentElement.setAttribute('data-theme', this.theme);
+          document.documentElement.setAttribute('lang', this.lang);
+          document.documentElement.setAttribute('dir', this.dir);
+        },
+
+        toggleMode() {
+          this.mode = this.mode === 'dark' ? 'light' : 'dark';
+          localStorage.setItem('qhr-mode', this.mode);
+          document.documentElement.setAttribute('data-mode', this.mode);
+        },
+
+        toggleLang() {
+          this.lang = this.lang === 'ar' ? 'en' : 'ar';
+          this.dir = this.lang === 'ar' ? 'rtl' : 'ltr';
+          localStorage.setItem('qhr-lang', this.lang);
+          document.documentElement.setAttribute('lang', this.lang);
+          document.documentElement.setAttribute('dir', this.dir);
+        }
+      }));
+    });
+  </script>
+</body>
+</html>

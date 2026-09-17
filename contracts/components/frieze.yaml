@@ -1,0 +1,50 @@
+id: frieze
+name: Frieze
+component: Frieze
+category: data-display
+purpose: >
+  Continuous architectural relief border and rhythmic decorative band for structural section dividers and header framing.
+
+anatomy:
+  - root
+  - track
+  - motif
+  - label
+
+variants:
+  outline:
+    intent: bordered-architectural-band
+  subtle:
+    intent: low-contrast-relief-divider
+  solid:
+    intent: tactile-filled-frieze
+
+sizes:
+  sm:
+    height: 16
+  md:
+    height: 24
+  lg:
+    height: 40
+
+states:
+  - default
+
+slots:
+  default: optional
+  label: optional
+
+accessibility:
+  role: separator
+  keyboard: false
+  focusVisible: false
+
+ai:
+  purpose: "Architectural decorative frieze band establishing monumental rhythm between content sections"
+  whenToUse:
+    - "Section dividers with cultural or architectural flair"
+    - "Header and footer boundary bands in academic/executive dossiers"
+    - "Framing featured editorial showcases"
+  avoid:
+    - "Simple minimal data dividers (use Divider)"
+    - "Clickable navigation bars (use Navbar)"

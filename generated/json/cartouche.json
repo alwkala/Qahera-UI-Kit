@@ -1,0 +1,127 @@
+{
+  "id": "cartouche",
+  "name": "Cartouche",
+  "component": "Cartouche",
+  "category": "containers",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "cap",
+      "body",
+      "label",
+      "knot-base"
+    ],
+    "variants": {
+      "outline": {
+        "intent": "bordered-prestige-frame"
+      },
+      "elevated": {
+        "intent": "floating-prestige-container"
+      },
+      "solid": {
+        "intent": "tactile-filled-enclosure"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "padding": 12,
+        "border_radius": "var(--qhr-radius-md)"
+      },
+      "md": {
+        "padding": 20,
+        "border_radius": "var(--qhr-radius-lg)"
+      },
+      "lg": {
+        "padding": 32,
+        "border_radius": "var(--qhr-radius-xl)"
+      }
+    },
+    "states": [
+      "default",
+      "hover",
+      "active"
+    ],
+    "slots": {
+      "header": "optional",
+      "title": "optional",
+      "body": "required",
+      "footer": "optional"
+    },
+    "accessibility": {
+      "role": "region",
+      "keyboard": false,
+      "focusVisible": true
+    }
+  },
+  "recipe": {
+    "file": "recipes/cartouche.yaml",
+    "base": {
+      "display": "flex",
+      "flex-direction": "column",
+      "position": "relative",
+      "background-color": "{surface.card}",
+      "border": "1px solid {color.border.subtle}",
+      "border-radius": "{radius.xl}",
+      "overflow": "hidden",
+      "transition": "transform {motion.duration.normal} {motion.ease.standard}, box-shadow {motion.duration.normal} {motion.ease.standard}"
+    },
+    "variants": {
+      "outline": {
+        "background-color": "transparent",
+        "border": "2px solid {color.nebu.base}"
+      },
+      "elevated": {
+        "background-color": "{surface.elevated}",
+        "box-shadow": "{shadow.cartouche}",
+        "border": "1px solid {color.nebu.light}"
+      },
+      "solid": {
+        "background-color": "{color.papyrus.base}",
+        "border": "1px solid {color.papyrus.border}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "padding": "{space.3}",
+        "gap": "{space.2}"
+      },
+      "md": {
+        "padding": "{space.5}",
+        "gap": "{space.3}"
+      },
+      "lg": {
+        "padding": "{space.8}",
+        "gap": "{space.4}"
+      }
+    },
+    "states": {
+      "default": {
+        "transform": "none"
+      },
+      "hover": {
+        "transform": "translateY(-2px)"
+      },
+      "active": {
+        "transform": "none"
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Architectural royal enclosure and prestige container with pilliform header caps, metallic borders, and tactile papyrus surface.",
+    "whenToUse": [
+      "Executive badges and verified author cards",
+      "Royal diplomas, certifications, and awards",
+      "Flagship feature callouts and hero badges"
+    ],
+    "avoid": [
+      "Standard high-density data tables",
+      "Generic low-prominence cards (use Card)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/cartouche.yaml"
+  }
+}

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>شرارات الكانفاس الحركية (CanvasSparks) — معاينة منظومة قاهرة Qahera UI Kit</title>
+  <title>الإفريز المعماري المنقوش (frieze) — معاينة منظومة قاهرة Qahera UI Kit</title>
   
   <!-- الخطوط الأساسية الرسمية: Alexandria للعناوين والهوية، و Cairo للنصوص والواجهة -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,11 +11,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   
   <!-- أوراق الأنماط الأساسية للمنظومة -->
-  <link rel="stylesheet" href="../../tokens/tokens.css">
-  <link rel="stylesheet" href="../../tokens/themes/themes.css">
-  <link rel="stylesheet" href="../../renderers/html/native/components.css">
+  <link rel="stylesheet" href="../../dist/qahera-tokens.css">
+  <link rel="stylesheet" href="../../dist/qahera-themes.css">
+  <link rel="stylesheet" href="../../dist/qahera.css">
 
-  <!-- حزم السلوك التفاعلي الـ 11 كاملة لضمان صفر أخطاء كونسول -->
+  <!-- حزم السلوك التفاعلي الـ 14 كاملة لضمان صفر أخطاء كونسول -->
   <script defer src="../../behavior/modal.js"></script>
   <script defer src="../../behavior/dropdown.js"></script>
   <script defer src="../../behavior/tabs.js"></script>
@@ -27,6 +27,9 @@
   <script defer src="../../behavior/back-to-top.js"></script>
   <script defer src="../../behavior/navbar.js"></script>
   <script defer src="../../behavior/preloader.js"></script>
+  <script defer src="../../behavior/spotlight.js"></script>
+  <script defer src="../../behavior/counter.js"></script>
+  <script defer src="../../behavior/scrollspy.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
   <style>
@@ -73,6 +76,25 @@
     }
 
     * { box-sizing: border-box; }
+
+    /* Defensive vector sizing to guarantee proper dimensions */
+    svg {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .qhr-frieze__motif svg {
+      width: 20px !important;
+      height: 20px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      fill: currentColor;
+    }
+    .qhr-seal__emblem svg {
+      width: 24px !important;
+      height: 24px !important;
+      max-width: 32px !important;
+      max-height: 32px !important;
+    }
 
     body {
       background-color: var(--q-bg);
@@ -419,9 +441,10 @@
           <option value="breadcrumb.html">مسار التنقل المتدرج (Breadcrumb)</option>
           <option value="button.html">الأزرار التفاعلية الشاملة (Button)</option>
           <option value="callout.html">صندوق التنبيهات والنداءات (Callout)</option>
-          <option value="canvas-sparks.html" selected>شرارات الكانفاس الحركية (CanvasSparks)</option>
+          <option value="canvas-sparks.html">شرارات الكانفاس الحركية (CanvasSparks)</option>
           <option value="card.html">البطاقات البنائية (Card)</option>
           <option value="carousel.html">عارض الشرائح الدوار (Carousel)</option>
+          <option value="cartouche.html">الخرطوشة الملكية التذكارية (cartouche)</option>
           <option value="checkbox.html">صناديق الاختيار الثنائية (Checkbox)</option>
           <option value="chip.html">شرائح التصنيف والفلترة (Chip)</option>
           <option value="divider.html">الفواصل الأفقية والرأسية (Divider)</option>
@@ -429,6 +452,7 @@
           <option value="drawer.html">الدرج الجانبي المنبثق (Drawer)</option>
           <option value="dropdown.html">القائمة المنسدلة التفاعلية (Dropdown)</option>
           <option value="file-upload.html">رافع الملفات والمستندات (FileUpload)</option>
+          <option value="frieze.html" selected>الإفريز المعماري المنقوش (frieze)</option>
           <option value="input.html">حقول الإدخال النصية (Input)</option>
           <option value="kbd.html">أزرار لوحة المفاتيح والاختصارات (Kbd)</option>
           <option value="megamenu.html">القائمة الضخمة متعددة الأعمدة (Megamenu)</option>
@@ -441,6 +465,7 @@
           <option value="radio.html">أزرار الاختيار الأحادي (Radio)</option>
           <option value="rating.html">تقييم النجوم التفاعلي (Rating)</option>
           <option value="ribbon.html">الشريط الزخرفي والوسام (Ribbon)</option>
+          <option value="seal.html">الختم الملكي المؤسسي المعتمد (seal)</option>
           <option value="select.html">حقل الاختيار المنسدل المخصص (Select)</option>
           <option value="skeleton.html">الهيكل الشبحي للتحميل (Skeleton)</option>
           <option value="spinner.html">مؤشر الانتظار الدائري (Spinner)</option>
@@ -481,7 +506,7 @@
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </div>
-        <span class="capsule-badge">62</span>
+        <span class="capsule-badge">65</span>
       </div>
 
       <div class="theme-selector-capsule" title="تبديل ثيم المنظومة">
@@ -534,9 +559,9 @@
         </svg>
       </button>
 
-      <a href="index.html" class="ctrl-action-btn" title="الانتقال إلى فهرس المنظومة (62 عنصراً)">
+      <a href="index.html" class="ctrl-action-btn" title="الانتقال إلى فهرس المنظومة (65 عنصراً)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        <span>الفهرس (62)</span>
+        <span>الفهرس (65)</span>
       </a>
     </div>
   </header>
@@ -556,14 +581,14 @@
           <span class="badge-pill-subtle">100% Logical CSS</span>
         </div>
         <h1>
-          <span>شرارات الكانفاس الحركية</span>
-          <span class="tech-tag">CanvasSparks</span>
+          <span>الإفريز المعماري المنقوش</span>
+          <span class="tech-tag">frieze</span>
         </h1>
-        <p class="comp-desc">Inject subtle, luxury ambient particle motion in dark hero sections with strictly zero layout shift or accessibility interference.</p>
+        <p class="comp-desc">Architectural decorative frieze band establishing monumental rhythm between content sections</p>
       </div>
 
       <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
-        <kbd class="qhr-kbd qhr-kbd--sm">renderers/html/native/canvas-sparks.html</kbd>
+        <kbd class="qhr-kbd qhr-kbd--sm">renderers/html/native/frieze.html</kbd>
         <span style="font-size: 0.72rem; color: var(--q-text-muted);">المتغيرات: <code>default, primary, secondary</code></span>
       </div>
     </section>
@@ -597,32 +622,17 @@
     <div id="panel-stage" class="canvas-stage-outer">
       <div id="canvas-container" class="canvas-viewport-container">
         <div class="component-frame" id="component-viewport">
-          <!-- Qahera UI Kit - Master Canvas Sparks Showcase -->
-<div style="display: flex; flex-direction: column; gap: 32px; width: 100%;">
-
-  <div>
-    <h3 style="font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);">1. خلفية الشرارات الحركية التفاعلية (Interactive Canvas Sparks)</h3>
-    <div style="position: relative; width: 100%; height: 380px; background: var(--q-surface); border: 1px solid var(--q-border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px;">
-      
-      <!-- Canvas Sparks Layer -->
-      <div class="qhr-canvas-sparks-wrapper" 
-           x-data="qhrCanvasSparks({ count: 45, speed: 1.2 })" 
-           style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;">
-        <canvas x-ref="canvas" aria-hidden="true" style="width: 100%; height: 100%; display: block;"></canvas>
-      </div>
-
-      <!-- Foreground Content -->
-      <div style="position: relative; z-index: 2; max-width: 500px;">
-        <span class="qhr-badge qhr-badge--primary qhr-badge--pill qhr-badge--sm" style="margin-block-end: 12px;">خلفية فيزيائية خفيفة 0kb CPU</span>
-        <h4 style="font-family: var(--q-font-heading); font-size: 1.4rem; font-weight: 800; margin: 0 0 8px 0; color: var(--q-text-primary);">حركة جزيئات وشرارات ذهبية بانسيابية 60fps</h4>
-        <p style="color: var(--q-text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
-          تعمل هذه الشرارات باستخدام Canvas 2D خفيف مع محاكاة قوى الجاذبية وحركة المؤشر، دون أي تأثير على أداء الصفحة أو استهلاك البطارية.
-        </p>
-      </div>
-
-    </div>
+          <!-- Qahera UI Kit - Native HTML Frieze -->
+<div class="qhr-frieze qhr-frieze--subtle qhr-frieze--md" role="separator" aria-label="فصل معماري">
+  <div class="qhr-frieze__track">
+    <span class="qhr-frieze__motif">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z"/></svg>
+    </span>
+    <span class="qhr-frieze__label">الفلسفة المعمارية</span>
+    <span class="qhr-frieze__motif">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z"/></svg>
+    </span>
   </div>
-
 </div>
         </div>
       </div>
@@ -631,35 +641,20 @@
     <!-- 2. لوحة كود HTML -->
     <div id="panel-code" class="code-panel">
       <div class="code-panel-header">
-        <span>renderers/html/native/canvas-sparks.html · HTML5 Strict Markup</span>
+        <span>renderers/html/native/frieze.html · HTML5 Strict Markup</span>
         <button type="button" class="copy-btn" onclick="copyComponentHtml()">نسخ الكود الكامل</button>
       </div>
-      <pre class="code-pre"><code id="rawComponentSource">&lt;!-- Qahera UI Kit - Master Canvas Sparks Showcase --&gt;
-&lt;div style=&quot;display: flex; flex-direction: column; gap: 32px; width: 100%;&quot;&gt;
-
-  &lt;div&gt;
-    &lt;h3 style=&quot;font-family: var(--q-font-heading); font-size: 1.1rem; margin-block-end: 16px; color: var(--q-text-primary);&quot;&gt;1. خلفية الشرارات الحركية التفاعلية (Interactive Canvas Sparks)&lt;/h3&gt;
-    &lt;div style=&quot;position: relative; width: 100%; height: 380px; background: var(--q-surface); border: 1px solid var(--q-border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px;&quot;&gt;
-      
-      &lt;!-- Canvas Sparks Layer --&gt;
-      &lt;div class=&quot;qhr-canvas-sparks-wrapper&quot; 
-           x-data=&quot;qhrCanvasSparks({ count: 45, speed: 1.2 })&quot; 
-           style=&quot;position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;&quot;&gt;
-        &lt;canvas x-ref=&quot;canvas&quot; aria-hidden=&quot;true&quot; style=&quot;width: 100%; height: 100%; display: block;&quot;&gt;&lt;/canvas&gt;
-      &lt;/div&gt;
-
-      &lt;!-- Foreground Content --&gt;
-      &lt;div style=&quot;position: relative; z-index: 2; max-width: 500px;&quot;&gt;
-        &lt;span class=&quot;qhr-badge qhr-badge--primary qhr-badge--pill qhr-badge--sm&quot; style=&quot;margin-block-end: 12px;&quot;&gt;خلفية فيزيائية خفيفة 0kb CPU&lt;/span&gt;
-        &lt;h4 style=&quot;font-family: var(--q-font-heading); font-size: 1.4rem; font-weight: 800; margin: 0 0 8px 0; color: var(--q-text-primary);&quot;&gt;حركة جزيئات وشرارات ذهبية بانسيابية 60fps&lt;/h4&gt;
-        &lt;p style=&quot;color: var(--q-text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;&quot;&gt;
-          تعمل هذه الشرارات باستخدام Canvas 2D خفيف مع محاكاة قوى الجاذبية وحركة المؤشر، دون أي تأثير على أداء الصفحة أو استهلاك البطارية.
-        &lt;/p&gt;
-      &lt;/div&gt;
-
-    &lt;/div&gt;
+      <pre class="code-pre"><code id="rawComponentSource">&lt;!-- Qahera UI Kit - Native HTML Frieze --&gt;
+&lt;div class=&quot;qhr-frieze qhr-frieze--subtle qhr-frieze--md&quot; role=&quot;separator&quot; aria-label=&quot;فصل معماري&quot;&gt;
+  &lt;div class=&quot;qhr-frieze__track&quot;&gt;
+    &lt;span class=&quot;qhr-frieze__motif&quot;&gt;
+      &lt;svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z&quot;/&gt;&lt;/svg&gt;
+    &lt;/span&gt;
+    &lt;span class=&quot;qhr-frieze__label&quot;&gt;الفلسفة المعمارية&lt;/span&gt;
+    &lt;span class=&quot;qhr-frieze__motif&quot;&gt;
+      &lt;svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;currentColor&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z&quot;/&gt;&lt;/svg&gt;
+    &lt;/span&gt;
   &lt;/div&gt;
-
 &lt;/div&gt;</code></pre>
     </div>
 
@@ -670,7 +665,7 @@
         <div class="contract-item">
           <h4>التصنيف والهدف (Role &amp; Category)</h4>
           <p><strong>التصنيف:</strong> مكون معماري رسمي</p>
-          <p style="margin-block-start: 6px;"><strong>الغرض:</strong> Inject subtle, luxury ambient particle motion in dark hero sections with strictly zero layout shift or accessibility interference.</p>
+          <p style="margin-block-start: 6px;"><strong>الغرض:</strong> Architectural decorative frieze band establishing monumental rhythm between content sections</p>
         </div>
         <div class="contract-item">
           <h4>المتغيرات المدعومة (Variants)</h4>
@@ -692,18 +687,18 @@
 
     <!-- شريط التنقل بين المكونات السابق والتالي -->
     <nav class="stage-pager">
-      <a href="callout.html" class="pager-card" title="الانتقال للمكون السابق">
+      <a href="file-upload.html" class="pager-card" title="الانتقال للمكون السابق">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--q-gold);"><polyline points="9 18 15 12 9 6"/></svg>
         <div style="text-align: start;">
           <div class="pager-label">السابق</div>
-          <div class="pager-title">صندوق التنبيهات والنداءات (Callout)</div>
+          <div class="pager-title">رافع الملفات والمستندات (FileUpload)</div>
         </div>
       </a>
 
-      <a href="card.html" class="pager-card" title="الانتقال للمكون التالي">
+      <a href="input.html" class="pager-card" title="الانتقال للمكون التالي">
         <div style="text-align: end;">
           <div class="pager-label">التالي</div>
-          <div class="pager-title">البطاقات البنائية (Card)</div>
+          <div class="pager-title">حقول الإدخال النصية (Input)</div>
         </div>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--q-gold);"><polyline points="15 18 9 12 15 6"/></svg>
       </a>
@@ -969,7 +964,7 @@
         var curPath = window.location.pathname.split('/').pop().toLowerCase();
         for (var i = 0; i < picker.options.length; i++) {
           var optVal = (picker.options[i].value || '').toLowerCase();
-          if (optVal === curPath || optVal === 'canvas-sparks.html' || optVal === 'canvas-sparks.html' || optVal === 'canvassparks.html') {
+          if (optVal === curPath || optVal === 'frieze.html' || optVal === 'frieze.html' || optVal === 'frieze.html') {
             picker.selectedIndex = i;
             break;
           }

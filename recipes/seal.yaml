@@ -1,0 +1,97 @@
+component: Seal
+name: seal
+category: feedback
+version: 1.0.0
+
+ai:
+  intent: "Institutional seal or verification stamp"
+  visual_role: "Circular royal stamp emblem with radial border and authority mark"
+  density: "comfortable"
+  preferred_when:
+    - "Accredited institution mark"
+    - "Academic certificate stamp"
+    - "Executive verified endorsement"
+  avoid_when:
+    - "Simple status tags (use Badge)"
+
+base:
+  display: inline-flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  border-radius: "{radius.full}"
+  text-align: center
+  user-select: none
+  transition: "transform {motion.duration.fast} {motion.ease.standard}"
+
+variants:
+  solid:
+    background-color: "{color.nebu.base}"
+    color: "{color.nebu.foreground}"
+    border: "2px double {color.nebu.light}"
+  subtle:
+    background-color: "{color.nebu.surface}"
+    color: "{color.nebu.hover}"
+    border: "1px solid {color.nebu.light}"
+  outline:
+    background-color: transparent
+    color: "{color.nebu.base}"
+    border: "2px dashed {color.nebu.base}"
+
+sizes:
+  sm:
+    width: "{space.10}"
+    height: "{space.10}"
+    font-size: "{text.xs}"
+    padding: "{space.1}"
+  md:
+    width: "{space.16}"
+    height: "{space.16}"
+    font-size: "{text.sm}"
+    padding: "{space.2}"
+  lg:
+    width: "{space.24}"
+    height: "{space.24}"
+    font-size: "{text.base}"
+    padding: "{space.3}"
+
+states:
+  default:
+    transform: "none"
+  hover:
+    transform: "scale(1.05) rotate(3deg)"
+
+contract:
+  anatomy:
+    - root
+    - ring
+    - emblem
+    - label
+    - subtext
+  props:
+    variant:
+      default: solid
+      values: [solid, subtle, outline]
+    size:
+      default: md
+      values: [sm, md, lg]
+  slots:
+    - icon
+    - label
+    - subtext
+
+structure:
+  base:
+    native_class: qhr-seal
+    tailwind: "inline-flex flex-col items-center justify-center rounded-full text-center select-none transition-transform"
+  sizes:
+    sm: "w-[var(--qhr-space-10)] h-[var(--qhr-space-10)] text-xs p-[var(--qhr-space-1)]"
+    md: "w-[var(--qhr-space-16)] h-[var(--qhr-space-16)] text-sm p-[var(--qhr-space-2)]"
+    lg: "w-[var(--qhr-space-24)] h-[var(--qhr-space-24)] text-base p-[var(--qhr-space-3)]"
+
+accessibility:
+  role: status
+
+rtl:
+  supported: true
+  directional_mirroring: false

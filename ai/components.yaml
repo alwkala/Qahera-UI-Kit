@@ -306,3 +306,26 @@ components:
     interactive: false
     contract: contracts/components/Treeview.yaml
     recipe: recipes/treeview.yaml
+
+  # Heritage & Architectural Components
+  - name: Cartouche
+    canonical: Cartouche
+    category: containers
+    purpose: "Architectural royal enclosure and prestige container with pilliform header caps, metallic borders, and tactile papyrus surface for executive profiles and focal features."
+    interactive: false
+    contract: contracts/components/cartouche.yaml
+    recipe: recipes/cartouche.yaml
+  - name: Frieze
+    canonical: Frieze
+    category: data-display
+    purpose: "Continuous architectural relief border and rhythmic decorative band for structural section dividers and header framing."
+    interactive: false
+    contract: contracts/components/frieze.yaml
+    recipe: recipes/frieze.yaml
+  - name: Seal
+    canonical: Seal
+    category: feedback
+    purpose: "Official accreditation, institutional verification mark, and royal stamp emblem communicating authenticity and authority."
+    interactive: false
+    contract: contracts/components/seal.yaml
+    recipe: recipes/seal.yaml

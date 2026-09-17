@@ -55,6 +55,11 @@ export * from './Divider';
 export * from './Skeleton';
 export * from './Treeview';
 
+// Heritage Architectural Primitives
+export * from './Cartouche';
+export * from './Frieze';
+export * from './Seal';
+
 // Composite Patterns (Excluding primitive Pagination collision)
 export {
   SearchToolbar,

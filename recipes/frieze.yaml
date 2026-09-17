@@ -1,0 +1,83 @@
+component: Frieze
+name: frieze
+category: data-display
+version: 1.0.0
+
+ai:
+  intent: "Architectural frieze relief band for ornamental division"
+  visual_role: "Continuous patterned relief border between structural sections"
+  density: "compact"
+  preferred_when:
+    - "Section separation requiring pharaonic or architectural identity"
+    - "Hero section base boundary"
+    - "Dossier or monograph framing"
+  avoid_when:
+    - "High frequency dividers in lists (use Divider)"
+
+base:
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  position: relative
+  user-select: none
+
+variants:
+  subtle:
+    color: "{color.border.subtle}"
+    border-block: "1px solid {color.border.subtle}"
+  outline:
+    color: "{color.nebu.base}"
+    border-block: "1px solid {color.nebu.base}"
+  solid:
+    background-color: "{color.papyrus.base}"
+    color: "{color.wadj.base}"
+    border-block: "1px solid {color.wadj.light}"
+
+sizes:
+  sm:
+    height: "{space.4}"
+    gap: "{space.2}"
+  md:
+    height: "{space.6}"
+    gap: "{space.3}"
+  lg:
+    height: "{space.10}"
+    gap: "{space.4}"
+
+states:
+  default:
+    opacity: 1
+
+contract:
+  anatomy:
+    - root
+    - track
+    - motif
+    - label
+  props:
+    variant:
+      default: subtle
+      values: [outline, subtle, solid]
+    size:
+      default: md
+      values: [sm, md, lg]
+  slots:
+    - default
+    - label
+
+structure:
+  base:
+    native_class: qhr-frieze
+    tailwind: "flex items-center justify-center w-full relative select-none"
+  sizes:
+    sm: "h-[var(--qhr-space-4)] gap-[var(--qhr-space-2)]"
+    md: "h-[var(--qhr-space-6)] gap-[var(--qhr-space-3)]"
+    lg: "h-[var(--qhr-space-10)] gap-[var(--qhr-space-4)]"
+
+accessibility:
+  role: separator
+
+rtl:
+  supported: true
+  directional_mirroring: false

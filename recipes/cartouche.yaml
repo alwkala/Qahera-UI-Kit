@@ -1,0 +1,92 @@
+component: Cartouche
+name: cartouche
+category: containers
+version: 1.0.0
+
+ai:
+  intent: "Prestige container framing executive or royal focal content"
+  visual_role: "Architectural pharaonic cartouche card with tactile border and knot-base"
+  density: "comfortable"
+  preferred_when:
+    - "Executive profiles and verified institutional diplomas"
+    - "Keynotes, awards, and historical milestones"
+    - "Hero badge or focal container"
+  avoid_when:
+    - "High-density tabular grids (use Table)"
+    - "Generic utility cards (use Card)"
+
+base:
+  display: flex
+  flex-direction: column
+  position: relative
+  background-color: "{surface.card}"
+  border: "1px solid {color.border.subtle}"
+  border-radius: "{radius.xl}"
+  overflow: hidden
+  transition: "transform {motion.duration.normal} {motion.ease.standard}, box-shadow {motion.duration.normal} {motion.ease.standard}"
+
+variants:
+  outline:
+    background-color: transparent
+    border: "2px solid {color.nebu.base}"
+  elevated:
+    background-color: "{surface.elevated}"
+    box-shadow: "{shadow.cartouche}"
+    border: "1px solid {color.nebu.light}"
+  solid:
+    background-color: "{color.papyrus.base}"
+    border: "1px solid {color.papyrus.border}"
+
+sizes:
+  sm:
+    padding: "{space.3}"
+    gap: "{space.2}"
+  md:
+    padding: "{space.5}"
+    gap: "{space.3}"
+  lg:
+    padding: "{space.8}"
+    gap: "{space.4}"
+
+states:
+  default:
+    transform: "none"
+  hover:
+    transform: "translateY(-2px)"
+  active:
+    transform: "none"
+
+contract:
+  anatomy:
+    - root
+    - cap
+    - body
+    - label
+    - knot-base
+  props:
+    variant:
+      default: elevated
+      values: [outline, elevated, solid]
+    size:
+      default: md
+      values: [sm, md, lg]
+  slots:
+    - header
+    - body
+    - footer
+
+structure:
+  base:
+    native_class: qhr-cartouche
+    tailwind: "flex flex-col relative rounded-[var(--qhr-radius-xl)] transition-all overflow-hidden"
+  sizes:
+    sm: "p-[var(--qhr-space-3)] gap-[var(--qhr-space-2)]"
+    md: "p-[var(--qhr-space-5)] gap-[var(--qhr-space-3)]"
+    lg: "p-[var(--qhr-space-8)] gap-[var(--qhr-space-4)]"
+
+accessibility:
+  role: region
+
+rtl:
+  supported: true
+  directional_mirroring: false

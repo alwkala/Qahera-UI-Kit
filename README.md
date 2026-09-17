@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ Qahera UI Kit `v1.5.1`
+# 🏛️ Qahera UI Kit `v1.5.2`
 ### The AI-Native, Contract-Driven Design System & Multi-Target Component Architecture
 **The Authoritative Visual Vocabulary, Living Component Registry & Multi-Stack Foundation by Alwkala**
 
@@ -28,7 +28,7 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 
 <br/>
 
-**[ 🌐 Living Showcase Hub ](examples/previews/index.html) • [ 🏛️ The 42 Components ](#the-42-canonical-components-v15-scope) • [ 🧩 20 UX Patterns ](#the-20-compositional-ux-patterns) • [ 🏙️ Cairo Atlas (12 Themes) ](#the-12-cairo-atlas-neighborhood-themes) • [ 🚀 Quick Start ](#quick-start-distribution-channels) • [ 🗺️ Roadmap ](#roadmap) • [ 📄 بالعربية ](#نظرة-عامة-وميثاق-المنظومة-باللغة-العربية)**
+**[ 🌐 Living Showcase Hub ](examples/previews/index.html) • [ 🏛️ The 45 Components ](#the-45-canonical-components-v15-scope) • [ 🧩 21 UX Patterns ](#the-21-compositional-ux-patterns) • [ 🏙️ Cairo Atlas (12 Themes) ](#the-12-cairo-atlas-neighborhood-themes) • [ 🚀 Quick Start ](#quick-start-distribution-channels) • [ 🗺️ Roadmap ](#roadmap) • [ 📄 بالعربية ](#نظرة-عامة-وميثاق-المنظومة-باللغة-العربية)**
 
 </div>
 
@@ -39,8 +39,8 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 - [🎯 Why Qahera UI Kit?](#why-qahera-ui-kit)
 - [📊 System Health & Quality Scorecard](#system-health-quality-scorecard)
 - [🖼️ Visual Showcase & Architectural Paradigm](#visual-showcase-architectural-paradigm)
-- [🏛️ The 42 Canonical Components (v1.5 Scope)](#the-42-canonical-components-v15-scope)
-- [🧩 The 20 Compositional UX Patterns](#the-20-compositional-ux-patterns)
+- [🏛️ The 45 Canonical Components (v1.5 Scope)](#the-45-canonical-components-v15-scope)
+- [🧩 The 21 Compositional UX Patterns](#the-21-compositional-ux-patterns)
 - [🏙️ The 12 Cairo Atlas Neighborhood Themes](#the-12-cairo-atlas-neighborhood-themes)
 - [🚀 Quick Start & Distribution Channels](#quick-start-distribution-channels)
   - [1. Zero-Install CLI Scaffolder via `npx` (shadcn-style)](#1-zero-install-cli-scaffolder-via-npx-shadcn-style)
@@ -62,7 +62,7 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 
 > [!IMPORTANT]
 > **The Core Architectural Equation:**  
-> $$\mathbf{\text{Qahera UI Kit v1.5.1}} = \mathbf{\text{Design System}} + \mathbf{\text{Registry}} + \mathbf{\text{AI Decision Layer}}$$
+> $$\mathbf{\text{Qahera UI Kit v1.5.2}} = \mathbf{\text{Design System}} + \mathbf{\text{Registry}} + \mathbf{\text{AI Decision Layer}}$$
 > 
 > Qahera is **NOT** just another component library or compiler. It is an **AI-Native UI Kit** combining a systematic design language, an authoritative canonical registry, and an explicit AI decision layer that tells coding agents **WHAT** to use, **WHEN** to use it, and **WHY NOT** to invent ad-hoc styles.
 
@@ -73,30 +73,30 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 | **RTL & Arabic Parity** | Secondary CSS hack or after-thought | Directional margin errors (`mr-*`, `ml-*`) | **Core Infrastructure:** 100% Logical CSS + Alexandria/Cairo fonts |
 | **AI Agent Ergonomics** | Must parse thousands of CSS classes | Inconsistent visual styles & emoji slop | **4-Tier Progressive AI Context** (`ai/components.yaml`) |
 | **Multi-Stack Parity** | Single-framework locked (React or CSS) | Fragile porting between stacks | **100% Semantic Parity across 6 Targets** (React, PHP, HTML, HTMX, JS) |
-| **Visual Iconography** | Inconsistent icon fonts or random SVGs | Arbitrary emojis (🗑️, 🚀, ✕) | **Zero Emoji (`QAHERA-VISUAL-001`):** 41 Semantic SVG Icons |
+| **Visual Iconography** | Inconsistent icon fonts or random SVGs | Arbitrary emojis (🗑️, 🚀, ✕) | **Zero Emoji (`QAHERA-VISUAL-001`):** 46 Semantic SVG Icons |
 
 ---
 
 ## 📊 System Health & Quality Scorecard
 
 ```text
-🏛️ QAHERA QUALITY ASSURANCE AUDIT (v1.5.1 Certified)
+🏛️ QAHERA QUALITY ASSURANCE AUDIT (v1.5.2 Certified)
 ══════════════════════════════════════════════════════════════════════════════════════
-  ✓ Schema & Invariants Validation : 100% Passed (42 Contracts · 42 Recipes · 20 Patterns)
+  ✓ Schema & Invariants Validation : 100% Passed (45 Contracts · 45 Recipes · 21 Patterns · 46 Icons)
   ✓ TypeScript Strict Typecheck    : 100% Passed (0 Errors across all React & Template files)
   ✓ WCAG 2.1 AA Contrast Ratios    : 100% Passed (Ratios from 4.70:1 to 19.21:1)
-  ✓ Performance CSS Budget         : 211.83 KB Raw / 28.32 KB Gzip (Budget: <= 30 KB)
-  ✓ RSC 0kb Client Footprint       : 29 Pure Server Components (0kb JS) + 15 Leaf Client Components
+  ✓ Performance CSS Budget         : 219.95 KB Raw / 29.57 KB Gzip (Budget: <= 30 KB)
+  ✓ RSC 0kb Client Footprint       : 32 Pure Server Components (0kb JS) + 15 Leaf Client Components
   ✓ RTL/LTR Parity & Logical CSS   : 100% Clean (0 Forbidden physical margins/paddings)
   ✓ Arabic Typography Discipline   : 100% Clean (Amiri font ban enforced, Alexandria/Cairo canonical)
   ✓ Community & Governance Score   : 95/100 (Level 5: Mature Open Source Project)
 ══════════════════════════════════════════════════════════════════════════════════════
 ```
 
-* **1:1 Parity Matrix:** 42 Architectural Contracts (`contracts/components/`) = 42 Recipes (`recipes/`) = 20 Compositional Patterns (`patterns/`) = 62 Standalone Preview Playgrounds (`examples/previews/`).
-* **Living Showcase Matrix:** 78 Canonical Items (40 Components + 20 Patterns + 18 Application Templates) in the Grand Interactive Hub (`examples/previews/index.html`).
+* **1:1 Parity Matrix:** 45 Architectural Contracts (`contracts/components/`) = 45 Recipes (`recipes/`) = 21 Compositional Patterns (`patterns/`) = 70 Standalone Preview Playgrounds (`examples/previews/`).
+* **Living Showcase Matrix:** 86 Canonical Items (45 Components + 21 Patterns + 20 Application Templates) in the Grand Interactive Hub (`examples/previews/index.html`).
 * **Production Bundles:**
-  - `dist/qahera.css`: 211.83 KB (28.32 KB gzip) production stylesheet aggregating 46 modular CSS units.
+  - `dist/qahera.css`: 219.95 KB (29.57 KB gzip) production stylesheet aggregating 49 modular CSS units.
   - `dist/qahera-themes.css`: 38.98 KB (5.43 KB gzip) covering all 12 Cairo Atlas neighborhood themes.
 
 ---
@@ -155,9 +155,9 @@ Every component begins as an authoritative semantic contract and flows determini
 
 ---
 
-## 🏛️ The 42 Canonical Components (v1.5 Scope)
+## 🏛️ The 45 Canonical Components (v1.5 Scope)
 
-All 42 components strictly satisfy the **Definition of Done (DoD)** with matching contracts, recipes, multi-target renderers, and interactive previews:
+All 45 components strictly satisfy the **Definition of Done (DoD)** with matching contracts, recipes, multi-target renderers, and interactive previews:
 
 | # | Canonical Component | Category | Contract Definition | Primary Architectural Purpose |
 |---|---|---|---|---|
@@ -203,10 +203,13 @@ All 42 components strictly satisfy the **Definition of Done (DoD)** with matchin
 | 40 | **Toast** | `feedback` | [`Toast.yaml`](contracts/components/Toast.yaml) | Floating ephemeral notification stack with auto-dismiss timers. |
 | 41 | **Tooltip** | `overlay` | [`Tooltip.yaml`](contracts/components/Tooltip.yaml) | Contextual hover/focus micro-balloon with 4-directional placement. |
 | 42 | **Treeview** | `navigation` | [`Treeview.yaml`](contracts/components/Treeview.yaml) | Hierarchical nested folder and category explorer with expand/collapse. |
+| 43 | **Cartouche** | `heritage` | [`cartouche.yaml`](contracts/components/cartouche.yaml) | Egyptian royal cartouche framing motif with hieroglyphic glyph enclosure. |
+| 44 | **Frieze** | `heritage` | [`frieze.yaml`](contracts/components/frieze.yaml) | Architectural heritage frieze band with repetitive geometric or lotus border motifs. |
+| 45 | **Seal** | `heritage` | [`seal.yaml`](contracts/components/seal.yaml) | Historic Egyptian official seal and medallion insignia with stamp emboss and radial text. |
 
 ---
 
-## 🧩 The 20 Compositional UX Patterns
+## 🧩 The 21 Compositional UX Patterns
 
 Higher-order compositional patterns constructed strictly from canonical primitives:
 
@@ -230,6 +233,7 @@ Higher-order compositional patterns constructed strictly from canonical primitiv
 18. **UserCard** (`patterns/user-card.yaml`): User profile summary badge with social metrics and actions.
 19. **VipMembership** (`patterns/vip-membership.yaml`): Tiered luxury subscription badge and perk list.
 20. **PaginationPattern** (`patterns/pagination.yaml`): Composite table pagination bar with page jump control.
+21. **HeroSkylinePanorama** (`patterns/hero-skyline-panorama.yaml`): Cinematic panorama hero banner with gradient overlays, kicker badges, and dual CTA actions.
 
 ---
 
@@ -441,6 +445,7 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 | **v1.4.0** | Sovereign Cairo Studio | 12 Cairo Atlas Themes, Viewport Simulator, Radius Matrix | **Completed** | 2026-09 |
 | **v1.5.0** | Universal Living Showcase v3.0 | 42 Components, 20 Patterns, 78-Item Hub, Level 5 OSS CI | **Completed** | 2026-09-07 |
 | **v1.5.1** | Zero-Install CLI & AI Skill Engine | `npx qahera-ui`, NPM Launch, Dual-Bin Engine, Sovereign Skill | **Completed** | **2026-09-12** |
+| **v1.5.2** | React Pattern Parity & Kit Hygiene | 21/21 React Patterns, AI Manifest 45 Components, Strict TypeScript Zero-Error | **Completed** | **2026-09-17** |
 | **v1.6.0** | Tokens Studio & Figma Sync | Bidirectional Figma Tokens sync, automated token pull | *Planned* | Q4 2026 |
 | **v2.0.0** | Autonomous AI Agent Engine | MCP native server, headless prompt-to-production compiler | *Roadmap* | Q1 2027 |
 

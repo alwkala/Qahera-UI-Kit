@@ -1,0 +1,84 @@
+/**
+ * Qahera UI Kit — Frieze Component (قاهرة · الإفريز المعماري)
+ * Continuous architectural relief border and rhythmic decorative band
+ */
+
+.qhr-frieze {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  user-select: none;
+  overflow: hidden;
+  border-block: 1px solid var(--qhr-border-subtle);
+  background-color: var(--qhr-surface-page);
+}
+
+.qhr-frieze__track {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-4);
+  width: 100%;
+  justify-content: center;
+  opacity: 0.65;
+}
+
+.qhr-frieze__motif {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.qhr-frieze__motif svg {
+  width: var(--qhr-space-5, 20px);
+  height: var(--qhr-space-5, 20px);
+  max-width: 24px;
+  max-height: 24px;
+  fill: currentColor;
+}
+
+.qhr-frieze__label {
+  font-family: var(--qhr-font-heading);
+  font-size: var(--qhr-text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-inline: var(--qhr-space-3);
+  background: var(--qhr-surface-page);
+  position: relative;
+  z-index: var(--qhr-z-elevated, 1);
+  color: var(--qhr-text-secondary);
+}
+
+/* Variants */
+.qhr-frieze--subtle {
+  border-block-color: var(--qhr-border-subtle);
+  color: var(--qhr-text-muted);
+}
+
+.qhr-frieze--outline {
+  border-block-color: var(--qhr-color-nebu, #C98818);
+  color: var(--qhr-color-nebu, #C98818);
+}
+
+.qhr-frieze--solid {
+  background-color: var(--qhr-color-papyrus, #FAF8F2);
+  border-block-color: var(--qhr-color-papyrus-border, #E2DAC8);
+  color: var(--qhr-color-wadj, #135E4E);
+}
+
+/* Sizes */
+.qhr-frieze--sm {
+  height: var(--qhr-space-4);
+}
+
+.qhr-frieze--md {
+  height: var(--qhr-space-6);
+}
+
+.qhr-frieze--lg {
+  height: var(--qhr-space-10);
+}

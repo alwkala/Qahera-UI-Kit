@@ -36,6 +36,7 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 | **v1.4.0** | Sovereign Cairo Studio | 12 Cairo Atlas Themes, Viewport Simulator, Radius Matrix, Logical CSS | **Completed** | 2026-09 |
 | **v1.5.0** | Grand Architectural Parity | 42 Components, 20 Patterns, 100% 5-Stack Parity (HTML, React, PHP, JS, HTMX) | **Completed** | **2026-09-11** |
 | **v1.5.1** | Sovereign AI Decision Layer & NPX CLI | `qahera-ui` Skill (15/15 compliance), Zero-Install `npx qahera-ui`, `qahera.json`, AI Embedding | **Completed** | **2026-09-12** |
+| **v1.5.2** | React Pattern Parity & Kit Hygiene | 21/21 React Patterns, AI Manifest 45 Components, Strict TypeScript Zero-Error, Duplicate File Purge | **Completed** | **2026-09-17** |
 | **v1.6.0** | Tokens Studio, Advanced Data & SVG Icons | Advanced DataGrids (Preline-style), DatePicker, Form Schemas, W3C DTCG Sync, Curated 150+ SVG Icon Engine | *Planned* | Q4 2026 |
 | **v1.7.0** | Tailwind Plugin & Microwebsite | Official Tailwind Plugin (`qahera-ui-kit/tailwind`), `alwkala.com/qahera` Microwebsite, npm dual-dist | *Planned* | Q1 2027 |
 | **v2.0.0** | AI Agent Engine & Native MCP | Autonomous MCP Server (`qahera-mcp`), Agent Skills Suite, Global Registries (Smithery/Glama) | *Roadmap* | Q1-Q2 2027 |
@@ -44,7 +45,7 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 
 ## 1. Release Milestones in Detail
 
-### 1.1 Milestone v1.5.0 — Grand Architectural Parity (Current Milestone · Completed)
+### 1.1 Milestone v1.5.0 — Grand Architectural Parity (Completed)
 * **Status:** **Shipped & Verified (100% 1:1 Parity Matrix)**
 * **Deliverables:**
   - **42 Canonical Components & 20 UX Patterns** with 100% vocabulary parity across 5 production renderers.
@@ -56,7 +57,27 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 
 ---
 
-### 1.2 Milestone v1.6.0 — Tokens Studio, Advanced Data Components & Figma Sync (Q4 2026)
+### 1.2 Milestone v1.5.1 — Sovereign AI Decision Layer & NPX CLI (Completed)
+* **Status:** **Shipped & Verified**
+* **Deliverables:**
+  - **Sovereign AI Decision Layer (`.agents/skills/qahera-ui/`):** High-performance, low-token AI agent skill conforming to all 15 structural rules of `tidyfactor-skill-architect` with 5 operational commands (`compose`, `pattern`, `scaffold`, `audit`, `theme`).
+  - **Zero-Install CLI Scaffolding via `npx qahera-ui`:** Instant project bootstrap (`init`, `add`) embedding tokens, components, and the AI decision layer without global installs.
+  - **Full Dual-Bin Engine:** `qahera-ui` and `qahera` aliases configured for seamless developer ergonomics.
+
+---
+
+### 1.3 Milestone v1.5.2 — React Pattern Parity, AI Manifest Indexing & Hygiene (Current Milestone · Shipped)
+* **Status:** **Shipped & Verified (100% Quality Gates Passed)**
+* **Deliverables:**
+  - **Full React Pattern Parity (21/21):** Shipped all 9 remaining production React 19 / TSX patterns (`ChatStream`, `DatePaginator`, `FileManagerGrid`, `HeroSkylinePanorama`, `KanbanBoard`, `MetricComparisonGrid`, `Questionnaire`, `SortableList`, `UserCard`) with full barrel export coverage in `renderers/react/patterns/index.ts`.
+  - **AI Manifest Heritage Indexing:** Added entries for 3 heritage components (`Cartouche`, `Frieze`, `Seal`) in `ai/components.yaml`, bringing AI catalog coverage to 45 components.
+  - **Strict TypeScript Zero-Error Typing:** Resolved `onSelect` DOM collision in `Questionnaire.tsx` and controlled vocabulary `size="sm"` adherence in `KanbanBoard.tsx`.
+  - **Repository Hygiene & Duplicate Elimination:** Purged 20 duplicate/legacy files (3 preview duplicates + 17 legacy PascalCase pattern files).
+  - **CI & Quality Verification:** 100% pass across all 4 stages: 45 Contracts, 45 Recipes, 21 Patterns, 46 Icons, 219.95 KB raw CSS (29.57 KB gzip), 0 physical CSS properties.
+
+---
+
+### 1.4 Milestone v1.6.0 — Tokens Studio, Advanced Data Components & Figma Sync (Q4 2026)
 * **Goal:** Elevate enterprise application capabilities (inspired by **Preline UI** & **Ant Design**) and establish bidirectional design token workflows.
 * **Scope of Deliverables:**
   1. **Advanced Enterprise Data Components:**
@@ -78,7 +99,7 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 
 ---
 
-### 1.3 Milestone v1.7.0 — Official Tailwind Plugin & Sovereign Microwebsite Launch (Q1 2027)
+### 1.5 Milestone v1.7.0 — Official Tailwind Plugin & Sovereign Microwebsite Launch (Q1 2027)
 * **Goal:** Zero-setup adoption (inspired by **daisyUI**) and multi-channel public web presence.
 * **Scope of Deliverables:**
   1. **The Official Tailwind CSS Plugin (`qahera-ui-kit/tailwind`):**
@@ -106,7 +127,7 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 
 ---
 
-### 1.4 Milestone v2.0.0 — Autonomous AI Agent Engine & Native MCP Server (Q1-Q2 2027)
+### 1.6 Milestone v2.0.0 — Autonomous AI Agent Engine & Native MCP Server (Q1-Q2 2027)
 * **Goal:** Establish Qahera as the world's first authoritative AI-native design system with a dedicated Model Context Protocol (MCP) server and agent skills suite.
 * **Scope of Deliverables:**
   1. **Native Qahera MCP Server (`qahera-mcp` via JSON-RPC 2.0 Stdio):**

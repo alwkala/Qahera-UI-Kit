@@ -1,0 +1,111 @@
+{
+  "id": "frieze",
+  "name": "Frieze",
+  "component": "Frieze",
+  "category": "data-display",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "track",
+      "motif",
+      "label"
+    ],
+    "variants": {
+      "outline": {
+        "intent": "bordered-architectural-band"
+      },
+      "subtle": {
+        "intent": "low-contrast-relief-divider"
+      },
+      "solid": {
+        "intent": "tactile-filled-frieze"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": 16
+      },
+      "md": {
+        "height": 24
+      },
+      "lg": {
+        "height": 40
+      }
+    },
+    "states": [
+      "default"
+    ],
+    "slots": {
+      "default": "optional",
+      "label": "optional"
+    },
+    "accessibility": {
+      "role": "separator",
+      "keyboard": false,
+      "focusVisible": false
+    }
+  },
+  "recipe": {
+    "file": "recipes/frieze.yaml",
+    "base": {
+      "display": "flex",
+      "align-items": "center",
+      "justify-content": "center",
+      "width": "100%",
+      "position": "relative",
+      "user-select": "none"
+    },
+    "variants": {
+      "subtle": {
+        "color": "{color.border.subtle}",
+        "border-block": "1px solid {color.border.subtle}"
+      },
+      "outline": {
+        "color": "{color.nebu.base}",
+        "border-block": "1px solid {color.nebu.base}"
+      },
+      "solid": {
+        "background-color": "{color.papyrus.base}",
+        "color": "{color.wadj.base}",
+        "border-block": "1px solid {color.wadj.light}"
+      }
+    },
+    "sizes": {
+      "sm": {
+        "height": "{space.4}",
+        "gap": "{space.2}"
+      },
+      "md": {
+        "height": "{space.6}",
+        "gap": "{space.3}"
+      },
+      "lg": {
+        "height": "{space.10}",
+        "gap": "{space.4}"
+      }
+    },
+    "states": {
+      "default": {
+        "opacity": 1
+      }
+    }
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Continuous architectural relief border and rhythmic decorative band for structural section dividers and header framing.",
+    "whenToUse": [
+      "Section dividers with cultural or architectural flair",
+      "Header and footer boundary bands in academic/executive dossiers",
+      "Framing featured editorial showcases"
+    ],
+    "avoid": [
+      "Simple minimal data dividers (use Divider)",
+      "Clickable navigation bars (use Navbar)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/frieze.yaml"
+  }
+}

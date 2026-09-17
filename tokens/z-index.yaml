@@ -1,13 +1,18 @@
-version: 0.1.0-draft
+version: 1.0.0
 category: z-index
+description: Authoritative, non-arbitrary Z-Index hierarchy scale preventing layer collisions
 scale:
+  negative: "-1"
   base: "0"
-  docked: "10"
-  dropdown: "1000"
-  sticky: "1100"
-  banner: "1200"
-  overlay: "1300"
-  modal: "1400"
-  popover: "1500"
-  toast: "1600"
-  tooltip: "1700"
+  elevated: "1"
+  decor: "2"
+  overlay: "10"
+  dropdown: "100"
+  sticky: "500"
+  navbar: "1000"
+  modal-backdrop: "2000"
+  modal: "2010"
+  popover: "2020"
+  toast: "3000"
+  tooltip: "3010"
+  preloader: "10000"

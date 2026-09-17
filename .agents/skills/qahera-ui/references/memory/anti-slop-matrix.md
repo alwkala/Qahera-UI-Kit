@@ -54,3 +54,28 @@ Binary negative constraints for generating, composing, and auditing UI code in Q
 
 ## IX. Cultural Themes (`QAHERA-THEME-001`)
 - ❌ **No arbitrary cosmetic themes**: Themes must not be named `theme-cool` or `theme-blue`. They must synthesize global design movements with Egyptian architectural/cultural contexts (e.g. `downtown`, `heliopolis`, `nubia`, `khedivial`).
+
+## X. SVG Dimensional Discipline & Vector Scaling (`QAHERA-SVG-001`)
+- ❌ **No unconstrained SVGs**: Never output inline `<svg>` elements without explicit `width`, `height`, and `viewBox` attributes.
+- ❌ **No unstyled vector expansion**: Stylesheets must enforce defensive scaling (`max-width: 100%`) and explicit dimensions on icon/motif containers (e.g. `.qhr-frieze__motif svg`, `.qhr-seal__emblem svg`) with `fill: currentColor` or `fill: none; stroke: currentColor`.
+
+## XI. Popover & Megamenu Positioning Architecture (`QAHERA-POPOVER-001`)
+- ❌ **No padding on relative trigger wrappers**: Never apply `padding-bottom` (or `padding-block-end`) on a wrapper that has `position: relative` (like `.qhr-megamenu-wrapper`). It distorts `inset-block-start: calc(100% + 8px)` calculation, casting dropdown menus into empty space away from the trigger.
+- ❌ **No unconstrained 900px dropdowns**: Large dropdowns/megamenus must define `max-inline-size: calc(100vw - 32px)` and provide explicit horizontal alignment modifiers (`--start`, `--center`, `--end`, `--container`).
+
+## XII. Navigation Hierarchy & BiDi Flow (`QAHERA-NAV-001`)
+- ❌ **No hardcoded numbers in navigation**: Never hardcode version tags ("v1.5.0") or counts in navbar headers or links.
+- ❌ **No multiple primary CTAs in header**: Keep a single primary CTA button in the header accompanied by unified circular icon controls.
+- ❌ **No inline theme strips in top navigation**: Never crowd the top navbar with multi-item theme strips; place them in a dedicated control bar in the content hub.
+- ❌ **No unisolated Latin fragments in Arabic copy**: When mixing Arabic with Latin terms (like `(UX Patterns)`, `100%`, `0kb RSC`), wrap with `<bdi dir="ltr">` or `<span dir="ltr">` to prevent bidirectional sentence inversion.
+
+## XIII. Compiler Bundle Order & Preview Asset Integrity (`QAHERA-BUILD-001`)
+- ❌ **No unbundled component stylesheets**: Whenever a new component stylesheet is added to `renderers/html/native/components/`, it MUST be registered in `CANONICAL_ORDER` in `cli/build-css.js` and compiled into `dist/qahera.css`.
+- ❌ **No unreachable relative preview links**: Previews must link to compiled production assets (`../dist/qahera.css`, `../dist/qahera-tokens.css`, `../dist/qahera-themes.css`), never to unreachable dev-only paths.
+
+## XIV. Hero Skyline Panorama & Architectural Discipline (`QAHERA-HERO-001`)
+- ❌ **No height mismatch / empty top void**: Hero section height MUST match the background illustration height (e.g. `height: clamp(500px, 62vh, 588px); max-height: 588px;`). Never use unconstrained viewport heights (`calc(100vh - 68px)`) that leave a giant empty margin above the cropped artwork.
+- ❌ **No typography-visual collisions**: Never allow background artwork or architectural landmarks to stretch across or sit under the typography column. Always enforce strict column isolation (`max-width: min(100%, 540px)`) with dedicated horizontal breathing room.
+- ❌ **No floating box hero landscapes**: Panoramic skylines and landscape illustrations must never be trapped in isolated floating cards with drop shadows. They must anchor flush to the section's bottom edge (`align-items: flex-end`, `bottom: 0`) and blend seamlessly into the surface background with feathered inward gradient masks (`mask-image: linear-gradient(...)`).
+- ❌ **No unmirrored RTL hero artwork**: When switching to Arabic (`dir="rtl"`), the architectural illustration MUST be mirrored horizontally (`transform: scaleX(-1)`) so that landmark towers and focal points anchor cleanly to the outer edge, while water and open horizon fade softly inward toward the Arabic typography.
+

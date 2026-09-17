@@ -1,0 +1,56 @@
+id: seal
+name: Seal
+component: Seal
+category: feedback
+purpose: >
+  Official accreditation, institutional verification mark, and royal stamp emblem.
+
+anatomy:
+  - root
+  - ring
+  - emblem
+  - label
+  - subtext
+
+variants:
+  solid:
+    intent: authoritative-stamped-mark
+  subtle:
+    intent: low-contrast-accreditation
+  outline:
+    intent: engraved-perimeter-mark
+
+sizes:
+  sm:
+    size: 40
+    font_size: "var(--qhr-text-xs)"
+  md:
+    size: 64
+    font_size: "var(--qhr-text-sm)"
+  lg:
+    size: 96
+    font_size: "var(--qhr-text-base)"
+
+states:
+  - default
+  - hover
+
+slots:
+  icon: optional
+  label: required
+  subtext: optional
+
+accessibility:
+  role: status
+  keyboard: false
+  focusVisible: true
+
+ai:
+  purpose: "Prestige institutional seal communicating authenticity, verification, and accreditation"
+  whenToUse:
+    - "Academic degree or course completion seals"
+    - "Executive signature verification badges"
+    - "Official institutional copyright or accreditation marks"
+  avoid:
+    - "Standard notification unread counts (use Badge)"
+    - "User avatars (use Avatar)"

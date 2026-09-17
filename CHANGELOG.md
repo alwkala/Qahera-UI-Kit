@@ -3,6 +3,39 @@
 All notable changes to **Qahera UI Kit** will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.2] - 2026-09-17
+
+### React Pattern Parity (21/21), AI Manifest Completeness & Repository Hygiene
+> *"Qahera UI Kit v1.5.2 achieves 100% React pattern parity across all 21 UX patterns, restores complete indexing for all 45 canonical components in the AI Decision Layer (`ai/components.yaml`), eliminates duplicate and legacy artifacts, enforces strict TypeScript zero-error typing, and validates 100% compliance across all 4 CI quality stages."*
+
+### Added
+- **100% React UX Pattern Parity (`renderers/react/patterns/`):**
+  - Engineered 9 missing production React 19 / TSX pattern implementations, reaching full 21/21 parity with canonical YAML specifications:
+    - [`ChatStream.tsx`](renderers/react/patterns/ChatStream.tsx): Conversational AI message feed with live streaming indicators, role-based message bubbles, and composer input controls.
+    - [`DatePaginator.tsx`](renderers/react/patterns/DatePaginator.tsx): Bidirectional horizontal date strip with active day selection, month/year headers, and navigation chevrons.
+    - [`FileManagerGrid.tsx`](renderers/react/patterns/FileManagerGrid.tsx): Cloud asset explorer with folder cards, file metadata rows, and storage quota progress telemetry.
+    - [`HeroSkylinePanorama.tsx`](renderers/react/patterns/HeroSkylinePanorama.tsx): Cinematic panorama hero banner with gradient overlays, kicker badges, and dual primary/secondary CTA triggers.
+    - [`KanbanBoard.tsx`](renderers/react/patterns/KanbanBoard.tsx): Multi-column agile sprint board with task progression columns, priority badges, assignee avatars, and tags.
+    - [`MetricComparisonGrid.tsx`](renderers/react/patterns/MetricComparisonGrid.tsx): Multi-dimensional KPI analytics grid with benchmark comparisons, trend vectors, and percentage deltas.
+    - [`Questionnaire.tsx`](renderers/react/patterns/Questionnaire.tsx): Multi-step interactive survey/onboarding assessment flow with selectable choice cards, progress indicators, and response handling.
+    - [`SortableList.tsx`](renderers/react/patterns/SortableList.tsx): Reorderable item list with directional step controls, status badges, and drag-handle affordances.
+    - [`UserCard.tsx`](renderers/react/patterns/UserCard.tsx): Profile summary card with identity metadata, avatar status, quick telemetry metrics, and contextual action buttons.
+  - Updated barrel export in [`renderers/react/patterns/index.ts`](renderers/react/patterns/index.ts) to export all 21 canonical UX patterns.
+- **AI Decision Layer Heritage Indexing (`ai/components.yaml`):**
+  - Restored entries for 3 heritage components: **Cartouche**, **Frieze**, and **Seal**, bringing total indexed components in the AI manifest to 45 (42 core + 3 heritage).
+
+### Fixed
+- **Strict TypeScript Zero-Error Typing:**
+  - Resolved `onSelect` prop name collision with `React.HTMLAttributes<HTMLDivElement>.onSelect` in `Questionnaire.tsx`.
+  - Enforced canonical controlled vocabulary (`size="sm"`) for Badge, Chip, and Avatar in `KanbanBoard.tsx` to align with strict token types.
+- **Repository Hygiene & Duplicate Elimination:**
+  - Purged 3 redundant kebab-case preview files from `examples/previews/` (`badge.html`, `button.html`, `card.html`).
+  - Purged 17 legacy PascalCase pattern duplicates from `renderers/html/native/patterns/`, standardizing on kebab-case canonical filenames.
+- **CSS Manifest Comment Synchronization:**
+  - Updated `renderers/html/native/components.css` header comment from 38 to 45 canonical component imports.
+
+---
+
 ## [1.5.1] - 2026-09-12
 
 ### Sovereign AI Decision Layer (`qahera-ui`), Zero-Install NPX CLI Scaffolding & Multi-Channel Distribution

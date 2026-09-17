@@ -1,0 +1,117 @@
+/**
+ * Qahera UI Kit — Seal Component (قاهرة · الختم الملكي المؤسسي)
+ * Official accreditation mark, institutional certification, and royal stamp emblem
+ */
+
+.qhr-seal {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--qhr-radius-full);
+  text-align: center;
+  user-select: none;
+  aspect-ratio: 1 / 1;
+  font-family: var(--qhr-font-heading);
+  transition: transform var(--qhr-motion-duration-fast) var(--qhr-motion-ease-standard),
+              box-shadow var(--qhr-motion-duration-fast) var(--qhr-motion-ease-standard);
+}
+
+.qhr-seal:hover {
+  transform: scale(1.05) rotate(3deg);
+}
+
+/* Inner concentric ring */
+.qhr-seal__ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 90%;
+  border-radius: var(--qhr-radius-full);
+  border: 1px dashed currentColor;
+  padding: var(--qhr-space-1);
+}
+
+.qhr-seal__emblem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block-end: var(--qhr-space-0-5);
+}
+
+.qhr-seal__emblem svg {
+  width: var(--qhr-space-4);
+  height: var(--qhr-space-4);
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+.qhr-seal__label {
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.qhr-seal__subtext {
+  font-family: var(--qhr-font-body);
+  font-size: 0.75em;
+  opacity: 0.85;
+  line-height: 1;
+  margin-block-start: var(--qhr-space-0-5);
+}
+
+/* Variants */
+.qhr-seal--solid {
+  background: radial-gradient(circle, var(--qhr-color-nebu, #C98818) 0%, var(--qhr-color-nebu-hover, #A86F0F) 100%);
+  color: var(--qhr-color-nebu-fg, #181307);
+  box-shadow: 0 4px 12px rgba(201, 136, 24, 0.3);
+  border: 2px solid var(--qhr-color-nebu-light, #F5D79E);
+}
+
+.qhr-seal--subtle {
+  background-color: var(--qhr-color-nebu-surface, #FDF4E3);
+  color: var(--qhr-color-nebu-hover, #A86F0F);
+  border: 1px solid var(--qhr-color-nebu-light, #F5D79E);
+}
+
+.qhr-seal--outline {
+  background-color: transparent;
+  color: var(--qhr-color-nebu, #C98818);
+  border: 2px dashed var(--qhr-color-nebu, #C98818);
+}
+
+/* Sizes */
+.qhr-seal--sm {
+  width: var(--qhr-space-10);
+  height: var(--qhr-space-10);
+  font-size: var(--qhr-text-xs);
+  padding: var(--qhr-space-1);
+}
+
+.qhr-seal--sm .qhr-seal__emblem svg {
+  width: var(--qhr-space-3);
+  height: var(--qhr-space-3);
+}
+
+.qhr-seal--md {
+  width: var(--qhr-space-16);
+  height: var(--qhr-space-16);
+  font-size: var(--qhr-text-sm);
+  padding: var(--qhr-space-2);
+}
+
+.qhr-seal--lg {
+  width: var(--qhr-space-24);
+  height: var(--qhr-space-24);
+  font-size: var(--qhr-text-base);
+  padding: var(--qhr-space-3);
+}
+
+.qhr-seal--lg .qhr-seal__emblem svg {
+  width: var(--qhr-space-6);
+  height: var(--qhr-space-6);
+}

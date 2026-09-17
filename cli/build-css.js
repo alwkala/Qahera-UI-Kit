@@ -64,7 +64,11 @@ const CANONICAL_ORDER = [
   'toast.css',
   'tooltip.css',
   'treeview.css',
-  'utilities.css'
+  'utilities.css',
+  'cartouche.css',
+  'frieze.css',
+  'questionnaire.css',
+  'seal.css'
 ];
 
 function buildCss(options = { quiet: false }) {
