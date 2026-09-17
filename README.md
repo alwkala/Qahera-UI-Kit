@@ -427,7 +427,7 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 8. **Zero Vocabulary Drift:** Semantic prop names remain identical across all 6 renderer tracks.
 9. **Source Ownership over Runtime Lock-in:** Consuming projects copy and own their source code.
 10. **AI Metadata Required:** Every component exposes WHAT (purpose), WHEN (use cases), and WHY NOT (anti-patterns).
-11. **Icons are Semantic Architecture, Never Emoji (`QAHERA-VISUAL-001`):** Emojis (🚀, 🗑️, ✕) are strictly banned in UI components; all icons reference the 41 SVGs in `icons/registry.yaml`.
+11. **Icons are Semantic Architecture, Never Emoji (`QAHERA-VISUAL-001`):** Emojis (🚀, 🗑️, ✕) are strictly banned in UI components; all icons reference the 46 SVGs in `icons/registry.yaml`.
 12. **Modular Stylesheet Architecture & RSC 0kb Boundary:** Atomic component CSS files; React preserves a 0kb client footprint via Server Components.
 13. **Dogfooding & Canonical Composition (`QAHERA-COMP-001`):** Showcases are built exclusively from registered canonical primitives.
 14. **Alpine.js Hydration Protocol (`QAHERA-ALPINE-001`):** No large inline attributes; unique template keys; no nested `x-for`.
@@ -459,7 +459,7 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 * **حفظ السيادة واستقلالية الكود:** لا تفرض المنظومة أي حزم تشغيل مغلقة؛ بل يمتلك المطور الشفرة المصدرية لمكوناته بالكامل بنمط shadcn.
 * **التوافق ثنائي الاتجاه (RTL/LTR Parity):** اعتماد شامل لخصائص CSS المنطقية (Logical Properties) مع انضباط طباعي صارم للخطوط العربية الأصيلة (*Alexandria* للعناوين و *Cairo* للنصوص والواجهات).
 * **أطلس أحياء القاهرة المعماري (12 ثيماً مصرياً):** تجسيد بصري لأحياء القاهرة التاريخية والمعاصرة (الزمالك، وسط البلد، هليوبوليس، جاردن سيتي، المعادي، روكسي، السكاكيني، الحسين، شبرا، الزيتون، المرج، والقاهرة الجديدة).
-* **حظر تام للإيموجي (`QAHERA-VISUAL-001`):** اعتماد 41 أيقونة معيارية فكتور SVG مع حظر أي رموز تعبيرية في مكونات الواجهة لضمان الرصانة المؤسسية.
+* **حظر تام للإيموجي (`QAHERA-VISUAL-001`):** اعتماد 46 أيقونة معيارية فكتور SVG مع حظر أي رموز تعبيرية في مكونات الواجهة لضمان الرصانة المؤسسية.
 
 ---
 
