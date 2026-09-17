@@ -84,7 +84,7 @@
   },
   "homepage": "https://github.com/alwkala/Qahera-UI-Kit#readme",
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^26.5.1",
     "@types/react": "^19.0.0",
     "typescript": "^5.7.0"
   }
