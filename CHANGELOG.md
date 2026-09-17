@@ -3,6 +3,29 @@
 All notable changes to **Qahera UI Kit** will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.3] - 2026-09-17
+
+### Universal Ecosystem Distribution, Packagist Support, Arabic NPM Parity & Platform Synchronization
+> *"Qahera UI Kit v1.5.3 introduces official PHP Composer / Packagist package architecture (`alwkala/qahera-ui`), guarantees Arabic documentation distribution on NPM (`README.ar.md`), enables zero-build CDN quickstarts via jsDelivr / unpkg, authors automated GitHub Actions release workflows, and synchronizes live platform metrics and state across all 45 canonical components and 21 patterns."*
+
+### Added
+- **Official PHP Packagist Distribution (`composer.json`):**
+  - Registered package manifest `alwkala/qahera-ui` with PSR-4 autoloading for `Qahera\Renderers\Plates\` targeting PHP 8.1+ applications (Laravel, FlightPHP, Slim, WordPress).
+- **Arabic Documentation in NPM Package (`package.json`):**
+  - Added `README.ar.md` to `files` array in `package.json`, ensuring complete bilingual documentation is bundled in npm releases and unpkg mirrors.
+- **CDN Quickstart Architecture (`README.md` & `README.ar.md`):**
+  - Added zero-build CDN inclusion examples using jsDelivr and unpkg for `dist/qahera-tokens.css`, `dist/qahera-themes.css`, and `dist/qahera.css`.
+- **Automated GitHub Release Workflow (`.github/workflows/release.yml`):**
+  - Continuous integration pipeline verifying 4-stage quality audits and automating GitHub Releases upon git tag pushes (`v*`).
+
+### Fixed
+- **Platform Metric Alignment & Cross-Language Dictionaries:**
+  - Synchronized canonical counts (45 components, 21 compositional patterns, 20 templates) across English, Arabic, and all supported localization dictionaries.
+- **Universal State & URL Query Parameter Synchronization:**
+  - Integrated zero-flash `?lang=` parameter hydration in showcase hub, ensuring 100% parity with `sitemap.xml` alternate URLs.
+
+---
+
 ## [1.5.2] - 2026-09-17
 
 ### React Pattern Parity (21/21), AI Manifest Completeness & Repository Hygiene

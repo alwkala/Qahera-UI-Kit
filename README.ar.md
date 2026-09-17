@@ -282,15 +282,20 @@ npx qahera-ui list
 
 
 <a id="2-كود-html-الأصيل-ومتغيرات-css"></a>
-### 2. كود HTML الأصيل ومتغيرات CSS
+### 2. كود HTML الأصيل ومتغيرات CSS (محلياً أو عبر الـ CDN الفوري)
+
+يمكنك تضمين الحزم المجمعة إما محلياً أو عبر شبكات التوزيع العالمية الفورية (jsDelivr / unpkg):
 
 ```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="downtown">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="dist/qahera.css">
-  <link rel="stylesheet" href="dist/qahera-themes.css">
+  <title>البدء الفوري مع قاهرة</title>
+  <!-- عبر jsDelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera-tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera-themes.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera.css">
 </head>
 <body>
   <button class="qhr-btn qhr-btn--primary qhr-btn--md" type="button">
@@ -301,14 +306,22 @@ npx qahera-ui list
 ```
 
 <a id="3-محرك-قوالب-php-plates"></a>
-### 3. محرك قوالب PHP Plates
+### 3. محرك قوالب PHP Plates (حزمة Packagist / Composer)
+
+التثبيت المباشر في مشاريع PHP (Laravel, FlightPHP, Slim, WordPress):
+
+```bash
+composer require alwkala/qahera-ui
+```
+
+تسجيل الإضافة المعيارية في محرك Plates:
 
 ```php
 use League\Plates\Engine;
-use Alwkala\Qahera\QaheraPlatesExtension;
+use Qahera\Renderers\Plates\QaheraPlatesExtension;
 
 $templates = new Engine(__DIR__ . '/views');
-$templates->loadExtension(new QaheraPlatesExtension(__DIR__ . '/views/qahera'));
+$templates->loadExtension(new QaheraPlatesExtension());
 
 // داخل قالب العرض:
 echo $this->qhrButton([
@@ -423,6 +436,7 @@ export default function DashboardPage() {
 | **v1.5.0** | مولد المعاينات الشامل v3.0 | 42 مكوناً، 20 نمطاً، مركز الاستعراض بـ 78 عنصراً، وحوكمة المستوى 5 | **مكتمل** | 7 سبتمبر 2026 |
 | **v1.5.1** | محرك الـ CLI وتثبيت المهارة | إطلاق `npx qahera-ui` على NPM، ومحرك الثنائي، ومهارة الذكاء الاصطناعي السيادية | **مكتمل** | **12 سبتمبر 2026** |
 | **v1.5.2** | تكافؤ أنماط React ونظافة المستودع | 21/21 نمط React، وفهرسة 45 مكوناً بالذكاء الاصطناعي، وخلو كامل من أخطاء TypeScript | **مكتمل** | **17 سبتمبر 2026** |
+| **v1.5.3** | حزمة Packagist والـ CDN ومزامنة المنصة | إطلاق `composer.json` الرسمي، روابط الـ CDN الفورية، وتكافؤ التوثيق العربي على NPM ومزامنة الحالة | **مكتمل** | **17 سبتمبر 2026** |
 | **v1.6.0** | مزامنة Figma و Tokens Studio | ربط فكتور ثنائي الاتجاه، وجلب المتغيرات التلقائي | *مخطط* | الربع الرابع 2026 |
 | **v2.0.0** | محرك التوليد الذكي للوكلاء | خادم MCP أصيل، وتوليد البرمجيات من المطالبات الفورية | *رؤية مستقبلية* | الربع الأول 2027 |
 

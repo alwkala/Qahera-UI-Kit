@@ -317,15 +317,18 @@ npx qahera-ui list
 <a id="2-native-html-css-custom-properties"></a>
 ### 2. Native HTML & CSS Custom Properties
 
-Include the compiled production bundle or atomic imports:
+Include the compiled production bundle or atomic imports, either locally or via ultra-fast global CDNs:
 
 ```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" data-theme="downtown">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="dist/qahera.css">
-  <link rel="stylesheet" href="dist/qahera-themes.css">
+  <title>Qahera Quickstart</title>
+  <!-- Via jsDelivr CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera-tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera-themes.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera.css">
 </head>
 <body>
   <button class="qhr-btn qhr-btn--primary qhr-btn--md" type="button">
@@ -336,16 +339,22 @@ Include the compiled production bundle or atomic imports:
 ```
 
 <a id="3-php-8x-plates-engine"></a>
-### 3. PHP 8.x Plates Engine
+### 3. PHP 8.x Plates Engine (Composer & Packagist)
+
+Install via Composer into your PHP project:
+
+```bash
+composer require alwkala/qahera-ui
+```
 
 Register the official Qahera extension with your Plates engine instance:
 
 ```php
 use League\Plates\Engine;
-use Alwkala\Qahera\QaheraPlatesExtension;
+use Qahera\Renderers\Plates\QaheraPlatesExtension;
 
 $templates = new Engine(__DIR__ . '/views');
-$templates->loadExtension(new QaheraPlatesExtension(__DIR__ . '/views/qahera'));
+$templates->loadExtension(new QaheraPlatesExtension());
 
 // Inside your template:
 echo $this->qhrButton([
@@ -464,6 +473,7 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 | **v1.5.0** | Universal Living Showcase v3.0 | 42 Components, 20 Patterns, 78-Item Hub, Level 5 OSS CI | **Completed** | 2026-09-07 |
 | **v1.5.1** | Zero-Install CLI & AI Skill Engine | `npx qahera-ui`, NPM Launch, Dual-Bin Engine, Sovereign Skill | **Completed** | **2026-09-12** |
 | **v1.5.2** | React Pattern Parity & Kit Hygiene | 21/21 React Patterns, AI Manifest 45 Components, Strict TypeScript Zero-Error | **Completed** | **2026-09-17** |
+| **v1.5.3** | Packagist, CDN & Platform Sync | Official `composer.json`, CDN Quickstarts, NPM Arabic Parity, Universal State Sync | **Completed** | **2026-09-17** |
 | **v1.6.0** | Tokens Studio & Figma Sync | Bidirectional Figma Tokens sync, automated token pull | *Planned* | Q4 2026 |
 | **v2.0.0** | Autonomous AI Agent Engine | MCP native server, headless prompt-to-production compiler | *Roadmap* | Q1 2027 |
 

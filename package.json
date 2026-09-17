@@ -1,6 +1,6 @@
 {
   "name": "qahera-ui",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "AI-Native, Contract-Driven Design System & Multi-Target Component Architecture by Alwkala",
   "main": "bin/qahera.js",
   "types": "renderers/react/index.ts",
@@ -54,7 +54,8 @@
     "ai",
     "dist",
     ".agents",
-    "VERSION"
+    "VERSION",
+    "README.ar.md"
   ],
   "keywords": [
     "qahera-ui",
