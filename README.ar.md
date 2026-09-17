@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ قاهرة لتصميم الواجهات `v1.5.2` (Qahera UI Kit)
+# 🏛️ قاهرة لتصميم الواجهات `v1.5.3` (Qahera UI Kit)
 ### نظام التصميم العربي البرمجـي والهندسة المعمارية متعددة المسارات لعصر الذكاء الاصطناعي
 **المعجم البصري المعياري، وسجل المكونات الحي، والأساس متعدد البيئات من تطوير استوديو الوكالة**
 
@@ -10,6 +10,7 @@
 
 <!-- أوسمة المجتمع -->
 [![npm version](https://img.shields.io/npm/v/qahera-ui.svg?style=for-the-badge&logo=npm&color=0284C7)](https://www.npmjs.com/package/qahera-ui)
+[![CDN: jsDelivr](https://img.shields.io/badge/CDN-jsDelivr%20%26%20unpkg-E11D48.svg?style=for-the-badge)](https://www.jsdelivr.com/package/npm/qahera-ui)
 [![npm downloads](https://img.shields.io/npm/dm/qahera-ui.svg?style=for-the-badge&color=22C55E)](https://www.npmjs.com/package/qahera-ui)
 [![GitHub Stars](https://img.shields.io/github/stars/alwkala/Qahera-UI-Kit?style=for-the-badge&logo=github&color=EAB308)](https://github.com/alwkala/Qahera-UI-Kit/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
@@ -22,7 +23,7 @@
 [![PHP 8.x Plates](https://img.shields.io/badge/PHP-8.x%20Plates%20(20%20Templates)-777BB4.svg?style=for-the-badge&logo=php)](renderers/php/plates/)
 [![TypeScript Strict](https://img.shields.io/badge/TypeScript-Strict%20Zero--Error-3178C6.svg?style=for-the-badge&logo=typescript)](tsconfig.json)
 [![WCAG 2.1 AA Certified](https://img.shields.io/badge/A11y-WCAG%202.1%20AA%20(100%25)-10B981.svg?style=for-the-badge)](#بطاقة-الجودة-وصحة-المنظومة)
-[![RTL 100% Logical](https://img.shields.io/badge/RTL-100%25%20Logical%20CSS-059669.svg?style=for-the-badge)](#بطاقة-الجودة-وصحة-المنظومة)
+[![RTL 100% Logical](https://img.shields.io/badge/RTL-100%25%20Logical%20CSS-059669.svg?style=for-the-badge)](#المحددات-المعمارية-الـ-17-غير-القابلة-للتفاوض)
 [![حظر الإيموجي](https://img.shields.io/badge/Visual-Zero%20Emoji%20(QAHERA--VISUAL--001)-DC2626.svg?style=for-the-badge)](#المحددات-المعمارية-الـ-17-غير-القابلة-للتفاوض)
 [![أطلس أحياء القاهرة](https://img.shields.io/badge/Themes-12%20Cairo%20Neighborhoods-F59E0B.svg?style=for-the-badge)](#أطلس-أحياء-القاهرة-المعماري-12-ثيما)
 
@@ -45,8 +46,8 @@
 - [🏙️ أطلس أحياء القاهرة المعماري (12 ثيماً)](#أطلس-أحياء-القاهرة-المعماري-12-ثيما)
 - [🚀 دليل البدء السريع وقنوات التوزيع](#دليل-البدء-السريع-وقنوات-التوزيع)
   - [1. أداة سطر الأوامر عبر `npx` (بنمط shadcn المعاصر)](#1-أداة-سطر-الأوامر-عبر-npx-بنمط-shadcn-المعاصر)
-  - [2. كود HTML الأصيل ومتغيرات CSS](#2-كود-html-الأصيل-ومتغيرات-css)
-  - [3. محرك قوالب PHP Plates](#3-محرك-قوالب-php-plates)
+  - [2. التضمين الفوري عبر شبكات التوزيع (CDN Quickstart)](#2-التضمين-الفوري-عبر-شبكات-التوزيع-cdn-quickstart-بدون-أي-أدوات-بناء)
+  - [3. محرك قوالب PHP Plates (حزمة Packagist / Composer)](#3-محرك-قوالب-php-plates-حزمة-packagist--composer)
   - [4. بيئة React ومكونات الخادم 0kb RSC](#4-بيئة-react-ومكونات-الخادم-0kb-rsc)
   - [5. عناصر الويب المعيارية (Web Components)](#5-عناصر-الويب-المعيارية-web-components)
 - [📖 وثائق المواصفات المعمارية التفصيلية](#وثائق-المواصفات-المعمارية-التفصيلية)
@@ -281,26 +282,77 @@ npx qahera-ui list
 | `/qahera-ui scaffold [name]` | `author-component.md` | إنشاء وتوليد مكون جديد عبر دورة العقود الصارمة لكافة المسارات الستة. |
 
 
+<a id="2-التضمين-الفوري-عبر-شبكات-التوزيع-cdn-quickstart-بدون-أي-أدوات-بناء"></a>
 <a id="2-كود-html-الأصيل-ومتغيرات-css"></a>
-### 2. كود HTML الأصيل ومتغيرات CSS (محلياً أو عبر الـ CDN الفوري)
+### 2. التضمين الفوري عبر شبكات التوزيع (CDN Quickstart - بدون أي أدوات بناء)
 
-يمكنك تضمين الحزم المجمعة إما محلياً أو عبر شبكات التوزيع العالمية الفورية (jsDelivr / unpkg):
+لصفحات الهبوط الثابتة، أو قوالب ووردبريس، أو مشاريع PHP التقليدية، أو التجارب السريعة دون الحاجة لتثبيت Node.js أو أدوات التحزيم، يمكنك تضمين قاهرة مباشرة عبر شبكات الـ CDN العالمية الفائقة السرعة.
+
+#### الطبقات المعمارية الثلاث لملفات الـ CSS
+
+يتم توزيع ملفات قاهرة عبر ثلاث طبقات معمارية دلالية مستقلة:
+
+| حزمة التوزيع | رابط jsDelivr السريع | رابط unpkg المباشر | الوظيفة المعمارية |
+|---|---|---|---|
+| **رموز التصميم (Tokens)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera-tokens.min.css` | الرموز الأولية الشاملة (سلم الألوان، الخطوط، المسافات، الظلال). |
+| **سمات أحياء القاهرة (Themes)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera-themes.min.css` | أطلس السمات الـ 12 المستوحاة من أحياء القاهرة وتراثها (`[data-theme="..."]`). |
+| **المكونات المعمارية (Components)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera.min.css` | كافة أنماط المكونات الـ 45 الذرية المعيارية بأصناف `qhr-*`. |
+
+> [!TIP]
+> **تثبيت الإصدار مقابل التحديث التلقائي:** يُوصى بتثبيت الإصدار `@1.5.3` لضمان الاستقرار التام في الإنتاج، أو استخدام `@latest` لتلقي التحسينات والإصلاحات الطفيفة تلقائياً.
+
+#### كود البداية المتكامل الجاهز للتشغيل المباشر (HTML5 Boilerplate)
+
+انسخ هذا الكود بالكامل وضعه في أي ملف `.html` وافتحه مباشرة في متصفحك:
 
 ```html
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="downtown">
+<html lang="ar" dir="rtl" data-theme="zamalek" data-mode="dark">
 <head>
   <meta charset="utf-8">
-  <title>البدء الفوري مع قاهرة</title>
-  <!-- عبر jsDelivr CDN -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera-tokens.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera-themes.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>البدء الفوري مع قاهرة عبر CDN</title>
+
+  <!-- الخطوط الرسمية: Alexandria للعناوين و Cairo للنصوص -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- 1. رموز التصميم ومصفوفة الارتفاعات -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-tokens.min.css">
+
+  <!-- 2. أطلس أحياء القاهرة المعماري الـ 12 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-themes.min.css">
+
+  <!-- 3. ورقة أنماط المكونات المعمارية الـ 45 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera.min.css">
+
+  <!-- اختياري: مكتبة السلوك التفاعلي Alpine.js للمكونات التفاعلية (Dropdown, Modal, Accordion) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 </head>
-<body>
-  <button class="qhr-btn qhr-btn--primary qhr-btn--md" type="button">
-    تأكيد الإجراء / Confirm Action
-  </button>
+<body style="background-color: var(--qhr-surface-page, #0A0D14); color: var(--qhr-text-primary, #F8FAFC); font-family: var(--qhr-font-body, 'Cairo', sans-serif); padding: 2rem;">
+
+  <div class="qhr-card qhr-card--elevated" style="max-width: 640px; margin: 0 auto; padding: 2rem;">
+    <span class="qhr-badge qhr-badge--primary qhr-badge--pill">تضمين فوري v1.5.3</span>
+    
+    <h1 style="font-family: var(--qhr-font-heading, 'Alexandria', sans-serif); margin-block: 1rem 0.5rem; font-size: 1.75rem;">
+      منظومة قاهرة عبر شبكة الـ CDN العالمية
+    </h1>
+    
+    <p style="color: var(--qhr-text-secondary); line-height: 1.7; margin-block-end: 1.5rem;">
+      واجهة عربية معمارية أصيلة تعمل فورياً دون أي تثبيت لحزم Node.js. يمكنك التبديل بين اللغات والاتجاهات (<code style="font-family: monospace;">dir="rtl"</code> / <code style="font-family: monospace;">dir="ltr"</code>) والسمات المعمارية الـ 12 (<code style="font-family: monospace;">data-theme="zamalek"</code>) بمرونة مطلقة.
+    </p>
+
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <button class="qhr-btn qhr-btn--primary qhr-btn--md" type="button">
+        زر رئيسي / Primary Action
+      </button>
+      <button class="qhr-btn qhr-btn--outline qhr-btn--md" type="button">
+        زر ثانوي / Outline
+      </button>
+    </div>
+  </div>
+
 </body>
 </html>
 ```

@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ Qahera UI Kit `v1.5.2`
+# 🏛️ Qahera UI Kit `v1.5.3`
 ### The AI-Native, Contract-Driven Design System & Multi-Target Component Architecture
 **The Authoritative Visual Vocabulary, Living Component Registry & Multi-Stack Foundation by Alwkala**
 
@@ -10,6 +10,7 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 
 <!-- Community Badges -->
 [![npm version](https://img.shields.io/npm/v/qahera-ui.svg?style=for-the-badge&logo=npm&color=0284C7)](https://www.npmjs.com/package/qahera-ui)
+[![CDN: jsDelivr](https://img.shields.io/badge/CDN-jsDelivr%20%26%20unpkg-E11D48.svg?style=for-the-badge)](https://www.jsdelivr.com/package/npm/qahera-ui)
 [![npm downloads](https://img.shields.io/npm/dm/qahera-ui.svg?style=for-the-badge&color=22C55E)](https://www.npmjs.com/package/qahera-ui)
 [![GitHub Stars](https://img.shields.io/github/stars/alwkala/Qahera-UI-Kit?style=for-the-badge&logo=github&color=EAB308)](https://github.com/alwkala/Qahera-UI-Kit/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
@@ -45,8 +46,8 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 - [🏙️ The 12 Cairo Atlas Neighborhood Themes](#the-12-cairo-atlas-neighborhood-themes)
 - [🚀 Quick Start & Distribution Channels](#quick-start-distribution-channels)
   - [1. Zero-Install CLI Scaffolder via `npx` (shadcn-style)](#1-zero-install-cli-scaffolder-via-npx-shadcn-style)
-  - [2. Native HTML & CSS Custom Properties](#2-native-html-css-custom-properties)
-  - [3. PHP 8.x Plates Engine](#3-php-8x-plates-engine)
+  - [2. Zero-Build Global CDN Quickstart (jsDelivr & unpkg)](#2-zero-build-global-cdn-quickstart-jsdelivr--unpkg)
+  - [3. PHP 8.x Plates Engine (Composer & Packagist)](#3-php-8x-plates-engine-composer--packagist)
   - [4. React 19 & Next.js Server Components (RSC)](#4-react-19-nextjs-server-components-rsc)
   - [5. Vanilla Web Components](#5-vanilla-web-components)
 - [📖 Authoritative Specifications & Documentation Links](#authoritative-specifications-documentation-links)
@@ -314,30 +315,82 @@ npx qahera-ui list
 | `/qahera-ui scaffold [name]` | `author-component.md` | Scaffolds new components through the contract-first pipeline across all 6 targets. |
 
 
+<a id="2-zero-build-global-cdn-quickstart-jsdelivr--unpkg"></a>
 <a id="2-native-html-css-custom-properties"></a>
-### 2. Native HTML & CSS Custom Properties
+### 2. Zero-Build Global CDN Quickstart (jsDelivr & unpkg)
 
-Include the compiled production bundle or atomic imports, either locally or via ultra-fast global CDNs:
+For static sites, landing pages, WordPress child themes, legacy PHP, or rapid prototyping without Node.js or build tools, load Qahera directly from global edge CDNs.
+
+#### The 3 Architectural CSS Layers
+
+Qahera's distribution separates design tokens, themes, and component styles into clean semantic layers:
+
+| Asset Bundle | jsDelivr URL | unpkg URL | Purpose |
+|---|---|---|---|
+| **Design Tokens** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera-tokens.min.css` | Global primitives (color scales, typography, spacing, elevations). |
+| **Cairo Themes** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera-themes.min.css` | 12 authentic Cairo neighborhood themes (`[data-theme="..."]`). |
+| **Components** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera.min.css` | All 45 canonical atomic component styles (`qhr-*`). |
+
+> [!TIP]
+> **Version Pinning vs. Rolling Updates:** Pin to `@1.5.3` for guaranteed production stability, or use `@latest` to automatically receive non-breaking patch updates.
+
+#### Ready-to-Run HTML5 Production Boilerplate
+
+Copy and paste this complete boilerplate into any `.html` file and open it directly in your browser:
 
 ```html
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="downtown">
+<html lang="ar" dir="rtl" data-theme="zamalek" data-mode="dark">
 <head>
   <meta charset="utf-8">
-  <title>Qahera Quickstart</title>
-  <!-- Via jsDelivr CDN -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera-tokens.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera-themes.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui/dist/qahera.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qahera CDN Quickstart</title>
+
+  <!-- Google Fonts: Alexandria (Headings) & Cairo (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- 1. Design Tokens & Elevation Matrix -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-tokens.min.css">
+
+  <!-- 2. The 12 Cairo Neighborhood Themes -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-themes.min.css">
+
+  <!-- 3. The 45 Canonical Components Stylesheet -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera.min.css">
+
+  <!-- Optional: Alpine.js for Interactive Components (Dropdown, Modal, Accordion) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 </head>
-<body>
-  <button class="qhr-btn qhr-btn--primary qhr-btn--md" type="button">
-    تأكيد الإجراء / Confirm Action
-  </button>
+<body style="background-color: var(--qhr-surface-page, #0A0D14); color: var(--qhr-text-primary, #F8FAFC); font-family: var(--qhr-font-body, 'Cairo', sans-serif); padding: 2rem;">
+
+  <div class="qhr-card qhr-card--elevated" style="max-width: 640px; margin: 0 auto; padding: 2rem;">
+    <span class="qhr-badge qhr-badge--primary qhr-badge--pill">CDN Quickstart v1.5.3</span>
+    
+    <h1 style="font-family: var(--qhr-font-heading, 'Alexandria', sans-serif); margin-block: 1rem 0.5rem; font-size: 1.75rem;">
+      منظومة قاهرة عبر شبكة التوزيع السريعة
+    </h1>
+    
+    <p style="color: var(--qhr-text-secondary); line-height: 1.7; margin-block-end: 1.5rem;">
+      تجربة فورية تعمل بـ 0kb أدوات بناء أو تجميع. يمكنك التبديل بين اللغات والاتجاهات (<code style="font-family: monospace;">dir="rtl"</code> / <code style="font-family: monospace;">dir="ltr"</code>) والسمات المعمارية الـ 12 (<code style="font-family: monospace;">data-theme="zamalek"</code>) بسلاسة تامة.
+    </p>
+
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <button class="qhr-btn qhr-btn--primary qhr-btn--md" type="button">
+        زر رئيسي / Primary Action
+      </button>
+      <button class="qhr-btn qhr-btn--outline qhr-btn--md" type="button">
+        زر ثانوي / Outline
+      </button>
+    </div>
+  </div>
+
 </body>
 </html>
 ```
 
+<a id="3-php-8x-plates-engine-composer--packagist"></a>
 <a id="3-php-8x-plates-engine"></a>
 ### 3. PHP 8.x Plates Engine (Composer & Packagist)
 
