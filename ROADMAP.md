@@ -37,6 +37,8 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 | **v1.5.0** | Grand Architectural Parity | 42 Components, 20 Patterns, 100% 5-Stack Parity (HTML, React, PHP, JS, HTMX) | **Completed** | **2026-09-11** |
 | **v1.5.1** | Sovereign AI Decision Layer & NPX CLI | `qahera-ui` Skill (15/15 compliance), Zero-Install `npx qahera-ui`, `qahera.json`, AI Embedding | **Completed** | **2026-09-12** |
 | **v1.5.2** | React Pattern Parity & Kit Hygiene | 21/21 React Patterns, AI Manifest 45 Components, Strict TypeScript Zero-Error, Duplicate File Purge | **Completed** | **2026-09-17** |
+| **v1.5.3** | Universal Ecosystem Distribution & CDN | Official PHP Packagist (`alwkala/qahera-ui`), Arabic NPM Parity, Zero-Build jsDelivr/unpkg CDN | **Completed** | **2026-09-17** |
+| **v1.5.4** | VS Code CSS Custom Data & Studio UX | Official `qahera.css-data.json`, 325 Tokens Autocomplete, `build:css-data` CLI, Cairo Studio Polish | **Completed** | **2026-09-17** |
 | **v1.6.0** | Tokens Studio, Advanced Data & SVG Icons | Advanced DataGrids (Preline-style), DatePicker, Form Schemas, W3C DTCG Sync, Curated 150+ SVG Icon Engine | *Planned* | Q4 2026 |
 | **v1.7.0** | Tailwind Plugin & Microwebsite | Official Tailwind Plugin (`qahera-ui-kit/tailwind`), `alwkala.com/qahera` Microwebsite, npm dual-dist | *Planned* | Q1 2027 |
 | **v2.0.0** | AI Agent Engine & Native MCP | Autonomous MCP Server (`qahera-mcp`), Agent Skills Suite, Global Registries (Smithery/Glama) | *Roadmap* | Q1-Q2 2027 |
@@ -77,7 +79,28 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 
 ---
 
-### 1.4 Milestone v1.6.0 — Tokens Studio, Advanced Data Components & Figma Sync (Q4 2026)
+### 1.4 Milestone v1.5.3 — Universal Ecosystem Distribution & CDN Quickstart (Completed)
+* **Status:** **Shipped & Verified**
+* **Deliverables:**
+  - **Official PHP Packagist Distribution (`composer.json`):** Registered `alwkala/qahera-ui` with PSR-4 autoloading for `Qahera\Renderers\Plates\` for modern PHP monolithic ecosystems.
+  - **Arabic Documentation NPM Parity (`README.ar.md`):** Included native Arabic documentation directly in npm package tarball.
+  - **Zero-Build CDN Quickstart:** Fully mirrored on jsDelivr and unpkg for immediate HTML inclusion.
+  - **Automated CI/CD Workflow:** Tag-driven GitHub Actions release pipeline (`.github/workflows/release.yml`).
+
+---
+
+### 1.5 Milestone v1.5.4 — VS Code CSS Custom Data & Cairo Studio Polish (Current Milestone · Shipped)
+* **Status:** **Shipped & Verified**
+* **Deliverables:**
+  - **VS Code / Cursor / Antigravity CSS Custom Data (`qahera.css-data.json`):** Generated smart token map for all 325 canonical `--qhr-*` design tokens conforming to Microsoft Custom Data v1.1 schema.
+  - **Rich Bilingual Markdown Cards:** Full Arabic & English documentation, cultural narratives (الوَدج، النِبو، الخِسبِد، الطمي، البردي، الكحل), light/dark values, and instant `var(--qhr-...)` snippets on editor hover.
+  - **Unified CLI Command:** `qahera build:css-data` integrated into the master build pipeline.
+  - **Workspace Autocomplete Settings:** Configured `.vscode/settings.json` and `Qahera-UI-Kit.code-workspace`.
+  - **Cairo Studio UI Polish:** Removed logo framing, fixed Garden City contrast failure on version badge, and unified single-row controls with icon-only actions.
+
+---
+
+### 1.6 Milestone v1.6.0 — Tokens Studio, Advanced Data Components & Figma Sync (Q4 2026)
 * **Goal:** Elevate enterprise application capabilities (inspired by **Preline UI** & **Ant Design**) and establish bidirectional design token workflows.
 * **Scope of Deliverables:**
   1. **Advanced Enterprise Data Components:**

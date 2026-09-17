@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ Qahera UI Kit `v1.5.3`
+# 🏛️ Qahera UI Kit `v1.5.4`
 ### The AI-Native, Contract-Driven Design System & Multi-Target Component Architecture
 **The Authoritative Visual Vocabulary, Living Component Registry & Multi-Stack Foundation by Alwkala**
 
@@ -301,8 +301,11 @@ npx qahera-ui add button alert navbar --target=php --dest=./views/qahera
 npx qahera-ui add pattern:dashboard-stat --target=react
 npx qahera-ui add template:admin --target=react
 
-# 5. List all 42 components, 20 patterns, and 18 templates
+# 5. List all 45 components, 21 patterns, and 20 templates
 npx qahera-ui list
+
+# 6. Generate VS Code / Cursor / Antigravity smart token map
+npx qahera-ui build:css-data
 ```
 
 > [!TIP]
@@ -469,6 +472,38 @@ Import the autonomous bundle to self-register all 42 Custom Elements:
 </qhr-badge>
 ```
 
+<a id="6-vs-code-cursor--antigravity-css-custom-data-autocomplete"></a>
+### 6. VS Code, Cursor & Antigravity CSS Custom Data Autocomplete
+
+Qahera UI Kit provides native IDE intelligence via `qahera.css-data.json`, conforming to Microsoft's **CSS Custom Data v1.1** specification:
+
+```json
+// in .vscode/settings.json
+{
+  "css.customData": [
+    "./node_modules/qahera-ui/dist/qahera.css-data.json"
+  ],
+  "editor.quickSuggestions": {
+    "strings": true,
+    "other": true,
+    "comments": false
+  }
+}
+```
+
+#### What You Get When Typing `--qhr-`:
+- **Instant Autocomplete:** Context-aware completion across all 325 canonical tokens.
+- **Rich Interactive Markdown Cards:**
+  - **Cultural Narratives:** Full Egyptian heritage documentation for raw materials (Wadj, Nebu, Khesbed, Tamy, Papyrus, Kohl).
+  - **Dual-Mode Values:** Explicit day-mode and night-mode values.
+  - **Strict Governance Rules:** Instant reminders for Logical CSS properties (`padding-inline`, `margin-block`) and font disciplines.
+  - **Instant Snippets:** Pre-formatted `var(--qhr-...)` snippets ready for clipboard copy.
+
+To regenerate the map after updating token YAMLs:
+```bash
+npx qahera-ui build:css-data
+```
+
 ---
 
 <a id="authoritative-specifications-documentation-links"></a>
@@ -531,6 +566,7 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 | **v1.5.1** | Zero-Install CLI & AI Skill Engine | `npx qahera-ui`, NPM Launch, Dual-Bin Engine, Sovereign Skill | **Completed** | **2026-09-12** |
 | **v1.5.2** | React Pattern Parity & Kit Hygiene | 21/21 React Patterns, AI Manifest 45 Components, Strict TypeScript Zero-Error | **Completed** | **2026-09-17** |
 | **v1.5.3** | Packagist, CDN & Platform Sync | Official `composer.json`, CDN Quickstarts, NPM Arabic Parity, Universal State Sync | **Completed** | **2026-09-17** |
+| **v1.5.4** | VS Code Custom Data & Studio UX | Official `qahera.css-data.json`, 325 Tokens Autocomplete, `build:css-data` CLI, Studio Polish | **Completed** | **2026-09-17** |
 | **v1.6.0** | Tokens Studio & Figma Sync | Bidirectional Figma Tokens sync, automated token pull | *Planned* | Q4 2026 |
 | **v2.0.0** | Autonomous AI Agent Engine | MCP native server, headless prompt-to-production compiler | *Roadmap* | Q1 2027 |
 

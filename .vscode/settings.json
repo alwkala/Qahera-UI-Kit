@@ -1,0 +1,11 @@
+{
+  "css.customData": [
+    "./qahera.css-data.json"
+  ],
+  "html.customData": [],
+  "editor.quickSuggestions": {
+    "strings": true,
+    "other": true,
+    "comments": false
+  }
+}

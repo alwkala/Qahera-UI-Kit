@@ -23,6 +23,7 @@ const { runQaheraCompiler } = require('../compiler/compiler');
 const { addComponents, initProject, listComponents } = require('../cli/add');
 const { buildCss } = require('../cli/build-css');
 const { buildIcons } = require('../cli/build-icons');
+const { generateCssData } = require('../cli/generate-css-data');
 
 const args = process.argv.slice(2);
 const command = args[0] || 'build';
@@ -62,9 +63,15 @@ if (command === 'build:icons') {
   process.exit(0);
 }
 
+if (command === 'build:css-data' || command === 'css-data') {
+  generateCssData({ quiet: false });
+  process.exit(0);
+}
+
 if (command === 'build' || command === 'compile') {
   buildCss({ quiet: false });
   buildIcons({ quiet: false });
+  generateCssData({ quiet: false });
   const success = runQaheraCompiler({ writeArtifacts: true });
   process.exit(success ? 0 : 1);
 }
@@ -118,6 +125,8 @@ Commands:
   build:css                Compile atomic component CSS into dist/qahera.css
 
   build:icons              Compile canonical icons into React, PHP, JS, and SVG targets
+
+  build:css-data           Generate VS Code / IDE CSS Custom Data map (qahera.css-data.json)
 
   validate                 Validate schema, tokens, and contracts without emitting
 

@@ -3,6 +3,31 @@
 All notable changes to **Qahera UI Kit** will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.4] - 2026-09-17
+
+### VS Code CSS Custom Data Autocomplete, Smart Token Map & Studio Refinements
+> *"Qahera UI Kit v1.5.4 introduces official VS Code / Cursor / Google Antigravity CSS Custom Data (`qahera.css-data.json`), unlocking instant editor autocomplete, rich bilingual Markdown hover cards, and syntax validation for all 325 canonical design tokens. It ships the `build:css-data` CLI pipeline, adds `./css-data` npm package exports, and polishes Cairo Studio's dual-mode UX and contrast typography."*
+
+### Added
+- **VS Code CSS Custom Data Generator (`cli/generate-css-data.js`):**
+  - Authoritative generator conforming to Microsoft's `customData.schema.json` v1.1.
+  - Generates `qahera.css-data.json` covering 325 canonical `--qhr-*` design tokens with granular CSS syntax types (`<color>`, `<length>`, `<box-shadow>`, `<family-name>`, `<time>`, `<timing-function>`, `<integer>`).
+  - Rich bilingual Markdown hover cards with Egyptian cultural heritage narratives (الوَدج، النِبو، الخِسبِد، الطمي، البردي، الكحل), light/dark values, strict governance rules, and ready-to-paste `var(--qhr-...)` snippets.
+  - Automatic dual-workspace synchronization to both upstream kit and downstream showcase site.
+- **CLI Pipeline Integration (`bin/qahera.js`):**
+  - Added `qahera build:css-data` (and `npm run build:css-data`), automatically executed as part of the unified `build` and `compile` pipeline.
+- **NPM Package Export & Workspace Configuration:**
+  - Registered `"./css-data": "./dist/qahera.css-data.json"` in `package.json`.
+  - Configured `Qahera-UI-Kit.code-workspace`, `Qahera-UI-Kit/.vscode/settings.json`, and `Qahera/.vscode/settings.json` with `"css.customData": ["./qahera.css-data.json"]`.
+
+### Fixed
+- **Cairo Studio UI Polish & Visual Refinements (`studio/index.html`):**
+  - Removed decorative frame and box from brand logo in studio header for clean architectural elegance.
+  - Fixed contrast failure on version badge (`v1.1`) in Garden City theme (`#ffffff` text on `#2563eb` background).
+  - Streamlined header controls into single-row layout with icon-only action triggers and compact telemetry footer.
+
+---
+
 ## [1.5.3] - 2026-09-17
 
 ### Universal Ecosystem Distribution, Packagist Support, Arabic NPM Parity & Platform Synchronization
