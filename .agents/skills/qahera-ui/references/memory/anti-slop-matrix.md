@@ -79,3 +79,16 @@ Binary negative constraints for generating, composing, and auditing UI code in Q
 - ❌ **No floating box hero landscapes**: Panoramic skylines and landscape illustrations must never be trapped in isolated floating cards with drop shadows. They must anchor flush to the section's bottom edge (`align-items: flex-end`, `bottom: 0`) and blend seamlessly into the surface background with feathered inward gradient masks (`mask-image: linear-gradient(...)`).
 - ❌ **No unmirrored RTL hero artwork**: When switching to Arabic (`dir="rtl"`), the architectural illustration MUST be mirrored horizontally (`transform: scaleX(-1)`) so that landmark towers and focal points anchor cleanly to the outer edge, while water and open horizon fade softly inward toward the Arabic typography.
 
+## XV. Smart Token Map & IDE Custom Data Autocomplete (`QAHERA-CSS-DATA-001`)
+- ❌ **No guessing token names**: Never write invented `--qhr-*` variable names. Tokens must be cross-referenced against `qahera.css-data.json` or `tokens/tokens.css`.
+- ❌ **No outdated custom data maps**: Whenever design tokens in `tokens/*.yaml` or component contracts change, `qahera build:ide-data` (or `build:css-data` and `build:html-data`) must be executed to keep `qahera.css-data.json` and `qahera.html-data.json` 100% synchronized with zero schema drift.
+
+## XVI. Zero-Build CDN Asset Ordering & Protocol (`QAHERA-CDN-001`)
+- ❌ **No reversed CDN layer imports**: When using global CDNs, imports must strictly respect cascade order:
+  1. Google Fonts (`Alexandria` + `Cairo`).
+  2. `dist/qahera-tokens.min.css` (primitives, spacing, cultural materials).
+  3. `dist/qahera-themes.min.css` (13 Cairo neighborhood archetypes).
+  4. `dist/qahera.min.css` (45 component styles).
+- ❌ **No hardcoded unstable URLs**: Always pin production releases to tagged versions (`@1.5.4`) or use `@latest` with SRI or defensive fallback.
+
+

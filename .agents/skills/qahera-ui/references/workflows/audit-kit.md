@@ -35,9 +35,11 @@ Check interactive templates for hydration hazards:
 3. Confirm no `<button>`, `<a>`, or `<input>` is nested inside an outer `<a>` link within iterated templates.
 4. Confirm zero nested `<template x-for>` for simple badge or tag lists.
 
-## Step 6: Token Purity Audit
-1. Grep for raw hex codes (`#[0-9a-fA-F]{3,8}`) in component stylesheets.
-2. Verify all visual values map to `--qhr-*` custom properties.
+## Step 7: Smart Custom Data & IDE Autocomplete Audit (`QAHERA-CSS-DATA-001`)
+1. Run `node bin/qahera.js build:ide-data` and verify clean generation with 0 schema errors.
+2. Confirm `qahera.css-data.json` contains all 325 design tokens with syntax and markdown cards.
+3. Confirm `qahera.html-data.json` contains all 45 Web Components and 3 global attributes (`data-theme` with 13 Cairo themes, `data-mode`, `dir`).
+4. Ensure `.vscode/settings.json` registers `css.customData` and `html.customData`.
 
 ## Validation Checklist
 
@@ -47,3 +49,4 @@ Check interactive templates for hydration hazards:
 - [ ] Alexandria and Cairo fonts verified; zero Amiri in UI.
 - [ ] Alpine templates pass single-root and unique `:key` requirements.
 - [ ] All colors and spacing derive from `--qhr-*` tokens.
+- [ ] `qahera.css-data.json` and `qahera.html-data.json` verified 100% synchronized with zero schema drift.

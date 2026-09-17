@@ -39,6 +39,7 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 | **v1.5.2** | React Pattern Parity & Kit Hygiene | 21/21 React Patterns, AI Manifest 45 Components, Strict TypeScript Zero-Error, Duplicate File Purge | **Completed** | **2026-09-17** |
 | **v1.5.3** | Universal Ecosystem Distribution & CDN | Official PHP Packagist (`alwkala/qahera-ui`), Arabic NPM Parity, Zero-Build jsDelivr/unpkg CDN | **Completed** | **2026-09-17** |
 | **v1.5.4** | VS Code CSS Custom Data & Studio UX | Official `qahera.css-data.json`, 325 Tokens Autocomplete, `build:css-data` CLI, Cairo Studio Polish | **Completed** | **2026-09-17** |
+| **v1.5.5** | HTML Custom Data & Zero-Touch IDE | `qahera.html-data.json`, Web Components Autocomplete, `init` Zero-Touch IDE, `cdn` CLI, Skill v1.2.0 | **Completed** | **2026-09-17** |
 | **v1.6.0** | Tokens Studio, Advanced Data & SVG Icons | Advanced DataGrids (Preline-style), DatePicker, Form Schemas, W3C DTCG Sync, Curated 150+ SVG Icon Engine | *Planned* | Q4 2026 |
 | **v1.7.0** | Tailwind Plugin & Microwebsite | Official Tailwind Plugin (`qahera-ui-kit/tailwind`), `alwkala.com/qahera` Microwebsite, npm dual-dist | *Planned* | Q1 2027 |
 | **v2.0.0** | AI Agent Engine & Native MCP | Autonomous MCP Server (`qahera-mcp`), Agent Skills Suite, Global Registries (Smithery/Glama) | *Roadmap* | Q1-Q2 2027 |
@@ -89,7 +90,7 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 
 ---
 
-### 1.5 Milestone v1.5.4 — VS Code CSS Custom Data & Cairo Studio Polish (Current Milestone · Shipped)
+### 1.5 Milestone v1.5.4 — VS Code CSS Custom Data & Cairo Studio Polish (Completed)
 * **Status:** **Shipped & Verified**
 * **Deliverables:**
   - **VS Code / Cursor / Antigravity CSS Custom Data (`qahera.css-data.json`):** Generated smart token map for all 325 canonical `--qhr-*` design tokens conforming to Microsoft Custom Data v1.1 schema.
@@ -100,7 +101,18 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 
 ---
 
-### 1.6 Milestone v1.6.0 — Tokens Studio, Advanced Data Components & Figma Sync (Q4 2026)
+### 1.6 Milestone v1.5.5 — HTML Custom Data, Zero-Touch IDE & CLI CDN Engine (Current Milestone · Shipped)
+* **Status:** **Shipped & Verified**
+* **Deliverables:**
+  - **VS Code HTML Custom Data (`qahera.html-data.json`):** Generated HTML custom data map for all 45 Web Components (`<qhr-*>`) and 3 global attributes (`data-theme` with 13 Cairo themes, `data-mode`, `dir`).
+  - **Zero-Touch IDE Scaffolding in `qahera init`:** Automatically writes or merges `.vscode/settings.json` and `.vscode/extensions.json` with zero manual developer setup.
+  - **CLI CDN Quickstart (`qahera cdn [theme]`):** Instant production HTML5 boilerplate output for any Cairo neighborhood theme.
+  - **Unified IDE Build Pipeline (`qahera build:ide-data`):** Simultaneously compiles `qahera.css-data.json` and `qahera.html-data.json`.
+  - **Sovereign AI Decision Layer Upgrade (`qahera-ui` v1.2.0):** Elevated skill to v1.2.0 with all 20 template tracks, 17 invariants, and smart custom data audit.
+
+---
+
+### 1.7 Milestone v1.6.0 — Tokens Studio, Advanced Data Components & Figma Sync (Q4 2026)
 * **Goal:** Elevate enterprise application capabilities (inspired by **Preline UI** & **Ant Design**) and establish bidirectional design token workflows.
 * **Scope of Deliverables:**
   1. **Advanced Enterprise Data Components:**

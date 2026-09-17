@@ -37,6 +37,9 @@
     "editor.formatOnSave": false,
     "css.customData": [
       "./qahera.css-data.json"
+    ],
+    "html.customData": [
+      "./qahera.html-data.json"
     ]
   },
   "extensions": {

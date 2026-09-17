@@ -3,6 +3,34 @@
 All notable changes to **Qahera UI Kit** will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.5] - 2026-09-17
+
+### HTML Custom Data Autocomplete, Zero-Touch IDE Scaffolding & CLI CDN Engine
+> *"Qahera UI Kit v1.5.5 completes the twin-pillar IDE intelligence suite by introducing official HTML Custom Data (`qahera.html-data.json`), empowering VS Code, Cursor, and Google Antigravity with full autocomplete and hover cards for all 45 Web Components and 13 Cairo themes. It upgrades `qahera init` to perform Zero-Touch IDE configuration, adds the instant `qahera cdn [theme]` boilerplate generator, and elevates the `qahera-ui` AI agent skill to v1.2.0."*
+
+### Added
+- **VS Code HTML Custom Data Generator (`cli/generate-html-data.js`):**
+  - Authoritative generator conforming to Microsoft's `customData.schema.json` (HTML) v1.1.
+  - Full tag autocompletion and hover documentation for all 45 canonical Web Components (`<qhr-button>`, `<qhr-card>`, `<qhr-badge>`, `<qhr-modal>`, `<qhr-cartouche>`, `<qhr-frieze>`, `<qhr-seal>`, etc.).
+  - Controlled attribute autocompletion: `variant`, `size`, `tone`, `shape`, `state`, and `elevation` with zero prop drift.
+  - Global attribute autocompletion for `data-theme` (13 Cairo neighborhood themes with cultural narratives), `data-mode` (`light` | `dark`), and `dir` (`rtl` | `ltr`).
+  - Emitted to root and distribution bundles: `qahera.html-data.json` and `dist/qahera.html-data.json`.
+- **Zero-Touch IDE Scaffolding in `qahera init` (`cli/add.js`):**
+  - Project initialization now automatically copies `qahera.css-data.json` and `qahera.html-data.json`.
+  - Automatically writes or merges `.vscode/settings.json` with `css.customData` and `html.customData`.
+  - Automatically emits `.vscode/extensions.json` recommending YAML, Prettier, and Stylelint.
+- **Instant CDN Boilerplate CLI Command (`qahera cdn [theme]`):**
+  - Added CLI command `npx qahera-ui cdn [theme]` (e.g. `npx qahera-ui cdn heliopolis > index.html`) emitting a zero-build, responsive Arabic HTML5 template pre-wired with 3-tier CDN assets and fonts.
+- **Sovereign AI Decision Layer Upgrade (`qahera-ui` v1.2.0):**
+  - Upgraded skill metadata to `v1.2.0` with full support for Invariant 17 (`QAHERA-CSS-DATA-001`).
+  - Updated operational memory: `cli-tools.md` (new CLI tools and CDN quickstart), `templates-catalog.md` (all 20 production tracks), and `anti-slop-matrix.md` (anti-guessing token rule).
+  - Added Step 7 (IDE Custom Data Audit) to `workflows/audit-kit.md`.
+- **Dual IDE Data Build Pipeline:**
+  - Added `qahera build:html-data` and unified `qahera build:ide-data` (and `npm run build:ide-data`).
+  - Registered `"./html-data": "./dist/qahera.html-data.json"` in `package.json`.
+
+---
+
 ## [1.5.4] - 2026-09-17
 
 ### VS Code CSS Custom Data Autocomplete, Smart Token Map & Studio Refinements

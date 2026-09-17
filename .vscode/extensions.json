@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "redhat.vscode-yaml",
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode"
+  ]
+}

@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ قاهرة لتصميم الواجهات `v1.5.4` (Qahera UI Kit)
+# 🏛️ قاهرة لتصميم الواجهات `v1.5.5` (Qahera UI Kit)
 ### نظام التصميم العربي البرمجـي والهندسة المعمارية متعددة المسارات لعصر الذكاء الاصطناعي
 **المعجم البصري المعياري، وسجل المكونات الحي، والأساس متعدد البيئات من تطوير استوديو الوكالة**
 
@@ -271,12 +271,15 @@ npx qahera-ui add template:admin --target=react
 # 5. استعراض قائمة الـ 45 مكوناً و 21 نمطاً و 20 قالباً
 npx qahera-ui list
 
-# 6. توليد خريطة الرموز الذكية لـ VS Code و Cursor و Antigravity
-npx qahera-ui build:css-data
+# 6. توليد كود البدء السريع المعتمد على الـ CDN لأي ثيم فوري
+npx qahera-ui cdn zamalek
+
+# 7. توليد خرائط الرموز وعناصر HTML الذكية لمحررات الأكواد
+npx qahera-ui build:ide-data
 ```
 
 > [!TIP]
-> **التضمين التلقائي لمهارة الذكاء الاصطناعي**: تشغيل أمر `npx qahera-ui init` يقوم تلقائياً بنسخ مجلد `.agents/skills/qahera-ui` داخل مشروعك، ليصبح وكيل الذكاء الاصطناعي في محررك (**Google Antigravity أو Cursor أو Claude Code**) خبيراً فورياً في كتابة وتركيب مكونات القاهرة عبر الأمر `/qahera-ui`.
+> **التهيئة الصفرية لبيئة التطوير (Zero-Touch IDE Configuration):** تشغيل أمر `npx qahera-ui init` يقوم تلقائياً بتهيئة محررك المفضّل (**VS Code, Cursor, Google Antigravity**) عن طريق إنشاء `.vscode/settings.json` و `.vscode/extensions.json`، ونسخ ملفات الإكمال التلقائي (`qahera.css-data.json` و `qahera.html-data.json`)، ودمج مهارة الذكاء الاصطناعي السيادية `.agents/skills/qahera-ui` ليصبح وكيلك البرمجي خبيراً فورياً بالأمر `/qahera-ui`.
 
 #### أوامر وكيل الذكاء الاصطناعي البرمجي (`/qahera-ui`)
 
@@ -301,16 +304,16 @@ npx qahera-ui build:css-data
 
 | حزمة التوزيع | رابط jsDelivr السريع | رابط unpkg المباشر | الوظيفة المعمارية |
 |---|---|---|---|
-| **رموز التصميم (Tokens)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera-tokens.min.css` | الرموز الأولية الشاملة (سلم الألوان، الخطوط، المسافات، الظلال). |
-| **سمات أحياء القاهرة (Themes)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera-themes.min.css` | أطلس السمات الـ 12 المستوحاة من أحياء القاهرة وتراثها (`[data-theme="..."]`). |
-| **المكونات المعمارية (Components)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera.min.css` | كافة أنماط المكونات الـ 45 الذرية المعيارية بأصناف `qhr-*`. |
+| **رموز التصميم (Tokens)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera-tokens.min.css` | الرموز الأولية الشاملة (سلم الألوان، الخطوط، المسافات، الظلال). |
+| **سمات أحياء القاهرة (Themes)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera-themes.min.css` | أطلس السمات الـ 12 المستوحاة من أحياء القاهرة وتراثها (`[data-theme="..."]`). |
+| **المكونات المعمارية (Components)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera.min.css` | كافة أنماط المكونات الـ 45 الذرية المعيارية بأصناف `qhr-*`. |
 
 > [!TIP]
-> **تثبيت الإصدار مقابل التحديث التلقائي:** يُوصى بتثبيت الإصدار `@1.5.3` لضمان الاستقرار التام في الإنتاج، أو استخدام `@latest` لتلقي التحسينات والإصلاحات الطفيفة تلقائياً.
+> **تثبيت الإصدار مقابل التحديث التلقائي:** يُوصى بتثبيت الإصدار `@1.5.5` لضمان الاستقرار التام في الإنتاج، أو استخدام `@latest` لتلقي التحسينات والإصلاحات الطفيفة تلقائياً.
 
 #### كود البداية المتكامل الجاهز للتشغيل المباشر (HTML5 Boilerplate)
 
-انسخ هذا الكود بالكامل وضعه في أي ملف `.html` وافتحه مباشرة في متصفحك:
+انسخ هذا الكود بالكامل وضعه في أي ملف `.html` وافتحه مباشرة في متصفحك (أو ولّده عبر أمر `npx qahera-ui cdn zamalek`):
 
 ```html
 <!DOCTYPE html>
@@ -326,13 +329,13 @@ npx qahera-ui build:css-data
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- 1. رموز التصميم ومصفوفة الارتفاعات -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-tokens.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-tokens.min.css">
 
   <!-- 2. أطلس أحياء القاهرة المعماري الـ 12 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-themes.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-themes.min.css">
 
   <!-- 3. ورقة أنماط المكونات المعمارية الـ 45 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera.min.css">
 
   <!-- اختياري: مكتبة السلوك التفاعلي Alpine.js للمكونات التفاعلية (Dropdown, Modal, Accordion) -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
@@ -340,7 +343,7 @@ npx qahera-ui build:css-data
 <body style="background-color: var(--qhr-surface-page, #0A0D14); color: var(--qhr-text-primary, #F8FAFC); font-family: var(--qhr-font-body, 'Cairo', sans-serif); padding: 2rem;">
 
   <div class="qhr-card qhr-card--elevated" style="max-width: 640px; margin: 0 auto; padding: 2rem;">
-    <span class="qhr-badge qhr-badge--primary qhr-badge--pill">تضمين فوري v1.5.3</span>
+    <span class="qhr-badge qhr-badge--primary qhr-badge--pill">تضمين فوري v1.5.5</span>
     
     <h1 style="font-family: var(--qhr-font-heading, 'Alexandria', sans-serif); margin-block: 1rem 0.5rem; font-size: 1.75rem;">
       منظومة قاهرة عبر شبكة الـ CDN العالمية
@@ -435,15 +438,21 @@ export default function DashboardPage() {
 ```
 
 <a id="6-خريطة-الرموز-الذكية-والإكمال-التلقائي-في-المحررات"></a>
-### 6. خريطة الرموز الذكية والإكمال التلقائي في المحررات (VS Code / Cursor / Antigravity)
+### 6. خرائط الرموز وعناصر HTML الذكية والإكمال التلقائي في المحررات (VS Code / Cursor / Antigravity)
 
-تتيح قاهرة تكاملاً معمارياً فريداً مع محررات الأكواد الحديثة (**Visual Studio Code, Cursor, Google Antigravity IDE**) عبر ملف خريطة الرموز الذكية `qahera.css-data.json` المعتمد وفق مواصفة **CSS Custom Data v1.1**:
+تتيح قاهرة تكاملاً معمارياً فريداً مع محررات الأكواد الحديثة (**Visual Studio Code, Cursor, Google Antigravity IDE**) عبر حزمة بيانات التخصيص المعيارية المعتمدة وفق مواصفات Microsoft Custom Data:
+
+1. **خريطة الرموز الذكية (`qahera.css-data.json`):** إكمال فوري لـ 325 متغيراً دلالياً مع بطاقات توثيق Markdown ثنائية اللغة.
+2. **خريطة عناصر الويب الذكية (`qahera.html-data.json`):** إكمال تلقائي لـ 45 وسماً معمارياً (`<qhr-*>`) والسمات العامة الحاكمة (`data-theme`, `data-mode`, `dir`) مع خيارات أحياء القاهرة الـ 13 ومحددات الوصولية (ARIA).
 
 ```json
-// في ملف .vscode/settings.json بمشروعك
+// في ملف .vscode/settings.json بمشروعك (يُنشأ تلقائياً عبر أمر npx qahera-ui init)
 {
   "css.customData": [
-    "./node_modules/qahera-ui/dist/qahera.css-data.json"
+    "./dist/qahera.css-data.json"
+  ],
+  "html.customData": [
+    "./dist/qahera.html-data.json"
   ],
   "editor.quickSuggestions": {
     "strings": true,
@@ -453,17 +462,17 @@ export default function DashboardPage() {
 }
 ```
 
-#### ماذا يحصل المطور عند كتابة `--qhr-`؟
-- **إكمال تلقائي فوري (Autocomplete):** اقتراح كافة الرموز الـ 325 المعتمدة مع تصنيفاتها الدلالية.
-- **بطاقة توثيق تفاعلية غنية (Markdown Hover Card):**
-  - **الهوية التراثية:** توثيق كامل للخامات الفرعونية الأصيلة (الوَدج، النِبو، الخِسبِد، الطمي، البردي، الكحل) مع معانيها الرمزية.
-  - **القيم الصريحة ثنائية الوضع:** القيمة اللونية الدقيقة لنمط النهار (Day) ونمط الليل (Night).
-  - **قواعد الحوكمة الصارمة:** تذكير مباشر بالخصائص المنطقية (`padding-inline`, `margin-block`) والتنبيه بمنع الخصائص الفيزيائية.
-  - **أمثلة كود فورية:** قوالب جاهزة للنسخ السريع بصيغة `var(--qhr-...)`.
+#### ماذا يحصل المطور في محرره؟
+- **عند كتابة `--qhr-` في ملفات الـ CSS:**
+  - **إكمال تلقائي فوري:** اقتراح كافة الرموز الـ 325 المعتمدة مع تصنيفاتها الدلالية.
+  - **بطاقة توثيق تفاعلية غنية (Hover Card):** توثيق الخامات الفرعونية الأصيلة والقيم اللونية الصريحة للنهار والليل مع تنبيهات القواعد المنطقية.
+- **عند كتابة `<qhr-` في ملفات الـ HTML:**
+  - **إكمال وسوم عناصر الويب:** اقتراح المكونات الـ 45 (`<qhr-button>`, `<qhr-card>`, `<qhr-modal>`, إلخ) مع كافة الخصائص والمقابس المعيارية.
+  - **إكمال سمات أحياء القاهرة:** ظهور قائمة الأحياء الـ 13 عند كتابة `data-theme="..."` مع التوثيق التراثي واللوني لكل حي.
 
-لتوليد الخريطة بعد أي تحديث لمتغيرات الـ YAML:
+لتوليد خرائط الـ IDE الذكية بعد أي تحديث لمتغيرات أو عقود الـ YAML:
 ```bash
-npx qahera-ui build:css-data
+npx qahera-ui build:ide-data
 ```
 
 ---
@@ -529,6 +538,7 @@ npx qahera-ui build:css-data
 | **v1.5.2** | تكافؤ أنماط React ونظافة المستودع | 21/21 نمط React، وفهرسة 45 مكوناً بالذكاء الاصطناعي، وخلو كامل من أخطاء TypeScript | **مكتمل** | **17 سبتمبر 2026** |
 | **v1.5.3** | حزمة Packagist والـ CDN ومزامنة المنصة | إطلاق `composer.json` الرسمي، روابط الـ CDN الفورية، وتكافؤ التوثيق العربي على NPM ومزامنة الحالة | **مكتمل** | **17 سبتمبر 2026** |
 | **v1.5.4** | خريطة الرموز الذكية لـ VS Code واستوديو القاهرة | توليد `qahera.css-data.json`، إكمال تلقائي لـ 325 رمزاً، أمر `build:css-data`، وتحسينات تباين الاستوديو | **مكتمل** | **17 سبتمبر 2026** |
+| **v1.5.5** | خريطة الـ HTML الذكية والتهيئة الصفرية للـ IDE وقوالب الـ CDN | توليد `qahera.html-data.json` لـ 45 مكوناً و 13 ثيماً، تهيئة صفرية لـ `.vscode/` عبر `init`، أمر `qahera cdn`، وتحديث مهارة الذكاء الاصطناعي إلى v1.2.0 | **مكتمل** | **17 سبتمبر 2026** |
 | **v1.6.0** | مزامنة Figma و Tokens Studio | ربط فكتور ثنائي الاتجاه، وجلب المتغيرات التلقائي | *مخطط* | الربع الرابع 2026 |
 | **v2.0.0** | محرك التوليد الذكي للوكلاء | خادم MCP أصيل، وتوليد البرمجيات من المطالبات الفورية | *رؤية مستقبلية* | الربع الأول 2027 |
 

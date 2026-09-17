@@ -14,11 +14,14 @@ Ordered steps to compose a complete, production-ready screen using exclusively c
 
 ## Step 2: Check Existing Templates & Patterns
 1. Consult `templates-catalog.md`:
-   - If the request matches one of the 18 canonical tracks (e.g. `admin`, `dashboard`, `ecommerce`, `fintech-wealth`, `helpdesk-kanban`, `auth`), inspect `templates/<track>/` for authoritative layout structure and component hierarchy.
+   - If the request matches one of the 20 canonical tracks (e.g. `flagship-portal`, `academic-executive`, `admin`, `dashboard`, `ecommerce`, `fintech-wealth`, `helpdesk-kanban`, `auth`), inspect `templates/<track>/` for authoritative layout structure and component hierarchy.
 2. Consult `patterns-catalog.md`:
-   - Select relevant pre-composed UX units (e.g. `data-table-toolbar`, `search-toolbar`, `metric-comparison-grid`, `kanban-board`).
-3. For individual components:
+   - Select relevant pre-composed UX units (e.g. `hero-skyline-panorama`, `data-table-toolbar`, `search-toolbar`, `metric-comparison-grid`, `kanban-board`, `chat-stream`).
+3. Zero-Build CDN Fast Path:
+   - For rapid prototyping or standalone HTML landing pages without Node.js tooling, utilize `npx qahera-ui cdn [theme]` to scaffold an instant zero-build template with edge CDN assets.
+4. For individual components:
    - Verify props and slots against `recipes/<component-name>.yaml`.
+   - Leverage IDE autocomplete via `qahera.css-data.json` and `qahera.html-data.json`.
    - Optionally instruct the user or run `node bin/qahera.js add <components...>` to copy source files into consuming projects.
 
 ## Step 3: 7-Axis Pre-Emit Critique

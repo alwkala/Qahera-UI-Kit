@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ Qahera UI Kit `v1.5.4`
+# 🏛️ Qahera UI Kit `v1.5.5`
 ### The AI-Native, Contract-Driven Design System & Multi-Target Component Architecture
 **The Authoritative Visual Vocabulary, Living Component Registry & Multi-Stack Foundation by Alwkala**
 
@@ -304,12 +304,15 @@ npx qahera-ui add template:admin --target=react
 # 5. List all 45 components, 21 patterns, and 20 templates
 npx qahera-ui list
 
-# 6. Generate VS Code / Cursor / Antigravity smart token map
-npx qahera-ui build:css-data
+# 6. Generate instant CDN HTML5 boilerplate for any Cairo theme
+npx qahera-ui cdn zamalek
+
+# 7. Build VS Code / Cursor / Antigravity smart CSS and HTML custom data
+npx qahera-ui build:ide-data
 ```
 
 > [!TIP]
-> **Automatic AI Skill Embedding**: Running `npx qahera-ui init` embeds `.agents/skills/qahera-ui` directly into your workspace. Coding agents in **Google Antigravity, Cursor, or Claude Code** immediately become experts at composing Qahera screens using `/qahera-ui`.
+> **Zero-Touch IDE Configuration**: Running `npx qahera-ui init` automatically creates `.vscode/settings.json` and `.vscode/extensions.json`, copies `qahera.css-data.json` and `qahera.html-data.json`, and embeds `.agents/skills/qahera-ui` directly into your workspace. Coding agents in **Google Antigravity, Cursor, or Claude Code** immediately gain full bilingual autocomplete, hover docs, and screen composition capabilities via `/qahera-ui`.
 
 #### AI Coding Agent Commands (`/qahera-ui`)
 
@@ -334,16 +337,16 @@ Qahera's distribution separates design tokens, themes, and component styles into
 
 | Asset Bundle | jsDelivr URL | unpkg URL | Purpose |
 |---|---|---|---|
-| **Design Tokens** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera-tokens.min.css` | Global primitives (color scales, typography, spacing, elevations). |
-| **Cairo Themes** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera-themes.min.css` | 12 authentic Cairo neighborhood themes (`[data-theme="..."]`). |
-| **Components** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.5.3/dist/qahera.min.css` | All 45 canonical atomic component styles (`qhr-*`). |
+| **Design Tokens** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera-tokens.min.css` | Global primitives (color scales, typography, spacing, elevations). |
+| **Cairo Themes** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera-themes.min.css` | 12 authentic Cairo neighborhood themes (`[data-theme="..."]`). |
+| **Components** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera.min.css` | All 45 canonical atomic component styles (`qhr-*`). |
 
 > [!TIP]
-> **Version Pinning vs. Rolling Updates:** Pin to `@1.5.3` for guaranteed production stability, or use `@latest` to automatically receive non-breaking patch updates.
+> **Version Pinning vs. Rolling Updates:** Pin to `@1.5.5` for guaranteed production stability, or use `@latest` to automatically receive non-breaking patch updates.
 
 #### Ready-to-Run HTML5 Production Boilerplate
 
-Copy and paste this complete boilerplate into any `.html` file and open it directly in your browser:
+Copy and paste this complete boilerplate into any `.html` file and open it directly in your browser (or generate it instantly via `npx qahera-ui cdn zamalek`):
 
 ```html
 <!DOCTYPE html>
@@ -359,13 +362,13 @@ Copy and paste this complete boilerplate into any `.html` file and open it direc
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- 1. Design Tokens & Elevation Matrix -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-tokens.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-tokens.min.css">
 
   <!-- 2. The 12 Cairo Neighborhood Themes -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera-themes.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-themes.min.css">
 
   <!-- 3. The 45 Canonical Components Stylesheet -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.3/dist/qahera.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera.min.css">
 
   <!-- Optional: Alpine.js for Interactive Components (Dropdown, Modal, Accordion) -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
@@ -373,7 +376,7 @@ Copy and paste this complete boilerplate into any `.html` file and open it direc
 <body style="background-color: var(--qhr-surface-page, #0A0D14); color: var(--qhr-text-primary, #F8FAFC); font-family: var(--qhr-font-body, 'Cairo', sans-serif); padding: 2rem;">
 
   <div class="qhr-card qhr-card--elevated" style="max-width: 640px; margin: 0 auto; padding: 2rem;">
-    <span class="qhr-badge qhr-badge--primary qhr-badge--pill">CDN Quickstart v1.5.3</span>
+    <span class="qhr-badge qhr-badge--primary qhr-badge--pill">CDN Quickstart v1.5.5</span>
     
     <h1 style="font-family: var(--qhr-font-heading, 'Alexandria', sans-serif); margin-block: 1rem 0.5rem; font-size: 1.75rem;">
       منظومة قاهرة عبر شبكة التوزيع السريعة
@@ -473,15 +476,21 @@ Import the autonomous bundle to self-register all 42 Custom Elements:
 ```
 
 <a id="6-vs-code-cursor--antigravity-css-custom-data-autocomplete"></a>
-### 6. VS Code, Cursor & Antigravity CSS Custom Data Autocomplete
+### 6. VS Code, Cursor & Antigravity CSS & HTML Custom Data Autocomplete
 
-Qahera UI Kit provides native IDE intelligence via `qahera.css-data.json`, conforming to Microsoft's **CSS Custom Data v1.1** specification:
+Qahera UI Kit provides native IDE intelligence via Microsoft **Custom Data v1.1** specifications:
+
+1. **Smart CSS Token Map (`qahera.css-data.json`):** Context-aware completion across all 325 canonical tokens with bilingual Markdown documentation cards.
+2. **Smart HTML Custom Data (`qahera.html-data.json`):** Intelligent autocomplete for all 45 Web Component tags (`<qhr-*>`) and global attributes (`data-theme`, `data-mode`, `dir`) with full Cairo neighborhood themes and ARIA validation.
 
 ```json
-// in .vscode/settings.json
+// in .vscode/settings.json (automatically configured via npx qahera-ui init)
 {
   "css.customData": [
-    "./node_modules/qahera-ui/dist/qahera.css-data.json"
+    "./dist/qahera.css-data.json"
+  ],
+  "html.customData": [
+    "./dist/qahera.html-data.json"
   ],
   "editor.quickSuggestions": {
     "strings": true,
@@ -491,17 +500,14 @@ Qahera UI Kit provides native IDE intelligence via `qahera.css-data.json`, confo
 }
 ```
 
-#### What You Get When Typing `--qhr-`:
-- **Instant Autocomplete:** Context-aware completion across all 325 canonical tokens.
-- **Rich Interactive Markdown Cards:**
-  - **Cultural Narratives:** Full Egyptian heritage documentation for raw materials (Wadj, Nebu, Khesbed, Tamy, Papyrus, Kohl).
-  - **Dual-Mode Values:** Explicit day-mode and night-mode values.
-  - **Strict Governance Rules:** Instant reminders for Logical CSS properties (`padding-inline`, `margin-block`) and font disciplines.
-  - **Instant Snippets:** Pre-formatted `var(--qhr-...)` snippets ready for clipboard copy.
+#### What You Get in Your IDE:
+- **Typing `--qhr-` in CSS:** Instant completion for 325 tokens, dual-mode day/night values, Egyptian heritage notes, and logical CSS warnings.
+- **Typing `<qhr-` in HTML:** Instant Web Component suggestions (`<qhr-button>`, `<qhr-card>`, etc.) with canonical props and slot definitions.
+- **Typing `data-theme="..."`:** Instant dropdown of all 13 authentic Cairo neighborhood themes with design movement descriptions.
 
-To regenerate the map after updating token YAMLs:
+To regenerate both custom data maps after updating YAML tokens or contracts:
 ```bash
-npx qahera-ui build:css-data
+npx qahera-ui build:ide-data
 ```
 
 ---
@@ -567,6 +573,7 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 | **v1.5.2** | React Pattern Parity & Kit Hygiene | 21/21 React Patterns, AI Manifest 45 Components, Strict TypeScript Zero-Error | **Completed** | **2026-09-17** |
 | **v1.5.3** | Packagist, CDN & Platform Sync | Official `composer.json`, CDN Quickstarts, NPM Arabic Parity, Universal State Sync | **Completed** | **2026-09-17** |
 | **v1.5.4** | VS Code Custom Data & Studio UX | Official `qahera.css-data.json`, 325 Tokens Autocomplete, `build:css-data` CLI, Studio Polish | **Completed** | **2026-09-17** |
+| **v1.5.5** | Smart HTML Custom Data, Zero-Touch IDE & CDN Boilerplate | `qahera.html-data.json` (45 Tags + 13 Themes), Zero-Touch IDE Setup in `init`, `qahera cdn` command, AI Skill v1.2.0 | **Completed** | **2026-09-17** |
 | **v1.6.0** | Tokens Studio & Figma Sync | Bidirectional Figma Tokens sync, automated token pull | *Planned* | Q4 2026 |
 | **v2.0.0** | Autonomous AI Agent Engine | MCP native server, headless prompt-to-production compiler | *Roadmap* | Q1 2027 |
 

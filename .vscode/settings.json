@@ -2,7 +2,9 @@
   "css.customData": [
     "./qahera.css-data.json"
   ],
-  "html.customData": [],
+  "html.customData": [
+    "./qahera.html-data.json"
+  ],
   "editor.quickSuggestions": {
     "strings": true,
     "other": true,

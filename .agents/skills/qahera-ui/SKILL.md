@@ -1,8 +1,8 @@
 ---
 name: qahera-ui
-description: "AI-Native UI Kit & Design System engine for Qahera UI Kit by Alwkala. Trigger on commands 'compose', 'scaffold', 'audit', 'theme', 'pattern', 'render', 'recipe', or requests to compose screens from canonical Qahera components, author new contracts and recipes, audit compliance against 15 invariants, generate multi-target renderers (HTML Native, React RSC, PHP, HTMX, Tailwind, Web Components), or apply Egyptian cultural themes."
+description: "AI-Native UI Kit & Design System engine for Qahera UI Kit by Alwkala. Trigger on commands 'compose', 'scaffold', 'audit', 'theme', 'pattern', 'render', 'recipe', or requests to compose screens from canonical Qahera components, author new contracts and recipes, audit compliance against 17 invariants, generate multi-target renderers (HTML Native, React RSC, PHP, HTMX, Tailwind, Web Components), or apply Egyptian cultural themes."
 metadata:
-  version: 1.1.0
+  version: 1.2.0
   author: Alwkala
   stack: Qahera UI Kit (HTML, React RSC, PHP, HTMX, Tailwind, Web Components)
 ---
@@ -44,6 +44,7 @@ Read only the command file that matches the request. Do not load all files simul
 14. **Navigation Purity & BiDi Flow (`QAHERA-NAV-001`)**: Zero hardcoded numbers/counts in navbar headers, single primary header CTA, externalized theme strips, and mandatory `<bdi dir="ltr">` isolation for Latin terms in Arabic copy.
 15. **Compiler Bundle & Asset Integrity (`QAHERA-BUILD-001`)**: All atomic component styles must be registered in `CANONICAL_ORDER` in `cli/build-css.js`, compiled to `dist/qahera.css`, and previews must exclusively link to production `dist/` assets.
 16. **Hero Skyline Panorama & Architectural Discipline (`QAHERA-HERO-001`)**: Hero section height MUST match the background illustration height (e.g. `height: clamp(500px, 62vh, 588px); max-height: 588px;`) to eliminate excessive empty top void. Symmetrical two-column isolation (`max-width: min(100%, 540px)`) with zero typo-visual overlap, flush bottom alignment (`align-items: flex-end`), feathered inward gradient masks, and mirrored RTL symmetry (`transform: scaleX(-1)`).
+17. **Smart Custom Data & IDE Autocomplete (`QAHERA-CSS-DATA-001`)**: All design tokens and component interfaces must be exported to `qahera.css-data.json` and `qahera.html-data.json` conforming to Microsoft Custom Data v1.1 schemas. Zero guessing of token names; instant IDE hover cards and autocomplete.
 
 ## Progressive AI Context Protocol
 
@@ -58,5 +59,6 @@ When reasoning about UI components, load only the minimum required layer:
 
 - **Languages**: Node.js (>= 18.0.0), YAML, CSS, HTML
 - **Mutations**: Local workspace files (`contracts/`, `recipes/`, `renderers/`, `tokens/`, `patterns/`, `behavior/`, `templates/`)
-- **CLI Tools**: `bin/qahera.js` (`add`, `init`, `list`, `build`, `validate`, `build:css`, `test`)
+- **CLI Tools**: `bin/qahera.js` (`add`, `init`, `list`, `build`, `validate`, `build:css`, `build:icons`, `build:ide-data`, `cdn`, `test`)
 - **Network**: None required (100% offline deterministic execution)
+

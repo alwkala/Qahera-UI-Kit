@@ -430,6 +430,60 @@ function initProject(rawArgs) {
     console.log(`  ✔ qahera.json -> created project configuration`);
   }
 
+  // Copy CSS and HTML Custom Data for VS Code / Cursor / Antigravity
+  const cssDataSrc = path.join(ROOT_DIR, 'dist', 'qahera.css-data.json');
+  const htmlDataSrc = path.join(ROOT_DIR, 'dist', 'qahera.html-data.json');
+  if (fs.existsSync(cssDataSrc)) {
+    copyFile(cssDataSrc, path.join(cwd, 'qahera.css-data.json'), options.overwrite);
+    console.log(`  ✔ qahera.css-data.json -> copied IDE smart token map`);
+  }
+  if (fs.existsSync(htmlDataSrc)) {
+    copyFile(htmlDataSrc, path.join(cwd, 'qahera.html-data.json'), options.overwrite);
+    console.log(`  ✔ qahera.html-data.json -> copied IDE HTML custom data`);
+  }
+
+  // Configure .vscode/settings.json automatically
+  const vscodeDir = path.join(cwd, '.vscode');
+  ensureDir(vscodeDir);
+  const vscodeSettingsPath = path.join(vscodeDir, 'settings.json');
+  let vscodeSettings = {};
+  if (fs.existsSync(vscodeSettingsPath)) {
+    try {
+      vscodeSettings = JSON.parse(fs.readFileSync(vscodeSettingsPath, 'utf8'));
+    } catch (e) {
+      vscodeSettings = {};
+    }
+  }
+  const cssCustomData = new Set(vscodeSettings['css.customData'] || []);
+  cssCustomData.add('./qahera.css-data.json');
+  vscodeSettings['css.customData'] = Array.from(cssCustomData);
+
+  const htmlCustomData = new Set(vscodeSettings['html.customData'] || []);
+  htmlCustomData.add('./qahera.html-data.json');
+  vscodeSettings['html.customData'] = Array.from(htmlCustomData);
+
+  vscodeSettings['editor.quickSuggestions'] = Object.assign(
+    { strings: true, other: true, comments: false },
+    vscodeSettings['editor.quickSuggestions'] || {}
+  );
+
+  fs.writeFileSync(vscodeSettingsPath, JSON.stringify(vscodeSettings, null, 2) + '\n', 'utf8');
+  console.log(`  ✔ .vscode/settings.json -> configured automatic token and component autocomplete`);
+
+  // Configure .vscode/extensions.json
+  const vscodeExtPath = path.join(vscodeDir, 'extensions.json');
+  if (!fs.existsSync(vscodeExtPath) || options.overwrite) {
+    const extContent = {
+      recommendations: [
+        'redhat.vscode-yaml',
+        'stylelint.vscode-stylelint',
+        'esbenp.prettier-vscode'
+      ]
+    };
+    fs.writeFileSync(vscodeExtPath, JSON.stringify(extContent, null, 2) + '\n', 'utf8');
+    console.log(`  ✔ .vscode/extensions.json -> configured IDE extension recommendations`);
+  }
+
   // Embed AI Agent Skill into consumer project (.agents/skills/qahera-ui)
   const skillSrcDir = path.join(ROOT_DIR, '.agents', 'skills', 'qahera-ui');
   if (fs.existsSync(skillSrcDir)) {
