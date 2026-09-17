@@ -9,6 +9,7 @@
 <br/>
 
 <!-- أوسمة المجتمع -->
+[![Product Hunt](https://img.shields.io/badge/Product_Hunt-Featured-FF6154.svg?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/posts/qahera-ui-kit)
 [![npm version](https://img.shields.io/npm/v/qahera-ui.svg?style=for-the-badge&logo=npm&color=0284C7)](https://www.npmjs.com/package/qahera-ui)
 [![CDN: jsDelivr](https://img.shields.io/badge/CDN-jsDelivr%20%26%20unpkg-E11D48.svg?style=for-the-badge)](https://www.jsdelivr.com/package/npm/qahera-ui)
 [![npm downloads](https://img.shields.io/npm/dm/qahera-ui.svg?style=for-the-badge&color=22C55E)](https://www.npmjs.com/package/qahera-ui)
@@ -35,6 +36,10 @@
 
 <p align="center">
   <img src=".github/assets/social-preview.jpg" alt="بطاقة المعاينة الاجتماعية الرسمية لمنظومة قاهرة" width="100%" style="border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.25); max-width: 960px;">
+</p>
+
+<p align="center">
+  <a href="https://www.producthunt.com/posts/qahera-ui-kit?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-qahera&#0045;ui&#0045;kit" target="_blank" rel="noopener"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1253288&theme=neutral" alt="منظومة قاهرة لتصميم الواجهات - نظام التصميم العربي البرمجي | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
 </p>
 
 ---
