@@ -33,6 +33,10 @@
 
 </div>
 
+<p align="center">
+  <img src=".github/assets/social-preview.jpg" alt="بطاقة المعاينة الاجتماعية الرسمية لمنظومة قاهرة" width="100%" style="border-radius: 12px; border: 1px solid rgba(212, 175, 55, 0.25); max-width: 960px;">
+</p>
+
 ---
 
 <a id="فهرس-المحتويات"></a>
