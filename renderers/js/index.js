@@ -1,7 +1,7 @@
 /**
  * Qahera UI Kit — Vanilla JS Web Components: Auto-Registration Bundle
  *
- * Import this single file to register all 42 Qahera Custom Elements.
+ * Import this single file to register all 45 Qahera Custom Elements.
  * Each component self-registers via customElements.define() on import.
  *
  * Usage:
@@ -11,7 +11,7 @@
  *   import 'renderers/js/components/qhr-button.js';
  *
  * @module renderers/js/index
- * @version 1.5.0
+ * @version 1.5.2
  */
 
 // ─── Core Base ───────────────────────────────────────────────────────
@@ -74,6 +74,11 @@ export { QhrStepper }      from './components/qhr-stepper.js';
 export { QhrBackToTop }    from './components/qhr-back-to-top.js';
 export { QhrCanvasSparks } from './components/qhr-canvas-sparks.js';
 
+// ─── Tier 8: Heritage & Architectural ────────────────────────────────
+export { QhrCartouche }    from './components/qhr-cartouche.js';
+export { QhrFrieze }       from './components/qhr-frieze.js';
+export { QhrSeal }         from './components/qhr-seal.js';
+
 // ─── Registration Verification ──────────────────────────────────────
 const QHR_COMPONENTS = [
   'qhr-icon', 'qhr-btn', 'qhr-badge', 'qhr-avatar', 'qhr-chip', 'qhr-divider', 'qhr-kbd', 'qhr-skeleton',
@@ -83,11 +88,12 @@ const QHR_COMPONENTS = [
   'qhr-modal', 'qhr-drawer', 'qhr-dropdown', 'qhr-tabs', 'qhr-accordion', 'qhr-carousel', 'qhr-treeview',
   'qhr-breadcrumb', 'qhr-progress', 'qhr-spinner', 'qhr-switch', 'qhr-timeline', 'qhr-callout', 'qhr-ribbon', 'qhr-stepper',
   'qhr-back-to-top', 'qhr-canvas-sparks',
+  'qhr-cartouche', 'qhr-frieze', 'qhr-seal',
 ];
 
 if (typeof window !== 'undefined') {
   console.info(
-    `%c⚡ Qahera Web Components v1.0%c — ${QHR_COMPONENTS.length} elements registered`,
+    `%c⚡ Qahera Web Components v1.5.2%c — ${QHR_COMPONENTS.length} elements registered`,
     'color: #d4a853; font-weight: bold;',
     'color: inherit;'
   );

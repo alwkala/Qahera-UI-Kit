@@ -3,6 +3,29 @@
   "version": "1.5.2",
   "description": "AI-Native, Contract-Driven Design System & Multi-Target Component Architecture by Alwkala",
   "main": "bin/qahera.js",
+  "types": "renderers/react/index.ts",
+  "exports": {
+    ".": {
+      "import": "./bin/qahera.js",
+      "require": "./bin/qahera.js"
+    },
+    "./react": {
+      "types": "./renderers/react/index.ts",
+      "default": "./renderers/react/index.ts"
+    },
+    "./react/*": {
+      "types": "./renderers/react/*.tsx",
+      "default": "./renderers/react/*.tsx"
+    },
+    "./js": {
+      "default": "./renderers/js/index.js"
+    },
+    "./css": "./dist/qahera.css",
+    "./css/*": "./dist/*.css",
+    "./tokens": "./dist/qahera-tokens.css",
+    "./themes": "./dist/qahera-themes.css",
+    "./package.json": "./package.json"
+  },
   "bin": {
     "qahera-ui": "bin/qahera.js",
     "qahera": "bin/qahera.js"
@@ -10,6 +33,7 @@
   "scripts": {
     "build": "node bin/qahera.js",
     "build:css": "node bin/qahera.js build:css",
+    "build:icons": "node bin/qahera.js build:icons",
     "preview": "node bin/qahera.js preview",
     "test": "node ci/audit-all.js",
     "typecheck": "tsc --noEmit"
@@ -23,6 +47,7 @@
     "patterns",
     "templates",
     "renderers",
+    "behavior",
     "tokens",
     "icons",
     "schemas",

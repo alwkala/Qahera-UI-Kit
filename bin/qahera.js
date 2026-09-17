@@ -22,6 +22,7 @@ const pkg = require('../package.json');
 const { runQaheraCompiler } = require('../compiler/compiler');
 const { addComponents, initProject, listComponents } = require('../cli/add');
 const { buildCss } = require('../cli/build-css');
+const { buildIcons } = require('../cli/build-icons');
 
 const args = process.argv.slice(2);
 const command = args[0] || 'build';
@@ -56,8 +57,14 @@ if (command === 'build:css') {
   process.exit(0);
 }
 
+if (command === 'build:icons') {
+  buildIcons({ quiet: false });
+  process.exit(0);
+}
+
 if (command === 'build' || command === 'compile') {
   buildCss({ quiet: false });
+  buildIcons({ quiet: false });
   const success = runQaheraCompiler({ writeArtifacts: true });
   process.exit(success ? 0 : 1);
 }
@@ -104,11 +111,13 @@ Commands:
                              --overwrite, -y                        (overwrite existing files)
                              --all, -a                              (add all canonical components)
 
-  list (or ls)             List all 42 components, 20 patterns, and 18 templates
+  list (or ls)             List all 45 components, 21 patterns, and 20 templates
 
-  build                    Run the 8-stage compiler and emit registry artifacts
+  build                    Run full compilation (CSS, Icons, and Registry artifacts)
 
   build:css                Compile atomic component CSS into dist/qahera.css
+
+  build:icons              Compile canonical icons into React, PHP, JS, and SVG targets
 
   validate                 Validate schema, tokens, and contracts without emitting
 

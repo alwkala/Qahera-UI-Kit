@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="qhrGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5D79E" />
+      <stop offset="35%" stop-color="#D4A853" />
+      <stop offset="70%" stop-color="#C98818" />
+      <stop offset="100%" stop-color="#8F5E0C" />
+    </linearGradient>
+    <linearGradient id="qhrBgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141923" />
+      <stop offset="100%" stop-color="#090C11" />
+    </linearGradient>
+    <filter id="qhrGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#D4A853" flood-opacity="0.3" />
+    </filter>
+  </defs>
+
+  <!-- Luxury Obsidian Rounded Squircle -->
+  <rect width="512" height="512" rx="120" fill="url(#qhrBgGrad)" />
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="none" stroke="url(#qhrGoldGrad)" stroke-width="8" stroke-opacity="0.85" />
+
+  <!-- Inner Architectural Filigree Border -->
+  <rect x="24" y="24" width="464" height="464" rx="96" fill="none" stroke="#D4A853" stroke-width="1.5" stroke-opacity="0.25" stroke-dasharray="8 6" />
+
+  <!-- Qahera Architectural Monogram (Centered) -->
+  <g filter="url(#qhrGlow)" transform="translate(64, 64) scale(0.75)">
+    <image href="data:image/webp;base64,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" width="512" height="512" />
+  </g>
+</svg>

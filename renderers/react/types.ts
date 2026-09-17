@@ -54,7 +54,7 @@ export type QaheraIconName =
   | 'info'
   | 'help-circle'
   | 'spinner'
-  // Objects & Entities
+  // Objects
   | 'user'
   | 'users'
   | 'folder'
@@ -67,4 +67,11 @@ export type QaheraIconName =
   | 'settings'
   | 'bell'
   | 'sun'
-  | 'moon';
+  | 'moon'
+  // Heritage
+  | 'cartouche'
+  | 'shen-ring'
+  | 'lotus'
+  | 'obelisk'
+  | 'frieze'
+;

@@ -68,6 +68,9 @@ class QaheraPlatesExtension
         'qhrToast'        => 'toast',
         'qhrTooltip'      => 'tooltip',
         'qhrTreeview'     => 'treeview',
+        'qhrCartouche'    => 'cartouche',
+        'qhrFrieze'       => 'frieze',
+        'qhrSeal'         => 'seal',
     ];
 
     protected const PATTERNS = [
@@ -81,6 +84,7 @@ class QaheraPlatesExtension
         'qhrFileManagerGrid'     => 'patterns/file-manager-grid',
         'qhrFilterBar'           => 'patterns/filter-bar',
         'qhrFormActions'         => 'patterns/form-actions',
+        'qhrHeroSkylinePanorama' => 'patterns/hero-skyline-panorama',
         'qhrKanbanBoard'         => 'patterns/kanban-board',
         'qhrLuxuryProductCard'   => 'patterns/luxury-product-card',
         'qhrMetricComparisonGrid' => 'patterns/metric-comparison-grid',

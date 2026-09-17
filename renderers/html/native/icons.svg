@@ -122,4 +122,19 @@
   <symbol id="qhr-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
   </symbol>
+  <symbol id="qhr-icon-cartouche" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 4a5 5 0 0110 0v12a5 5 0 01-10 0V4zm-3 17h16v1H4v-1z" />
+  </symbol>
+  <symbol id="qhr-icon-shen-ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4a6 6 0 100 12 6 6 0 000-12zm-8 14h16M6 18v2m12-2v2" />
+  </symbol>
+  <symbol id="qhr-icon-lotus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3c-1.5 3-3 6-3 9 0 3.314 1.343 6 3 6s3-2.686 3-6c0-3-1.5-6-3-9zm-5 5c0 4 2 8 5 10-3 0-6-3-6-7 0-1.5.5-2.5 1-3zm10 0c.5.5 1 1.5 1 3 0 4-3 7-6 7 3-2 5-6 5-10z" />
+  </symbol>
+  <symbol id="qhr-icon-obelisk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2l-2 3v15h4V5l-2-3zm-4 18h8v2H8v-2z" />
+  </symbol>
+  <symbol id="qhr-icon-frieze" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z" />
+  </symbol>
 </svg>
