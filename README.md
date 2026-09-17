@@ -28,12 +28,13 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 
 <br/>
 
-**[ 🌐 Living Showcase Hub ](examples/previews/index.html) • [ 🏛️ The 45 Components ](#the-45-canonical-components-v15-scope) • [ 🧩 21 UX Patterns ](#the-21-compositional-ux-patterns) • [ 🏙️ Cairo Atlas (12 Themes) ](#the-12-cairo-atlas-neighborhood-themes) • [ 🚀 Quick Start ](#quick-start-distribution-channels) • [ 🗺️ Roadmap ](#roadmap) • [ 📄 بالعربية ](#نظرة-عامة-وميثاق-المنظومة-باللغة-العربية)**
+**[ 🌐 Living Showcase Hub ](examples/previews/index.html) • [ 🏛️ The 45 Components ](#the-45-canonical-components-v15-scope) • [ 🧩 21 UX Patterns ](#the-21-compositional-ux-patterns) • [ 🏙️ Cairo Atlas (12 Themes) ](#the-12-cairo-atlas-neighborhood-themes) • [ 🚀 Quick Start ](#quick-start-distribution-channels) • [ 🗺️ Roadmap ](#roadmap) • [ 📄 بالعربية (README.ar.md) ](README.ar.md)**
 
 </div>
 
 ---
 
+<a id="table-of-contents"></a>
 ## 📚 Table of Contents
 
 - [🎯 Why Qahera UI Kit?](#why-qahera-ui-kit)
@@ -51,13 +52,14 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 - [📖 Authoritative Specifications & Documentation Links](#authoritative-specifications-documentation-links)
 - [🛡️ The 17 Non-Negotiable Architectural Invariants](#the-17-non-negotiable-architectural-invariants)
 - [🗺️ Roadmap](#roadmap)
-- [🇸🇦 نظرة عامة وميثاق المنظومة باللغة العربية](#نظرة-عامة-وميثاق-المنظومة-باللغة-العربية)
+- [🇸🇦 نظرة عامة وميثاق المنظومة باللغة العربية (README.ar.md)](README.ar.md)
 - [🤝 Contributing & Community Health](#contributing-community-health)
 - [📞 Contact & Official Links](#contact-official-links)
 - [📜 License](#license)
 
 ---
 
+<a id="why-qahera-ui-kit"></a>
 ## 🎯 Why Qahera UI Kit?
 
 > [!IMPORTANT]
@@ -77,6 +79,7 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 
 ---
 
+<a id="system-health-quality-scorecard"></a>
 ## 📊 System Health & Quality Scorecard
 
 ```text
@@ -101,8 +104,10 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 
 ---
 
+<a id="visual-showcase-architectural-paradigm"></a>
 ## 🖼️ Visual Showcase & Architectural Paradigm
 
+<a id="1-the-multi-target-architecture-pipeline"></a>
 ### 1. The Multi-Target Architecture Pipeline
 
 Every component begins as an authoritative semantic contract and flows deterministically into all consuming targets without semantic drift:
@@ -131,6 +136,7 @@ Every component begins as an authoritative semantic contract and flows determini
  0kb Client Footprint  PHP 8.2+ Strict     100% Logical CSS     Event-Driven Bridge  Source Ownership
 ```
 
+<a id="2-the-code-level-difference-raw-ai-ui-vs-qahera-canonical-contract"></a>
 ### 2. The Code-Level Difference: Raw AI UI vs. Qahera Canonical Contract
 
 ```html
@@ -155,6 +161,7 @@ Every component begins as an authoritative semantic contract and flows determini
 
 ---
 
+<a id="the-45-canonical-components-v15-scope"></a>
 ## 🏛️ The 45 Canonical Components (v1.5 Scope)
 
 All 45 components strictly satisfy the **Definition of Done (DoD)** with matching contracts, recipes, multi-target renderers, and interactive previews:
@@ -209,6 +216,7 @@ All 45 components strictly satisfy the **Definition of Done (DoD)** with matchin
 
 ---
 
+<a id="the-21-compositional-ux-patterns"></a>
 ## 🧩 The 21 Compositional UX Patterns
 
 Higher-order compositional patterns constructed strictly from canonical primitives:
@@ -237,6 +245,7 @@ Higher-order compositional patterns constructed strictly from canonical primitiv
 
 ---
 
+<a id="the-12-cairo-atlas-neighborhood-themes"></a>
 ## 🏙️ The 12 Cairo Atlas Neighborhood Themes
 
 Qahera UI Kit features **Thematic Topography (`QAHERA-THEME-001`)**: every theme synthesizes a recognized global design movement with an authentic Egyptian cultural, architectural, or urban context:
@@ -263,10 +272,12 @@ Qahera UI Kit features **Thematic Topography (`QAHERA-THEME-001`)**: every theme
 
 ---
 
+<a id="quick-start-distribution-channels"></a>
 ## 🚀 Quick Start & Distribution Channels
 
 Qahera UI Kit provides 3 seamless distribution channels giving you 100% source ownership with zero runtime lock-in:
 
+<a id="1-zero-install-cli-scaffolder-via-npx-shadcn-style"></a>
 ### 1. Zero-Install CLI Scaffolder via `npx` (shadcn-style)
 
 Initialize tokens, CSS, and automatically embed the AI Agent Skill into your project:
@@ -303,6 +314,7 @@ npx qahera-ui list
 | `/qahera-ui scaffold [name]` | `author-component.md` | Scaffolds new components through the contract-first pipeline across all 6 targets. |
 
 
+<a id="2-native-html-css-custom-properties"></a>
 ### 2. Native HTML & CSS Custom Properties
 
 Include the compiled production bundle or atomic imports:
@@ -323,6 +335,7 @@ Include the compiled production bundle or atomic imports:
 </html>
 ```
 
+<a id="3-php-8x-plates-engine"></a>
 ### 3. PHP 8.x Plates Engine
 
 Register the official Qahera extension with your Plates engine instance:
@@ -349,6 +362,7 @@ echo $this->qhrModal([
 ]);
 ```
 
+<a id="4-react-19-nextjs-server-components-rsc"></a>
 ### 4. React 19 & Next.js Server Components (RSC)
 
 Preserve a 0kb client JavaScript footprint using pure Server Components:
@@ -372,6 +386,7 @@ export default function DashboardPage() {
 }
 ```
 
+<a id="5-vanilla-web-components"></a>
 ### 5. Vanilla Web Components
 
 Import the autonomous bundle to self-register all 42 Custom Elements:
@@ -390,6 +405,7 @@ Import the autonomous bundle to self-register all 42 Custom Elements:
 
 ---
 
+<a id="authoritative-specifications-documentation-links"></a>
 ## 📖 Authoritative Specifications & Documentation Links
 
 Qahera UI Kit is governed by its normative specification suite in [`docs/`](docs/):
@@ -413,6 +429,7 @@ Qahera UI Kit is governed by its normative specification suite in [`docs/`](docs
 
 ---
 
+<a id="the-17-non-negotiable-architectural-invariants"></a>
 ## 🛡️ The 17 Non-Negotiable Architectural Invariants
 
 Every contribution and automated build must strictly adhere to the 17 invariants defined in [`AGENTS.md`](AGENTS.md):
@@ -437,6 +454,7 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 
 ---
 
+<a id="roadmap"></a>
 ## 🗺️ Roadmap
 
 | Version | Milestone Focus | Deliverables & Scope | Status | Release Date |
@@ -451,6 +469,8 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 
 ---
 
+<a id="arabic-manifesto"></a>
+<a id="نظرة-عامة-وميثاق-المنظومة-باللغة-العربية"></a>
 ## 🇸🇦 نظرة عامة وميثاق المنظومة باللغة العربية
 
 منظومة **قاهرة (Qahera UI Kit)** هي أول نظام تصميم برمجـي عربي هجين مخصص لعصر الذكاء الاصطناعي (AI-Native Design System):
@@ -463,6 +483,7 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 
 ---
 
+<a id="contributing-community-health"></a>
 ## 🤝 Contributing & Community Health
 
 We welcome community contributions that uphold our architectural rigor. Before opening a PR:
@@ -476,6 +497,7 @@ We welcome community contributions that uphold our architectural rigor. Before o
 
 ---
 
+<a id="contact-official-links"></a>
 ## 📞 Contact & Official Links
 
 * **Studio & Architecture Owner:** [Alwkala](https://github.com/alwkala)
@@ -486,6 +508,7 @@ We welcome community contributions that uphold our architectural rigor. Before o
 
 ---
 
+<a id="license"></a>
 ## 📜 License
 
 Distributed under the **[MIT License](LICENSE)**. © 2026 Alwkala. All rights reserved.
