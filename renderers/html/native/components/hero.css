@@ -1,0 +1,272 @@
+/* ==========================================================================
+   Hero Architecture (.qhr-hero) — Sovereign Architectural Brand Banner
+   Derived from Hero Skyline Panorama & Flagship Exhibition Benchmarks
+   100% Logical CSS · Zero Hardcoded Colors · Mobile First Responsive
+   ========================================================================== */
+
+.qhr-hero {
+  position: relative;
+  min-height: clamp(520px, 75vh, 740px);
+  display: flex;
+  align-items: center;
+  padding-block: var(--qhr-space-10, 48px);
+  overflow: hidden;
+  background-color: var(--qhr-surface-base);
+  border-block-end: 1px solid var(--qhr-border-subtle);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.qhr-hero-container {
+  max-width: var(--qhr-container-xl, 1280px);
+  margin-inline: auto;
+  padding-inline: var(--qhr-space-6, 24px);
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.qhr-hero-content {
+  max-width: 660px;
+  position: relative;
+  z-index: 2;
+}
+
+.qhr-hero-title {
+  font-family: var(--qhr-font-heading);
+  font-size: clamp(2.2rem, 5vw, 4.25rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin-block-start: 0;
+  margin-block-end: var(--qhr-space-5, 20px);
+  letter-spacing: -0.02em;
+  color: var(--qhr-content-primary);
+}
+
+.qhr-hero-lead {
+  font-family: var(--qhr-font-body);
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  line-height: 1.8;
+  color: var(--qhr-content-secondary);
+  margin-block-end: var(--qhr-space-6, 24px);
+  max-width: 600px;
+}
+
+.qhr-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--qhr-space-4, 16px);
+  flex-wrap: wrap;
+}
+
+/* Background Artwork Layer with Logical Placement & Masking */
+.qhr-hero-art {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 0;
+  inline-size: clamp(520px, 58vw, 920px);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.9;
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, transparent 100%);
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 40%, transparent 100%);
+}
+
+[dir="rtl"] .qhr-hero-art {
+  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 40%, transparent 100%);
+  mask-image: linear-gradient(to right, rgba(0,0,0,1) 40%, transparent 100%);
+}
+
+/* ── Mobile Viewport Adaptation Protocol (@media max-width: 768px) ── */
+@media (max-width: 768px) {
+  .qhr-hero {
+    min-height: auto;
+    padding-block: var(--qhr-space-8, 32px) var(--qhr-space-10, 48px);
+  }
+
+  .qhr-hero-container {
+    padding-inline: var(--qhr-space-4, 16px);
+  }
+
+  .qhr-hero-content {
+    max-width: 100%;
+    text-align: start;
+  }
+
+  .qhr-hero-title {
+    font-size: clamp(1.85rem, 7.5vw, 2.5rem);
+    margin-block-end: var(--qhr-space-3, 12px);
+    line-height: 1.2;
+  }
+
+  .qhr-hero-lead {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-block-end: var(--qhr-space-4, 16px);
+  }
+
+  /* Soften artwork layer on mobile into a subtle atmospheric background */
+  .qhr-hero-art {
+    inline-size: 100%;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    opacity: 0.12;
+    background-position: top center;
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 90%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 90%);
+  }
+
+  [data-theme="dark"] .qhr-hero-art,
+  [data-mode="dark"] .qhr-hero-art {
+    opacity: 0.22;
+  }
+
+  .qhr-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--qhr-space-3, 12px);
+    width: 100%;
+  }
+
+  .qhr-hero-actions .qhr-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   Hero Cinematic Book-Cover Pattern (.qhr-hero--cinematic)
+   Dual-Layer Atmospheric Canvas with Fixed Focal Void & Directional Scrim
+   Benchmarked from Alhoulie, DrSh, and HerStory Flagship Editorial Designs
+   ========================================================================== */
+
+.qhr-hero--cinematic {
+  min-height: clamp(620px, 86vh, 880px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--qhr-surface-cinematic, #06070B);
+  border-block-end: 1px solid var(--qhr-border-subtle, rgba(200, 138, 75, 0.2));
+  position: relative;
+  overflow: hidden;
+}
+
+.qhr-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.qhr-hero-canvas-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 85% center;
+  transform: scale(1.02);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 991px) {
+  .qhr-hero-canvas-img {
+    object-position: 75% center;
+  }
+}
+
+@media (max-width: 640px) {
+  .qhr-hero-canvas-img {
+    object-position: 70% 25%;
+  }
+}
+
+/* Multi-directional Scrim & Atmospheric Vignette */
+.qhr-hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: 
+    linear-gradient(to bottom, rgba(6, 7, 11, 0.95) 0%, rgba(6, 7, 11, 0.40) 18%, transparent 35%),
+    linear-gradient(to top, rgba(6, 7, 11, 0.98) 0%, rgba(6, 7, 11, 0.65) 15%, transparent 32%),
+    linear-gradient(to right, 
+      rgba(6, 7, 11, 0.98) 0%, 
+      rgba(6, 7, 11, 0.95) 28%, 
+      rgba(6, 7, 11, 0.85) 48%, 
+      rgba(6, 7, 11, 0.40) 68%, 
+      rgba(6, 7, 11, 0.10) 84%, 
+      rgba(6, 7, 11, 0.02) 100%
+    );
+}
+
+@media (max-width: 960px) {
+  .qhr-hero-scrim {
+    background: linear-gradient(to bottom, 
+      rgba(6, 7, 11, 0.65) 0%, 
+      rgba(6, 7, 11, 0.90) 45%, 
+      rgba(6, 7, 11, 0.98) 100%
+    );
+  }
+}
+
+.qhr-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.78fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+  width: 100%;
+}
+
+/* In RTL: the first cell is at inline-start (physical right = scholar focal area).
+   The empty void takes order: 1 (physical right), dossier takes order: 2 (physical left) */
+[dir="rtl"] .qhr-hero-grid {
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+}
+
+[dir="rtl"] .qhr-hero-focal-void {
+  order: 1;
+}
+
+[dir="rtl"] .qhr-hero-dossier {
+  order: 2;
+  text-align: right;
+}
+
+[dir="ltr"] .qhr-hero-dossier {
+  text-align: left;
+}
+
+.qhr-hero-focal-void {
+  min-height: 1px;
+  pointer-events: none;
+}
+
+.qhr-hero-dossier {
+  display: flex;
+  flex-direction: column;
+  max-width: 630px;
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 960px) {
+  .qhr-hero-grid,
+  [dir="rtl"] .qhr-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  [dir="rtl"] .qhr-hero-focal-void,
+  .qhr-hero-focal-void {
+    display: none;
+  }
+
+  [dir="rtl"] .qhr-hero-dossier {
+    order: 1;
+  }
+}
+

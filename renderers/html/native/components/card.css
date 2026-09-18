@@ -474,8 +474,9 @@
 .qhr-card--vitrine .qhr-card-media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center;
+  padding: var(--qhr-space-3, 12px);
   display: block;
   transition: transform var(--qhr-duration-normal, 350ms) ease;
 }

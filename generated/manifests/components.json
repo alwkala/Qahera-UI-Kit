@@ -1,10 +1,10 @@
 {
   "schema": "qahera.component-manifest/v1",
   "compiler": "1.6.0",
-  "sourceHash": "cabc92e3ead5c2d89b055429628d200a900ccfa0b82f0518cf12f8c8f0e7962a",
+  "sourceHash": "8cfcabd3bfd37a572417ba99ae1cf2da73ef4a4c0a4df4fc66c8e8ef22e363b0",
   "counts": {
-    "components": 48,
-    "recipes": 48,
+    "components": 49,
+    "recipes": 49,
     "patterns": 21
   },
   "components": [
@@ -186,6 +186,15 @@
       "category": "data-display",
       "contract": "contracts/components/frieze.yaml",
       "recipe": "recipes/frieze.yaml",
+      "behavior": null
+    },
+    {
+      "id": "hero",
+      "name": "Hero",
+      "component": "Hero",
+      "category": "containers",
+      "contract": "contracts/components/Hero.yaml",
+      "recipe": "recipes/hero.yaml",
       "behavior": null
     },
     {

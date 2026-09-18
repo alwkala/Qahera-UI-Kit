@@ -76,3 +76,45 @@
   color: var(--qhr-content-muted);
   margin-block-start: var(--qhr-space-2, 8px);
 }
+
+/* ── Mobile Viewport Adaptation Protocol ── */
+@media (max-width: 640px) {
+  .qhr-telemetry-deck,
+  .qhr-trust-pillars {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--qhr-space-2, 8px);
+    margin-block: var(--qhr-space-4, 16px);
+  }
+
+  .qhr-telemetry-item,
+  .qhr-trust-pillar {
+    padding: var(--qhr-space-3, 12px) var(--qhr-space-2, 8px);
+    text-align: center;
+    align-items: center;
+    border-radius: var(--qhr-radius-md, 10px);
+  }
+
+  .qhr-telemetry-value {
+    font-size: clamp(1.25rem, 5vw, 1.65rem);
+    margin-block-end: 2px;
+  }
+
+  .qhr-telemetry-label {
+    font-size: 0.68rem;
+    line-height: 1.3;
+  }
+
+  .qhr-telemetry-meta {
+    font-size: 0.62rem;
+    margin-block-start: 4px;
+  }
+}
+
+@media (max-width: 360px) {
+  .qhr-telemetry-deck,
+  .qhr-trust-pillars {
+    grid-template-columns: 1fr;
+    gap: var(--qhr-space-2, 8px);
+  }
+}
+

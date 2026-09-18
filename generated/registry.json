@@ -3,7 +3,7 @@
   "system": "Qahera UI Kit",
   "version": "1.6.0",
   "equation": "Qahera UI Kit v1.0 = Design System + Registry + AI Decision Layer",
-  "sourceHash": "cabc92e3ead5c2d89b055429628d200a900ccfa0b82f0518cf12f8c8f0e7962a",
+  "sourceHash": "8cfcabd3bfd37a572417ba99ae1cf2da73ef4a4c0a4df4fc66c8e8ef22e363b0",
   "ai_guidance": {
     "core_thesis": "Qahera UI Kit v1.0 = Design System + Registry + AI Decision Layer (not merely Component Library + Compiler)",
     "philosophy": "A design system built for developers and AI agents.",
@@ -31,8 +31,8 @@
     }
   },
   "counts": {
-    "components": 48,
-    "recipes": 48,
+    "components": 49,
+    "recipes": 49,
     "patterns": 21,
     "icons": 47
   },
@@ -2571,6 +2571,76 @@
       },
       "source": {
         "file": "contracts/components/frieze.yaml"
+      }
+    },
+    "hero": {
+      "id": "hero",
+      "name": "Hero",
+      "component": "Hero",
+      "category": "containers",
+      "version": "1.0.0",
+      "contract": {
+        "anatomy": [
+          "root",
+          "container",
+          "content",
+          "title",
+          "lead",
+          "actions",
+          "art",
+          "canvas",
+          "scrim",
+          "grid",
+          "dossier",
+          "void"
+        ],
+        "variants": {
+          "default": {
+            "intent": "flagship-split-hero"
+          },
+          "centered": {
+            "intent": "focused-editorial-hero"
+          },
+          "cinematic": {
+            "intent": "book-cover-canvas-with-scrim-and-focal-void"
+          }
+        },
+        "sizes": [],
+        "states": [],
+        "slots": [],
+        "accessibility": {
+          "role": "region",
+          "aria_label": "Hero section"
+        }
+      },
+      "recipe": {
+        "file": "recipes/hero.yaml",
+        "base": {
+          "display": "flex",
+          "position": "relative",
+          "width": "100%",
+          "overflow": "hidden",
+          "background-color": "{color.surface.base}",
+          "border-block-end": "1px solid {color.border.subtle}"
+        },
+        "variants": {},
+        "sizes": {},
+        "states": {}
+      },
+      "behavior": null,
+      "ai": {
+        "purpose": "Flagship architectural hero banner pairing bold brand typography with feathered background artwork and responsive mobile stacking.",
+        "whenToUse": [
+          "Landing page headers and brand showcase heroes",
+          "Section headers with background artwork and prominent CTA actions"
+        ],
+        "avoid": [
+          "Compact table views or modal dialogs"
+        ],
+        "related": []
+      },
+      "source": {
+        "file": "contracts/components/Hero.yaml"
       }
     },
     "input": {

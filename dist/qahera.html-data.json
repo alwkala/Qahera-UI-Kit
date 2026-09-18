@@ -1991,6 +1991,74 @@
       ]
     },
     {
+      "name": "qhr-hero",
+      "description": "### 🏛️ `<qhr-hero>`\n**مكون قاهرة المعماري الأصيل** · `Hero` (containers)\n\n> **الغرض والوظيفة:** مكون ويب معياري مستقل (Autonomous Web Component)\n\n- **العقد الدلالي:** `contracts/components/Hero.yaml`\n\n```html\n<qhr-hero variant=\"default\">\n  محتوى المكون\n</qhr-hero>\n```\n\n---\n*Qahera UI Kit v1.5.4 · Sovereign Egyptian Design System by Alwkala*",
+      "attributes": [
+        {
+          "name": "variant",
+          "description": "النمط البصري المعياري لمكون Hero (Variant)",
+          "values": [
+            {
+              "name": "default",
+              "description": "Variant: default"
+            },
+            {
+              "name": "centered",
+              "description": "Variant: centered"
+            }
+          ]
+        },
+        {
+          "name": "elevation",
+          "description": "مستوى الارتفاع والظل لمكون قاهرة (none | xs | sm | md | lg | xl | cartouche | book)",
+          "values": [
+            {
+              "name": "none",
+              "description": "بدون ظل"
+            },
+            {
+              "name": "xs",
+              "description": "ظل دقيق"
+            },
+            {
+              "name": "sm",
+              "description": "ظل خفيف"
+            },
+            {
+              "name": "md",
+              "description": "ظل قياسي"
+            },
+            {
+              "name": "lg",
+              "description": "ظل مرتفع"
+            },
+            {
+              "name": "xl",
+              "description": "ظل طافٍ"
+            },
+            {
+              "name": "cartouche",
+              "description": "ظل الخرطوشة الفرعونية المذهبة"
+            },
+            {
+              "name": "book",
+              "description": "ظل المخطوطة التحريرية العميقة"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "name": "Qahera Documentation",
+          "url": "https://qahera.alwkala.com/docs/components"
+        },
+        {
+          "name": "Component Contract",
+          "url": "https://github.com/alwkala/Qahera-UI-Kit/blob/main/contracts/components/Hero.yaml"
+        }
+      ]
+    },
+    {
       "name": "qhr-input",
       "description": "### 🏛️ `<qhr-input>`\n**مكون قاهرة المعماري الأصيل** · `Input` (forms)\n\n> **الغرض والوظيفة:** مكون ويب معياري مستقل (Autonomous Web Component)\n\n- **العقد الدلالي:** `contracts/components/Input.yaml`\n\n```html\n<qhr-input variant=\"default\" size=\"md\">\n  محتوى المكون\n</qhr-input>\n```\n\n---\n*Qahera UI Kit v1.5.4 · Sovereign Egyptian Design System by Alwkala*",
       "attributes": [

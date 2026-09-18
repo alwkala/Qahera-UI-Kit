@@ -1,0 +1,43 @@
+component: Hero
+name: hero
+category: containers
+version: 1.0.0
+
+ai:
+  intent: "Flagship brand hero with typography and architectural artwork"
+  visual_role: "Hero section"
+  preferred_when:
+    - "Flagship marketing landing pages"
+    - "Exhibition and museum hero banners"
+
+base:
+  display: flex
+  position: relative
+  width: 100%
+  overflow: hidden
+  background-color: "{color.surface.base}"
+  border-block-end: "1px solid {color.border.subtle}"
+
+contract:
+  anatomy:
+    - root
+    - container
+    - content
+    - title
+    - lead
+    - actions
+    - art
+    - canvas
+    - scrim
+    - grid
+    - dossier
+    - void
+
+structure:
+  base:
+    native_class: qhr-hero
+    tailwind: "relative w-full flex items-center overflow-hidden bg-[var(--qhr-surface-base)] border-b border-[var(--qhr-border-subtle)]"
+
+rtl:
+  supported: true
+  directional_mirroring: true

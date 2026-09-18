@@ -311,15 +311,22 @@
 .qhr-navbar-toggle {
   display: none;
   background: transparent;
-  border: none;
+  border: 1px solid var(--_nav-border);
   cursor: pointer;
   color: var(--_nav-brand);
-  padding: 6px;
-  border-radius: var(--qhr-radius-sm, 6px);
+  padding: 8px;
+  border-radius: var(--qhr-radius-md, 8px);
   flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--qhr-duration-fast, 150ms) ease;
 }
 .qhr-navbar-toggle:hover {
   background-color: var(--qhr-surface-subtle, rgba(255, 255, 255, 0.08));
+  border-color: var(--_nav-active);
+  color: var(--_nav-active);
 }
 
 .qhr-navbar-drawer { display: none; }
@@ -446,7 +453,10 @@
   }
   .qhr-navbar-brand { font-size: 1rem; gap: 8px; }
   .qhr-navbar-brand-emblem { width: 30px; height: 30px; }
-  .qhr-navbar-links { display: none; }
+  .qhr-navbar-links,
+  .qhr-navbar-nav { 
+    display: none !important; 
+  }
   .qhr-navbar-toggle { display: inline-flex; align-items: center; justify-content: center; }
   .qhr-navbar-actions { gap: 6px; }
   .qhr-navbar-actions .qhr-btn { height: 32px; padding-inline: 10px; font-size: 0.78rem; }
@@ -467,7 +477,8 @@
     animation: qhrNavbarSlideDown 200ms ease forwards;
   }
 
-  .qhr-navbar-collapse .qhr-navbar-links {
+  .qhr-navbar-collapse .qhr-navbar-links,
+  .qhr-navbar-collapse .qhr-navbar-nav {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
@@ -475,13 +486,16 @@
     width: 100% !important;
   }
 
-  .qhr-navbar-collapse .qhr-navbar-link {
+  .qhr-navbar-collapse .qhr-navbar-link,
+  .qhr-navbar-collapse .qhr-navbar-nav a {
     padding-block: var(--qhr-space-2, 8px);
     padding-inline: var(--qhr-space-3, 12px);
     border-radius: var(--qhr-radius-sm, 6px);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    text-decoration: none;
+    color: var(--_nav-brand);
   }
 
   /* Submenus as In-Flow Accordion */

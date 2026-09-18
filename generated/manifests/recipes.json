@@ -1,8 +1,8 @@
 {
   "schema": "qahera.recipe-manifest/v1",
   "compiler": "1.6.0",
-  "sourceHash": "cabc92e3ead5c2d89b055429628d200a900ccfa0b82f0518cf12f8c8f0e7962a",
-  "recipeCount": 48,
+  "sourceHash": "8cfcabd3bfd37a572417ba99ae1cf2da73ef4a4c0a4df4fc66c8e8ef22e363b0",
+  "recipeCount": 49,
   "recipes": {
     "Accordion": {
       "id": "accordion",
@@ -1321,6 +1321,33 @@
         "avoid": [
           "Simple minimal data dividers (use Divider)",
           "Clickable navigation bars (use Navbar)"
+        ],
+        "related": []
+      }
+    },
+    "Hero": {
+      "id": "hero",
+      "component": "Hero",
+      "category": "containers",
+      "base": {
+        "display": "flex",
+        "position": "relative",
+        "width": "100%",
+        "overflow": "hidden",
+        "background-color": "{color.surface.base}",
+        "border-block-end": "1px solid {color.border.subtle}"
+      },
+      "variants": {},
+      "sizes": {},
+      "states": {},
+      "ai": {
+        "purpose": "Flagship architectural hero banner pairing bold brand typography with feathered background artwork and responsive mobile stacking.",
+        "whenToUse": [
+          "Landing page headers and brand showcase heroes",
+          "Section headers with background artwork and prominent CTA actions"
+        ],
+        "avoid": [
+          "Compact table views or modal dialogs"
         ],
         "related": []
       }

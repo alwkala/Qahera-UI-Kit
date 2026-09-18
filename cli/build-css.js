@@ -71,7 +71,8 @@ const CANONICAL_ORDER = [
   'seal.css',
   'ticker.css',
   'telemetry.css',
-  'watermark.css'
+  'watermark.css',
+  'hero.css'
 ];
 
 function buildCss(options = { quiet: false }) {
