@@ -1,0 +1,36 @@
+{
+  "name": "qahera-ui",
+  "version": "2.0.0",
+  "description": "AI-Native Design System Engine & Deterministic Governance Gate for Qahera UI Kit",
+  "tools": [
+    {
+      "name": "audit_template",
+      "description": "Deterministically audits a downstream template directory against Qahera invariants (0 custom CSS, 100% canonical qhr-* classes, 0 emoji).",
+      "runtime": "node",
+      "entrypoint": "bin/qahera.js",
+      "args": ["audit:template", "{target_path}"],
+      "exit_codes": {
+        "0": "COMPLIANT",
+        "1": "FATAL_VIOLATIONS_DETECTED"
+      }
+    },
+    {
+      "name": "scaffold_template",
+      "description": "Scaffolds a clean zero-custom-css template wired directly to canonical CDN distribution.",
+      "runtime": "node",
+      "entrypoint": "bin/qahera.js",
+      "args": ["template:scaffold", "{template_name}", "--cdn"]
+    }
+  ],
+  "decision_gates": [
+    {
+      "gate_id": "template_mapping_gate",
+      "command": "compose",
+      "required_decisions": ["theme", "target_stack", "component_mapping"],
+      "defaults": {
+        "theme": "zamalek",
+        "target_stack": "HTML Native (CDN)"
+      }
+    }
+  ]
+}

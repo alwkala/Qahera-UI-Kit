@@ -20,6 +20,7 @@ $$\mathbf{\text{Qahera UI Kit}} = \mathbf{\text{Design System}} + \mathbf{\text{
 | "Compose screen" / "Build layout" / "تركيب شاشة" / "صفحة جديدة" | `references/commands/compose.md` | `workflows/compose-screen.md` + `memory/templates-catalog.md` + `memory/patterns-catalog.md` + `memory/anti-slop-matrix.md` + `memory/7-axis-critique.md` |
 | "UX Pattern" / "Compose pattern" / "أنماط الواجهة" / "تركيب نمط" | `references/commands/pattern.md` | `workflows/compose-screen.md` + `memory/patterns-catalog.md` + `memory/7-axis-critique.md` |
 | "Scaffold component" / "New recipe" / "مكون جديد" / "إنشاء عقد" | `references/commands/scaffold.md` | `workflows/author-component.md` + `memory/controlled-vocabulary.md` + `memory/7-axis-critique.md` |
+| "Audit template" / "Check template" / "فحص القالب" / "تدقيق القالب" | `references/commands/audit-template.md` | `workflows/audit-template.md` + `memory/anti-slop-matrix.md` + `memory/cli-tools.md` |
 | "Audit kit" / "Check invariants" / "فحص المعايير" / "فحص الجودة" | `references/commands/audit.md` | `workflows/audit-kit.md` + `memory/anti-slop-matrix.md` + `memory/alpine-hydration-protocol.md` + `memory/cli-tools.md` |
 | "Apply theme" / "Cultural theme" / "ثيم مصري" / "تغيير الطابع" | `references/commands/theme.md` | `workflows/compose-screen.md` + `memory/anti-slop-matrix.md` |
 

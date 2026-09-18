@@ -1,0 +1,89 @@
+version: 1.0.0
+mapping_matrix:
+  navigation_and_header:
+    intent: "Brand header, navigation links, search, utilities, language/theme switchers"
+    canonical_component: "qhr-navbar"
+    classes:
+      - ".qhr-navbar"
+      - ".qhr-navbar-inner"
+      - ".qhr-navbar-brand"
+      - ".qhr-navbar-nav"
+      - ".qhr-navbar-link"
+      - ".qhr-navbar-actions"
+    behavior: "behavior/navbar.js"
+
+  financial_ticker_and_marqee:
+    intent: "Live stock ticker, FX rates, commodity prices, market movements"
+    canonical_component: "qhr-ticker"
+    classes:
+      - ".qhr-ticker"
+      - ".qhr-ticker-track"
+      - ".qhr-ticker-item"
+      - ".qhr-ticker-symbol"
+      - ".qhr-ticker-price"
+      - ".qhr-ticker-change"
+      - ".qhr-ticker-change--up"
+      - ".qhr-ticker-change--down"
+    behavior: "behavior/counter.js"
+
+  editorial_hero_and_monographs:
+    intent: "Impactful hero, lead economic analysis, breaking news banner, museum header"
+    canonical_pattern: "exhibit-hero"
+    classes:
+      - ".qhr-hero"
+      - ".qhr-hero-title"
+      - ".qhr-hero-lead"
+      - ".qhr-hero-actions"
+      - ".qhr-hero-badge"
+
+  dossiers_and_artifacts:
+    intent: "Biographical dossier, company balance sheet profile, manuscript presentation"
+    canonical_pattern: "editorial-dossier"
+    classes:
+      - ".qhr-dossier"
+      - ".qhr-dossier-media"
+      - ".qhr-dossier-status"
+      - ".qhr-dossier-body"
+      - ".qhr-dossier-citations"
+
+  item_cards_and_catalogs:
+    intent: "Market reports, economic news articles, asset telemetry cards, people dossiers"
+    canonical_component: "qhr-card"
+    classes:
+      - ".qhr-card"
+      - ".qhr-card-header"
+      - ".qhr-card-body"
+      - ".qhr-card-footer"
+      - ".qhr-card-image"
+      - ".qhr-card-badge"
+
+  evidence_and_status_indicators:
+    intent: "Historical authenticity level, market status (Bull/Bear), sentiment tag"
+    canonical_component: "qhr-badge"
+    classes:
+      - ".qhr-badge"
+      - ".qhr-badge--success"
+      - ".qhr-badge--danger"
+      - ".qhr-badge--warning"
+      - ".qhr-badge--neutral"
+      - ".qhr-badge--outline"
+
+  deep_dive_inspection:
+    intent: "Order book inspection, dossier modal, financial calculator drawer"
+    canonical_component: "qhr-modal"
+    classes:
+      - ".qhr-modal"
+      - ".qhr-modal-dialog"
+      - ".qhr-modal-header"
+      - ".qhr-modal-body"
+      - ".qhr-modal-footer"
+    behavior: "behavior/modal.js"
+
+  chronological_sequence:
+    intent: "Historical epoch slider, fiscal quarterly timeline, earnings calendar"
+    canonical_component: "qhr-timeline"
+    classes:
+      - ".qhr-timeline"
+      - ".qhr-timeline-item"
+      - ".qhr-timeline-point"
+      - ".qhr-timeline-content"

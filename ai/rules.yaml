@@ -1,15 +1,44 @@
-version: 1.0.0
+version: 2.0.0
 agent_rules:
+  critical_invariants:
+    zero_custom_css: true
+    cdn_portable_templates: true
+    canonical_classes_only: true
+    strict_rtl_logical: true
+    zero_emoji: true
+
   prohibited_actions:
-    - inventing_props: "Never use props other than variant, size, tone, state unless declared in contract"
-    - hardcoded_styles: "Never emit hex colors (#...) or raw px spacings directly in components"
-    - physical_spacing: "Never use margin-left or padding-right; use logical properties"
-    - duplicate_rtl_components: "Never emit separate LTR and RTL components"
-    - unsupported_fonts: "Never use Amiri for UI typography"
-  
-  preferred_workflow:
-    - check_manifest: "Inspect ai/components.yaml first"
-    - review_contract: "Read contracts/components/<Component>.yaml before generating code"
-    - review_recipe: "Read recipes/<component>.yaml for styling decisions and AI metadata"
-    - bind_tokens: "Always reference --qhr-* CSS custom properties"
-    - test_bidirectional: "Ensure rendering works in both dir='ltr' and dir='rtl'"
+    - creating_bespoke_css:
+        code: "QHR-RULE-001"
+        severity: "FATAL"
+        description: "STRICTLY FORBIDDEN: Never generate, edit, or introduce custom *.css files inside templates/ or downstream apps. All styles MUST resolve via dist/qahera.css or official CDN layers."
+    - inventing_custom_classes:
+        code: "QHR-RULE-002"
+        severity: "FATAL"
+        description: "STRICTLY FORBIDDEN: Never define arbitrary CSS classes (e.g. .exhibit-*, .custom-*, .my-*). Every element MUST use canonical .qhr-* classes or official utility modifiers."
+    - compliance_theater:
+        code: "QHR-RULE-003"
+        severity: "FATAL"
+        description: "STRICTLY FORBIDDEN: Never output mock critique comments (e.g. 'Pre-emit critique: P5...') while authoring non-canonical code or wrapping arbitrary styles in var(--qhr-*) fallback wrappers."
+    - physical_spacing:
+        code: "QHR-RULE-004"
+        severity: "ERROR"
+        description: "Never use physical properties (margin-left, padding-right, left, right). Use logical CSS properties exclusively (margin-inline-*, padding-inline-*, inset-inline-*)."
+    - unsupported_fonts:
+        code: "QHR-RULE-005"
+        severity: "ERROR"
+        description: "Amiri font is strictly prohibited for UI components. Canonical fonts: Alexandria (Headings), Cairo (Body), JetBrains Mono (Code/Metadata)."
+    - hardcoded_styles:
+        code: "QHR-RULE-006"
+        severity: "ERROR"
+        description: "Never emit raw hex colors (#...), rgb(), or raw pixel dimensions directly in templates."
+    - unicode_emoji_icons:
+        code: "QHR-RULE-007"
+        severity: "ERROR"
+        description: "Zero emoji policy (QAHERA-VISUAL-001). Never use Unicode emojis as UI icons; reference icons/registry.yaml or standard 24x24 SVG paths exclusively."
+
+  mandatory_workflow:
+    - step_1: "Inspect ai/component-mapping-guide.yaml to select canonical atoms, patterns, and behaviors."
+    - step_2: "Emit the Component Mapping Matrix Table in the agent conversation before generating HTML."
+    - step_3: "Scaffold templates with ZERO custom CSS files (page.html + blueprint.yaml + data/*.json)."
+    - step_4: "Run 'qahera audit:template <path>' to deterministically verify 100% compliance before completing task."

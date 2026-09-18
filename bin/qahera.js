@@ -25,6 +25,8 @@ const { buildCss } = require('../cli/build-css');
 const { buildIcons } = require('../cli/build-icons');
 const { generateCssData } = require('../cli/generate-css-data');
 const { generateHtmlData } = require('../cli/generate-html-data');
+const { auditTemplate } = require('../cli/audit-template');
+const { scaffoldTemplate } = require('../cli/scaffold-template');
 
 const args = process.argv.slice(2);
 const command = args[0] || 'build';
@@ -104,6 +106,26 @@ if (command === 'test' || command === 'audit') {
   const { runAllAudits } = require('../ci/audit-all');
   const success = runAllAudits();
   process.exit(success ? 0 : 1);
+}
+
+if (command === 'audit:template' || command === 'audit-template') {
+  const target = args[1];
+  if (!target) {
+    console.error('\x1b[31m[ERROR]\x1b[0m Please specify template target directory. Example: node bin/qahera.js audit:template templates/fintech-wealth');
+    process.exit(1);
+  }
+  const passed = auditTemplate(target);
+  process.exit(passed ? 0 : 1);
+}
+
+if (command === 'template:scaffold' || command === 'scaffold:template') {
+  const targetName = args[1];
+  const passed = scaffoldTemplate(targetName, {
+    dest: args[2],
+    theme: args[3] || 'zamalek',
+    overwrite: args.includes('--overwrite') || args.includes('-y')
+  });
+  process.exit(passed ? 0 : 1);
 }
 
 if (command === 'preview' || command === 'previews') {

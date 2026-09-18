@@ -3,6 +3,35 @@
 All notable changes to **Qahera UI Kit** will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.6.0] - 2026-09-18
+
+### Zero-Custom-CSS Architecture, Deterministic CLI Template Auditor & Bloomberg/Investopedia Financial Portal
+> *"Qahera UI Kit v1.6.0 establishes the Zero-Custom-CSS Portable Template Doctrine and deterministic mechanical AI governance. It introduces `qahera audit:template` to programmatically reject bespoke stylesheets, elevates the `qahera-ui` AI agent skill to v2.0.0 per TidyFactor 15 Structural Rules, adds `manifest.json` and strict negative constraints, and delivers a flagship Bloomberg/Investopedia financial intelligence portal template with 0 bytes of custom CSS."*
+
+### Added
+- **Zero-Custom-CSS Portable Template Doctrine & Contract (`ai/templates-rules.yaml` & `ai/rules.yaml` v2.0):**
+  - Codified the Zero-Custom-CSS invariant (`QAHERA-ZERO-CSS-001`): downstream templates must contain exactly 0 bytes of custom `.css`.
+  - Added strict negative constraints with deterministic error codes (`QHR-RULE-001` through `QHR-RULE-007`) eliminating compliance theater.
+  - Authored `ai/component-mapping-guide.yaml` providing machine-readable mappings from intent to canonical `.qhr-*` classes.
+- **Deterministic CLI Template Compliance Auditor (`cli/audit-template.js` & `bin/qahera.js audit:template`):**
+  - Added `qahera audit:template <path>` CLI command with file crawler, HTML class extractor, emoji scanner, and logical CSS validator.
+  - Added `qahera template:scaffold <name> --cdn` for scaffolding ready-to-run zero-build templates.
+- **TidyFactor Skill Engine Elevation (`qahera-ui` v2.0.0):**
+  - Full adherence to TidyFactor 15 Structural Rules (`spec.md`).
+  - Added `manifest.json` defining runtime tooling and Contextual Decision Layer (CDL) gates.
+  - Added `audit-template` command and workflow (`references/commands/audit-template.md`, `references/workflows/audit-template.md`).
+  - Updated `compose-screen.md` with mandatory Component Mapping Matrix and Zero-CSS policy.
+  - Added Domain XVII (`QAHERA-ZERO-CSS-001`) to `references/memory/anti-slop-matrix.md`.
+- **Bloomberg / Investopedia Financial Portal Template (`templates/fintech-wealth`):**
+  - Re-engineered into a flagship financial intelligence portal featuring streaming live ticker marquee, macroeconomic pulse dashboard, filterable equities telemetry grid, central bank economic calendar (`qhr-timeline`), and interactive order book asset modal (`qhr-modal`).
+  - 100% Zero Custom CSS, passed `qahera audit:template` with 0 errors.
+
+### Fixed
+- **HerStory Exhibition Template Remediation (`templates/her-story`):**
+  - Eradicated 2,293 lines of bespoke stylesheet (`assets/css/exhibition.css`), restoring 100% canonical Qahera component parity and passing `qahera audit:template`.
+
+---
+
 ## [1.5.5] - 2026-09-17
 
 ### HTML Custom Data Autocomplete, Zero-Touch IDE Scaffolding & CLI CDN Engine

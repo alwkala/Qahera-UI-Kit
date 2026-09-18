@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ قاهرة لتصميم الواجهات `v1.5.5` (Qahera UI Kit)
+# 🏛️ قاهرة لتصميم الواجهات `v1.6.0` (Qahera UI Kit)
 ### نظام التصميم العربي البرمجـي والهندسة المعمارية متعددة المسارات لعصر الذكاء الاصطناعي
 **المعجم البصري المعياري، وسجل المكونات الحي، والأساس متعدد البيئات من تطوير استوديو الوكالة**
 
@@ -290,10 +290,11 @@ npx qahera-ui build:ide-data
 
 | الأمر / المدخل | مسار العمل في المهارة | الوصف والمخرجات |
 |---|---|---|
-| `/qahera-ui compose [screen]` | `compose-screen.md` | توليد شاشات إنتاجية متكاملة اعتماداً حصرياً على المكونات والأنماط المعيارية. |
-| `/qahera-ui pattern [name]` | `patterns-catalog.md` | بناء وتركيب أي نمط من الأنماط الـ 20 التركيبية (مثل `DataTableToolbar`, `ChatStream`). |
+| `/qahera-ui compose [screen]` | `compose-screen.md` | توليد شاشات إنتاجية متكاملة اعتماداً حصرياً على المكونات والأنماط المعيارية تحت سياسة الصفر في الـ CSS. |
+| `/qahera-ui audit-template [path]` | `audit-template.md` | فحص آلي دقيق لامتثال قوالب المصب بسياسة 0 أسطر CSS وكلاسات `qhr-*` المعيارية. |
+| `/qahera-ui pattern [name]` | `patterns-catalog.md` | بناء وتركيب أي نمط من الأنماط الـ 21 التركيبية (مثل `DataTableToolbar`, `ChatStream`). |
 | `/qahera-ui theme [neighborhood]` | `tokens/themes/*.yaml` | تفعيل ومعاينة أي ثيم من ثيمات أطلس القاهرة الـ 12 (مثل `zamalek`, `downtown`). |
-| `/qahera-ui audit` | `audit-kit.md` | فحص الالتزام المعماري الصارم بالمحددات الـ 17 غير القابلة للتفاوض. |
+| `/qahera-ui audit` | `audit-kit.md` | فحص الالتزام المعماري الصارم لنواة المكتبة بالمحددات الـ 17 غير القابلة للتفاوض. |
 | `/qahera-ui scaffold [name]` | `author-component.md` | إنشاء وتوليد مكون جديد عبر دورة العقود الصارمة لكافة المسارات الستة. |
 
 
@@ -309,12 +310,12 @@ npx qahera-ui build:ide-data
 
 | حزمة التوزيع | رابط jsDelivr السريع | رابط unpkg المباشر | الوظيفة المعمارية |
 |---|---|---|---|
-| **رموز التصميم (Tokens)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera-tokens.min.css` | الرموز الأولية الشاملة (سلم الألوان، الخطوط، المسافات، الظلال). |
-| **سمات أحياء القاهرة (Themes)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera-themes.min.css` | أطلس السمات الـ 12 المستوحاة من أحياء القاهرة وتراثها (`[data-theme="..."]`). |
-| **المكونات المعمارية (Components)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera.min.css` | كافة أنماط المكونات الـ 45 الذرية المعيارية بأصناف `qhr-*`. |
+| **رموز التصميم (Tokens)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.6.0/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.6.0/dist/qahera-tokens.min.css` | الرموز الأولية الشاملة (سلم الألوان، الخطوط، المسافات، الظلال). |
+| **سمات أحياء القاهرة (Themes)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.6.0/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.6.0/dist/qahera-themes.min.css` | أطلس السمات الـ 12 المستوحاة من أحياء القاهرة وتراثها (`[data-theme="..."]`). |
+| **المكونات المعمارية (Components)** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.6.0/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.6.0/dist/qahera.min.css` | كافة أنماط المكونات الـ 45 الذرية المعيارية بأصناف `qhr-*`. |
 
 > [!TIP]
-> **تثبيت الإصدار مقابل التحديث التلقائي:** يُوصى بتثبيت الإصدار `@1.5.5` لضمان الاستقرار التام في الإنتاج، أو استخدام `@latest` لتلقي التحسينات والإصلاحات الطفيفة تلقائياً.
+> **تثبيت الإصدار مقابل التحديث التلقائي:** يُوصى بتثبيت الإصدار `@1.6.0` لضمان الاستقرار التام في الإنتاج، أو استخدام `@latest` لتلقي التحسينات والإصلاحات الطفيفة تلقائياً.
 
 #### كود البداية المتكامل الجاهز للتشغيل المباشر (HTML5 Boilerplate)
 
@@ -334,13 +335,13 @@ npx qahera-ui build:ide-data
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- 1. رموز التصميم ومصفوفة الارتفاعات -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-tokens.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.6.0/dist/qahera-tokens.min.css">
 
   <!-- 2. أطلس أحياء القاهرة المعماري الـ 12 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-themes.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.6.0/dist/qahera-themes.min.css">
 
   <!-- 3. ورقة أنماط المكونات المعمارية الـ 45 -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qahera-ui@1.6.0/dist/qahera.min.css">
 
   <!-- اختياري: مكتبة السلوك التفاعلي Alpine.js للمكونات التفاعلية (Dropdown, Modal, Accordion) -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
@@ -348,7 +349,7 @@ npx qahera-ui build:ide-data
 <body style="background-color: var(--qhr-surface-page, #0A0D14); color: var(--qhr-text-primary, #F8FAFC); font-family: var(--qhr-font-body, 'Cairo', sans-serif); padding: 2rem;">
 
   <div class="qhr-card qhr-card--elevated" style="max-width: 640px; margin: 0 auto; padding: 2rem;">
-    <span class="qhr-badge qhr-badge--primary qhr-badge--pill">تضمين فوري v1.5.5</span>
+    <span class="qhr-badge qhr-badge--primary qhr-badge--pill">تضمين فوري v1.6.0</span>
     
     <h1 style="font-family: var(--qhr-font-heading, 'Alexandria', sans-serif); margin-block: 1rem 0.5rem; font-size: 1.75rem;">
       منظومة قاهرة عبر شبكة الـ CDN العالمية

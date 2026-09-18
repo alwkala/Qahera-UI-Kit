@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ Qahera UI Kit `v1.5.5`
+# 🏛️ Qahera UI Kit `v1.6.0`
 ### The AI-Native, Contract-Driven Design System & Multi-Target Component Architecture
 **The Authoritative Visual Vocabulary, Living Component Registry & Multi-Stack Foundation by Alwkala**
 
@@ -312,7 +312,10 @@ npx qahera-ui list
 # 6. Generate instant CDN HTML5 boilerplate for any Cairo theme
 npx qahera-ui cdn zamalek
 
-# 7. Build VS Code / Cursor / Antigravity smart CSS and HTML custom data
+# 7. Audit template compliance (Zero Custom CSS & Canonical qhr-* check)
+npx qahera-ui audit:template templates/fintech-wealth
+
+# 8. Build VS Code / Cursor / Antigravity smart CSS and HTML custom data
 npx qahera-ui build:ide-data
 ```
 
@@ -323,10 +326,11 @@ npx qahera-ui build:ide-data
 
 | Slash Command / Prompt | Engine Workflow | Description & Output |
 |---|---|---|
-| `/qahera-ui compose [screen]` | `compose-screen.md` | Composes complete production screens using exclusively canonical primitives and patterns. |
-| `/qahera-ui pattern [name]` | `patterns-catalog.md` | Scaffolds any of the 20 higher-order UX patterns (e.g. `DataTableToolbar`, `ChatStream`). |
+| `/qahera-ui compose [screen]` | `compose-screen.md` | Composes complete production screens using exclusively canonical primitives and patterns under Zero-CSS Policy. |
+| `/qahera-ui audit-template [path]` | `audit-template.md` | Deterministically audits downstream templates for 0 bespoke CSS and 100% canonical `.qhr-*` classes. |
+| `/qahera-ui pattern [name]` | `patterns-catalog.md` | Scaffolds any of the 21 higher-order UX patterns (e.g. `DataTableToolbar`, `ChatStream`). |
 | `/qahera-ui theme [neighborhood]` | `tokens/themes/*.yaml` | Switches or previews any of the 12 Cairo Atlas themes (e.g. `zamalek`, `downtown`). |
-| `/qahera-ui audit` | `audit-kit.md` | Strictly audits markup and styles against all 17 Non-Negotiable Invariants. |
+| `/qahera-ui audit` | `audit-kit.md` | Strictly audits core kit markup and styles against all 17 Non-Negotiable Invariants. |
 | `/qahera-ui scaffold [name]` | `author-component.md` | Scaffolds new components through the contract-first pipeline across all 6 targets. |
 
 
@@ -342,12 +346,12 @@ Qahera's distribution separates design tokens, themes, and component styles into
 
 | Asset Bundle | jsDelivr URL | unpkg URL | Purpose |
 |---|---|---|---|
-| **Design Tokens** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera-tokens.min.css` | Global primitives (color scales, typography, spacing, elevations). |
-| **Cairo Themes** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera-themes.min.css` | 12 authentic Cairo neighborhood themes (`[data-theme="..."]`). |
-| **Components** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.5.5/dist/qahera.min.css` | All 45 canonical atomic component styles (`qhr-*`). |
+| **Design Tokens** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.6.0/dist/qahera-tokens.min.css` | `https://unpkg.com/qahera-ui@1.6.0/dist/qahera-tokens.min.css` | Global primitives (color scales, typography, spacing, elevations). |
+| **Cairo Themes** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.6.0/dist/qahera-themes.min.css` | `https://unpkg.com/qahera-ui@1.6.0/dist/qahera-themes.min.css` | 12 authentic Cairo neighborhood themes (`[data-theme="..."]`). |
+| **Components** | `https://cdn.jsdelivr.net/npm/qahera-ui@1.6.0/dist/qahera.min.css` | `https://unpkg.com/qahera-ui@1.6.0/dist/qahera.min.css` | All 45 canonical atomic component styles (`qhr-*`). |
 
 > [!TIP]
-> **Version Pinning vs. Rolling Updates:** Pin to `@1.5.5` for guaranteed production stability, or use `@latest` to automatically receive non-breaking patch updates.
+> **Version Pinning vs. Rolling Updates:** Pin to `@1.6.0` for guaranteed production stability, or use `@latest` to automatically receive non-breaking patch updates.
 
 #### Ready-to-Run HTML5 Production Boilerplate
 

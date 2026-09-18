@@ -91,4 +91,8 @@ Binary negative constraints for generating, composing, and auditing UI code in Q
   4. `dist/qahera.min.css` (45 component styles).
 - ❌ **No hardcoded unstable URLs**: Always pin production releases to tagged versions (`@1.5.4`) or use `@latest` with SRI or defensive fallback.
 
-
+## XVII. Downstream Template Architecture & Zero-CSS Policy (`QAHERA-ZERO-CSS-001`)
+- ❌ **Zero Bespoke Stylesheet Files**: Strictly forbidden to create or emit `assets/css/*.css` or any standalone CSS files in `templates/*`. The custom CSS size must equal exactly 0 bytes.
+- ❌ **No Non-Canonical Class Names**: Never use any UI class outside `.qhr-*`. Classes like `.exhibit-*`, `.custom-*`, or `.app-*` are hard failures.
+- ❌ **No Ad-Hoc Breakpoint Overrides**: Responsive logic must rely strictly on Qahera's built-in grid, flex, and logical layout tokens.
+- ❌ **No Bypass of CDN Semantic Layers**: Templates must reference the 3 canonical CDN stylesheets (`qahera-tokens.min.css`, `qahera-themes.min.css`, `qahera.min.css`) or local compiled `dist/` assets.

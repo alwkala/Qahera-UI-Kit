@@ -1,20 +1,22 @@
 name: qahera
 title: Qahera UI Kit
-version: 1.0.0
+version: 1.5.5
 owner: Alwkala
 ecosystem: TidyFactor-compatible
 architecture: YAML-First AI-Native Design System
-statement: "Qahera gives AI a structured visual vocabulary for building consistent interfaces."
+statement: "Qahera gives AI a structured visual vocabulary for building consistent, culturally rooted interfaces."
 
 specs:
   token_spec: v1.0
   component_spec: v1.0
   recipe_spec: v1.0
+  template_spec: v1.0
 
 rules:
   use_tokens: true
   use_contracts: true
   use_logical_css: true
+  zero_custom_css: true
   invent_variants: false
   hardcode_design_values: false
   rtl_safe: true
@@ -23,11 +25,16 @@ sources:
   contracts: contracts/
   tokens: tokens/
   recipes: recipes/
+  patterns: patterns/
   behavior: behavior/
   renderers: renderers/
 
 typography:
-  arabic_heading: "El Messiri"
-  arabic_body: "Tajawal"
-  latin_fallback: "Plus Jakarta Sans, sans-serif"
+  arabic_heading: "Alexandria"
+  arabic_body: "Cairo"
+  code_monospace: "JetBrains Mono"
   prohibited: ["Amiri"]
+
+ide_custom_data:
+  css_data: "qahera.css-data.json"
+  html_data: "qahera.html-data.json"

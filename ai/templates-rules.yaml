@@ -1,0 +1,39 @@
+version: 1.0.0
+template_contract:
+  doctrine: "Zero-Custom-CSS Portable Template Doctrine"
+  description: "Canonical contract governing all downstream template tracks in Qahera ecosystem."
+
+  file_structure:
+    mandatory:
+      - "page.html"         # Canonical entry point (Never use index.html for canonical template tracks)
+      - "blueprint.yaml"     # Template metadata, AI slot architecture, and token schema
+    optional:
+      - "data/*.json"        # Structured content (content-first architecture)
+      - "page.php"           # Optional PHP renderer bridge
+      - "assets/js/*.js"     # Alpine.js state stores only
+    strictly_forbidden:
+      - "assets/css/**"      # FATAL: 100% Prohibited
+      - "*.css"              # FATAL: 100% Prohibited
+      - "*.scss"             # FATAL: 100% Prohibited
+      - "*.less"             # FATAL: 100% Prohibited
+
+  asset_resolution:
+    preferred: "CDN"
+    cdn_bundles:
+      tokens: "https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-tokens.min.css"
+      themes: "https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera-themes.min.css"
+      components: "https://cdn.jsdelivr.net/npm/qahera-ui@1.5.5/dist/qahera.min.css"
+    local_fallback:
+      tokens: "../../dist/qahera-tokens.css"
+      themes: "../../dist/qahera-themes.css"
+      components: "../../dist/qahera.css"
+
+  typography_contract:
+    display_heading: "Alexandria"
+    body_ui: "Cairo"
+    monospace_metadata: "JetBrains Mono"
+    google_fonts_url: "https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+
+  compliance_gate:
+    cli_command: "node bin/qahera.js audit:template <path>"
+    required_exit_code: 0
