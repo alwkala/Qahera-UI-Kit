@@ -1,0 +1,31 @@
+id: telemetry
+name: Telemetry
+component: Telemetry
+category: data-display
+purpose: >
+  Statistical proof decks and trust pillars linking prominent numerical metrics to bilingual labels.
+
+anatomy:
+  - root
+  - item
+  - value
+  - label
+  - meta
+
+variants:
+  default:
+    intent: metric-proof-deck
+  pillars:
+    intent: hero-trust-pillars
+
+ai:
+  purpose: "Prominent statistical telemetry proof decks and key performance metrics"
+  whenToUse:
+    - "Hero trust proofs (e.g. 15 verified dossiers, 100% rigor)"
+    - "Financial and telemetry KPI strips"
+  avoid:
+    - "Complex relational database tables (use Table)"
+
+accessibility:
+  role: "region"
+  aria_label: "Telemetry data and statistical metrics"

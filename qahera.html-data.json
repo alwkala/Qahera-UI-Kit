@@ -1011,6 +1011,18 @@
             {
               "name": "flat",
               "description": "Variant: flat"
+            },
+            {
+              "name": "vitrine",
+              "description": "Variant: vitrine"
+            },
+            {
+              "name": "book-3d",
+              "description": "Variant: book-3d"
+            },
+            {
+              "name": "metal-3d",
+              "description": "Variant: metal-3d"
             }
           ]
         },
@@ -3913,6 +3925,74 @@
       ]
     },
     {
+      "name": "qhr-telemetry",
+      "description": "### 🏛️ `<qhr-telemetry>`\n**مكون قاهرة المعماري الأصيل** · `Telemetry` (data-display)\n\n> **الغرض والوظيفة:** مكون ويب معياري مستقل (Autonomous Web Component)\n\n- **العقد الدلالي:** `contracts/components/Telemetry.yaml`\n\n```html\n<qhr-telemetry variant=\"default\">\n  محتوى المكون\n</qhr-telemetry>\n```\n\n---\n*Qahera UI Kit v1.5.4 · Sovereign Egyptian Design System by Alwkala*",
+      "attributes": [
+        {
+          "name": "variant",
+          "description": "النمط البصري المعياري لمكون Telemetry (Variant)",
+          "values": [
+            {
+              "name": "default",
+              "description": "Variant: default"
+            },
+            {
+              "name": "pillars",
+              "description": "Variant: pillars"
+            }
+          ]
+        },
+        {
+          "name": "elevation",
+          "description": "مستوى الارتفاع والظل لمكون قاهرة (none | xs | sm | md | lg | xl | cartouche | book)",
+          "values": [
+            {
+              "name": "none",
+              "description": "بدون ظل"
+            },
+            {
+              "name": "xs",
+              "description": "ظل دقيق"
+            },
+            {
+              "name": "sm",
+              "description": "ظل خفيف"
+            },
+            {
+              "name": "md",
+              "description": "ظل قياسي"
+            },
+            {
+              "name": "lg",
+              "description": "ظل مرتفع"
+            },
+            {
+              "name": "xl",
+              "description": "ظل طافٍ"
+            },
+            {
+              "name": "cartouche",
+              "description": "ظل الخرطوشة الفرعونية المذهبة"
+            },
+            {
+              "name": "book",
+              "description": "ظل المخطوطة التحريرية العميقة"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "name": "Qahera Documentation",
+          "url": "https://qahera.alwkala.com/docs/components"
+        },
+        {
+          "name": "Component Contract",
+          "url": "https://github.com/alwkala/Qahera-UI-Kit/blob/main/contracts/components/Telemetry.yaml"
+        }
+      ]
+    },
+    {
       "name": "qhr-textarea",
       "description": "### 🏛️ `<qhr-textarea>`\n**مكون قاهرة المعماري الأصيل** · `Textarea` (forms)\n\n> **الغرض والوظيفة:** مكون ويب معياري مستقل (Autonomous Web Component)\n\n- **العقد الدلالي:** `contracts/components/Textarea.yaml`\n\n```html\n<qhr-textarea variant=\"-\" size=\"md\">\n  محتوى المكون\n</qhr-textarea>\n```\n\n---\n*Qahera UI Kit v1.5.4 · Sovereign Egyptian Design System by Alwkala*",
       "attributes": [
@@ -3995,6 +4075,70 @@
         {
           "name": "Component Contract",
           "url": "https://github.com/alwkala/Qahera-UI-Kit/blob/main/contracts/components/Textarea.yaml"
+        }
+      ]
+    },
+    {
+      "name": "qhr-ticker",
+      "description": "### 🏛️ `<qhr-ticker>`\n**مكون قاهرة المعماري الأصيل** · `Ticker` (navigation)\n\n> **الغرض والوظيفة:** مكون ويب معياري مستقل (Autonomous Web Component)\n\n- **العقد الدلالي:** `contracts/components/Ticker.yaml`\n\n```html\n<qhr-ticker variant=\"default\">\n  محتوى المكون\n</qhr-ticker>\n```\n\n---\n*Qahera UI Kit v1.5.4 · Sovereign Egyptian Design System by Alwkala*",
+      "attributes": [
+        {
+          "name": "variant",
+          "description": "النمط البصري المعياري لمكون Ticker (Variant)",
+          "values": [
+            {
+              "name": "default",
+              "description": "Variant: default"
+            }
+          ]
+        },
+        {
+          "name": "elevation",
+          "description": "مستوى الارتفاع والظل لمكون قاهرة (none | xs | sm | md | lg | xl | cartouche | book)",
+          "values": [
+            {
+              "name": "none",
+              "description": "بدون ظل"
+            },
+            {
+              "name": "xs",
+              "description": "ظل دقيق"
+            },
+            {
+              "name": "sm",
+              "description": "ظل خفيف"
+            },
+            {
+              "name": "md",
+              "description": "ظل قياسي"
+            },
+            {
+              "name": "lg",
+              "description": "ظل مرتفع"
+            },
+            {
+              "name": "xl",
+              "description": "ظل طافٍ"
+            },
+            {
+              "name": "cartouche",
+              "description": "ظل الخرطوشة الفرعونية المذهبة"
+            },
+            {
+              "name": "book",
+              "description": "ظل المخطوطة التحريرية العميقة"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "name": "Qahera Documentation",
+          "url": "https://qahera.alwkala.com/docs/components"
+        },
+        {
+          "name": "Component Contract",
+          "url": "https://github.com/alwkala/Qahera-UI-Kit/blob/main/contracts/components/Ticker.yaml"
         }
       ]
     },
@@ -4327,6 +4471,78 @@
         {
           "name": "Component Contract",
           "url": "https://github.com/alwkala/Qahera-UI-Kit/blob/main/contracts/components/Treeview.yaml"
+        }
+      ]
+    },
+    {
+      "name": "qhr-watermark",
+      "description": "### 🏛️ `<qhr-watermark>`\n**مكون قاهرة المعماري الأصيل** · `Watermark` (media)\n\n> **الغرض والوظيفة:** مكون ويب معياري مستقل (Autonomous Web Component)\n\n- **العقد الدلالي:** `contracts/components/Watermark.yaml`\n\n```html\n<qhr-watermark variant=\"center\">\n  محتوى المكون\n</qhr-watermark>\n```\n\n---\n*Qahera UI Kit v1.5.4 · Sovereign Egyptian Design System by Alwkala*",
+      "attributes": [
+        {
+          "name": "variant",
+          "description": "النمط البصري المعياري لمكون Watermark (Variant)",
+          "values": [
+            {
+              "name": "center",
+              "description": "Variant: center"
+            },
+            {
+              "name": "top-start",
+              "description": "Variant: top-start"
+            },
+            {
+              "name": "bottom-end",
+              "description": "Variant: bottom-end"
+            }
+          ]
+        },
+        {
+          "name": "elevation",
+          "description": "مستوى الارتفاع والظل لمكون قاهرة (none | xs | sm | md | lg | xl | cartouche | book)",
+          "values": [
+            {
+              "name": "none",
+              "description": "بدون ظل"
+            },
+            {
+              "name": "xs",
+              "description": "ظل دقيق"
+            },
+            {
+              "name": "sm",
+              "description": "ظل خفيف"
+            },
+            {
+              "name": "md",
+              "description": "ظل قياسي"
+            },
+            {
+              "name": "lg",
+              "description": "ظل مرتفع"
+            },
+            {
+              "name": "xl",
+              "description": "ظل طافٍ"
+            },
+            {
+              "name": "cartouche",
+              "description": "ظل الخرطوشة الفرعونية المذهبة"
+            },
+            {
+              "name": "book",
+              "description": "ظل المخطوطة التحريرية العميقة"
+            }
+          ]
+        }
+      ],
+      "references": [
+        {
+          "name": "Qahera Documentation",
+          "url": "https://qahera.alwkala.com/docs/components"
+        },
+        {
+          "name": "Component Contract",
+          "url": "https://github.com/alwkala/Qahera-UI-Kit/blob/main/contracts/components/Watermark.yaml"
         }
       ]
     }

@@ -1,0 +1,37 @@
+component: Ticker
+name: ticker
+category: navigation
+version: 1.0.0
+
+ai:
+  intent: "Continuous scrolling brand announcement strip"
+  visual_role: "Marquee ticker"
+  preferred_when:
+    - "Brand statements, infinite announcement banners"
+    - "Live financial or telemetry tickers"
+  avoid_when:
+    - "Interactive menus or paginated content"
+
+base:
+  display: flex
+  width: 100%
+  overflow: hidden
+  background-color: "{color.surface.elevated}"
+  border-block: "1px solid {color.border.subtle}"
+
+contract:
+  anatomy:
+    - root
+    - wrap
+    - track
+    - item
+    - dot
+
+structure:
+  base:
+    native_class: qhr-ticker
+    tailwind: "relative w-full overflow-hidden bg-[var(--qhr-surface-elevated)] border-y border-[var(--qhr-border-subtle)]"
+
+rtl:
+  supported: true
+  directional_mirroring: true

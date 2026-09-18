@@ -21,6 +21,12 @@ variants:
     intent: floating-shadow-surface
   flat:
     intent: soft-background-surface
+  vitrine:
+    intent: museum-high-contrast-portrait-surface
+  book-3d:
+    intent: perspective-3d-hardcover-monograph
+  metal-3d:
+    intent: brushed-metallic-luxury-vip-card
 
 sizes:
   sm:

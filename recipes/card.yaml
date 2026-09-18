@@ -32,6 +32,15 @@ variants:
   flat:
     background-color: "{color.surface.muted}"
     border-color: transparent
+  vitrine:
+    background-color: "{color.surface.card}"
+    border-color: "{color.border.subtle}"
+  book-3d:
+    background-color: transparent
+    border-color: transparent
+  metal-3d:
+    background-color: "{color.surface.elevated}"
+    border-color: "{color.border.strong}"
 
 sizes:
   sm:
@@ -59,7 +68,7 @@ contract:
   props:
     variant:
       default: outline
-      values: [outline, elevated, flat]
+      values: [outline, elevated, flat, vitrine, book-3d, metal-3d]
     size:
       default: md
       values: [sm, md, lg]
@@ -82,6 +91,15 @@ structure:
     flat:
       native_modifier: qhr-card--flat
       tailwind: "bg-[var(--qhr-surface-muted)] border-transparent"
+    vitrine:
+      native_modifier: qhr-card--vitrine
+      tailwind: "bg-[#FAF7F2] border-[#E2D9CC] rounded-lg shadow-md"
+    book-3d:
+      native_modifier: qhr-card--book-3d
+      tailwind: "bg-transparent border-none shadow-none"
+    metal-3d:
+      native_modifier: qhr-card--metal-3d
+      tailwind: "bg-gradient-to-br from-[#2A241E] to-[#17120F] border-[#D4AF37]/30 shadow-2xl"
   sizes:
     sm: "p-[var(--qhr-space-3)]"
     md: "p-[var(--qhr-space-5)]"

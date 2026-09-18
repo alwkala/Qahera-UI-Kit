@@ -1,0 +1,33 @@
+component: Telemetry
+name: telemetry
+category: data-display
+version: 1.0.0
+
+ai:
+  intent: "Prominent statistical proof and telemetry metrics"
+  visual_role: "Telemetry deck"
+  preferred_when:
+    - "Hero stat proofs and metrics"
+    - "Trust pillars linking numbers to authoritative labels"
+
+base:
+  display: grid
+  width: 100%
+  gap: "{space.4}"
+
+contract:
+  anatomy:
+    - root
+    - item
+    - value
+    - label
+    - meta
+
+structure:
+  base:
+    native_class: qhr-telemetry-deck
+    tailwind: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full"
+
+rtl:
+  supported: true
+  directional_mirroring: false

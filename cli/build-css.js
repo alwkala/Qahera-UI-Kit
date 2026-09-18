@@ -68,7 +68,10 @@ const CANONICAL_ORDER = [
   'cartouche.css',
   'frieze.css',
   'questionnaire.css',
-  'seal.css'
+  'seal.css',
+  'ticker.css',
+  'telemetry.css',
+  'watermark.css'
 ];
 
 function buildCss(options = { quiet: false }) {
@@ -142,6 +145,14 @@ function buildCss(options = { quiet: false }) {
   if (fs.existsSync(TOKENS_SRC)) {
     const tokensContent = fs.readFileSync(TOKENS_SRC, 'utf8');
     fs.writeFileSync(TOKENS_DIST, tokensContent, 'utf8');
+  }
+
+  // 5. Write production motion engine to dist/qahera-motion.js
+  const MOTION_SRC = path.join(ROOT_DIR, 'behavior', 'motion.js');
+  const MOTION_DIST = path.join(DIST_DIR, 'qahera-motion.js');
+  if (fs.existsSync(MOTION_SRC)) {
+    const motionContent = fs.readFileSync(MOTION_SRC, 'utf8');
+    fs.writeFileSync(MOTION_DIST, motionContent, 'utf8');
   }
 
   const rawKB = (Buffer.byteLength(bundledCss, 'utf8') / 1024).toFixed(2);

@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Architectural Background Watermarks (.qhr-watermark)
+   Derived from DrSh & Alhoulie Architectural Motifs
+   ========================================================================== */
+
+.qhr-watermark {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--qhr-opacity-watermark, 0.06);
+  color: var(--qhr-color-accent, var(--qhr-color-primary, currentColor));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  user-select: none;
+  transition: opacity var(--qhr-duration-slow, 500ms) ease;
+}
+
+[data-theme="light"] .qhr-watermark {
+  opacity: var(--qhr-opacity-watermark-light, 0.05);
+}
+
+.qhr-watermark svg {
+  width: 100%;
+  height: 100%;
+  max-width: 650px;
+  max-height: 650px;
+}
+
+/* Center Placed Watermark */
+.qhr-watermark--center {
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+/* Corner Placed Watermarks */
+.qhr-watermark--top-start {
+  inset-block-start: -40px;
+  inset-inline-start: -40px;
+  width: 320px;
+  height: 320px;
+}
+
+.qhr-watermark--bottom-end {
+  inset-block-end: -60px;
+  inset-inline-end: -60px;
+  width: 380px;
+  height: 380px;
+}
+
+/* Kinetic Slow Rotation (180s per cycle) */
+.qhr-watermark--spin svg {
+  animation: qhr-watermark-rotate 180s linear infinite;
+  will-change: transform;
+}
+
+@keyframes qhr-watermark-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .qhr-watermark--spin svg {
+    animation: none;
+  }
+}

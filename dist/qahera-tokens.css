@@ -330,6 +330,20 @@
   --qhr-text-primary: #0f172a;
   --qhr-text-secondary: #475569;
   --qhr-text-muted: #64748b;
+
+  /* Display & Sculpted Semantic Gradients */
+  --qhr-gradient-display: var(--qhr-gradient-primary);
+  --qhr-gradient-sculpted: var(--qhr-gradient-primary);
+
+  /* Vitrine Showcase Semantic Bindings */
+  --qhr-surface-vitrine-bg: var(--qhr-surface-card);
+  --qhr-surface-vitrine-border: var(--qhr-border-subtle);
+  --qhr-surface-vitrine-media-bg: var(--qhr-surface-muted);
+  --qhr-surface-vitrine-title: var(--qhr-content-primary);
+  --qhr-surface-vitrine-sub: var(--qhr-content-secondary);
+  --qhr-surface-vitrine-meta: var(--qhr-content-muted);
+  --qhr-shadow-vitrine: var(--qhr-shadow-sm);
+  --qhr-shadow-vitrine-hover: var(--qhr-shadow-lg);
 }
 
 [data-theme="dark"] {
@@ -389,6 +403,16 @@
   --qhr-text-primary: #f8fafc;
   --qhr-text-secondary: #cbd5e1;
   --qhr-text-muted: #94a3b8;
+
+  /* Vitrine Showcase Dark Semantic Bindings */
+  --qhr-surface-vitrine-bg: var(--qhr-surface-card);
+  --qhr-surface-vitrine-border: var(--qhr-border-subtle);
+  --qhr-surface-vitrine-media-bg: var(--qhr-surface-muted);
+  --qhr-surface-vitrine-title: var(--qhr-content-primary);
+  --qhr-surface-vitrine-sub: var(--qhr-content-secondary);
+  --qhr-surface-vitrine-meta: var(--qhr-content-muted);
+  --qhr-shadow-vitrine: var(--qhr-shadow-md);
+  --qhr-shadow-vitrine-hover: var(--qhr-shadow-xl);
 }
 
 *, *::before, *::after {

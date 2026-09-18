@@ -1,0 +1,34 @@
+id: ticker
+name: Ticker
+component: Ticker
+category: navigation
+purpose: >
+  Continuous marquee ticker strip for announcements, brand mottos, or market metrics.
+
+anatomy:
+  - root
+  - wrap
+  - track
+  - item
+  - dot
+
+variants:
+  default:
+    intent: standard-infinite-ticker
+
+states:
+  - default
+  - hover
+
+ai:
+  purpose: "Continuous kinetic announcement or metrics ticker"
+  whenToUse:
+    - "Brand mottos, infinite announcement tickers"
+    - "Market and currency status strips"
+  avoid:
+    - "Lengthy multi-paragraph text"
+
+accessibility:
+  role: "region"
+  aria_label: "Continuous announcement ticker"
+  aria_live: "off"

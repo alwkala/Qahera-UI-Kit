@@ -1,8 +1,8 @@
 {
   "schema": "qahera.icon-manifest/v1",
   "compiler": "1.6.0",
-  "sourceHash": "8eca07854e278d3540e56d6be21516e6f9a397698f458f9d756b65c5bf7578a6",
-  "iconCount": 46,
+  "sourceHash": "cabc92e3ead5c2d89b055429628d200a900ccfa0b82f0518cf12f8c8f0e7962a",
+  "iconCount": 47,
   "policy": {
     "emoji": "forbidden",
     "unicode_symbols": "forbidden",
@@ -501,6 +501,23 @@
         "border"
       ],
       "svg_path": "M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z"
+    },
+    "rosette": {
+      "category": "heritage",
+      "intent": "ornamental-star-divider",
+      "aliases": [
+        "star",
+        "geometric-rosette",
+        "arabesque",
+        "medallion"
+      ],
+      "tags": [
+        "heritage",
+        "ornament",
+        "divider",
+        "islamic-star"
+      ],
+      "svg_path": "M12 2l2.4 4.8L20 8l-3.6 4.4L17 18l-5-2.6L7 18l.6-5.6L4 8l5.6-1.2L12 2z M12 6.5l-1.5 3-3.5.8 2.2 2.8-.4 3.5 3.2-1.6 3.2 1.6-.4-3.5 2.2-2.8-3.5-.8L12 6.5z"
     }
   }
 }

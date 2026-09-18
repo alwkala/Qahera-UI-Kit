@@ -137,4 +137,7 @@
   <symbol id="qhr-icon-frieze" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z" />
   </symbol>
+  <symbol id="qhr-icon-rosette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2l2.4 4.8L20 8l-3.6 4.4L17 18l-5-2.6L7 18l.6-5.6L4 8l5.6-1.2L12 2z M12 6.5l-1.5 3-3.5.8 2.2 2.8-.4 3.5 3.2-1.6 3.2 1.6-.4-3.5 2.2-2.8-3.5-.8L12 6.5z" />
+  </symbol>
 </svg>

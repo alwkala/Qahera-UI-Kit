@@ -1,0 +1,29 @@
+id: watermark
+name: Watermark
+component: Watermark
+category: media
+purpose: >
+  Architectural background vector insignias with subtle opacity and optional kinetic rotation.
+
+anatomy:
+  - root
+  - svg
+
+variants:
+  center:
+    intent: centered-backdrop-insignia
+  top-start:
+    intent: corner-anchored-motif
+  bottom-end:
+    intent: corner-anchored-motif
+
+ai:
+  purpose: "Atmospheric cultural background watermark and insignia"
+  whenToUse:
+    - "Section backgrounds with heritage motifs (Lotus, Shen, Cartouche, Obelisk, Rosette)"
+  avoid:
+    - "Interactive clickable elements (watermark is strictly pointer-events: none)"
+
+accessibility:
+  role: "presentation"
+  aria_hidden: true

@@ -15,7 +15,7 @@ const SIZE_MAP: Record<QaheraSize, number> = {
   xl: 32,
 };
 
-// Canonical SVG paths from icons/registry.yaml (46 semantic icons)
+// Canonical SVG paths from icons/registry.yaml (47 semantic icons)
 const ICON_PATHS: Record<QaheraIconName, string> = {
   // Navigation
   'search': 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
@@ -68,6 +68,7 @@ const ICON_PATHS: Record<QaheraIconName, string> = {
   'lotus': 'M12 3c-1.5 3-3 6-3 9 0 3.314 1.343 6 3 6s3-2.686 3-6c0-3-1.5-6-3-9zm-5 5c0 4 2 8 5 10-3 0-6-3-6-7 0-1.5.5-2.5 1-3zm10 0c.5.5 1 1.5 1 3 0 4-3 7-6 7 3-2 5-6 5-10z',
   'obelisk': 'M12 2l-2 3v15h4V5l-2-3zm-4 18h8v2H8v-2z',
   'frieze': 'M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z',
+  'rosette': 'M12 2l2.4 4.8L20 8l-3.6 4.4L17 18l-5-2.6L7 18l.6-5.6L4 8l5.6-1.2L12 2z M12 6.5l-1.5 3-3.5.8 2.2 2.8-.4 3.5 3.2-1.6 3.2 1.6-.4-3.5 2.2-2.8-3.5-.8L12 6.5z',
 };
 
 export const Icon: React.FC<IconProps> = ({

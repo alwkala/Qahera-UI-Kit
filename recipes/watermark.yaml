@@ -1,0 +1,30 @@
+component: Watermark
+name: watermark
+category: media
+version: 1.0.0
+
+ai:
+  intent: "Atmospheric cultural background watermark"
+  visual_role: "Background decoration"
+  preferred_when:
+    - "Section backdrops needing architectural depth"
+
+base:
+  position: absolute
+  pointer-events: none
+  opacity: "0.06"
+  z-index: 0
+
+contract:
+  anatomy:
+    - root
+    - svg
+
+structure:
+  base:
+    native_class: qhr-watermark
+    tailwind: "absolute pointer-events-none opacity-5 z-0"
+
+rtl:
+  supported: true
+  directional_mirroring: false

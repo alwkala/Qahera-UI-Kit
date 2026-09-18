@@ -109,3 +109,22 @@
   border: 1px solid var(--qhr-border-subtle, rgba(255, 255, 255, 0.1));
 }
 
+/* Ornamental Rosette & Heritage Divider */
+.qhr-divider--rosette {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-block: var(--qhr-space-8, 32px);
+  width: 100%;
+}
+.qhr-divider--rosette::before,
+.qhr-divider--rosette::after {
+  content: "";
+  flex: 1;
+  border-block-start: 1px solid var(--qhr-border-subtle);
+}
+.qhr-divider--rosette .qhr-divider-icon {
+  color: var(--qhr-color-accent, var(--qhr-color-primary));
+  padding-inline: var(--qhr-space-4, 16px);
+}
+

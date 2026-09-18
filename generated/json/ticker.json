@@ -1,0 +1,60 @@
+{
+  "id": "ticker",
+  "name": "Ticker",
+  "component": "Ticker",
+  "category": "navigation",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "wrap",
+      "track",
+      "item",
+      "dot"
+    ],
+    "variants": {
+      "default": {
+        "intent": "standard-infinite-ticker"
+      }
+    },
+    "sizes": [],
+    "states": [
+      "default",
+      "hover"
+    ],
+    "slots": [],
+    "accessibility": {
+      "role": "region",
+      "aria_label": "Continuous announcement ticker",
+      "aria_live": "off"
+    }
+  },
+  "recipe": {
+    "file": "recipes/ticker.yaml",
+    "base": {
+      "display": "flex",
+      "width": "100%",
+      "overflow": "hidden",
+      "background-color": "{color.surface.elevated}",
+      "border-block": "1px solid {color.border.subtle}"
+    },
+    "variants": {},
+    "sizes": {},
+    "states": {}
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Continuous marquee ticker strip for announcements, brand mottos, or market metrics.",
+    "whenToUse": [
+      "Brand mottos, infinite announcement tickers",
+      "Market and currency status strips"
+    ],
+    "avoid": [
+      "Lengthy multi-paragraph text"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Ticker.yaml"
+  }
+}

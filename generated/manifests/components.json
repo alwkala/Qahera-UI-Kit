@@ -1,10 +1,10 @@
 {
   "schema": "qahera.component-manifest/v1",
   "compiler": "1.6.0",
-  "sourceHash": "8eca07854e278d3540e56d6be21516e6f9a397698f458f9d756b65c5bf7578a6",
+  "sourceHash": "cabc92e3ead5c2d89b055429628d200a900ccfa0b82f0518cf12f8c8f0e7962a",
   "counts": {
-    "components": 45,
-    "recipes": 45,
+    "components": 48,
+    "recipes": 48,
     "patterns": 21
   },
   "components": [
@@ -369,12 +369,30 @@
       "behavior": "behavior/tabs.js"
     },
     {
+      "id": "telemetry",
+      "name": "Telemetry",
+      "component": "Telemetry",
+      "category": "data-display",
+      "contract": "contracts/components/Telemetry.yaml",
+      "recipe": "recipes/telemetry.yaml",
+      "behavior": null
+    },
+    {
       "id": "textarea",
       "name": "Textarea",
       "component": "Textarea",
       "category": "forms",
       "contract": "contracts/components/Textarea.yaml",
       "recipe": "recipes/textarea.yaml",
+      "behavior": null
+    },
+    {
+      "id": "ticker",
+      "name": "Ticker",
+      "component": "Ticker",
+      "category": "navigation",
+      "contract": "contracts/components/Ticker.yaml",
+      "recipe": "recipes/ticker.yaml",
       "behavior": null
     },
     {
@@ -411,6 +429,15 @@
       "category": "navigation",
       "contract": "contracts/components/Treeview.yaml",
       "recipe": "recipes/treeview.yaml",
+      "behavior": null
+    },
+    {
+      "id": "watermark",
+      "name": "Watermark",
+      "component": "Watermark",
+      "category": "media",
+      "contract": "contracts/components/Watermark.yaml",
+      "recipe": "recipes/watermark.yaml",
       "behavior": null
     }
   ]

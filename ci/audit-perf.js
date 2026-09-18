@@ -19,8 +19,8 @@ const CSS_FILE = fs.existsSync(DIST_CSS) ? DIST_CSS : path.join(ROOT_DIR, 'rende
 const REACT_DIR = path.join(ROOT_DIR, 'renderers', 'react');
 
 const BUDGETS = {
-  cssRawMaxKB: 225,    // Raw unminified max for 46 modular component & utility files with heritage patterns
-  cssGzipMaxKB: 30,    // Gzipped budget (actual network payload)
+  cssRawMaxKB: 240,    // Raw unminified max for 48 modular component & utility files
+  cssGzipMaxKB: 35,    // Gzipped budget (actual network payload)
 };
 
 // Explicit whitelist of components allowed to use 'use client'

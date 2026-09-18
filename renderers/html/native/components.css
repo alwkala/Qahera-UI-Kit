@@ -53,3 +53,6 @@
 @import './components/frieze.css';
 @import './components/questionnaire.css';
 @import './components/seal.css';
+@import './components/ticker.css';
+@import './components/telemetry.css';
+@import './components/watermark.css';

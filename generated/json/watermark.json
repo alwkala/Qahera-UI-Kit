@@ -1,0 +1,59 @@
+{
+  "id": "watermark",
+  "name": "Watermark",
+  "component": "Watermark",
+  "category": "media",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "svg"
+    ],
+    "variants": {
+      "center": {
+        "intent": "centered-backdrop-insignia"
+      },
+      "top-start": {
+        "intent": "corner-anchored-motif"
+      },
+      "bottom-end": {
+        "intent": "corner-anchored-motif"
+      }
+    },
+    "sizes": [],
+    "states": [],
+    "slots": [],
+    "accessibility": {
+      "role": "presentation",
+      "aria_hidden": true
+    }
+  },
+  "recipe": {
+    "file": "recipes/watermark.yaml",
+    "base": {
+      "position": "absolute",
+      "pointer-events": "none",
+      "opacity": "0.06",
+      "z-index": 0
+    },
+    "variants": {},
+    "sizes": {},
+    "states": {}
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Architectural background vector insignias with subtle opacity and optional kinetic rotation.",
+    "whenToUse": [
+      "Section backgrounds with heritage motifs (Lotus, Shen, Cartouche, Obelisk, Rosette)"
+    ],
+    "avoid": [
+      {
+        "\"Interactive clickable elements (watermark is strictly pointer-events": "none)\""
+      }
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Watermark.yaml"
+  }
+}

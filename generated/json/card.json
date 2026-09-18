@@ -23,6 +23,15 @@
       },
       "flat": {
         "intent": "soft-background-surface"
+      },
+      "vitrine": {
+        "intent": "museum-high-contrast-portrait-surface"
+      },
+      "book-3d": {
+        "intent": "perspective-3d-hardcover-monograph"
+      },
+      "metal-3d": {
+        "intent": "brushed-metallic-luxury-vip-card"
       }
     },
     "sizes": {
@@ -79,6 +88,18 @@
       "flat": {
         "background-color": "{color.surface.muted}",
         "border-color": "transparent"
+      },
+      "vitrine": {
+        "background-color": "{color.surface.card}",
+        "border-color": "{color.border.subtle}"
+      },
+      "book-3d": {
+        "background-color": "transparent",
+        "border-color": "transparent"
+      },
+      "metal-3d": {
+        "background-color": "{color.surface.elevated}",
+        "border-color": "{color.border.strong}"
       }
     },
     "sizes": {

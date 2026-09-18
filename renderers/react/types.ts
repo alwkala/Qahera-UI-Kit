@@ -74,4 +74,5 @@ export type QaheraIconName =
   | 'lotus'
   | 'obelisk'
   | 'frieze'
+  | 'rosette'
 ;

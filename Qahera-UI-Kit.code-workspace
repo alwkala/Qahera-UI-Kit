@@ -7,6 +7,15 @@
     {
       "name": "🌐 Qahera Marketing Web (Downstream Showcase Site)",
       "path": "../../../Qahera"
+    },
+    {
+      "path": "../../../her-story"
+    },
+    {
+      "path": "../templates/DrSh"
+    },
+    {
+      "path": "../templates/Alhoulie"
     }
   ],
   "settings": {

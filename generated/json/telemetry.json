@@ -1,0 +1,57 @@
+{
+  "id": "telemetry",
+  "name": "Telemetry",
+  "component": "Telemetry",
+  "category": "data-display",
+  "version": "1.0.0",
+  "contract": {
+    "anatomy": [
+      "root",
+      "item",
+      "value",
+      "label",
+      "meta"
+    ],
+    "variants": {
+      "default": {
+        "intent": "metric-proof-deck"
+      },
+      "pillars": {
+        "intent": "hero-trust-pillars"
+      }
+    },
+    "sizes": [],
+    "states": [],
+    "slots": [],
+    "accessibility": {
+      "role": "region",
+      "aria_label": "Telemetry data and statistical metrics"
+    }
+  },
+  "recipe": {
+    "file": "recipes/telemetry.yaml",
+    "base": {
+      "display": "grid",
+      "width": "100%",
+      "gap": "{space.4}"
+    },
+    "variants": {},
+    "sizes": {},
+    "states": {}
+  },
+  "behavior": null,
+  "ai": {
+    "purpose": "Statistical proof decks and trust pillars linking prominent numerical metrics to bilingual labels.",
+    "whenToUse": [
+      "Hero trust proofs (e.g. 15 verified dossiers, 100% rigor)",
+      "Financial and telemetry KPI strips"
+    ],
+    "avoid": [
+      "Complex relational database tables (use Table)"
+    ],
+    "related": []
+  },
+  "source": {
+    "file": "contracts/components/Telemetry.yaml"
+  }
+}

@@ -4936,6 +4936,46 @@
       ]
     },
     {
+      "name": "--qhr-gradient-display",
+      "description": "### 🏛️ `--qhr-gradient-display`\n**Qahera Canonical Token**\n\n- **Value:** `var(--qhr-gradient-primary)`\n\n```css\nvar(--qhr-gradient-display);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "values": [
+        {
+          "name": "var(--qhr-gradient-display)",
+          "description": "Reference token --qhr-gradient-display (var(--qhr-gradient-primary))"
+        }
+      ]
+    },
+    {
+      "name": "--qhr-gradient-sculpted",
+      "description": "### 🏛️ `--qhr-gradient-sculpted`\n**Qahera Canonical Token**\n\n- **Value:** `var(--qhr-gradient-primary)`\n\n```css\nvar(--qhr-gradient-sculpted);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "values": [
+        {
+          "name": "var(--qhr-gradient-sculpted)",
+          "description": "Reference token --qhr-gradient-sculpted (var(--qhr-gradient-primary))"
+        }
+      ]
+    },
+    {
       "name": "--qhr-input-background",
       "description": "### 🧩 `--qhr-input-background`\n**Canonical Component Token** · حقول الإدخال والنماذج (Input)\n\n- **Default Value:** `#ffffff`\n\n```css\nvar(--qhr-input-background);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
       "references": [
@@ -5776,6 +5816,48 @@
       ]
     },
     {
+      "name": "--qhr-shadow-vitrine",
+      "description": "### ☁️ `--qhr-shadow-vitrine`\n**Elevation Shadow Token** · `vitrine`\n\n- **Value:** `var(--qhr-shadow-sm)`\n\n```css\nbox-shadow: var(--qhr-shadow-vitrine);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "syntax": "<box-shadow>",
+      "values": [
+        {
+          "name": "var(--qhr-shadow-vitrine)",
+          "description": "Reference token --qhr-shadow-vitrine (var(--qhr-shadow-sm))"
+        }
+      ]
+    },
+    {
+      "name": "--qhr-shadow-vitrine-hover",
+      "description": "### ☁️ `--qhr-shadow-vitrine-hover`\n**Elevation Shadow Token** · `vitrine-hover`\n\n- **Value:** `var(--qhr-shadow-lg)`\n\n```css\nbox-shadow: var(--qhr-shadow-vitrine-hover);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "syntax": "<box-shadow>",
+      "values": [
+        {
+          "name": "var(--qhr-shadow-vitrine-hover)",
+          "description": "Reference token --qhr-shadow-vitrine-hover (var(--qhr-shadow-lg))"
+        }
+      ]
+    },
+    {
       "name": "--qhr-shadow-xl",
       "description": "### ☁️ `--qhr-shadow-xl`\n**Elevation Shadow Token** · `xl`\n\n- **Value:** `0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)`\n\n```css\nbox-shadow: var(--qhr-shadow-xl);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
       "references": [
@@ -6318,6 +6400,132 @@
         {
           "name": "var(--qhr-surface-subtle)",
           "description": "Reference token --qhr-surface-subtle (#f1f5f9)"
+        }
+      ]
+    },
+    {
+      "name": "--qhr-surface-vitrine-bg",
+      "description": "### 🧱 `--qhr-surface-vitrine-bg`\n**Adaptive Dual-Mode Token**\n\n- **Day Mode (Light):** `var(--qhr-surface-card)`\n- **Night Mode (Dark):** `var(--qhr-surface-card)`\n\n```css\nbackground-color: var(--qhr-surface-vitrine-bg);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "syntax": "<color>",
+      "values": [
+        {
+          "name": "var(--qhr-surface-vitrine-bg)",
+          "description": "Reference token --qhr-surface-vitrine-bg (var(--qhr-surface-card))"
+        }
+      ]
+    },
+    {
+      "name": "--qhr-surface-vitrine-border",
+      "description": "### 🧱 `--qhr-surface-vitrine-border`\n**Adaptive Dual-Mode Token**\n\n- **Day Mode (Light):** `var(--qhr-border-subtle)`\n- **Night Mode (Dark):** `var(--qhr-border-subtle)`\n\n```css\nbackground-color: var(--qhr-surface-vitrine-border);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "syntax": "<color>",
+      "values": [
+        {
+          "name": "var(--qhr-surface-vitrine-border)",
+          "description": "Reference token --qhr-surface-vitrine-border (var(--qhr-border-subtle))"
+        }
+      ]
+    },
+    {
+      "name": "--qhr-surface-vitrine-media-bg",
+      "description": "### 🧱 `--qhr-surface-vitrine-media-bg`\n**Adaptive Dual-Mode Token**\n\n- **Day Mode (Light):** `var(--qhr-surface-muted)`\n- **Night Mode (Dark):** `var(--qhr-surface-muted)`\n\n```css\nbackground-color: var(--qhr-surface-vitrine-media-bg);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "syntax": "<color>",
+      "values": [
+        {
+          "name": "var(--qhr-surface-vitrine-media-bg)",
+          "description": "Reference token --qhr-surface-vitrine-media-bg (var(--qhr-surface-muted))"
+        }
+      ]
+    },
+    {
+      "name": "--qhr-surface-vitrine-meta",
+      "description": "### 🧱 `--qhr-surface-vitrine-meta`\n**Adaptive Dual-Mode Token**\n\n- **Day Mode (Light):** `var(--qhr-content-muted)`\n- **Night Mode (Dark):** `var(--qhr-content-muted)`\n\n```css\nbackground-color: var(--qhr-surface-vitrine-meta);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "syntax": "<color>",
+      "values": [
+        {
+          "name": "var(--qhr-surface-vitrine-meta)",
+          "description": "Reference token --qhr-surface-vitrine-meta (var(--qhr-content-muted))"
+        }
+      ]
+    },
+    {
+      "name": "--qhr-surface-vitrine-sub",
+      "description": "### 🧱 `--qhr-surface-vitrine-sub`\n**Adaptive Dual-Mode Token**\n\n- **Day Mode (Light):** `var(--qhr-content-secondary)`\n- **Night Mode (Dark):** `var(--qhr-content-secondary)`\n\n```css\nbackground-color: var(--qhr-surface-vitrine-sub);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "syntax": "<color>",
+      "values": [
+        {
+          "name": "var(--qhr-surface-vitrine-sub)",
+          "description": "Reference token --qhr-surface-vitrine-sub (var(--qhr-content-secondary))"
+        }
+      ]
+    },
+    {
+      "name": "--qhr-surface-vitrine-title",
+      "description": "### 🧱 `--qhr-surface-vitrine-title`\n**Adaptive Dual-Mode Token**\n\n- **Day Mode (Light):** `var(--qhr-content-primary)`\n- **Night Mode (Dark):** `var(--qhr-content-primary)`\n\n```css\nbackground-color: var(--qhr-surface-vitrine-title);\n```\n\n---\n*Qahera UI Kit v1.0 · Sovereign Egyptian Design System by Alwkala*",
+      "references": [
+        {
+          "name": "Qahera Design Tokens Documentation",
+          "url": "https://qahera.alwkala.com/docs/tokens"
+        },
+        {
+          "name": "Cairo Design Studio Customizer",
+          "url": "https://qahera.alwkala.com/studio/"
+        }
+      ],
+      "syntax": "<color>",
+      "values": [
+        {
+          "name": "var(--qhr-surface-vitrine-title)",
+          "description": "Reference token --qhr-surface-vitrine-title (var(--qhr-content-primary))"
         }
       ]
     },

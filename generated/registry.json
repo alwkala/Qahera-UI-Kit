@@ -3,7 +3,7 @@
   "system": "Qahera UI Kit",
   "version": "1.6.0",
   "equation": "Qahera UI Kit v1.0 = Design System + Registry + AI Decision Layer",
-  "sourceHash": "8eca07854e278d3540e56d6be21516e6f9a397698f458f9d756b65c5bf7578a6",
+  "sourceHash": "cabc92e3ead5c2d89b055429628d200a900ccfa0b82f0518cf12f8c8f0e7962a",
   "ai_guidance": {
     "core_thesis": "Qahera UI Kit v1.0 = Design System + Registry + AI Decision Layer (not merely Component Library + Compiler)",
     "philosophy": "A design system built for developers and AI agents.",
@@ -31,10 +31,10 @@
     }
   },
   "counts": {
-    "components": 45,
-    "recipes": 45,
+    "components": 48,
+    "recipes": 48,
     "patterns": 21,
-    "icons": 46
+    "icons": 47
   },
   "components": {
     "accordion": {
@@ -1224,6 +1224,15 @@
           },
           "flat": {
             "intent": "soft-background-surface"
+          },
+          "vitrine": {
+            "intent": "museum-high-contrast-portrait-surface"
+          },
+          "book-3d": {
+            "intent": "perspective-3d-hardcover-monograph"
+          },
+          "metal-3d": {
+            "intent": "brushed-metallic-luxury-vip-card"
           }
         },
         "sizes": {
@@ -1280,6 +1289,18 @@
           "flat": {
             "background-color": "{color.surface.muted}",
             "border-color": "transparent"
+          },
+          "vitrine": {
+            "background-color": "{color.surface.card}",
+            "border-color": "{color.border.subtle}"
+          },
+          "book-3d": {
+            "background-color": "transparent",
+            "border-color": "transparent"
+          },
+          "metal-3d": {
+            "background-color": "{color.surface.elevated}",
+            "border-color": "{color.border.strong}"
           }
         },
         "sizes": {
@@ -5273,6 +5294,63 @@
         "file": "contracts/components/Tabs.yaml"
       }
     },
+    "telemetry": {
+      "id": "telemetry",
+      "name": "Telemetry",
+      "component": "Telemetry",
+      "category": "data-display",
+      "version": "1.0.0",
+      "contract": {
+        "anatomy": [
+          "root",
+          "item",
+          "value",
+          "label",
+          "meta"
+        ],
+        "variants": {
+          "default": {
+            "intent": "metric-proof-deck"
+          },
+          "pillars": {
+            "intent": "hero-trust-pillars"
+          }
+        },
+        "sizes": [],
+        "states": [],
+        "slots": [],
+        "accessibility": {
+          "role": "region",
+          "aria_label": "Telemetry data and statistical metrics"
+        }
+      },
+      "recipe": {
+        "file": "recipes/telemetry.yaml",
+        "base": {
+          "display": "grid",
+          "width": "100%",
+          "gap": "{space.4}"
+        },
+        "variants": {},
+        "sizes": {},
+        "states": {}
+      },
+      "behavior": null,
+      "ai": {
+        "purpose": "Statistical proof decks and trust pillars linking prominent numerical metrics to bilingual labels.",
+        "whenToUse": [
+          "Hero trust proofs (e.g. 15 verified dossiers, 100% rigor)",
+          "Financial and telemetry KPI strips"
+        ],
+        "avoid": [
+          "Complex relational database tables (use Table)"
+        ],
+        "related": []
+      },
+      "source": {
+        "file": "contracts/components/Telemetry.yaml"
+      }
+    },
     "textarea": {
       "id": "textarea",
       "name": "Textarea",
@@ -5395,6 +5473,66 @@
       },
       "source": {
         "file": "contracts/components/Textarea.yaml"
+      }
+    },
+    "ticker": {
+      "id": "ticker",
+      "name": "Ticker",
+      "component": "Ticker",
+      "category": "navigation",
+      "version": "1.0.0",
+      "contract": {
+        "anatomy": [
+          "root",
+          "wrap",
+          "track",
+          "item",
+          "dot"
+        ],
+        "variants": {
+          "default": {
+            "intent": "standard-infinite-ticker"
+          }
+        },
+        "sizes": [],
+        "states": [
+          "default",
+          "hover"
+        ],
+        "slots": [],
+        "accessibility": {
+          "role": "region",
+          "aria_label": "Continuous announcement ticker",
+          "aria_live": "off"
+        }
+      },
+      "recipe": {
+        "file": "recipes/ticker.yaml",
+        "base": {
+          "display": "flex",
+          "width": "100%",
+          "overflow": "hidden",
+          "background-color": "{color.surface.elevated}",
+          "border-block": "1px solid {color.border.subtle}"
+        },
+        "variants": {},
+        "sizes": {},
+        "states": {}
+      },
+      "behavior": null,
+      "ai": {
+        "purpose": "Continuous marquee ticker strip for announcements, brand mottos, or market metrics.",
+        "whenToUse": [
+          "Brand mottos, infinite announcement tickers",
+          "Market and currency status strips"
+        ],
+        "avoid": [
+          "Lengthy multi-paragraph text"
+        ],
+        "related": []
+      },
+      "source": {
+        "file": "contracts/components/Ticker.yaml"
       }
     },
     "timeline": {
@@ -5874,6 +6012,65 @@
       },
       "source": {
         "file": "contracts/components/Treeview.yaml"
+      }
+    },
+    "watermark": {
+      "id": "watermark",
+      "name": "Watermark",
+      "component": "Watermark",
+      "category": "media",
+      "version": "1.0.0",
+      "contract": {
+        "anatomy": [
+          "root",
+          "svg"
+        ],
+        "variants": {
+          "center": {
+            "intent": "centered-backdrop-insignia"
+          },
+          "top-start": {
+            "intent": "corner-anchored-motif"
+          },
+          "bottom-end": {
+            "intent": "corner-anchored-motif"
+          }
+        },
+        "sizes": [],
+        "states": [],
+        "slots": [],
+        "accessibility": {
+          "role": "presentation",
+          "aria_hidden": true
+        }
+      },
+      "recipe": {
+        "file": "recipes/watermark.yaml",
+        "base": {
+          "position": "absolute",
+          "pointer-events": "none",
+          "opacity": "0.06",
+          "z-index": 0
+        },
+        "variants": {},
+        "sizes": {},
+        "states": {}
+      },
+      "behavior": null,
+      "ai": {
+        "purpose": "Architectural background vector insignias with subtle opacity and optional kinetic rotation.",
+        "whenToUse": [
+          "Section backgrounds with heritage motifs (Lotus, Shen, Cartouche, Obelisk, Rosette)"
+        ],
+        "avoid": [
+          {
+            "\"Interactive clickable elements (watermark is strictly pointer-events": "none)\""
+          }
+        ],
+        "related": []
+      },
+      "source": {
+        "file": "contracts/components/Watermark.yaml"
       }
     }
   },
@@ -7664,6 +7861,23 @@
         "border"
       ],
       "svg_path": "M2 6h20v2H2V6zm2 4h3v4H4v-4zm5 0h3v4H9v-4zm5 0h3v4h-3v-4zm5 0h2v4h-2v-4zM2 16h20v2H2v-2z"
+    },
+    "rosette": {
+      "category": "heritage",
+      "intent": "ornamental-star-divider",
+      "aliases": [
+        "star",
+        "geometric-rosette",
+        "arabesque",
+        "medallion"
+      ],
+      "tags": [
+        "heritage",
+        "ornament",
+        "divider",
+        "islamic-star"
+      ],
+      "svg_path": "M12 2l2.4 4.8L20 8l-3.6 4.4L17 18l-5-2.6L7 18l.6-5.6L4 8l5.6-1.2L12 2z M12 6.5l-1.5 3-3.5.8 2.2 2.8-.4 3.5 3.2-1.6 3.2 1.6-.4-3.5 2.2-2.8-3.5-.8L12 6.5z"
     }
   },
   "decision_matrix": {

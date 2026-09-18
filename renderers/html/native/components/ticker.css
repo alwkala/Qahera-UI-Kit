@@ -1,0 +1,68 @@
+/* ==========================================================================
+   Infinite Marquee Ticker (.qhr-ticker)
+   Derived from Alhoulie Haute Atelier Benchmark
+   ========================================================================== */
+
+.qhr-ticker {
+  background-color: var(--qhr-surface-elevated);
+  border-block: 1px solid var(--qhr-border-subtle);
+  overflow: hidden;
+  padding-block: var(--qhr-space-4, 16px);
+  position: relative;
+  width: 100%;
+  display: flex;
+  user-select: none;
+}
+
+.qhr-ticker-wrap {
+  display: flex;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.qhr-ticker-track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  animation: qhr-marquee 30s linear infinite;
+  will-change: transform;
+}
+
+[dir="rtl"] .qhr-ticker-track {
+  animation: qhr-marquee-rtl 30s linear infinite;
+}
+
+.qhr-ticker:hover .qhr-ticker-track {
+  animation-play-state: paused;
+}
+
+.qhr-ticker-item {
+  font-family: var(--qhr-font-heading);
+  font-size: var(--qhr-text-sm, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--qhr-content-secondary);
+  display: inline-flex;
+  align-items: center;
+  padding-inline: var(--qhr-space-8, 32px);
+}
+
+.qhr-ticker-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--qhr-radius-full, 9999px);
+  background-color: var(--qhr-color-accent, var(--qhr-color-primary));
+  margin-inline-end: var(--qhr-space-6, 24px);
+  display: inline-block;
+}
+
+@keyframes qhr-marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes qhr-marquee-rtl {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(50%); }
+}

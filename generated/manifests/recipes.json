@@ -1,8 +1,8 @@
 {
   "schema": "qahera.recipe-manifest/v1",
   "compiler": "1.6.0",
-  "sourceHash": "8eca07854e278d3540e56d6be21516e6f9a397698f458f9d756b65c5bf7578a6",
-  "recipeCount": 45,
+  "sourceHash": "cabc92e3ead5c2d89b055429628d200a900ccfa0b82f0518cf12f8c8f0e7962a",
+  "recipeCount": 48,
   "recipes": {
     "Accordion": {
       "id": "accordion",
@@ -660,6 +660,18 @@
         "flat": {
           "background-color": "{color.surface.muted}",
           "border-color": "transparent"
+        },
+        "vitrine": {
+          "background-color": "{color.surface.card}",
+          "border-color": "{color.border.subtle}"
+        },
+        "book-3d": {
+          "background-color": "transparent",
+          "border-color": "transparent"
+        },
+        "metal-3d": {
+          "background-color": "{color.surface.elevated}",
+          "border-color": "{color.border.strong}"
         }
       },
       "sizes": {
@@ -2715,6 +2727,30 @@
         "related": []
       }
     },
+    "Telemetry": {
+      "id": "telemetry",
+      "component": "Telemetry",
+      "category": "data-display",
+      "base": {
+        "display": "grid",
+        "width": "100%",
+        "gap": "{space.4}"
+      },
+      "variants": {},
+      "sizes": {},
+      "states": {},
+      "ai": {
+        "purpose": "Statistical proof decks and trust pillars linking prominent numerical metrics to bilingual labels.",
+        "whenToUse": [
+          "Hero trust proofs (e.g. 15 verified dossiers, 100% rigor)",
+          "Financial and telemetry KPI strips"
+        ],
+        "avoid": [
+          "Complex relational database tables (use Table)"
+        ],
+        "related": []
+      }
+    },
     "Textarea": {
       "id": "textarea",
       "component": "Textarea",
@@ -2788,6 +2824,32 @@
         ],
         "avoid": [
           "Short single-line fields (use Input)"
+        ],
+        "related": []
+      }
+    },
+    "Ticker": {
+      "id": "ticker",
+      "component": "Ticker",
+      "category": "navigation",
+      "base": {
+        "display": "flex",
+        "width": "100%",
+        "overflow": "hidden",
+        "background-color": "{color.surface.elevated}",
+        "border-block": "1px solid {color.border.subtle}"
+      },
+      "variants": {},
+      "sizes": {},
+      "states": {},
+      "ai": {
+        "purpose": "Continuous marquee ticker strip for announcements, brand mottos, or market metrics.",
+        "whenToUse": [
+          "Brand mottos, infinite announcement tickers",
+          "Market and currency status strips"
+        ],
+        "avoid": [
+          "Lengthy multi-paragraph text"
         ],
         "related": []
       }
@@ -3025,6 +3087,32 @@
         ],
         "avoid": [
           "Flat single-level lists (use Nav or List)"
+        ],
+        "related": []
+      }
+    },
+    "Watermark": {
+      "id": "watermark",
+      "component": "Watermark",
+      "category": "media",
+      "base": {
+        "position": "absolute",
+        "pointer-events": "none",
+        "opacity": "0.06",
+        "z-index": 0
+      },
+      "variants": {},
+      "sizes": {},
+      "states": {},
+      "ai": {
+        "purpose": "Architectural background vector insignias with subtle opacity and optional kinetic rotation.",
+        "whenToUse": [
+          "Section backgrounds with heritage motifs (Lotus, Shen, Cartouche, Obelisk, Rosette)"
+        ],
+        "avoid": [
+          {
+            "\"Interactive clickable elements (watermark is strictly pointer-events": "none)\""
+          }
         ],
         "related": []
       }
