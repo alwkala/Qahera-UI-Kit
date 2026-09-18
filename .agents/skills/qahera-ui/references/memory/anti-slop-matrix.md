@@ -96,3 +96,10 @@ Binary negative constraints for generating, composing, and auditing UI code in Q
 - ❌ **No Non-Canonical Class Names**: Never use any UI class outside `.qhr-*`. Classes like `.exhibit-*`, `.custom-*`, or `.app-*` are hard failures.
 - ❌ **No Ad-Hoc Breakpoint Overrides**: Responsive logic must rely strictly on Qahera's built-in grid, flex, and logical layout tokens.
 - ❌ **No Bypass of CDN Semantic Layers**: Templates must reference the 3 canonical CDN stylesheets (`qahera-tokens.min.css`, `qahera-themes.min.css`, `qahera.min.css`) or local compiled `dist/` assets.
+
+## XVIII. Anti-Sterility & High-Fidelity Composition (`QAHERA-FIDELITY-001`)
+- ❌ **No Compliance Overkill / Visual Starvation**: Zero-Custom-CSS does NOT mean stripping atmospheric artwork, rich typography, aspect ratios, or lighting effects. Removing essential visual elements to artificially pass audits is a critical design failure.
+- ❌ **No Naked Card Soup**: Never stack plain, unstyled `<div class="qhr-card">` boxes without typography hierarchy, badge accents, elevation states, or contextual surface depth.
+- ❌ **No Missing Atmospheric Backdrops**: When designing museum, heritage, luxury, or financial templates, always apply rich radial/linear vignettes, duotone treatments, and glassmorphism using canonical tokens (`--qhr-surface-glass`, `--qhr-elevation-floating`, `--qhr-color-accent`, `--qhr-border-subtle`).
+- ❌ **No Unstructured Layout Flattening**: Specialized compositional concepts (e.g. Asymmetric Hero Split, Epoch Timeline Medallions, Archival Scholar Dossiers) must be composed via canonical higher-order patterns and token-based layout utilities rather than collapsed into generic flat grids.
+

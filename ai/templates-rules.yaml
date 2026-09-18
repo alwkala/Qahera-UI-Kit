@@ -37,3 +37,12 @@ template_contract:
   compliance_gate:
     cli_command: "node bin/qahera.js audit:template <path>"
     required_exit_code: 0
+
+  visual_fidelity_doctrine:
+    rule_id: "QHR-FIDELITY-001"
+    name: "Zero-Custom-CSS with 100% Visual Richness"
+    statement: >
+      Zero-Custom-CSS does NOT mean zero visual design. Templates must deliver production-grade,
+      luxurious, and immersive experiences by leveraging the full power of Qahera tokens,
+      CSS custom properties, glassmorphism variants (qhr-card--glass), and atmospheric backdrops.
+

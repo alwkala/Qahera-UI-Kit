@@ -1,6 +1,6 @@
 {
   "schema": "qahera.icon-manifest/v1",
-  "compiler": "1.5.5",
+  "compiler": "1.6.0",
   "sourceHash": "8eca07854e278d3540e56d6be21516e6f9a397698f458f9d756b65c5bf7578a6",
   "iconCount": 46,
   "policy": {

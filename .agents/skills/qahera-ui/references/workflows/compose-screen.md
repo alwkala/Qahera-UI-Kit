@@ -48,7 +48,9 @@ The task cannot be considered complete unless the auditor exits with `0` errors.
 - [ ] Zero custom `.css` files created (0 bytes of custom stylesheets).
 - [ ] Component Mapping Matrix declared.
 - [ ] All components map to canonical `.qhr-*` classes.
+- [ ] Visual Fidelity Gate (`QAHERA-FIDELITY-001`): Atmospheric depth, duotones, glassmorphism (`qhr-card--glass`), and editorial typography scales applied. Zero visual starvation.
 - [ ] No hardcoded colors or physical CSS margins/paddings.
 - [ ] Typography adheres strictly to Alexandria (headings) and Cairo (body). Amiri is banned.
 - [ ] Zero emojis; 100% semantic SVG icons.
 - [ ] Ran `node bin/qahera.js audit:template <path>` with exit code `0` (COMPLIANT).
+
