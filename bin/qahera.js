@@ -27,6 +27,11 @@ const { generateCssData } = require('../cli/generate-css-data');
 const { generateHtmlData } = require('../cli/generate-html-data');
 const { auditTemplate } = require('../cli/audit-template');
 const { scaffoldTemplate } = require('../cli/scaffold-template');
+const { startMcpServer } = require('../cli/mcp-server');
+const { startDevServer } = require('../cli/preview-server');
+const { lintFiles } = require('../cli/lint');
+const { setupIde } = require('../cli/setup-ide');
+const { syncDownstream } = require('../cli/sync-downstream');
 
 const args = process.argv.slice(2);
 const command = args[0] || 'build';
@@ -41,19 +46,59 @@ if (command === 'help' || command === '--help' || command === '-h') {
   process.exit(0);
 }
 
+if (command === 'mcp' || command === 'serve:mcp') {
+  const isHttp = args.includes('--http');
+  const portArg = args.find(a => a.startsWith('--port='));
+  const port = portArg ? parseInt(portArg.split('=')[1], 10) : 3301;
+  const quiet = args.includes('--quiet') || args.includes('-q');
+  startMcpServer({
+    mode: isHttp ? 'http' : 'stdio',
+    port,
+    quiet
+  });
+  // Long running process, do not exit
+}
+
+if (command === 'dev' || command === 'serve') {
+  const portArg = args.find(a => a.startsWith('--port='));
+  const port = portArg ? parseInt(portArg.split('=')[1], 10) : 3300;
+  startDevServer({ port });
+  // Long running process
+}
+
+if (command === 'lint' || command === 'check') {
+  const target = args[1] || '.';
+  const passed = lintFiles(target);
+  process.exit(passed ? 0 : 1);
+}
+
+if (command === 'setup-ide' || command === 'configure') {
+  setupIde(args.slice(1));
+  process.exit(0);
+}
+
+if (command === 'sync:downstream' || command === 'sync') {
+  syncDownstream();
+  process.exit(0);
+}
+
 if (command === 'list' || command === 'ls') {
   listComponents();
   process.exit(0);
 }
 
 if (command === 'add') {
-  addComponents(args.slice(1));
-  process.exit(0);
+  addComponents(args.slice(1)).then(() => process.exit(0)).catch(e => {
+    console.error(e.message);
+    process.exit(1);
+  });
 }
 
 if (command === 'init') {
-  initProject(args.slice(1));
-  process.exit(0);
+  initProject(args.slice(1)).then(() => process.exit(0)).catch(e => {
+    console.error(e.message);
+    process.exit(1);
+  });
 }
 
 if (command === 'build:css') {
@@ -139,13 +184,31 @@ process.exit(1);
 
 function printHelp() {
   console.log(`
-🏛️  قاهرة · Qahera UI Kit CLI v${pkg.version}
+Qahera UI Kit CLI v${pkg.version} — Sovereign AI-Native Architecture
 
 Usage:
   npx qahera-ui [command] [options]
   qahera [command] [options]
 
 Commands:
+  mcp                      Start Model Context Protocol (MCP) server for AI coding agents
+                           Options:
+                             --http             Run as HTTP JSON-RPC endpoint
+                             --port=<number>    HTTP port (default: 3301)
+                             --quiet, -q        Suppress startup banner
+
+  dev (or serve)           Start local visual preview & dev hub server
+                           Options:
+                             --port=<number>    Server port (default: 3300)
+
+  lint (or check) [path]   Audit code or directory for Qahera invariants and tokens
+
+  setup-ide                Configure VS Code, Cursor, Antigravity IDE custom data & MCP
+                           Options:
+                             --dry-run          Preview changes without writing
+
+  sync:downstream          Synchronize compiled dist assets to official website
+
   init                     Scaffold tokens.css, components.css, and embed AI agent skill
                            Options:
                              --target, -t <react|php|html|htmx|js>  (default: react)
@@ -159,7 +222,7 @@ Commands:
                              --overwrite, -y                        (overwrite existing files)
                              --all, -a                              (add all canonical components)
 
-  list (or ls)             List all 45 components, 21 patterns, and 20 templates
+  list (or ls)             List all 49 components, 21 patterns, and 20 templates
 
   build                    Run full compilation (CSS, Icons, and Registry artifacts)
 
@@ -177,18 +240,19 @@ Commands:
 
   validate                 Validate schema, tokens, and contracts without emitting
 
-  test (or audit)          Run 4-stage QA audit (A11y, RTL, RSC 0kb, Tokens)
+  test (or audit)          Run quality audits (Version, A11y, RTL, RSC 0kb, Tokens)
 
   version                  Print compiler version
 
 Examples:
-  npx qahera-ui init --target=react
+  npx qahera-ui mcp
+  npx qahera-ui dev
+  npx qahera-ui lint templates/fintech-wealth/index.html
+  npx qahera-ui setup-ide
+  npx qahera-ui init
   npx qahera-ui add button modal card --target=react
-  npx qahera-ui add button alert navbar --target=php --dest=./views/qahera
-  npx qahera-ui add pattern:dashboard-stat --target=react
+  npx qahera-ui add pattern:dashboard-stat --target=php
   npx qahera-ui add template:admin --target=react
-  npx qahera-ui add --all --target=react
-  npx qahera-ui cdn zamalek > index.html
   npx qahera-ui list
 `);
 }

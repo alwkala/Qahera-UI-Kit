@@ -2005,6 +2005,10 @@
             {
               "name": "centered",
               "description": "Variant: centered"
+            },
+            {
+              "name": "cinematic",
+              "description": "Variant: cinematic"
             }
           ]
         },

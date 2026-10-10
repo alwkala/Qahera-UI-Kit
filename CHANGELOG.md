@@ -3,6 +3,48 @@
 All notable changes to **Qahera UI Kit** will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.7.0] - 2026-10-10
+
+### Sovereign Model Context Protocol (MCP) Server, Interactive DX Wizard & Web Platform Integration
+> *"Qahera UI Kit v1.7.0 elevates the ecosystem into a sovereign AI Agent runtime and developer experience suite. It introduces the native zero-dependency Model Context Protocol (MCP) server supporting Stdio and HTTP transports with 7 canonical AI tools, provides an interactive CLI wizard for project setup and component scaffolding, adds zero-touch IDE auto-configurators for Cursor and VS Code, delivers a fast architectural code linter, launches the local visual preview dev server, and connects the official web platform via an interactive Web MCP Inspector and cloud JSON-RPC endpoint."*
+
+### Added
+- **Sovereign Model Context Protocol (MCP) Server (`cli/mcp-server.js` & `qahera mcp`):**
+  - Native JSON-RPC 2.0 server conforming to MCP Protocol specification (2024-11-05).
+  - Zero external runtime dependencies: runs on pure Node.js stdio streams or lightweight HTTP server (`--http`).
+  - 7 canonical tools exposed to AI Coding Agents:
+    1. `qahera_list`: catalog discovery across components, patterns, templates, and themes.
+    2. `qahera_get_component`: contracts, YAML recipes, and target-specific source code.
+    3. `qahera_search_tokens`: fuzzy search across 330+ `--qhr-*` design tokens with values and semantics.
+    4. `qahera_get_pattern`: composite pattern retrieval with slots and composition guidelines.
+    5. `qahera_get_theme`: Cairo neighborhood theme overrides and cultural heritage narratives.
+    6. `qahera_audit_code`: instant mechanical compliance audit checking emojis, fonts, physical CSS, and classes.
+    7. `qahera_compose_screen`: AI screen layout synthesizer outputting verified `qhr-*` markup.
+- **Zero-Dependency Interactive CLI Wizard (`cli/interactive.js`):**
+  - Terminal prompts powered by native `readline`: single select, multi-select checkboxes, confirmation, and text input.
+  - Seamless fallback in non-TTY and automated CI environments.
+  - Interactive upgrades to `qahera init` and `qahera add`.
+- **Zero-Touch IDE & Agent Configurator (`cli/setup-ide.js` & `qahera setup-ide`):**
+  - Automatic setup of `.vscode/settings.json` with CSS and HTML custom data paths.
+  - Automatic registration of `qahera` MCP server in `.cursor/mcp.json` and Antigravity IDE configuration.
+  - Supports `--dry-run` inspection.
+- **Fast Architectural Code Linter (`cli/lint.js` & `qahera lint`):**
+  - File and folder scanner verifying Zero-Custom-CSS, emoji prohibition (`QAHERA-VISUAL-001`), Amiri font ban (`QAHERA-FONT-001`), and logical CSS properties (`QAHERA-RTL-001`).
+- **Local Dev & Visual Preview Server (`cli/preview-server.js` & `qahera dev`):**
+  - Instant local static HTTP server with automatic port discovery and fallback.
+  - Serves an auto-generated visual hub index linking all 20 production templates and standalone component previews.
+- **Automated Upstream-to-Downstream Asset Synchronizer (`cli/sync-downstream.js` & `qahera sync:downstream`):**
+  - Copies compiled `dist/*.css` and `qahera.*-data.json` directly into downstream website platform.
+- **Automated Version Synchronization CI Check (`ci/audit-versions.js`):**
+  - Integrated into unified CI audit runner (`ci/audit-all.js`) to guarantee `package.json`, `VERSION`, and `ai/qahera.yaml` are strictly in sync.
+- **Web MCP Documentation Portal & Interactive Inspector (`docs/mcp.html` on website):**
+  - Comprehensive documentation portal covering MCP protocol, setup instructions for Cursor, Claude Desktop, and Antigravity.
+  - Interactive Web MCP Inspector (Alpine.js) allowing live JSON-RPC testing from the browser.
+- **Remote Web MCP Endpoint (`api/mcp.php` on website):**
+  - Zero-dependency PHP 8.x endpoint providing cloud access to Qahera catalog and tools with IP-based rate limiting (60 req/min) and 64KB read-only payload protection.
+
+---
+
 ## [1.6.0] - 2026-09-18
 
 ### Zero-Custom-CSS Architecture, Deterministic CLI Template Auditor & Bloomberg/Investopedia Financial Portal

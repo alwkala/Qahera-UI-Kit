@@ -1,13 +1,14 @@
-# Qahera UI Kit
+# Qahera UI Kit v1.7.0
 
 > The AI-Native, Contract-Driven Design System & Multi-Target Component Architecture by Alwkala.
 
 Qahera UI Kit is a deterministic design system engine built for AI pair-programming agents (Google Antigravity, Cursor, Claude Code, OpenAI Codex, Windsurf) and human engineers. It enforces 100% source ownership (shadcn-style) with zero runtime dependencies.
 
-- Canonical Registry: 42 Components, 20 Compositional Patterns, 18 Application Templates, 12 Cairo Neighborhood Themes.
-- Supported Targets: React 19 (0kb RSC), PHP 8.x Plates, Native HTML/CSS, Web Components, HTMX, Tailwind CSS.
-- Zero Emoji (`QAHERA-VISUAL-001`): 41 Registered Semantic SVG Icons.
+- Canonical Registry: 49 Components, 21 Compositional Patterns, 20 Application Templates, 13 Cairo Neighborhood Themes.
+- Supported Targets: React 19 (0kb RSC), PHP 8.x Plates, Native HTML/CSS, Web Components, HTMX.
+- Zero Emoji (`QAHERA-VISUAL-001`): 47 Registered Semantic SVG Icons.
 - Bidirectional Infrastructure: 100% Logical CSS properties (`margin-inline-start`, etc.) with canonical Alexandria & Cairo typography.
+- Sovereign Model Context Protocol (MCP) Server: Built-in JSON-RPC 2.0 server (`npx -y qahera-ui mcp`) with 7 tools.
 
 ## Quick Links
 
@@ -15,29 +16,44 @@ Qahera UI Kit is a deterministic design system engine built for AI pair-programm
 - [GitHub Repository](https://github.com/alwkala/Qahera-UI-Kit): Source code, contracts, and issue tracker
 - [Full Specification](SPEC.md): Normative architecture, 17 invariants, and compiler stages
 - [Agent Governance](AGENTS.md): Strict contract rules for AI coding assistants
+- [Web Portal](https://alwkala.com/qahera/): Official live showcase hub and documentation portal
+- [Web MCP Endpoint](https://alwkala.com/qahera/api/mcp): Cloud JSON-RPC 2.0 endpoint for AI tools
 
-## Usage with AI Coding Agents
+## Model Context Protocol (MCP) Server
 
-Install and embed the Qahera skill directly into your workspace:
+Start the zero-dependency MCP server for AI coding assistants:
 
 ```bash
-npx qahera-ui init --target=react
+npx -y qahera-ui mcp
 ```
 
-This places `.agents/skills/qahera-ui` into your repository. Your AI assistant will automatically use:
-- `/qahera-ui compose <screen>`: Generate complete production layouts with canonical components.
-- `/qahera-ui pattern <name>`: Scaffold 20 enterprise UX patterns.
-- `/qahera-ui theme <neighborhood>`: Switch between the 12 Cairo Atlas themes.
-- `/qahera-ui audit`: Verify compliance with the 17 architectural invariants.
+Exposes 7 sovereign AI tools over Stdio or HTTP:
+1. `qahera_list`: catalog across components, patterns, templates, themes.
+2. `qahera_get_component`: contracts, recipes, and target source code.
+3. `qahera_search_tokens`: fuzzy search across 330+ `--qhr-*` design tokens.
+4. `qahera_get_pattern`: higher-order compositional UX patterns.
+5. `qahera_get_theme`: Cairo neighborhood theme overrides.
+6. `qahera_audit_code`: mechanical invariant audit (zero emoji, font discipline, logical CSS).
+7. `qahera_compose_screen`: AI layout synthesizer using canonical `qhr-*` components.
 
-## Canonical Components (42)
+## Developer CLI Commands
 
-Accordion, Alert, AspectRatio, Avatar, Badge, Breadcrumb, Button, ButtonGroup, Calendar, Card, Checkbox, CodeBlock, ColorPicker, DataTable, DatePicker, Dialog, Divider, Drawer, Dropdown, EmptyState, FileUpload, Form, Input, Kbd, Menu, Modal, Navbar, Pagination, Popover, ProgressBar, RadioGroup, Select, Skeleton, Slider, Spinner, Switch, Tabs, Textarea, Timeline, Toast, Tooltip, Treeview.
+```bash
+npx qahera-ui init          # Interactive project initialization
+npx qahera-ui add <name>    # Add component, pattern, or template source code
+npx qahera-ui dev           # Local dev & visual preview hub (port 3300)
+npx qahera-ui lint <path>   # Fast architectural code linter
+npx qahera-ui setup-ide     # Zero-touch VS Code and Cursor configuration
+```
 
-## Compositional Patterns (20)
+## Canonical Components (49)
 
-ConfirmationDialog, DataTableToolbar, FilterBar, SearchToolbar, DashboardStat, ChatStream, EmptyState, FormActions, KanbanBoard, LuxuryProductCard, MetricComparisonGrid, DatePaginator, EditorialStory, FileManagerGrid, Questionnaire, SortableList, StoreLocator, UserCard, VipMembership, PaginationPattern.
+Accordion, Alert, Avatar, BackToTop, Badge, Breadcrumb, Button, Callout, CanvasSparks, Card, Carousel, Cartouche, Checkbox, Chip, Divider, Dock, Drawer, Dropdown, FileUpload, Frieze, Icon, Input, Kbd, Megamenu, Menu, Modal, Navbar, Pagination, Preloader, Progress, Radio, Rating, Ribbon, Seal, Select, Skeleton, Spinner, Stepper, Switch, Table, Tabs, Textarea, Timeline, Toast, Tooltip, Treeview.
 
-## Cairo Atlas Themes (12)
+## Compositional Patterns (21)
 
-Garden City, Zamalek, Downtown, Heliopolis, Maadi, Roxy, Sakakini, El Hussein, Shubra, El Zaytoun, El Marg, New Cairo.
+ChatStream, Confirmation, DashboardStat, DataTableToolbar, DatePaginator, EditorialStory, EmptyState, FileManagerGrid, FilterBar, FormActions, HeroSkylinePanorama, KanbanBoard, LuxuryProductCard, MetricComparisonGrid, Pagination, Questionnaire, SearchToolbar, SortableList, StoreLocator, UserCard, VipMembership.
+
+## Cairo Atlas Themes (13)
+
+Zamalek, Downtown, Heliopolis, Maadi, Roxy, Sakakini, Shubra, Nubia, Sinai, New Cairo, Garden City, Cairo Azure, Luxury Gold.

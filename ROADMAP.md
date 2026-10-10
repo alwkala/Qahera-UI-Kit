@@ -40,9 +40,10 @@ Qahera UI Kit synthesizes the best architectural paradigms of the three defining
 | **v1.5.3** | Universal Ecosystem Distribution & CDN | Official PHP Packagist (`alwkala/qahera-ui`), Arabic NPM Parity, Zero-Build jsDelivr/unpkg CDN | **Completed** | **2026-09-17** |
 | **v1.5.4** | VS Code CSS Custom Data & Studio UX | Official `qahera.css-data.json`, 325 Tokens Autocomplete, `build:css-data` CLI, Cairo Studio Polish | **Completed** | **2026-09-17** |
 | **v1.5.5** | HTML Custom Data & Zero-Touch IDE | `qahera.html-data.json`, Web Components Autocomplete, `init` Zero-Touch IDE, `cdn` CLI, Skill v1.2.0 | **Completed** | **2026-09-17** |
-| **v1.6.0** | Tokens Studio, Advanced Data & SVG Icons | Advanced DataGrids (Preline-style), DatePicker, Form Schemas, W3C DTCG Sync, Curated 150+ SVG Icon Engine | *Planned* | Q4 2026 |
-| **v1.7.0** | Tailwind Plugin & Microwebsite | Official Tailwind Plugin (`qahera-ui-kit/tailwind`), `alwkala.com/qahera` Microwebsite, npm dual-dist | *Planned* | Q1 2027 |
-| **v2.0.0** | AI Agent Engine & Native MCP | Autonomous MCP Server (`qahera-mcp`), Agent Skills Suite, Global Registries (Smithery/Glama) | *Roadmap* | Q1-Q2 2027 |
+| **v1.6.0** | Zero-Custom-CSS & Financial Portal | Zero-Custom-CSS Contract, `qahera audit:template`, Bloomberg/Investopedia Financial Portal | **Completed** | **2026-09-18** |
+| **v1.7.0** | Sovereign AI Agent Engine & Native MCP | Zero-Dependency MCP Server (Stdio + HTTP, 7 Tools), Interactive CLI Wizard, Zero-Touch IDE Setup, CLI Lint, Dev Server, Web Portal & Remote Web MCP | **Completed** | **2026-10-10** |
+| **v1.8.0** | Tailwind Plugin & Advanced Tokens Studio | Official Tailwind Plugin (`qahera-ui-kit/tailwind`), W3C DTCG Token Export, npm dual-dist | *Planned* | Q4 2026 / Q1 2027 |
+| **v2.0.0** | Global Registries & Multi-Agent Workflows | Global MCP Registries (Smithery/Glama), Autonomous Multi-Agent Multi-Tenant Workflows | *Roadmap* | Q1-Q2 2027 |
 
 ---
 

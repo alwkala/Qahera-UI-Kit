@@ -49,6 +49,8 @@ Agents must verify every change against these 15 invariants before proposing or 
 15. **Thematic Topography & Cultural Coherence (`QAHERA-THEME-001`):** Themes in Qahera UI Kit must NEVER be arbitrary abstract names (e.g. `theme-blue`, `cool-dark`) or cosmetic neighborhood labels. Every theme MUST synthesize a recognized global design movement (e.g. Art Deco, Belle Époque, Neo-Brutalism, Modern Minimalist, Vernacular Claymorphism, Desert Raw Materiality) with an authentic Egyptian cultural, architectural, or urban context (e.g. Heliopolis, Downtown Khedivial Cairo, New Cairo, Maadi, Shubra, Nubia, Sinai Bedouin, Historic Islamic Cairo). Themes operate strictly as semantic token overrides in `tokens/themes/*.yaml` via `[data-theme="..."]`, maintaining 100% component contract purity and 100% logical RTL layout.
 16. **Strict Repository Isolation & Downstream Separation (`QAHERA-REPO-001`):** The `Qahera-UI-Kit` repository is strictly reserved for the core AI-native design system, canonical contracts, recipes, multi-target renderers, tokens, and compilation toolchain. Downstream consumer projects — including the official marketing website (`c:\wamp64\www\Qahera`), customer applications, and raw design assets — belong strictly in separate repositories or dedicated workspace roots. AI agents are strictly prohibited from creating marketing website directories (e.g. `site-marketing/`, `style-guide/`, `marketing/`), committing binary design dumps (`*.zip`, `*.psd`, `*.fig`), or mixing consumer application code into the core kit Git tree. Downstream consumers consume the compiled `dist/` artifacts or `npx qahera-ui` packages.
 17. **Smart Token Map & IDE CSS Custom Data Autocomplete (`QAHERA-CSS-DATA-001`):** All canonical design tokens MUST be exported to `qahera.css-data.json` conforming to Microsoft VS Code Custom Data v1.1 schema via `cli/generate-css-data.js`. Whenever tokens in `tokens/*.yaml`, `tokens.css`, or `tokens/themes/*.yaml` are modified or added, `qahera build:css-data` must be re-run to maintain 100% synchronization. This guarantees instant IDE autocomplete, rich bilingual Markdown hover cards, and syntax validation across VS Code, Cursor, and Google Antigravity IDE without manual token lookup.
+18. **Cinematic Hero Architecture & Fixed Asymmetric Focal Canvas (`QAHERA-HERO-CINEMATIC`):** Asymmetric hero artwork (such as portraits or focal monuments) must never be clipped with ad-hoc `-webkit-mask-composite: source-in` or naively flipped via `scaleX(-1)`. Systems must implement the canonical `.qhr-hero--cinematic` pattern: a full-bleed canvas layer (`.qhr-hero-canvas` + `object-fit: cover; object-position: 85% center;`) that remains physically stationary across `dir="rtl"` and `dir="ltr"`, a multi-directional dark directional scrim (`.qhr-hero-scrim`), and a two-column grid (`.qhr-hero-grid`) featuring an explicit focal void (`.qhr-hero-focal-void` with `order: 1` in RTL) and a typography dossier (`.qhr-hero-dossier` with `order: 2` in RTL). Only typography alignment and container order adapt across languages.
+19. **Archival Media Integrity & Unified Semiotics (`QAHERA-ARCHIVE-MEDIA`):** In historical, biographical, or cultural archives lacking verified photographic portraits, components must never mix disparate modern digital drawings or low-resolution clip-art. Renderers and templates must feature unified canonical engraving seals (`scholar-avatar.png`), rendered within vitrine cards (`.qhr-card--vitrine .qhr-card-media img`) using `object-fit: contain; object-position: center;` and internal padding (`padding: var(--qhr-space-3, 12px)`) to eliminate distortion and maintain institutional dignity.
 
 ---
 
@@ -128,3 +130,20 @@ A component is considered complete only when:
 - [ ] All 6 renderer targets (HTML Native, HTML Tailwind, PHP, HTMX, React, JS Web Components) are generated or implemented.
 - [ ] Standalone interactive preview page exists in `examples/previews/`.
 - [ ] Passes `node bin/qahera.js test` with 0 errors and 0 warnings.
+
+---
+
+## 8. Sovereign Model Context Protocol (MCP) Server
+
+AI Coding Agents operating in or consuming Qahera UI Kit can invoke the native zero-dependency MCP server (`qahera mcp`):
+
+* **Command:** `npx -y qahera-ui mcp`
+* **Transports:** Stdio JSON-RPC 2.0 (default) or HTTP (`--http --port=3301`).
+* **Available AI Tools:**
+  1. `qahera_list`: Retrieve canonical catalog of components, patterns, templates, or Cairo neighborhood themes.
+  2. `qahera_get_component`: Fetch component contract, recipe YAML, and framework renderer code (`react`, `php`, `html`, `htmx`, `js`).
+  3. `qahera_search_tokens`: Query 330+ `--qhr-*` design tokens by semantic role, color name, or category.
+  4. `qahera_get_pattern`: Retrieve higher-order UX patterns with composite component requirements.
+  5. `qahera_get_theme`: Retrieve Cairo architectural theme tokens and cultural narratives.
+  6. `qahera_audit_code`: Deterministically audit code against Zero-Custom-CSS, emoji bans (`QAHERA-VISUAL-001`), font bans (Amiri), and logical properties (`QAHERA-RTL-001`).
+  7. `qahera_compose_screen`: Synthesize complete screens composed exclusively from verified `qhr-*` components.

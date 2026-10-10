@@ -13,6 +13,7 @@
 const { runA11yAudit } = require('./audit-a11y');
 const { runPerfAudit } = require('./audit-perf');
 const { runRtlAudit } = require('./audit-rtl');
+const { runVersionAudit } = require('./audit-versions');
 const { runQaheraCompiler } = require('../compiler/compiler');
 
 function runAllAudits() {
@@ -21,6 +22,10 @@ function runAllAudits() {
 
   const startTime = Date.now();
   let allPassed = true;
+
+  // 0. Version Synchronization Audit
+  const versionPassed = runVersionAudit();
+  if (!versionPassed) allPassed = false;
 
   // 1. Compiler and Schema Validation
   console.log('\n[Stage 1/4] Running Compiler Schema & Invariant Validation...');

@@ -12,6 +12,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { isTTY, promptSelect, promptMultiSelect, promptConfirm, promptText } = require('./interactive');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 
@@ -385,10 +386,32 @@ function listComponents() {
 /**
  * Initialize Qahera in a project
  */
-function initProject(rawArgs) {
-  const options = parseArgs(rawArgs);
-  const target = options.target || 'react';
+async function initProject(rawArgs) {
+  let options = parseArgs(rawArgs);
   const cwd = process.cwd();
+
+  if (rawArgs.length === 0 && isTTY) {
+    console.log('\n\x1b[1;36m╔═══════════════════════════════════════════════════════════════════════════╗\x1b[0m');
+    console.log('\x1b[1;36m║                  QAHERA PROJECT INITIALIZATION WIZARD                     ║\x1b[0m');
+    console.log('\x1b[1;36m╚═══════════════════════════════════════════════════════════════════════════╝\x1b[0m');
+
+    const chosenTarget = await promptSelect('Select your application target stack:', [
+      { name: 'React (Next.js 16 / React 19 / TypeScript)', value: 'react', description: '0kb RSC server components' },
+      { name: 'PHP (Plates / TidyFactor Kernel / PHP 8.x)', value: 'php', description: 'Modular Monolith' },
+      { name: 'HTML (Native Zero-Build Specimen)', value: 'html', description: 'Pure static HTML + Alpine' },
+      { name: 'HTMX (Server Fragments)', value: 'htmx', description: 'Hypermedia fragments' },
+      { name: 'JS (Native Web Components)', value: 'js', description: 'Framework-free custom elements' }
+    ]);
+    options.target = chosenTarget;
+
+    const defaultDest = chosenTarget === 'react' ? 'src/styles/qahera' : 'public/css/qahera';
+    const chosenDest = await promptText('Destination folder for tokens & CSS', defaultDest);
+    options.dest = chosenDest;
+
+    options.overwrite = await promptConfirm('Overwrite existing files if present?', false);
+  }
+
+  const target = options.target || 'react';
 
   console.log(`\n🚀 Initializing Qahera UI Kit for target [${target}]...`);
 
@@ -417,7 +440,7 @@ function initProject(rawArgs) {
   if (!fs.existsSync(configPath) || options.overwrite) {
     const configContent = {
       "$schema": "https://qahera.alwkala.com/schema.json",
-      "version": "1.5.2",
+      "version": "1.7.0",
       "style": "default",
       "theme": "default",
       "target": target,
@@ -506,7 +529,7 @@ function initProject(rawArgs) {
 /**
  * Add component(s), pattern(s), or template(s) to target directory
  */
-function addComponents(rawArgs) {
+async function addComponents(rawArgs) {
   const options = parseArgs(rawArgs);
   const target = options.target || 'react';
   const cwd = process.cwd();
@@ -520,6 +543,26 @@ function addComponents(rawArgs) {
   let requested = options.all ? [...CANONICAL_COMPONENTS] : options.items;
   if (requested.length === 1 && (requested[0] === 'all' || requested[0] === '*')) {
     requested = [...CANONICAL_COMPONENTS];
+  }
+
+  if (requested.length === 0 && isTTY) {
+    console.log('\n\x1b[1;36m╔═══════════════════════════════════════════════════════════════════════════╗\x1b[0m');
+    console.log('\x1b[1;36m║                  QAHERA COMPONENT SELECTION WIZARD                        ║\x1b[0m');
+    console.log('\x1b[1;36m╚═══════════════════════════════════════════════════════════════════════════╝\x1b[0m');
+
+    const componentChoices = CANONICAL_COMPONENTS.map(name => {
+      const meta = COMPONENT_METADATA[name] || {};
+      return {
+        name: `${name.padEnd(16)} (${meta.category || 'general'})`,
+        value: name,
+        checked: ['button', 'card', 'navbar', 'badge'].includes(name)
+      };
+    });
+
+    const chosen = await promptMultiSelect('Select components to add to your project:', componentChoices);
+    if (chosen.length > 0) {
+      requested = chosen;
+    }
   }
 
   if (requested.length === 0) {

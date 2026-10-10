@@ -1,9 +1,10 @@
 name: qahera
 title: Qahera UI Kit
-version: 1.5.5
+version: 1.7.0
 owner: Alwkala
 ecosystem: TidyFactor-compatible
 architecture: YAML-First AI-Native Design System
+mcp_server: true
 statement: "Qahera gives AI a structured visual vocabulary for building consistent, culturally rooted interfaces."
 
 specs:

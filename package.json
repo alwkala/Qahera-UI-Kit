@@ -1,6 +1,6 @@
 {
   "name": "qahera-ui",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "AI-Native, Contract-Driven Design System & Multi-Target Component Architecture by Alwkala",
   "main": "bin/qahera.js",
   "types": "renderers/react/index.ts",
@@ -40,6 +40,10 @@
     "build:html-data": "node bin/qahera.js build:html-data",
     "build:ide-data": "node bin/qahera.js build:ide-data",
     "preview": "node bin/qahera.js preview",
+    "dev": "node bin/qahera.js dev",
+    "mcp": "node bin/qahera.js mcp",
+    "lint": "node bin/qahera.js lint",
+    "setup-ide": "node bin/qahera.js setup-ide",
     "test": "node ci/audit-all.js",
     "typecheck": "tsc --noEmit"
   },
