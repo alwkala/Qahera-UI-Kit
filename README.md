@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏛️ Qahera UI Kit `v1.6.0`
+# 🏛️ Qahera UI Kit `v1.7.0`
 ### The AI-Native, Contract-Driven Design System & Multi-Target Component Architecture
 **The Authoritative Visual Vocabulary, Living Component Registry & Multi-Stack Foundation by Alwkala**
 
@@ -20,17 +20,18 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 [![Maturity: Level 5 OSS](https://img.shields.io/badge/Maturity-Level%205%20OSS%20(95%2F100)-success.svg?style=for-the-badge)](#system-health-quality-scorecard)
 
 <!-- Technical & Architecture Badges -->
+[![Model Context Protocol](https://img.shields.io/badge/MCP-Native%20Stdio%20%26%20HTTP%20(7%20Tools)-8B5CF6.svg?style=for-the-badge)](#sovereign-ai-agent-engine--native-mcp-v170)
 [![React 19 & Next.js](https://img.shields.io/badge/React-19%20%26%20Next.js%20(0kb%20RSC)-61DAFB.svg?style=for-the-badge&logo=react)](renderers/react/)
 [![PHP 8.x Plates](https://img.shields.io/badge/PHP-8.x%20Plates%20(20%20Templates)-777BB4.svg?style=for-the-badge&logo=php)](renderers/php/plates/)
 [![TypeScript Strict](https://img.shields.io/badge/TypeScript-Strict%20Zero--Error-3178C6.svg?style=for-the-badge&logo=typescript)](tsconfig.json)
 [![WCAG 2.1 AA Certified](https://img.shields.io/badge/A11y-WCAG%202.1%20AA%20(100%25)-10B981.svg?style=for-the-badge)](#system-health-quality-scorecard)
 [![RTL 100% Logical](https://img.shields.io/badge/RTL-100%25%20Logical%20CSS-059669.svg?style=for-the-badge)](#system-health-quality-scorecard)
 [![Zero Emoji](https://img.shields.io/badge/Visual-Zero%20Emoji%20(QAHERA--VISUAL--001)-DC2626.svg?style=for-the-badge)](#the-17-non-negotiable-architectural-invariants)
-[![Cairo Atlas Themes](https://img.shields.io/badge/Themes-12%20Cairo%20Neighborhoods-F59E0B.svg?style=for-the-badge)](#the-12-cairo-atlas-neighborhood-themes)
+[![Cairo Atlas Themes](https://img.shields.io/badge/Themes-13%20Cairo%20Neighborhoods-F59E0B.svg?style=for-the-badge)](#the-12-cairo-atlas-neighborhood-themes)
 
 <br/>
 
-**[ 🌐 Living Showcase Hub ](examples/previews/index.html) • [ 🏛️ The 45 Components ](#the-45-canonical-components-v15-scope) • [ 🧩 21 UX Patterns ](#the-21-compositional-ux-patterns) • [ 🏙️ Cairo Atlas (12 Themes) ](#the-12-cairo-atlas-neighborhood-themes) • [ 🚀 Quick Start ](#quick-start-distribution-channels) • [ 🗺️ Roadmap ](#roadmap) • [ 📄 بالعربية (README.ar.md) ](README.ar.md)**
+**[ 🌐 Living Showcase Hub ](examples/previews/index.html) • [ 🤖 Native MCP Suite ](#sovereign-ai-agent-engine--native-mcp-v170) • [ 📚 GitHub Wiki ](https://github.com/alwkala/Qahera-UI-Kit/wiki) • [ 🏛️ The 49 Components ](#the-45-canonical-components-v15-scope) • [ 🧩 21 UX Patterns ](#the-21-compositional-ux-patterns) • [ 🏙️ Cairo Atlas (13 Themes) ](#the-12-cairo-atlas-neighborhood-themes) • [ 🚀 Quick Start ](#quick-start-distribution-channels) • [ 🗺️ Roadmap ](#roadmap) • [ 📄 بالعربية (README.ar.md) ](README.ar.md)**
 
 </div>
 
@@ -48,17 +49,21 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 ## 📚 Table of Contents
 
 - [🎯 Why Qahera UI Kit?](#why-qahera-ui-kit)
+- [🤖 Sovereign AI Agent Engine & Native MCP (v1.7.0)](#sovereign-ai-agent-engine--native-mcp-v170)
+- [📚 Official GitHub Wiki & Knowledge Base](#official-github-wiki--knowledge-base)
 - [📊 System Health & Quality Scorecard](#system-health-quality-scorecard)
 - [🖼️ Visual Showcase & Architectural Paradigm](#visual-showcase-architectural-paradigm)
-- [🏛️ The 45 Canonical Components (v1.5 Scope)](#the-45-canonical-components-v15-scope)
+- [🏛️ The 49 Canonical Components (v1.7 Scope)](#the-45-canonical-components-v15-scope)
 - [🧩 The 21 Compositional UX Patterns](#the-21-compositional-ux-patterns)
-- [🏙️ The 12 Cairo Atlas Neighborhood Themes](#the-12-cairo-atlas-neighborhood-themes)
+- [🏙️ The 13 Cairo Atlas Neighborhood Themes](#the-12-cairo-atlas-neighborhood-themes)
 - [🚀 Quick Start & Distribution Channels](#quick-start-distribution-channels)
-  - [1. Zero-Install CLI Scaffolder via `npx` (shadcn-style)](#1-zero-install-cli-scaffolder-via-npx-shadcn-style)
-  - [2. Zero-Build Global CDN Quickstart (jsDelivr & unpkg)](#2-zero-build-global-cdn-quickstart-jsdelivr--unpkg)
-  - [3. PHP 8.x Plates Engine (Composer & Packagist)](#3-php-8x-plates-engine-composer--packagist)
-  - [4. React 19 & Next.js Server Components (RSC)](#4-react-19-nextjs-server-components-rsc)
-  - [5. Vanilla Web Components](#5-vanilla-web-components)
+  - [1. Sovereign AI Agent MCP Server (Stdio & HTTP)](#1-sovereign-ai-agent-mcp-server-stdio--http)
+  - [2. Zero-Install CLI Scaffolder via `npx` (shadcn-style)](#1-zero-install-cli-scaffolder-via-npx-shadcn-style)
+  - [3. Developer Experience CLI Suite (`dev`, `lint`, `setup-ide`)](#developer-experience-cli-suite)
+  - [4. Zero-Build Global CDN Quickstart (jsDelivr & unpkg)](#2-zero-build-global-cdn-quickstart-jsdelivr--unpkg)
+  - [5. PHP 8.x Plates Engine (Composer & Packagist)](#3-php-8x-plates-engine-composer--packagist)
+  - [6. React 19 & Next.js Server Components (RSC)](#4-react-19-nextjs-server-components-rsc)
+  - [7. Vanilla Web Components](#5-vanilla-web-components)
 - [📖 Authoritative Specifications & Documentation Links](#authoritative-specifications-documentation-links)
 - [🛡️ The 17 Non-Negotiable Architectural Invariants](#the-17-non-negotiable-architectural-invariants)
 - [🗺️ Roadmap](#roadmap)
@@ -74,7 +79,7 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 
 > [!IMPORTANT]
 > **The Core Architectural Equation:**  
-> $$\mathbf{\text{Qahera UI Kit v1.5.2}} = \mathbf{\text{Design System}} + \mathbf{\text{Registry}} + \mathbf{\text{AI Decision Layer}}$$
+> $$\mathbf{\text{Qahera UI Kit v1.7.0}} = \mathbf{\text{Design System}} + \mathbf{\text{Registry}} + \mathbf{\text{AI Decision Layer}}$$
 > 
 > Qahera is **NOT** just another component library or compiler. It is an **AI-Native UI Kit** combining a systematic design language, an authoritative canonical registry, and an explicit AI decision layer that tells coding agents **WHAT** to use, **WHEN** to use it, and **WHY NOT** to invent ad-hoc styles.
 
@@ -83,9 +88,67 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 | **Architectural Source** | Hardcoded CSS / Framework classes | Arbitrary statistical guesswork | **Deterministic YAML Contracts & Tokens** |
 | **Source Ownership** | Heavy `npm` package runtime lock-in | Fragile inline Tailwind copy-paste | **Full Source Ownership** (shadcn-style `qahera add`) |
 | **RTL & Arabic Parity** | Secondary CSS hack or after-thought | Directional margin errors (`mr-*`, `ml-*`) | **Core Infrastructure:** 100% Logical CSS + Alexandria/Cairo fonts |
-| **AI Agent Ergonomics** | Must parse thousands of CSS classes | Inconsistent visual styles & emoji slop | **4-Tier Progressive AI Context** (`ai/components.yaml`) |
+| **AI Agent Ergonomics** | Must parse thousands of CSS classes | Inconsistent visual styles & emoji slop | **Model Context Protocol (MCP)** + 7 Canonical Agent Tools |
 | **Multi-Stack Parity** | Single-framework locked (React or CSS) | Fragile porting between stacks | **100% Semantic Parity across 6 Targets** (React, PHP, HTML, HTMX, JS) |
-| **Visual Iconography** | Inconsistent icon fonts or random SVGs | Arbitrary emojis (🗑️, 🚀, ✕) | **Zero Emoji (`QAHERA-VISUAL-001`):** 46 Semantic SVG Icons |
+| **Visual Iconography** | Inconsistent icon fonts or random SVGs | Arbitrary emojis (🗑️, 🚀, ✕) | **Zero Emoji (`QAHERA-VISUAL-001`):** 47 Semantic SVG Icons |
+
+---
+
+<a id="sovereign-ai-agent-engine--native-mcp-v170"></a>
+## 🤖 Sovereign AI Agent Engine & Native MCP (v1.7.0)
+
+Qahera UI Kit v1.7.0 introduces a zero-dependency, local **Model Context Protocol (MCP)** server conforming to the open JSON-RPC 2.0 standard. AI coding assistants (Google Antigravity, Claude Code, Cursor, Windsurf) connect directly to Qahera's design system contracts and tokens with deterministic precision.
+
+### 1. Launching the MCP Server
+```bash
+# Start JSON-RPC 2.0 stdio server (for IDE sidecars)
+npx -y qahera-ui mcp
+
+# Start local HTTP stream on port 3301
+npx -y qahera-ui mcp --http --port=3301
+```
+
+### 2. Available AI Tools (7 Canonical Tools)
+| Tool Name | Scope & Purpose |
+|---|---|
+| `qahera_list` | Query canonical catalog of 49 components, 21 patterns, 20 templates, and 13 Cairo themes. |
+| `qahera_get_component` | Fetch contract YAML, recipe, and multi-target renderer code (`react`, `php`, `html`, `htmx`, `js`). |
+| `qahera_search_tokens` | Search 335+ `--qhr-*` design tokens by role, color name, or semantic category. |
+| `qahera_get_pattern` | Retrieve higher-order UX patterns with required composite components and behavioral rules. |
+| `qahera_get_theme` | Retrieve Cairo architectural theme tokens and cultural narratives. |
+| `qahera_audit_code` | Deterministically audit code against Zero-Custom-CSS, emoji bans, font bans, and logical properties. |
+| `qahera_compose_screen` | Synthesize complete screens composed exclusively from verified `qhr-*` components. |
+
+### 3. Automated Zero-Touch IDE Setup
+Configure your editor for both Custom Data Autocomplete and the native MCP server in one command:
+```bash
+npx qahera-ui setup-ide
+```
+This automatically provisions:
+* `.vscode/settings.json`: CSS Custom Data (`qahera.css-data.json`) and HTML Custom Data (`qahera.html-data.json`).
+* `.cursor/mcp.json`: Zero-config Stdio MCP server runner for Cursor IDE.
+* Claude Desktop JSON payload output ready for copy-pasting.
+
+### 4. Remote Web MCP Endpoint
+For web agents or decoupled environments, access the official live HTTP JSON-RPC 2.0 endpoint:
+```text
+https://alwkala.com/qahera/api/mcp.php
+```
+
+---
+
+<a id="official-github-wiki--knowledge-base"></a>
+## 📚 Official GitHub Wiki & Knowledge Base
+
+Explore in-depth architectural guides, deep-dives, and production recipes in the official **[Qahera UI Kit GitHub Wiki](https://github.com/alwkala/Qahera-UI-Kit/wiki)**:
+
+* **[Wiki Home](https://github.com/alwkala/Qahera-UI-Kit/wiki)**: Architectural gateway and system roadmap.
+* **[Getting Started](https://github.com/alwkala/Qahera-UI-Kit/wiki/Getting-Started)**: Setup guides for Next.js 15, PHP Plates, and Vanilla HTML.
+* **[Architecture & The 17 Invariants](https://github.com/alwkala/Qahera-UI-Kit/wiki/Architecture-and-Invariants)**: Non-negotiable system contracts and Zero-Custom-CSS principles.
+* **[AI Decision Layer & MCP Server](https://github.com/alwkala/Qahera-UI-Kit/wiki/AI-Decision-Layer-and-MCP)**: Configuration and workflows for Antigravity, Claude, and Cursor.
+* **[Components & UX Patterns Registry](https://github.com/alwkala/Qahera-UI-Kit/wiki/Components-and-Patterns)**: Catalog of 49 components and 21 patterns.
+* **[Cairo Atlas (13 Themes)](https://github.com/alwkala/Qahera-UI-Kit/wiki/Cairo-Atlas-Themes)**: Architectural narratives and design tokens.
+* **[Contributing Guide](https://github.com/alwkala/Qahera-UI-Kit/wiki/Contributing)**: CI gates, testing protocols, and PR submission.
 
 ---
 
@@ -93,12 +156,12 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 ## 📊 System Health & Quality Scorecard
 
 ```text
-🏛️ QAHERA QUALITY ASSURANCE AUDIT (v1.5.2 Certified)
+🏛️ QAHERA QUALITY ASSURANCE AUDIT (v1.7.0 Certified)
 ══════════════════════════════════════════════════════════════════════════════════════
-  ✓ Schema & Invariants Validation : 100% Passed (45 Contracts · 45 Recipes · 21 Patterns · 46 Icons)
+  ✓ Schema & Invariants Validation : 100% Passed (49 Contracts · 49 Recipes · 21 Patterns · 47 Icons)
   ✓ TypeScript Strict Typecheck    : 100% Passed (0 Errors across all React & Template files)
   ✓ WCAG 2.1 AA Contrast Ratios    : 100% Passed (Ratios from 4.70:1 to 19.21:1)
-  ✓ Performance CSS Budget         : 219.95 KB Raw / 29.57 KB Gzip (Budget: <= 30 KB)
+  ✓ Performance CSS Budget         : 238.06 KB Raw / 32.51 KB Gzip (Budget: <= 35 KB gzip)
   ✓ RSC 0kb Client Footprint       : 32 Pure Server Components (0kb JS) + 15 Leaf Client Components
   ✓ RTL/LTR Parity & Logical CSS   : 100% Clean (0 Forbidden physical margins/paddings)
   ✓ Arabic Typography Discipline   : 100% Clean (Amiri font ban enforced, Alexandria/Cairo canonical)
@@ -106,11 +169,11 @@ Give **Google Antigravity, Claude Code, Cursor, OpenAI Codex, or Windsurf** a de
 ══════════════════════════════════════════════════════════════════════════════════════
 ```
 
-* **1:1 Parity Matrix:** 45 Architectural Contracts (`contracts/components/`) = 45 Recipes (`recipes/`) = 21 Compositional Patterns (`patterns/`) = 70 Standalone Preview Playgrounds (`examples/previews/`).
-* **Living Showcase Matrix:** 86 Canonical Items (45 Components + 21 Patterns + 20 Application Templates) in the Grand Interactive Hub (`examples/previews/index.html`).
+* **1:1 Parity Matrix:** 49 Architectural Contracts (`contracts/components/`) = 49 Recipes (`recipes/`) = 21 Compositional Patterns (`patterns/`) = 70+ Standalone Preview Playgrounds (`examples/previews/`).
+* **Living Showcase Matrix:** 86 Canonical Items (49 Components + 21 Patterns + 20 Application Templates) in the Grand Interactive Hub (`examples/previews/index.html`).
 * **Production Bundles:**
-  - `dist/qahera.css`: 219.95 KB (29.57 KB gzip) production stylesheet aggregating 49 modular CSS units.
-  - `dist/qahera-themes.css`: 38.98 KB (5.43 KB gzip) covering all 12 Cairo Atlas neighborhood themes.
+  - `dist/qahera.css`: 238.06 KB (32.51 KB gzip) production stylesheet aggregating 53 modular CSS units.
+  - `dist/qahera-themes.css`: 38.98 KB (5.43 KB gzip) covering all 13 Cairo Atlas neighborhood themes.
 
 ---
 
@@ -583,8 +646,10 @@ Every contribution and automated build must strictly adhere to the 17 invariants
 | **v1.5.3** | Packagist, CDN & Platform Sync | Official `composer.json`, CDN Quickstarts, NPM Arabic Parity, Universal State Sync | **Completed** | **2026-09-17** |
 | **v1.5.4** | VS Code Custom Data & Studio UX | Official `qahera.css-data.json`, 325 Tokens Autocomplete, `build:css-data` CLI, Studio Polish | **Completed** | **2026-09-17** |
 | **v1.5.5** | Smart HTML Custom Data, Zero-Touch IDE & CDN Boilerplate | `qahera.html-data.json` (45 Tags + 13 Themes), Zero-Touch IDE Setup in `init`, `qahera cdn` command, AI Skill v1.2.0 | **Completed** | **2026-09-17** |
-| **v1.6.0** | Tokens Studio & Figma Sync | Bidirectional Figma Tokens sync, automated token pull | *Planned* | Q4 2026 |
-| **v2.0.0** | Autonomous AI Agent Engine | MCP native server, headless prompt-to-production compiler | *Roadmap* | Q1 2027 |
+| **v1.6.0** | Zero-Custom-CSS Architecture & Financial Portal | Zero-Custom-CSS Contract, `qahera audit:template`, Bloomberg/Investopedia Financial Portal | **Completed** | **2026-09-18** |
+| **v1.7.0** | Sovereign AI Agent Engine & Native MCP Suite | Zero-Dependency MCP Server (Stdio + HTTP, 7 Tools), Interactive CLI Wizard, Zero-Touch IDE Setup (`dev`, `lint`), Web Portal & Remote Web MCP | **Completed** | **2026-10-10** |
+| **v1.8.0** | Tailwind Plugin & Advanced Tokens Studio | Official Tailwind Plugin (`qahera-ui-kit/tailwind`), W3C DTCG Token Export, npm dual-dist | *Planned* | Q4 2026 / Q1 2027 |
+| **v2.0.0** | Global Registries & Multi-Agent Workflows | Global MCP Registries (Smithery/Glama), Autonomous Multi-Agent Multi-Tenant Workflows | *Roadmap* | Q1-Q2 2027 |
 
 ---
 

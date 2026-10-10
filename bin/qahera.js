@@ -82,6 +82,14 @@ if (command === 'sync:downstream' || command === 'sync') {
   process.exit(0);
 }
 
+if (command === 'deploy:wiki') {
+  import('../cli/deploy-wiki.js').catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+  return;
+}
+
 if (command === 'list' || command === 'ls') {
   listComponents();
   process.exit(0);
